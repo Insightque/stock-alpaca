@@ -1,0 +1,79 @@
+{
+  "run_id": "2026-05-07-historical-decision",
+  "mode": "dry_run",
+  "paper": true,
+  "market": {
+    "is_open": false,
+    "checked_at": "2026-05-07T20:00:00Z"
+  },
+  "account": {
+    "portfolio_value": 100000.0,
+    "cash": 100000.0,
+    "buying_power": 200000.0
+  },
+  "positions": [],
+  "orders": [
+    {
+      "symbol": "AMD",
+      "asset_type": "stock",
+      "side": "buy",
+      "order_type": "limit",
+      "time_in_force": "day",
+      "qty": 36,
+      "limit_price": 408.195,
+      "reference_price": 408.195,
+      "quote_age_minutes": 0,
+      "rationale": "과거 기준 5D 상대강도와 테마 모멘텀 상위 후보. 실험용 dry-run 추천.",
+      "decision_id": "2026-05-07-historical-decision",
+      "historical_asof": "2026-05-07",
+      "review_horizons": [
+        "1D",
+        "5D",
+        "20D"
+      ]
+    },
+    {
+      "symbol": "TSLA",
+      "asset_type": "stock",
+      "side": "buy",
+      "order_type": "limit",
+      "time_in_force": "day",
+      "qty": 36,
+      "limit_price": 411.825,
+      "reference_price": 411.825,
+      "quote_age_minutes": 0,
+      "rationale": "과거 기준 5D 상대강도와 테마 모멘텀 상위 후보. 실험용 dry-run 추천.",
+      "decision_id": "2026-05-07-historical-decision",
+      "historical_asof": "2026-05-07",
+      "review_horizons": [
+        "1D",
+        "5D",
+        "20D"
+      ]
+    },
+    {
+      "symbol": "NVDA",
+      "asset_type": "stock",
+      "side": "buy",
+      "order_type": "limit",
+      "time_in_force": "day",
+      "qty": 70,
+      "limit_price": 211.56,
+      "reference_price": 211.56,
+      "quote_age_minutes": 0,
+      "rationale": "과거 기준 5D 상대강도와 테마 모멘텀 상위 후보. 실험용 dry-run 추천.",
+      "decision_id": "2026-05-07-historical-decision",
+      "historical_asof": "2026-05-07",
+      "review_horizons": [
+        "1D",
+        "5D",
+        "20D"
+      ]
+    }
+  ],
+  "notes": [
+    "배치 과거 추천 시뮬레이션용 dry-run 계획이다.",
+    "실제 주문 제출 금지.",
+    "해당 기간 위키가 존재하지 않아 현재 위키 후보군을 실험용 fallback으로 사용했다."
+  ]
+}

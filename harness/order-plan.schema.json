@@ -117,10 +117,22 @@
           },
           "rationale": {
             "type": "string"
+          },
+          "decision_id": {
+            "type": "string"
+          },
+          "historical_asof": {
+            "type": "string"
+          },
+          "review_horizons": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["1D", "5D", "20D"]
+            }
           }
         }
       }
     }
   }
 }
-

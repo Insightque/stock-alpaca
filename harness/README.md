@@ -10,6 +10,8 @@ Start with these workflows:
 - `workflows/rebalance.md` for portfolio-only allocation and paper-order planning.
 - `workflows/post-trade.md` for order/fill reconciliation.
 - `workflows/trade-review.md` for reviewing traded stocks and improving recommendation policy.
+- `workflows/historical-decision-sim.md` for strict as-of-date recommendation simulations with dry-run orders only.
+- `workflows/historical-decision-review.md` for 1D/5D/20D outcome reviews and policy-learning signals.
 - `workflows/wiki-lint.md` for wiki maintenance.
 
 Safety lives in two places:

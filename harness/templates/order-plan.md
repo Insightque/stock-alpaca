@@ -20,3 +20,5 @@
   "orders": []
 }
 ```
+
+과거 시점 추천 시뮬레이션에서 생성하는 주문 계획도 같은 형식을 사용하되, 반드시 `mode: "dry_run"`으로 둔다. 각 주문에는 선택적으로 `decision_id`, `historical_asof`, `review_horizons`, `rationale`을 넣어 이후 `wiki/reviews/decisions/` 회고와 연결한다.

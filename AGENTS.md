@@ -26,6 +26,8 @@ Read `harness/simple-commands.md` before interpreting user-facing trading comman
 - `paper 주문까지 실행해줘`: use the latest validated order plan or `harness/workflows/rebalance.md` in submit mode, then run post-trade check.
 - `거래 후 점검해줘`: use `harness/workflows/post-trade.md`.
 - `거래 회고해줘`: use `harness/workflows/trade-review.md`.
+- `YYYY-MM-DD 기준 추천 시뮬레이션해줘`: use `harness/workflows/historical-decision-sim.md` in dry-run mode only.
+- `YYYY-MM-DD 추천 회고해줘`: use `harness/workflows/historical-decision-review.md`; do not submit orders.
 - `위키 정리해줘`: use `harness/workflows/wiki-lint.md`.
 
 If a user command does not explicitly include `주문`, `매수`, `매도`, `실행`, or `submit`, do not submit orders. If the user asks for a custom variant, keep the same safety rules and record the deviation in `wiki/log.md`.
@@ -43,6 +45,8 @@ If a user command does not explicitly include `주문`, `매수`, `매도`, `실
 - Wiki Curator Agent: updates cross-links, `wiki/index.md`, and `wiki/log.md`; flags contradictions instead of silently resolving them.
 - Post-Trade Agent: verifies submitted orders, fills, positions, and buying power; writes execution outcomes back to the wiki.
 - Trade Review Agent: reviews closed trades and still-held traded stocks against the original thesis, order plan, market context, and later outcomes; records what was right, what was wrong, and how recommendation policy should improve.
+- Historical Decision Agent: recreates an as-of-date recommendation using only information available at that historical point, creates dry-run orders, and schedules 1D/5D/20D review horizons.
+- Historical Review Agent: evaluates historical recommendations with later prices, benchmark-relative returns, and policy-learning signals while preserving the original recommendation unchanged.
 
 Use actual sub-agents when the runtime and user instruction allow parallel agent work. Otherwise, perform the roles sequentially and label the sections in the report.
 
@@ -75,6 +79,8 @@ If validation fails, do not submit orders. Write skipped orders and reasons into
 - `wiki/portfolio/`: account snapshots, allocation plans, and order plans.
 - `wiki/reports/daily/`: daily run reports named `YYYY-MM-DD.md`.
 - `wiki/reviews/trades/`: trade review notes, named `YYYY-MM-DD-SYMBOL-review.md` or `YYYY-MM-DD-portfolio-review.md`.
+- `wiki/simulations/`: historical as-of recommendation simulations, named `YYYY-MM-DD-historical-decision.md`.
+- `wiki/reviews/decisions/`: historical recommendation reviews, named `YYYY-MM-DD-historical-review.md`.
 - `wiki/policies/recommendation-policy.md`: living policy distilled from trade reviews. Update it only with evidence-backed lessons, not one-off hindsight.
 - `wiki/analyses/`: reusable cross-ticker or thematic analyses.
 - `wiki/index.md`: content-oriented catalog. Read it first and update it after each run.
@@ -90,6 +96,17 @@ Use wiki links such as `[[AAPL]]`, `[[portfolio-current]]`, and `[[2026-05-22]]`
 - Record what worked, what failed, what was unknowable, and what should change in future recommendations.
 - Do not rewrite old thesis pages to look smarter in hindsight. Add dated review sections or separate review pages.
 - A single trade can suggest a hypothesis, but update `wiki/policies/recommendation-policy.md` only when the lesson is evidence-backed and clearly useful for future recommendations.
+
+## Historical Decision Simulation And Policy Learning
+
+- A user may ask for a recommendation from a specific past date or timestamp. Treat that as a historical simulation, not as a live trading request.
+- Historical simulations must use strict leakage control: recommendation artifacts may include only data available at or before the historical as-of point.
+- If the user gives only a date, use that US regular trading day close as the default as-of point. If the date is a market holiday, use the closest prior regular trading day and record the adjustment.
+- The default review horizons are 1D, 5D, and 20D after the as-of point.
+- The default historical universe is symbols that appeared in the as-of wiki state, raw sources, order plans, portfolio records, or watchlist records. Current watchlists are not valid strict-mode evidence unless they were captured at the historical point.
+- Historical simulations may create only dry-run order plans. They must never call Alpaca order submission, replacement, cancellation, or position-closing tools.
+- Historical reviews may use later prices and benchmark returns, but only in separate review documents. Do not edit the original simulation to include future outcomes.
+- Use accumulated review evidence to update `wiki/policies/recommendation-policy.md` with `evidence_count`, `hit_rate`, `avg_excess_return`, and status. Single examples stay as hypotheses unless impact is clearly material.
 
 ## Trading Execution Contract
 
