@@ -24,6 +24,8 @@ Ask Codex one of these commands:
 
 Codex should follow `AGENTS.md` and the matching workflow in `harness/workflows/`.
 
+에이전트에게 업무를 지시하는 예시는 `harness/agent-tasking-guide.md`를 참고하세요.
+
 ## Safety Model
 
 - Paper trading only.
