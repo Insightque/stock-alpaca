@@ -15,7 +15,7 @@ Default simple-command mode:
 
 - Alpaca MCP account, clock, positions, watchlists, assets, stock data, and news.
 - Web sources for current company, earnings, sector, and macro context.
-- Existing wiki pages: `wiki/index.md`, `wiki/log.md`, ticker pages, portfolio pages, and recent reports.
+- Existing wiki pages: `wiki/index.md`, `wiki/log.md`, `wiki/policies/recommendation-policy.md`, ticker pages, portfolio pages, trade reviews, and recent reports.
 
 ## Required Outputs
 
@@ -31,6 +31,7 @@ Default simple-command mode:
 
 1. Coordinator Agent
    - Read `AGENTS.md`, `wiki/index.md`, and the last 10 entries of `wiki/log.md`.
+   - Read `wiki/policies/recommendation-policy.md` when present and apply its current lessons to candidate scoring.
    - Confirm `.env` has `ALPACA_PAPER_TRADE=true`.
    - Use Alpaca MCP to get account info, market clock, open orders, current positions, and watchlists.
    - If MCP is unavailable, switch to research-only mode and record the blocker.
@@ -58,6 +59,7 @@ Default simple-command mode:
      - Risk/liquidity/volatility quality: 20 points.
      - Portfolio fit/diversification: 20 points.
    - Assign each ticker a 0-100 score and confidence: low, medium, or high.
+   - Note any scoring adjustment caused by prior trade reviews or recommendation policy.
 
 6. Ticker Thesis Agent
    - Create or update `wiki/tickers/SYMBOL.md`.

@@ -6,45 +6,44 @@ paper: true
 status: draft|completed|blocked
 ---
 
-# Daily Trading Report - YYYY-MM-DD
+# 일일 트레이딩 리포트 - YYYY-MM-DD
 
-## Market Context
+## 시장 맥락
 
-- Market clock:
-- Account snapshot:
-- Watchlist universe:
+- 시장 시계:
+- 계좌 스냅샷:
+- Watchlist 유니버스:
 
-## Ranked Candidates
+## 후보 순위
 
-| Rank | Ticker | Score | D/W/M Trend | Thesis | Main Risk |
+| 순위 | 티커 | 점수 | 일/주/月 추세 | Thesis | 핵심 리스크 |
 | --- | --- | ---: | --- | --- | --- |
 
-## Allocation Recommendation
+## 배분 제안
 
-| Ticker | Current % | Target % | Action | Estimated Notional |
+| 티커 | 현재 비중 | 목표 비중 | 조치 | 예상 금액 |
 | --- | ---: | ---: | --- | ---: |
 
-## Risk Gate
+## 리스크 게이트
 
-- Result:
-- Policy file: `harness/risk-policy.md`
-- Order plan:
+- 결과:
+- 정책 파일: `harness/risk-policy.md`
+- 주문 계획:
 
-## Submitted Orders
+## 제출된 주문
 
-| Ticker | Side | Qty | Limit | Status | Order ID |
+| 티커 | 방향 | 수량 | 지정가 | 상태 | 주문 ID |
 | --- | --- | ---: | ---: | --- | --- |
 
-## Skipped Orders
+## 건너뛴 주문
 
-| Ticker | Reason |
+| 티커 | 이유 |
 | --- | --- |
 
-## Next Questions
+## 다음 질문
 
 - 
 
-## Sources Added
+## 추가한 출처
 
 - 
-

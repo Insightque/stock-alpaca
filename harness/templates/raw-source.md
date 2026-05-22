@@ -8,21 +8,20 @@ tickers: []
 immutable: true
 ---
 
-# Source Title
+# 출처 제목
 
-## Summary
-
-- 
-
-## Key Evidence
+## 요약
 
 - 
 
-## Tickers Mentioned
+## 핵심 근거
 
 - 
 
-## Notes For Wiki Integration
+## 언급된 티커
 
 - 
 
+## 위키 반영 메모
+
+- 

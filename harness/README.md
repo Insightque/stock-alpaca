@@ -9,6 +9,7 @@ Start with these workflows:
 - `workflows/research.md` for ticker research without orders.
 - `workflows/rebalance.md` for portfolio-only allocation and paper-order planning.
 - `workflows/post-trade.md` for order/fill reconciliation.
+- `workflows/trade-review.md` for reviewing traded stocks and improving recommendation policy.
 - `workflows/wiki-lint.md` for wiki maintenance.
 
 Safety lives in two places:

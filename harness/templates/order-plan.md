@@ -1,6 +1,6 @@
-# Order Plan Template
+# 주문 계획 템플릿
 
-Create concrete order plans as JSON files in `wiki/portfolio/order-plans/` and validate them with `scripts/check-risk-policy.py` before using Alpaca MCP to submit paper orders.
+구체적인 주문 계획은 `wiki/portfolio/order-plans/` 아래 JSON 파일로 작성한다. Alpaca MCP로 paper 주문을 제출하기 전 반드시 `scripts/check-risk-policy.py`로 검증한다.
 
 ```json
 {
@@ -20,4 +20,3 @@ Create concrete order plans as JSON files in `wiki/portfolio/order-plans/` and v
   "orders": []
 }
 ```
-

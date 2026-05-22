@@ -9,33 +9,32 @@ source_count: 0
 
 # TICKER
 
-## Current Thesis
+## 현재 Thesis
 
-No thesis yet.
+아직 thesis가 없다.
 
-## Trend Snapshot
+## 추세 스냅샷
 
-| Horizon | Direction | Evidence | Confidence |
+| 기간 | 방향 | 근거 | 신뢰도 |
 | --- | --- | --- | --- |
-| Daily | unknown |  | low |
-| Weekly | unknown |  | low |
-| Monthly | unknown |  | low |
+| 일간 | 미확인 |  | 낮음 |
+| 주간 | 미확인 |  | 낮음 |
+| 월간 | 미확인 |  | 낮음 |
 
-## Catalysts
-
-- 
-
-## Risks
+## 촉매
 
 - 
 
-## Portfolio Context
-
-- Current position: unknown
-- Target allocation: unknown
-- Recent orders: none recorded
-
-## Source Notes
+## 리스크
 
 - 
 
+## 포트폴리오 맥락
+
+- 현재 포지션: 미확인
+- 목표 배분: 미확인
+- 최근 주문: 기록 없음
+
+## 출처 노트
+
+- 

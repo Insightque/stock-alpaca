@@ -25,6 +25,7 @@ Read `harness/simple-commands.md` before interpreting user-facing trading comman
 - `리밸런싱 계획 짜줘`: use `harness/workflows/rebalance.md` in no-submit mode.
 - `paper 주문까지 실행해줘`: use the latest validated order plan or `harness/workflows/rebalance.md` in submit mode, then run post-trade check.
 - `거래 후 점검해줘`: use `harness/workflows/post-trade.md`.
+- `거래 회고해줘`: use `harness/workflows/trade-review.md`.
 - `위키 정리해줘`: use `harness/workflows/wiki-lint.md`.
 
 If a user command does not explicitly include `주문`, `매수`, `매도`, `실행`, or `submit`, do not submit orders. If the user asks for a custom variant, keep the same safety rules and record the deviation in `wiki/log.md`.
@@ -41,6 +42,7 @@ If a user command does not explicitly include `주문`, `매수`, `매도`, `실
 - Executor Agent: submits approved paper orders through Alpaca MCP only, using day limit stock orders.
 - Wiki Curator Agent: updates cross-links, `wiki/index.md`, and `wiki/log.md`; flags contradictions instead of silently resolving them.
 - Post-Trade Agent: verifies submitted orders, fills, positions, and buying power; writes execution outcomes back to the wiki.
+- Trade Review Agent: reviews closed trades and still-held traded stocks against the original thesis, order plan, market context, and later outcomes; records what was right, what was wrong, and how recommendation policy should improve.
 
 Use actual sub-agents when the runtime and user instruction allow parallel agent work. Otherwise, perform the roles sequentially and label the sections in the report.
 
@@ -67,15 +69,27 @@ If validation fails, do not submit orders. Write skipped orders and reasons into
 
 ## Wiki Conventions
 
+- Record all future wiki content, daily reports, ticker analyses, portfolio notes, raw-source summaries, and log entries in Korean by default. Keep ticker symbols, source titles, field names, tool names, and quoted source text in their original language when that improves traceability.
 - `wiki/raw/sources/`: immutable source notes. Do not edit raw source pages after initial capture except to fix formatting that blocks parsing.
 - `wiki/tickers/`: one page per ticker, named `SYMBOL.md`.
 - `wiki/portfolio/`: account snapshots, allocation plans, and order plans.
 - `wiki/reports/daily/`: daily run reports named `YYYY-MM-DD.md`.
+- `wiki/reviews/trades/`: trade review notes, named `YYYY-MM-DD-SYMBOL-review.md` or `YYYY-MM-DD-portfolio-review.md`.
+- `wiki/policies/recommendation-policy.md`: living policy distilled from trade reviews. Update it only with evidence-backed lessons, not one-off hindsight.
 - `wiki/analyses/`: reusable cross-ticker or thematic analyses.
 - `wiki/index.md`: content-oriented catalog. Read it first and update it after each run.
 - `wiki/log.md`: append-only chronological log. Add a new `## [YYYY-MM-DD HH:MM TZ] type | title` entry for every run.
 
 Use wiki links such as `[[AAPL]]`, `[[portfolio-current]]`, and `[[2026-05-22]]` where helpful, but keep plain Markdown readable without Obsidian.
+
+## Trade Review And Policy Learning
+
+- After any filled paper trade exists, future `거래 후 점검해줘`, `포트폴리오 점검해줘`, `리밸런싱 계획 짜줘`, and `오늘 분석해줘` runs should check whether a trade review is due.
+- Review both closed positions and still-held traded stocks. For open positions, mark conclusions as interim.
+- Compare the original recommendation with the actual later outcome using the wiki state that existed at decision time: ticker page, daily report, order plan, raw sources, account snapshot, market data, and risk policy.
+- Record what worked, what failed, what was unknowable, and what should change in future recommendations.
+- Do not rewrite old thesis pages to look smarter in hindsight. Add dated review sections or separate review pages.
+- A single trade can suggest a hypothesis, but update `wiki/policies/recommendation-policy.md` only when the lesson is evidence-backed and clearly useful for future recommendations.
 
 ## Trading Execution Contract
 

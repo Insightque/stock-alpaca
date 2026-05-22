@@ -4,28 +4,27 @@ updated_at: YYYY-MM-DDTHH:MM:SSZ
 paper: true
 ---
 
-# Portfolio Current
+# 현재 포트폴리오
 
-## Account
+## 계좌
 
-| Metric | Value |
+| 지표 | 값 |
 | --- | ---: |
-| Portfolio value |  |
-| Cash |  |
+| 포트폴리오 가치 |  |
+| 현금 |  |
 | Buying power |  |
-| Invested exposure |  |
+| 투자 노출 |  |
 
-## Positions
+## 포지션
 
-| Ticker | Qty | Market Value | Portfolio % | Unrealized P/L |
+| 티커 | 수량 | 시장 가치 | 포트폴리오 비중 | 미실현 손익 |
 | --- | ---: | ---: | ---: | ---: |
 
-## Open Orders
+## 미체결 주문
 
-| Ticker | Side | Qty | Limit | Status | Submitted |
+| 티커 | 방향 | 수량 | 지정가 | 상태 | 제출 시각 |
 | --- | --- | ---: | ---: | --- | --- |
 
-## Notes
+## 메모
 
 - 
-

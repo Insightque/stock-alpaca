@@ -1,36 +1,37 @@
-# Workflow: Research Tickers Only
+# Workflow: 종목 리서치 전용
 
-Use this when the user says `관심종목 분석해줘`, `AAPL 분석해줘`, or asks to research tickers only.
+사용자가 `관심종목 분석해줘`, `AAPL 분석해줘`라고 말하거나 종목 리서치만 요청할 때 사용한다.
 
-## Goal
+## 목표
 
-Research the requested tickers, update the llm-wiki, and make no orders.
+요청한 종목을 리서치하고 llm-wiki를 업데이트한다. 주문은 만들거나 제출하지 않는다.
 
-## Required Outputs
+## 필수 산출물
 
-- Updated ticker pages in `wiki/tickers/`
-- New immutable raw source notes in `wiki/raw/sources/`
-- Optional cross-ticker analysis in `wiki/analyses/`
-- Updated `wiki/index.md`
-- Appended `wiki/log.md` entry
+- `wiki/tickers/`의 종목 페이지 업데이트
+- `wiki/raw/sources/`의 새 immutable raw source note
+- 필요 시 `wiki/analyses/`의 교차 종목 분석
+- `wiki/index.md` 업데이트
+- `wiki/log.md` append-only 항목 추가
 
-## Procedure
+## 절차
 
-1. Read `AGENTS.md`, `wiki/index.md`, and recent `wiki/log.md`.
-2. Parse the requested ticker list. If the user did not provide tickers, use Alpaca watchlists as the universe.
-3. Use Alpaca MCP asset lookup to confirm each ticker is an active tradable US stock/ETF.
-4. Use Alpaca MCP stock bars, snapshots, quotes/trades, and news to collect market context.
-5. Browse current web sources for company events, earnings, sector context, and relevant macro factors.
-6. Capture each useful source as an immutable raw source note.
-7. Update each ticker page with:
-   - Current thesis.
-   - Daily, weekly, and monthly trend.
-   - Catalysts and risks.
-   - Source-backed confidence.
-   - Portfolio relevance if positions exist.
-8. If comparing tickers, create or update a page under `wiki/analyses/`.
-9. Update `wiki/index.md` and append `wiki/log.md`.
+1. `AGENTS.md`, `wiki/index.md`, 최근 `wiki/log.md`, `wiki/policies/recommendation-policy.md`를 읽는다.
+2. 요청된 티커 목록을 파싱한다. 사용자가 티커를 지정하지 않았다면 Alpaca watchlist를 유니버스로 사용한다.
+3. Alpaca MCP asset lookup으로 각 티커가 active/tradable 미국 주식 또는 ETF인지 확인한다.
+4. Alpaca MCP stock bars, snapshots, quotes/trades, news로 시장 맥락을 수집한다.
+5. 현재 웹 출처에서 기업 이벤트, 실적, 섹터 맥락, 관련 매크로 요인을 조사한다.
+6. 유용한 출처는 immutable raw source note로 캡처한다.
+7. 각 종목 페이지를 업데이트한다.
+   - 현재 thesis.
+   - 일간, 주간, 월간 추세.
+   - 촉매와 리스크.
+   - 출처 기반 신뢰도.
+   - 포지션이 있으면 포트폴리오 관련성.
+   - 추천 정책의 과거 회고 교훈이 적용된 부분.
+8. 종목 비교가 필요하면 `wiki/analyses/` 아래 페이지를 만들거나 업데이트한다.
+9. `wiki/index.md`와 `wiki/log.md`를 업데이트한다.
 
-## Hard Rule
+## 하드 룰
 
-Do not create an order plan and do not submit orders in this workflow.
+이 워크플로우에서는 주문 계획을 만들지 않고 주문도 제출하지 않는다.
