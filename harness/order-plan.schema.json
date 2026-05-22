@@ -1,0 +1,126 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Alpaca Paper Trading Order Plan",
+  "type": "object",
+  "required": ["run_id", "mode", "paper", "market", "account", "positions", "orders"],
+  "properties": {
+    "run_id": {
+      "type": "string"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["dry_run", "submit"]
+    },
+    "paper": {
+      "type": "boolean",
+      "const": true
+    },
+    "market": {
+      "type": "object",
+      "required": ["is_open", "checked_at"],
+      "properties": {
+        "is_open": {
+          "type": "boolean"
+        },
+        "checked_at": {
+          "type": "string"
+        }
+      }
+    },
+    "account": {
+      "type": "object",
+      "required": ["portfolio_value", "cash", "buying_power"],
+      "properties": {
+        "portfolio_value": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "cash": {
+          "type": "number",
+          "minimum": 0
+        },
+        "buying_power": {
+          "type": "number",
+          "minimum": 0
+        }
+      }
+    },
+    "positions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["symbol", "qty", "market_value"],
+        "properties": {
+          "symbol": {
+            "type": "string"
+          },
+          "qty": {
+            "type": "number"
+          },
+          "market_value": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "orders": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "symbol",
+          "asset_type",
+          "side",
+          "order_type",
+          "time_in_force",
+          "qty",
+          "limit_price",
+          "reference_price",
+          "quote_age_minutes",
+          "rationale"
+        ],
+        "properties": {
+          "symbol": {
+            "type": "string"
+          },
+          "asset_type": {
+            "type": "string",
+            "enum": ["stock", "etf"]
+          },
+          "side": {
+            "type": "string",
+            "enum": ["buy", "sell"]
+          },
+          "order_type": {
+            "type": "string",
+            "const": "limit"
+          },
+          "time_in_force": {
+            "type": "string",
+            "const": "day"
+          },
+          "qty": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "limit_price": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "reference_price": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "quote_age_minutes": {
+            "type": "number",
+            "minimum": 0
+          },
+          "rationale": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
+

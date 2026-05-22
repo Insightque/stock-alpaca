@@ -1,0 +1,30 @@
+{
+  "run_id": "2026-05-22-daily",
+  "mode": "dry_run",
+  "paper": true,
+  "market": {
+    "is_open": false,
+    "checked_at": "2026-05-22T12:30:00Z"
+  },
+  "account": {
+    "portfolio_value": 100000.0,
+    "cash": 100000.0,
+    "buying_power": 200000.0
+  },
+  "positions": [],
+  "orders": [
+    {
+      "symbol": "SPY",
+      "asset_type": "etf",
+      "side": "buy",
+      "order_type": "limit",
+      "time_in_force": "day",
+      "qty": 10,
+      "limit_price": 500.0,
+      "reference_price": 500.0,
+      "quote_age_minutes": 5,
+      "rationale": "Example dry-run order for risk-policy validation only."
+    }
+  ]
+}
+
