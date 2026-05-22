@@ -1,6 +1,6 @@
 # Workflow: Lint Trading Wiki
 
-Use this when the user says `Lint trading wiki`.
+Use this when the user says `위키 정리해줘` or asks to lint the trading wiki.
 
 ## Goal
 
@@ -31,4 +31,3 @@ Health-check the llm-wiki for stale, missing, contradictory, orphaned, or uncite
 3. Produce a lint report with findings grouped as: blocking, stale, missing source, contradiction, orphan, and cleanup.
 4. Fix only safe mechanical issues in the same run.
 5. Do not trade, create order plans, or alter raw source meaning.
-

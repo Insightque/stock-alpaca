@@ -14,17 +14,20 @@ The persistent knowledge layer follows the llm-wiki pattern: raw sources are imm
 - If Alpaca MCP is unavailable, continue with research and wiki updates, but do not submit orders.
 - Current market/news claims must cite either Alpaca MCP output, a captured web source, or an explicit source URL in a raw wiki note.
 
-## Public Commands
+## Simple User Commands
 
-When the user asks one of these commands, follow the matching workflow exactly:
+Read `harness/simple-commands.md` before interpreting user-facing trading commands. Users are expected to use short Korean commands; route them to the matching workflow exactly:
 
-- `Run daily trading workflow`: use `harness/workflows/daily.md`.
-- `Research TICKERS only`: use `harness/workflows/research.md`.
-- `Rebalance paper portfolio`: use `harness/workflows/rebalance.md`.
-- `Post-trade check`: use `harness/workflows/post-trade.md`.
-- `Lint trading wiki`: use `harness/workflows/wiki-lint.md`.
+- `오늘 분석해줘`: use `harness/workflows/daily.md` in no-submit mode.
+- `관심종목 분석해줘`: use `harness/workflows/research.md` with Alpaca watchlist.
+- `AAPL 분석해줘` or `AAPL MSFT 분석해줘`: use `harness/workflows/research.md` for the requested tickers.
+- `포트폴리오 점검해줘`: use `harness/workflows/post-trade.md`.
+- `리밸런싱 계획 짜줘`: use `harness/workflows/rebalance.md` in no-submit mode.
+- `paper 주문까지 실행해줘`: use the latest validated order plan or `harness/workflows/rebalance.md` in submit mode, then run post-trade check.
+- `거래 후 점검해줘`: use `harness/workflows/post-trade.md`.
+- `위키 정리해줘`: use `harness/workflows/wiki-lint.md`.
 
-If the user asks for a custom variant, keep the same safety rules and record the deviation in `wiki/log.md`.
+If a user command does not explicitly include `주문`, `매수`, `매도`, `실행`, or `submit`, do not submit orders. If the user asks for a custom variant, keep the same safety rules and record the deviation in `wiki/log.md`.
 
 ## Agent Roles
 
@@ -87,4 +90,3 @@ Before submitting any paper order:
 7. Immediately run a post-trade check and update the wiki.
 
 If any step is uncertain, skip submission and record the uncertainty.
-

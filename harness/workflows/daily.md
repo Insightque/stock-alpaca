@@ -1,10 +1,15 @@
 # Workflow: Daily Trading Run
 
-Use this when the user says `Run daily trading workflow`.
+Use this when the user says `오늘 분석해줘` or asks for the daily trading workflow.
 
 ## Goal
 
-Produce one daily report, refresh the trading wiki, create a risk-checked order plan, and submit automatic Alpaca paper orders only when every safety condition passes.
+Produce one daily report, refresh the trading wiki, and create a risk-checked order plan. Submit Alpaca paper orders only when this workflow is explicitly invoked in submit mode through a command such as `paper 주문까지 실행해줘`.
+
+Default simple-command mode:
+
+- `오늘 분석해줘` means no-submit mode.
+- In no-submit mode, create recommendations and order candidates, but do not submit orders.
 
 ## Inputs
 
@@ -68,6 +73,7 @@ Produce one daily report, refresh the trading wiki, create a risk-checked order 
 
 8. Executor Agent
    - If the order plan fails validation, submit nothing.
+   - If the run is no-submit mode, submit nothing and mark orders as planned/skipped.
    - If the market is closed, submit nothing and mark orders as planned/skipped.
    - If quote data is older than 20 minutes in submit mode, submit nothing for that ticker.
    - If validation passes and the market is open, submit paper orders through Alpaca MCP only.
@@ -89,4 +95,3 @@ Produce one daily report, refresh the trading wiki, create a risk-checked order 
 - Market closed for US equities.
 - Risk-policy validation fails.
 - Any order would be options, crypto, short, fractional, non-US, or non-tradable.
-

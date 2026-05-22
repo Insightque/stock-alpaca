@@ -1,10 +1,17 @@
 # Workflow: Rebalance Paper Portfolio
 
-Use this when the user says `Rebalance paper portfolio`.
+Use this when the user says `리밸런싱 계획 짜줘`, `paper 주문까지 실행해줘`, or asks to rebalance the paper portfolio.
 
 ## Goal
 
-Use current positions, account state, ticker theses, and fresh market data to create a risk-checked rebalance plan. Submit automatic Alpaca paper orders only if the risk gate passes and the market is open.
+Use current positions, account state, ticker theses, and fresh market data to create a risk-checked rebalance plan.
+
+Default simple-command modes:
+
+- `리밸런싱 계획 짜줘` means no-submit mode.
+- `paper 주문까지 실행해줘` means submit mode.
+- In no-submit mode, create and validate the order plan, but do not submit orders.
+- In submit mode, submit automatic Alpaca paper orders only if the risk gate passes and the market is open.
 
 ## Required Outputs
 
@@ -28,11 +35,11 @@ Use current positions, account state, ticker theses, and fresh market data to cr
    - Sells must not create short positions.
 6. Create `wiki/portfolio/order-plans/YYYY-MM-DD-rebalance.json`.
 7. Run `python3 scripts/check-risk-policy.py wiki/portfolio/order-plans/YYYY-MM-DD-rebalance.json`.
-8. If validation passes, market is open, and quotes are fresh, submit paper day limit orders through Alpaca MCP only.
-9. Verify orders and update `wiki/portfolio/current.md`.
-10. Update index and log.
+8. If the run is no-submit mode, submit nothing and record the plan as proposed.
+9. If the run is submit mode, validation passes, market is open, and quotes are fresh, submit paper day limit orders through Alpaca MCP only.
+10. Verify orders and update `wiki/portfolio/current.md`.
+11. Update index and log.
 
 ## Stop Conditions
 
 Stop before order submission if risk validation fails, market is closed, quote data is stale, paper mode is not true, or MCP is unavailable.
-

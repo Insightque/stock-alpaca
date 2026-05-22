@@ -1,6 +1,6 @@
 # Workflow: Research Tickers Only
 
-Use this when the user says `Research TICKERS only`.
+Use this when the user says `관심종목 분석해줘`, `AAPL 분석해줘`, or asks to research tickers only.
 
 ## Goal
 
@@ -34,4 +34,3 @@ Research the requested tickers, update the llm-wiki, and make no orders.
 ## Hard Rule
 
 Do not create an order plan and do not submit orders in this workflow.
-

@@ -1,6 +1,6 @@
 # Workflow: Post-Trade Check
 
-Use this when the user says `Post-trade check`.
+Use this when the user says `포트폴리오 점검해줘`, `거래 후 점검해줘`, or asks for a post-trade check.
 
 ## Goal
 
@@ -31,4 +31,3 @@ Reconcile submitted orders, fills, current positions, cash, buying power, and po
 ## Hard Rule
 
 Do not submit new orders in this workflow.
-
