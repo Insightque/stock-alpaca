@@ -46,6 +46,8 @@
 - [[2026-04-23-to-2026-05-08-historical-decision-batch]] - 2026-04-23부터 2026-05-08까지 1일 단위 과거 추천 시뮬레이션 배치.
 - [[2026-04-23-to-2026-05-08-historical-decision-batch-v2]] - 추가 데이터 필요성을 반영한 2026-04-23~2026-05-08 진단용 재시뮬레이션.
 - [[2026-05-11-to-2026-05-15-historical-validation-decision]] - v2 규칙을 학습에 쓰지 않은 날짜에 적용한 out-of-sample 검증 추천.
+- [[2026-05-11-to-2026-05-15-mcp-enhanced-validation-decision]] - Alpha Vantage 실적 데이터와 MCP 공백 감점을 반영한 보강 검증 추천.
+- [[2026-05-18-to-2026-05-22-recent-7d-historical-decision]] - 최근 7일 이내 과거 추천 시뮬레이션. 2026-05-22 추천은 회고 대기.
 
 ## 거래 회고
 
@@ -57,6 +59,8 @@
 - [[2026-04-23-to-2026-05-08-historical-review-batch]] - 2026-04-23부터 2026-05-08까지 추천 배치의 1D/5D/20D 회고.
 - [[2026-04-23-to-2026-05-08-historical-review-batch-v2]] - 보강 데이터와 v2 규칙 적용 후 5D 성과 재회고. 과최적화 위험 포함.
 - [[2026-05-11-to-2026-05-15-historical-validation-review]] - v2 규칙의 별도 검증셋 회고. 5D hit rate 60.0%, 평균 초과수익 +0.73%p.
+- [[2026-05-11-to-2026-05-15-mcp-enhanced-validation-review]] - MCP 보강 검증 회고. 5D hit rate 80.0%, 평균 초과수익 +3.35%p.
+- [[2026-05-18-to-2026-05-22-recent-7d-historical-review]] - 최근 7일 1D 회고. 검증 가능 추천 12/12 hit, 평균 SPY 대비 +5.63%p. 이벤트 집중으로 정책 승격 보류.
 
 ## 추천 정책
 
@@ -76,3 +80,5 @@
 - [[2026-05-23-historical-batch-2026-04-23-to-2026-05-08-alpaca]] - 2026-04-23~2026-05-08 과거 추천 배치용 Alpaca MCP 가격 원천과 데이터 공백 기록.
 - [[2026-05-23-historical-batch-v2-supplemental-sources]] - 이전 회고 기반 추가 수집 데이터, 소스, v2 반영 범위와 한계.
 - [[2026-05-23-historical-validation-2026-05-11-to-2026-05-15-sources]] - v2 과적합 점검을 위한 별도 검증셋 Alpaca MCP 가격/뉴스 원천.
+- [[2026-05-23-mcp-enhanced-validation-sources]] - Alpha Vantage/Alpaca MCP 기반 실적·뉴스·데이터 공백 보강 원천.
+- [[2026-05-23-recent-7d-historical-validation-sources]] - 최근 7일 과거 추천 검증용 Alpaca MCP 가격/뉴스 원천.

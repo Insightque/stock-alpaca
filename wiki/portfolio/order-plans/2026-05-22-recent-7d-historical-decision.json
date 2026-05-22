@@ -1,0 +1,73 @@
+{
+  "run_id": "2026-05-22-recent-7d-historical-decision",
+  "mode": "dry_run",
+  "paper": true,
+  "market": {
+    "is_open": false,
+    "checked_at": "2026-05-22T20:00:00Z"
+  },
+  "account": {
+    "portfolio_value": 100000.0,
+    "cash": 100000.0,
+    "buying_power": 200000.0
+  },
+  "positions": [],
+  "orders": [
+    {
+      "symbol": "AMD",
+      "asset_type": "stock",
+      "side": "buy",
+      "order_type": "limit",
+      "time_in_force": "day",
+      "qty": 10,
+      "limit_price": 467.64,
+      "reference_price": 467.64,
+      "quote_age_minutes": 0,
+      "rationale": "최근 7일 과거 추천 시뮬레이션의 2026-05-22 dry-run 후보. 실적 beat 이후 재가속이 있으나 급등 리스크를 고려해 소액 수량으로 제한.",
+      "decision_id": "2026-05-22-recent-7d-historical-decision",
+      "historical_asof": "2026-05-22",
+      "review_horizons": [
+        "1D"
+      ]
+    },
+    {
+      "symbol": "ETN",
+      "asset_type": "stock",
+      "side": "buy",
+      "order_type": "limit",
+      "time_in_force": "day",
+      "qty": 10,
+      "limit_price": 391.39,
+      "reference_price": 391.39,
+      "quote_age_minutes": 0,
+      "rationale": "최근 7일 과거 추천 시뮬레이션의 2026-05-22 dry-run 후보. 전력/인프라 분산 후보로 반등 확인.",
+      "decision_id": "2026-05-22-recent-7d-historical-decision",
+      "historical_asof": "2026-05-22",
+      "review_horizons": [
+        "1D"
+      ]
+    },
+    {
+      "symbol": "UNH",
+      "asset_type": "stock",
+      "side": "buy",
+      "order_type": "limit",
+      "time_in_force": "day",
+      "qty": 10,
+      "limit_price": 388.545,
+      "reference_price": 388.545,
+      "quote_age_minutes": 0,
+      "rationale": "최근 7일 과거 추천 시뮬레이션의 2026-05-22 dry-run 후보. 시장 변동성 완충용 방어 후보.",
+      "decision_id": "2026-05-22-recent-7d-historical-decision",
+      "historical_asof": "2026-05-22",
+      "review_horizons": [
+        "1D"
+      ]
+    }
+  ],
+  "notes": [
+    "최근 7일 과거 추천 시뮬레이션용 dry-run 계획이다.",
+    "실제 주문 제출 금지.",
+    "2026-05-22 이후 가격은 아직 회고에 사용하지 않았다."
+  ]
+}

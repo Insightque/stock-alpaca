@@ -4,6 +4,8 @@ This repository is a Codex-first paper-trading harness. Use Alpaca MCP for all a
 
 The persistent knowledge layer follows the llm-wiki pattern: raw sources are immutable, generated wiki pages are maintained by the agent, and `wiki/index.md` plus `wiki/log.md` are updated on every meaningful run.
 
+Additional research MCPs may be available for SEC filings, earnings calendars, company IR capture, analyst context, and macro data. Read `harness/mcp-source-map.md` before current-market research, historical simulations, or policy-learning work that depends on news/events beyond Alpaca.
+
 ## Non-Negotiables
 
 - Paper trading only. Abort any trading workflow if `ALPACA_PAPER_TRADE` is missing or not `true`.
@@ -12,7 +14,8 @@ The persistent knowledge layer follows the llm-wiki pattern: raw sources are imm
 - Never print, copy, summarize, or commit Alpaca API keys.
 - Automatic paper orders are allowed only after the risk gate passes.
 - If Alpaca MCP is unavailable, continue with research and wiki updates, but do not submit orders.
-- Current market/news claims must cite either Alpaca MCP output, a captured web source, or an explicit source URL in a raw wiki note.
+- Current market/news claims must cite Alpaca MCP output, a dedicated research MCP output, a captured web source, or an explicit source URL in a raw wiki note.
+- Never print, summarize, or commit third-party API keys such as Alpha Vantage, FRED, Firecrawl, Octagon, or similar research-provider keys.
 
 ## Simple User Commands
 
@@ -37,7 +40,7 @@ If a user command does not explicitly include `주문`, `매수`, `매도`, `실
 - Coordinator Agent: starts the run, reads `wiki/index.md` and recent `wiki/log.md`, confirms paper mode, checks market clock, account, positions, orders, and watchlists.
 - Universe Agent: builds the candidate universe from Alpaca watchlists plus user-specified tickers, then filters to active tradable US stocks/ETFs.
 - Market Data Agent: gathers Alpaca bars, snapshots, latest quote/trade, market movers, and Alpaca news for candidate tickers.
-- Web Research Agent: gathers current company, earnings, macro, and event context from web sources and writes immutable raw source notes.
+- Web Research Agent: gathers current company, earnings, SEC filing, analyst, macro, and event context from Alpaca plus the research MCPs listed in `harness/mcp-source-map.md`; writes immutable raw source notes and records unavailable keys or failed tools as data gaps.
 - Trend Agent: computes daily, weekly, and monthly trend views from price action, volume, momentum, volatility, drawdown, and relative strength.
 - Ticker Thesis Agent: updates ticker pages with thesis, catalysts, risks, stale claims, and confidence.
 - Portfolio/Risk Agent: creates target allocations and validates a JSON order plan with `scripts/check-risk-policy.py`.
@@ -96,6 +99,16 @@ Use wiki links such as `[[AAPL]]`, `[[portfolio-current]]`, and `[[2026-05-22]]`
 - Record what worked, what failed, what was unknowable, and what should change in future recommendations.
 - Do not rewrite old thesis pages to look smarter in hindsight. Add dated review sections or separate review pages.
 - A single trade can suggest a hypothesis, but update `wiki/policies/recommendation-policy.md` only when the lesson is evidence-backed and clearly useful for future recommendations.
+
+## Research MCP Source Policy
+
+- Use Alpaca MCP first for account/order/position/watchlist/market data and Alpaca news.
+- Use `sec-edgar` for SEC filings, 10-K, 10-Q, 8-K, XBRL financials, Form 4, insider activity, and filing-grounded risk/fundamental checks when `SEC_EDGAR_USER_AGENT` is present.
+- Use `alpha-vantage` for earnings calendar, earnings history/surprise, and supplemental market/fundamental data when `ALPHA_VANTAGE_API_KEY` is present.
+- Use `fred` for macro regime checks such as CPI, unemployment, Treasury yields, yield curve, Fed-related series, and economic releases when `FRED_API_KEY` is present.
+- Use `firecrawl` for company IR pages, press releases, earnings presentations, and source-page capture when `FIRECRAWL_API_KEY` is present.
+- Use `yahoo-finance` for Yahoo Finance news, analyst recommendation summaries, holders, insider, actions, and supplemental financial data.
+- If a research MCP is unavailable or missing a key, do not fabricate the missing context. Record the gap in the raw source note and continue with available sources.
 
 ## Historical Decision Simulation And Policy Learning
 

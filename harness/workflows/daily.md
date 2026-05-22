@@ -14,7 +14,8 @@ Default simple-command mode:
 ## Inputs
 
 - Alpaca MCP account, clock, positions, watchlists, assets, stock data, and news.
-- Web sources for current company, earnings, sector, and macro context.
+- Research MCPs from `harness/mcp-source-map.md` for SEC filings, earnings calendar, analyst context, company IR capture, and macro indicators when available.
+- Web sources for current company, earnings, sector, and macro context when MCP coverage is missing or needs source-page capture.
 - Existing wiki pages: `wiki/index.md`, `wiki/log.md`, `wiki/policies/recommendation-policy.md`, ticker pages, portfolio pages, trade reviews, and recent reports.
 
 ## Required Outputs
@@ -47,9 +48,16 @@ Default simple-command mode:
    - Record source timestamps so quote freshness can be checked.
 
 4. Web Research Agent
-   - Browse for current company, earnings, guidance, analyst, sector, and macro context.
+   - Read `harness/mcp-source-map.md`.
+   - Use Alpaca news first, then enrich event context with research MCPs:
+     - `sec-edgar` for recent 10-K, 10-Q, 8-K, Form 4, XBRL financials, and filing risks.
+     - `alpha-vantage` for earnings calendar and earnings surprise when the API key is present.
+     - `fred` for macro regime indicators when the API key is present.
+     - `firecrawl` for company IR pages, press releases, and earnings presentation capture when the API key is present.
+     - `yahoo-finance` for analyst recommendations, Yahoo news, holders, insider, and supplemental actions.
+   - Browse for current company, earnings, guidance, analyst, sector, and macro context only when MCP data is insufficient or a source URL needs capture.
    - Capture each useful source as `wiki/raw/sources/YYYY-MM-DD-source-slug.md` using `harness/templates/raw-source.md`.
-   - Keep summaries concise and include source URLs.
+   - Keep summaries concise and include source URLs, MCP names, query periods, and any missing-key/data-gap notes.
 
 5. Trend Agent
    - Compute daily, weekly, and monthly trend using price direction, volume, momentum, volatility, drawdown, and relative strength.

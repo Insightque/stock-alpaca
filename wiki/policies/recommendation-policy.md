@@ -1,6 +1,6 @@
 ---
 id: recommendation-policy
-updated_at: 2026-05-23T07:48:00+09:00
+updated_at: 2026-05-23T08:45:00+09:00
 ---
 
 # 추천 정책
@@ -24,6 +24,8 @@ updated_at: 2026-05-23T07:48:00+09:00
 | 2026-05-23 | 과거 시점 추천 시뮬레이션과 1D/5D/20D 회고를 정책학습 입력으로 사용하도록 함 | `harness/workflows/historical-decision-sim.md`, `harness/workflows/historical-decision-review.md` | 적용 |
 | 2026-05-23 | 회고 후 재시뮬레이션은 과최적화 위험을 명시하고 독립 기간 검증 전 정책 승격을 금지함 | [[2026-04-23-to-2026-05-08-historical-review-batch-v2]] | 적용 후보 |
 | 2026-05-23 | 뉴스 촉매+상대강도 규칙은 별도 검증셋에서 60.0% hit rate에 그쳐 후보 발굴 신호로만 사용함 | [[2026-05-11-to-2026-05-15-historical-validation-review]] | 검증 중 |
+| 2026-05-23 | 실적 beat 후 과열 필터와 MCP 확인 공백 감점을 적용하면 별도 검증셋이 80.0%로 개선됨 | [[2026-05-11-to-2026-05-15-mcp-enhanced-validation-review]] | 검증 중 |
+| 2026-05-23 | 최근 7일 1D 검증에서 뉴스 촉매+가격 돌파가 강하게 작동했지만 이벤트 집중 표본이라 정책 승격은 보류함 | [[2026-05-18-to-2026-05-22-recent-7d-historical-review]] | 검증 중 |
 
 ## 검증 중인 가설
 
@@ -37,6 +39,8 @@ updated_at: 2026-05-23T07:48:00+09:00
 | 뉴스 촉매와 상대강도가 동시에 있는 후보는 단기 추천 품질을 높일 수 있다 | [[2026-04-23-to-2026-05-08-historical-review-batch-v2]] | v2 규칙을 보지 않은 독립 기간에서 반복 확인될 때 |
 | 후보군 누락은 가격/뉴스 보강으로 먼저 해소하고, 보강 후에도 성과가 약하면 추천 승격하지 않는다 | [[2026-04-23-to-2026-05-08-historical-review-batch-v2]] | PLTR 외 다른 누락 후보에서도 반복 확인될 때 |
 | 강한 촉매가 있어도 과열 직후에는 5D 신규 매수 성과가 약해질 수 있다 | [[2026-05-11-to-2026-05-15-historical-validation-review]] | 과열 필터를 수치화한 뒤 독립 기간에서 개선되는지 확인할 때 |
+| 실적 서프라이즈는 매수 가산점이 아니라 과열 여부와 함께 해석해야 한다 | [[2026-05-11-to-2026-05-15-mcp-enhanced-validation-review]] | Alpha/SEC/IR 원천을 포함한 독립 기간 3개 이상에서 반복될 때 |
+| 당일 뉴스 촉매와 가격 돌파가 동시에 확인된 후보는 1D 성과가 강할 수 있다 | [[2026-05-18-to-2026-05-22-recent-7d-historical-review]] | 이벤트 당일 종가 추격의 5D 반납 여부와 손실 사례까지 확인할 때 |
 
 ## 정책학습 지표
 
@@ -53,6 +57,9 @@ updated_at: 2026-05-23T07:48:00+09:00
 | overfit-warning | 회고 후 만든 v2 규칙은 독립 기간 검증 전 강한 정책으로 승격하지 않는다 | 1 |  |  | 사후 규칙 조정 | 적용 원칙 후보 | [[2026-04-23-to-2026-05-08-historical-review-batch-v2]] |
 | catalyst-plus-relative-strength-oos | 뉴스 촉매+상대강도 규칙을 별도 검증셋에 적용하면 성과가 크게 낮아졌다 | 15 | 60.0% | +0.73%p | 성과가 2026-05-15에 집중, 과열 구간 취약 | 검증 중 | [[2026-05-11-to-2026-05-15-historical-validation-review]] |
 | overextension-filter-needed | 촉매 후보라도 최근 급등, 과매수, 차익실현 뉴스가 있으면 신규 매수 점수를 낮춰야 한다 | 15 |  |  | AMD/IONQ/NVDA가 2026-05-11~05-14에 되돌림 | 검증 중 | [[2026-05-11-to-2026-05-15-historical-validation-review]] |
+| earnings-beat-overextension-filter | 실적 beat가 확인돼도 발표 후 3~5거래일 누적 상승률이 과도하면 신규 매수 점수를 낮춘다 | 15 | 80.0% | +3.35%p | AMD 2026-05-05 실적 beat 후 2026-05-11~05-12 추격매수 회피가 개선에 기여 | 검증 중 | [[2026-05-11-to-2026-05-15-mcp-enhanced-validation-review]] |
+| mcp-confirmation-gap-penalty | 보강 MCP가 뉴스/filing/macro를 확인하지 못하면 긍정 신호를 추가하지 않고 공백으로 남긴다 | 15 | 80.0% | +3.35%p | Alpha NEWS_SENTIMENT 0건, SEC/FRED 공백을 긍정 신호로 오해하지 않음 | 검증 중 | [[2026-05-11-to-2026-05-15-mcp-enhanced-validation-review]] |
+| 1d-event-catalyst-confirmation | 당일 뉴스 촉매와 가격 돌파가 동시에 확인된 후보는 1D 초과수익이 강할 수 있다 | 12 | 100.0% | +5.63%p | 2026-05-21 양자컴퓨팅 이벤트에 성과가 집중되어 추격매수 위험 큼 | 검증 중 | [[2026-05-18-to-2026-05-22-recent-7d-historical-review]] |
 
 ## 폐기하거나 완화한 규칙
 

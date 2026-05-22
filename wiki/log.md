@@ -152,3 +152,41 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 원천 기록: `wiki/raw/sources/2026-05-23-historical-validation-2026-05-11-to-2026-05-15-sources.md`.
 - 검증 추천: `wiki/simulations/2026-05-11-to-2026-05-15-historical-validation-decision.md`.
 - 검증 회고: `wiki/reviews/decisions/2026-05-11-to-2026-05-15-historical-validation-review.md`.
+
+## [2026-05-23 08:20 Asia/Seoul] harness | 뉴스/이벤트 보강 MCP 연결
+
+- 주식 분석의 뉴스/이벤트 보강을 위해 Codex MCP 서버를 추가 등록했다.
+- 등록 서버: `sec-edgar`, `yahoo-finance`, `alpha-vantage`, `fred`, `firecrawl`.
+- `sec-edgar`와 `yahoo-finance`는 별도 키 없이 실행 가능한 보강 MCP로 설정했다.
+- `alpha-vantage`, `fred`, `firecrawl`은 각각 `ALPHA_VANTAGE_API_KEY`, `FRED_API_KEY`, `FIRECRAWL_API_KEY`가 `.env`에 있을 때 실행되도록 래퍼를 만들었다.
+- 새 래퍼: `scripts/mcp-sec-edgar.sh`, `scripts/mcp-yahoo-finance.sh`, `scripts/mcp-alpha-vantage.sh`, `scripts/mcp-fred.sh`, `scripts/mcp-firecrawl.sh`.
+- `harness/mcp-source-map.md`를 추가하고, daily/research/historical workflow와 agent guide가 이 MCP들을 활용하도록 문서화했다.
+- API 키 값은 출력하거나 커밋하지 않았다.
+
+## [2026-05-23 08:45 Asia/Seoul] validation | MCP 보강 데이터 기반 검증과 정책 수립
+
+- 사용자가 `.env`에 보강 MCP 키를 추가한 뒤, 키 값은 출력하지 않고 존재 여부만 확인했다.
+- Alpha Vantage MCP가 정상 초기화되는 것을 확인했고, `EARNINGS`, `NEWS_SENTIMENT`, `TREASURY_YIELD` 도구 스키마를 확인했다.
+- Alpha Vantage `EARNINGS`로 AMD 2026-05-05 실적 beat를 확인했다: EPS 1.37, 추정 1.29, surprise +6.20%, post-market.
+- Alpha Vantage `NEWS_SENTIMENT`는 2026-05-09~2026-05-16 AMD/NVDA/IONQ/NOK/TSLA 조회에서 0건을 반환해 데이터 공백으로 기록했다.
+- Alpha Vantage `TREASURY_YIELD`는 무료 키 rate limit 안내가 반환되어 이번 검증에서는 미사용으로 기록했다.
+- SEC EDGAR MCP는 `SEC_EDGAR_USER_AGENT`가 없어 실행 불가였고, FRED MCP는 유효한 JSON-RPC 응답을 반환하지 않아 데이터 공백으로 기록했다.
+- MCP 보강 정책을 2026-05-11~2026-05-15 검증셋에 적용한 결과 5D hit rate는 12/15 = 80.0%, 평균 SPY 대비 초과수익은 +3.35%p였다.
+- 기존 검증셋 9/15 = 60.0%, +0.73%p보다 개선됐지만 표본이 작아 `검증 중` 정책으로만 반영했다.
+- 정책 후보: `earnings-beat-overextension-filter`, `mcp-confirmation-gap-penalty`, `post-catalyst-reentry`.
+- 원천 기록: `wiki/raw/sources/2026-05-23-mcp-enhanced-validation-sources.md`.
+- 검증 추천: `wiki/simulations/2026-05-11-to-2026-05-15-mcp-enhanced-validation-decision.md`.
+- 검증 회고: `wiki/reviews/decisions/2026-05-11-to-2026-05-15-mcp-enhanced-validation-review.md`.
+
+## [2026-05-23 09:30 Asia/Seoul] validation | 최근 7일 과거 추천 시뮬레이션 및 1D 회고
+
+- 사용자 요청에 따라 2026-05-16~2026-05-22 최근 7일 범위의 과거 추천 시뮬레이션을 수행했다.
+- 미국 거래일 기준 2026-05-18~2026-05-21 추천은 다음 거래일 종가가 있어 1D 회고를 완료했고, 2026-05-22 추천은 회고 대기로 남겼다.
+- Alpaca MCP `get_stock_bars`로 2026-05-01~2026-05-22 일봉을 확인했고, `get_news`로 2026-05-16~2026-05-22 후보 종목 뉴스를 확인했다.
+- 2026-05-21 양자컴퓨팅 정부 지원 뉴스, NVDA 실적/AI 수요 뉴스, AMD advanced packaging 뉴스, NOK AI Networking Innovation Lab 뉴스를 촉매로 기록했다.
+- 검증 가능한 12개 추천의 1D hit rate는 12/12 = 100.0%, 평균 SPY 대비 초과수익은 +5.63%p였다.
+- 단, 성과가 2026-05-21 이벤트에 집중되어 있어 정책 승격이 아니라 `1d-event-catalyst-confirmation` 검증 중 가설로만 반영했다.
+- 2026-05-22 dry-run 주문 계획은 `scripts/check-risk-policy.py` 검증을 통과했다.
+- 원천 기록: `wiki/raw/sources/2026-05-23-recent-7d-historical-validation-sources.md`.
+- 검증 추천: `wiki/simulations/2026-05-18-to-2026-05-22-recent-7d-historical-decision.md`.
+- 검증 회고: `wiki/reviews/decisions/2026-05-18-to-2026-05-22-recent-7d-historical-review.md`.
