@@ -36,3 +36,36 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - `wiki/reviews/trades/`와 `wiki/policies/recommendation-policy.md`를 신설했다.
 - post-trade, daily, research, rebalance 워크플로우가 거래 회고와 추천 정책을 확인하도록 연결했다.
 - 목적: 거래된 종목의 판단 품질을 회고하고, 반복적으로 확인된 교훈을 향후 추천 정책에 반영한다.
+
+## [2026-05-22 23:10 Asia/Seoul] analysis | ETF 제외 주식 중심 거래 제안
+
+- 사용자 요청에 따라 ETF를 제외하고 주식 중심 후보를 분석했다.
+- Paper mode, 시장 개장, 계좌 현금 100000 USD, 포지션 없음, 미체결 주문 없음을 확인했다.
+- 검토 후보: NVDA, RGTI, IONQ, QBTS, AMD, MU, INTC, TSLA, RKLB, NOK, NIO, GOVX.
+- 최종 dry-run 거래 제안: NVDA 46주, AMD 21주, NOK 650주, RGTI 190주, IONQ 75주.
+- 총 예상 매수 금액은 39183.30 USD로 포트폴리오 약 39.2%다.
+- 실제 주문은 제출하지 않았다.
+- 분석: `wiki/analyses/2026-05-22-stock-only-trade-proposal.md`.
+- 주문 계획: `wiki/portfolio/order-plans/2026-05-22-stock-only-proposal.json`.
+
+## [2026-05-22 23:16 Asia/Seoul] analysis | 추가 요청 종목 반영 매수 계획 업데이트
+
+- 사용자 요청 종목 Lam Research, TSMC, UnitedHealth, Eaton, Broadcom, Palantir, Tesla를 각각 LRCX, TSM, UNH, ETN, AVGO, PLTR, TSLA로 해석해 검토했다.
+- 7개 모두 Alpaca 기준 active/tradable 주식으로 확인했다.
+- 업데이트된 dry-run 매수 계획은 NVDA, AMD, AVGO, LRCX, TSM, NOK, UNH, ETN, RGTI, IONQ 총 10개 주문이다.
+- PLTR, TSLA, QBTS는 분석했지만 이번 주문 계획에서는 제외했다.
+- 총 예상 매수 금액은 56254.75 USD, 예상 투자 노출은 약 56.3%다.
+- 실제 주문은 제출하지 않았다.
+- 업데이트 파일: `wiki/portfolio/order-plans/2026-05-22-stock-only-proposal.json`, `wiki/analyses/2026-05-22-stock-only-trade-proposal.md`.
+
+## [2026-05-22 23:26 Asia/Seoul] execution | 주식 중심 paper 매수 실행
+
+- 사용자 요청 `매수해줘`를 명시적 주문 실행 요청으로 해석했다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고 Alpaca clock 기준 장중임을 확인했다.
+- 주문 전 모든 후보가 Alpaca asset 기준 active/tradable US equity임을 확인했다.
+- `scripts/check-risk-policy.py` 검증 결과 PASS: buy notional 56098.45 USD, 주문 후 예상 cash 43901.55 USD.
+- Alpaca MCP `place_stock_order`로 day limit whole-share buy 주문 10건을 제출했다.
+- 체결: AMD, AVGO, LRCX, TSM, NOK, UNH, ETN, RGTI, IONQ.
+- 미체결: NVDA 35주, limit 215.32, status new.
+- 사후 계좌: portfolio value 100041.52 USD, cash 51566.78 USD, buying power 138036.10 USD, long market value 48474.74 USD.
+- 원천 기록: `wiki/raw/sources/2026-05-22-paper-order-submission.md`.

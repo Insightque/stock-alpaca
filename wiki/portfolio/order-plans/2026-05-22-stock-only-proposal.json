@@ -1,0 +1,238 @@
+{
+  "mode": "submit",
+  "paper": true,
+  "created_at": "2026-05-22T14:24:00Z",
+  "market": {
+    "is_open": true,
+    "timestamp": "2026-05-22T10:24:13.986725767-04:00",
+    "next_close": "2026-05-22T16:00:00-04:00"
+  },
+  "account": {
+    "portfolio_value": 100000,
+    "cash": 100000,
+    "buying_power": 200000
+  },
+  "positions": [],
+  "orders": [
+    {
+      "symbol": "NVDA",
+      "asset_type": "stock",
+      "side": "buy",
+      "qty": 35,
+      "order_type": "limit",
+      "time_in_force": "day",
+      "limit_price": 215.32,
+      "reference_price": 215.32,
+      "quote_age_minutes": 1,
+      "client_order_id": "stock-only-20260522-nvda-1421"
+    },
+    {
+      "symbol": "AMD",
+      "asset_type": "stock",
+      "side": "buy",
+      "qty": 14,
+      "order_type": "limit",
+      "time_in_force": "day",
+      "limit_price": 465,
+      "reference_price": 462.81,
+      "quote_age_minutes": 1,
+      "client_order_id": "stock-only-20260522-amd-1421"
+    },
+    {
+      "symbol": "AVGO",
+      "asset_type": "stock",
+      "side": "buy",
+      "qty": 15,
+      "order_type": "limit",
+      "time_in_force": "day",
+      "limit_price": 411.44,
+      "reference_price": 411.085,
+      "quote_age_minutes": 1,
+      "client_order_id": "stock-only-20260522-avgo-1421"
+    },
+    {
+      "symbol": "LRCX",
+      "asset_type": "stock",
+      "side": "buy",
+      "qty": 20,
+      "order_type": "limit",
+      "time_in_force": "day",
+      "limit_price": 309,
+      "reference_price": 307.96,
+      "quote_age_minutes": 1,
+      "client_order_id": "stock-only-20260522-lrcx-1421"
+    },
+    {
+      "symbol": "TSM",
+      "asset_type": "stock",
+      "side": "buy",
+      "qty": 15,
+      "order_type": "limit",
+      "time_in_force": "day",
+      "limit_price": 405.5,
+      "reference_price": 405.2,
+      "quote_age_minutes": 1,
+      "client_order_id": "stock-only-20260522-tsm-1421"
+    },
+    {
+      "symbol": "NOK",
+      "asset_type": "stock",
+      "side": "buy",
+      "qty": 400,
+      "order_type": "limit",
+      "time_in_force": "day",
+      "limit_price": 15.05,
+      "reference_price": 15.04,
+      "quote_age_minutes": 1,
+      "client_order_id": "stock-only-20260522-nok-1421"
+    },
+    {
+      "symbol": "UNH",
+      "asset_type": "stock",
+      "side": "buy",
+      "qty": 15,
+      "order_type": "limit",
+      "time_in_force": "day",
+      "limit_price": 389,
+      "reference_price": 387.21,
+      "quote_age_minutes": 2,
+      "client_order_id": "stock-only-20260522-unh-1421"
+    },
+    {
+      "symbol": "ETN",
+      "asset_type": "stock",
+      "side": "buy",
+      "qty": 15,
+      "order_type": "limit",
+      "time_in_force": "day",
+      "limit_price": 388.25,
+      "reference_price": 387.685,
+      "quote_age_minutes": 1,
+      "client_order_id": "stock-only-20260522-etn-1421"
+    },
+    {
+      "symbol": "RGTI",
+      "asset_type": "stock",
+      "side": "buy",
+      "qty": 120,
+      "order_type": "limit",
+      "time_in_force": "day",
+      "limit_price": 25.57,
+      "reference_price": 25.57,
+      "quote_age_minutes": 1,
+      "client_order_id": "stock-only-20260522-rgti-1421"
+    },
+    {
+      "symbol": "IONQ",
+      "asset_type": "stock",
+      "side": "buy",
+      "qty": 45,
+      "order_type": "limit",
+      "time_in_force": "day",
+      "limit_price": 63.8,
+      "reference_price": 63.49,
+      "quote_age_minutes": 1,
+      "client_order_id": "stock-only-20260522-ionq-1421"
+    }
+  ],
+  "execution": {
+    "submitted_at": "2026-05-22T14:24:24Z",
+    "checked_at": "2026-05-22T14:26:30Z",
+    "source": "alpaca-mcp",
+    "risk_check": {
+      "status": "PASS",
+      "buy_notional": 56098.45,
+      "post_order_cash": 43901.55,
+      "post_order_invested": 56098.45
+    },
+    "results": [
+      {
+        "symbol": "NVDA",
+        "status": "new",
+        "submitted_qty": 35,
+        "filled_qty": 0,
+        "filled_avg_price": null,
+        "alpaca_order_id": "71b18158-1e5f-48c5-9626-532bb3ec076c"
+      },
+      {
+        "symbol": "AMD",
+        "status": "filled",
+        "submitted_qty": 14,
+        "filled_qty": 14,
+        "filled_avg_price": 462.73,
+        "alpaca_order_id": "16ffb224-70b4-413e-ae65-47c5f848167c"
+      },
+      {
+        "symbol": "AVGO",
+        "status": "filled",
+        "submitted_qty": 15,
+        "filled_qty": 15,
+        "filled_avg_price": 410.73,
+        "alpaca_order_id": "d27eab24-01be-4232-8d6c-db52b3ab1aa3"
+      },
+      {
+        "symbol": "LRCX",
+        "status": "filled",
+        "submitted_qty": 20,
+        "filled_qty": 20,
+        "filled_avg_price": 307.91,
+        "alpaca_order_id": "60016930-4b6e-4715-97c7-7f6f7cd1de00"
+      },
+      {
+        "symbol": "TSM",
+        "status": "filled",
+        "submitted_qty": 15,
+        "filled_qty": 15,
+        "filled_avg_price": 405.2,
+        "alpaca_order_id": "d778222d-256e-499e-bf4f-b80e1fc060dc"
+      },
+      {
+        "symbol": "NOK",
+        "status": "filled",
+        "submitted_qty": 400,
+        "filled_qty": 400,
+        "filled_avg_price": 15.04,
+        "alpaca_order_id": "26980874-ad48-4b47-b64b-d89ebddd7c48"
+      },
+      {
+        "symbol": "UNH",
+        "status": "filled",
+        "submitted_qty": 15,
+        "filled_qty": 15,
+        "filled_avg_price": 386.56,
+        "alpaca_order_id": "e399fcf3-def7-4d63-9f19-72680e1c7700"
+      },
+      {
+        "symbol": "ETN",
+        "status": "filled",
+        "submitted_qty": 15,
+        "filled_qty": 15,
+        "filled_avg_price": 387.9,
+        "alpaca_order_id": "6586fb41-fe83-43a1-8194-7d03679e4908"
+      },
+      {
+        "symbol": "RGTI",
+        "status": "filled",
+        "submitted_qty": 120,
+        "filled_qty": 120,
+        "filled_avg_price": 25.569584,
+        "alpaca_order_id": "5c5c0ba6-3ee0-4549-b45a-e1af91c7f0db"
+      },
+      {
+        "symbol": "IONQ",
+        "status": "filled",
+        "submitted_qty": 45,
+        "filled_qty": 45,
+        "filled_avg_price": 63.48,
+        "alpaca_order_id": "1da0ff0c-5b44-47e9-9a19-de38a215c677"
+      }
+    ]
+  },
+  "notes": [
+    "ETF 제외, 주식 중심 거래 계획이다. LRCX, TSM, UNH, ETN, AVGO, PLTR, TSLA 검토 후 업데이트했다.",
+    "사용자가 2026-05-22 23:20 KST에 매수를 명시 요청했으므로 submit 모드로 전환했다.",
+    "PLTR과 TSLA는 분석했지만 현재 계획에서는 제외한다.",
+    "총 제안 매수 금액은 약 56.0%로 제한한다.",
+    "Alpaca MCP IEX 스냅샷 기준 최신 체결가와 호가를 사용했고 모든 지정가는 기준가 대비 0.5% 이내다."
+  ]
+}
