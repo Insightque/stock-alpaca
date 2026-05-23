@@ -190,3 +190,10 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 원천 기록: `wiki/raw/sources/2026-05-23-recent-7d-historical-validation-sources.md`.
 - 검증 추천: `wiki/simulations/2026-05-18-to-2026-05-22-recent-7d-historical-decision.md`.
 - 검증 회고: `wiki/reviews/decisions/2026-05-18-to-2026-05-22-recent-7d-historical-review.md`.
+
+## [2026-05-23 10:15 Asia/Seoul] report | 투자·시뮬레이션 종합 인사이트 보고서 작성
+
+- 실제 2026-05-22 paper 매수 이력, 현재 포트폴리오, 과거 시점 추천 시뮬레이션, 독립 검증, MCP 보강 검증, 최근 7일 검증을 한 보고서로 정리했다.
+- 핵심 결론은 촉매+상대강도 신호는 후보 발굴에 유용하지만 과열, 데이터 공백, 이벤트 반납 위험을 감점해야 한다는 것이다.
+- v2의 97.9% 성과는 과최적화 위험으로 해석하고, MCP 보강 80.0%와 최근 7일 1D 100.0% 결과는 모두 `검증 중` 가설로만 정리했다.
+- 보고서: `wiki/reports/2026-05-23-investment-simulation-insight-report.md`.
