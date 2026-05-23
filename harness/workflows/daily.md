@@ -61,6 +61,11 @@ Default simple-command mode:
 
 5. Trend Agent
    - Compute daily, weekly, and monthly trend using price direction, volume, momentum, volatility, drawdown, and relative strength.
+   - Before final scoring, apply the news-price lead/lag policy from `wiki/policies/recommendation-policy.md`.
+     - Classify each meaningful news event as earnings, theme/policy, mega-cap expectation, analyst, macro, or unknown.
+     - Compare pre-news 3D/5D return, event-day return, and available post-news return.
+     - If good news follows a large pre-news run-up, mark `price-led` or `sell-the-news-risk` and reduce new-buy confidence.
+     - For theme/policy news, prefer next-session follow-through confirmation over same-day chase entries.
    - Use this scoring model:
      - Trend and relative strength: 35 points.
      - Current news/fundamental context: 25 points.

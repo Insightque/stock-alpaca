@@ -40,6 +40,7 @@
 ## 분석
 
 - [[2026-05-22-stock-only-trade-proposal]] - ETF 제외, 주식 중심 금일 거래 제안과 paper 주문 실행 결과.
+- [[2026-05-23-news-price-lead-lag-simulation]] - 뉴스가 주가보다 빠른지/느린지 확인하기 위한 이벤트 스터디와 정책 반영 후보.
 
 ## 과거 시점 시뮬레이션
 

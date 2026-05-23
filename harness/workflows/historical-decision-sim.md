@@ -57,6 +57,11 @@
    - 리스크/유동성/변동성 품질: 20점.
    - 포트폴리오 적합성/테마 분산: 20점.
    - 당시 추천 정책과 충돌하면 점수와 비중을 낮춘다.
+   - 뉴스-가격 선후관계를 기준 시점 정보만으로 분류한다.
+     - 기준 시점 이전 뉴스는 `news_type`, `pre_news_3d_return`, `pre_news_5d_return`, `event_day_return`을 기록한다.
+     - 기준 시점 이후 `post_news_1d_return`, `post_news_5d_return`은 추천 문서에 넣지 않고 회고 문서에서만 계산한다.
+     - 좋은 뉴스 전 이미 3D/5D 급등한 후보는 `price-led` 또는 `sell-the-news-risk`로 감점한다.
+     - 정책/테마 뉴스는 당일 급등만으로 매수 승격하지 않고, 기준 시점에서 후속 유지가 확인되지 않으면 소액 또는 관망 처리한다.
 5. 판단과 수량을 만든다.
    - 라벨은 `매수`, `보유`, `축소`, `매도`, `관망` 중 하나만 사용한다.
    - 수량은 당시 portfolio value, cash, 보유 수량, medium risk policy 기준으로 whole-share로 계산한다.

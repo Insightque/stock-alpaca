@@ -197,3 +197,19 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 핵심 결론은 촉매+상대강도 신호는 후보 발굴에 유용하지만 과열, 데이터 공백, 이벤트 반납 위험을 감점해야 한다는 것이다.
 - v2의 97.9% 성과는 과최적화 위험으로 해석하고, MCP 보강 80.0%와 최근 7일 1D 100.0% 결과는 모두 `검증 중` 가설로만 정리했다.
 - 보고서: `wiki/reports/2026-05-23-investment-simulation-insight-report.md`.
+
+## [2026-05-23 10:55 Asia/Seoul] analysis | 뉴스와 주가 반응 선후관계 이벤트 스터디
+
+- 사용자 요청에 따라 뉴스보다 실제 주가 변화가 빠른지 느린지 파악하기 위한 이벤트 스터디를 수행했다.
+- Alpaca MCP `get_stock_bars`로 2026-04-20~2026-05-22 일봉을 확인했고, `get_news`로 2026-05-01~2026-05-22 후보 종목 뉴스를 확인했다.
+- AMD 실적 beat, RGTI/QBTS/IONQ 양자컴퓨팅 정부 지원 뉴스, NOK AI Networking Innovation Lab, NVDA 실적/AI 수요 뉴스, UNH 목표가 상향 등을 대표 이벤트로 분류했다.
+- 결론: 실적 surprise는 뉴스 후 1D 반응이 빠르고, 정책/테마 뉴스는 당일 동행과 다음날 follow-through가 나타날 수 있으며, NVDA 같은 대형 인기주는 좋은 뉴스보다 기대 선반영/차익실현이 먼저 작동할 수 있다.
+- 분석 문서: `wiki/analyses/2026-05-23-news-price-lead-lag-simulation.md`.
+
+## [2026-05-23 11:05 Asia/Seoul] policy | 뉴스-가격 선후관계 정책 반영
+
+- 뉴스-가격 선후관계 분석에서 나온 정책 제안과 하네스 반영 후보를 실제 추천 정책과 워크플로우에 연결했다.
+- `wiki/policies/recommendation-policy.md`에 `news-price-lead-lag`, `sell-the-news-risk`, `theme-news-follow-through`, `earnings-fast-reaction` 신호를 추가했다.
+- Daily workflow의 Trend Agent가 뉴스 전 3D/5D 수익률, 뉴스 당일 반응, 후속 반응 가능성을 반영하도록 수정했다.
+- Research workflow가 종목 페이지에 lead/lag 라벨과 뉴스 전후 가격 반응을 기록하도록 수정했다.
+- Historical decision workflow는 기준 시점 이후 가격을 추천 문서에 넣지 않고 회고 문서에서만 post-news 성과를 계산하도록 명시했다.
