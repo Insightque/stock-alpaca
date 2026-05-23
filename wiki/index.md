@@ -41,6 +41,12 @@
 
 - [[2026-05-22-stock-only-trade-proposal]] - ETF 제외, 주식 중심 금일 거래 제안과 paper 주문 실행 결과.
 - [[2026-05-23-news-price-lead-lag-simulation]] - 뉴스가 주가보다 빠른지/느린지 확인하기 위한 이벤트 스터디와 정책 반영 후보.
+- [[2026-05-23-march-april-intraday-scalping-simulation]] - 2026년 3월 변동일 3개와 2026년 4월 검증일 1개를 사용한 시간별 long-only 단타 정책 시뮬레이션.
+- [[2026-05-23-march-april-intraday-scalping-alt-simulation]] - 앞선 날짜를 제외한 3월/4월 다른 일정으로 같은 단타 정책을 재검증한 분석.
+- [[2026-05-23-random-intraday-scalping-5x-simulation]] - 2026년 2월~5월 임의 일자 5회 반복으로 단타 정책 안정성을 재검증한 분석.
+- [[2026-05-23-intraday-scalping-minute-validation]] - 1시간봉 timestamp 보정과 1분봉 stop/take 순서 검증을 반영한 단타 정책 다음 단계 분석.
+- [[2026-05-23-intraday-scalping-feature-filter-simulation]] - VWAP, 섹터 breadth, opening range, gap filter를 단타 정책에 적용해 성과 개선 여부를 검증한 분석.
+- [[2026-05-23-intraday-policy-candidates-simulation]] - 기존 v0/v1에서 덜 다룬 VWAP 평균회귀, 장중 반전, 거래량 확인 모멘텀 후보를 학습/검증 표본으로 테스트한 분석.
 
 ## 과거 시점 시뮬레이션
 
@@ -67,6 +73,8 @@
 ## 추천 정책
 
 - [[recommendation-policy]] - 거래 회고에서 나온 교훈을 반영하는 living policy.
+- `harness/workflows/intraday-paper-dry-run.md` - `intraday-rs-breakout-v0`/`intraday-rs-breadth-vwap-v1` 실시간 주문 없는 paper dry-run 운영안.
+- `scripts/evaluate-intraday-dry-run.py` - 캡처된 1분봉 JSON으로 11:00 ET v0/v1 신호와 fill 관찰 필드를 생성하는 로컬 헬퍼. Alpaca API 호출 없음.
 
 ## 원천 자료
 
@@ -84,3 +92,9 @@
 - [[2026-05-23-historical-validation-2026-05-11-to-2026-05-15-sources]] - v2 과적합 점검을 위한 별도 검증셋 Alpaca MCP 가격/뉴스 원천.
 - [[2026-05-23-mcp-enhanced-validation-sources]] - Alpha Vantage/Alpaca MCP 기반 실적·뉴스·데이터 공백 보강 원천.
 - [[2026-05-23-recent-7d-historical-validation-sources]] - 최근 7일 과거 추천 검증용 Alpaca MCP 가격/뉴스 원천.
+- [[2026-05-23-march-april-intraday-scalping-sources]] - 2026년 3월/4월 시간별 단타 시뮬레이션용 Alpaca market data와 Alpaca News 원천.
+- [[2026-05-23-march-april-intraday-scalping-alt-sources]] - 다른 일정으로 재검증한 시간별 단타 시뮬레이션용 Alpaca market data와 Alpaca News 원천.
+- [[2026-05-23-random-intraday-scalping-5x-sources]] - 2026년 2월~5월 임의 일자 5회 반복 단타 검증용 Alpaca market data와 Alpaca News 원천.
+- [[2026-05-23-intraday-scalping-minute-validation-sources]] - 단타 정책 분봉 검증용 Alpaca `1Hour`/`1Min` market data 원천.
+- [[2026-05-23-intraday-scalping-feature-filter-sources]] - 단타 성과 개선용 VWAP, breadth, opening range, gap filter 검증 원천.
+- [[2026-05-23-intraday-policy-candidates-sources]] - 미검토 단타 정책 후보 조사와 Alpaca IEX 1분봉 시뮬레이션 원천.

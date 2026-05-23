@@ -1,6 +1,6 @@
 ---
 id: recommendation-policy
-updated_at: 2026-05-23T10:55:00+09:00
+updated_at: 2026-05-23T19:25:00+09:00
 ---
 
 # 추천 정책
@@ -17,6 +17,7 @@ updated_at: 2026-05-23T10:55:00+09:00
 - 과거 thesis를 사후에 덮어쓰지 않고, 별도 회고 문서나 날짜가 있는 회고 섹션으로 남긴다.
 - 뉴스가 긍정적이어도 뉴스 전 3D/5D 가격이 이미 크게 올랐으면 선반영 가능성으로 감점한다.
 - 테마/정책 뉴스는 당일 급등 추격보다 다음 거래일 유지 여부를 더 중요하게 본다.
+- 분석 결과 문서에 계산 지표나 정책학습 지표가 포함되면, 문서 하단에 `지표 설명` 섹션을 추가해 각 지표의 의미와 해석 방법을 쉬운 한국어로 설명한다.
 
 ## 회고에서 나온 정책 변경
 
@@ -29,6 +30,12 @@ updated_at: 2026-05-23T10:55:00+09:00
 | 2026-05-23 | 실적 beat 후 과열 필터와 MCP 확인 공백 감점을 적용하면 별도 검증셋이 80.0%로 개선됨 | [[2026-05-11-to-2026-05-15-mcp-enhanced-validation-review]] | 검증 중 |
 | 2026-05-23 | 최근 7일 1D 검증에서 뉴스 촉매+가격 돌파가 강하게 작동했지만 이벤트 집중 표본이라 정책 승격은 보류함 | [[2026-05-18-to-2026-05-22-recent-7d-historical-review]] | 검증 중 |
 | 2026-05-23 | 뉴스와 가격의 선후관계를 후보 점수화에 반영함. 실적, 정책/테마, 대형주, 애널리스트 뉴스 유형을 분리해 평가 | [[2026-05-23-news-price-lead-lag-simulation]] | 적용 후보 |
+| 2026-05-23 | 시간별 단타 후보 정책 `intraday-rs-breakout-v0`를 추가함. QQQ 초기 risk-on, 종목 상대강도, 돌파 유지, +2% take/-1% stop을 묶어 paper 검증 후보로 둠 | [[2026-05-23-march-april-intraday-scalping-simulation]] | 검증 중 |
+| 2026-05-23 | `intraday-rs-breakout-v0`를 다른 일정으로 재검증함. 플러스였지만 take profit 도달 없이 EOD 수익과 무거래 필터 기여가 컸음 | [[2026-05-23-march-april-intraday-scalping-alt-simulation]] | 검증 중 |
+| 2026-05-23 | 2026년 2월~5월 임의 일자로 5회 추가 반복 검증함. 총손익은 플러스였지만 hit rate가 47.8%로 낮아지고 동시 stop 위험이 확인됨 | [[2026-05-23-random-intraday-scalping-5x-simulation]] | 자동 주문 부적합 |
+| 2026-05-23 | 1시간봉 timestamp를 보정하고 1분봉으로 stop/take 순서를 검증함. v0는 플러스였지만 confirmation variants가 안정적으로 개선하지 못해 자동 주문 부적합 유지 | [[2026-05-23-intraday-scalping-minute-validation]] | paper-only manual candidate |
+| 2026-05-23 | 단타 성과 개선용 추가 필터를 검증함. 시장 VWAP, SMH VWAP, 종목 VWAP, 반도체 breadth 4개 이상을 결합한 v1이 v0보다 평균 거래 손익과 hit rate를 개선함 | [[2026-05-23-intraday-scalping-feature-filter-simulation]] | paper-only manual candidate |
+| 2026-05-23 | 기존 v0/v1에서 덜 다룬 VWAP 평균회귀·장중 반전·거래량 확인 모멘텀을 검증함. 장초반 눌림 후 VWAP 회복 후보는 플러스였지만 v1보다 약했고, 거래량 확인 모멘텀은 폐기 후보로 분류함 | [[2026-05-23-intraday-policy-candidates-simulation]] | paper-only secondary candidate |
 
 ## 검증 중인 가설
 
@@ -45,6 +52,55 @@ updated_at: 2026-05-23T10:55:00+09:00
 | 실적 서프라이즈는 매수 가산점이 아니라 과열 여부와 함께 해석해야 한다 | [[2026-05-11-to-2026-05-15-mcp-enhanced-validation-review]] | Alpha/SEC/IR 원천을 포함한 독립 기간 3개 이상에서 반복될 때 |
 | 당일 뉴스 촉매와 가격 돌파가 동시에 확인된 후보는 1D 성과가 강할 수 있다 | [[2026-05-18-to-2026-05-22-recent-7d-historical-review]] | 이벤트 당일 종가 추격의 5D 반납 여부와 손실 사례까지 확인할 때 |
 | 뉴스가 가격을 움직이는지, 가격이 뉴스보다 먼저 움직이는지는 뉴스 유형별로 다를 수 있다 | [[2026-05-23-news-price-lead-lag-simulation]] | 3개 이상 독립 기간에서 뉴스 전/후 1D/5D 수익률을 반복 측정할 때 |
+| 개장 초반 QQQ risk-on과 종목 상대강도/돌파가 동시에 확인되면 long-only 단타 후보가 될 수 있다 | [[2026-05-23-march-april-intraday-scalping-simulation]] | 2026년 4월 전체 거래일에 같은 규칙을 고정 적용해 무거래일 포함 기대값이 플러스인지 확인할 때 |
+
+## 시간별 단타 정책 후보
+
+`intraday-rs-breakout-v0`는 자동 주문 원칙이 아니라 paper 검증 후보로만 사용한다. 2026-05-23 분봉 검증 후 상태는 `paper-only manual candidate`다. 즉, 자동 주문에는 부적합하지만 주문 없는 실시간 paper dry-run으로 추적할 가치는 있다.
+
+- QQQ의 초기 hour bar 기반 수익률이 +0.20% 이상일 때만 long 진입을 검토한다. Alpaca `1Hour` timestamp는 시작 시각이므로, `10:00` hour bar close를 쓴 신호는 11:00 ET 이후에만 실행 가능하다.
+- 후보 종목은 초기 구간 +0.90% 이상, QQQ 대비 +0.40%p 이상, 10:00 ET close가 직전 bar high 근처 이상일 때만 통과한다.
+- 통과 종목 중 최대 3개, 종목당 계좌 가치 5~10% 이하로 제한한다.
+- 청산은 +2.0% take, -1.0% stop, 또는 당일 15:00 ET close다.
+- QQQ가 `neutral` 또는 `risk_off`면 단타 long 진입을 하지 않는다.
+- 같은 날 2연속 stop이 발생하면 추가 진입을 중단한다.
+- 2026-03-31처럼 장중 후반 반전이 있는 날은 이 정책의 대상이 아니다. 별도 `midday-reversal` 검증 없이는 후반 추격 규칙을 섞지 않는다.
+- 12:00 ET confirmation 버전은 손실일 일부를 줄였지만 총 기대값을 개선하지 못했다. 현 상태에서는 11:00 ET 이후 v0 신호를 주문 없이 기록하는 dry-run이 다음 단계다.
+
+`intraday-rs-breadth-vwap-v1`은 v0에 시장/섹터 확인을 추가한 후보 정책이다.
+
+- v0 신호를 먼저 만족해야 한다.
+- 11:00 ET 진입 시점에 QQQ가 당일 VWAP 위에 있어야 한다.
+- SMH가 당일 VWAP 위에 있어야 한다.
+- 후보 종목이 당일 VWAP 위에 있어야 한다.
+- 반도체 breadth가 4개 이상이어야 한다. 대상은 SMH, NVDA, AMD, AVGO, TSM, LRCX이며, 11:00 ET 진입가가 당일 open보다 높은지로 계산한다.
+- 수익 극대화형은 top3, 안정성 우선형은 top2로 추적한다.
+- 자동 주문은 금지하고 실시간 paper dry-run에서 v0와 병렬 비교한다.
+
+`intraday-pullback-vwap-reclaim-v0`은 v1 신호가 없을 때 관찰할 보조 후보 정책이다.
+
+- 09:30~10:59 ET에 후보 종목이 당일 open 대비 최소 -1.0% 이상 눌려야 한다.
+- 11:00 ET 이론 진입가가 오전 저점 대비 최소 +0.8% 회복해야 한다.
+- 11:00 ET 이론 진입가가 종목 VWAP 위에 있어야 한다.
+- QQQ와 SMH가 11:00 ET 기준 VWAP 위에 있어야 한다.
+- 11:00 ET 이론 진입가가 당일 open 대비 +1.0%를 넘으면 추격으로 보고 제외한다.
+- 후보는 회복률 기준 상위 2개만 추적한다.
+- +1.5% take, -0.8% stop, EOD 청산을 사용한다.
+- 2026-03-02~2026-05-22 59거래일 보조 스캔에서 플러스였지만 v1보다 약하므로 자동 주문은 금지한다.
+
+`volume-confirmed-momentum`은 현재 폐기 후보로 둔다. 2026-03-02~2026-05-22 스캔에서 6거래 모두 수익 실패, 5 stop, P/L -$425.87이었다.
+
+### 실시간 paper dry-run 운영 원칙
+
+다음 단계는 `harness/workflows/intraday-paper-dry-run.md`를 사용해 11:00 ET 신호를 기록하는 것이다. 이 운영은 주문 계획이 아니라 관찰 로그이며, `orders_submitted=0`을 명시해야 한다.
+
+- 10:00-10:59 ET 데이터가 완성된 뒤 11:00 ET 이후 첫 1분봉 open을 이론적 entry reference로 기록한다.
+- v0 top3/top2와 v1 top3/top2를 같은 후보군에서 병렬 기록한다.
+- v1은 QQQ VWAP, SMH VWAP, 후보 VWAP, 반도체 breadth 4개 이상을 모두 통과해야 한다.
+- 11:00 ET 근처 bid/ask, spread, quote freshness, fill 가능성을 반드시 별도 필드로 남긴다. bid/ask가 없으면 fill 가능성은 `unknown`이다.
+- 12:00 ET 확인은 상태 기록용으로만 쓰고 새 진입 신호를 만들지 않는다.
+- 15:59 ET 또는 장 마감 후 1분봉으로 stop/take/EOD 이론 결과를 기록한다.
+- 반복 관찰에서 slippage, spread, 동시 stop, VWAP 이탈 문제가 확인되기 전까지 자동 주문 승격을 금지한다.
 
 ## 뉴스-가격 선후관계 적용 규칙
 
@@ -87,6 +143,11 @@ updated_at: 2026-05-23T10:55:00+09:00
 | sell-the-news-risk | 좋은 뉴스에도 당일 또는 다음날 하락하면 기대 선반영과 차익실현 위험으로 감점한다 | 1 |  |  | NVDA 2026-05-21~05-22 사례 | 검증 중 | [[2026-05-23-news-price-lead-lag-simulation]] |
 | theme-news-follow-through | 정책/테마 뉴스는 당일 급등보다 다음 거래일 유지 여부를 더 높게 평가한다 | 4 |  |  | RGTI/QBTS/IONQ/NOK 2026-05-21~05-22 사례 | 검증 중 | [[2026-05-23-news-price-lead-lag-simulation]] |
 | earnings-fast-reaction | 실적 surprise는 발표 직후 1D 반응과 3~5D 과열 구간을 분리 평가한다 | 1 |  |  | AMD 2026-05-05~05-06 사례 | 검증 중 | [[2026-05-23-news-price-lead-lag-simulation]] |
+| intraday-rs-breakout-v0 | 개장 초반 QQQ risk-on과 종목 상대강도/돌파가 동시에 확인된 후보만 long 단타로 진입한다. 1시간봉 timestamp 보정 후 11:00 ET 이후 진입으로 해석한다 | 28 trading days / 34 trades | 55.9% trade hit | +$1,410.00 on $10k per trade simulation | 1분봉 검증상 플러스지만 confirmation variants가 개선 실패. IEX feed/슬리피지/fill 불확실성 남음 | paper-only manual candidate | [[2026-05-23-march-april-intraday-scalping-simulation]], [[2026-05-23-march-april-intraday-scalping-alt-simulation]], [[2026-05-23-random-intraday-scalping-5x-simulation]], [[2026-05-23-intraday-scalping-minute-validation]] |
+| intraday-rs-breadth-vwap-v1 | v0에 QQQ/SMH/종목 VWAP 확인과 반도체 breadth 4개 이상 조건을 추가한다 | 28 trading days / 27 trades | 59.3% trade hit | +$1,547.25 on $10k per trade simulation | 거래 수 감소. IEX VWAP, slippage, fill 가능성 미반영. 독립 실시간 검증 필요 | paper-only manual candidate | [[2026-05-23-intraday-scalping-feature-filter-simulation]] |
+| intraday-rs-breadth-vwap-v1-top2 | v1 조건을 만족한 후보 중 상위 2개만 진입한다 | 28 trading days / 18 trades | 66.7% trade hit | +$1,395.55 on $10k per trade simulation | 총손익은 v1 top3보다 낮지만 평균 거래 손익은 높음 | paper-only manual candidate | [[2026-05-23-intraday-scalping-feature-filter-simulation]] |
+| intraday-pullback-vwap-reclaim-v0 | 장초반 -1% 이상 눌린 종목이 11:00 ET에 VWAP 위로 회복하고 QQQ/SMH도 VWAP 위일 때만 long 진입 후보로 본다 | train 5 days / 6 trades; validation 5 days / 10 trades; 59-day scan / 38 trades | validation 60.0%; 59-day scan 55.3% | validation +$222.57; 59-day scan +$822.98 on $10k per trade simulation | v1보다 평균 거래 손익이 낮고 2026-04-01처럼 동시 stop 가능. 실제 spread/fill 미반영 | paper-only secondary candidate | [[2026-05-23-intraday-policy-candidates-simulation]] |
+| volume-confirmed-momentum | 10시대 상승이 거래량 증가와 같이 나타날 때 추격한다 | 59-day scan / 6 trades | 0.0% | -$425.87 on $10k per trade simulation | 가격+거래량 추격이 모두 실패. stop 5건, EOD 손실 1건 | rejected | [[2026-05-23-intraday-policy-candidates-simulation]] |
 
 ## 폐기하거나 완화한 규칙
 

@@ -8,6 +8,7 @@ Start with these workflows:
 - `workflows/daily.md` for the full daily research, allocation, risk, and paper-order run.
 - `workflows/research.md` for ticker research without orders.
 - `workflows/rebalance.md` for portfolio-only allocation and paper-order planning.
+- `workflows/intraday-paper-dry-run.md` for order-free real-time v0/v1 intraday signal logging.
 - `workflows/post-trade.md` for order/fill reconciliation.
 - `workflows/trade-review.md` for reviewing traded stocks and improving recommendation policy.
 - `workflows/historical-decision-sim.md` for strict as-of-date recommendation simulations with dry-run orders only.

@@ -14,6 +14,8 @@
 - `wiki/index.md` 업데이트
 - `wiki/log.md` append-only 항목 추가
 
+계산 지표가 들어간 종목 비교 또는 분석 문서에는 하단에 `## 지표 설명` 섹션을 추가한다. 수익률 기간, 상대강도, VWAP, hit rate, drawdown, spread, confidence, 정책학습 지표처럼 사용자가 바로 해석하기 어려운 항목은 쉬운 한국어로 설명한다.
+
 ## 절차
 
 1. `AGENTS.md`, `wiki/index.md`, 최근 `wiki/log.md`, `wiki/policies/recommendation-policy.md`를 읽는다.

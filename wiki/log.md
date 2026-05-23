@@ -213,3 +213,94 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Daily workflow의 Trend Agent가 뉴스 전 3D/5D 수익률, 뉴스 당일 반응, 후속 반응 가능성을 반영하도록 수정했다.
 - Research workflow가 종목 페이지에 lead/lag 라벨과 뉴스 전후 가격 반응을 기록하도록 수정했다.
 - Historical decision workflow는 기준 시점 이후 가격을 추천 문서에 넣지 않고 회고 문서에서만 post-news 성과를 계산하도록 명시했다.
+
+## [2026-05-23 16:20 Asia/Seoul] analysis | 3월/4월 시간별 단타 정책 시뮬레이션
+
+- 사용자 요청에 따라 2026년 3월 특정일 3개를 선정해 시간별 단타 정책을 검토하고, 2026년 4월 특정일로 검증했다.
+- 3월 학습일은 QQQ open-to-close 절대수익률 상위 3일인 2026-03-09, 2026-03-31, 2026-03-30으로 선정했다.
+- 4월 검증일은 2026년 4월 QQQ open-to-close 절대수익률 상위일인 2026-04-02로 선정했다.
+- Alpaca Market Data API IEX feed의 `1Day`, `1Hour` bars와 Alpaca News API의 해당일 뉴스 맥락을 원천으로 기록했다.
+- 검토 정책 `intraday-rs-breakout-v0`는 QQQ 초기 risk-on, 종목 상대강도, 돌파 유지, +2% take, -1% stop, 당일 청산 구조다.
+- 3월 학습 표본 결과는 3개 거래, +$591.81였고, 2026-03-31과 2026-03-30은 정책상 무거래였다.
+- 4월 검증일 2026-04-02 결과는 3개 거래, +$83.84였다. LRCX stop, AMD take, TSM EOD 소폭 손실로 기록했다.
+- 정책에는 자동 주문 원칙이 아닌 `검증 중` 단타 후보로 반영했다.
+- 원천 기록: `wiki/raw/sources/2026-05-23-march-april-intraday-scalping-sources.md`.
+- 분석 문서: `wiki/analyses/2026-05-23-march-april-intraday-scalping-simulation.md`.
+
+## [2026-05-23 17:25 Asia/Seoul] analysis | 다른 일정으로 시간별 단타 정책 재검증
+
+- 사용자 요청에 따라 앞선 표본과 다른 일정으로 `intraday-rs-breakout-v0`를 다시 검증했다.
+- 3월 학습일은 기존 2026-03-09, 2026-03-31, 2026-03-30을 제외한 QQQ open-to-close 절대수익률 상위 3일인 2026-03-26, 2026-03-02, 2026-03-20으로 선정했다.
+- 4월 검증일은 기존 2026-04-02를 제외한 4월 QQQ open-to-close 절대수익률 상위일인 2026-04-14로 선정했다.
+- 2026-03-26과 2026-03-20은 neutral/risk-off로 무거래, 2026-03-02는 PLTR/NVDA/TSLA 3개 거래로 +$33.50이었다.
+- 2026-04-14 검증은 TSLA/NVDA 2개 거래로 +$185.00이었다.
+- 두 차례 표본 합산 결과는 8거래일, 11거래, 가상 P/L +$894.15, trade hit rate 72.7%로 기록했다.
+- 단, 이번 재검증에서는 take profit 도달 거래가 없어 EOD 수익과 무거래 필터 기여가 컸다. 정책은 계속 `검증 중`으로 유지했다.
+- 원천 기록: `wiki/raw/sources/2026-05-23-march-april-intraday-scalping-alt-sources.md`.
+- 분석 문서: `wiki/analyses/2026-05-23-march-april-intraday-scalping-alt-simulation.md`.
+
+## [2026-05-23 17:55 Asia/Seoul] analysis | 2월~5월 임의 일자 시간별 단타 5회 반복 검증
+
+- 사용자 요청에 따라 2026년 2월부터 2026년 5월 22일까지 임의 일자를 선정해 `intraday-rs-breakout-v0`를 5번 더 반복 검증했다.
+- 무작위 시드는 `20260523`으로 고정했고, 앞선 두 차례 시뮬레이션에 사용한 날짜는 제외했다.
+- 각 반복은 3개 학습일과 1개 검증일로 구성했다.
+- 5회 반복 합계는 20거래일, 23거래, 이익 거래 11개, hit rate 47.8%, 가상 P/L +$515.86이었다.
+- 검증일만 분리하면 5거래일, 7거래, 이익 거래 5개, hit rate 71.4%, 가상 P/L +$551.68이었다.
+- 기존 1차/2차와 합산하면 28거래일, 34거래, hit rate 55.9%, 가상 P/L +$1,410.01이었다.
+- 총손익은 플러스지만 2026-04-01, 2026-02-20, 2026-04-29에서 개장 초반 돌파 후 동시 stop 위험이 확인되어 자동 주문 부적합으로 정책을 강등했다.
+- 원천 기록: `wiki/raw/sources/2026-05-23-random-intraday-scalping-5x-sources.md`.
+- 분석 문서: `wiki/analyses/2026-05-23-random-intraday-scalping-5x-simulation.md`.
+
+## [2026-05-23 18:25 Asia/Seoul] analysis | 단타 정책 1시간봉 timestamp 보정 및 분봉 검증
+
+- 사용자 요청의 다음 단계로 `intraday-rs-breakout-v0`의 1시간봉 timestamp 해석을 보정하고 1분봉으로 stop/take 순서를 검증했다.
+- Alpaca `1Hour` bar timestamp는 시작 시각이므로, `10:00` hour bar close 기반 신호는 11:00 ET 이후에만 실행 가능하다고 정정했다.
+- 기존 28개 표본일에 대해 `1Min` bars로 진입 이후 stop/take/EOD 순서를 재계산했다.
+- v0 보정 버전은 28거래일, active 14일, 34거래, hit rate 55.9%, stop 12, take 11, 가상 P/L +$1,410.00이었다.
+- 12:00 confirmation variants는 모두 v0보다 총손익이 낮았다: top3 +$556.63, top2 +$488.35, top1 -$175.96, top2/take 1.5% +$444.87.
+- 결론: v0는 플러스 기대값 후보로 남지만, 자동 주문에는 부적합하며 주문 없는 실시간 paper dry-run으로 11:00 ET 신호를 기록하는 단계가 필요하다.
+- 원천 기록: `wiki/raw/sources/2026-05-23-intraday-scalping-minute-validation-sources.md`.
+- 분석 문서: `wiki/analyses/2026-05-23-intraday-scalping-minute-validation.md`.
+
+## [2026-05-23 18:55 Asia/Seoul] analysis | 단타 성과 개선용 추가 필터 검증
+
+- 사용자 요청에 따라 단타 성과를 올리기 위한 추가 정보와 분석법을 파악하고 같은 28개 표본에 적용했다.
+- 추가 검토 정보는 QQQ VWAP, SMH VWAP, 종목 VWAP, 반도체 breadth, opening range breakout, gap filter, 실시간 bid/ask 필요성이다.
+- baseline 11:00 top3는 34거래, hit rate 55.9%, stop 12, take 11, 가상 P/L +$1,425.06으로 계산했다. 진입가는 11:00 이후 첫 1분봉 open 기준이라 이전 minute validation의 hour close 기준 +$1,410.00과 소폭 다르다.
+- QQQ+SMH+종목 VWAP 필터는 33거래, hit rate 57.6%, P/L +$1,524.37로 개선됐다.
+- 반도체 breadth 4개 이상 + QQQ/SMH/종목 VWAP 필터는 27거래, hit rate 59.3%, stop 9, take 11, P/L +$1,547.25로 총손익과 평균 거래 손익이 가장 좋았다.
+- 같은 필터에서 top2만 쓰면 18거래, hit rate 66.7%, P/L +$1,395.55로 총손익은 낮지만 거래 품질은 가장 좋았다.
+- opening range breakout 단독, gap filter, take +1.5%는 개선 효과가 약하거나 손익을 낮췄다.
+- 새 후보 정책 `intraday-rs-breadth-vwap-v1`을 paper-only manual candidate로 추가했다.
+- 원천 기록: `wiki/raw/sources/2026-05-23-intraday-scalping-feature-filter-sources.md`.
+- 분석 문서: `wiki/analyses/2026-05-23-intraday-scalping-feature-filter-simulation.md`.
+
+## [2026-05-23 18:56 Asia/Seoul] workflow | 단타 실시간 paper dry-run 운영안 추가
+
+- 다음 미국 정규장부터 사용할 `harness/workflows/intraday-paper-dry-run.md`를 추가했다.
+- 운영안은 `intraday-rs-breakout-v0`와 `intraday-rs-breadth-vwap-v1`를 11:00 ET 이후 병렬 기록하며, 주문 제출/취소/수정/포지션 변경을 금지한다.
+- 11:00 ET 신호 기록 포맷, v0/v1 비교 항목, bid/ask spread와 fill 가능성 기록 항목을 정의했다.
+- 캡처된 1분봉 JSON만 읽는 `scripts/evaluate-intraday-dry-run.py` 초안을 추가했다. 이 스크립트는 Alpaca API를 호출하지 않고 `orders_submitted=0` 관찰 결과만 생성한다.
+- `wiki/policies/recommendation-policy.md`, `wiki/index.md`, `harness/README.md`에 dry-run 운영 연결을 반영했다.
+
+## [2026-05-23 18:57 Asia/Seoul] docs | 분석 문서 지표 설명 규칙 추가
+
+- 사용자 의도를 반영해 분석 결과 문서에는 별도 답변이 아니라 문서 하단에 `지표 설명` 섹션을 함께 작성하도록 규칙을 추가했다.
+- `harness/workflows/daily.md`, `harness/workflows/research.md`, `harness/workflows/intraday-paper-dry-run.md`, `wiki/policies/recommendation-policy.md`를 갱신했다.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-23 19:25 Asia/Seoul] analysis | 미검토 단타 정책 후보 학습/검증
+
+- 사용자 요청에 따라 기존 v0/v1에서 덜 다룬 VWAP 평균회귀, 장중 반전, 거래량 확인 모멘텀 후보를 조사하고 시뮬레이션했다.
+- 외부 조사로 ORB, VWAP 평균회귀, intraday momentum/reversal, 거래비용 관련 자료를 확인했다.
+- 학습 표본은 2026-03-03, 2026-03-09, 2026-03-10, 2026-03-19, 2026-03-25다.
+- 검증 표본은 2026-04-01, 2026-04-09, 2026-04-10, 2026-04-14, 2026-04-17이다.
+- `pullback-vwap-reclaim-morning`은 학습 6거래 hit 66.7%, +$308.80, 검증 10거래 hit 60.0%, +$222.57로 플러스였다.
+- 2026-03-02~2026-05-22 59거래일 보조 스캔에서도 `pullback-vwap-reclaim-morning`은 38거래, hit 55.3%, +$822.98이었다.
+- `midday-vwap-reversal`은 플러스 가능성은 있으나 표본과 안정성이 부족해 보류했다.
+- `volume-confirmed-momentum`은 59거래일 스캔에서 6거래 모두 실패해 폐기 후보로 기록했다.
+- 새 보조 후보 `intraday-pullback-vwap-reclaim-v0`를 `paper-only secondary candidate`로 정책에 반영했다. 자동 주문은 금지한다.
+- 원천 기록: `wiki/raw/sources/2026-05-23-intraday-policy-candidates-sources.md`.
+- 계산 데이터: `wiki/raw/sources/2026-05-23-intraday-policy-candidates-simulation-data.json`.
+- 분석 문서: `wiki/analyses/2026-05-23-intraday-policy-candidates-simulation.md`.
+- 실제 주문, 취소, 포지션 변경은 없었다.

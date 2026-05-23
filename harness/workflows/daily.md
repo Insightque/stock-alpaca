@@ -28,6 +28,8 @@ Default simple-command mode:
 - Updated `wiki/index.md`
 - Appended `wiki/log.md` entry
 
+For any report or cross-ticker analysis that includes calculated metrics, add a Korean `## 지표 설명` section near the bottom. Define each non-obvious metric in user-friendly language, especially return windows, hit rate, excess return, drawdown, relative strength, VWAP, spread, confidence, and policy-learning fields.
+
 ## Procedure
 
 1. Coordinator Agent
