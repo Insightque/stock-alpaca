@@ -1,8 +1,20 @@
-# Alpaca MCP Paper Trading Harness
+# Reinforcement-Style Alpaca MCP Paper Trading Harness
 
-This workspace is configured to run Alpaca's official MCP server in paper trading mode and to use Codex as a multi-agent trading harness.
+This workspace is configured to run Alpaca's official MCP server in paper trading mode and to use Codex as a multi-agent trading harness that learns from recommendation outcomes over time.
 
-The harness keeps all ticker research, trend analysis, allocation notes, order plans, and execution outcomes in an llm-wiki under `wiki/`.
+The core loop is reinforcement-style rather than a black-box RL model: the agent makes paper-only recommendations, records the information available at the decision time, reviews later price outcomes, assigns lessons to policy signals, and updates future recommendation policy only when evidence accumulates.
+
+The harness keeps all ticker research, trend analysis, allocation notes, order plans, simulation reviews, policy lessons, and execution outcomes in an llm-wiki under `wiki/`.
+
+## Learning Loop
+
+1. Build a candidate universe from holdings, watchlists, wiki history, and user-specified tickers.
+2. Collect as-of market data, news, earnings, filings, macro context, and portfolio constraints.
+3. Produce paper-only recommendations and dry-run order plans.
+4. Review later 1D/5D/20D outcomes against SPY, QQQ, and sector benchmarks.
+5. Record what worked, what failed, and which policy signals should be strengthened, weakened, or kept under validation.
+
+This is not a promise of profitable trading. It is a disciplined feedback harness for paper trading, leak-free historical simulation, and policy improvement.
 
 ## MCP Setup
 
