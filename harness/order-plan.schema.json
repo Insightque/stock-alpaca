@@ -119,6 +119,21 @@
           },
           "current_price": {
             "type": "number"
+          },
+          "theme": {
+            "type": "string",
+            "minLength": 1
+          },
+          "factor": {
+            "type": "string",
+            "minLength": 1
+          },
+          "volatility_bucket": {
+            "type": "string",
+            "enum": ["low", "medium", "high"]
+          },
+          "speculative_flag": {
+            "type": "boolean"
           }
         }
       }
@@ -208,6 +223,21 @@
           "rationale": {
             "type": "string",
             "minLength": 1
+          },
+          "theme": {
+            "type": "string",
+            "minLength": 1
+          },
+          "factor": {
+            "type": "string",
+            "minLength": 1
+          },
+          "volatility_bucket": {
+            "type": "string",
+            "enum": ["low", "medium", "high"]
+          },
+          "speculative_flag": {
+            "type": "boolean"
           },
           "client_order_id": {
             "type": "string"

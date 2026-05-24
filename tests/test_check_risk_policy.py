@@ -100,6 +100,33 @@ class RiskPolicyTests(unittest.TestCase):
         errors, _, _ = self.validate(plan)
         self.assertTrue(any("per-ticker limit" in error for error in errors))
 
+    def test_theme_exposure_violation_fails(self) -> None:
+        plan = base_plan()
+        plan["account"]["cash"] = 70000.0
+        plan["account"]["buying_power"] = 70000.0
+        plan["positions"] = [
+            {"symbol": "NVDA", "asset_type": "stock", "qty": 10, "market_value": 10000.0},
+            {"symbol": "AMD", "asset_type": "stock", "qty": 10, "market_value": 10000.0},
+            {"symbol": "TSM", "asset_type": "stock", "qty": 10, "market_value": 10000.0},
+        ]
+        plan["orders"][0]["symbol"] = "NVDA"
+        plan["orders"][0]["asset_type"] = "stock"
+        plan["orders"][0]["qty"] = 6
+        plan["orders"][0]["limit_price"] = 1000.0
+        plan["orders"][0]["reference_price"] = 1000.0
+        errors, _, _ = self.validate(plan)
+        self.assertTrue(any("theme ai_semiconductor" in error for error in errors))
+
+    def test_speculative_exposure_violation_fails(self) -> None:
+        plan = base_plan()
+        plan["orders"][0]["symbol"] = "RGTI"
+        plan["orders"][0]["asset_type"] = "stock"
+        plan["orders"][0]["qty"] = 13
+        plan["orders"][0]["limit_price"] = 1000.0
+        plan["orders"][0]["reference_price"] = 1000.0
+        errors, _, _ = self.validate(plan)
+        self.assertTrue(any("speculative exposure" in error for error in errors))
+
     def test_submit_mode_stale_quote_fails(self) -> None:
         plan = base_plan()
         plan["mode"] = "submit"

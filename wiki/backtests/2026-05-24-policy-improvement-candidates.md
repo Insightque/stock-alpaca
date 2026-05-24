@@ -1,6 +1,6 @@
 ---
 id: 2026-05-24-policy-improvement-candidates
-created_at: 2026-05-24T15:58:27+09:00
+created_at: 2026-05-24T18:25:12+09:00
 source_type: policy-improvement-backtest
 paper: true
 orders_submitted: 0
@@ -48,6 +48,7 @@ orders_submitted: 0
 - Watchlists were empty at run time, so the universe combines current paper holdings, existing policy candidates, and SPY/QQQ/SMH benchmarks.
 - This improvement simulation reuses previously captured IEX 30Min/daily bars and does not fetch fresh quotes.
 - Fundamental, valuation, filing, analyst, and macro features are policy requirements but not numerically simulated here.
+- Daily policy simulation now aligns symbols by as-of date keys instead of shared row index position.
 
 ## 지표 설명
 

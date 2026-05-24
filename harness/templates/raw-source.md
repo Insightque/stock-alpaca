@@ -18,6 +18,12 @@ immutable: true
 
 - 
 
+## 구조화 시그널
+
+| ticker | asof | signal_type | value | confidence | source_ref | notes |
+| --- | --- | --- | --- | --- | --- | --- |
+|  |  | price_momentum\|news_event\|sec_filing\|valuation\|macro\|liquidity\|risk |  | low\|medium\|high |  |  |
+
 ## 언급된 티커
 
 - 

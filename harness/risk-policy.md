@@ -11,6 +11,9 @@ Current policy version: `medium-risk-v1`.
 - Keep at least 20% of portfolio value in cash after new buy orders.
 - Keep total invested exposure at or below 80% of portfolio value after new orders.
 - Keep target exposure per ticker at or below 20% of portfolio value.
+- Keep post-order theme exposure at or below 35% of portfolio value.
+- Keep post-order factor exposure at or below 50% of portfolio value.
+- Keep post-order speculative exposure at or below 12% of portfolio value.
 - Submit at most 10 new orders per run.
 
 ## Asset And Order Limits
@@ -22,6 +25,7 @@ Current policy version: `medium-risk-v1`.
 - Submit-mode quote data must be no older than 20 minutes.
 - Buy orders must fit within current cash without relying on sell proceeds from the same run.
 - Submit-mode orders must include `client_order_id`, and duplicate same-run orders with the same ticker, side, quantity, and limit are rejected.
+- Each symbol must have exposure metadata from the order plan or `harness/risk-policy.yaml`: `theme`, `factor`, `volatility_bucket`, and `speculative_flag`.
 
 ## Order Plan Metadata
 

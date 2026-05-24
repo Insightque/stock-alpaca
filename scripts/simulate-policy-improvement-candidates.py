@@ -75,6 +75,13 @@ def daily_returns(rows: list[dict[str, Any]], start: int, end: int) -> list[floa
     return values
 
 
+def build_daily_indices(rows: dict[str, list[dict[str, Any]]]) -> dict[str, dict[str, int]]:
+    return {
+        symbol: {str(row["date"]): idx for idx, row in enumerate(items)}
+        for symbol, items in rows.items()
+    }
+
+
 def ret(rows: list[dict[str, Any]], idx: int, lookback: int) -> float | None:
     if idx - lookback < 0:
         return None
@@ -160,13 +167,18 @@ def add_theme_cap(rows: list[dict[str, Any]], limit: int, top_n: int) -> list[di
 
 def candidate_features(
     symbol: str,
-    idx: int,
+    asof_date: str,
     rows: dict[str, list[dict[str, Any]]],
+    daily_indices: dict[str, dict[str, int]],
     windows: dict[str, list[dict[str, Any]]],
 ) -> dict[str, Any] | None:
+    idx = daily_indices.get(symbol, {}).get(asof_date)
+    spy_idx = daily_indices.get("SPY", {}).get(asof_date)
+    qqq_idx = daily_indices.get("QQQ", {}).get(asof_date)
+    if idx is None or spy_idx is None or qqq_idx is None:
+        return None
+
     item = rows[symbol][idx]
-    spy = rows["SPY"][idx]
-    qqq = rows["QQQ"][idx]
     values: dict[str, Any] = {
         "symbol": symbol,
         "theme": THEMES.get(symbol, "unknown"),
@@ -178,16 +190,20 @@ def candidate_features(
         if value is None:
             return None
         values[f"ret_{period}d_pct"] = value
-        values[f"spy_excess_{period}d_pct"] = value - (ret(rows["SPY"], idx, period) or 0.0)
-        values[f"qqq_excess_{period}d_pct"] = value - (ret(rows["QQQ"], idx, period) or 0.0)
+        spy_value = ret(rows["SPY"], spy_idx, period)
+        qqq_value = ret(rows["QQQ"], qqq_idx, period)
+        if spy_value is None or qqq_value is None:
+            return None
+        values[f"spy_excess_{period}d_pct"] = value - spy_value
+        values[f"qqq_excess_{period}d_pct"] = value - qqq_value
 
     close_window = [float(row["close"]) for row in rows[symbol][max(0, idx - 40) : idx + 1]]
     returns = daily_returns(rows[symbol], max(0, idx - 20), idx)
     first_pos, first_avg = first_window_stats(windows.get(symbol, []), str(item["date"]), 20)
     values.update(
         {
-            "spy_ret_20d_pct": ret(rows["SPY"], idx, 20) or 0.0,
-            "qqq_ret_20d_pct": ret(rows["QQQ"], idx, 20) or 0.0,
+            "spy_ret_20d_pct": ret(rows["SPY"], spy_idx, 20) or 0.0,
+            "qqq_ret_20d_pct": ret(rows["QQQ"], qqq_idx, 20) or 0.0,
             "volatility_20d_pct": stdev(returns) or 0.0,
             "drawdown_40d_pct": max_drawdown(close_window),
             "first_3h_positive_rate_20d": first_pos,
@@ -210,13 +226,17 @@ def simulate_daily_policy(
     theme_cap: int | None = 2,
 ) -> dict[str, Any]:
     symbols = [symbol for symbol in rows if symbol not in BENCHMARKS]
+    daily_indices = build_daily_indices(rows)
+    spy_dates = [str(row["date"]) for row in rows["SPY"]]
     recommendations = []
-    sample_len = min(len(rows[symbol]) for symbol in rows)
-    for idx in range(40, sample_len):
+    skipped_missing_dates = 0
+    for asof_date in spy_dates[40:]:
         ranked = []
         for symbol in symbols:
-            features = candidate_features(symbol, idx, rows, windows)
+            features = candidate_features(symbol, asof_date, rows, daily_indices, windows)
             if not features or not selector(features):
+                if daily_indices.get(symbol, {}).get(asof_date) is None:
+                    skipped_missing_dates += 1
                 continue
             features["score"] = scorer(features)
             ranked.append(features)
@@ -225,21 +245,30 @@ def simulate_daily_policy(
             out = dict(item)
             out["policy"] = name
             out["rank"] = rank
-            if idx + 20 < len(rows[item["symbol"]]) and idx + 20 < len(rows["SPY"]):
-                forward = pct(float(rows[item["symbol"]][idx]["close"]), float(rows[item["symbol"]][idx + 20]["close"]))
-                spy_forward = pct(float(rows["SPY"][idx]["close"]), float(rows["SPY"][idx + 20]["close"]))
-                lows = [float(row["low"]) for row in rows[item["symbol"]][idx + 1 : idx + 21]]
+            symbol_idx = daily_indices[item["symbol"]][asof_date]
+            spy_idx = daily_indices["SPY"][asof_date]
+            if symbol_idx + 20 < len(rows[item["symbol"]]) and spy_idx + 20 < len(rows["SPY"]):
+                forward = pct(
+                    float(rows[item["symbol"]][symbol_idx]["close"]),
+                    float(rows[item["symbol"]][symbol_idx + 20]["close"]),
+                )
+                spy_forward = pct(float(rows["SPY"][spy_idx]["close"]), float(rows["SPY"][spy_idx + 20]["close"]))
+                lows = [float(row["low"]) for row in rows[item["symbol"]][symbol_idx + 1 : symbol_idx + 21]]
                 out["forward_20d_return_pct"] = round(forward, 6)
                 out["forward_20d_spy_pct"] = round(spy_forward, 6)
                 out["forward_20d_excess_spy_pct"] = round(forward - spy_forward, 6)
-                out["forward_20d_adverse_move_pct"] = round(pct(float(rows[item["symbol"]][idx]["close"]), min(lows)), 6) if lows else None
+                out["forward_20d_adverse_move_pct"] = (
+                    round(pct(float(rows[item["symbol"]][symbol_idx]["close"]), min(lows)), 6) if lows else None
+                )
             else:
                 out["forward_20d_return_pct"] = None
                 out["forward_20d_spy_pct"] = None
                 out["forward_20d_excess_spy_pct"] = None
                 out["forward_20d_adverse_move_pct"] = None
             recommendations.append(out)
-    return {"summary": summarize_daily(recommendations, split_date), "recommendations": recommendations}
+    summary = summarize_daily(recommendations, split_date)
+    summary["skipped_missing_symbol_dates"] = skipped_missing_dates
+    return {"summary": summary, "recommendations": recommendations}
 
 
 def summarize_intraday(trades: list[dict[str, Any]], split_date: str) -> dict[str, Any]:
@@ -411,6 +440,7 @@ def main() -> None:
         + [
             "This improvement simulation reuses previously captured IEX 30Min/daily bars and does not fetch fresh quotes.",
             "Fundamental, valuation, filing, analyst, and macro features are policy requirements but not numerically simulated here.",
+            "Daily policy simulation now aligns symbols by as-of date keys instead of shared row index position.",
         ],
     }
     args.output_json.parent.mkdir(parents=True, exist_ok=True)

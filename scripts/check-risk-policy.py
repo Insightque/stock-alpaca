@@ -83,6 +83,10 @@ def normalize_symbol(value: Any) -> str:
     return str(value or "").strip().upper()
 
 
+def normalize_label(value: Any) -> str:
+    return str(value or "").strip().lower()
+
+
 def load_plan(path: Path) -> dict[str, Any]:
     with path.open("r", encoding="utf-8") as handle:
         data = json.load(handle)
@@ -121,7 +125,9 @@ def validate(
 
     policy = policy or load_policy()
     portfolio_limits = policy.get("portfolio_limits", {})
+    exposure_limits = policy.get("exposure_limits", {})
     order_limits = policy.get("order_limits", {})
+    symbol_metadata = policy.get("symbol_metadata", {})
 
     if check_schema:
         errors.extend(validate_schema(plan))
@@ -141,6 +147,16 @@ def validate(
     max_ticker_ratio = as_float(
         portfolio_limits.get("max_ticker_ratio"), "risk_policy.portfolio_limits.max_ticker_ratio", errors
     )
+    max_theme_ratio = as_float(
+        exposure_limits.get("max_theme_ratio"), "risk_policy.exposure_limits.max_theme_ratio", errors
+    )
+    max_factor_ratio = as_float(
+        exposure_limits.get("max_factor_ratio"), "risk_policy.exposure_limits.max_factor_ratio", errors
+    )
+    max_speculative_ratio = as_float(
+        exposure_limits.get("max_speculative_ratio"), "risk_policy.exposure_limits.max_speculative_ratio", errors
+    )
+    require_exposure_metadata = bool(exposure_limits.get("require_exposure_metadata", False))
     max_orders = int(policy_value(policy, "order_limits", "max_orders_per_run"))
     max_quote_age_minutes = as_float(
         order_limits.get("max_quote_age_minutes_submit"), "risk_policy.order_limits.max_quote_age_minutes_submit", errors
@@ -197,7 +213,40 @@ def validate(
 
     position_qty: dict[str, float] = {}
     ticker_values: dict[str, float] = {}
+    theme_values: dict[str, float] = {}
+    factor_values: dict[str, float] = {}
+    speculative_value = 0.0
     current_invested = 0.0
+
+    def metadata_for(symbol: str, record: dict[str, Any], prefix: str) -> dict[str, Any]:
+        policy_meta = symbol_metadata.get(symbol, {})
+        metadata = {
+            "theme": record.get("theme", policy_meta.get("theme")),
+            "factor": record.get("factor", policy_meta.get("factor")),
+            "volatility_bucket": record.get("volatility_bucket", policy_meta.get("volatility_bucket")),
+            "speculative_flag": record.get("speculative_flag", policy_meta.get("speculative_flag", False)),
+        }
+        missing = [key for key in ("theme", "factor", "volatility_bucket") if not metadata.get(key)]
+        if require_exposure_metadata and missing:
+            errors.append(f"{prefix}: missing exposure metadata fields {', '.join(missing)}")
+        if metadata["volatility_bucket"] and normalize_label(metadata["volatility_bucket"]) not in {"low", "medium", "high"}:
+            errors.append(f"{prefix}: volatility_bucket must be low, medium, or high")
+        if not isinstance(metadata["speculative_flag"], bool):
+            errors.append(f"{prefix}: speculative_flag must be boolean")
+            metadata["speculative_flag"] = False
+        metadata["theme"] = normalize_label(metadata["theme"])
+        metadata["factor"] = normalize_label(metadata["factor"])
+        metadata["volatility_bucket"] = normalize_label(metadata["volatility_bucket"])
+        return metadata
+
+    def apply_exposure(value: float, metadata: dict[str, Any]) -> None:
+        nonlocal speculative_value
+        if metadata.get("theme"):
+            theme_values[metadata["theme"]] = theme_values.get(metadata["theme"], 0.0) + value
+        if metadata.get("factor"):
+            factor_values[metadata["factor"]] = factor_values.get(metadata["factor"], 0.0) + value
+        if metadata.get("speculative_flag") is True:
+            speculative_value += value
 
     for index, position in enumerate(raw_positions):
         if not isinstance(position, dict):
@@ -215,6 +264,7 @@ def validate(
             errors.append(f"{symbol}: market_value must be non-negative")
         position_qty[symbol] = position_qty.get(symbol, 0.0) + qty
         ticker_values[symbol] = ticker_values.get(symbol, 0.0) + max(market_value, 0.0)
+        apply_exposure(max(market_value, 0.0), metadata_for(symbol, position, f"positions[{index}]"))
         current_invested += max(market_value, 0.0)
 
     orders = plan.get("orders", [])
@@ -313,12 +363,14 @@ def validate(
         if side == "buy":
             buy_notional += notional
             ticker_values[symbol] = ticker_values.get(symbol, 0.0) + notional
+            apply_exposure(notional, metadata_for(symbol, order, prefix))
         elif side == "sell":
             held_qty = position_qty.get(symbol, 0.0)
             if qty > held_qty:
                 errors.append(f"{symbol}: sell qty {qty:g} exceeds held qty {held_qty:g}")
             sell_notional += notional
             ticker_values[symbol] = max(0.0, ticker_values.get(symbol, 0.0) - notional)
+            apply_exposure(-notional, metadata_for(symbol, order, prefix))
 
     post_cash = cash - buy_notional + sell_notional
     post_invested = current_invested + buy_notional - sell_notional
@@ -326,6 +378,9 @@ def validate(
     min_cash = portfolio_value * min_cash_ratio
     max_invested = portfolio_value * max_invested_ratio
     max_ticker_value = portfolio_value * max_ticker_ratio
+    max_theme_value = portfolio_value * max_theme_ratio
+    max_factor_value = portfolio_value * max_factor_ratio
+    max_speculative_value = portfolio_value * max_speculative_ratio
 
     if buy_notional > buying_power:
         errors.append(f"buy notional {buy_notional:.2f} exceeds buying power {buying_power:.2f}")
@@ -342,6 +397,19 @@ def validate(
         if value > max_ticker_value:
             errors.append(f"{symbol}: post-order exposure {value:.2f} exceeds per-ticker limit {max_ticker_value:.2f}")
 
+    for theme, value in sorted(theme_values.items()):
+        if value > max_theme_value:
+            errors.append(f"theme {theme}: post-order exposure {value:.2f} exceeds theme limit {max_theme_value:.2f}")
+
+    for factor, value in sorted(factor_values.items()):
+        if value > max_factor_value:
+            errors.append(f"factor {factor}: post-order exposure {value:.2f} exceeds factor limit {max_factor_value:.2f}")
+
+    if speculative_value > max_speculative_value:
+        errors.append(
+            f"speculative exposure {speculative_value:.2f} exceeds speculative limit {max_speculative_value:.2f}"
+        )
+
     summary = {
         "policy_version": policy_version,
         "buy_notional": buy_notional,
@@ -351,6 +419,10 @@ def validate(
         "min_cash": min_cash,
         "max_invested": max_invested,
         "max_ticker_value": max_ticker_value,
+        "max_theme_value": max_theme_value,
+        "max_factor_value": max_factor_value,
+        "max_speculative_value": max_speculative_value,
+        "speculative_value": speculative_value,
     }
     return errors, warnings, summary
 
@@ -374,6 +446,9 @@ def print_human(result: dict[str, Any]) -> None:
     print(f"- Post-order cash: {summary['post_cash']:.2f} (minimum {summary['min_cash']:.2f})")
     print(f"- Post-order invested: {summary['post_invested']:.2f} (maximum {summary['max_invested']:.2f})")
     print(f"- Per-ticker maximum: {summary['max_ticker_value']:.2f}")
+    print(f"- Per-theme maximum: {summary['max_theme_value']:.2f}")
+    print(f"- Per-factor maximum: {summary['max_factor_value']:.2f}")
+    print(f"- Speculative exposure: {summary['speculative_value']:.2f} (maximum {summary['max_speculative_value']:.2f})")
 
     for warning in result["warnings"]:
         print(f"WARNING: {warning}")

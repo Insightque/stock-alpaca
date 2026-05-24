@@ -459,3 +459,14 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 원자료: `wiki/raw/sources/2026-05-24-may-15-mcp-context-data.json`.
 - 수집 스크립트: `scripts/collect-may15-mcp-context.py`.
 - 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-24 18:40 Asia/Seoul] hardening | 외부 리뷰 개선사항 반영
+
+- 사용자가 공유한 ChatGPT 리뷰의 개선사항 중 즉시 코드로 반영 가능한 항목을 우선 적용했다.
+- `scripts/simulate-policy-improvement-candidates.py`의 장타 백테스트를 공통 row index 순회에서 `asof_date` key 기반 정렬로 바꿨다. 종목별 거래일 누락, ADR/provider gap, corporate action 전후 row count 차이에 의한 forward return 오매칭 위험을 줄인다.
+- `harness/risk-policy.yaml`에 theme/factor/speculative exposure cap과 주요 심볼 metadata를 추가했다.
+- `scripts/check-risk-policy.py`가 주문 후 theme, factor, speculative exposure를 계산해 각각 35%, 50%, 12% 한도를 강제하도록 했다.
+- `harness/order-plan.schema.json`에 `theme`, `factor`, `volatility_bucket`, `speculative_flag` 선택 필드를 추가했다. plan에 없으면 risk policy의 `symbol_metadata`를 fallback으로 사용한다.
+- `harness/templates/raw-source.md`에 machine-readable `구조화 시그널` 표를 추가해 뉴스/공시/밸류에이션/매크로/유동성 신호를 정책학습 feature로 남길 수 있게 했다.
+- `tests/test_check_risk_policy.py`에 theme exposure와 speculative exposure 실패 케이스를 추가했다.
+- 실제 주문, 취소, 포지션 변경은 없었다.

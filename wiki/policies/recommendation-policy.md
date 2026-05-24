@@ -1,6 +1,6 @@
 ---
 id: recommendation-policy
-updated_at: 2026-05-24T16:20:00+09:00
+updated_at: 2026-05-24T18:40:00+09:00
 ---
 
 # 추천 정책
@@ -21,6 +21,10 @@ updated_at: 2026-05-24T16:20:00+09:00
 - 장타 우선순위는 20D 수익률이 SPY와 QQQ를 모두 초과하는지 확인하고, 초과하지 못하면 보조 후보나 관찰 후보로 낮춘다.
 - 과열 가능성이 있는 장타 후보는 한 번에 목표 비중을 채우지 않고 `5D -7%~+12%`, `20D +2%~+35%` 범위에서 staged entry 후보로만 둔다.
 - 확장 universe를 쓸 때는 단순 후보 수 확대를 개선으로 보지 않는다. theme cap, overheat guard, SPY/QQQ 상대강도 확인을 같이 적용한다.
+- 백테스트는 종목별 row index가 아니라 `asof_date` key로 정렬해야 한다. 기준일, forward horizon, benchmark는 모두 날짜 기준으로 매칭하고, 특정 종목의 해당 날짜가 없으면 표본에서 제외한다.
+- 주문 계획은 종목별 한도뿐 아니라 `theme`, `factor`, `volatility_bucket`, `speculative_flag`를 포함한 포트폴리오 노출 한도를 통과해야 한다.
+- 추천 리포트에는 가능하면 `Expected excess return`, `Expected max adverse move`, `Confidence`, `Position size rationale`을 분리해 기록한다. 단일 점수는 설명용이고 주문 크기의 직접 근거가 아니다.
+- 뉴스, SEC filing, valuation, macro, liquidity 정보는 narrative만 남기지 말고 raw source의 `구조화 시그널` 표에도 저장해 이후 정책학습에 재사용한다.
 - MCP provider에서 뉴스/filing/매크로가 0건이어도 정보 부재로 단정하지 않고, 개별 ticker 조회와 SEC/공식 IR fallback으로 재확인한다.
 - SEC filing은 filing date보다 acceptance time 기준으로 as-of 사용 가능 여부를 판단한다.
 - 단타는 11:00 ET 신호만으로 자동 주문하지 않고, 11:05~11:15 후속 유지와 실제 bid/ask/fill 가능성을 확인하기 전까지 관찰 전용으로 둔다.
@@ -49,6 +53,7 @@ updated_at: 2026-05-24T16:20:00+09:00
 | 2026-05-24 | 최근 6개월을 3시간 구간으로 재집계해 독립 시뮬레이션함. 단타 3시간 variants는 전체 플러스지만 IEX 30분봉/체결 공백 때문에 관찰 전용으로 유지하고, 장타 `daily-3h-theme-capped-top5`는 320개 완료 추천 평균 20D SPY 초과 +7.82%p로 장타 후보 보강 근거로 추가함 | [[2026-05-24-six-month-3h-independent-policy-review]] | 단타 관찰 전용 / 장타 검증 중 유지 |
 | 2026-05-24 | 정책 개선 후보 5개를 같은 6개월 데이터로 검증함. 장타는 과열 제한+theme cap, SPY/QQQ 동시 초과 확인, 변동성/drawdown 방어 필터, staged entry 필터를 채택/보조채택 후보로 추가했고 단타 `intraday-afternoon-followthrough-filter-v1`은 성과 개선에도 자동 주문 금지를 유지함 | [[2026-05-24-policy-improvement-candidates]] | 장타 정책 보강 / 단타 관찰 전용 |
 | 2026-05-24 | 기존 관심 종목 외 빅테크/금융/헬스케어/소비재/산업재/에너지/소재/유틸리티/고변동 성장주까지 62개 심볼로 확장해 최근 6개월 3시간 시뮬레이션을 재수행함. 단타 top3와 VWAP reclaim은 악화됐고, 장타 `daily-3h-theme-capped-top5`는 평균 SPY 초과 +7.65%p로 기존 +7.82%p와 유사하게 유지됨 | [[2026-05-24-expanded-six-month-3h-policy-review]] | 확장 universe는 theme cap 적용 시에만 사용 |
+| 2026-05-24 | 외부 리뷰 개선사항을 반영해 정책 개선 백테스트를 날짜 key 기반 정렬로 바꾸고, 주문 risk gate에 theme/factor/speculative exposure cap을 추가함. raw source에는 구조화 시그널 표를 추가해 뉴스/공시/밸류에이션/매크로 feature를 재사용 가능하게 기록하도록 함 | `scripts/simulate-policy-improvement-candidates.py`, `scripts/check-risk-policy.py`, `harness/risk-policy.yaml` | 적용 |
 
 ## 검증 중인 가설
 

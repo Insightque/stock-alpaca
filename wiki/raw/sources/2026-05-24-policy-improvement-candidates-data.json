@@ -1,5 +1,5 @@
 {
-  "created_at": "2026-05-24T15:58:27+09:00",
+  "created_at": "2026-05-24T18:25:12+09:00",
   "paper": true,
   "orders_submitted": 0,
   "source_data": "wiki/raw/sources/2026-05-24-six-month-3h-simulation-data.json",
@@ -93,7 +93,8 @@
           "quantum_speculative": 1,
           "power_infrastructure": 47,
           "ai_software": 1
-        }
+        },
+        "skipped_missing_symbol_dates": 0
       },
       "recommendations": [
         {
@@ -11251,7 +11252,8 @@
           "networking": 62,
           "power_infrastructure": 40,
           "ai_software": 1
-        }
+        },
+        "skipped_missing_symbol_dates": 0
       },
       "recommendations": [
         {
@@ -21602,7 +21604,8 @@
           "healthcare": 15,
           "networking": 60,
           "power_infrastructure": 36
-        }
+        },
+        "skipped_missing_symbol_dates": 0
       },
       "recommendations": [
         {
@@ -31613,7 +31616,8 @@
           "networking": 54,
           "power_infrastructure": 37,
           "quantum_speculative": 1
-        }
+        },
+        "skipped_missing_symbol_dates": 0
       },
       "recommendations": [
         {
@@ -41259,6 +41263,7 @@
     "Policy review is price/volume based; SEC filings, earnings surprise, valuation, analyst, and macro context are treated as follow-up checks rather than included features.",
     "Watchlists were empty at run time, so the universe combines current paper holdings, existing policy candidates, and SPY/QQQ/SMH benchmarks.",
     "This improvement simulation reuses previously captured IEX 30Min/daily bars and does not fetch fresh quotes.",
-    "Fundamental, valuation, filing, analyst, and macro features are policy requirements but not numerically simulated here."
+    "Fundamental, valuation, filing, analyst, and macro features are policy requirements but not numerically simulated here.",
+    "Daily policy simulation now aligns symbols by as-of date keys instead of shared row index position."
   ]
 }
