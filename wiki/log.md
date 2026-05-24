@@ -420,3 +420,30 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - run manifest: `wiki/runs/2026-05-24-policy-improvement-candidates.json`.
 - 정책 문서: `wiki/policies/recommendation-policy.md`.
 - 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-24 16:14 Asia/Seoul] backtest | 확장 universe 최근 6개월 3시간 시뮬레이션
+
+- 사용자 요청에 따라 기존 관심 종목 외 빅테크, 소프트웨어, 반도체 장비, 금융, 헬스케어, 소비재, 산업재, 에너지, 소재, 유틸리티, 고변동 성장주를 포함한 62개 심볼로 universe를 확장했다.
+- Alpaca MCP `get_clock`, `get_watchlists`, `get_all_positions`, `get_calendar`, `get_asset`, `get_stock_bars` read-only 도구만 사용했다.
+- 기간은 2025-11-24~2026-05-22, 거래일 124일, 3시간 구간 레코드 22,940개, 정규장 일봉 7,688개다.
+- 단타 `3h-afternoon-continuation-top2`는 104거래, hit rate 61.5%, 가상 P/L +$2,285.36로 확장 universe에서도 가장 견조했다.
+- 반대로 `3h-momentum-top3`는 기존 관심 종목 universe의 +$981.43에서 확장 universe -$150.28로 악화됐고, `3h-vwap-reclaim-top2`도 +$734.04에서 -$580.17로 악화됐다.
+- 장타 `daily-3h-theme-capped-top5`는 320개 완료 추천 평균 20D +9.68%, SPY 초과 +7.65%p, 검증 구간 SPY 초과 +11.84%p였다.
+- 확장 universe 결론은 단순 종목 수 확대가 아니라 `theme cap + overheat guard + SPY/QQQ 상대강도 확인`을 붙여 장타 후보 발굴에 쓰는 쪽이다.
+- 원천 기록: `wiki/raw/sources/2026-05-24-expanded-six-month-3h-simulation-sources.md`.
+- 계산 데이터: `wiki/raw/sources/2026-05-24-expanded-six-month-3h-simulation-data.json`.
+- 분석 문서: `wiki/backtests/2026-05-24-expanded-six-month-3h-policy-review.md`.
+- run manifest: `wiki/runs/2026-05-24-expanded-six-month-3h-policy-review.json`.
+- 정책 문서: `wiki/policies/recommendation-policy.md`.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-24 16:35 Asia/Seoul] report | 2026-05-15 매입/매도 정책 결정 과정 정리
+
+- 사용자 요청에 따라 5월 특정일로 2026-05-15를 선정해 데이터 추출부터 매입/매도 정책 결정까지의 과정을 리포트로 정리했다.
+- 기준 데이터는 확장 universe 62개 심볼의 `wiki/raw/sources/2026-05-24-expanded-six-month-3h-simulation-data.json`이다.
+- 결정 근거에는 2026-05-15 종가까지의 일봉, 3시간 window, SPY/QQQ/SMH 시장 레짐, 20D/40D 추세, SPY/QQQ 상대강도, drawdown, 변동성, 첫 3시간 양봉률만 사용했다.
+- 사후 5거래일 결과는 의사결정 근거와 분리해 검증 섹션에만 기록했다.
+- 2026-05-15 기준 정상 staged buy 후보는 NOK, UNH, GOOGL이고, AMD와 MU는 과열/불리 이동 위험 때문에 소액 staged 또는 관찰 후보로 낮췄다.
+- 보유 종목 판단에서는 AMD를 trim/no full add, RGTI를 reduce/avoid add, ETN을 weak add 제외, NOK/UNH/NVDA를 hold/add candidate로 분류했다.
+- 리포트: `wiki/reports/2026-05-24-may-15-decision-process-report.md`.
+- 실제 주문, 취소, 포지션 변경은 없었다.

@@ -36,6 +36,7 @@
 
 - [[2026-05-22]] - 현재 시장 분석과 이후 주식 중심 paper 매수 실행 업데이트.
 - [[2026-05-23-investment-simulation-insight-report]] - 지금까지의 실제 paper 투자, 과거 시뮬레이션, 정책학습 인사이트 종합 보고서.
+- [[2026-05-24-may-15-decision-process-report]] - 2026-05-15 기준 데이터 추출, 매입/매도 정책 결정 과정, 5D 사후 검증 리포트.
 - [[2026-05-24]] - 현재 기준 no-submit 종목 추천, dry-run 주문 후보, risk-check 결과.
 
 ## 분석
@@ -58,6 +59,7 @@
 - [[2026-05-24-short-long-policy-feb-mar-apr-may-review]] - 현재 단타/장타 정책을 2~3월 시뮬레이션과 4~5월 검증으로 재점검한 회고.
 - [[2026-05-24-six-month-3h-independent-policy-review]] - 2025-11-24~2026-05-22 최근 6개월을 3시간 구간으로 집계한 독립 단타/장타 정책 검토.
 - [[2026-05-24-policy-improvement-candidates]] - 현재 정책 개선 후보 5개를 최근 6개월 3시간/일봉 데이터로 검증한 백테스트.
+- [[2026-05-24-expanded-six-month-3h-policy-review]] - 기존 관심 종목 외 62개 확장 universe로 재수행한 최근 6개월 3시간 단위 정책 검토.
 
 ## 과거 시점 시뮬레이션
 
@@ -125,3 +127,5 @@
 - [[2026-05-24-current-recommendation-sources]] - 현재 기준 종목 추천용 Alpaca account/clock/positions/prices/news, SEC/Yahoo/Alpha/Web 보강 원천.
 - [[2026-05-24-six-month-3h-simulation-sources]] - 최근 6개월 3시간 구간 시뮬레이션용 Alpaca MCP calendar/assets/IEX 30분봉 원천과 데이터 공백 기록.
 - `wiki/raw/sources/2026-05-24-policy-improvement-candidates-data.json` - 정책 개선 후보 5개 검증용 계산 결과.
+- [[2026-05-24-expanded-six-month-3h-simulation-sources]] - 확장 universe 최근 6개월 3시간 구간 시뮬레이션용 Alpaca MCP 원천.
+- `wiki/raw/sources/2026-05-24-expanded-six-month-3h-simulation-data.json` - 확장 universe 3시간/일봉 계산 데이터.
