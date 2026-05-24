@@ -67,7 +67,9 @@ python3 scripts/check-risk-policy.py --json harness/examples/order-plan.example.
 - `wiki/tickers/` ticker thesis and trend pages.
 - `wiki/portfolio/` account snapshots and order plans.
 - `wiki/reports/daily/` daily trading workflow reports.
-- `wiki/analyses/` cross-ticker and wiki-lint analyses.
+- `wiki/analyses/` cross-ticker comparisons, macro notes, proposal writeups, and MCP/source-quality audits.
+- `wiki/backtests/` policy simulations, event studies, and validation results that include later outcome data.
+- `wiki/simulations/` point-in-time historical recommendation documents that exclude future outcome data.
 - `wiki/runs/` machine-readable run manifests.
 - `wiki/index.md` content index.
 - `wiki/log.md` append-only activity log.

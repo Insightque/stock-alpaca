@@ -204,7 +204,7 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Alpaca MCP `get_stock_bars`로 2026-04-20~2026-05-22 일봉을 확인했고, `get_news`로 2026-05-01~2026-05-22 후보 종목 뉴스를 확인했다.
 - AMD 실적 beat, RGTI/QBTS/IONQ 양자컴퓨팅 정부 지원 뉴스, NOK AI Networking Innovation Lab, NVDA 실적/AI 수요 뉴스, UNH 목표가 상향 등을 대표 이벤트로 분류했다.
 - 결론: 실적 surprise는 뉴스 후 1D 반응이 빠르고, 정책/테마 뉴스는 당일 동행과 다음날 follow-through가 나타날 수 있으며, NVDA 같은 대형 인기주는 좋은 뉴스보다 기대 선반영/차익실현이 먼저 작동할 수 있다.
-- 분석 문서: `wiki/analyses/2026-05-23-news-price-lead-lag-simulation.md`.
+- 분석 문서: `wiki/backtests/2026-05-23-news-price-lead-lag-simulation.md`.
 
 ## [2026-05-23 11:05 Asia/Seoul] policy | 뉴스-가격 선후관계 정책 반영
 
@@ -225,7 +225,7 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 4월 검증일 2026-04-02 결과는 3개 거래, +$83.84였다. LRCX stop, AMD take, TSM EOD 소폭 손실로 기록했다.
 - 정책에는 자동 주문 원칙이 아닌 `검증 중` 단타 후보로 반영했다.
 - 원천 기록: `wiki/raw/sources/2026-05-23-march-april-intraday-scalping-sources.md`.
-- 분석 문서: `wiki/analyses/2026-05-23-march-april-intraday-scalping-simulation.md`.
+- 분석 문서: `wiki/backtests/2026-05-23-march-april-intraday-scalping-simulation.md`.
 
 ## [2026-05-23 17:25 Asia/Seoul] analysis | 다른 일정으로 시간별 단타 정책 재검증
 
@@ -237,7 +237,7 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 두 차례 표본 합산 결과는 8거래일, 11거래, 가상 P/L +$894.15, trade hit rate 72.7%로 기록했다.
 - 단, 이번 재검증에서는 take profit 도달 거래가 없어 EOD 수익과 무거래 필터 기여가 컸다. 정책은 계속 `검증 중`으로 유지했다.
 - 원천 기록: `wiki/raw/sources/2026-05-23-march-april-intraday-scalping-alt-sources.md`.
-- 분석 문서: `wiki/analyses/2026-05-23-march-april-intraday-scalping-alt-simulation.md`.
+- 분석 문서: `wiki/backtests/2026-05-23-march-april-intraday-scalping-alt-simulation.md`.
 
 ## [2026-05-23 17:55 Asia/Seoul] analysis | 2월~5월 임의 일자 시간별 단타 5회 반복 검증
 
@@ -249,7 +249,7 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 기존 1차/2차와 합산하면 28거래일, 34거래, hit rate 55.9%, 가상 P/L +$1,410.01이었다.
 - 총손익은 플러스지만 2026-04-01, 2026-02-20, 2026-04-29에서 개장 초반 돌파 후 동시 stop 위험이 확인되어 자동 주문 부적합으로 정책을 강등했다.
 - 원천 기록: `wiki/raw/sources/2026-05-23-random-intraday-scalping-5x-sources.md`.
-- 분석 문서: `wiki/analyses/2026-05-23-random-intraday-scalping-5x-simulation.md`.
+- 분석 문서: `wiki/backtests/2026-05-23-random-intraday-scalping-5x-simulation.md`.
 
 ## [2026-05-23 18:25 Asia/Seoul] analysis | 단타 정책 1시간봉 timestamp 보정 및 분봉 검증
 
@@ -260,7 +260,7 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 12:00 confirmation variants는 모두 v0보다 총손익이 낮았다: top3 +$556.63, top2 +$488.35, top1 -$175.96, top2/take 1.5% +$444.87.
 - 결론: v0는 플러스 기대값 후보로 남지만, 자동 주문에는 부적합하며 주문 없는 실시간 paper dry-run으로 11:00 ET 신호를 기록하는 단계가 필요하다.
 - 원천 기록: `wiki/raw/sources/2026-05-23-intraday-scalping-minute-validation-sources.md`.
-- 분석 문서: `wiki/analyses/2026-05-23-intraday-scalping-minute-validation.md`.
+- 분석 문서: `wiki/backtests/2026-05-23-intraday-scalping-minute-validation.md`.
 
 ## [2026-05-23 18:55 Asia/Seoul] analysis | 단타 성과 개선용 추가 필터 검증
 
@@ -273,7 +273,7 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - opening range breakout 단독, gap filter, take +1.5%는 개선 효과가 약하거나 손익을 낮췄다.
 - 새 후보 정책 `intraday-rs-breadth-vwap-v1`을 paper-only manual candidate로 추가했다.
 - 원천 기록: `wiki/raw/sources/2026-05-23-intraday-scalping-feature-filter-sources.md`.
-- 분석 문서: `wiki/analyses/2026-05-23-intraday-scalping-feature-filter-simulation.md`.
+- 분석 문서: `wiki/backtests/2026-05-23-intraday-scalping-feature-filter-simulation.md`.
 
 ## [2026-05-23 18:56 Asia/Seoul] workflow | 단타 실시간 paper dry-run 운영안 추가
 
@@ -302,7 +302,7 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 새 보조 후보 `intraday-pullback-vwap-reclaim-v0`를 `paper-only secondary candidate`로 정책에 반영했다. 자동 주문은 금지한다.
 - 원천 기록: `wiki/raw/sources/2026-05-23-intraday-policy-candidates-sources.md`.
 - 계산 데이터: `wiki/raw/sources/2026-05-23-intraday-policy-candidates-simulation-data.json`.
-- 분석 문서: `wiki/analyses/2026-05-23-intraday-policy-candidates-simulation.md`.
+- 분석 문서: `wiki/backtests/2026-05-23-intraday-policy-candidates-simulation.md`.
 - 실제 주문, 취소, 포지션 변경은 없었다.
 
 ## [2026-05-23 20:20 Asia/Seoul] analysis | 장타 정책 2~3월 학습 및 4~5월 검증
@@ -317,7 +317,7 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 5월 기준일 일부는 20D 결과가 아직 없으므로 5D/10D 보조값으로만 기록했다.
 - 원천 기록: `wiki/raw/sources/2026-05-23-long-term-feb-mar-apr-may-sources.md`.
 - 계산 데이터: `wiki/raw/sources/2026-05-23-long-term-feb-mar-apr-may-simulation-data.json`.
-- 분석 문서: `wiki/analyses/2026-05-23-long-term-feb-mar-apr-may-simulation.md`.
+- 분석 문서: `wiki/backtests/2026-05-23-long-term-feb-mar-apr-may-simulation.md`.
 
 ## [2026-05-24 09:45 Asia/Seoul] workflow | Request.md 하네스 검증 레이어 반영
 
@@ -341,7 +341,7 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 정책 결론: 단타 v1은 관찰 전용으로 낮추고 11:05~11:15 후속 유지, bid/ask spread, fill 가능성, 뉴스 timestamp를 추가한다. 장타 `quality_top5`는 유지하되 실적/filing/valuation/theme exposure 보강 전 자동 주문으로 승격하지 않는다.
 - 원천 기록: `wiki/raw/sources/2026-05-24-short-long-policy-simulation-sources.md`.
 - 계산 데이터: `wiki/raw/sources/2026-05-24-short-long-policy-simulation-data.json`.
-- 분석 문서: `wiki/analyses/2026-05-24-short-long-policy-feb-mar-apr-may-review.md`.
+- 분석 문서: `wiki/backtests/2026-05-24-short-long-policy-feb-mar-apr-may-review.md`.
 - 실제 주문, 취소, 포지션 변경은 없었다.
 
 ## [2026-05-24 11:11 Asia/Seoul] analysis | 2026-05-08 과거 추천 표본 MCP 보강 비교
@@ -393,7 +393,14 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 장타형 `daily-3h-theme-capped-top5`는 320개 완료 추천에서 214/320 SPY 초과 hit, 평균 20D SPY 초과 +7.82%p였다. theme cap은 장타 후보 보강 근거로 추가했지만 실적/filing/valuation 확인 전 자동 주문으로 승격하지 않는다.
 - 원천 기록: `wiki/raw/sources/2026-05-24-six-month-3h-simulation-sources.md`.
 - 계산 데이터: `wiki/raw/sources/2026-05-24-six-month-3h-simulation-data.json`.
-- 분석 문서: `wiki/analyses/2026-05-24-six-month-3h-independent-policy-review.md`.
+- 분석 문서: `wiki/backtests/2026-05-24-six-month-3h-independent-policy-review.md`.
 - run manifest: `wiki/runs/2026-05-24-3h-six-month-policy-review.json`.
 - 정책 문서: `wiki/policies/recommendation-policy.md`.
 - 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-24 15:22 Asia/Seoul] wiki | 백테스트 폴더 분리
+
+- 사용자 요청에 따라 정책 시뮬레이션/백테스트 결과 전용 `wiki/backtests/`를 만들었다.
+- 기존 `wiki/analyses/`에 있던 단타 정책 실험, 장타 정책 검증, news lead/lag event study, 최근 6개월 3시간 정책 검토 문서를 `wiki/backtests/`로 이동했다.
+- `wiki/simulations/`는 계속 과거 특정 시점 기준 추천 문서 전용으로 유지한다. 해당 문서는 미래 가격/성과 정보를 포함하지 않는다.
+- `README.md`, `wiki/index.md`, `wiki/analyses/README.md`, `wiki/simulations/README.md`, `wiki/backtests/README.md`에 폴더별 역할을 반영했다.

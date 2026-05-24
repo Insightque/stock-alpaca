@@ -41,6 +41,12 @@
 ## 분석
 
 - [[2026-05-22-stock-only-trade-proposal]] - ETF 제외, 주식 중심 금일 거래 제안과 paper 주문 실행 결과.
+- [[2026-05-24-mcp-comparison-2026-05-08-historical-simulation]] - 2026-05-08 과거 추천 표본을 Alpaca/SEC EDGAR/Alpha Vantage/Firecrawl/Yahoo MCP 보강 결과와 비교한 검토.
+- [[2026-05-24-mcp-policy-history-reaudit]] - 남은 과거 추천/단타/장타 정책 시뮬레이션 이력을 MCP 보강 정보로 재감사한 분석.
+
+## 백테스트/정책 검증
+
+- `wiki/backtests/` - 이후 성과 데이터를 포함하는 정책 시뮬레이션, event study, 단타/장타 검증 결과 저장소.
 - [[2026-05-23-news-price-lead-lag-simulation]] - 뉴스가 주가보다 빠른지/느린지 확인하기 위한 이벤트 스터디와 정책 반영 후보.
 - [[2026-05-23-march-april-intraday-scalping-simulation]] - 2026년 3월 변동일 3개와 2026년 4월 검증일 1개를 사용한 시간별 long-only 단타 정책 시뮬레이션.
 - [[2026-05-23-march-april-intraday-scalping-alt-simulation]] - 앞선 날짜를 제외한 3월/4월 다른 일정으로 같은 단타 정책을 재검증한 분석.
@@ -50,8 +56,6 @@
 - [[2026-05-23-intraday-policy-candidates-simulation]] - 기존 v0/v1에서 덜 다룬 VWAP 평균회귀, 장중 반전, 거래량 확인 모멘텀 후보를 학습/검증 표본으로 테스트한 분석.
 - [[2026-05-23-long-term-feb-mar-apr-may-simulation]] - 2026년 2~3월 13개 기준일로 장타 정책을 학습하고 4~5월 10개 기준일로 검증한 분석.
 - [[2026-05-24-short-long-policy-feb-mar-apr-may-review]] - 현재 단타/장타 정책을 2~3월 시뮬레이션과 4~5월 검증으로 재점검한 회고.
-- [[2026-05-24-mcp-comparison-2026-05-08-historical-simulation]] - 2026-05-08 과거 추천 표본을 Alpaca/SEC EDGAR/Alpha Vantage/Firecrawl/Yahoo MCP 보강 결과와 비교한 검토.
-- [[2026-05-24-mcp-policy-history-reaudit]] - 남은 과거 추천/단타/장타 정책 시뮬레이션 이력을 MCP 보강 정보로 재감사한 분석.
 - [[2026-05-24-six-month-3h-independent-policy-review]] - 2025-11-24~2026-05-22 최근 6개월을 3시간 구간으로 집계한 독립 단타/장타 정책 검토.
 
 ## 과거 시점 시뮬레이션

@@ -6,3 +6,4 @@
 - 실제 주문은 제출하지 않는다.
 - 파일명은 `YYYY-MM-DD-historical-decision.md` 형식을 사용한다.
 - 성과 평가는 `wiki/reviews/decisions/`에 별도 문서로 저장한다.
+- 정책 백테스트, 단타/장타 성과 검증, event study처럼 이후 성과 데이터가 들어가는 결과는 `wiki/backtests/`에 저장한다.
