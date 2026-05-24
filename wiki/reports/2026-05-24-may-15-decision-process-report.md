@@ -19,9 +19,11 @@ orders_submitted: 0
 
 - 원천 계산 데이터: `wiki/raw/sources/2026-05-24-expanded-six-month-3h-simulation-data.json`
 - 원천 설명: [[2026-05-24-expanded-six-month-3h-simulation-sources]]
+- MCP 보강 원천: [[2026-05-24-may-15-mcp-context-sources]]
+- MCP 보강 데이터: `wiki/raw/sources/2026-05-24-may-15-mcp-context-data.json`
 - universe: 기존 관심/보유 종목 + 빅테크, 소프트웨어, 반도체, 금융, 헬스케어, 소비재, 산업재, 에너지, 소재, 유틸리티, 고변동 성장주 62개
 - 기준일: 2026-05-15
-- 사용 데이터 단위: 정규장 일봉, 정규장 30분봉 기반 3시간 window, SPY/QQQ/SMH 벤치마크
+- 사용 데이터 단위: 정규장 일봉, 정규장 30분봉 기반 3시간 window, SPY/QQQ/SMH 벤치마크, Alpaca historical news, Alpaca asset status, Alpaca corporate action, SEC EDGAR company info/recent filings
 
 ## 의사결정에 쓰는 추출 정보
 
@@ -29,7 +31,60 @@ orders_submitted: 0
 2. 후보 점수: 각 종목의 20D/40D 추세, SPY/QQQ 대비 20D 상대강도, 40D drawdown, 20D 변동성, 최근 20일 첫 3시간 양봉 빈도를 결합한다.
 3. 포트폴리오 제약: 같은 테마는 최대 2개까지 우선 추천한다.
 4. 과열 제한: 20D +45% 초과 또는 5D +25% 초과는 full-size 신규 매수에서 제외하고 staged 후보로 낮춘다.
-5. 매도/축소 판단: 보유 종목이 20D 기준 SPY 대비 약하고 5D도 약하거나, speculative theme에서 상대강도가 무너지면 추가 매수 금지 또는 축소 후보로 둔다.
+5. MCP 보강 확인: 후보/보유 종목의 tradable 상태, 당일 뉴스/테마 리스크, SEC filing acceptance time, corporate action 여부를 확인한다.
+6. 매도/축소 판단: 보유 종목이 20D 기준 SPY 대비 약하고 5D도 약하거나, speculative theme에서 상대강도가 무너지면 추가 매수 금지 또는 축소 후보로 둔다.
+
+## MCP 보강 정보 요약
+
+2026-05-15 의사결정에 직접 연결되는 핵심 후보와 보유 판단 종목 `NOK, UNH, GOOGL, AMD, MU, NVDA, RGTI, ETN`에 대해 Alpaca와 SEC EDGAR MCP를 추가 확인했다. 기준 시점은 `2026-05-15T20:00:00Z`이며, SEC filing은 acceptance time이 이 시점 이전인 것만 판단 근거로 분류했다.
+
+### Alpaca Asset 상태
+
+| 심볼 | Alpaca 이름 | 거래 가능 | marginable | fractionable | 판단에 쓰는 의미 |
+| --- | --- | --- | --- | --- | --- |
+| NOK | Nokia Corporation | true | true | true | 주문 가능 자산. 저가/고변동이라 포지션 크기는 별도 제한 필요 |
+| UNH | UNITEDHEALTH GROUP INCORPORATED | true | true | true | 주문 가능 자산. 방어적 헬스케어 분산 후보 |
+| GOOGL | Alphabet Inc. Class A Common Stock | true | true | true | 주문 가능 자산. mega-cap AI catalyst 후보 |
+| AMD | Advanced Micro Devices, Inc. Common Stock | true | true | true | 주문 가능 자산. 반도체 과열 후보라 staged 제한 |
+| MU | Micron Technology, Inc. Common Stock | true | true | true | 주문 가능 자산. 메모리 반도체 과열/변동성 후보 |
+| NVDA | NVIDIA Corporation Common Stock | true | true | true | 주문 가능 자산. 기존 보유/add 후보 |
+| RGTI | Rigetti Computing, Inc. Common Stock | true | true | true | 주문 가능 자산이지만 speculative theme과 약한 상대강도 때문에 축소 후보 |
+| ETN | Eaton Corporation, plc Ordinary Shares | true | true | true | 주문 가능 자산. 20D 상대강도 약화로 추가매수 우선순위 낮음 |
+
+### Alpaca 뉴스 정보
+
+| 심볼 | 기준시점 전 확인된 뉴스/정보 | 정책 반영 |
+| --- | --- | --- |
+| NOK | 2026-05-15에 특허 라이선스 분쟁 관련 영국 법원 setback 기사와 옵션 whale activity 기사가 확인됨 | 가격/상대강도는 강하지만 법적 이벤트 리스크가 있어 정상 후보라도 staged로만 접근 |
+| UNH | Tiger Global의 UNH 지분 축소 기사와 장기 투자 성과성 기사 확인 | 방어적 후보지만 기관 지분 축소 뉴스가 있어 full-size보다 staged |
+| GOOGL | AI momentum이 Alphabet의 주요 catalyst라는 애널리스트 기사, Bill Ackman의 Google 매도/Microsoft 매수 관련 기사 확인 | AI catalyst와 대형주 기대는 긍정, 유명 투자자 매도 뉴스는 리스크로 기록 |
+| AMD | 반도체 profit-taking, Trump-Xi/Taiwan policy 관련 리스크, 옵션 whale activity 기사 확인 | 20D +52.35% 과열 판단을 뉴스가 보강. full-size 신규매수 금지 |
+| MU | Nasdaq 하락/rate-hike panic, Micron premarket 약세, chip profit-taking 기사 확인 | 20D +59.12% 과열과 5D adverse risk를 보강. 소액 staged 또는 관찰 |
+| NVDA | China comeback/AI rally 기대, Tiger Global 지분 증가, covered-call ETF 관련 기사 확인 | 보유/add 후보 근거는 유지하되 인기주/ETF 수급 뉴스는 과열 감점과 함께 해석 |
+| RGTI | 기준 기간 내 Alpaca 뉴스 없음 | 긍정 catalyst 미확인. 가격 상대강도 약화 때문에 추가매수 금지/축소 후보 |
+| ETN | 기준 기간 내 Alpaca 뉴스 없음 | 가격 지표 중심 판단. 20D SPY 초과가 음수라 추가매수 우선순위 낮음 |
+
+### SEC EDGAR 정보
+
+| 심볼 | 기준시점 전 SEC 정보 | 정책 반영 |
+| --- | --- | --- |
+| NOK | 2026-05-13 6-K, 2026-05-06 Schedule 13G, 2026-05-04 6-K 등 확인 | 외국 발행사 filing이 잦아 이벤트 리스크 태그 유지. 가격 신호만으로 full-size 진입 금지 |
+| UNH | 2026-05-15 DEFA14A, 2026-05-11 8-K, 2026-05-05 10-Q 확인 | 최근 10-Q/8-K가 있어 fundamental 확인 필요. 가격상 후보지만 filing review 전 staged |
+| GOOGL | 2026-05-15 FWP, 2026-05-12 Form 144, 2026-05-11 8-K/424B5 확인 | 자본시장/insider sale 관련 문서가 있어 valuation/filing 확인 후 staged |
+| AMD | 2026-05-15 장마감 전 acceptance 기준으로 사용 가능한 최근 SEC filing 없음 | 가격/뉴스 중심 판단. 장마감 이후 Form 4는 당시 결정 근거에서 제외 |
+| MU | 2026-05-14 Schedule 13G/A, 2026-05-13 Form 4, 2026-05-11 Form 144 확인 | insider/holder 관련 문서가 있어 과열 추격에 추가 감점 |
+| NVDA | 2026-05-14 Form 3, 2026-05-12 proxy/annual report, 2026-05-08 8-K 확인 | 회사 이벤트/주주총회 문서 확인. 보유/add 후보지만 실적/valuation 확인 필요 |
+| RGTI | 2026-05-11 S-8, 10-Q, 8-K 확인 | speculative 성장주에서 dilution/filing 이벤트 리스크 태그. 축소 판단 보강 |
+| ETN | 2026-05-14 Form 4, 2026-05-13 Form 144, 2026-05-08 Form 4 다수 확인 | insider/매도 가능성 문서가 있어 추가매수 우선순위 낮춤 |
+
+### MCP 보강 후 판단 변화
+
+- `NOK`: 정량 점수 1위라 매수 후보는 유지하지만, 특허 분쟁 뉴스 때문에 full-size가 아니라 staged buy로 제한한다.
+- `UNH`: 가격/변동성은 좋지만 Tiger Global 지분 축소와 최근 10-Q/8-K가 있어 staged buy로 제한한다.
+- `GOOGL`: AI catalyst는 긍정이나 유명 투자자 매도 뉴스와 SEC FWP/Form 144가 있어 staged buy로 제한한다.
+- `AMD`, `MU`: 기존 정량 판단의 과열 경고를 Alpaca 뉴스와 SEC filing이 보강했다. 소액 staged 또는 관찰로 유지한다.
+- `RGTI`: 가격 상대강도 약화에 더해 긍정 뉴스가 없고 SEC 10-Q/8-K/S-8 이벤트가 있어 reduce/avoid add 판단을 유지한다.
+- `ETN`: 가격 상대강도 약화와 Form 4/Form 144가 겹쳐 추가매수 우선순위를 낮춘다.
 
 ## 시장 레짐 데이터
 
@@ -119,7 +174,9 @@ orders_submitted: 0
 
 - 이 리포트는 Alpaca IEX 30분봉/일봉 기반이다. SIP 전체 체결/호가와 다를 수 있다.
 - bid/ask spread, limit fill 가능성, 슬리피지, 수수료는 포함하지 않았다.
-- 실적, SEC filing, valuation, 애널리스트, 매크로 정보는 이 정량 재현에 포함하지 않았다. 실제 매수 전 추가 확인이 필요하다.
+- MCP 보강은 Alpaca news/asset/corporate action과 SEC EDGAR company info/recent filing으로 제한했다. SEC filing은 `2026-05-15T20:00:00Z` 이전 acceptance time만 판단 근거로 사용했다.
+- 뉴스 본문 전문은 저장하지 않고 headline, summary, source, URL만 저장했다. 실제 매수 전에는 원문, valuation, 애널리스트, 실적 세부, 매크로를 별도 확인해야 한다.
+- Yahoo Finance, Alpha Vantage, Firecrawl, FRED MCP 정보는 이번 historical decision evidence에 넣지 않았다. 기준시점 일관성과 point-in-time 재현성을 우선했다.
 - 2026-05-15 이후 성과는 사후 검증에만 사용했고 의사결정 근거에는 사용하지 않았다.
 
 ## 지표 설명
@@ -131,4 +188,3 @@ orders_submitted: 0
 - `20D 변동성`: 최근 20거래일 일간 수익률의 표준편차다. 높을수록 포지션 크기를 줄인다.
 - `첫 3H 양봉률`: 최근 20거래일 중 첫 3시간 구간 수익률이 플러스였던 비율이다.
 - `5D 최악 불리 이동`: 기준일 이후 5거래일 동안 진입가 대비 가장 불리했던 저점 기준 하락률이다.
-

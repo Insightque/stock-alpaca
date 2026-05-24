@@ -129,3 +129,5 @@
 - `wiki/raw/sources/2026-05-24-policy-improvement-candidates-data.json` - 정책 개선 후보 5개 검증용 계산 결과.
 - [[2026-05-24-expanded-six-month-3h-simulation-sources]] - 확장 universe 최근 6개월 3시간 구간 시뮬레이션용 Alpaca MCP 원천.
 - `wiki/raw/sources/2026-05-24-expanded-six-month-3h-simulation-data.json` - 확장 universe 3시간/일봉 계산 데이터.
+- [[2026-05-24-may-15-mcp-context-sources]] - 2026-05-15 의사결정 리포트 보강용 Alpaca 뉴스/asset/corporate action 및 SEC EDGAR filing 원천.
+- `wiki/raw/sources/2026-05-24-may-15-mcp-context-data.json` - 2026-05-15 기준 후보/보유 종목 MCP 보강 원자료.

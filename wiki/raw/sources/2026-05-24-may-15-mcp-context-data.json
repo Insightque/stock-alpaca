@@ -1,0 +1,1590 @@
+{
+  "created_at": "2026-05-24T16:41:29+09:00",
+  "historical_asof": "2026-05-15",
+  "asof_cutoff_utc": "2026-05-15T20:00:00Z",
+  "symbols": [
+    "NOK",
+    "UNH",
+    "GOOGL",
+    "AMD",
+    "MU",
+    "NVDA",
+    "RGTI",
+    "ETN"
+  ],
+  "alpaca": {
+    "assets": {
+      "NOK": {
+        "id": "53f4d07f-dfcc-48d5-bb73-d8a4bab76a10",
+        "class": "us_equity",
+        "exchange": "NYSE",
+        "symbol": "NOK",
+        "name": "Nokia Corporation",
+        "status": "active",
+        "tradable": true,
+        "marginable": true,
+        "maintenance_margin_requirement": 100,
+        "margin_requirement_long": "100",
+        "margin_requirement_short": "100",
+        "shortable": true,
+        "easy_to_borrow": true,
+        "borrow_status": "easy_to_borrow",
+        "fractionable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "overnight_tradable"
+        ]
+      },
+      "UNH": {
+        "id": "943bb7c3-0fb0-4088-9a37-62549b5dc528",
+        "class": "us_equity",
+        "exchange": "NYSE",
+        "symbol": "UNH",
+        "name": "UNITEDHEALTH GROUP INCORPORATED (Delaware)",
+        "status": "active",
+        "tradable": true,
+        "marginable": true,
+        "maintenance_margin_requirement": 30,
+        "margin_requirement_long": "30",
+        "margin_requirement_short": "30",
+        "shortable": true,
+        "easy_to_borrow": true,
+        "borrow_status": "easy_to_borrow",
+        "fractionable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "overnight_tradable"
+        ]
+      },
+      "GOOGL": {
+        "id": "69b15845-7c63-4586-b274-1cfdfe9df3d8",
+        "class": "us_equity",
+        "exchange": "NASDAQ",
+        "symbol": "GOOGL",
+        "name": "Alphabet Inc. Class A Common Stock",
+        "status": "active",
+        "tradable": true,
+        "marginable": true,
+        "maintenance_margin_requirement": 30,
+        "margin_requirement_long": "30",
+        "margin_requirement_short": "30",
+        "shortable": true,
+        "easy_to_borrow": true,
+        "borrow_status": "easy_to_borrow",
+        "fractionable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "overnight_tradable"
+        ]
+      },
+      "AMD": {
+        "id": "03fb07bb-5db1-4077-8dea-5d711b272625",
+        "class": "us_equity",
+        "exchange": "NASDAQ",
+        "symbol": "AMD",
+        "name": "Advanced Micro Devices, Inc. Common Stock",
+        "status": "active",
+        "tradable": true,
+        "marginable": true,
+        "maintenance_margin_requirement": 30,
+        "margin_requirement_long": "30",
+        "margin_requirement_short": "30",
+        "shortable": true,
+        "easy_to_borrow": true,
+        "borrow_status": "easy_to_borrow",
+        "fractionable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "overnight_tradable"
+        ]
+      },
+      "MU": {
+        "id": "1ef18995-5094-4f62-a5c5-e00168611152",
+        "class": "us_equity",
+        "exchange": "NASDAQ",
+        "symbol": "MU",
+        "name": "Micron Technology, Inc. Common Stock",
+        "status": "active",
+        "tradable": true,
+        "marginable": true,
+        "maintenance_margin_requirement": 30,
+        "margin_requirement_long": "30",
+        "margin_requirement_short": "30",
+        "shortable": true,
+        "easy_to_borrow": true,
+        "borrow_status": "easy_to_borrow",
+        "fractionable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "overnight_tradable"
+        ]
+      },
+      "NVDA": {
+        "id": "4ce9353c-66d1-46c2-898f-fce867ab0247",
+        "class": "us_equity",
+        "exchange": "NASDAQ",
+        "symbol": "NVDA",
+        "name": "NVIDIA Corporation Common Stock",
+        "status": "active",
+        "tradable": true,
+        "marginable": true,
+        "maintenance_margin_requirement": 30,
+        "margin_requirement_long": "30",
+        "margin_requirement_short": "30",
+        "shortable": true,
+        "easy_to_borrow": true,
+        "borrow_status": "easy_to_borrow",
+        "fractionable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "overnight_tradable"
+        ]
+      },
+      "RGTI": {
+        "id": "96f02726-cdd4-4333-b56a-b3e1bfbb26d9",
+        "class": "us_equity",
+        "exchange": "NASDAQ",
+        "symbol": "RGTI",
+        "name": "Rigetti Computing, Inc. Common Stock",
+        "status": "active",
+        "tradable": true,
+        "marginable": true,
+        "maintenance_margin_requirement": 30,
+        "margin_requirement_long": "30",
+        "margin_requirement_short": "30",
+        "shortable": true,
+        "easy_to_borrow": true,
+        "borrow_status": "easy_to_borrow",
+        "fractionable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "overnight_tradable"
+        ]
+      },
+      "ETN": {
+        "id": "d4806319-2c9c-48d6-bda3-aedb0178e83b",
+        "class": "us_equity",
+        "exchange": "NYSE",
+        "symbol": "ETN",
+        "name": "Eaton Corporation, plc Ordinary Shares",
+        "status": "active",
+        "tradable": true,
+        "marginable": true,
+        "maintenance_margin_requirement": 30,
+        "margin_requirement_long": "30",
+        "margin_requirement_short": "30",
+        "shortable": true,
+        "easy_to_borrow": true,
+        "borrow_status": "easy_to_borrow",
+        "fractionable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "overnight_tradable"
+        ]
+      }
+    },
+    "news": [
+      {
+        "created_at": "2026-05-15T19:39:05Z",
+        "updated_at": "2026-05-15T19:39:06Z",
+        "headline": "These New Nvidia And Tesla ETFs Want To Deliver Weekly Income Without Fully Sacrificing Upside",
+        "summary": "NYYY and TYYY offer weekly income and Nvidia, Tesla exposure through daily covered-call strategies with equity upside participation.",
+        "symbols": [
+          "NVDA",
+          "NYYY",
+          "TSLA",
+          "TYYY"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/etfs/new-etfs/26/05/52613567/these-new-nvidia-and-tesla-etfs-want-to-deliver-weekly-income-without-fully-sacrificing-upside"
+      },
+      {
+        "created_at": "2026-05-15T18:31:59Z",
+        "updated_at": "2026-05-15T18:32:00Z",
+        "headline": "Tiger Global Management Decreases Stake In Apollo Global Management From 6,200,000 To 3,293,334 Shares; AppLovin From 1,300,000 To 1,000,000 Shares; Block From 6,350,000 To 4,000,000 Shares; Chime Financial From 14,200,000 To 11,081,780 Shares; CoStar Group From 2,272,727 To 1,500,000 Shares; Microsoft From 5,434,783 To 2,500,000 Shares; ServiceNow From 2,112,676 To 1,500,000 Shares; Take-Two Interactive From 5,882,352 To 2,000,000 Shares; UnitedHealth Group From 422,235 To 350,445 Shares",
+        "summary": "",
+        "symbols": [
+          "APO",
+          "APP",
+          "CHYM",
+          "CSGP",
+          "MSFT",
+          "NOW",
+          "TTWO",
+          "UNH",
+          "XYZ"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/news/26/05/52611463/tiger-global-management-decreases-stake-in-apollo-global-management-from-6-200-000-to-3-293-334-shar"
+      },
+      {
+        "created_at": "2026-05-15T18:31:00Z",
+        "updated_at": "2026-05-15T18:31:01Z",
+        "headline": "Tiger Global Management Increases Stake In Applied Materials From 897,500 To 1,656,900 Shares; Broadcom From 2,867,000 To 3,584,814 Shares; Coupang From 26,216,520 To 34,595,407 Shares; Meta Platforms From 2,753,000 To 3,086,864 Shares; Nvidia From 11,000,000 To 12,011,752 Shares; Spotify Technology From 1,264,609 To 1,580,761 Shares; Zillow Group From 7,050,000 To 8,392,690 Shares",
+        "summary": "",
+        "symbols": [
+          "AMAT",
+          "AVGO",
+          "CPNG",
+          "META",
+          "NVDA",
+          "SPOT",
+          "Z",
+          "ZG"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/quote/ZG"
+      },
+      {
+        "created_at": "2026-05-15T18:29:28Z",
+        "updated_at": "2026-05-15T18:29:28Z",
+        "headline": "Wall Street's Next ETF Arms Race May Be About SpaceX — And Cerebras Just Showed The Blueprint",
+        "summary": "Leveraged ETFs tied to Cerebras launched just a day after its IPO, fueling speculation that SpaceX could spark Wall Street&#39;s next major ETF arms race.",
+        "symbols": [
+          "ARKX",
+          "CBRG",
+          "CBRS",
+          "NVDA",
+          "PLTR",
+          "TSLA",
+          "UFO"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/etfs/specialty-etfs/26/05/52611376/wall-streets-next-etf-arms-race-may-be-about-spacex-and-cerebras-just-showed-the-blueprint"
+      },
+      {
+        "created_at": "2026-05-15T18:01:14Z",
+        "updated_at": "2026-05-15T18:01:15Z",
+        "headline": "NVIDIA's China Comeback: Analyst Forecasts 'Godfather of AI' Will Spark New Global Tech Surge",
+        "summary": "NVIDIA (NVDA) stock remains in focus as Dan Ives predicts a massive tech rally following eased U.S.-China tensions. See why the H200 sale approval is a game-changer for AI software and cloud growth in 2026.",
+        "symbols": [
+          "AMZN",
+          "DDOG",
+          "INOD",
+          "MSFT",
+          "NVDA",
+          "PLTR"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/analyst-stock-ratings/analyst-color/26/05/52610118/nvidias-china-comeback-analyst-forecasts-godfather-of-ai-will-spark-new-global-tech-surge"
+      },
+      {
+        "created_at": "2026-05-15T17:49:48Z",
+        "updated_at": "2026-05-15T17:49:49Z",
+        "headline": "Nasdaq 100 Drops, Intel Crashes 7% On Rate-Hike Panic: Stock Market Today",
+        "summary": "U.S. equities pulled back from record highs Friday as higher oil prices and a bond-market rout reignited fears of interest-rate hikes, sending Treasury yields sharply higher and igniting a broad-based de-risking that hit AI hyperscalers and small caps the hardest.",
+        "symbols": [
+          "AU",
+          "BA",
+          "BLSH",
+          "BTCUSD",
+          "COIN",
+          "CRCL",
+          "DIA",
+          "DOCS",
+          "F",
+          "FIG",
+          "GDX",
+          "GDXJ",
+          "GLOB",
+          "HUBS",
+          "INTC",
+          "IWM",
+          "MU",
+          "NVDA",
+          "QQQ",
+          "SEDG",
+          "TEAM",
+          "TSLA",
+          "VOO",
+          "XLE",
+          "XLK",
+          "XLY",
+          "XOP"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/equities/26/05/52609611/nasdaq-100-intel-crashes-stocks-slide-from-records-rate-hike-expectations-markets-friday"
+      },
+      {
+        "created_at": "2026-05-15T17:35:26Z",
+        "updated_at": "2026-05-15T17:35:27Z",
+        "headline": "10 Information Technology Stocks Whale Activity In Today's Session",
+        "summary": " ",
+        "symbols": [
+          "AMD",
+          "BMNR",
+          "BTDR",
+          "CORZ",
+          "INTC",
+          "MSFT",
+          "NOK",
+          "NVDA",
+          "ORCL",
+          "PANW"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/insights/options/26/05/52609050/10-information-technology-stocks-whale-activity-in-todays-session"
+      },
+      {
+        "created_at": "2026-05-15T17:35:03Z",
+        "updated_at": "2026-05-15T17:35:04Z",
+        "headline": "Trump Says US Doesn't Need A War '9,500 Miles Away,' But Do Prediction Markets Trust His Taiwan Policy?",
+        "summary": "Trump told reporters the US doesn&#39;t need a war &#34;9,500 miles away&#34; after meeting Xi. Did he just break with decades of US Taiwan policy?",
+        "symbols": [
+          "AAPL",
+          "AMD",
+          "BA",
+          "LMT",
+          "NVDA",
+          "RTX",
+          "TSM"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/prediction-markets/26/05/52609034/trump-says-us-doesnt-need-a-war-9500-miles-away-but-do-prediction-markets-trust-his-taiwan-policy"
+      },
+      {
+        "created_at": "2026-05-15T16:55:04Z",
+        "updated_at": "2026-05-15T16:55:04Z",
+        "headline": "TD Cowen Maintains Buy on NVIDIA, Raises Price Target to $275",
+        "summary": "",
+        "symbols": [
+          "NVDA"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/news/26/05/52607382/td-cowen-maintains-buy-on-nvidia-raises-price-target-to-275"
+      },
+      {
+        "created_at": "2026-05-15T16:30:44Z",
+        "updated_at": "2026-05-15T16:30:45Z",
+        "headline": "Nvidia Stock Tops Robinhood's Most Traded List For First Four Months Of 2026: Here's The Top 10",
+        "summary": "Robinhood shares which stocks were bought and sold the most by its millions of users for the first four months of 2026.",
+        "symbols": [
+          "AAPL",
+          "AMD",
+          "AMZN",
+          "GOOG",
+          "GOOGL",
+          "HOOD",
+          "META",
+          "MSFT",
+          "MU",
+          "NVDA",
+          "PLTR",
+          "SNDK",
+          "TSLA"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/trading-ideas/long-ideas/26/05/52606517/nvidia-stock-tops-robinhoods-most-traded-list-for-first-four-months-of-2026-heres-the-top-10"
+      },
+      {
+        "created_at": "2026-05-15T16:30:38Z",
+        "updated_at": "2026-05-15T16:30:39Z",
+        "headline": "AI Momentum Becomes Alphabet Stock's Biggest Catalyst: Analyst",
+        "summary": "Will Google I/O push Alphabet past $430? BofA calls AI momentum Alphabet&#39;s biggest catalyst but warns expectations are high.",
+        "symbols": [
+          "GOOG",
+          "GOOGL"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/analyst-stock-ratings/reiteration/26/05/52606508/ai-momentum-becomes-alphabet-stocks-biggest-catalyst-analyst"
+      },
+      {
+        "created_at": "2026-05-15T16:24:04Z",
+        "updated_at": "2026-05-15T16:24:05Z",
+        "headline": "Redwire Stock Is Sliding Today: What's Going On?",
+        "summary": "Redwire Corp (NYSE: RDW) shares are trading lower Friday. The stock is giving back part of the sharp rally sparked in the previous session.",
+        "symbols": [
+          "GOOGL",
+          "RDW"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/trading-ideas/movers/26/05/52606154/redwire-stock-is-sliding-today-whats-going-on"
+      },
+      {
+        "created_at": "2026-05-15T16:09:03Z",
+        "updated_at": "2026-05-15T16:09:03Z",
+        "headline": "Innovative AI-Themed ETF Arrives With New Filing By ProShares",
+        "summary": "The Ultra AI Computing Power ETF is a proposed 2x leveraged fund targeting AI infrastructure, semiconductors, data centers and cloud computing stocks.",
+        "symbols": [
+          "AVGO",
+          "GOOGL",
+          "NBIS",
+          "NVDA"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/etfs/new-etfs/26/05/52605479/innovative-ai-themed-etf-arrives-with-new-filing-by-proshares"
+      },
+      {
+        "created_at": "2026-05-15T15:51:37Z",
+        "updated_at": "2026-05-15T15:52:31Z",
+        "headline": "Why Is AMD Stock Falling Friday?",
+        "summary": "AMD stock drops 3% as chip stocks tumble following the Trump-Xi summit. Get the latest update on trade tensions and market rotation.",
+        "symbols": [
+          "AMD",
+          "ARKQ",
+          "ARKW",
+          "ASML",
+          "INTC",
+          "MU",
+          "NVDA",
+          "SOXX"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/tech/26/05/52604562/why-is-amd-stock-falling-friday"
+      },
+      {
+        "created_at": "2026-05-15T15:37:33Z",
+        "updated_at": "2026-05-15T15:37:33Z",
+        "headline": "Bill Ackman Posts On X \"We sold Google and bought Microsoft. ...\"",
+        "summary": "",
+        "symbols": [
+          "GOOG",
+          "GOOGL",
+          "MSFT",
+          "PS",
+          "PSUS"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/news/26/05/52603816/bill-ackman-posts-on-x-we-sold-google-and-bought-microsoft"
+      },
+      {
+        "created_at": "2026-05-15T15:32:36Z",
+        "updated_at": "2026-05-15T15:34:09Z",
+        "headline": "The Great Chip Letdown: Why The Trump-Xi Summit Just Tanked NVIDIA And Intel",
+        "summary": "No chip breakthrough: NVDA and INTC shares fall after Trump and Xi Jinping conclude their summit without major trade agreements.",
+        "symbols": [
+          "AAPL",
+          "INTC",
+          "NVDA",
+          "TSM"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/tech/26/05/52603560/the-great-chip-letdown-why-the-trump-xi-summit-just-tanked-nvidia-and-intel"
+      },
+      {
+        "created_at": "2026-05-15T15:10:53Z",
+        "updated_at": "2026-05-15T15:11:06Z",
+        "headline": "Rising Oil And Yields Getting In The Way Of Dual Market Manias",
+        "summary": "\n\n\n\nRising Oil And Yields\n\n\n",
+        "symbols": [
+          "AAPL",
+          "AMZN",
+          "BTCUSD",
+          "GOOG",
+          "META",
+          "MSFT",
+          "NVDA",
+          "QQQ",
+          "SPY",
+          "TSLA",
+          "USO"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/Opinion/26/05/52602404/rising-oil-and-yields-getting-in-the-way-of-dual-stock-market-manias"
+      },
+      {
+        "created_at": "2026-05-15T15:05:02Z",
+        "updated_at": "2026-05-15T15:05:03Z",
+        "headline": "Bill Ackman Catches Another Falling Magnificent Seven Knife — Will It Work This Time?",
+        "summary": "Bill Ackman announces a new stock purchase and like recent quarters, it&#39;s a Magnificent Seven stock.",
+        "symbols": [
+          "AMZN",
+          "GOOG",
+          "GOOGL",
+          "META",
+          "MSFT",
+          "PSUS"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/trading-ideas/long-ideas/26/05/52602134/bill-ackman-catches-another-falling-magnificent-seven-knife-will-it-work-this-time"
+      },
+      {
+        "created_at": "2026-05-15T14:49:07Z",
+        "updated_at": "2026-05-15T14:49:07Z",
+        "headline": "Bill Ackman Buys Microsoft Stock, Calls It Compellingly Cheap",
+        "summary": "Bill Ackman&#39;s Pershing Square has made Microsoft a core holding, arguing the company&#39;s 27% stake in OpenAI alone is worth around $200 billion.",
+        "symbols": [
+          "AMZN",
+          "GOOG",
+          "GOOGL",
+          "META",
+          "MSFT"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/prediction-markets/26/05/52601186/bill-ackman-buys-microsoft-stock-calls-it-compellingly-cheap"
+      },
+      {
+        "created_at": "2026-05-15T14:48:18Z",
+        "updated_at": "2026-05-15T14:48:19Z",
+        "headline": "SpaceX IPO Prospectus Could Reportedly Drop Next Week—Here's A Peek Into What Investors May Be Buying At Astronomical Valuations",
+        "summary": "SpaceX&#39;s IPO prospectus could reportedly drop next week. Starlink&#39;s margins are real. So is investor demand. But…",
+        "symbols": [
+          "GOOGL",
+          "INTC",
+          "META",
+          "TSLA"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/Opinion/26/05/52601151/spacex-ipo-prospectus-could-reportedly-drop-next-week-a-peek-into-what-investors-may-be-buying-at-astronomical-valuations"
+      },
+      {
+        "created_at": "2026-05-15T14:23:44Z",
+        "updated_at": "2026-05-15T14:23:44Z",
+        "headline": "Broadcom Slides As Trump-Xi Summit Ends Without Chip Deal",
+        "summary": "Broadcom (AVGO) stock drops nearly 3% as the Trump-Xi summit ends without a chip breakthrough. Discover how an $18B OpenAI financing hurdle and trade tensions are impacting the AI giant in 2026.",
+        "symbols": [
+          "AAPL",
+          "AVGO",
+          "GOOG",
+          "GOOGL",
+          "META",
+          "MSFT",
+          "NVDA",
+          "TSLA"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/tech/26/05/52599681/broadcom-slides-as-trump-xi-summit-ends-without-chip-deal"
+      },
+      {
+        "created_at": "2026-05-15T14:20:25Z",
+        "updated_at": "2026-05-15T14:20:26Z",
+        "headline": "Cerebras' 68% Rally Signals Demand Beyond Magnificent 7 AI Plays",
+        "summary": "Cerebras&#39; explosive 68% IPO debut suggests investors may want more than Magnificent 7 AI exposure: pure-play AI infrastructure bets.",
+        "symbols": [
+          "AMZN",
+          "CBRS",
+          "MSFT",
+          "NVDA"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/ipos/26/05/52599508/cerebras-68-rally-signals-demand-beyond-magnificent-7-ai-plays"
+      },
+      {
+        "created_at": "2026-05-15T14:15:56Z",
+        "updated_at": "2026-05-15T14:15:57Z",
+        "headline": "$100 Invested In Alphabet 10 Years Ago Would Be Worth This Much Today",
+        "summary": " ",
+        "symbols": [
+          "GOOGL"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/insights/news/26/05/52599232/100-invested-in-alphabet-10-years-ago-would-be-worth-this-much-today"
+      },
+      {
+        "created_at": "2026-05-15T14:03:39Z",
+        "updated_at": "2026-05-15T14:04:21Z",
+        "headline": "What's Going On With Nokia Stock On Friday?",
+        "summary": "Nokia shares plummet after a UK court setback in its patent licensing dispute overshadowed strong technical momentum.",
+        "symbols": [
+          "NOK",
+          "NXTG",
+          "QTUM",
+          "UFOX"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/equities/26/05/52598335/whats-going-on-with-nokia-stock-on-friday-2"
+      },
+      {
+        "created_at": "2026-05-15T13:28:55Z",
+        "updated_at": "2026-05-15T13:28:56Z",
+        "headline": "Oppenheimer Maintains Outperform on Alphabet, Raises Price Target to $445",
+        "summary": "",
+        "symbols": [
+          "GOOG",
+          "GOOGL"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/news/26/05/52596189/oppenheimer-maintains-outperform-on-alphabet-raises-price-target-to-445"
+      },
+      {
+        "created_at": "2026-05-15T13:04:50Z",
+        "updated_at": "2026-05-15T13:04:51Z",
+        "headline": "'Tech CEOs summoned to Capitol for June hearing' - Axios",
+        "summary": "",
+        "symbols": [
+          "GOOG",
+          "GOOGL",
+          "META",
+          "SNAP"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/26/05/52595292/tech-ceos-summoned-to-capitol-for-june-hearing-axios"
+      },
+      {
+        "created_at": "2026-05-15T12:58:41Z",
+        "updated_at": "2026-05-15T12:58:42Z",
+        "headline": "Nvidia Keeps Pulling The Entire Semiconductor Sector Higher",
+        "summary": "There is a running joke on Wall Street that you do not buy a semiconductor stock anymore; you buy Nvidia and hope the neighbors benefit from it.",
+        "symbols": [
+          "NVDA"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/Opinion/26/05/52594914/nvidia-keeps-pulling-the-entire-semiconductor-sector-higher"
+      },
+      {
+        "created_at": "2026-05-15T12:56:45Z",
+        "updated_at": "2026-05-15T12:57:13Z",
+        "headline": "Stock Market Today: Dow Jones, S&P 500, Nasdaq Futures Decline As Trump Concludes China Visit— Figma, Dlocal, Winnebago Industries In Focus (UPDATED)",
+        "summary": "(Editor’s note: The future prices of benchmark tracking ETFs, and the headline were updated in the story.)\n\n\n\nU.S. stock futures fell on Friday following Thursday’s record moves. This comes as investors weigh the outcomes of President Donald Trump‘s visit to China.",
+        "symbols": [
+          "AMAT",
+          "BA",
+          "BTCUSD",
+          "DLO",
+          "FIG",
+          "NU",
+          "NVDA",
+          "QQQ",
+          "SPY",
+          "WGO"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/equities/26/05/52589791/stock-market-today-dow-jones-sp-500-futures-drop-as-trump-concludes-china-visit-figma-dlocal-winnebago-industries-in-focus"
+      },
+      {
+        "created_at": "2026-05-15T12:49:59Z",
+        "updated_at": "2026-05-15T12:49:59Z",
+        "headline": "'Anthropic agrees terms of $30bn funding deal at $900bn valuation' - Financial Times",
+        "summary": "",
+        "symbols": [
+          "AMZN",
+          "GOOG",
+          "GOOGL",
+          "MSFT"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/26/05/52594604/anthropic-agrees-terms-of-30bn-funding-deal-at-900bn-valuation-financial-times"
+      },
+      {
+        "created_at": "2026-05-15T12:32:09Z",
+        "updated_at": "2026-05-15T12:32:10Z",
+        "headline": "Nvidia May Be Returning To China — But It May Not Regain Control",
+        "summary": "Nvidia may regain limited China AI chip access, but Alibaba/Tencent/ByteDance are increasingly building around Huawei&#39;s AI ecosystem as well.",
+        "symbols": [
+          "BABA",
+          "BABAF",
+          "NVDA",
+          "TCEHY"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/tech/26/05/52594191/nvidia-may-be-returning-to-china-but-it-may-not-regain-control"
+      },
+      {
+        "created_at": "2026-05-15T12:21:44Z",
+        "updated_at": "2026-05-15T12:21:46Z",
+        "headline": "Verizon joins Anthropic's Project Glasswing",
+        "summary": "",
+        "symbols": [
+          "AMZN",
+          "GOOG",
+          "GOOGL",
+          "VZ"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/news/26/05/52593766/verizon-joins-anthropics-project-glasswing"
+      },
+      {
+        "created_at": "2026-05-15T12:10:23Z",
+        "updated_at": "2026-05-15T12:10:23Z",
+        "headline": "Cerebras Isn't Just Challenging Nvidia — It's Challenging How AI Computing Works",
+        "summary": "Cerebras&#39; wafer-scale AI chips are challenging more than Nvidia dominance. It&#39;s questioning GPU-cluster architecture powering the AI boom.",
+        "symbols": [
+          "CBRS",
+          "NVDA"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/tech/26/05/52593425/cerebras-isnt-just-challenging-nvidia-its-challenging-how-ai-computing-works"
+      },
+      {
+        "created_at": "2026-05-15T10:19:27Z",
+        "updated_at": "2026-05-15T11:43:05Z",
+        "headline": "Meta's AI Chief Rejects 'Incorrect' Claims Of Mark Zuckerberg's Big-Money Talent Poaching: 'People Joined Because...'",
+        "summary": "Meta Platforms AI chief Alexandr Wang denied claims top researchers joined the company mainly for huge pay packages.",
+        "symbols": [
+          "GOOG",
+          "GOOGL",
+          "META"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/tech/26/05/52590488/metas-ai-chief-rejects-incorrect-claims-of-mark-zuckerbergs-big-money-talent-poaching-people-joined-because"
+      },
+      {
+        "created_at": "2026-05-15T11:13:45Z",
+        "updated_at": "2026-05-15T11:13:46Z",
+        "headline": "What's Going On With Micron Stock Friday?",
+        "summary": "Micron (MU) shares dip in premarket after a historic surge. Traders lock in gains as Nasdaq futures slide. Get the latest price action here.",
+        "symbols": [
+          "AVGO",
+          "MU",
+          "NVDA"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/trading-ideas/movers/26/05/52591982/whats-going-on-with-micron-stock-friday-2"
+      },
+      {
+        "created_at": "2026-05-15T10:59:23Z",
+        "updated_at": "2026-05-15T10:59:23Z",
+        "headline": "Chip Stocks Fall As Inflation Fears Trigger Profit-Taking",
+        "summary": "Semiconductor stocks like NVDA and AMD fell Friday as profit-taking and hot CPI data hit AI-driven gains. Get the latest chip sector news.",
+        "symbols": [
+          "AMD",
+          "AMZN",
+          "AVGO",
+          "GOOGL",
+          "INTC",
+          "META",
+          "MRVL",
+          "MSFT",
+          "MU",
+          "NVDA",
+          "SMCI",
+          "TSM"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/tech/26/05/52591528/chip-stocks-fall-as-inflation-fears-trigger-profit-taking"
+      },
+      {
+        "created_at": "2026-05-15T10:43:22Z",
+        "updated_at": "2026-05-15T10:43:22Z",
+        "headline": "Nvidia Lost China's AI Crown — But Experts Say The Story Is Far From Over",
+        "summary": "NVIDIA faces a &#34;geopolitical chessboard&#34; in China ahead of May 20 earnings. Experts weigh in on H200 demand and domestic competition.",
+        "symbols": [
+          "NVDA"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/tech/26/05/52591033/nvidia-lost-chinas-ai-crown-but-experts-say-the-story-is-far-from-over"
+      },
+      {
+        "created_at": "2026-05-15T10:04:01Z",
+        "updated_at": "2026-05-15T10:04:02Z",
+        "headline": "Leveraged ETFs Tied To Cerebras Systems Set To Launch Just 24 Hours After Blockbuster IPO",
+        "summary": "Leverage Shares is launching a 2x leveraged ETF tied to Cerebras just one day after the AI chipmaker&#39;s blockbuster Nasdaq debut.",
+        "symbols": [
+          "CBRS",
+          "MSFT",
+          "NVDA"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/etfs/new-etfs/26/05/52590064/leveraged-etfs-tied-to-cerebras-systems-set-to-launch-just-24-hours-after-blockbuster-ipo"
+      },
+      {
+        "created_at": "2026-05-15T10:01:52Z",
+        "updated_at": "2026-05-15T10:03:25Z",
+        "headline": "AI Demand Pushes Applied Materials To Highest Margins In 25 Years",
+        "summary": "Applied Materials (AMAT) beats Q2 estimates &amp; raises guidance as AI demand surges. Get the latest on revenue, margins, and analyst forecasts.",
+        "symbols": [
+          "AMAT",
+          "MU",
+          "SSNLF",
+          "TSM"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/large-cap/26/05/52589990/ai-demand-pushes-applied-materials-to-highest-margins-in-25-years"
+      },
+      {
+        "created_at": "2026-05-15T10:02:47Z",
+        "updated_at": "2026-05-15T10:02:48Z",
+        "headline": "Tristan Thompson Reveals How NBA Dinners Around Warriors Games Landed Him An Anthropic Investment",
+        "summary": "Tristan Thompson said he invested in Anthropic after meeting the AI startup&#39;s founders at Silicon Valley dinners tied to NBA road games.",
+        "symbols": [
+          "AMZN",
+          "GOOG",
+          "GOOGL"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/equities/26/05/52590004/tristan-thompson-reveals-how-nba-dinners-around-warriors-games-landed-him-an-anthropic-investment"
+      },
+      {
+        "created_at": "2026-05-15T09:58:45Z",
+        "updated_at": "2026-05-15T09:58:45Z",
+        "headline": "Exploring The Competitive Space: Micron Technology Versus Industry Peers In Semiconductors &amp; Semiconductor Equipment",
+        "summary": " ",
+        "symbols": [
+          "MU"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/insights/news/26/05/52589916/exploring-the-competitive-space-micron-technology-versus-industry-peers-in-semiconductors-amp-semic"
+      },
+      {
+        "created_at": "2026-05-15T09:58:35Z",
+        "updated_at": "2026-05-15T09:58:35Z",
+        "headline": "Performance Comparison: NVIDIA And Competitors In Semiconductors &amp; Semiconductor Equipment Industry",
+        "summary": " ",
+        "symbols": [
+          "NVDA"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/insights/news/26/05/52589914/performance-comparison-nvidia-and-competitors-in-semiconductors-amp-semiconductor-equipment-industr"
+      },
+      {
+        "created_at": "2026-05-15T09:43:07Z",
+        "updated_at": "2026-05-15T09:43:07Z",
+        "headline": "Uber-Waymo Partnership On The Rocks? Exec Shares 'Scary' SF Robotaxi Moment, Slam AV Rollout",
+        "summary": "Uber&#39;s partnership with Waymo could reportedly be facing issues as Uber executives advocate for hyrbid approach to ride-hailing.",
+        "symbols": [
+          "GOOG",
+          "GOOGL",
+          "TSLA",
+          "UBER"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/tech/26/05/52589747/uber-waymo-partnership-on-the-rocks-exec-shares-scary-sf-robotaxi-moment-slam-av-rollout"
+      },
+      {
+        "created_at": "2026-05-15T07:50:31Z",
+        "updated_at": "2026-05-15T07:50:32Z",
+        "headline": "Elon Musk Says 'Space Is The Only Way' After Jensen Huang Warns AI Could Soon Need 1,000x More Energy",
+        "summary": "Tesla and SpaceX CEO Elon Musk reaffirmed orbital datacenters as Jensen Huang outlined the growing need for energy to operate AI.",
+        "symbols": [
+          "GOOG",
+          "GOOGL",
+          "NVDA",
+          "TSLA"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/news/space/26/05/52588906/elon-musk-says-space-is-the-only-way-after-jensen-huang-warns-ai-could-soon-need-1000x-more-energy"
+      },
+      {
+        "created_at": "2026-05-15T06:14:11Z",
+        "updated_at": "2026-05-15T06:14:11Z",
+        "headline": "Elon Musk's Dinner Table Antics Go Viral At Xi Jinping-Hosted State Event, Tesla CEO Gets Clicked With Tim Cook And Xiaomi's Lei Jun",
+        "summary": "Musk&#39;s viral clips from a state dinner with Chinese President Xi Jinping showed him pulling faces while taking selfies with business leaders.",
+        "symbols": [
+          "AAPL",
+          "BA",
+          "NVDA",
+          "TSLA",
+          "XIACF",
+          "XIACY"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/news/social-media/26/05/52588279/elon-musk-xi-jinping-state-dinner-tim-cook-lei-jun"
+      },
+      {
+        "created_at": "2026-05-15T05:53:27Z",
+        "updated_at": "2026-05-15T05:53:28Z",
+        "headline": "Chuck Schumer Says Trump's Plan To Sell AI Chips To Military-Linked Chinese Firms Is 'Dangerous' As Trump Clears H200 Sales To Alibaba, Tencent",
+        "summary": "Schumer warned Trump&#39;s Nvidia China chip plan could threaten US AI dominance and national security, despite Beijing blocking deliveries.",
+        "symbols": [
+          "BABA",
+          "FXCOF",
+          "JD",
+          "LNVGY",
+          "NVDA",
+          "TCEHY"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/tech/26/05/52588122/chuck-schumer-trump-ai-chip-sales-china-alibaba-tencent"
+      },
+      {
+        "created_at": "2026-05-15T05:32:14Z",
+        "updated_at": "2026-05-15T05:32:14Z",
+        "headline": "Ross Gerber Says He Sold 'Small Amount' Of Micron, Nvidia And Broadcom, But Is Still 'Very Bullish' On These Companies",
+        "summary": "Ross Gerber said his portfoilo was forced to trim Nvidia, Micron and Broadcom holdings to comply with diversification rules, even as he remains strongly bullish on semiconductor stocks amid the AI boom.",
+        "symbols": [
+          "AVGO",
+          "MU",
+          "NVDA"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/equities/26/05/52588028/ross-gerber-sells-micron-nvidia-broadcom-still-bullish"
+      },
+      {
+        "created_at": "2026-05-15T03:47:23Z",
+        "updated_at": "2026-05-15T03:47:24Z",
+        "headline": "Elon Musk Reacts As Bernie Sanders, AOC's AI Data Center Moratorium Bill Gets Slammed By Y Combinator CEO: 'Knee Jerk And Shortsighted'",
+        "summary": "Musk&#39;s reaction to Tan&#39;s criticism of Sanders and AOC&#39;s AI data center bill highlighted rising tensions over AI growth, jobs and regulation.",
+        "symbols": [
+          "AMZN",
+          "GOOG",
+          "GOOGL"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/markets/tech/26/05/52587718/elon-musk-bernie-sanders-aoc-ai-data-center-moratorium-bill"
+      },
+      {
+        "created_at": "2026-05-14T22:31:16Z",
+        "updated_at": "2026-05-14T22:31:17Z",
+        "headline": "Here's How Much You Would Have Made Owning NVIDIA Stock In The Last 15 Years",
+        "summary": " ",
+        "symbols": [
+          "NVDA"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/insights/news/26/05/52586114/heres-how-much-you-would-have-made-owning-nvidia-stock-in-the-last-15-years"
+      },
+      {
+        "created_at": "2026-05-14T21:15:37Z",
+        "updated_at": "2026-05-14T21:15:37Z",
+        "headline": "If You Invested $100 In UnitedHealth Group Stock 15 Years Ago, You Would Have This Much Today",
+        "summary": " ",
+        "symbols": [
+          "UNH"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/insights/news/26/05/52584207/if-you-invested-100-in-unitedhealth-group-stock-15-years-ago-you-would-have-this-much-today"
+      },
+      {
+        "created_at": "2026-05-14T20:57:06Z",
+        "updated_at": "2026-05-14T20:57:06Z",
+        "headline": "UBS Maintains Buy on NVIDIA, Raises Price Target to $275",
+        "summary": "",
+        "symbols": [
+          "NVDA"
+        ],
+        "source": "benzinga",
+        "url": "https://www.benzinga.com/news/26/05/52583335/ubs-maintains-buy-on-nvidia-raises-price-target-to-275"
+      }
+    ],
+    "corporate_actions": {
+      "NOK": {
+        "result": [
+          {
+            "id": "395d6ab6-2ca3-4259-b973-be06da232689",
+            "corporate_action_id": "654902204_AC26",
+            "ca_type": "dividend",
+            "ca_sub_type": "cash",
+            "initiating_symbol": "NOK",
+            "initiating_original_cusip": "654902204",
+            "target_symbol": "NOK",
+            "target_original_cusip": "654902204",
+            "declaration_date": "2026-04-26",
+            "effective_date": "2026-04-28",
+            "ex_date": "2026-04-28",
+            "record_date": "2026-04-28",
+            "payable_date": "2026-05-12",
+            "cash": "0.034765",
+            "old_rate": "1",
+            "new_rate": "1"
+          }
+        ]
+      },
+      "UNH": {
+        "result": []
+      },
+      "GOOGL": {
+        "result": []
+      },
+      "AMD": {
+        "result": []
+      },
+      "MU": {
+        "result": []
+      },
+      "NVDA": {
+        "result": []
+      },
+      "RGTI": {
+        "result": []
+      },
+      "ETN": {
+        "result": [
+          {
+            "id": "95f2dc5d-12ec-4b52-9041-3b11318e2a6a",
+            "corporate_action_id": "G29183103_AB26",
+            "ca_type": "dividend",
+            "ca_sub_type": "cash",
+            "initiating_symbol": "ETN",
+            "initiating_original_cusip": "278058102",
+            "target_symbol": "ETN",
+            "target_original_cusip": "278058102",
+            "declaration_date": "2026-05-06",
+            "effective_date": "2026-05-08",
+            "ex_date": "2026-05-08",
+            "record_date": "2026-05-08",
+            "payable_date": "2026-05-29",
+            "cash": "1.1",
+            "old_rate": "1",
+            "new_rate": "1"
+          }
+        ]
+      }
+    },
+    "errors": []
+  },
+  "sec": {
+    "companies": {
+      "NOK": {
+        "success": true,
+        "company": {
+          "cik": 924613,
+          "name": "NOKIA CORP",
+          "ticker": "NOK",
+          "sic": "3663",
+          "sic_description": null,
+          "exchange": null,
+          "state": null,
+          "fiscal_year_end": "1231"
+        }
+      },
+      "UNH": {
+        "success": true,
+        "company": {
+          "cik": 731766,
+          "name": "UNITEDHEALTH GROUP INC",
+          "ticker": "UNH",
+          "sic": "6324",
+          "sic_description": null,
+          "exchange": null,
+          "state": null,
+          "fiscal_year_end": "1231"
+        }
+      },
+      "GOOGL": {
+        "success": true,
+        "company": {
+          "cik": 1652044,
+          "name": "Alphabet Inc.",
+          "ticker": "GOOGL",
+          "sic": "7370",
+          "sic_description": null,
+          "exchange": null,
+          "state": null,
+          "fiscal_year_end": "1231"
+        }
+      },
+      "AMD": {
+        "success": true,
+        "company": {
+          "cik": 2488,
+          "name": "ADVANCED MICRO DEVICES INC",
+          "ticker": "AMD",
+          "sic": "3674",
+          "sic_description": null,
+          "exchange": null,
+          "state": null,
+          "fiscal_year_end": "1226"
+        }
+      },
+      "MU": {
+        "success": true,
+        "company": {
+          "cik": 723125,
+          "name": "MICRON TECHNOLOGY INC",
+          "ticker": "MU",
+          "sic": "3674",
+          "sic_description": null,
+          "exchange": null,
+          "state": null,
+          "fiscal_year_end": "0903"
+        }
+      },
+      "NVDA": {
+        "success": true,
+        "company": {
+          "cik": 1045810,
+          "name": "NVIDIA CORP",
+          "ticker": "NVDA",
+          "sic": "3674",
+          "sic_description": null,
+          "exchange": null,
+          "state": null,
+          "fiscal_year_end": "0131"
+        }
+      },
+      "RGTI": {
+        "success": true,
+        "company": {
+          "cik": 1838359,
+          "name": "Rigetti Computing, Inc.",
+          "ticker": "RGTI",
+          "sic": "7371",
+          "sic_description": null,
+          "exchange": null,
+          "state": null,
+          "fiscal_year_end": "1231"
+        }
+      },
+      "ETN": {
+        "success": true,
+        "company": {
+          "cik": 1551182,
+          "name": "Eaton Corp plc",
+          "ticker": "ETN",
+          "sic": "3590",
+          "sic_description": null,
+          "exchange": null,
+          "state": null,
+          "fiscal_year_end": "1231"
+        }
+      }
+    },
+    "filings": {
+      "NOK": [
+        {
+          "accession_number": "0001104659-26-059674",
+          "filing_date": "2026-05-13",
+          "form_type": "6-K",
+          "company_name": "NOKIA CORP",
+          "cik": 924613,
+          "file_number": "001-13202",
+          "acceptance_datetime": "2026-05-13T10:05:09+00:00",
+          "period_of_report": "2026-05-13T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0000315066-26-001265",
+          "filing_date": "2026-05-06",
+          "form_type": "SCHEDULE 13G",
+          "company_name": "NOKIA CORP",
+          "cik": 924613,
+          "file_number": "005-43411",
+          "acceptance_datetime": "2026-05-06T15:30:08+00:00",
+          "period_of_report": null,
+          "items": null
+        },
+        {
+          "accession_number": "0001104659-26-054692",
+          "filing_date": "2026-05-04",
+          "form_type": "6-K",
+          "company_name": "NOKIA CORP",
+          "cik": 924613,
+          "file_number": "001-13202",
+          "acceptance_datetime": "2026-05-04T17:54:28+00:00",
+          "period_of_report": "2026-05-04T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0001104659-26-052312",
+          "filing_date": "2026-04-30",
+          "form_type": "6-K",
+          "company_name": "NOKIA CORP",
+          "cik": 924613,
+          "file_number": "001-13202",
+          "acceptance_datetime": "2026-04-30T13:50:08+00:00",
+          "period_of_report": "2026-04-30T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0001104659-26-050119",
+          "filing_date": "2026-04-28",
+          "form_type": "6-K",
+          "company_name": "NOKIA CORP",
+          "cik": 924613,
+          "file_number": "001-13202",
+          "acceptance_datetime": "2026-04-28T16:31:23+00:00",
+          "period_of_report": "2026-04-28T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0001104659-26-049877",
+          "filing_date": "2026-04-28",
+          "form_type": "6-K",
+          "company_name": "NOKIA CORP",
+          "cik": 924613,
+          "file_number": "001-13202",
+          "acceptance_datetime": "2026-04-28T12:57:46+00:00",
+          "period_of_report": "2026-04-28T00:00:00",
+          "items": null
+        }
+      ],
+      "UNH": [
+        {
+          "accession_number": "0000731766-26-000132",
+          "filing_date": "2026-05-15",
+          "form_type": "DEFA14A",
+          "company_name": "UNITEDHEALTH GROUP INC",
+          "cik": 731766,
+          "file_number": "001-10864",
+          "acceptance_datetime": "2026-05-15T13:49:39+00:00",
+          "period_of_report": null,
+          "items": null
+        },
+        {
+          "accession_number": "0000731766-26-000129",
+          "filing_date": "2026-05-11",
+          "form_type": "8-K",
+          "company_name": "UNITEDHEALTH GROUP INC",
+          "cik": 731766,
+          "file_number": "001-10864",
+          "acceptance_datetime": "2026-05-11T21:28:55+00:00",
+          "period_of_report": "2026-05-11T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0000731766-26-000127",
+          "filing_date": "2026-05-05",
+          "form_type": "10-Q",
+          "company_name": "UNITEDHEALTH GROUP INC",
+          "cik": 731766,
+          "file_number": "001-10864",
+          "acceptance_datetime": "2026-05-05T20:38:11+00:00",
+          "period_of_report": "2026-03-31T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0002100119-26-001233",
+          "filing_date": "2026-04-30",
+          "form_type": "SCHEDULE 13G",
+          "company_name": "UNITEDHEALTH GROUP INC",
+          "cik": 731766,
+          "file_number": "005-36526",
+          "acceptance_datetime": "2026-04-30T18:32:42+00:00",
+          "period_of_report": null,
+          "items": null
+        },
+        {
+          "accession_number": "0000731766-26-000123",
+          "filing_date": "2026-04-27",
+          "form_type": "4",
+          "company_name": "UNITEDHEALTH GROUP INC",
+          "cik": 731766,
+          "file_number": "",
+          "acceptance_datetime": "2026-04-27T20:50:58+00:00",
+          "period_of_report": "2026-04-23T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0001959173-26-003043",
+          "filing_date": "2026-04-23",
+          "form_type": "144",
+          "company_name": "UNITEDHEALTH GROUP INC",
+          "cik": 731766,
+          "file_number": "001-10864",
+          "acceptance_datetime": "2026-04-23T13:56:13+00:00",
+          "period_of_report": null,
+          "items": null
+        }
+      ],
+      "GOOGL": [
+        {
+          "accession_number": "0001193125-26-225046",
+          "filing_date": "2026-05-15",
+          "form_type": "FWP",
+          "company_name": "Alphabet Inc.",
+          "cik": 1652044,
+          "file_number": "333-286752",
+          "acceptance_datetime": "2026-05-15T10:01:13+00:00",
+          "period_of_report": null,
+          "items": null
+        },
+        {
+          "accession_number": "0001950047-26-004400",
+          "filing_date": "2026-05-12",
+          "form_type": "144",
+          "company_name": "Alphabet Inc.",
+          "cik": 1652044,
+          "file_number": "001-37580",
+          "acceptance_datetime": "2026-05-12T20:20:14+00:00",
+          "period_of_report": null,
+          "items": null
+        },
+        {
+          "accession_number": "0001950047-26-004389",
+          "filing_date": "2026-05-12",
+          "form_type": "144",
+          "company_name": "Alphabet Inc.",
+          "cik": 1652044,
+          "file_number": "001-37580",
+          "acceptance_datetime": "2026-05-12T20:13:38+00:00",
+          "period_of_report": null,
+          "items": null
+        },
+        {
+          "accession_number": "0001193125-26-216986",
+          "filing_date": "2026-05-11",
+          "form_type": "8-K",
+          "company_name": "Alphabet Inc.",
+          "cik": 1652044,
+          "file_number": "001-37580",
+          "acceptance_datetime": "2026-05-11T20:45:29+00:00",
+          "period_of_report": "2026-05-11T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0001193125-26-215570",
+          "filing_date": "2026-05-11",
+          "form_type": "424B5",
+          "company_name": "Alphabet Inc.",
+          "cik": 1652044,
+          "file_number": "333-286752",
+          "acceptance_datetime": "2026-05-11T10:03:15+00:00",
+          "period_of_report": null,
+          "items": null
+        }
+      ],
+      "AMD": [],
+      "MU": [
+        {
+          "accession_number": "0001422849-26-000099",
+          "filing_date": "2026-05-14",
+          "form_type": "SCHEDULE 13G/A",
+          "company_name": "MICRON TECHNOLOGY INC",
+          "cik": 723125,
+          "file_number": "005-37198",
+          "acceptance_datetime": "2026-05-14T17:55:35+00:00",
+          "period_of_report": null,
+          "items": null
+        },
+        {
+          "accession_number": "0001224095-26-000001",
+          "filing_date": "2026-05-13",
+          "form_type": "4",
+          "company_name": "MICRON TECHNOLOGY INC",
+          "cik": 723125,
+          "file_number": "",
+          "acceptance_datetime": "2026-05-13T23:09:21+00:00",
+          "period_of_report": "2026-05-11T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0001950047-26-004304",
+          "filing_date": "2026-05-11",
+          "form_type": "144",
+          "company_name": "MICRON TECHNOLOGY INC",
+          "cik": 723125,
+          "file_number": "001-10658",
+          "acceptance_datetime": "2026-05-11T20:06:31+00:00",
+          "period_of_report": null,
+          "items": null
+        },
+        {
+          "accession_number": "0001242654-26-000005",
+          "filing_date": "2026-05-05",
+          "form_type": "4",
+          "company_name": "MICRON TECHNOLOGY INC",
+          "cik": 723125,
+          "file_number": "",
+          "acceptance_datetime": "2026-05-05T23:29:16+00:00",
+          "period_of_report": "2026-05-01T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0001593199-26-000003",
+          "filing_date": "2026-05-05",
+          "form_type": "4",
+          "company_name": "MICRON TECHNOLOGY INC",
+          "cik": 723125,
+          "file_number": "",
+          "acceptance_datetime": "2026-05-05T23:27:54+00:00",
+          "period_of_report": "2026-05-01T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0001950047-26-003929",
+          "filing_date": "2026-05-01",
+          "form_type": "144",
+          "company_name": "MICRON TECHNOLOGY INC",
+          "cik": 723125,
+          "file_number": "001-10658",
+          "acceptance_datetime": "2026-05-01T20:46:25+00:00",
+          "period_of_report": null,
+          "items": null
+        }
+      ],
+      "NVDA": [
+        {
+          "accession_number": "0001243821-26-000003",
+          "filing_date": "2026-05-14",
+          "form_type": "3",
+          "company_name": "NVIDIA CORP",
+          "cik": 1045810,
+          "file_number": "",
+          "acceptance_datetime": "2026-05-14T20:26:45+00:00",
+          "period_of_report": "2026-05-04T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0001214659-26-006075",
+          "filing_date": "2026-05-13",
+          "form_type": "PX14A6G",
+          "company_name": "NVIDIA CORP",
+          "cik": 1045810,
+          "file_number": "000-23985",
+          "acceptance_datetime": "2026-05-13T18:32:23+00:00",
+          "period_of_report": null,
+          "items": null
+        },
+        {
+          "accession_number": "0001045810-26-000038",
+          "filing_date": "2026-05-12",
+          "form_type": "ARS",
+          "company_name": "NVIDIA CORP",
+          "cik": 1045810,
+          "file_number": "000-23985",
+          "acceptance_datetime": "2026-05-12T20:46:11+00:00",
+          "period_of_report": "2026-01-25T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0001045810-26-000037",
+          "filing_date": "2026-05-12",
+          "form_type": "DEFA14A",
+          "company_name": "NVIDIA CORP",
+          "cik": 1045810,
+          "file_number": "000-23985",
+          "acceptance_datetime": "2026-05-12T20:44:03+00:00",
+          "period_of_report": null,
+          "items": null
+        },
+        {
+          "accession_number": "0001045810-26-000036",
+          "filing_date": "2026-05-12",
+          "form_type": "DEF 14A",
+          "company_name": "NVIDIA CORP",
+          "cik": 1045810,
+          "file_number": "000-23985",
+          "acceptance_datetime": "2026-05-12T20:42:13+00:00",
+          "period_of_report": "2026-06-24T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0001045810-26-000028",
+          "filing_date": "2026-05-08",
+          "form_type": "8-K",
+          "company_name": "NVIDIA CORP",
+          "cik": 1045810,
+          "file_number": "000-23985",
+          "acceptance_datetime": "2026-05-08T20:35:07+00:00",
+          "period_of_report": "2026-05-07T00:00:00",
+          "items": null
+        }
+      ],
+      "RGTI": [
+        {
+          "accession_number": "0001104659-26-058715",
+          "filing_date": "2026-05-11",
+          "form_type": "S-8",
+          "company_name": "Rigetti Computing, Inc.",
+          "cik": 1838359,
+          "file_number": "333-295767",
+          "acceptance_datetime": "2026-05-11T20:50:30+00:00",
+          "period_of_report": null,
+          "items": null
+        },
+        {
+          "accession_number": "0001104659-26-058641",
+          "filing_date": "2026-05-11",
+          "form_type": "10-Q",
+          "company_name": "Rigetti Computing, Inc.",
+          "cik": 1838359,
+          "file_number": "001-40140",
+          "acceptance_datetime": "2026-05-11T20:07:06+00:00",
+          "period_of_report": "2026-03-31T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0001104659-26-058635",
+          "filing_date": "2026-05-11",
+          "form_type": "8-K",
+          "company_name": "Rigetti Computing, Inc.",
+          "cik": 1838359,
+          "file_number": "001-40140",
+          "acceptance_datetime": "2026-05-11T20:05:35+00:00",
+          "period_of_report": "2026-05-11T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0002100119-26-000992",
+          "filing_date": "2026-04-30",
+          "form_type": "SCHEDULE 13G",
+          "company_name": "Rigetti Computing, Inc.",
+          "cik": 1838359,
+          "file_number": "005-92350",
+          "acceptance_datetime": "2026-04-30T16:58:32+00:00",
+          "period_of_report": null,
+          "items": null
+        },
+        {
+          "accession_number": "0002100121-26-000700",
+          "filing_date": "2026-04-29",
+          "form_type": "SCHEDULE 13G",
+          "company_name": "Rigetti Computing, Inc.",
+          "cik": 1838359,
+          "file_number": "005-92350",
+          "acceptance_datetime": "2026-04-29T19:16:53+00:00",
+          "period_of_report": null,
+          "items": null
+        },
+        {
+          "accession_number": "0001104659-26-048583",
+          "filing_date": "2026-04-24",
+          "form_type": "ARS",
+          "company_name": "Rigetti Computing, Inc.",
+          "cik": 1838359,
+          "file_number": "001-40140",
+          "acceptance_datetime": "2026-04-24T20:12:30+00:00",
+          "period_of_report": "2025-12-31T00:00:00",
+          "items": null
+        }
+      ],
+      "ETN": [
+        {
+          "accession_number": "0001104659-26-061255",
+          "filing_date": "2026-05-14",
+          "form_type": "4",
+          "company_name": "Eaton Corp plc",
+          "cik": 1551182,
+          "file_number": "",
+          "acceptance_datetime": "2026-05-14T20:35:12+00:00",
+          "period_of_report": "2026-05-13T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0001959173-26-003549",
+          "filing_date": "2026-05-13",
+          "form_type": "144",
+          "company_name": "Eaton Corp plc",
+          "cik": 1551182,
+          "file_number": "001-42640",
+          "acceptance_datetime": "2026-05-13T15:59:56+00:00",
+          "period_of_report": null,
+          "items": null
+        },
+        {
+          "accession_number": "0001104659-26-059459",
+          "filing_date": "2026-05-12",
+          "form_type": "4",
+          "company_name": "Eaton Corp plc",
+          "cik": 1551182,
+          "file_number": "",
+          "acceptance_datetime": "2026-05-12T20:35:11+00:00",
+          "period_of_report": "2026-05-08T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0001104659-26-058089",
+          "filing_date": "2026-05-08",
+          "form_type": "4",
+          "company_name": "Eaton Corp plc",
+          "cik": 1551182,
+          "file_number": "",
+          "acceptance_datetime": "2026-05-08T22:21:27+00:00",
+          "period_of_report": "2026-05-06T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0001104659-26-058088",
+          "filing_date": "2026-05-08",
+          "form_type": "4",
+          "company_name": "Eaton Corp plc",
+          "cik": 1551182,
+          "file_number": "",
+          "acceptance_datetime": "2026-05-08T22:20:22+00:00",
+          "period_of_report": "2026-05-06T00:00:00",
+          "items": null
+        },
+        {
+          "accession_number": "0001104659-26-058086",
+          "filing_date": "2026-05-08",
+          "form_type": "4",
+          "company_name": "Eaton Corp plc",
+          "cik": 1551182,
+          "file_number": "",
+          "acceptance_datetime": "2026-05-08T22:19:19+00:00",
+          "period_of_report": "2026-05-06T00:00:00",
+          "items": null
+        }
+      ]
+    },
+    "errors": []
+  }
+}

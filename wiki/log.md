@@ -447,3 +447,15 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 보유 종목 판단에서는 AMD를 trim/no full add, RGTI를 reduce/avoid add, ETN을 weak add 제외, NOK/UNH/NVDA를 hold/add candidate로 분류했다.
 - 리포트: `wiki/reports/2026-05-24-may-15-decision-process-report.md`.
 - 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-24 16:45 Asia/Seoul] report | 2026-05-15 의사결정 리포트 MCP 보강
+
+- 사용자 요청에 따라 2026-05-15 의사결정 리포트에 뉴스와 종목 관련 MCP 보강 정보를 추가했다.
+- 대상 심볼은 리포트 판단에 직접 연결된 `NOK`, `UNH`, `GOOGL`, `AMD`, `MU`, `NVDA`, `RGTI`, `ETN`이다.
+- Alpaca MCP `get_asset`, `get_news`, `get_corporate_action_announcements`로 tradability, 뉴스, corporate action 여부를 확인했다.
+- SEC EDGAR MCP `get_company_info`, `get_recent_filings`로 회사 식별 정보와 최근 filing을 확인했고, `2026-05-15T20:00:00Z` 이전 acceptance time만 판단 근거로 분류했다.
+- MCP 보강 후에도 가격 기반 후보는 유지하되, NOK는 특허/법적 뉴스 리스크, UNH/GOOGL은 filing 및 기관/내부자 관련 맥락, AMD/MU는 반도체 과열 뉴스, RGTI/ETN은 보강 근거 부족 또는 filing 리스크 때문에 staged/감점으로 정리했다.
+- 원천 요약: `wiki/raw/sources/2026-05-24-may-15-mcp-context-sources.md`.
+- 원자료: `wiki/raw/sources/2026-05-24-may-15-mcp-context-data.json`.
+- 수집 스크립트: `scripts/collect-may15-mcp-context.py`.
+- 실제 주문, 취소, 포지션 변경은 없었다.
