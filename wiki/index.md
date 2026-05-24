@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-23 KST 체결현황 재조회 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-24 KST 현재 추천 run 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -36,6 +36,7 @@
 
 - [[2026-05-22]] - 현재 시장 분석과 이후 주식 중심 paper 매수 실행 업데이트.
 - [[2026-05-23-investment-simulation-insight-report]] - 지금까지의 실제 paper 투자, 과거 시뮬레이션, 정책학습 인사이트 종합 보고서.
+- [[2026-05-24]] - 현재 기준 no-submit 종목 추천, dry-run 주문 후보, risk-check 결과.
 
 ## 분석
 
@@ -51,6 +52,7 @@
 - [[2026-05-24-short-long-policy-feb-mar-apr-may-review]] - 현재 단타/장타 정책을 2~3월 시뮬레이션과 4~5월 검증으로 재점검한 회고.
 - [[2026-05-24-mcp-comparison-2026-05-08-historical-simulation]] - 2026-05-08 과거 추천 표본을 Alpaca/SEC EDGAR/Alpha Vantage/Firecrawl/Yahoo MCP 보강 결과와 비교한 검토.
 - [[2026-05-24-mcp-policy-history-reaudit]] - 남은 과거 추천/단타/장타 정책 시뮬레이션 이력을 MCP 보강 정보로 재감사한 분석.
+- [[2026-05-24-six-month-3h-independent-policy-review]] - 2025-11-24~2026-05-22 최근 6개월을 3시간 구간으로 집계한 독립 단타/장타 정책 검토.
 
 ## 과거 시점 시뮬레이션
 
@@ -79,6 +81,7 @@
 - [[recommendation-policy]] - 거래 회고에서 나온 교훈을 반영하는 living policy.
 - `harness/workflows/intraday-paper-dry-run.md` - `intraday-rs-breakout-v0`/`intraday-rs-breadth-vwap-v1` 실시간 주문 없는 paper dry-run 운영안.
 - `scripts/evaluate-intraday-dry-run.py` - 캡처된 1분봉 JSON으로 11:00 ET v0/v1 신호와 fill 관찰 필드를 생성하는 로컬 헬퍼. Alpaca API 호출 없음.
+- `scripts/simulate-six-month-3h-policy-review.py` - Alpaca MCP read-only 30분봉을 3시간 구간으로 집계해 최근 6개월 단타/장타 정책을 독립 검증하는 헬퍼.
 
 ## 운영/검증 도구
 
@@ -114,3 +117,5 @@
 - [[2026-05-24-short-long-policy-simulation-sources]] - 현재 단타/장타 정책 재시뮬레이션용 Alpaca MCP 날짜 확인, IEX 1분봉/일봉 계산 원천.
 - [[2026-05-24-mcp-comparison-2026-05-08-sources]] - 2026-05-08 과거 추천 표본의 MCP 보강 비교 원천과 데이터 공백 기록.
 - [[2026-05-24-mcp-policy-history-reaudit-sources]] - 남은 정책 시뮬레이션 이력 MCP 재감사용 Alpaca/Alpha/SEC/Firecrawl 원천과 FRED 공백 기록.
+- [[2026-05-24-current-recommendation-sources]] - 현재 기준 종목 추천용 Alpaca account/clock/positions/prices/news, SEC/Yahoo/Alpha/Web 보강 원천.
+- [[2026-05-24-six-month-3h-simulation-sources]] - 최근 6개월 3시간 구간 시뮬레이션용 Alpaca MCP calendar/assets/IEX 30분봉 원천과 데이터 공백 기록.

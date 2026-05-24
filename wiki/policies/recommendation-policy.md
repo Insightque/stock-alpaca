@@ -1,6 +1,6 @@
 ---
 id: recommendation-policy
-updated_at: 2026-05-24T11:25:00+09:00
+updated_at: 2026-05-24T13:04:00+09:00
 ---
 
 # 추천 정책
@@ -42,6 +42,7 @@ updated_at: 2026-05-24T11:25:00+09:00
 | 2026-05-23 | 장타 투자 목적의 20D 보유 정책을 2026년 2~3월 13개 기준일로 학습하고 4~5월 10개 기준일로 검증함. `quality_top5`가 학습/검증 모두 플러스이고 단순 모멘텀보다 drawdown이 낮아 장타 후보 정책으로 기록함 | [[2026-05-23-long-term-feb-mar-apr-may-simulation]] | paper-only long-term candidate |
 | 2026-05-24 | 현재 단타/장타 정책을 같은 구조로 재점검함. 단타 v1은 4~5월 검증 1 active day/3거래 모두 stop으로 자동 주문 부적합이 강화됐고, 장타 `quality_top5`는 검증 완료 30개 추천 평균 20D +25.62%, SPY 대비 +18.64%p로 후보 유지 | [[2026-05-24-short-long-policy-feb-mar-apr-may-review]] | 단타 관찰 전용 / 장타 검증 중 유지 |
 | 2026-05-24 | 남은 정책 시뮬레이션 이력을 MCP로 재감사함. 기존 결론은 대부분 유지하되, broad query 0건 fallback, SEC acceptance time, filing-aware event risk, 실적/filing 확인 후 과열 감점을 명시함 | [[2026-05-24-mcp-policy-history-reaudit]] | 적용 후보 |
+| 2026-05-24 | 최근 6개월을 3시간 구간으로 재집계해 독립 시뮬레이션함. 단타 3시간 variants는 전체 플러스지만 IEX 30분봉/체결 공백 때문에 관찰 전용으로 유지하고, 장타 `daily-3h-theme-capped-top5`는 320개 완료 추천 평균 20D SPY 초과 +7.82%p로 장타 후보 보강 근거로 추가함 | [[2026-05-24-six-month-3h-independent-policy-review]] | 단타 관찰 전용 / 장타 검증 중 유지 |
 
 ## 검증 중인 가설
 
@@ -117,6 +118,7 @@ updated_at: 2026-05-24T11:25:00+09:00
 - 5월 기준일 일부는 20D가 아직 미완료이므로 자동 주문 정책으로 승격하지 않는다.
 - 다음 검증은 실적, 밸류에이션, SEC filing, 뉴스 촉매, 포트폴리오 상관 노출을 추가한 보강 버전으로 수행한다.
 - 2026-05-24 재점검에서도 4~5월 검증 완료 30개 추천은 평균 20D +25.62%, 평균 SPY 초과 +18.64%p였다. 다만 AMD/NOK 성과 집중과 5월 20D 미완료가 남아 있어 자동 주문 정책으로 승격하지 않는다.
+- 2026-05-24 6개월 3시간 재집계에서는 `daily-3h-quality-top5`가 320개 완료 추천 평균 20D +9.73%, SPY 초과 +7.70%p였고, `daily-3h-theme-capped-top5`가 평균 20D +9.86%, SPY 초과 +7.82%p였다. theme cap이 성과를 크게 해치지 않아 자동 주문 전 분산 제약 후보로 유지한다.
 
 `momentum_top3`식 단순 20D 모멘텀 정책은 보조 비교군으로만 둔다. 검증 성과는 좋았지만 2~3월 학습에서 평균 20D +1.19%, 평균 20D 불리 이동 -11.20%로 장타 목적에 부적합했다.
 
@@ -180,8 +182,13 @@ updated_at: 2026-05-24T11:25:00+09:00
 | intraday-rs-breadth-vwap-v1-top2 | v1 조건을 만족한 후보 중 상위 2개만 진입한다 | 28 trading days / 18 trades | 66.7% trade hit | +$1,395.55 on $10k per trade simulation | 총손익은 v1 top3보다 낮지만 평균 거래 손익은 높음 | paper-only manual candidate | [[2026-05-23-intraday-scalping-feature-filter-simulation]] |
 | intraday-followthrough-filter-needed | 11:00 ET 돌파/VWAP/breadth 조건만으로는 4~5월 검증 손실을 막지 못했다. 11:05~11:15 후속 유지와 실제 spread/fill 확인을 추가한다 | validation 10 days / v1 3 trades | 0.0% trade hit | -$300.00 on $10k per trade simulation | 2026-04-01 TSLA/AMD/LRCX 모두 stop. v0도 9거래 중 7 stop | 적용 후보 | [[2026-05-24-short-long-policy-feb-mar-apr-may-review]] |
 | intraday-pullback-vwap-reclaim-v0 | 장초반 -1% 이상 눌린 종목이 11:00 ET에 VWAP 위로 회복하고 QQQ/SMH도 VWAP 위일 때만 long 진입 후보로 본다 | train 5 days / 6 trades; validation 5 days / 10 trades; 59-day scan / 38 trades | validation 60.0%; 59-day scan 55.3% | validation +$222.57; 59-day scan +$822.98 on $10k per trade simulation | v1보다 평균 거래 손익이 낮고 2026-04-01처럼 동시 stop 가능. 실제 spread/fill 미반영 | paper-only secondary candidate | [[2026-05-23-intraday-policy-candidates-simulation]] |
+| three-hour-intraday-momentum | 첫 3시간 QQQ risk-on과 종목 상대강도가 동시에 나타난 후보를 다음 3시간 구간 open에 진입하는 독립 variant | 124 trading days / 127 trades | 48.0% trade hit | +$981.43 on $10k per trade simulation | 앞구간은 -$658.86, 뒤구간은 +$1,640.29로 regime 의존. IEX 30분봉, spread/fill 미반영 | paper-only research candidate | [[2026-05-24-six-month-3h-independent-policy-review]] |
+| three-hour-vwap-reclaim | 첫 3시간 하락 후 window VWAP 위로 회복한 후보를 다음 구간에 진입하는 독립 variant | 124 trading days / 35 trades | 48.6% trade hit | +$734.04 on $10k per trade simulation | 검증 hit 38.9%, stop 17건. 단독 주문 신호로 약함 | paper-only secondary candidate | [[2026-05-24-six-month-3h-independent-policy-review]] |
+| three-hour-afternoon-continuation | 첫 두 3시간 구간에서 QQQ 대비 강한 상대강도를 보인 후보를 15:30 ET 근처에 짧게 추적하는 variant | 124 trading days / 90 trades | 61.1% trade hit | +$1,530.61 on $10k per trade simulation | 장마감 직전 짧은 보유라 체결/스프레드 민감. 실제 quote 없는 자동 주문 금지 | paper-only research candidate | [[2026-05-24-six-month-3h-independent-policy-review]] |
 | volume-confirmed-momentum | 10시대 상승이 거래량 증가와 같이 나타날 때 추격한다 | 59-day scan / 6 trades | 0.0% | -$425.87 on $10k per trade simulation | 가격+거래량 추격이 모두 실패. stop 5건, EOD 손실 1건 | rejected | [[2026-05-23-intraday-policy-candidates-simulation]] |
 | long-term-quality-momentum-v0 | 20D/40D/60D 추세, SPY/QQQ 상대강도, 60D drawdown, 20D 변동성, 거래량 변화를 함께 점수화해 top5로 분산한다 | train 13 as-of days / 65 recommendations; validation 10 as-of days / 50 recommendations | train 20D SPY hit 42/65; validation completed 20D SPY hit 24/30 | train avg 20D excess +6.77%p; validation completed avg 20D excess +18.64%p | 5월 기준일 일부 20D 미완료. 가격 기반만 사용해 실적/밸류에이션/filing 미반영 | paper-only long-term candidate | [[2026-05-23-long-term-feb-mar-apr-may-simulation]] |
+| daily-3h-theme-capped-quality | 20D/40D 추세, SPY/QQQ 상대강도, drawdown, 변동성, 최근 첫 3시간 양봉 빈도에 테마별 최대 2종목 제한을 더한 장타 variant | 84 as-of days / 420 recommendations / 320 completed | 214/320 SPY hit | +7.82%p avg 20D SPY excess | 평균 20D 불리 이동 -8.34%, NOK/AMD 성과 집중. 실적/filing/valuation 미반영 | paper-only long-term candidate | [[2026-05-24-six-month-3h-independent-policy-review]] |
+| daily-3h-momentum-top3 | 첫 3시간 양봉 빈도와 20D 상대강도를 요구하는 집중형 장타 비교군 | 83 as-of days / 234 recommendations / 174 completed | 110/174 SPY hit | +10.62%p avg 20D SPY excess | 평균 20D 불리 이동 -9.47%, AMD/NOK/IONQ 집중. 기본 정책보다 비교군으로 유지 | comparison only | [[2026-05-24-six-month-3h-independent-policy-review]] |
 
 ## 폐기하거나 완화한 규칙
 

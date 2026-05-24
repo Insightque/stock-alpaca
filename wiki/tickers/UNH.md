@@ -1,6 +1,6 @@
 ---
 id: UNH
-updated_at: 2026-05-22T14:26:30Z
+updated_at: 2026-05-24T03:27:34Z
 symbol: UNH
 asset_type: stock
 ---
@@ -42,8 +42,15 @@ UNH는 UnitedHealth Group으로, 이번 주식 중심 계획에서 기술/AI 집
 ## 출처
 
 - [[2026-05-22-expanded-stock-review-alpaca]]
+- [[2026-05-24-current-recommendation-sources]]
 
 ## 거래 기록
 
 - 2026-05-22: paper 매수 15주가 평균 386.56 USD에 체결됐다.
 - 주문/체결 출처: [[2026-05-22-paper-order-submission]]
+
+## 2026-05-24 현재 추천 메모
+
+UNH는 이번 no-submit run의 1순위 추가매수 후보로 올렸다. 2026-05-22 종가 388.545 기준 20D +9.5%, SPY 대비 +5.0%p이고 5D는 -1.3%라 과열 추격 리스크가 낮다. 포트폴리오가 AI/반도체 중심으로 기울어져 있어 방어적 헬스케어 분산 역할도 크다.
+
+리스크는 Medicare Advantage 정책/비용 압력, Berkshire stake exit 관련 심리, 최근 회복 이후 valuation 논쟁이다. dry-run order plan에는 10주 추가 후보만 기록했고 실제 주문은 제출하지 않았다.

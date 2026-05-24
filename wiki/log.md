@@ -370,3 +370,30 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 분석 문서: `wiki/analyses/2026-05-24-mcp-policy-history-reaudit.md`.
 - 정책 문서: `wiki/policies/recommendation-policy.md`.
 - 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-24 12:27 Asia/Seoul] daily | 현재 기준 no-submit 종목 추천
+
+- 사용자 요청 `현재 기준으로 주식 종목 추천해줘`를 daily no-submit 추천 run으로 해석했다. 주문/매수/실행 키워드가 없어 실제 주문은 제출하지 않았다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고, Alpaca MCP로 계좌, 시장 시계, 포지션, 미체결 주문, calendar, 가격 bars/snapshot/news, asset tradability를 확인했다.
+- Alpaca clock 기준 시장은 닫혀 있었고 다음 정규장 개장은 2026-05-26 09:30 ET였다.
+- 최종 추천 순위는 UNH, LRCX, AMD, NVDA, TSM이다. NOK/IONQ/RGTI/QBTS는 강한 모멘텀에도 단기 과열과 valuation/short-interest 리스크로 신규 추격을 보류했다.
+- `wiki/portfolio/order-plans/2026-05-24-current-recommendations.json` dry-run 후보를 생성했고 risk check는 PASS였다. Buy notional 16193.14 USD, post-order cash 27837.44 USD, post-order invested 72581.23 USD다.
+- 모든 후보 quote가 장 마감 후 stale 상태라 dry-run 경고를 기록했다. Submit-mode 주문 가능 상태가 아니며 실제 주문, 취소, 포지션 변경은 없었다.
+- 원천 기록: `wiki/raw/sources/2026-05-24-current-recommendation-sources.md`.
+- 리포트: `wiki/reports/daily/2026-05-24.md`.
+- run manifest: `wiki/runs/2026-05-24-1227-current-recommendations.json`.
+
+## [2026-05-24 13:04 Asia/Seoul] analysis | 최근 6개월 3시간 단위 독립 정책 시뮬레이션
+
+- 사용자 요청에 따라 2025-11-24~2026-05-22 최근 6개월 124거래일을 일별 3시간 구간으로 추출하고 독립 시뮬레이션했다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고, Alpaca MCP `get_clock`, `get_watchlists`, `get_all_positions`, `get_calendar`, `get_asset`, `get_stock_bars` read-only 도구만 사용했다.
+- watchlist가 비어 있어 현재 paper 보유 종목과 기존 정책 후보, SPY/QQQ/SMH 벤치마크를 합친 16개 심볼을 universe로 사용했다.
+- 긴 기간 `get_stock_bars` 요청은 `next_page_token`이 생겼지만 page token 인자가 MCP 스키마에 없어, 14일 청크로 재조회해 누락 없이 5,920개 3시간 window와 1,984개 정규장 일봉을 생성했다.
+- 단타형 3시간 정책은 `3h-afternoon-continuation-top2`가 90거래, hit rate 61.1%, 가상 P/L +$1,530.61로 가장 좋았지만, IEX 30분봉·spread·fill 공백 때문에 자동 주문 후보로 승격하지 않았다.
+- 장타형 `daily-3h-theme-capped-top5`는 320개 완료 추천에서 214/320 SPY 초과 hit, 평균 20D SPY 초과 +7.82%p였다. theme cap은 장타 후보 보강 근거로 추가했지만 실적/filing/valuation 확인 전 자동 주문으로 승격하지 않는다.
+- 원천 기록: `wiki/raw/sources/2026-05-24-six-month-3h-simulation-sources.md`.
+- 계산 데이터: `wiki/raw/sources/2026-05-24-six-month-3h-simulation-data.json`.
+- 분석 문서: `wiki/analyses/2026-05-24-six-month-3h-independent-policy-review.md`.
+- run manifest: `wiki/runs/2026-05-24-3h-six-month-policy-review.json`.
+- 정책 문서: `wiki/policies/recommendation-policy.md`.
+- 실제 주문, 취소, 포지션 변경은 없었다.
