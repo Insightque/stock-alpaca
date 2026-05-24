@@ -49,6 +49,8 @@
 - [[2026-05-23-intraday-policy-candidates-simulation]] - 기존 v0/v1에서 덜 다룬 VWAP 평균회귀, 장중 반전, 거래량 확인 모멘텀 후보를 학습/검증 표본으로 테스트한 분석.
 - [[2026-05-23-long-term-feb-mar-apr-may-simulation]] - 2026년 2~3월 13개 기준일로 장타 정책을 학습하고 4~5월 10개 기준일로 검증한 분석.
 - [[2026-05-24-short-long-policy-feb-mar-apr-may-review]] - 현재 단타/장타 정책을 2~3월 시뮬레이션과 4~5월 검증으로 재점검한 회고.
+- [[2026-05-24-mcp-comparison-2026-05-08-historical-simulation]] - 2026-05-08 과거 추천 표본을 Alpaca/SEC EDGAR/Alpha Vantage/Firecrawl/Yahoo MCP 보강 결과와 비교한 검토.
+- [[2026-05-24-mcp-policy-history-reaudit]] - 남은 과거 추천/단타/장타 정책 시뮬레이션 이력을 MCP 보강 정보로 재감사한 분석.
 
 ## 과거 시점 시뮬레이션
 
@@ -110,3 +112,5 @@
 - [[2026-05-23-intraday-policy-candidates-sources]] - 미검토 단타 정책 후보 조사와 Alpaca IEX 1분봉 시뮬레이션 원천.
 - [[2026-05-23-long-term-feb-mar-apr-may-sources]] - 2026년 2~3월 장타 정책 학습 및 4~5월 검증용 Alpaca IEX 일봉 원천.
 - [[2026-05-24-short-long-policy-simulation-sources]] - 현재 단타/장타 정책 재시뮬레이션용 Alpaca MCP 날짜 확인, IEX 1분봉/일봉 계산 원천.
+- [[2026-05-24-mcp-comparison-2026-05-08-sources]] - 2026-05-08 과거 추천 표본의 MCP 보강 비교 원천과 데이터 공백 기록.
+- [[2026-05-24-mcp-policy-history-reaudit-sources]] - 남은 정책 시뮬레이션 이력 MCP 재감사용 Alpaca/Alpha/SEC/Firecrawl 원천과 FRED 공백 기록.

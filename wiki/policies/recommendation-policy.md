@@ -1,6 +1,6 @@
 ---
 id: recommendation-policy
-updated_at: 2026-05-24T10:32:00+09:00
+updated_at: 2026-05-24T11:25:00+09:00
 ---
 
 # 추천 정책
@@ -17,6 +17,8 @@ updated_at: 2026-05-24T10:32:00+09:00
 - 과거 thesis를 사후에 덮어쓰지 않고, 별도 회고 문서나 날짜가 있는 회고 섹션으로 남긴다.
 - 뉴스가 긍정적이어도 뉴스 전 3D/5D 가격이 이미 크게 올랐으면 선반영 가능성으로 감점한다.
 - 테마/정책 뉴스는 당일 급등 추격보다 다음 거래일 유지 여부를 더 중요하게 본다.
+- MCP provider에서 뉴스/filing/매크로가 0건이어도 정보 부재로 단정하지 않고, 개별 ticker 조회와 SEC/공식 IR fallback으로 재확인한다.
+- SEC filing은 filing date보다 acceptance time 기준으로 as-of 사용 가능 여부를 판단한다.
 - 단타는 11:00 ET 신호만으로 자동 주문하지 않고, 11:05~11:15 후속 유지와 실제 bid/ask/fill 가능성을 확인하기 전까지 관찰 전용으로 둔다.
 - 분석 결과 문서에 계산 지표나 정책학습 지표가 포함되면, 문서 하단에 `지표 설명` 섹션을 추가해 각 지표의 의미와 해석 방법을 쉬운 한국어로 설명한다.
 
@@ -39,6 +41,7 @@ updated_at: 2026-05-24T10:32:00+09:00
 | 2026-05-23 | 기존 v0/v1에서 덜 다룬 VWAP 평균회귀·장중 반전·거래량 확인 모멘텀을 검증함. 장초반 눌림 후 VWAP 회복 후보는 플러스였지만 v1보다 약했고, 거래량 확인 모멘텀은 폐기 후보로 분류함 | [[2026-05-23-intraday-policy-candidates-simulation]] | paper-only secondary candidate |
 | 2026-05-23 | 장타 투자 목적의 20D 보유 정책을 2026년 2~3월 13개 기준일로 학습하고 4~5월 10개 기준일로 검증함. `quality_top5`가 학습/검증 모두 플러스이고 단순 모멘텀보다 drawdown이 낮아 장타 후보 정책으로 기록함 | [[2026-05-23-long-term-feb-mar-apr-may-simulation]] | paper-only long-term candidate |
 | 2026-05-24 | 현재 단타/장타 정책을 같은 구조로 재점검함. 단타 v1은 4~5월 검증 1 active day/3거래 모두 stop으로 자동 주문 부적합이 강화됐고, 장타 `quality_top5`는 검증 완료 30개 추천 평균 20D +25.62%, SPY 대비 +18.64%p로 후보 유지 | [[2026-05-24-short-long-policy-feb-mar-apr-may-review]] | 단타 관찰 전용 / 장타 검증 중 유지 |
+| 2026-05-24 | 남은 정책 시뮬레이션 이력을 MCP로 재감사함. 기존 결론은 대부분 유지하되, broad query 0건 fallback, SEC acceptance time, filing-aware event risk, 실적/filing 확인 후 과열 감점을 명시함 | [[2026-05-24-mcp-policy-history-reaudit]] | 적용 후보 |
 
 ## 검증 중인 가설
 
@@ -55,6 +58,8 @@ updated_at: 2026-05-24T10:32:00+09:00
 | 실적 서프라이즈는 매수 가산점이 아니라 과열 여부와 함께 해석해야 한다 | [[2026-05-11-to-2026-05-15-mcp-enhanced-validation-review]] | Alpha/SEC/IR 원천을 포함한 독립 기간 3개 이상에서 반복될 때 |
 | 당일 뉴스 촉매와 가격 돌파가 동시에 확인된 후보는 1D 성과가 강할 수 있다 | [[2026-05-18-to-2026-05-22-recent-7d-historical-review]] | 이벤트 당일 종가 추격의 5D 반납 여부와 손실 사례까지 확인할 때 |
 | 뉴스가 가격을 움직이는지, 가격이 뉴스보다 먼저 움직이는지는 뉴스 유형별로 다를 수 있다 | [[2026-05-23-news-price-lead-lag-simulation]] | 3개 이상 독립 기간에서 뉴스 전/후 1D/5D 수익률을 반복 측정할 때 |
+| SEC filing과 공식 IR가 붙어도 고변동 테마주는 event risk를 낮추지 않고, acceptance time과 실적 질을 함께 본다 | [[2026-05-24-mcp-policy-history-reaudit]] | RGTI/QBTS/IONQ/NOK 외 다른 테마 이벤트에서도 반복 확인될 때 |
+| MCP broad query 0건은 정보 부재가 아니라 provider/query coverage gap일 수 있다 | [[2026-05-24-mcp-policy-history-reaudit]] | Alpha/Firecrawl/SEC/Alpaca 간 불일치 사례를 반복 수집할 때 |
 | 개장 초반 QQQ risk-on과 종목 상대강도/돌파가 동시에 확인되면 long-only 단타 후보가 될 수 있다 | [[2026-05-23-march-april-intraday-scalping-simulation]] | 2026년 4월 전체 거래일에 같은 규칙을 고정 적용해 무거래일 포함 기대값이 플러스인지 확인할 때 |
 | 단타 VWAP/breadth 필터만으로는 추격 손실을 막지 못할 수 있다 | [[2026-05-24-short-long-policy-feb-mar-apr-may-review]] | 11:05/11:15 후속 유지, bid/ask spread, 첫 5~15분 adverse move를 포함한 variant에서 개선되는지 확인할 때 |
 
@@ -163,7 +168,9 @@ updated_at: 2026-05-24T10:32:00+09:00
 | overextension-filter-needed | 촉매 후보라도 최근 급등, 과매수, 차익실현 뉴스가 있으면 신규 매수 점수를 낮춰야 한다 | 15 |  |  | AMD/IONQ/NVDA가 2026-05-11~05-14에 되돌림 | 검증 중 | [[2026-05-11-to-2026-05-15-historical-validation-review]] |
 | earnings-beat-overextension-filter | 실적 beat가 확인돼도 발표 후 3~5거래일 누적 상승률이 과도하면 신규 매수 점수를 낮춘다 | 15 | 80.0% | +3.35%p | AMD 2026-05-05 실적 beat 후 2026-05-11~05-12 추격매수 회피가 개선에 기여 | 검증 중 | [[2026-05-11-to-2026-05-15-mcp-enhanced-validation-review]] |
 | mcp-confirmation-gap-penalty | 보강 MCP가 뉴스/filing/macro를 확인하지 못하면 긍정 신호를 추가하지 않고 공백으로 남긴다 | 15 | 80.0% | +3.35%p | Alpha NEWS_SENTIMENT 0건, SEC/FRED 공백을 긍정 신호로 오해하지 않음 | 검증 중 | [[2026-05-11-to-2026-05-15-mcp-enhanced-validation-review]] |
+| mcp-cross-source-fallback | 한 provider의 broad query가 0건이면 개별 ticker, Alpaca news, SEC EDGAR, 공식 IR 순서로 재확인한다 | 5 source groups |  |  | Alpha broad 0건과 개별 ticker 결과 불일치, Firecrawl domain 제한 0건 후 broader query 성공 | 적용 후보 | [[2026-05-24-mcp-policy-history-reaudit]] |
 | 1d-event-catalyst-confirmation | 당일 뉴스 촉매와 가격 돌파가 동시에 확인된 후보는 1D 초과수익이 강할 수 있다 | 12 | 100.0% | +5.63%p | 2026-05-21 양자컴퓨팅 이벤트에 성과가 집중되어 추격매수 위험 큼 | 검증 중 | [[2026-05-18-to-2026-05-22-recent-7d-historical-review]] |
+| filing-aware-event-risk | 8-K/10-Q/6-K/Form 4/144는 filing date가 아니라 acceptance time 기준으로 as-of 사용 가능 여부를 판단하고, 이벤트 리스크 태그로 분리한다 | 5 tickers |  |  | IONQ 2026-05-08 Form 4는 종가 이후 acceptance, RGTI/QBTS 2026-05-21 8-K는 장전 acceptance | 적용 후보 | [[2026-05-24-mcp-policy-history-reaudit]] |
 | news-price-lead-lag | 뉴스 전/후 가격 반응을 분리해 뉴스 주도, 가격 선행, 당일 동행, sell-the-news를 구분한다 | 10 |  |  | 대표 이벤트 중심 수동 분류. 장중 선후관계는 일봉만으로 한계 있음 | 적용 후보 | [[2026-05-23-news-price-lead-lag-simulation]] |
 | sell-the-news-risk | 좋은 뉴스에도 당일 또는 다음날 하락하면 기대 선반영과 차익실현 위험으로 감점한다 | 1 |  |  | NVDA 2026-05-21~05-22 사례 | 검증 중 | [[2026-05-23-news-price-lead-lag-simulation]] |
 | theme-news-follow-through | 정책/테마 뉴스는 당일 급등보다 다음 거래일 유지 여부를 더 높게 평가한다 | 4 |  |  | RGTI/QBTS/IONQ/NOK 2026-05-21~05-22 사례 | 검증 중 | [[2026-05-23-news-price-lead-lag-simulation]] |

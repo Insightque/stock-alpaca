@@ -343,3 +343,30 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 계산 데이터: `wiki/raw/sources/2026-05-24-short-long-policy-simulation-data.json`.
 - 분석 문서: `wiki/analyses/2026-05-24-short-long-policy-feb-mar-apr-may-review.md`.
 - 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-24 11:11 Asia/Seoul] analysis | 2026-05-08 과거 추천 표본 MCP 보강 비교
+
+- 사용자 요청에 따라 이전 시뮬레이션 중 [[2026-04-23-to-2026-05-08-historical-decision-batch-v2]]의 `2026-05-08` 추천 표본을 선택했다.
+- 원래 추천은 `NVDA, IONQ, UNH`였고, 비교 후보로 `AMD, TSLA`를 함께 확인했다.
+- Alpaca MCP 가격/뉴스, SEC EDGAR MCP filings, Alpha Vantage MCP earnings/news sentiment, Firecrawl MCP 공식 IR 검색, Yahoo Finance MCP 보조 정보를 수집했다.
+- MCP 보강 후에도 추천 세트는 바뀌지 않았지만, NVDA/IONQ/UNH 추천 근거와 AMD/TSLA 제외 근거가 더 명확해졌다.
+- 특히 AMD는 2026-05-05 실적 beat와 bullish news에도 2026-05-01→05-08 +26.22% 급등 후 2026-05-08→05-15 -6.83%로 되돌림이 확인되어 `post-earnings-overheat-gate` 후보 규칙을 기록했다.
+- FRED MCP는 도구 목록을 반환하지 않아 매크로 보강 공백으로 기록했다.
+- 원천 기록: `wiki/raw/sources/2026-05-24-mcp-comparison-2026-05-08-sources.md`.
+- 분석 문서: `wiki/analyses/2026-05-24-mcp-comparison-2026-05-08-historical-simulation.md`.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-24 11:25 Asia/Seoul] analysis | 남은 시뮬레이션 이력 MCP 보강 재감사
+
+- 사용자 요청에 따라 2026-05-08 표본 외 남은 과거 추천, 최근 7일, 단타, 장타 정책 시뮬레이션 이력을 MCP 보강 정보로 재검토했다.
+- Alpaca MCP 일봉/뉴스, Alpha Vantage earnings/news sentiment, SEC EDGAR filings, Firecrawl 공식 IR/뉴스룸 검색을 사용했다.
+- 2026-05-11~05-15 MCP 보강 검증은 SEC/IR 확인으로 신뢰도가 올라갔고, `earnings-beat-overextension-filter`와 `mcp-confirmation-gap-penalty` 결론을 유지했다.
+- 2026-05-18~05-22 최근 7일 성과는 RGTI/QBTS/NOK 이벤트가 SEC/IR로 확인됐지만, 성과 집중과 고변동 테마 리스크 때문에 정책 승격 보류 결론을 유지했다.
+- 단타 정책은 MCP 보강이 과거 분봉 손익을 바꾸지 않으며, 뉴스 timestamp, filing acceptance time, bid/ask spread, fill 가능성 없이 자동 주문으로 올리지 않는 결론을 강화했다.
+- 장타 `long-term-quality-momentum-v0`는 유지하되, 실적/filing 확인, theme exposure cap, staged entry 보강 전 자동 주문 승격은 보류했다.
+- Alpha broad `NEWS_SENTIMENT` 0건과 Firecrawl domain-restricted 0건은 정보 부재가 아니라 provider/query gap일 수 있어 fallback 원칙을 정책에 추가했다.
+- FRED MCP tools/list는 응답 지연으로 중단했고 macro MCP operational gap으로 기록했다.
+- 원천 기록: `wiki/raw/sources/2026-05-24-mcp-policy-history-reaudit-sources.md`.
+- 분석 문서: `wiki/analyses/2026-05-24-mcp-policy-history-reaudit.md`.
+- 정책 문서: `wiki/policies/recommendation-policy.md`.
+- 실제 주문, 취소, 포지션 변경은 없었다.
