@@ -5,6 +5,10 @@
 ```json
 {
   "run_id": "YYYY-MM-DD-daily",
+  "schema_version": "1.1",
+  "risk_policy_version": "medium-risk-v1",
+  "recommendation_policy_sha": "sha256:...",
+  "created_at": "YYYY-MM-DDTHH:MM:SSZ",
   "mode": "dry_run",
   "paper": true,
   "market": {
@@ -17,8 +21,31 @@
     "buying_power": 200000.0
   },
   "positions": [],
-  "orders": []
+  "orders": [
+    {
+      "symbol": "SPY",
+      "asset_type": "etf",
+      "asset_status": "active",
+      "asset_tradable": true,
+      "side": "buy",
+      "order_type": "limit",
+      "time_in_force": "day",
+      "qty": 1,
+      "limit_price": 500.0,
+      "reference_price": 500.0,
+      "quote_age_minutes": 0,
+      "quote_captured_at": "YYYY-MM-DDTHH:MM:SSZ",
+      "asset_checked_at": "YYYY-MM-DDTHH:MM:SSZ",
+      "source_refs": ["wiki/raw/sources/YYYY-MM-DD-alpaca-market-data.md"],
+      "rationale": "주문 근거를 한국어로 기록한다."
+    }
+  ],
+  "source_refs": [
+    "wiki/raw/sources/YYYY-MM-DD-alpaca-account-clock.md",
+    "wiki/raw/sources/YYYY-MM-DD-alpaca-market-data.md"
+  ],
+  "manifest_path": "wiki/runs/YYYY-MM-DD-HHMM-run-id.json"
 }
 ```
 
-과거 시점 추천 시뮬레이션에서 생성하는 주문 계획도 같은 형식을 사용하되, 반드시 `mode: "dry_run"`으로 둔다. 각 주문에는 선택적으로 `decision_id`, `historical_asof`, `review_horizons`, `rationale`을 넣어 이후 `wiki/reviews/decisions/` 회고와 연결한다.
+과거 시점 추천 시뮬레이션에서 생성하는 주문 계획도 같은 형식을 사용하되, 반드시 `mode: "dry_run"`으로 둔다. 각 주문에는 `decision_id`, `historical_asof`, `review_horizons`, `rationale`, `quote_captured_at`, `asset_checked_at`, `source_refs`를 넣어 이후 `wiki/reviews/decisions/` 회고와 leakage 점검에 연결한다.

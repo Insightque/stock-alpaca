@@ -24,6 +24,8 @@ This is not a promise of profitable trading. It is a disciplined feedback harnes
 
 `ALPACA_PAPER_TRADE=true` is set in `.env` so this setup uses paper trading unless you deliberately change it.
 
+Optional research MCPs are listed in `.env.example` and `.vscode/mcp.json`. If their keys are absent, record the MCP failure as a data gap in the raw source note and continue with available sources.
+
 ## 간단한 Codex 명령
 
 Codex에게 아래처럼 짧게 말하면 됩니다:
@@ -48,13 +50,15 @@ Codex는 `AGENTS.md`를 따르고, `harness/simple-commands.md`에서 명령을 
 - Long-only, whole-share, day limit orders only.
 - Maximum 80% invested, minimum 20% cash reserve, maximum 20% per ticker.
 - Maximum 10 new orders per run.
-- Orders must pass `scripts/check-risk-policy.py`.
+- Orders must pass `scripts/check-risk-policy.py`; use `--json` for CI and agent-readable results.
+- New order plans must conform to `harness/order-plan.schema.json` and cite source refs for account, market, quote, and asset checks.
 - Orders must be submitted through Alpaca MCP only, never custom REST trading code.
 
 주문 계획 검증:
 
 ```bash
 python3 scripts/check-risk-policy.py harness/examples/order-plan.example.json
+python3 scripts/check-risk-policy.py --json harness/examples/order-plan.example.json
 ```
 
 ## Wiki 구조
@@ -64,6 +68,7 @@ python3 scripts/check-risk-policy.py harness/examples/order-plan.example.json
 - `wiki/portfolio/` account snapshots and order plans.
 - `wiki/reports/daily/` daily trading workflow reports.
 - `wiki/analyses/` cross-ticker and wiki-lint analyses.
+- `wiki/runs/` machine-readable run manifests.
 - `wiki/index.md` content index.
 - `wiki/log.md` append-only activity log.
 

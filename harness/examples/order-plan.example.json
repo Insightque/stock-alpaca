@@ -1,5 +1,9 @@
 {
   "run_id": "2026-05-22-daily",
+  "schema_version": "1.1",
+  "risk_policy_version": "medium-risk-v1",
+  "recommendation_policy_sha": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+  "created_at": "2026-05-22T12:30:00Z",
   "mode": "dry_run",
   "paper": true,
   "market": {
@@ -9,13 +13,16 @@
   "account": {
     "portfolio_value": 100000.0,
     "cash": 100000.0,
-    "buying_power": 200000.0
+    "buying_power": 100000.0,
+    "currency": "USD"
   },
   "positions": [],
   "orders": [
     {
       "symbol": "SPY",
       "asset_type": "etf",
+      "asset_status": "active",
+      "asset_tradable": true,
       "side": "buy",
       "order_type": "limit",
       "time_in_force": "day",
@@ -23,8 +30,16 @@
       "limit_price": 500.0,
       "reference_price": 500.0,
       "quote_age_minutes": 5,
+      "quote_captured_at": "2026-05-22T12:25:00Z",
+      "asset_checked_at": "2026-05-22T12:24:30Z",
+      "source_refs": [
+        "wiki/raw/sources/example-alpaca-snapshot.md"
+      ],
       "rationale": "Example dry-run order for risk-policy validation only."
     }
+  ],
+  "source_refs": [
+    "wiki/raw/sources/example-alpaca-account-clock.md",
+    "wiki/raw/sources/example-alpaca-snapshot.md"
   ]
 }
-

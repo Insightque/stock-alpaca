@@ -6,7 +6,9 @@ Validate each plan with:
 
 ```bash
 python3 scripts/check-risk-policy.py wiki/portfolio/order-plans/YOUR-PLAN.json
+python3 scripts/check-risk-policy.py --json wiki/portfolio/order-plans/YOUR-PLAN.json
 ```
 
-Only submit orders through Alpaca MCP after validation passes.
+New plans use `harness/order-plan.schema.json` and must include provenance fields such as `schema_version`, `risk_policy_version`, `recommendation_policy_sha`, `created_at`, root `source_refs`, and per-order `quote_captured_at`, `asset_checked_at`, and `source_refs`.
 
+Only submit orders through Alpaca MCP after validation passes.

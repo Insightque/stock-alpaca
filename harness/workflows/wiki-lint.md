@@ -23,6 +23,7 @@ Health-check the llm-wiki for stale, missing, contradictory, orphaned, or uncite
 - Claims marked current are not older than 7 calendar days unless explicitly labeled long-term.
 - Contradictions are listed as contested claims with source references.
 - Orphan pages are either linked from index or marked archived.
+- New historical simulation artifacts pass `scripts/check-leakage.py` or have a logged reason for not running it.
 
 ## Procedure
 

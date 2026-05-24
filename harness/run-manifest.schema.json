@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/stock-alpaca/run-manifest.schema.json",
+  "title": "Trading Harness Run Manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "run_id",
+    "mode",
+    "paper",
+    "created_at",
+    "git_commit",
+    "prompt_file_sha",
+    "risk_policy_version",
+    "recommendation_policy_sha",
+    "schema_version",
+    "mcp_servers_used",
+    "mcp_failures",
+    "data_cutoff_time",
+    "market_clock_checked_at",
+    "source_refs",
+    "risk_check_result"
+  ],
+  "properties": {
+    "run_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["dry_run", "submit", "research", "review", "wiki_lint"]
+    },
+    "paper": {
+      "type": "boolean",
+      "const": true
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "git_commit": {
+      "type": "string",
+      "minLength": 1
+    },
+    "prompt_file_sha": {
+      "type": "string",
+      "minLength": 1
+    },
+    "risk_policy_version": {
+      "type": "string",
+      "const": "medium-risk-v1"
+    },
+    "recommendation_policy_sha": {
+      "type": "string",
+      "minLength": 1
+    },
+    "schema_version": {
+      "type": "string",
+      "const": "1.0"
+    },
+    "mcp_servers_used": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "mcp_failures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["server", "reason"],
+        "properties": {
+          "server": {
+            "type": "string"
+          },
+          "reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "data_cutoff_time": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "market_clock_checked_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "source_refs": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "order_plan_path": {
+      "type": "string"
+    },
+    "risk_check_result": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "submitted_order_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "post_trade_check_path": {
+      "type": "string"
+    }
+  }
+}

@@ -3,6 +3,26 @@
     "alpaca": {
       "type": "stdio",
       "command": "${workspaceFolder}/scripts/alpaca-mcp.sh"
+    },
+    "sec-edgar": {
+      "type": "stdio",
+      "command": "${workspaceFolder}/scripts/mcp-sec-edgar.sh"
+    },
+    "yahoo-finance": {
+      "type": "stdio",
+      "command": "${workspaceFolder}/scripts/mcp-yahoo-finance.sh"
+    },
+    "alpha-vantage": {
+      "type": "stdio",
+      "command": "${workspaceFolder}/scripts/mcp-alpha-vantage.sh"
+    },
+    "fred": {
+      "type": "stdio",
+      "command": "${workspaceFolder}/scripts/mcp-fred.sh"
+    },
+    "firecrawl": {
+      "type": "stdio",
+      "command": "${workspaceFolder}/scripts/mcp-firecrawl.sh"
     }
   }
 }

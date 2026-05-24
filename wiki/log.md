@@ -304,3 +304,42 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 계산 데이터: `wiki/raw/sources/2026-05-23-intraday-policy-candidates-simulation-data.json`.
 - 분석 문서: `wiki/analyses/2026-05-23-intraday-policy-candidates-simulation.md`.
 - 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-23 20:20 Asia/Seoul] analysis | 장타 정책 2~3월 학습 및 4~5월 검증
+
+- 사용자 요청에 따라 장타 투자 목적의 종목 선별 정책을 2026년 2~3월 13개 기준일로 학습하고, 2026년 4~5월 10개 기준일로 검증했다.
+- Alpaca Market Data API IEX `1Day` bars를 read-only로 조회했고 실제 주문/취소/포지션 변경은 없었다.
+- 테스트 variants는 `balanced_top3`, `quality_top5`, `momentum_top3`다.
+- 학습 결과 `quality_top5`는 65개 추천, 20D 절대 hit 37/65, SPY hit 42/65, 평균 20D +7.18%, 평균 SPY 대비 +6.77%p, 평균 불리 이동 -8.25%였다.
+- 검증 결과 `quality_top5`는 50개 추천 중 20D 완료 30개, 20D 절대 hit 27/30, SPY hit 24/30, 평균 20D +25.62%, 평균 SPY 대비 +18.64%p였다.
+- `balanced_top3`와 `momentum_top3`는 검증 수익률이 더 높았지만 집중도와 학습 구간 불리 이동을 고려해 장타 기본 후보는 `quality_top5`로 판단했다.
+- 새 후보 정책 `long-term-quality-momentum-v0`를 `paper-only long-term candidate`로 정책에 반영했다.
+- 5월 기준일 일부는 20D 결과가 아직 없으므로 5D/10D 보조값으로만 기록했다.
+- 원천 기록: `wiki/raw/sources/2026-05-23-long-term-feb-mar-apr-may-sources.md`.
+- 계산 데이터: `wiki/raw/sources/2026-05-23-long-term-feb-mar-apr-may-simulation-data.json`.
+- 분석 문서: `wiki/analyses/2026-05-23-long-term-feb-mar-apr-may-simulation.md`.
+
+## [2026-05-24 09:45 Asia/Seoul] workflow | Request.md 하네스 검증 레이어 반영
+
+- `Request.md`의 개선 제안 중 리스크 정책 단일 소스화, schema 검증, 구조화된 risk-check 결과, 테스트/CI, MCP 설정 정합성, run manifest, leakage checker를 우선 반영했다.
+- `harness/risk-policy.yaml`을 추가하고 `scripts/check-risk-policy.py`가 YAML 정책과 `harness/order-plan.schema.json`을 함께 검증하도록 수정했다.
+- 신규 order plan은 `schema_version`, `risk_policy_version`, `recommendation_policy_sha`, `created_at`, root/per-order `source_refs`, `quote_captured_at`, `asset_checked_at`을 포함하도록 템플릿과 워크플로우를 갱신했다.
+- `scripts/check-risk-policy.py --json` 출력, non-finite number 거부, bool qty 거부, submit stale quote error/dry-run stale quote warning, same-run sell proceeds 의존 금지를 추가했다.
+- `scripts/check-leakage.py`, `harness/run-manifest.schema.json`, `harness/templates/run-manifest.json`, `wiki/runs/README.md`, 단위 테스트, CI, pre-commit 설정을 추가했다.
+- `.vscode/mcp.json`과 `.env.example`을 보강 MCP 기준에 맞춰 갱신했고, `scripts/alpaca-mcp.sh`는 `ALPACA_PAPER_TRADE=true`가 아니면 중단하도록 강화했다.
+- 검증: `python3 -m unittest discover -s tests` 17개 테스트 통과, `python3 scripts/check-risk-policy.py --json harness/examples/order-plan.example.json`, `python3 -m py_compile ...`, `git diff --check` 통과. 로컬 `ruff` 모듈은 미설치라 실행하지 못했고 CI에서 설치 후 실행하도록 구성했다.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-24 10:32 Asia/Seoul] analysis | 단타/장타 현재 정책 2~3월 시뮬레이션 및 4~5월 검증
+
+- 사용자 요청에 따라 현재 단타 정책 `intraday-rs-breakout-v0`, `intraday-rs-breadth-vwap-v1`과 장타 정책 `long-term-quality-momentum-v0`를 재점검했다.
+- Alpaca MCP `get_stock_bars`로 2026년 2~3월 QQQ/SMH 일봉 regime을 확인했고, 단타 계산은 read-only Alpaca IEX 1분봉으로 수행했다.
+- 단타 학습 날짜는 2026-02-03, 02-12, 02-20, 03-03, 03-09, 03-19, 03-26, 03-31이다. 4~5월 검증 날짜는 2026-04-01, 04-09, 04-14, 04-17, 04-29, 05-04, 05-08, 05-13, 05-21, 05-22다.
+- 단타 2~3월 학습은 v1 top3 기준 8일 중 active 2일, 6거래, hit 50.0%, 가상 P/L +$300.00이었다.
+- 단타 4~5월 검증은 v1 top3 기준 active 1일, 3거래 모두 stop, 가상 P/L -$300.00이었다. v0 top3도 9거래 중 7 stop, -$724.07로 자동 주문 부적합을 강화했다.
+- 장타 `quality_top5`는 2~3월 65개 추천 평균 20D +7.18%, SPY 초과 +6.77%p였고, 4~5월 검증 완료 30개 추천 평균 20D +25.62%, SPY 초과 +18.64%p였다.
+- 정책 결론: 단타 v1은 관찰 전용으로 낮추고 11:05~11:15 후속 유지, bid/ask spread, fill 가능성, 뉴스 timestamp를 추가한다. 장타 `quality_top5`는 유지하되 실적/filing/valuation/theme exposure 보강 전 자동 주문으로 승격하지 않는다.
+- 원천 기록: `wiki/raw/sources/2026-05-24-short-long-policy-simulation-sources.md`.
+- 계산 데이터: `wiki/raw/sources/2026-05-24-short-long-policy-simulation-data.json`.
+- 분석 문서: `wiki/analyses/2026-05-24-short-long-policy-feb-mar-apr-may-review.md`.
+- 실제 주문, 취소, 포지션 변경은 없었다.

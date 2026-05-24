@@ -1,6 +1,6 @@
 ---
 id: recommendation-policy
-updated_at: 2026-05-23T19:25:00+09:00
+updated_at: 2026-05-24T10:32:00+09:00
 ---
 
 # 추천 정책
@@ -17,6 +17,7 @@ updated_at: 2026-05-23T19:25:00+09:00
 - 과거 thesis를 사후에 덮어쓰지 않고, 별도 회고 문서나 날짜가 있는 회고 섹션으로 남긴다.
 - 뉴스가 긍정적이어도 뉴스 전 3D/5D 가격이 이미 크게 올랐으면 선반영 가능성으로 감점한다.
 - 테마/정책 뉴스는 당일 급등 추격보다 다음 거래일 유지 여부를 더 중요하게 본다.
+- 단타는 11:00 ET 신호만으로 자동 주문하지 않고, 11:05~11:15 후속 유지와 실제 bid/ask/fill 가능성을 확인하기 전까지 관찰 전용으로 둔다.
 - 분석 결과 문서에 계산 지표나 정책학습 지표가 포함되면, 문서 하단에 `지표 설명` 섹션을 추가해 각 지표의 의미와 해석 방법을 쉬운 한국어로 설명한다.
 
 ## 회고에서 나온 정책 변경
@@ -36,6 +37,8 @@ updated_at: 2026-05-23T19:25:00+09:00
 | 2026-05-23 | 1시간봉 timestamp를 보정하고 1분봉으로 stop/take 순서를 검증함. v0는 플러스였지만 confirmation variants가 안정적으로 개선하지 못해 자동 주문 부적합 유지 | [[2026-05-23-intraday-scalping-minute-validation]] | paper-only manual candidate |
 | 2026-05-23 | 단타 성과 개선용 추가 필터를 검증함. 시장 VWAP, SMH VWAP, 종목 VWAP, 반도체 breadth 4개 이상을 결합한 v1이 v0보다 평균 거래 손익과 hit rate를 개선함 | [[2026-05-23-intraday-scalping-feature-filter-simulation]] | paper-only manual candidate |
 | 2026-05-23 | 기존 v0/v1에서 덜 다룬 VWAP 평균회귀·장중 반전·거래량 확인 모멘텀을 검증함. 장초반 눌림 후 VWAP 회복 후보는 플러스였지만 v1보다 약했고, 거래량 확인 모멘텀은 폐기 후보로 분류함 | [[2026-05-23-intraday-policy-candidates-simulation]] | paper-only secondary candidate |
+| 2026-05-23 | 장타 투자 목적의 20D 보유 정책을 2026년 2~3월 13개 기준일로 학습하고 4~5월 10개 기준일로 검증함. `quality_top5`가 학습/검증 모두 플러스이고 단순 모멘텀보다 drawdown이 낮아 장타 후보 정책으로 기록함 | [[2026-05-23-long-term-feb-mar-apr-may-simulation]] | paper-only long-term candidate |
+| 2026-05-24 | 현재 단타/장타 정책을 같은 구조로 재점검함. 단타 v1은 4~5월 검증 1 active day/3거래 모두 stop으로 자동 주문 부적합이 강화됐고, 장타 `quality_top5`는 검증 완료 30개 추천 평균 20D +25.62%, SPY 대비 +18.64%p로 후보 유지 | [[2026-05-24-short-long-policy-feb-mar-apr-may-review]] | 단타 관찰 전용 / 장타 검증 중 유지 |
 
 ## 검증 중인 가설
 
@@ -53,6 +56,7 @@ updated_at: 2026-05-23T19:25:00+09:00
 | 당일 뉴스 촉매와 가격 돌파가 동시에 확인된 후보는 1D 성과가 강할 수 있다 | [[2026-05-18-to-2026-05-22-recent-7d-historical-review]] | 이벤트 당일 종가 추격의 5D 반납 여부와 손실 사례까지 확인할 때 |
 | 뉴스가 가격을 움직이는지, 가격이 뉴스보다 먼저 움직이는지는 뉴스 유형별로 다를 수 있다 | [[2026-05-23-news-price-lead-lag-simulation]] | 3개 이상 독립 기간에서 뉴스 전/후 1D/5D 수익률을 반복 측정할 때 |
 | 개장 초반 QQQ risk-on과 종목 상대강도/돌파가 동시에 확인되면 long-only 단타 후보가 될 수 있다 | [[2026-05-23-march-april-intraday-scalping-simulation]] | 2026년 4월 전체 거래일에 같은 규칙을 고정 적용해 무거래일 포함 기대값이 플러스인지 확인할 때 |
+| 단타 VWAP/breadth 필터만으로는 추격 손실을 막지 못할 수 있다 | [[2026-05-24-short-long-policy-feb-mar-apr-may-review]] | 11:05/11:15 후속 유지, bid/ask spread, 첫 5~15분 adverse move를 포함한 variant에서 개선되는지 확인할 때 |
 
 ## 시간별 단타 정책 후보
 
@@ -77,6 +81,8 @@ updated_at: 2026-05-23T19:25:00+09:00
 - 수익 극대화형은 top3, 안정성 우선형은 top2로 추적한다.
 - 자동 주문은 금지하고 실시간 paper dry-run에서 v0와 병렬 비교한다.
 
+2026-05-24 검증에서는 4~5월 10개 표본 중 v1이 2026-04-01 하루만 active였고, 3개 거래가 모두 stop이었다. 따라서 v1은 자동 주문 후보가 아니라 관찰 전용이며, 최소한 11:05~11:15 후속 유지와 실제 spread/fill 확인이 붙기 전까지 주문 계획에 넣지 않는다.
+
 `intraday-pullback-vwap-reclaim-v0`은 v1 신호가 없을 때 관찰할 보조 후보 정책이다.
 
 - 09:30~10:59 ET에 후보 종목이 당일 open 대비 최소 -1.0% 이상 눌려야 한다.
@@ -89,6 +95,25 @@ updated_at: 2026-05-23T19:25:00+09:00
 - 2026-03-02~2026-05-22 59거래일 보조 스캔에서 플러스였지만 v1보다 약하므로 자동 주문은 금지한다.
 
 `volume-confirmed-momentum`은 현재 폐기 후보로 둔다. 2026-03-02~2026-05-22 스캔에서 6거래 모두 수익 실패, 5 stop, P/L -$425.87이었다.
+
+## 장타 정책 후보
+
+`long-term-quality-momentum-v0`는 20거래일 이상 보유를 전제로 한 장타 후보 선별 정책이다.
+
+- 후보별 20D, 40D, 60D 수익률을 계산한다.
+- 20D 수익률에서 SPY/QQQ 20D 수익률을 뺀 상대강도를 계산한다.
+- 최근 60D 최대낙폭이 -30%보다 깊으면 제외한다.
+- 최근 20D 일간 변동성이 7.0% 이상이면 제외한다.
+- 60D 수익률이 -10%보다 낮으면 제외한다.
+- 20D 수익률이 과도하게 높은 후보는 추격 위험으로 추가 감점한다.
+- 점수 상위 5개를 같은 비중 또는 종목당 최대 15~20% 상한으로 분산한다.
+- 2026년 2~3월 학습에서는 65개 추천, 평균 20D +7.18%, 평균 SPY 대비 +6.77%p였다.
+- 2026년 4~5월 검증에서는 50개 추천 중 20D 완료 30개, 평균 20D +25.62%, 평균 SPY 대비 +18.64%p였다.
+- 5월 기준일 일부는 20D가 아직 미완료이므로 자동 주문 정책으로 승격하지 않는다.
+- 다음 검증은 실적, 밸류에이션, SEC filing, 뉴스 촉매, 포트폴리오 상관 노출을 추가한 보강 버전으로 수행한다.
+- 2026-05-24 재점검에서도 4~5월 검증 완료 30개 추천은 평균 20D +25.62%, 평균 SPY 초과 +18.64%p였다. 다만 AMD/NOK 성과 집중과 5월 20D 미완료가 남아 있어 자동 주문 정책으로 승격하지 않는다.
+
+`momentum_top3`식 단순 20D 모멘텀 정책은 보조 비교군으로만 둔다. 검증 성과는 좋았지만 2~3월 학습에서 평균 20D +1.19%, 평균 20D 불리 이동 -11.20%로 장타 목적에 부적합했다.
 
 ### 실시간 paper dry-run 운영 원칙
 
@@ -146,8 +171,10 @@ updated_at: 2026-05-23T19:25:00+09:00
 | intraday-rs-breakout-v0 | 개장 초반 QQQ risk-on과 종목 상대강도/돌파가 동시에 확인된 후보만 long 단타로 진입한다. 1시간봉 timestamp 보정 후 11:00 ET 이후 진입으로 해석한다 | 28 trading days / 34 trades | 55.9% trade hit | +$1,410.00 on $10k per trade simulation | 1분봉 검증상 플러스지만 confirmation variants가 개선 실패. IEX feed/슬리피지/fill 불확실성 남음 | paper-only manual candidate | [[2026-05-23-march-april-intraday-scalping-simulation]], [[2026-05-23-march-april-intraday-scalping-alt-simulation]], [[2026-05-23-random-intraday-scalping-5x-simulation]], [[2026-05-23-intraday-scalping-minute-validation]] |
 | intraday-rs-breadth-vwap-v1 | v0에 QQQ/SMH/종목 VWAP 확인과 반도체 breadth 4개 이상 조건을 추가한다 | 28 trading days / 27 trades | 59.3% trade hit | +$1,547.25 on $10k per trade simulation | 거래 수 감소. IEX VWAP, slippage, fill 가능성 미반영. 독립 실시간 검증 필요 | paper-only manual candidate | [[2026-05-23-intraday-scalping-feature-filter-simulation]] |
 | intraday-rs-breadth-vwap-v1-top2 | v1 조건을 만족한 후보 중 상위 2개만 진입한다 | 28 trading days / 18 trades | 66.7% trade hit | +$1,395.55 on $10k per trade simulation | 총손익은 v1 top3보다 낮지만 평균 거래 손익은 높음 | paper-only manual candidate | [[2026-05-23-intraday-scalping-feature-filter-simulation]] |
+| intraday-followthrough-filter-needed | 11:00 ET 돌파/VWAP/breadth 조건만으로는 4~5월 검증 손실을 막지 못했다. 11:05~11:15 후속 유지와 실제 spread/fill 확인을 추가한다 | validation 10 days / v1 3 trades | 0.0% trade hit | -$300.00 on $10k per trade simulation | 2026-04-01 TSLA/AMD/LRCX 모두 stop. v0도 9거래 중 7 stop | 적용 후보 | [[2026-05-24-short-long-policy-feb-mar-apr-may-review]] |
 | intraday-pullback-vwap-reclaim-v0 | 장초반 -1% 이상 눌린 종목이 11:00 ET에 VWAP 위로 회복하고 QQQ/SMH도 VWAP 위일 때만 long 진입 후보로 본다 | train 5 days / 6 trades; validation 5 days / 10 trades; 59-day scan / 38 trades | validation 60.0%; 59-day scan 55.3% | validation +$222.57; 59-day scan +$822.98 on $10k per trade simulation | v1보다 평균 거래 손익이 낮고 2026-04-01처럼 동시 stop 가능. 실제 spread/fill 미반영 | paper-only secondary candidate | [[2026-05-23-intraday-policy-candidates-simulation]] |
 | volume-confirmed-momentum | 10시대 상승이 거래량 증가와 같이 나타날 때 추격한다 | 59-day scan / 6 trades | 0.0% | -$425.87 on $10k per trade simulation | 가격+거래량 추격이 모두 실패. stop 5건, EOD 손실 1건 | rejected | [[2026-05-23-intraday-policy-candidates-simulation]] |
+| long-term-quality-momentum-v0 | 20D/40D/60D 추세, SPY/QQQ 상대강도, 60D drawdown, 20D 변동성, 거래량 변화를 함께 점수화해 top5로 분산한다 | train 13 as-of days / 65 recommendations; validation 10 as-of days / 50 recommendations | train 20D SPY hit 42/65; validation completed 20D SPY hit 24/30 | train avg 20D excess +6.77%p; validation completed avg 20D excess +18.64%p | 5월 기준일 일부 20D 미완료. 가격 기반만 사용해 실적/밸류에이션/filing 미반영 | paper-only long-term candidate | [[2026-05-23-long-term-feb-mar-apr-may-simulation]] |
 
 ## 폐기하거나 완화한 규칙
 

@@ -1,0 +1,26 @@
+{
+  "run_id": "YYYY-MM-DD-HHMM-run-id",
+  "mode": "dry_run",
+  "paper": true,
+  "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "git_commit": "git-rev-parse-HEAD-or-dirty",
+  "prompt_file_sha": "sha256:...",
+  "risk_policy_version": "medium-risk-v1",
+  "recommendation_policy_sha": "sha256:...",
+  "schema_version": "1.0",
+  "mcp_servers_used": [
+    "alpaca"
+  ],
+  "mcp_failures": [],
+  "data_cutoff_time": "YYYY-MM-DDTHH:MM:SSZ",
+  "market_clock_checked_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "source_refs": [
+    "wiki/raw/sources/YYYY-MM-DD-alpaca-account-clock.md"
+  ],
+  "order_plan_path": "wiki/portfolio/order-plans/YYYY-MM-DD-daily.json",
+  "risk_check_result": {
+    "status": "PASS"
+  },
+  "submitted_order_ids": [],
+  "post_trade_check_path": ""
+}

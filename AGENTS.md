@@ -55,7 +55,7 @@ Use actual sub-agents when the runtime and user instruction allow parallel agent
 
 ## Risk Policy
 
-The default policy is medium risk:
+The default policy is medium risk. The machine-readable source of truth is `harness/risk-policy.yaml`; `harness/risk-policy.md` explains the same values for humans.
 
 - Maximum invested after new orders: 80% of account portfolio value.
 - Minimum cash reserve after new buy orders: 20% of account portfolio value.
@@ -65,12 +65,15 @@ The default policy is medium risk:
 - Allowed order shape: long-only, whole-share, day limit orders.
 - Quote freshness: for submit-mode runs, use quote/snapshot data captured within 20 minutes.
 - Limit guardrail: buy/sell limit prices must be within 0.5% of the recorded reference price.
+- Do not rely on same-run sell proceeds to fund buy orders.
 
 Always create or update an order-plan JSON before submitting orders, then run:
 
 ```bash
 python3 scripts/check-risk-policy.py path/to/order-plan.json
 ```
+
+Use `python3 scripts/check-risk-policy.py --json path/to/order-plan.json` when a workflow or CI needs a machine-readable result. New order plans must conform to `harness/order-plan.schema.json` and include `schema_version`, `risk_policy_version`, `recommendation_policy_sha`, `created_at`, `quote_captured_at`, `asset_checked_at`, and `source_refs`.
 
 If validation fails, do not submit orders. Write skipped orders and reasons into the daily report.
 
@@ -86,6 +89,7 @@ If validation fails, do not submit orders. Write skipped orders and reasons into
 - `wiki/reviews/decisions/`: historical recommendation reviews, named `YYYY-MM-DD-historical-review.md`.
 - `wiki/policies/recommendation-policy.md`: living policy distilled from trade reviews. Update it only with evidence-backed lessons, not one-off hindsight.
 - `wiki/analyses/`: reusable cross-ticker or thematic analyses.
+- `wiki/runs/`: machine-readable run manifests for meaningful runs.
 - `wiki/index.md`: content-oriented catalog. Read it first and update it after each run.
 - `wiki/log.md`: append-only chronological log. Add a new `## [YYYY-MM-DD HH:MM TZ] type | title` entry for every run.
 
@@ -119,6 +123,7 @@ Use wiki links such as `[[AAPL]]`, `[[portfolio-current]]`, and `[[2026-05-22]]`
 - The default historical universe is symbols that appeared in the as-of wiki state, raw sources, order plans, portfolio records, or watchlist records. Current watchlists are not valid strict-mode evidence unless they were captured at the historical point.
 - Historical simulations may create only dry-run order plans. They must never call Alpaca order submission, replacement, cancellation, or position-closing tools.
 - Historical reviews may use later prices and benchmark returns, but only in separate review documents. Do not edit the original simulation to include future outcomes.
+- Run `scripts/check-leakage.py` on new or materially changed historical simulation/order-plan artifacts when practical; if it cannot run, record the reason in `wiki/log.md`.
 - Use accumulated review evidence to update `wiki/policies/recommendation-policy.md` with `evidence_count`, `hit_rate`, `avg_excess_return`, and status. Single examples stay as hypotheses unless impact is clearly material.
 
 ## Trading Execution Contract

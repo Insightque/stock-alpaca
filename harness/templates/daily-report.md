@@ -27,8 +27,11 @@ status: draft|completed|blocked
 ## 리스크 게이트
 
 - 결과:
-- 정책 파일: `harness/risk-policy.md`
+- 정책 파일: `harness/risk-policy.yaml`, `harness/risk-policy.md`
+- 정책 버전:
+- JSON Schema:
 - 주문 계획:
+- Run manifest:
 
 ## 제출된 주문
 

@@ -1,0 +1,24 @@
+version: medium-risk-v1
+portfolio_limits:
+  max_invested_ratio: 0.80
+  min_cash_ratio: 0.20
+  max_ticker_ratio: 0.20
+order_limits:
+  max_orders_per_run: 10
+  max_quote_age_minutes_submit: 20.0
+  quote_age_tolerance_minutes: 0.5
+  limit_guardrail_ratio: 0.005
+  allowed_asset_types:
+    - stock
+    - etf
+  allowed_sides:
+    - buy
+    - sell
+  required_order_type: limit
+  required_time_in_force: day
+  whole_share_orders: true
+  long_only: true
+  disallow_buy_reliance_on_same_run_sell_proceeds: true
+validation:
+  reject_non_finite_numbers: true
+  schema_path: harness/order-plan.schema.json

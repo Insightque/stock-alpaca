@@ -18,4 +18,11 @@ Start with these workflows:
 Safety lives in two places:
 
 - `AGENTS.md` is the operating contract that Codex should follow.
+- `harness/risk-policy.yaml` is the machine-readable source of truth for numeric limits.
+- `harness/order-plan.schema.json` defines required order-plan provenance fields.
 - `scripts/check-risk-policy.py` validates proposed order-plan JSON before any paper order is submitted through Alpaca MCP.
+
+Provenance and leakage controls:
+
+- `harness/templates/run-manifest.json` and `harness/run-manifest.schema.json` define run manifests for `wiki/runs/`.
+- `scripts/check-leakage.py` scans historical simulation artifacts for obvious future-data leakage.

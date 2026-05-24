@@ -47,6 +47,8 @@
 - [[2026-05-23-intraday-scalping-minute-validation]] - 1시간봉 timestamp 보정과 1분봉 stop/take 순서 검증을 반영한 단타 정책 다음 단계 분석.
 - [[2026-05-23-intraday-scalping-feature-filter-simulation]] - VWAP, 섹터 breadth, opening range, gap filter를 단타 정책에 적용해 성과 개선 여부를 검증한 분석.
 - [[2026-05-23-intraday-policy-candidates-simulation]] - 기존 v0/v1에서 덜 다룬 VWAP 평균회귀, 장중 반전, 거래량 확인 모멘텀 후보를 학습/검증 표본으로 테스트한 분석.
+- [[2026-05-23-long-term-feb-mar-apr-may-simulation]] - 2026년 2~3월 13개 기준일로 장타 정책을 학습하고 4~5월 10개 기준일로 검증한 분석.
+- [[2026-05-24-short-long-policy-feb-mar-apr-may-review]] - 현재 단타/장타 정책을 2~3월 시뮬레이션과 4~5월 검증으로 재점검한 회고.
 
 ## 과거 시점 시뮬레이션
 
@@ -76,6 +78,14 @@
 - `harness/workflows/intraday-paper-dry-run.md` - `intraday-rs-breakout-v0`/`intraday-rs-breadth-vwap-v1` 실시간 주문 없는 paper dry-run 운영안.
 - `scripts/evaluate-intraday-dry-run.py` - 캡처된 1분봉 JSON으로 11:00 ET v0/v1 신호와 fill 관찰 필드를 생성하는 로컬 헬퍼. Alpaca API 호출 없음.
 
+## 운영/검증 도구
+
+- `harness/risk-policy.yaml` - 주문 리스크 한도의 단일 machine-readable source of truth.
+- `harness/order-plan.schema.json` - 신규 order-plan JSON의 필수 메타데이터와 source refs 스키마.
+- `scripts/check-risk-policy.py` - schema 검증, YAML 리스크 정책 검증, `--json` 구조화 결과 출력.
+- `scripts/check-leakage.py` - 과거 추천 시뮬레이션과 order plan의 미래 정보 누출 점검.
+- `harness/run-manifest.schema.json` / `wiki/runs/` - run provenance manifest 구조와 저장 위치.
+
 ## 원천 자료
 
 - [[2026-05-22-alpaca-account-clock]] - 계좌, 시장 시계, 포지션, 주문, watchlist.
@@ -98,3 +108,5 @@
 - [[2026-05-23-intraday-scalping-minute-validation-sources]] - 단타 정책 분봉 검증용 Alpaca `1Hour`/`1Min` market data 원천.
 - [[2026-05-23-intraday-scalping-feature-filter-sources]] - 단타 성과 개선용 VWAP, breadth, opening range, gap filter 검증 원천.
 - [[2026-05-23-intraday-policy-candidates-sources]] - 미검토 단타 정책 후보 조사와 Alpaca IEX 1분봉 시뮬레이션 원천.
+- [[2026-05-23-long-term-feb-mar-apr-may-sources]] - 2026년 2~3월 장타 정책 학습 및 4~5월 검증용 Alpaca IEX 일봉 원천.
+- [[2026-05-24-short-long-policy-simulation-sources]] - 현재 단타/장타 정책 재시뮬레이션용 Alpaca MCP 날짜 확인, IEX 1분봉/일봉 계산 원천.

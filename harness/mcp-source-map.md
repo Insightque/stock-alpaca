@@ -4,6 +4,8 @@
 
 ## 등록된 MCP 서버
 
+`.vscode/mcp.json`에는 아래 래퍼들이 모두 등록되어 있다. Alpaca는 필수이고, 보강 MCP는 필요한 환경 변수가 없으면 실패를 데이터 공백으로 기록한 뒤 가능한 원천으로 계속 진행한다.
+
 | MCP | 실행 래퍼 | 주요 목적 | 필요 환경 변수 | 사용 상태 |
 | --- | --- | --- | --- | --- |
 | `alpaca` | `scripts/alpaca-mcp.sh` | 계좌, 주문, 포지션, watchlist, 가격, 뉴스, corporate action, calendar | Alpaca paper 키 | 기본 사용 |
@@ -34,6 +36,7 @@
 - SEC EDGAR는 API 키 대신 `SEC_EDGAR_USER_AGENT`가 필요하다. 예: `stock-alpaca/0.1 contact@example.com`.
 - 키 값을 로그, raw source, 커밋, 터미널 출력에 남기지 않는다.
 - 키가 없으면 해당 MCP를 건너뛰고 `데이터 공백`에 명시한다.
+- `ALPACA_PAPER_TRADE`가 없거나 `true`가 아니면 `scripts/alpaca-mcp.sh`는 실행을 중단한다.
 
 ## raw source 기록 형식
 

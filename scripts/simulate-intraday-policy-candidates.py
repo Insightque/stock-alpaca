@@ -97,7 +97,12 @@ def fetch_bars(root: Path, symbols: tuple[str, ...], day: date) -> dict[str, lis
         f"APCA-API-SECRET-KEY: {secret}",
         f"https://data.alpaca.markets/v2/stocks/bars?{params}",
     ]
-    completed = subprocess.run(cmd, check=True, capture_output=True, text=True)
+    completed = subprocess.run(cmd, check=False, capture_output=True, text=True)
+    if completed.returncode != 0:
+        raise SystemExit(
+            f"Alpaca market data fetch failed for {day.isoformat()} "
+            f"with curl exit {completed.returncode}; credentials were not printed."
+        )
     payload = json.loads(completed.stdout)
     return {
         symbol.upper(): [parse_bar(row) for row in rows]

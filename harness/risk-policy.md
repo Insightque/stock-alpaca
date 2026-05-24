@@ -2,6 +2,10 @@
 
 This policy is intentionally simple and conservative enough for automated paper trading while still allowing meaningful allocation experiments.
 
+`harness/risk-policy.yaml` is the machine-readable source of truth. This Markdown page explains the same policy for humans; if a numeric limit changes, update the YAML first and then this page.
+
+Current policy version: `medium-risk-v1`.
+
 ## Portfolio Limits
 
 - Keep at least 20% of portfolio value in cash after new buy orders.
@@ -16,6 +20,26 @@ This policy is intentionally simple and conservative enough for automated paper 
 - Allowed order type: day limit orders only.
 - Limit prices must be within 0.5% of the recorded reference price.
 - Submit-mode quote data must be no older than 20 minutes.
+- Buy orders must fit within current cash without relying on sell proceeds from the same run.
+- Submit-mode orders must include `client_order_id`, and duplicate same-run orders with the same ticker, side, quantity, and limit are rejected.
+
+## Order Plan Metadata
+
+New order plans must conform to `harness/order-plan.schema.json` and include provenance fields:
+
+- `schema_version`
+- `risk_policy_version`
+- `recommendation_policy_sha`
+- `created_at`
+- root-level `source_refs`
+- per-order `quote_captured_at`, `asset_checked_at`, and `source_refs`
+
+Validate plans with human output or JSON output:
+
+```bash
+python3 scripts/check-risk-policy.py wiki/portfolio/order-plans/YOUR-PLAN.json
+python3 scripts/check-risk-policy.py --json wiki/portfolio/order-plans/YOUR-PLAN.json
+```
 
 ## Failure Policy
 
@@ -25,4 +49,3 @@ If a proposed order plan violates any rule, do not submit orders. Update the rel
 - The failing rule.
 - The data source used for the decision.
 - The next question or data gap to resolve.
-

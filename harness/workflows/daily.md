@@ -82,11 +82,13 @@ For any report or cross-ticker analysis that includes calculated metrics, add a 
    - Flag contradictions or stale claims instead of erasing them silently.
 
 7. Portfolio/Risk Agent
-   - Propose target allocations using the medium risk policy in `harness/risk-policy.md`.
+   - Propose target allocations using the medium risk policy in `harness/risk-policy.yaml` and `harness/risk-policy.md`.
    - Keep at least 20% cash reserve and at most 80% invested.
    - Keep each ticker at or below 20% of portfolio value.
    - Create a concrete JSON order plan in `wiki/portfolio/order-plans/YYYY-MM-DD-daily.json`.
-   - Validate it with `python3 scripts/check-risk-policy.py wiki/portfolio/order-plans/YYYY-MM-DD-daily.json`.
+   - Include `schema_version`, `risk_policy_version`, `recommendation_policy_sha`, `created_at`, root `source_refs`, and per-order `quote_captured_at`, `asset_checked_at`, `source_refs`.
+   - Validate it with `python3 scripts/check-risk-policy.py --json wiki/portfolio/order-plans/YYYY-MM-DD-daily.json`.
+   - Create a run manifest in `wiki/runs/YYYY-MM-DD-HHMM-run-id.json` using `harness/templates/run-manifest.json`.
 
 8. Executor Agent
    - If the order plan fails validation, submit nothing.
@@ -103,7 +105,7 @@ For any report or cross-ticker analysis that includes calculated metrics, add a 
 
 10. Wiki Curator Agent
     - Update `wiki/index.md` with new/changed pages.
-    - Append a `wiki/log.md` entry with run status, tickers, submitted orders, skipped orders, and report path.
+    - Append a `wiki/log.md` entry with run status, tickers, submitted orders, skipped orders, manifest path, and report path.
 
 ## Stop Conditions
 

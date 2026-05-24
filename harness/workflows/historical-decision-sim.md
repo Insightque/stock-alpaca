@@ -69,8 +69,10 @@
 6. 주문 계획 JSON을 만든다.
    - `mode`는 항상 `dry_run`.
    - `paper`는 `true`.
-   - 각 주문에는 `decision_id`, `historical_asof`, `review_horizons`, `rationale`을 포함한다.
-   - `scripts/check-risk-policy.py`로 검증한다.
+   - `schema_version`, `risk_policy_version`, `recommendation_policy_sha`, `created_at`, root `source_refs`를 포함한다.
+   - 각 주문에는 `decision_id`, `historical_asof`, `review_horizons`, `rationale`, `quote_captured_at`, `asset_checked_at`, `source_refs`를 포함한다.
+   - `scripts/check-risk-policy.py --json`로 검증한다.
+   - 추천 문서와 주문 계획을 `scripts/check-leakage.py --asof <기준시점>`로 점검한다.
 7. 추천 문서를 작성한다.
    - 기준 시점, 후보군 복원 근거, 사용 가능한 데이터와 누락 데이터.
    - 후보별 점수, 판단, 수량, 목표 비중, 리스크.
@@ -88,4 +90,5 @@
 
 - 추천 문서에 기준 시점 이후 날짜의 가격/뉴스가 없어야 한다.
 - dry-run order plan이 `scripts/check-risk-policy.py`를 통과하거나 실패 사유를 명확히 기록해야 한다.
+- 가능한 경우 `scripts/check-leakage.py`를 통과해야 하며, 실패하면 추천 문서를 확정하지 않는다.
 - 후보군에 포함된 종목은 기준 시점 위키 또는 raw source에서 등장 근거가 있어야 한다.

@@ -18,5 +18,9 @@ if [[ -z "${ALPACA_API_KEY:-}" || -z "${ALPACA_SECRET_KEY:-}" ]]; then
   exit 1
 fi
 
-export ALPACA_PAPER_TRADE="${ALPACA_PAPER_TRADE:-true}"
+if [[ "${ALPACA_PAPER_TRADE:-}" != "true" ]]; then
+  echo "ALPACA_PAPER_TRADE must be true for this paper-trading harness." >&2
+  exit 64
+fi
+
 exec uvx alpaca-mcp-server "$@"
