@@ -9,6 +9,7 @@ Record real-time paper dry-run signals around 11:00 ET without submitting, repla
 ## Safety Mode
 
 - Paper-only observation.
+- Strategy state: `auto_eligible=false`, `dry_run_only=true`, `policy_status=observation_only`.
 - No Alpaca order tools.
 - No Alpaca trading REST endpoints.
 - No order-plan JSON unless a later separate workflow explicitly requests a no-submit allocation plan.
@@ -119,6 +120,11 @@ Recommended table columns:
 | `eod_reference_price` | 15:59 ET close or latest available EOD proxy. |
 | `theoretical_outcome` | `take`, `stop`, `eod_gain`, `eod_loss`, `open`, or `unknown`. |
 | `theoretical_pl_pct` | Theoretical percent return, after stop/take/EOD logic. |
+| `signal_log` | Machine-readable signal state for later fill-quality learning. |
+| `skip_reason` | Why a symbol did not become an observation candidate. Use explicit values such as `spread_missing`, `fill_probability_unknown`, `stale_quote`, `minute_ordering_unknown`, or `policy_blocked`. |
+| `spread_fill_observation` | Bid/ask spread, quote freshness, partial-fill likelihood, and any queue/slippage note. |
+
+Do not use this workflow to create an order-plan entry. Intraday observations are evidence collection, not allocation recommendations. A future promotion proposal must show quote-level validation, spread history, limit-fill probability, minute-level stop/take ordering, and positive cost-adjusted walk-forward results across at least three independent periods.
 
 At the bottom of every dry-run analysis note, add a Korean `## 지표 설명` section. Explain the metrics and analysis fields in plain language so the user can read the result without asking a separate follow-up. Include at least these terms when present: `active days`, `trade count`, `hit rate`, `stop`, `take`, `P/L`, `average per trade`, `QQQ VWAP`, `SMH VWAP`, `symbol VWAP`, `semiconductor breadth`, `relative strength`, `spread_pct`, and `fill_feasibility`.
 

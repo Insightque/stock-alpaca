@@ -19,7 +19,8 @@
     "data_cutoff_time",
     "market_clock_checked_at",
     "source_refs",
-    "risk_check_result"
+    "risk_check_result",
+    "data_manifest"
   ],
   "properties": {
     "run_id": {
@@ -48,7 +49,7 @@
     },
     "risk_policy_version": {
       "type": "string",
-      "const": "medium-risk-v1"
+      "const": "medium-risk-v1.1"
     },
     "recommendation_policy_sha": {
       "type": "string",
@@ -56,7 +57,7 @@
     },
     "schema_version": {
       "type": "string",
-      "const": "1.0"
+      "const": "1.1"
     },
     "mcp_servers_used": {
       "type": "array",
@@ -101,6 +102,70 @@
     "risk_check_result": {
       "type": "object",
       "additionalProperties": true
+    },
+    "data_manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_feed",
+        "adjusted_prices",
+        "timezone",
+        "trading_calendar",
+        "symbols_requested",
+        "symbols_loaded",
+        "missing_symbol_dates",
+        "stale_quotes",
+        "corporate_actions_checked",
+        "survivorship_bias_controlled"
+      ],
+      "properties": {
+        "source_feed": {
+          "type": "string",
+          "minLength": 1
+        },
+        "bar_interval": {
+          "type": "string"
+        },
+        "adjusted_prices": {
+          "type": "boolean"
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1
+        },
+        "trading_calendar": {
+          "type": "string",
+          "minLength": 1
+        },
+        "symbols_requested": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "symbols_loaded": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "missing_symbol_dates": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "stale_quotes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "corporate_actions_checked": {
+          "type": "boolean"
+        },
+        "survivorship_bias_controlled": {
+          "type": "boolean"
+        },
+        "dataset_hash": {
+          "type": "string"
+        },
+        "raw_input_file": {
+          "type": "string"
+        }
+      }
     },
     "submitted_order_ids": {
       "type": "array",

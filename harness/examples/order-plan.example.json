@@ -1,7 +1,7 @@
 {
   "run_id": "2026-05-22-daily",
-  "schema_version": "1.1",
-  "risk_policy_version": "medium-risk-v1",
+  "schema_version": "1.2",
+  "risk_policy_version": "medium-risk-v1.1",
   "recommendation_policy_sha": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
   "created_at": "2026-05-22T12:30:00Z",
   "mode": "dry_run",
@@ -17,6 +17,12 @@
     "currency": "USD"
   },
   "positions": [],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.05,
+    "weekly_turnover_ratio": 0.10,
+    "stop_triggered_orders_today": 0,
+    "risk_recomputed_after_partial_fill": true
+  },
   "orders": [
     {
       "symbol": "SPY",
@@ -32,6 +38,32 @@
       "quote_age_minutes": 5,
       "quote_captured_at": "2026-05-22T12:25:00Z",
       "asset_checked_at": "2026-05-22T12:24:30Z",
+      "theme": "broad_market",
+      "factor": "broad_index",
+      "volatility_bucket": "low",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high",
+      "correlated_cluster": "broad_index",
+      "strategy_id": "long-term-quality-momentum-v1",
+      "strategy_version": "1.0",
+      "policy_status": "active_dry_run_candidate",
+      "expected_excess_return_20d_pct": 3.0,
+      "expected_adverse_move_20d_pct": -4.0,
+      "confidence_score": 0.75,
+      "sizing_basis": "example dual benchmark pass with small staged entry",
+      "entry_style": "staged",
+      "max_additional_entry_count": 2,
+      "liquidity": {
+        "bid": 499.95,
+        "ask": 500.05,
+        "spread_pct": 0.02,
+        "avg_daily_dollar_volume": 20000000000,
+        "quote_source": "alpaca",
+        "measured_at": "2026-05-22T12:25:00Z"
+      },
+      "client_order_id": "example-20260522-spy-buy",
+      "decision_id": "example-20260522-spy",
       "source_refs": [
         "wiki/raw/sources/example-alpaca-snapshot.md"
       ],

@@ -1,0 +1,137 @@
+policy_id: recommendation-policy-v1.1
+updated_at: "2026-05-25T02:06:00+09:00"
+policy_version: v1.1
+strategy_status:
+  long_term_quality_momentum_v1:
+    status: active_dry_run_candidate
+    auto_orders_allowed: false
+    promotion_status: not_auto_yet
+    evidence_metrics:
+      evidence_count: 282
+      validation_periods: 3
+      avg_spy_excess_20d_pct: 7.91
+      avg_adverse_20d_pct: -7.75
+      cost_adjusted: false
+      source_refs:
+        - wiki/backtests/2026-05-24-review-hardening-comparison.md
+    active_filters:
+      - ret20_exceeds_spy20
+      - ret20_exceeds_qqq20
+      - drawdown_60d_above_threshold
+      - volatility_20d_below_threshold
+      - theme_cap_pass
+      - factor_cap_pass
+      - overheat_guard_pass
+      - source_confidence_pass
+      - liquidity_filter_pass
+    blockers:
+      - cost_adjusted_walk_forward_needed
+      - event_source_confirmation_needed
+      - concentration_adjusted_score_needed
+      - valuation_and_filing_features_needed
+    required_next_evidence:
+      - cost_adjusted_walk_forward
+      - event_source_confirmation
+      - concentration_adjusted_score
+      - one_year_daily_independent_simulation
+  intraday_afternoon_followthrough_v1:
+    status: observation_only
+    auto_orders_allowed: false
+    promotion_status: blocked_until_quote_level_validation
+    evidence_metrics:
+      trades: 78
+      hit_rate_pct: 58.97
+      simulated_pl_usd_per_10k_trade: 1386.98
+      cost_adjusted: false
+      source_refs:
+        - wiki/backtests/2026-05-24-policy-improvement-candidates.md
+    active_filters:
+      - qqq_first_3h_risk_on
+      - relative_strength_followthrough
+      - vwap_pass
+      - speculative_overheat_excluded
+    blockers:
+      - no_quote_level_fill_model
+      - no_spread_pct_history
+      - no_limit_fill_probability_model
+      - no_minute_level_stop_take_ordering_for_3h_bars
+      - no_cost_adjusted_walk_forward
+    required_next_evidence:
+      - quote_level_validation
+      - spread_pct_available
+      - limit_fill_probability_model
+      - minute_level_stop_take_ordering
+      - cost_adjusted_walk_forward_positive
+promotion_criteria:
+  long_term:
+    min_completed_recommendations: 250
+    min_independent_validation_windows: 3
+    min_avg_spy_excess_20d_after_cost_pct: 3.0
+    min_bootstrap_ci_lower_bound_pct: 0.0
+    max_avg_adverse_move_20d_pct: -8.0
+    max_single_symbol_contribution_pct: 25
+    max_single_theme_exposure_pct: 35
+    source_confidence_required: true
+    liquidity_filter_required: true
+    risk_gate_required: true
+  intraday:
+    required_status_before_auto: quote_level_validated
+    min_trades_after_cost: 300
+    min_independent_validation_windows: 4
+    require_spread_pct: true
+    require_limit_fill_probability: true
+    require_minute_level_stop_take_ordering: true
+    max_stop_rate_pct: 25
+    min_profit_factor_after_cost: 1.25
+    auto_orders_allowed: false_until_all_pass
+source_confidence:
+  minimum_for_new_buy: 0.50
+  provider_gap_blocks_order: true
+  timestamp_basis: market_relevant_timestamp
+  required_fields:
+    - sec_filing_confirmed
+    - earnings_confirmed
+    - news_count
+    - source_diversity
+    - provider_gap
+    - event_timestamp_known
+    - confidence_score
+universe_policy:
+  allow_expanded_universe: true
+  require:
+    - theme_cap
+    - factor_cap
+    - liquidity_filter
+    - active_tradable_check
+    - min_price_filter
+    - max_spread_filter
+    - dual_benchmark_relative_strength
+    - missing_theme_metadata_reject
+  reject:
+    - low_source_spike
+    - low_float_extreme_volatility
+    - stale_quote
+    - missing_theme_metadata
+alpha_signal_layer:
+  - ret20
+  - ret40
+  - ret60
+  - spy_qqq_excess
+  - sector_relative_strength
+  - drawdown_volatility
+  - overheat
+  - event_confirmation
+  - earnings_filing_news_quality
+  - valuation_risk
+execution_portfolio_layer:
+  - current_holding_weight
+  - theme_factor_speculative_cap
+  - correlated_cluster_cap
+  - liquidity_spread
+  - expected_adverse_move
+  - cash_reserve
+  - staged_entry
+  - open_orders
+  - existing_position_correlation
+retired_filters:
+  - volume_confirmed_momentum_intraday

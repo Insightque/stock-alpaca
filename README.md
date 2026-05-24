@@ -48,11 +48,13 @@ Codex는 `AGENTS.md`를 따르고, `harness/simple-commands.md`에서 명령을 
 - Paper trading only.
 - US stocks/ETFs only.
 - Long-only, whole-share, day limit orders only.
-- Maximum 80% invested, minimum 20% cash reserve, maximum 20% per ticker.
+- Maximum 80% invested, minimum 20% cash reserve, maximum 15% per ticker.
+- Theme, factor, speculative, correlated-cluster, liquidity, spread, and source-confidence checks are enforced by `medium-risk-v1.1`.
 - Maximum 10 new orders per run.
 - Orders must pass `scripts/check-risk-policy.py`; use `--json` for CI and agent-readable results.
 - New order plans must conform to `harness/order-plan.schema.json` and cite source refs for account, market, quote, and asset checks.
 - Orders must be submitted through Alpaca MCP only, never custom REST trading code.
+- Historical one-year policy checks use `harness/workflows/one-year-daily-simulation.md` and run each as-of day independently.
 
 주문 계획 검증:
 

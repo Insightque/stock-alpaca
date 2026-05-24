@@ -1,6 +1,6 @@
 ---
 id: recommendation-policy
-updated_at: 2026-05-24T18:40:00+09:00
+updated_at: 2026-05-25T02:06:00+09:00
 ---
 
 # 추천 정책
@@ -29,6 +29,13 @@ updated_at: 2026-05-24T18:40:00+09:00
 - SEC filing은 filing date보다 acceptance time 기준으로 as-of 사용 가능 여부를 판단한다.
 - 단타는 11:00 ET 신호만으로 자동 주문하지 않고, 11:05~11:15 후속 유지와 실제 bid/ask/fill 가능성을 확인하기 전까지 관찰 전용으로 둔다.
 - 분석 결과 문서에 계산 지표나 정책학습 지표가 포함되면, 문서 하단에 `지표 설명` 섹션을 추가해 각 지표의 의미와 해석 방법을 쉬운 한국어로 설명한다.
+- 운영 정책의 machine-readable source는 `harness/recommendation-policy.yaml`로 둔다. 이 Markdown 문서는 사람이 읽는 설명과 회고 로그이며, 전략 상태와 승격 기준은 YAML과 schema로 검증한다.
+- 장기 `long-term-quality-momentum-v1`은 `active_dry_run_candidate`로 승격하되 자동 주문은 아직 금지한다. 핵심 필터는 SPY/QQQ dual benchmark, drawdown/volatility guard, theme/factor cap, overheat guard, source confidence, liquidity check다.
+- 단타 `intraday-afternoon-followthrough-v1`과 기존 intraday variants는 모두 `observation_only`다. 결과는 수익률 후보가 아니라 `signal_log`, `skip_reason`, `spread_fill_observation`을 쌓는 체결 품질 학습 자료로만 사용한다.
+- 알파 점수와 주문 결정을 분리한다. 가격/상대강도/이벤트 품질은 후보 점수이고, 실제 주문 크기는 보유 비중, cash reserve, theme/factor/speculative/cluster cap, spread/liquidity, expected adverse move, open orders, staged entry를 통과한 뒤 별도로 결정한다.
+- `confidence_score < 0.50`, `source_confidence=low`, provider gap, stale quote, missing spread, missing metadata가 있으면 신규 order plan entry를 만들지 않는다.
+- 확장 universe는 theme cap, factor cap, active/tradable 확인, 최소 가격, 유동성, spread, source confidence, SPY/QQQ 상대강도를 모두 통과할 때만 사용한다.
+- 정책 변경은 `wiki/policies/proposals/TEMPLATE-policy-change.md` 구조를 통과해야 하며, 단일 백테스트 평균만으로 `auto_eligible_paper`로 승격하지 않는다.
 
 ## 회고에서 나온 정책 변경
 
@@ -55,6 +62,7 @@ updated_at: 2026-05-24T18:40:00+09:00
 | 2026-05-24 | 기존 관심 종목 외 빅테크/금융/헬스케어/소비재/산업재/에너지/소재/유틸리티/고변동 성장주까지 62개 심볼로 확장해 최근 6개월 3시간 시뮬레이션을 재수행함. 단타 top3와 VWAP reclaim은 악화됐고, 장타 `daily-3h-theme-capped-top5`는 평균 SPY 초과 +7.65%p로 기존 +7.82%p와 유사하게 유지됨 | [[2026-05-24-expanded-six-month-3h-policy-review]] | 확장 universe는 theme cap 적용 시에만 사용 |
 | 2026-05-24 | 외부 리뷰 개선사항을 반영해 정책 개선 백테스트를 날짜 key 기반 정렬로 바꾸고, 주문 risk gate에 theme/factor/speculative exposure cap을 추가함. raw source에는 구조화 시그널 표를 추가해 뉴스/공시/밸류에이션/매크로 feature를 재사용 가능하게 기록하도록 함 | `scripts/simulate-policy-improvement-candidates.py`, `scripts/check-risk-policy.py`, `harness/risk-policy.yaml` | 적용 |
 | 2026-05-24 | 리뷰 개선사항 반영 후 확장 universe로 재시뮬레이션함. 장타 `lt-dual-benchmark-confirm-v1`과 `lt-drawdown-volatility-guard-v1`은 이전 기준선보다 검증 SPY 초과수익과 평균 불리 이동이 개선됐고, 단타 `intraday-afternoon-followthrough-filter-v1`은 기존 최고 variant보다 낮아 자동 주문 금지를 유지함 | [[2026-05-24-review-hardening-comparison]] | 장타 우선 필터 보강 / 단타 관찰 전용 |
+| 2026-05-25 | Request.md 개선사항을 반영해 recommendation-policy YAML/schema, strategy config, symbol metadata, risk-policy v1.1, order-plan schema v1.2, 유동성/스프레드/클러스터/중복 ID gate, 일별 독립 1년 시뮬레이션 워크플로우를 추가함 | `Request.md`, `harness/recommendation-policy.yaml`, `harness/strategies/long-term-quality-momentum-v1.yaml`, `scripts/simulate-one-year-daily-policy.py` | 적용 / 장타 dry-run 후보 유지 / 단타 observation_only |
 
 ## 검증 중인 가설
 

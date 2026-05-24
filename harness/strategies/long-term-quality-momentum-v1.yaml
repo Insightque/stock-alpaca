@@ -1,0 +1,38 @@
+strategy_id: long-term-quality-momentum-v1
+strategy_version: "1.0"
+policy_status: active_dry_run_candidate
+auto_orders_allowed: false
+promotion_required: true
+universe_id: expanded-us-liquid-v1
+benchmarks:
+  - SPY
+  - QQQ
+bar_source: alpaca_iex
+bar_interval: 1d
+asof_alignment: date_key
+train_validation:
+  method: walk_forward
+  train_months: 3
+  validation_months: 1
+  rolling_step_months: 1
+cost_model:
+  slippage_bps: 10
+  spread_bps: 5
+  fee_bps: 0
+  reject_unfilled_limit_orders: true
+filters:
+  min_ret20_vs_spy: 0
+  min_ret20_vs_qqq: 0
+  min_ret40: 0
+  max_vol20: 7.0
+  min_drawdown60: -30
+  max_ret20_overheat: 45
+  max_ret5_overheat: 25
+  max_avg_adverse_20d: -8.0
+  min_source_confidence_score: 0.50
+  min_avg_daily_dollar_volume: 50000000
+  max_spread_pct: 0.50
+selection:
+  top_n: 5
+  theme_cap: 2
+  score: quality_momentum_dual_benchmark

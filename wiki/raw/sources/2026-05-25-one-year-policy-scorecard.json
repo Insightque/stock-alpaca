@@ -1,0 +1,189 @@
+{
+  "created_at": "2026-05-25T02:24:31+09:00",
+  "strategy_id": "long-term-quality-momentum-v1",
+  "policy_status": "active_dry_run_candidate",
+  "summary": {
+    "strategy_id": "long-term-quality-momentum-v1",
+    "policy_status": "active_dry_run_candidate",
+    "auto_orders_allowed": false,
+    "daily_independent_runs": 191,
+    "recommendations": 953,
+    "completed": 853,
+    "hit_rate_after_cost_pct": 58.73388,
+    "avg_excess_after_cost_pct": 3.749958,
+    "median_excess_after_cost_pct": 1.462286,
+    "bootstrap_95_ci_excess_after_cost_pct": [
+      2.837816,
+      4.759678
+    ],
+    "avg_adverse_move_20d_pct": -6.462812,
+    "skipped_missing_symbol_dates": 0,
+    "concentration": {
+      "completed": 853,
+      "max_single_symbol_recommendation_pct": 9.964830011723329,
+      "max_single_theme_recommendation_pct": 17.584994138335286,
+      "top_symbols": [
+        [
+          "MU",
+          85
+        ],
+        [
+          "AMAT",
+          58
+        ],
+        [
+          "LRCX",
+          58
+        ],
+        [
+          "GOOGL",
+          55
+        ],
+        [
+          "JNJ",
+          45
+        ],
+        [
+          "INTC",
+          42
+        ],
+        [
+          "CAT",
+          39
+        ],
+        [
+          "XOM",
+          33
+        ]
+      ],
+      "top_themes": [
+        [
+          "semicap_equipment",
+          150
+        ],
+        [
+          "healthcare_pharma",
+          110
+        ],
+        [
+          "ai_semiconductor",
+          99
+        ],
+        [
+          "memory_semiconductor",
+          85
+        ],
+        [
+          "mega_cap_tech",
+          84
+        ],
+        [
+          "energy",
+          77
+        ],
+        [
+          "industrial_machinery",
+          39
+        ],
+        [
+          "ev_ai_event",
+          31
+        ]
+      ]
+    },
+    "walk_forward": [
+      {
+        "train_start": "2025-05-23",
+        "train_end": "2025-07-31",
+        "validation_start": "2025-08-01",
+        "validation_end": "2025-08-29",
+        "completed": 40,
+        "avg_excess_after_cost_pct": 9.735808,
+        "hit_rate_after_cost_pct": 70.0
+      },
+      {
+        "train_start": "2025-06-02",
+        "train_end": "2025-08-29",
+        "validation_start": "2025-09-02",
+        "validation_end": "2025-09-30",
+        "completed": 105,
+        "avg_excess_after_cost_pct": 8.882972,
+        "hit_rate_after_cost_pct": 72.380952
+      },
+      {
+        "train_start": "2025-07-01",
+        "train_end": "2025-09-30",
+        "validation_start": "2025-10-01",
+        "validation_end": "2025-10-31",
+        "completed": 115,
+        "avg_excess_after_cost_pct": 2.890031,
+        "hit_rate_after_cost_pct": 63.478261
+      },
+      {
+        "train_start": "2025-08-01",
+        "train_end": "2025-10-31",
+        "validation_start": "2025-11-03",
+        "validation_end": "2025-11-28",
+        "completed": 95,
+        "avg_excess_after_cost_pct": -0.277091,
+        "hit_rate_after_cost_pct": 52.631579
+      },
+      {
+        "train_start": "2025-09-02",
+        "train_end": "2025-11-28",
+        "validation_start": "2025-12-01",
+        "validation_end": "2025-12-31",
+        "completed": 110,
+        "avg_excess_after_cost_pct": 4.315907,
+        "hit_rate_after_cost_pct": 54.545455
+      },
+      {
+        "train_start": "2025-10-01",
+        "train_end": "2025-12-31",
+        "validation_start": "2026-01-02",
+        "validation_end": "2026-01-30",
+        "completed": 100,
+        "avg_excess_after_cost_pct": 7.204191,
+        "hit_rate_after_cost_pct": 85.0
+      },
+      {
+        "train_start": "2025-11-03",
+        "train_end": "2026-01-30",
+        "validation_start": "2026-02-02",
+        "validation_end": "2026-02-27",
+        "completed": 95,
+        "avg_excess_after_cost_pct": 1.619937,
+        "hit_rate_after_cost_pct": 55.789474
+      },
+      {
+        "train_start": "2025-12-01",
+        "train_end": "2026-02-27",
+        "validation_start": "2026-03-02",
+        "validation_end": "2026-03-31",
+        "completed": 108,
+        "avg_excess_after_cost_pct": -5.484968,
+        "hit_rate_after_cost_pct": 28.703704
+      },
+      {
+        "train_start": "2026-01-02",
+        "train_end": "2026-03-31",
+        "validation_start": "2026-04-01",
+        "validation_end": "2026-04-30",
+        "completed": 85,
+        "avg_excess_after_cost_pct": 9.574746,
+        "hit_rate_after_cost_pct": 52.941176
+      },
+      {
+        "train_start": "2026-02-02",
+        "train_end": "2026-04-30",
+        "validation_start": "2026-05-01",
+        "validation_end": "2026-05-22",
+        "completed": 0,
+        "avg_excess_after_cost_pct": null,
+        "hit_rate_after_cost_pct": null
+      }
+    ]
+  },
+  "promotion_decision": "active_dry_run_candidate",
+  "promotion_reason": "cost-adjusted daily walk-forward recorded, but fill/source/valuation requirements remain incomplete"
+}

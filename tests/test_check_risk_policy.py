@@ -21,8 +21,8 @@ spec.loader.exec_module(check_risk_policy)
 def base_plan() -> dict:
     return {
         "run_id": "test-run",
-        "schema_version": "1.1",
-        "risk_policy_version": "medium-risk-v1",
+        "schema_version": "1.2",
+        "risk_policy_version": "medium-risk-v1.1",
         "recommendation_policy_sha": "sha256:" + "0" * 64,
         "created_at": "2026-05-22T12:30:00Z",
         "mode": "dry_run",
@@ -38,6 +38,12 @@ def base_plan() -> dict:
             "currency": "USD",
         },
         "positions": [],
+        "risk_inputs": {
+            "policy_turnover_ratio": 0.05,
+            "weekly_turnover_ratio": 0.10,
+            "stop_triggered_orders_today": 0,
+            "risk_recomputed_after_partial_fill": True,
+        },
         "orders": [
             {
                 "symbol": "SPY",
@@ -53,11 +59,54 @@ def base_plan() -> dict:
                 "quote_age_minutes": 5,
                 "quote_captured_at": "2026-05-22T12:25:00Z",
                 "asset_checked_at": "2026-05-22T12:24:30Z",
+                "theme": "broad_market",
+                "factor": "broad_index",
+                "volatility_bucket": "low",
+                "speculative_flag": False,
+                "liquidity_bucket": "mega",
+                "source_confidence": "high",
+                "correlated_cluster": "broad_index",
+                "strategy_id": "long-term-quality-momentum-v1",
+                "strategy_version": "1.0",
+                "policy_status": "active_dry_run_candidate",
+                "expected_excess_return_20d_pct": 3.0,
+                "expected_adverse_move_20d_pct": -4.0,
+                "confidence_score": 0.75,
+                "sizing_basis": "test sizing basis",
+                "entry_style": "staged",
+                "max_additional_entry_count": 2,
+                "liquidity": {
+                    "bid": 499.95,
+                    "ask": 500.05,
+                    "spread_pct": 0.02,
+                    "avg_daily_dollar_volume": 20000000000,
+                    "quote_source": "alpaca",
+                    "measured_at": "2026-05-22T12:25:00Z",
+                },
+                "client_order_id": "test-run-spy-buy",
+                "decision_id": "test-run-spy-decision",
                 "source_refs": ["wiki/raw/sources/test-market.md"],
                 "rationale": "test order",
             }
         ],
         "source_refs": ["wiki/raw/sources/test-clock.md"],
+    }
+
+
+def position(symbol: str, market_value: float, qty: int = 10) -> dict:
+    metadata = check_risk_policy.load_symbol_metadata(check_risk_policy.load_policy())[symbol]
+    return {
+        "symbol": symbol,
+        "asset_type": "etf" if symbol in {"SPY", "QQQ", "SMH"} else "stock",
+        "qty": qty,
+        "market_value": market_value,
+        "theme": metadata["theme"],
+        "factor": metadata["factor"],
+        "volatility_bucket": metadata["volatility_bucket"],
+        "speculative_flag": metadata["speculative_flag"],
+        "liquidity_bucket": metadata["liquidity_bucket"],
+        "source_confidence": metadata["source_confidence"],
+        "correlated_cluster": metadata["correlated_cluster"],
     }
 
 
@@ -69,20 +118,21 @@ class RiskPolicyTests(unittest.TestCase):
         plan = json.loads((ROOT / "harness" / "examples" / "order-plan.example.json").read_text())
         errors, warnings, summary = self.validate(plan)
         self.assertEqual([], errors)
-        self.assertEqual("medium-risk-v1", summary["policy_version"])
+        self.assertEqual("medium-risk-v1.1", summary["policy_version"])
         self.assertEqual([], warnings)
 
     def test_invested_and_cash_boundary_passes(self) -> None:
         plan = base_plan()
-        plan["account"]["cash"] = 40000.0
-        plan["account"]["buying_power"] = 40000.0
+        plan["account"]["cash"] = 35000.0
+        plan["account"]["buying_power"] = 35000.0
         plan["positions"] = [
-            {"symbol": "AAPL", "asset_type": "stock", "qty": 10, "market_value": 15000.0},
-            {"symbol": "MSFT", "asset_type": "stock", "qty": 10, "market_value": 15000.0},
-            {"symbol": "NVDA", "asset_type": "stock", "qty": 10, "market_value": 15000.0},
-            {"symbol": "QQQ", "asset_type": "etf", "qty": 10, "market_value": 15000.0},
+            position("AAPL", 13000.0),
+            position("MSFT", 13000.0),
+            position("NVDA", 13000.0),
+            position("QQQ", 13000.0),
+            position("UNH", 13000.0),
         ]
-        plan["orders"][0]["qty"] = 40
+        plan["orders"][0]["qty"] = 30
         errors, _, summary = self.validate(plan)
         self.assertEqual([], errors)
         self.assertEqual(20000.0, summary["post_cash"])
@@ -96,7 +146,7 @@ class RiskPolicyTests(unittest.TestCase):
 
     def test_per_ticker_violation_fails(self) -> None:
         plan = base_plan()
-        plan["orders"][0]["qty"] = 41
+        plan["orders"][0]["qty"] = 31
         errors, _, _ = self.validate(plan)
         self.assertTrue(any("per-ticker limit" in error for error in errors))
 
@@ -105,12 +155,16 @@ class RiskPolicyTests(unittest.TestCase):
         plan["account"]["cash"] = 70000.0
         plan["account"]["buying_power"] = 70000.0
         plan["positions"] = [
-            {"symbol": "NVDA", "asset_type": "stock", "qty": 10, "market_value": 10000.0},
-            {"symbol": "AMD", "asset_type": "stock", "qty": 10, "market_value": 10000.0},
-            {"symbol": "TSM", "asset_type": "stock", "qty": 10, "market_value": 10000.0},
+            position("NVDA", 10000.0),
+            position("AMD", 10000.0),
+            position("TSM", 10000.0),
         ]
         plan["orders"][0]["symbol"] = "NVDA"
         plan["orders"][0]["asset_type"] = "stock"
+        plan["orders"][0]["theme"] = "ai_semiconductor"
+        plan["orders"][0]["factor"] = "ai_semiconductor"
+        plan["orders"][0]["volatility_bucket"] = "high"
+        plan["orders"][0]["correlated_cluster"] = "ai_semiconductor_complex"
         plan["orders"][0]["qty"] = 6
         plan["orders"][0]["limit_price"] = 1000.0
         plan["orders"][0]["reference_price"] = 1000.0
@@ -121,6 +175,13 @@ class RiskPolicyTests(unittest.TestCase):
         plan = base_plan()
         plan["orders"][0]["symbol"] = "RGTI"
         plan["orders"][0]["asset_type"] = "stock"
+        plan["orders"][0]["theme"] = "quantum_speculative"
+        plan["orders"][0]["factor"] = "speculative_growth"
+        plan["orders"][0]["volatility_bucket"] = "high"
+        plan["orders"][0]["speculative_flag"] = True
+        plan["orders"][0]["liquidity_bucket"] = "medium"
+        plan["orders"][0]["source_confidence"] = "medium"
+        plan["orders"][0]["correlated_cluster"] = "quantum_speculative"
         plan["orders"][0]["qty"] = 13
         plan["orders"][0]["limit_price"] = 1000.0
         plan["orders"][0]["reference_price"] = 1000.0
@@ -142,6 +203,7 @@ class RiskPolicyTests(unittest.TestCase):
         plan = base_plan()
         plan["mode"] = "submit"
         plan["market"]["is_open"] = True
+        del plan["orders"][0]["client_order_id"]
         errors, _, _ = self.validate(plan)
         self.assertTrue(any("requires client_order_id" in error for error in errors))
 
@@ -164,7 +226,7 @@ class RiskPolicyTests(unittest.TestCase):
         plan = base_plan()
         plan["account"]["cash"] = 0.0
         plan["account"]["buying_power"] = 100000.0
-        plan["positions"] = [{"symbol": "AAPL", "asset_type": "stock", "qty": 200, "market_value": 50000.0}]
+        plan["positions"] = [position("AAPL", 50000.0, qty=200)]
         plan["orders"] = [
             {
                 **copy.deepcopy(plan["orders"][0]),
@@ -178,6 +240,8 @@ class RiskPolicyTests(unittest.TestCase):
             {
                 **copy.deepcopy(plan["orders"][0]),
                 "qty": 50,
+                "client_order_id": "test-run-spy-buy-2",
+                "decision_id": "test-run-spy-decision-2",
             },
         ]
         errors, _, _ = self.validate(plan)

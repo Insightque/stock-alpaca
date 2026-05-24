@@ -44,6 +44,7 @@
 - [[2026-05-22-stock-only-trade-proposal]] - ETF 제외, 주식 중심 금일 거래 제안과 paper 주문 실행 결과.
 - [[2026-05-24-mcp-comparison-2026-05-08-historical-simulation]] - 2026-05-08 과거 추천 표본을 Alpaca/SEC EDGAR/Alpha Vantage/Firecrawl/Yahoo MCP 보강 결과와 비교한 검토.
 - [[2026-05-24-mcp-policy-history-reaudit]] - 남은 과거 추천/단타/장타 정책 시뮬레이션 이력을 MCP 보강 정보로 재감사한 분석.
+- [[2026-05-25-request-implementation-review]] - Request.md 개선항목 반영 여부와 1년 시뮬레이션 결과 검토.
 
 ## 백테스트/정책 검증
 
@@ -61,6 +62,7 @@
 - [[2026-05-24-policy-improvement-candidates]] - 현재 정책 개선 후보 5개를 최근 6개월 3시간/일봉 데이터로 검증한 백테스트.
 - [[2026-05-24-expanded-six-month-3h-policy-review]] - 기존 관심 종목 외 62개 확장 universe로 재수행한 최근 6개월 3시간 단위 정책 검토.
 - [[2026-05-24-review-hardening-comparison]] - 외부 리뷰 개선사항 반영 후 확장 universe 재시뮬레이션과 이전 기준선 비교 분석.
+- [[2026-05-25-one-year-daily-policy-simulation]] - Alpaca MCP 2025-05-23~2026-05-22 일봉 62개 심볼로 수행한 장기 v1 일별 독립 시뮬레이션.
 
 ## 과거 시점 시뮬레이션
 
@@ -87,13 +89,20 @@
 ## 추천 정책
 
 - [[recommendation-policy]] - 거래 회고에서 나온 교훈을 반영하는 living policy.
+- `harness/recommendation-policy.yaml` / `harness/recommendation-policy.schema.json` - agent-readable 추천 정책 상태와 승격 기준.
+- `harness/strategies/long-term-quality-momentum-v1.yaml` - 장기 dry-run 후보 전략 config.
+- `harness/strategies/intraday-afternoon-followthrough-v1.yaml` - 단타 observation-only 전략 config.
 - `harness/workflows/intraday-paper-dry-run.md` - `intraday-rs-breakout-v0`/`intraday-rs-breadth-vwap-v1` 실시간 주문 없는 paper dry-run 운영안.
+- `harness/workflows/one-year-daily-simulation.md` - 과거 1년 일별 독립 정책 시뮬레이션 workflow.
 - `scripts/evaluate-intraday-dry-run.py` - 캡처된 1분봉 JSON으로 11:00 ET v0/v1 신호와 fill 관찰 필드를 생성하는 로컬 헬퍼. Alpaca API 호출 없음.
 - `scripts/simulate-six-month-3h-policy-review.py` - Alpaca MCP read-only 30분봉을 3시간 구간으로 집계해 최근 6개월 단타/장타 정책을 독립 검증하는 헬퍼.
+- `scripts/fetch-alpaca-bars-mcp.py` - Alpaca MCP stdio를 통해 과거 bars를 캡처하는 로컬 헬퍼. Alpaca REST 직접 호출 없음.
+- `scripts/simulate-one-year-daily-policy.py` - 캡처된 일봉으로 장기 정책을 일별 독립 run으로 검증하는 헬퍼.
 
 ## 운영/검증 도구
 
 - `harness/risk-policy.yaml` - 주문 리스크 한도의 단일 machine-readable source of truth.
+- `harness/symbol-metadata.yaml` - theme/factor/liquidity/source confidence/correlated cluster 중앙 metadata.
 - `harness/order-plan.schema.json` - 신규 order-plan JSON의 필수 메타데이터와 source refs 스키마.
 - `scripts/check-risk-policy.py` - schema 검증, YAML 리스크 정책 검증, `--json` 구조화 결과 출력.
 - `scripts/check-leakage.py` - 과거 추천 시뮬레이션과 order plan의 미래 정보 누출 점검.
@@ -133,3 +142,7 @@
 - `wiki/raw/sources/2026-05-24-review-hardening-expanded-policy-data.json` - 외부 리뷰 개선사항 반영 후 확장 universe 정책 개선 후보 재시뮬레이션 데이터.
 - [[2026-05-24-may-15-mcp-context-sources]] - 2026-05-15 의사결정 리포트 보강용 Alpaca 뉴스/asset/corporate action 및 SEC EDGAR filing 원천.
 - `wiki/raw/sources/2026-05-24-may-15-mcp-context-data.json` - 2026-05-15 기준 후보/보유 종목 MCP 보강 원자료.
+- [[2026-05-25-one-year-daily-simulation-sources]] - Alpaca MCP 1년 일봉 캡처와 일별 독립 장기 정책 시뮬레이션 원천/데이터 공백.
+- `wiki/raw/sources/2026-05-25-one-year-daily-bars.json` - 62개 심볼 2025-05-23~2026-05-22 adjusted IEX 일봉 원자료.
+- `wiki/raw/sources/2026-05-25-one-year-daily-policy-simulation-data.json` - 장기 v1 일별 독립 시뮬레이션 계산 결과.
+- `wiki/raw/sources/2026-05-25-one-year-policy-scorecard.json` - 장기 v1 정책 scorecard.

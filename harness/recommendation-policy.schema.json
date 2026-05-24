@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.local/stock-alpaca/recommendation-policy.schema.json",
+  "title": "Recommendation Policy",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "policy_id",
+    "updated_at",
+    "policy_version",
+    "strategy_status",
+    "promotion_criteria",
+    "source_confidence",
+    "universe_policy"
+  ],
+  "properties": {
+    "policy_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "policy_version": {
+      "type": "string",
+      "minLength": 1
+    },
+    "strategy_status": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["status", "auto_orders_allowed", "evidence_metrics", "blockers"],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["observation_only", "active_dry_run_candidate", "auto_eligible_paper", "rejected"]
+          },
+          "auto_orders_allowed": {
+            "type": "boolean"
+          },
+          "promotion_status": {
+            "type": "string"
+          },
+          "evidence_metrics": {
+            "type": "object",
+            "additionalProperties": true
+          },
+          "active_filters": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "blockers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "required_next_evidence": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "promotion_criteria": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "source_confidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimum_for_new_buy", "provider_gap_blocks_order", "timestamp_basis"],
+      "properties": {
+        "minimum_for_new_buy": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "provider_gap_blocks_order": {
+          "type": "boolean"
+        },
+        "timestamp_basis": {
+          "type": "string"
+        },
+        "required_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "universe_policy": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "alpha_signal_layer": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "execution_portfolio_layer": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "retired_filters": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

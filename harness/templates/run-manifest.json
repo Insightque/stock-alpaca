@@ -5,9 +5,9 @@
   "created_at": "YYYY-MM-DDTHH:MM:SSZ",
   "git_commit": "git-rev-parse-HEAD-or-dirty",
   "prompt_file_sha": "sha256:...",
-  "risk_policy_version": "medium-risk-v1",
+  "risk_policy_version": "medium-risk-v1.1",
   "recommendation_policy_sha": "sha256:...",
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "mcp_servers_used": [
     "alpaca"
   ],
@@ -20,6 +20,21 @@
   "order_plan_path": "wiki/portfolio/order-plans/YYYY-MM-DD-daily.json",
   "risk_check_result": {
     "status": "PASS"
+  },
+  "data_manifest": {
+    "source_feed": "alpaca_iex",
+    "bar_interval": "1Day",
+    "adjusted_prices": true,
+    "timezone": "America/New_York",
+    "trading_calendar": "nyse",
+    "symbols_requested": 62,
+    "symbols_loaded": 62,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 0,
+    "corporate_actions_checked": true,
+    "survivorship_bias_controlled": false,
+    "dataset_hash": "sha256:...",
+    "raw_input_file": "wiki/raw/sources/YYYY-MM-DD-source.json"
   },
   "submitted_order_ids": [],
   "post_trade_check_path": ""

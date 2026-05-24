@@ -11,10 +11,17 @@ import argparse
 import json
 import math
 import statistics
+import sys
 from collections import Counter, defaultdict
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Callable
+
+import yaml
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+
+from policy_simulation_lib import apply_round_trip_cost, bootstrap_mean_ci, concentration_metrics
 
 
 BENCHMARKS = {"SPY", "QQQ", "SMH"}
@@ -41,7 +48,36 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--input-json", type=Path, required=True)
     parser.add_argument("--output-json", type=Path, required=True)
     parser.add_argument("--output-md", type=Path, required=True)
+    parser.add_argument("--metadata-yaml", type=Path, default=Path("harness/symbol-metadata.yaml"))
+    parser.add_argument("--strategy-config", type=Path, action="append", default=[])
     return parser.parse_args()
+
+
+def load_yaml(path: Path) -> dict[str, Any]:
+    data = yaml.safe_load(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError(f"{path} must contain a YAML object")
+    return data
+
+
+def load_symbol_metadata(path: Path) -> None:
+    global THEMES, SPECULATIVE_THEMES
+    data = load_yaml(path)
+    defaults = data.get("defaults", {})
+    symbols = data.get("symbols", {})
+    merged = {symbol: {**defaults, **meta} for symbol, meta in symbols.items() if isinstance(meta, dict)}
+    THEMES = {symbol: str(meta.get("theme", "unknown")) for symbol, meta in merged.items()}
+    SPECULATIVE_THEMES = {
+        str(meta.get("theme", "unknown")) for meta in merged.values() if bool(meta.get("speculative_flag", False))
+    }
+
+
+def load_strategy_configs(paths: list[Path]) -> dict[str, dict[str, Any]]:
+    configs = {}
+    for path in paths:
+        config = load_yaml(path)
+        configs[str(config["strategy_id"])] = config
+    return configs
 
 
 def pct(start: float, end: float) -> float:
@@ -148,6 +184,7 @@ def summarize_daily(recommendations: list[dict[str, Any]], split_date: str) -> d
             for symbol, values in sorted(by_symbol.items(), key=lambda item: sum(item[1]), reverse=True)[:8]
         ],
         "theme_counts": dict(by_theme),
+        "concentration": concentration_metrics(completed),
     }
 
 
@@ -372,10 +409,16 @@ def quality_score(row: dict[str, Any]) -> float:
 
 def main() -> None:
     args = parse_args()
+    load_symbol_metadata(args.metadata_yaml)
+    strategy_configs = load_strategy_configs(args.strategy_config)
     source = json.loads(args.input_json.read_text())
     rows = source["extracted"]["daily_bars"]
     windows = source["extracted"]["three_hour_windows"]
     split_date = source["split_date"]
+    long_term_config = strategy_configs.get("long-term-quality-momentum-v1", {})
+    intraday_config = strategy_configs.get("intraday-afternoon-followthrough-v1", {})
+    long_term_cost_model = long_term_config.get("cost_model", {"slippage_bps": 0, "spread_bps": 0, "fee_bps": 0})
+    intraday_cost_model = intraday_config.get("cost_model", {"slippage_bps": 0, "spread_bps": 0, "fee_bps": 0})
 
     policies = {
         "lt-overheat-guard-theme-cap-v1": simulate_daily_policy(
@@ -428,11 +471,45 @@ def main() -> None:
         "intraday-afternoon-followthrough-filter-v1": simulate_intraday_filtered(rows, windows, split_date),
     }
 
+    for name, result in policies.items():
+        if name.startswith("lt-"):
+            completed = [
+                row
+                for row in result["recommendations"]
+                if row.get("forward_20d_return_pct") is not None and row.get("forward_20d_excess_spy_pct") is not None
+            ]
+            for row in completed:
+                row["forward_20d_return_after_cost_pct"] = round(
+                    apply_round_trip_cost(float(row["forward_20d_return_pct"]), long_term_cost_model), 6
+                )
+                row["forward_20d_excess_spy_after_cost_pct"] = round(
+                    apply_round_trip_cost(float(row["forward_20d_excess_spy_pct"]), long_term_cost_model), 6
+                )
+            excess_after_cost = [float(row["forward_20d_excess_spy_after_cost_pct"]) for row in completed]
+            ci_low, ci_high = bootstrap_mean_ci(excess_after_cost)
+            result["summary"]["cost_model"] = long_term_cost_model
+            result["summary"]["avg_spy_excess_after_cost_pct"] = (
+                round(mean(excess_after_cost) or 0.0, 6) if excess_after_cost else None
+            )
+            result["summary"]["bootstrap_95_ci_spy_excess_after_cost_pct"] = [
+                round(ci_low, 6) if ci_low is not None else None,
+                round(ci_high, 6) if ci_high is not None else None,
+            ]
+            result["summary"]["concentration"] = concentration_metrics(completed, "forward_20d_excess_spy_after_cost_pct")
+        else:
+            for row in result["trades"]:
+                row["pl_after_cost_pct"] = round(apply_round_trip_cost(float(row["pl_pct"]), intraday_cost_model), 6)
+            result["summary"]["cost_model"] = intraday_cost_model
+            result["summary"]["policy_status"] = intraday_config.get("policy_status", "observation_only")
+            result["summary"]["auto_orders_allowed"] = bool(intraday_config.get("auto_orders_allowed", False))
+
     output = {
         "created_at": datetime.now().astimezone().isoformat(timespec="seconds"),
         "paper": True,
         "orders_submitted": 0,
         "source_data": str(args.input_json),
+        "metadata_source": str(args.metadata_yaml),
+        "strategy_configs": {key: str(value) for key, value in ((config["strategy_id"], path) for path in args.strategy_config for config in [load_yaml(path)])},
         "split_date": split_date,
         "candidate_count": 5,
         "policies": policies,
@@ -441,6 +518,8 @@ def main() -> None:
             "This improvement simulation reuses previously captured IEX 30Min/daily bars and does not fetch fresh quotes.",
             "Fundamental, valuation, filing, analyst, and macro features are policy requirements but not numerically simulated here.",
             "Daily policy simulation now aligns symbols by as-of date keys instead of shared row index position.",
+            "Cost model is simple bps subtraction; quote-level limit fill probability is still unavailable.",
+            "Intraday strategy configs with policy_status=observation_only cannot create order-plan entries.",
         ],
     }
     args.output_json.parent.mkdir(parents=True, exist_ok=True)
@@ -479,8 +558,8 @@ def render_markdown(output: dict[str, Any]) -> str:
         "",
         "## 장타 정책 개선 후보",
         "",
-        "| 개선 후보 | 완료 추천 | SPY 초과 hit | 평균 20D | 평균 SPY 초과 | 평균 불리 이동 | 검증 SPY 초과 | 판단 |",
-        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
+        "| 개선 후보 | 완료 추천 | SPY 초과 hit | 평균 20D | 비용차감 SPY 초과 | 95% CI | 평균 불리 이동 | 검증 SPY 초과 | 판단 |",
+        "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |",
     ]
     judgments = {
         "lt-overheat-guard-theme-cap-v1": "채택 후보. 기존 theme cap에 과열 제한을 추가해 성과를 크게 훼손하지 않았다.",
@@ -492,6 +571,7 @@ def render_markdown(output: dict[str, Any]) -> str:
         summary = output["policies"][name]["summary"]
         all_block = summary["all"]
         validation = summary["validation"]
+        ci = summary["bootstrap_95_ci_spy_excess_after_cost_pct"]
         lines.append(
             "| "
             + " | ".join(
@@ -500,7 +580,8 @@ def render_markdown(output: dict[str, Any]) -> str:
                     str(summary["completed"]),
                     all_block["spy_excess_hit"],
                     render_pct(all_block["avg_20d_return_pct"]),
-                    render_pct(all_block["avg_spy_excess_pct"]),
+                    render_pct(summary["avg_spy_excess_after_cost_pct"]),
+                    "n/a" if ci[0] is None else f"{ci[0]:+.2f}%~{ci[1]:+.2f}%",
                     render_pct(all_block["avg_adverse_move_pct"]),
                     render_pct(validation["avg_spy_excess_pct"]),
                     judgments[name],
@@ -555,7 +636,8 @@ def render_markdown(output: dict[str, Any]) -> str:
             "- `완료 추천`: 추천일 이후 20거래일 성과를 계산할 수 있는 표본 수다.",
             "- `SPY 초과 hit`: 후보의 20D 수익률이 같은 기간 SPY 수익률보다 높았던 비율이다.",
             "- `평균 20D`: 추천일 종가에서 20거래일 뒤 종가까지의 평균 수익률이다.",
-            "- `평균 SPY 초과`: 후보 20D 수익률에서 SPY 20D 수익률을 뺀 평균값이다.",
+            "- `비용차감 SPY 초과`: 후보 20D 수익률에서 SPY 20D 수익률과 strategy config의 단순 비용 모델을 뺀 평균값이다.",
+            "- `95% CI`: bootstrap으로 추정한 비용차감 SPY 초과 평균의 신뢰구간이다.",
             "- `평균 불리 이동`: 추천 후 20거래일 동안 가장 불리했던 저점 기준 손실률 평균이다.",
             "- `검증 SPY 초과`: 2026-02-25 이후 검증 구간에서의 평균 SPY 초과수익이다.",
             "- `P/L`: 종목당 10,000달러 가상 진입 기준 손익 합계다.",

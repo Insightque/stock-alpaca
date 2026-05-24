@@ -1,0 +1,36 @@
+strategy_id: intraday-afternoon-followthrough-v1
+strategy_version: "1.0"
+policy_status: observation_only
+auto_orders_allowed: false
+promotion_required: true
+universe_id: expanded-us-liquid-v1
+benchmarks:
+  - QQQ
+  - SMH
+bar_source: alpaca_iex
+bar_interval: 30m_to_3h
+asof_alignment: date_key
+train_validation:
+  method: walk_forward
+  train_months: 3
+  validation_months: 1
+  rolling_step_months: 1
+cost_model:
+  slippage_bps: 10
+  spread_bps: 5
+  fee_bps: 0
+  reject_unfilled_limit_orders: true
+filters:
+  min_qqq_first_3h_return_pct: 0.20
+  min_rel_first_3h_pctpt: 0.40
+  min_rel_second_3h_pctpt: 0.15
+  require_window_vwap_pass: true
+  reject_speculative_first_3h_return_gt_pct: 8.0
+  require_quote_level_validation: true
+  require_spread_pct: true
+  require_limit_fill_probability: true
+  require_minute_level_stop_take_ordering: true
+selection:
+  top_n: 2
+  theme_cap: 1
+  score: afternoon_relative_strength_followthrough

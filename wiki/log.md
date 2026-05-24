@@ -479,3 +479,30 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 장타는 `lt-dual-benchmark-confirm-v1`과 `lt-drawdown-volatility-guard-v1`이 이전 `daily-3h-theme-capped-top5`보다 검증 SPY 초과수익과 평균 불리 이동 측면에서 개선됐다.
 - 단타는 `intraday-afternoon-followthrough-filter-v1`이 stop 횟수는 줄였지만 hit rate와 총 P/L이 기존 최고 `3h-afternoon-continuation-top2`보다 낮아 자동 주문 금지 결론을 유지했다.
 - 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 02:25 Asia/Seoul] hardening | Request.md 정책/시뮬레이션 개선사항 반영
+
+- 사용자 요청에 따라 `Request.md`의 P0/P1/P2 개선사항을 정책, 스키마, 스크립트, 테스트, workflow, wiki에 반영했다.
+- `harness/risk-policy.yaml`을 `medium-risk-v1.1`로 올리고 ticker cap 15%, liquidity/spread, turnover/daily loss, correlated cluster, order lifecycle 한도를 추가했다.
+- `harness/symbol-metadata.yaml`로 expanded universe 62개 심볼의 theme/factor/liquidity/source confidence/correlated cluster metadata를 중앙화했다.
+- `harness/order-plan.schema.json` v1.2는 exposure metadata, liquidity object, expected return/adverse move, confidence, strategy id/version, policy status, client/decision id를 required로 강제한다.
+- `scripts/check-risk-policy.py`는 missing metadata를 error로 처리하고 spread/ADV, source confidence, duplicate id, open order conflict, partial-fill recompute, cluster exposure를 검증한다.
+- `harness/recommendation-policy.yaml`, `harness/recommendation-policy.schema.json`, `harness/strategy-config.schema.json`, `harness/strategies/*.yaml`을 추가해 장기 v1은 `active_dry_run_candidate`, intraday는 `observation_only`로 분리했다.
+- `scripts/fetch-alpaca-bars-mcp.py`와 `scripts/simulate-one-year-daily-policy.py`를 추가해 Alpaca MCP bars 캡처와 과거 1년 일별 독립 시뮬레이션 workflow를 구성했다.
+- Alpaca MCP로 2025-05-23~2026-05-22 62개 심볼 adjusted IEX 일봉 251거래일을 캡처했고, 장기 v1 시뮬레이션은 191개 독립 기준일, 완료 추천 853개, 비용차감 SPY 초과 hit rate 58.73%, 평균 초과 +3.75%, bootstrap 95% CI +2.84%~+4.76%, 평균 불리 이동 -6.46%를 기록했다.
+- 2026-03 validation window가 평균 -5.48%로 실패했으며 quote-level fill/source/valuation feature가 아직 부족하므로 정책은 `auto_eligible_paper`가 아니라 `active_dry_run_candidate`로 유지한다. Intraday 자동주문 금지도 유지한다.
+- 테스트: `python3 -m unittest discover -s tests` 통과, `scripts/check-risk-policy.py harness/examples/order-plan.example.json` 통과. `ruff`는 로컬에 설치되어 있지 않아 실행하지 못했다.
+- 원천 기록: `wiki/raw/sources/2026-05-25-one-year-daily-simulation-sources.md`.
+- 백테스트: `wiki/backtests/2026-05-25-one-year-daily-policy-simulation.md`.
+- 검토 문서: `wiki/analyses/2026-05-25-request-implementation-review.md`.
+- run manifest: `wiki/runs/2026-05-25-one-year-daily-policy-simulation.json`.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 07:21 Asia/Seoul] review | Request.md 항목별 반영 상태 재검토
+
+- 사용자 요청에 따라 `Request.md`의 17개 요구사항과 파일별 세부 제안을 다시 대조했다.
+- `wiki/analyses/2026-05-25-request-implementation-review.md`에 3차 항목별 대조 검토 표를 추가했다.
+- 완료 항목은 intraday 관찰 전용, 장기 dry-run 후보, risk v1.1, order-plan metadata required, data manifest, machine-readable recommendation policy, expanded universe cap, risk checker 확장, order lifecycle, policy proposal template 등이다.
+- 부분 반영으로 남은 항목은 strategy selector 완전 YAML화, intraday fill/slippage 전용 모델 스크립트, event-level SEC/earnings/news/valuation source confidence 결합, 6개월 train/regime별 walk-forward 확장이다.
+- 테스트 재확인: `python3 -m unittest discover -s tests` 32개 통과, `python3 scripts/check-risk-policy.py harness/examples/order-plan.example.json` PASS.
+- 실제 주문, 취소, 포지션 변경은 없었다.
