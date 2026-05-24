@@ -404,3 +404,19 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 기존 `wiki/analyses/`에 있던 단타 정책 실험, 장타 정책 검증, news lead/lag event study, 최근 6개월 3시간 정책 검토 문서를 `wiki/backtests/`로 이동했다.
 - `wiki/simulations/`는 계속 과거 특정 시점 기준 추천 문서 전용으로 유지한다. 해당 문서는 미래 가격/성과 정보를 포함하지 않는다.
 - `README.md`, `wiki/index.md`, `wiki/analyses/README.md`, `wiki/simulations/README.md`, `wiki/backtests/README.md`에 폴더별 역할을 반영했다.
+
+## [2026-05-24 15:56 Asia/Seoul] backtest | 정책 개선 후보 5개 시뮬레이션
+
+- 사용자 요청에 따라 현재 정책을 개선하기 위해 시도할 후보 5개를 뽑고, 기존 최근 6개월 3시간/일봉 계산 데이터를 재사용해 검증했다.
+- 장타 후보는 `lt-overheat-guard-theme-cap-v1`, `lt-dual-benchmark-confirm-v1`, `lt-drawdown-volatility-guard-v1`, `lt-anti-chase-staged-entry-v1` 네 가지다.
+- 단타 후보는 `intraday-afternoon-followthrough-filter-v1` 한 가지이며, 성과 개선에도 IEX 30분봉·spread·fill 공백 때문에 자동 주문 금지를 유지했다.
+- 장타 `lt-overheat-guard-theme-cap-v1`은 257개 완료 추천 평균 20D +10.32%, SPY 초과 +8.89%p, 검증 구간 SPY 초과 +14.54%p였다.
+- `lt-dual-benchmark-confirm-v1`은 233개 완료 추천 평균 SPY 초과 +9.48%p, 검증 구간 +16.44%p였다.
+- `lt-drawdown-volatility-guard-v1`은 220개 완료 추천 평균 SPY 초과 +9.44%p, 평균 불리 이동 -7.12%였다.
+- `lt-anti-chase-staged-entry-v1`은 188개 완료 추천 평균 SPY 초과 +6.65%p, 검증 구간 +11.38%p였다.
+- 단타 `intraday-afternoon-followthrough-filter-v1`은 78거래, hit rate 58.97%, 가상 P/L +$1,386.98였다.
+- 분석 문서: `wiki/backtests/2026-05-24-policy-improvement-candidates.md`.
+- 계산 데이터: `wiki/raw/sources/2026-05-24-policy-improvement-candidates-data.json`.
+- run manifest: `wiki/runs/2026-05-24-policy-improvement-candidates.json`.
+- 정책 문서: `wiki/policies/recommendation-policy.md`.
+- 실제 주문, 취소, 포지션 변경은 없었다.

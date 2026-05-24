@@ -57,6 +57,7 @@
 - [[2026-05-23-long-term-feb-mar-apr-may-simulation]] - 2026년 2~3월 13개 기준일로 장타 정책을 학습하고 4~5월 10개 기준일로 검증한 분석.
 - [[2026-05-24-short-long-policy-feb-mar-apr-may-review]] - 현재 단타/장타 정책을 2~3월 시뮬레이션과 4~5월 검증으로 재점검한 회고.
 - [[2026-05-24-six-month-3h-independent-policy-review]] - 2025-11-24~2026-05-22 최근 6개월을 3시간 구간으로 집계한 독립 단타/장타 정책 검토.
+- [[2026-05-24-policy-improvement-candidates]] - 현재 정책 개선 후보 5개를 최근 6개월 3시간/일봉 데이터로 검증한 백테스트.
 
 ## 과거 시점 시뮬레이션
 
@@ -123,3 +124,4 @@
 - [[2026-05-24-mcp-policy-history-reaudit-sources]] - 남은 정책 시뮬레이션 이력 MCP 재감사용 Alpaca/Alpha/SEC/Firecrawl 원천과 FRED 공백 기록.
 - [[2026-05-24-current-recommendation-sources]] - 현재 기준 종목 추천용 Alpaca account/clock/positions/prices/news, SEC/Yahoo/Alpha/Web 보강 원천.
 - [[2026-05-24-six-month-3h-simulation-sources]] - 최근 6개월 3시간 구간 시뮬레이션용 Alpaca MCP calendar/assets/IEX 30분봉 원천과 데이터 공백 기록.
+- `wiki/raw/sources/2026-05-24-policy-improvement-candidates-data.json` - 정책 개선 후보 5개 검증용 계산 결과.
