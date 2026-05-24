@@ -59,7 +59,7 @@ The default policy is medium risk. The machine-readable source of truth is `harn
 
 - Maximum invested after new orders: 80% of account portfolio value.
 - Minimum cash reserve after new buy orders: 20% of account portfolio value.
-- Maximum target exposure per ticker: 20% of account portfolio value.
+- Maximum target exposure per ticker: 15% of account portfolio value.
 - Maximum new orders per run: 10.
 - Allowed assets: active tradable US stocks and ETFs only.
 - Allowed order shape: long-only, whole-share, day limit orders.
@@ -80,16 +80,19 @@ If validation fails, do not submit orders. Write skipped orders and reasons into
 ## Wiki Conventions
 
 - Record all future wiki content, daily reports, ticker analyses, portfolio notes, raw-source summaries, and log entries in Korean by default. Keep ticker symbols, source titles, field names, tool names, and quoted source text in their original language when that improves traceability.
-- `wiki/raw/sources/`: immutable source notes. Do not edit raw source pages after initial capture except to fix formatting that blocks parsing.
-- `wiki/tickers/`: one page per ticker, named `SYMBOL.md`.
-- `wiki/portfolio/`: account snapshots, allocation plans, and order plans.
-- `wiki/reports/daily/`: daily run reports named `YYYY-MM-DD.md`.
-- `wiki/reviews/trades/`: trade review notes, named `YYYY-MM-DD-SYMBOL-review.md` or `YYYY-MM-DD-portfolio-review.md`.
-- `wiki/simulations/`: historical as-of recommendation simulations, named `YYYY-MM-DD-historical-decision.md`.
-- `wiki/reviews/decisions/`: historical recommendation reviews, named `YYYY-MM-DD-historical-review.md`.
-- `wiki/policies/recommendation-policy.md`: living policy distilled from trade reviews. Update it only with evidence-backed lessons, not one-off hindsight.
-- `wiki/analyses/`: reusable cross-ticker or thematic analyses.
-- `wiki/runs/`: machine-readable run manifests for meaningful runs.
+- `wiki/evidence-store/sources/`: immutable source notes. Do not edit raw source pages after initial capture except to fix formatting that blocks parsing.
+- `wiki/research-notes/tickers/`: one page per ticker, named `SYMBOL.md`.
+- `wiki/research-notes/portfolio/`: reusable portfolio interpretation and allocation notes.
+- `wiki/current-runs/daily/`: current-account/current-market trading workflow reports named `YYYY-MM-DD.md`.
+- `wiki/trade-ledger/orders/`: actual paper orders and dry-run order plans.
+- `wiki/trade-ledger/positions/`: actual paper positions and account-state snapshots.
+- `wiki/trade-ledger/reviews/`: post-trade review notes for actual paper trades, named `YYYY-MM-DD-SYMBOL-review.md` or `YYYY-MM-DD-portfolio-review.md`.
+- `wiki/backtest-runs/`: historical experiments, simulated decisions, and outcome validation.
+- `wiki/backtest-runs/decisions/`: historical as-of recommendation simulations, named `YYYY-MM-DD-historical-decision.md`; do not include future outcomes here.
+- `wiki/backtest-runs/results/`: all backtest results that use later outcomes, including individual historical reviews, multi-date policy backtests, event studies, and validation summaries.
+- `wiki/policy-book/recommendation-policy.md`: living policy distilled from trade reviews and historical backtest reviews. Update it only with evidence-backed lessons, not one-off hindsight.
+- `wiki/research-notes/analyses/`: reusable cross-ticker or thematic analyses.
+- `wiki/evidence-store/run-manifests/`: machine-readable run manifests for meaningful runs.
 - `wiki/index.md`: content-oriented catalog. Read it first and update it after each run.
 - `wiki/log.md`: append-only chronological log. Add a new `## [YYYY-MM-DD HH:MM TZ] type | title` entry for every run.
 
@@ -102,7 +105,7 @@ Use wiki links such as `[[AAPL]]`, `[[portfolio-current]]`, and `[[2026-05-22]]`
 - Compare the original recommendation with the actual later outcome using the wiki state that existed at decision time: ticker page, daily report, order plan, raw sources, account snapshot, market data, and risk policy.
 - Record what worked, what failed, what was unknowable, and what should change in future recommendations.
 - Do not rewrite old thesis pages to look smarter in hindsight. Add dated review sections or separate review pages.
-- A single trade can suggest a hypothesis, but update `wiki/policies/recommendation-policy.md` only when the lesson is evidence-backed and clearly useful for future recommendations.
+- A single trade can suggest a hypothesis, but update `wiki/policy-book/recommendation-policy.md` only when the lesson is evidence-backed and clearly useful for future recommendations.
 
 ## Research MCP Source Policy
 
@@ -124,7 +127,7 @@ Use wiki links such as `[[AAPL]]`, `[[portfolio-current]]`, and `[[2026-05-22]]`
 - Historical simulations may create only dry-run order plans. They must never call Alpaca order submission, replacement, cancellation, or position-closing tools.
 - Historical reviews may use later prices and benchmark returns, but only in separate review documents. Do not edit the original simulation to include future outcomes.
 - Run `scripts/check-leakage.py` on new or materially changed historical simulation/order-plan artifacts when practical; if it cannot run, record the reason in `wiki/log.md`.
-- Use accumulated review evidence to update `wiki/policies/recommendation-policy.md` with `evidence_count`, `hit_rate`, `avg_excess_return`, and status. Single examples stay as hypotheses unless impact is clearly material.
+- Use accumulated review evidence to update `wiki/policy-book/recommendation-policy.md` with `evidence_count`, `hit_rate`, `avg_excess_return`, and status. Single examples stay as hypotheses unless impact is clearly material.
 
 ## Trading Execution Contract
 

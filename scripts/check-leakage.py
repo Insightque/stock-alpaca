@@ -122,7 +122,7 @@ def check_text_dates(path: Path, text: str, asof: datetime) -> list[str]:
 def check_review_only_fields(path: Path, text: str) -> list[str]:
     lowered = text.lower()
     errors: list[str] = []
-    is_simulation = "/simulations/" in str(path) or "historical-decision" in path.name
+    is_simulation = "/backtest-runs/decisions/" in str(path) or "historical-decision" in path.name
     if not is_simulation:
         return errors
     for pattern in REVIEW_ONLY_PATTERNS:

@@ -241,8 +241,8 @@ async def main() -> None:
         "alpaca": await collect_alpaca(root),
         "sec": await collect_sec(root),
     }
-    out_json = root / "wiki/raw/sources/2026-05-24-may-15-mcp-context-data.json"
-    out_md = root / "wiki/raw/sources/2026-05-24-may-15-mcp-context-sources.md"
+    out_json = root / "wiki/evidence-store/sources/2026-05-24-may-15-mcp-context-data.json"
+    out_md = root / "wiki/evidence-store/sources/2026-05-24-may-15-mcp-context-sources.md"
     out_json.write_text(json.dumps(data, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     out_md.write_text(render_markdown(data), encoding="utf-8")
     print(json.dumps({"json": str(out_json), "md": str(out_md), "news_count": len(data["alpaca"]["news"])}, ensure_ascii=False, indent=2))

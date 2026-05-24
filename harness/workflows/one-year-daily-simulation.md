@@ -30,23 +30,23 @@ python3 scripts/fetch-alpaca-bars-mcp.py \
   --timeframe 1Day \
   --feed iex \
   --adjustment all \
-  --output-json wiki/raw/sources/YYYY-MM-DD-one-year-daily-bars.json
+  --output-json wiki/evidence-store/sources/YYYY-MM-DD-one-year-daily-bars.json
 ```
 
 3. Run the independent daily simulation:
 
 ```bash
 python3 scripts/simulate-one-year-daily-policy.py \
-  --input-json wiki/raw/sources/YYYY-MM-DD-one-year-daily-bars.json \
+  --input-json wiki/evidence-store/sources/YYYY-MM-DD-one-year-daily-bars.json \
   --strategy-config harness/strategies/long-term-quality-momentum-v1.yaml \
   --metadata-yaml harness/symbol-metadata.yaml \
-  --output-json wiki/raw/sources/YYYY-MM-DD-one-year-daily-policy-simulation-data.json \
-  --output-md wiki/backtests/YYYY-MM-DD-one-year-daily-policy-simulation.md \
-  --scorecard-json wiki/raw/sources/YYYY-MM-DD-one-year-policy-scorecard.json
+  --output-json wiki/evidence-store/sources/YYYY-MM-DD-one-year-daily-policy-simulation-data.json \
+  --output-md wiki/backtest-runs/results/YYYY-MM-DD-one-year-daily-policy-simulation.md \
+  --scorecard-json wiki/evidence-store/sources/YYYY-MM-DD-one-year-policy-scorecard.json
 ```
 
 4. Review the result against `harness/recommendation-policy.yaml` promotion criteria.
-5. If a rule change is warranted, create a proposal from `wiki/policies/proposals/TEMPLATE-policy-change.md`; do not silently promote a strategy from one simulation.
+5. If a rule change is warranted, create a proposal from `wiki/policy-book/proposals/TEMPLATE-policy-change.md`; do not silently promote a strategy from one simulation.
 6. Update `wiki/index.md` and append `wiki/log.md`.
 
 ## Required Output Checks

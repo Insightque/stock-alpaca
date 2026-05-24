@@ -57,8 +57,8 @@ New order plans must conform to `harness/order-plan.schema.json` and include pro
 Validate plans with human output or JSON output:
 
 ```bash
-python3 scripts/check-risk-policy.py wiki/portfolio/order-plans/YOUR-PLAN.json
-python3 scripts/check-risk-policy.py --json wiki/portfolio/order-plans/YOUR-PLAN.json
+python3 scripts/check-risk-policy.py wiki/trade-ledger/orders/YOUR-PLAN.json
+python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YOUR-PLAN.json
 ```
 
 ## Failure Policy

@@ -506,3 +506,50 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 부분 반영으로 남은 항목은 strategy selector 완전 YAML화, intraday fill/slippage 전용 모델 스크립트, event-level SEC/earnings/news/valuation source confidence 결합, 6개월 train/regime별 walk-forward 확장이다.
 - 테스트 재확인: `python3 -m unittest discover -s tests` 32개 통과, `python3 scripts/check-risk-policy.py harness/examples/order-plan.example.json` PASS.
 - 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 07:49 Asia/Seoul] wiki | backtests 하위 구조 통합
+
+- 사용자 요청에 따라 `wiki/simulations/`와 `wiki/reviews/decisions/`를 별도 최상위 개념으로 두지 않고 `wiki/backtests/` 아래로 통합했다.
+- 과거 기준 모의 의사결정 문서는 `wiki/backtests/decisions/`로 이동했다. 이 문서는 기준 시점 이후 가격, 뉴스, 결과를 포함하지 않는다.
+- 과거 의사결정의 1D/5D/20D 사후 회고 문서는 `wiki/backtests/reviews/`로 이동했다. 이 문서는 미래 가격과 벤치마크 대비 결과를 기록할 수 있다.
+- 여러 날짜를 묶은 정책 백테스트, event study, 단타/장타 검증 문서는 `wiki/backtests/summaries/`로 이동했다.
+- 큰 원천/계산 데이터는 기존 llm-wiki 원칙에 따라 `wiki/raw/sources/`에 유지하고, `wiki/backtests/data/README.md`에는 데이터 위치 안내만 추가했다.
+- `README.md`, `AGENTS.md`, `wiki/index.md`, `harness/workflows/*`, `harness/simple-commands.md`, `harness/agent-tasking-guide.md`, `scripts/check-leakage.py`, run manifest의 참조 경로를 새 구조에 맞췄다.
+- `AGENTS.md`의 단일 티커 최대 비중 설명을 현행 `medium-risk-v1.1`과 같은 15%로 맞췄다.
+- 검증: `python3 -m unittest discover -s tests` 33개 통과.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 08:00 Asia/Seoul] wiki | backtests 결과와 reports 역할 재정의
+
+- 사용자 지적에 따라 `wiki/backtests/reviews/`와 `wiki/backtests/summaries/`를 다시 나누지 않고 `wiki/backtests/results/` 하나로 통합했다.
+- `wiki/backtests/decisions/`는 미래 정보 없는 과거 기준 모의 의사결정만 저장하고, `wiki/backtests/results/`는 미래 결과를 쓰는 모든 백테스트 결과를 저장하도록 정의했다.
+- 기존 개별 historical review 문서와 1년/6개월/단타/장타 정책 검증 문서를 모두 `wiki/backtests/results/`로 이동했다.
+- `wiki/reports/`는 모든 사람이 읽는 문서가 아니라 현재 운영/사용자 요청 설명 보고서 저장소로 재정의했다.
+- 기존 `wiki/reports/` 루트의 특별 보고서 2개는 `wiki/reports/special/`로 이동했고, 현재 시점 일일 workflow 결과는 `wiki/reports/daily/`에 유지했다.
+- `README.md`, `AGENTS.md`, `wiki/index.md`, `harness/workflows/*`, `harness/simple-commands.md`, `harness/agent-tasking-guide.md`, run manifest, 추천 정책 source ref를 새 경로로 갱신했다.
+- 검증: `python3 -m unittest discover -s tests` 33개 통과. append-only 로그와 raw source를 제외하고 예전 `wiki/backtests/reviews/`, `wiki/backtests/summaries/`, `wiki/reports/YYYY-...` 참조가 남지 않았음을 확인했다.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 08:04 Asia/Seoul] wiki | reports 저장 기준 축소
+
+- 사용자 지적에 따라 `reports` 기준을 더 좁혀 `현재 계좌와 현재 시장을 대상으로 실행한 운영 리포트`만 저장하도록 재정의했다.
+- `wiki/reports/special/` 개념은 제거했다. 사용자 요청 설명 문서라도 백테스트 결과를 다루면 `wiki/backtests/results/`, 재사용 가능한 정책/투자 인사이트면 `wiki/analyses/`에 둔다.
+- `wiki/reports/special/2026-05-23-investment-simulation-insight-report.md`는 `wiki/analyses/2026-05-23-investment-simulation-insight-report.md`로 이동했다.
+- `wiki/reports/special/2026-05-24-may-15-decision-process-report.md`는 2026-05-15 과거 결정과 5D 사후 검증을 포함하므로 `wiki/backtests/results/2026-05-24-may-15-decision-process-report.md`로 이동했다.
+- `README.md`, `AGENTS.md`, `wiki/reports/README.md`, `wiki/analyses/README.md`, `wiki/index.md`에 새 기준을 반영했다.
+- 검증: `python3 -m unittest discover -s tests` 33개 통과. append-only 로그와 raw source를 제외하고 `reports/special`, `wiki/reports/YYYY-...`, 예전 `wiki/backtests/reviews/`, `wiki/backtests/summaries/`, `wiki/simulations/`, `wiki/reviews/decisions/` 참조가 남지 않았음을 확인했다.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 08:26 Asia/Seoul] wiki | MECE wiki 용어 체계 적용
+
+- 사용자 요청에 따라 wiki 최상위 폴더를 같은 레벨의 저장소 용어로 재구성했다.
+- 최종 구조는 `current-runs/`, `backtest-runs/`, `trade-ledger/`, `research-notes/`, `policy-book/`, `evidence-store/`다.
+- `wiki/current-runs/daily/`는 현재 계좌와 현재 시장 기준 workflow 결과만 저장한다.
+- `wiki/backtest-runs/decisions/`는 미래 정보 없는 과거 기준 모의 의사결정, `wiki/backtest-runs/results/`는 미래 결과를 쓰는 백테스트 결과를 저장한다.
+- `wiki/trade-ledger/orders/`, `wiki/trade-ledger/positions/`, `wiki/trade-ledger/reviews/`는 실제 paper 주문/포지션/거래 회고 장부로 분리했다.
+- `wiki/research-notes/tickers/`, `wiki/research-notes/portfolio/`, `wiki/research-notes/analyses/`는 다음 판단에 재사용할 지식 저장소로 정리했다.
+- `wiki/policy-book/`는 적용할 규칙, `wiki/evidence-store/sources/`와 `wiki/evidence-store/run-manifests/`는 원천 증거와 실행 provenance 저장소로 정리했다.
+- `README.md`, `AGENTS.md`, `wiki/index.md`, workflow 문서, 템플릿, run manifest, order plan, 스크립트 경로를 새 구조로 갱신했다.
+- 검증: `python3 -m unittest discover -s tests` 33개 통과, `python3 scripts/check-risk-policy.py harness/examples/order-plan.example.json` PASS.
+- append-only 로그와 immutable source 본문을 제외한 실행 문서/스크립트/manifest에서 구 경로 참조가 남지 않았음을 확인했다.
+- 실제 주문, 취소, 포지션 변경은 없었다.

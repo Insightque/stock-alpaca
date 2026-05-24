@@ -16,15 +16,15 @@ Default simple-command mode:
 - Alpaca MCP account, clock, positions, watchlists, assets, stock data, and news.
 - Research MCPs from `harness/mcp-source-map.md` for SEC filings, earnings calendar, analyst context, company IR capture, and macro indicators when available.
 - Web sources for current company, earnings, sector, and macro context when MCP coverage is missing or needs source-page capture.
-- Existing wiki pages: `wiki/index.md`, `wiki/log.md`, `wiki/policies/recommendation-policy.md`, ticker pages, portfolio pages, trade reviews, and recent reports.
+- Existing wiki pages: `wiki/index.md`, `wiki/log.md`, `wiki/policy-book/recommendation-policy.md`, ticker pages, portfolio pages, trade reviews, and recent reports.
 
 ## Required Outputs
 
-- `wiki/reports/daily/YYYY-MM-DD.md`
-- Updated ticker pages in `wiki/tickers/`
-- New immutable raw source notes in `wiki/raw/sources/`
-- Updated `wiki/portfolio/current.md`
-- Order plan JSON in `wiki/portfolio/order-plans/YYYY-MM-DD-daily.json`
+- `wiki/current-runs/daily/YYYY-MM-DD.md`
+- Updated ticker pages in `wiki/research-notes/tickers/`
+- New immutable raw source notes in `wiki/evidence-store/sources/`
+- Updated `wiki/trade-ledger/positions/current.md`
+- Order plan JSON in `wiki/trade-ledger/orders/YYYY-MM-DD-daily.json`
 - Updated `wiki/index.md`
 - Appended `wiki/log.md` entry
 
@@ -34,7 +34,7 @@ For any report or cross-ticker analysis that includes calculated metrics, add a 
 
 1. Coordinator Agent
    - Read `AGENTS.md`, `wiki/index.md`, and the last 10 entries of `wiki/log.md`.
-   - Read `wiki/policies/recommendation-policy.md` when present and apply its current lessons to candidate scoring.
+   - Read `wiki/policy-book/recommendation-policy.md` when present and apply its current lessons to candidate scoring.
    - Confirm `.env` has `ALPACA_PAPER_TRADE=true`.
    - Use Alpaca MCP to get account info, market clock, open orders, current positions, and watchlists.
    - If MCP is unavailable, switch to research-only mode and record the blocker.
@@ -58,12 +58,12 @@ For any report or cross-ticker analysis that includes calculated metrics, add a 
      - `firecrawl` for company IR pages, press releases, and earnings presentation capture when the API key is present.
      - `yahoo-finance` for analyst recommendations, Yahoo news, holders, insider, and supplemental actions.
    - Browse for current company, earnings, guidance, analyst, sector, and macro context only when MCP data is insufficient or a source URL needs capture.
-   - Capture each useful source as `wiki/raw/sources/YYYY-MM-DD-source-slug.md` using `harness/templates/raw-source.md`.
+   - Capture each useful source as `wiki/evidence-store/sources/YYYY-MM-DD-source-slug.md` using `harness/templates/raw-source.md`.
    - Keep summaries concise and include source URLs, MCP names, query periods, and any missing-key/data-gap notes.
 
 5. Trend Agent
    - Compute daily, weekly, and monthly trend using price direction, volume, momentum, volatility, drawdown, and relative strength.
-   - Before final scoring, apply the news-price lead/lag policy from `wiki/policies/recommendation-policy.md`.
+   - Before final scoring, apply the news-price lead/lag policy from `wiki/policy-book/recommendation-policy.md`.
      - Classify each meaningful news event as earnings, theme/policy, mega-cap expectation, analyst, macro, or unknown.
      - Compare pre-news 3D/5D return, event-day return, and available post-news return.
      - If good news follows a large pre-news run-up, mark `price-led` or `sell-the-news-risk` and reduce new-buy confidence.
@@ -77,18 +77,18 @@ For any report or cross-ticker analysis that includes calculated metrics, add a 
    - Note any scoring adjustment caused by prior trade reviews or recommendation policy.
 
 6. Ticker Thesis Agent
-   - Create or update `wiki/tickers/SYMBOL.md`.
+   - Create or update `wiki/research-notes/tickers/SYMBOL.md`.
    - Include current thesis, D/W/M trend, catalysts, risks, portfolio context, confidence, and source links.
    - Flag contradictions or stale claims instead of erasing them silently.
 
 7. Portfolio/Risk Agent
    - Propose target allocations using the medium risk policy in `harness/risk-policy.yaml` and `harness/risk-policy.md`.
    - Keep at least 20% cash reserve and at most 80% invested.
-   - Keep each ticker at or below 20% of portfolio value.
-   - Create a concrete JSON order plan in `wiki/portfolio/order-plans/YYYY-MM-DD-daily.json`.
+   - Keep each ticker at or below 15% of portfolio value.
+   - Create a concrete JSON order plan in `wiki/trade-ledger/orders/YYYY-MM-DD-daily.json`.
    - Include `schema_version`, `risk_policy_version`, `recommendation_policy_sha`, `created_at`, root `source_refs`, and per-order `quote_captured_at`, `asset_checked_at`, `source_refs`.
-   - Validate it with `python3 scripts/check-risk-policy.py --json wiki/portfolio/order-plans/YYYY-MM-DD-daily.json`.
-   - Create a run manifest in `wiki/runs/YYYY-MM-DD-HHMM-run-id.json` using `harness/templates/run-manifest.json`.
+   - Validate it with `python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YYYY-MM-DD-daily.json`.
+   - Create a run manifest in `wiki/evidence-store/run-manifests/YYYY-MM-DD-HHMM-run-id.json` using `harness/templates/run-manifest.json`.
 
 8. Executor Agent
    - If the order plan fails validation, submit nothing.
@@ -100,7 +100,7 @@ For any report or cross-ticker analysis that includes calculated metrics, add a 
 
 9. Post-Trade Agent
    - Use Alpaca MCP to verify submitted orders, fills, open orders, current positions, cash, and buying power.
-   - Update `wiki/portfolio/current.md`.
+   - Update `wiki/trade-ledger/positions/current.md`.
    - Add submitted/skipped order tables to the daily report.
 
 10. Wiki Curator Agent

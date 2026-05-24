@@ -24,5 +24,5 @@ Safety lives in two places:
 
 Provenance and leakage controls:
 
-- `harness/templates/run-manifest.json` and `harness/run-manifest.schema.json` define run manifests for `wiki/runs/`.
+- `harness/templates/run-manifest.json` and `harness/run-manifest.schema.json` define run manifests for `wiki/evidence-store/run-manifests/`.
 - `scripts/check-leakage.py` scans historical simulation artifacts for obvious future-data leakage.

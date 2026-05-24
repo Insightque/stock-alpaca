@@ -1,6 +1,6 @@
 # 주문 계획 템플릿
 
-구체적인 주문 계획은 `wiki/portfolio/order-plans/` 아래 JSON 파일로 작성한다. Alpaca MCP로 paper 주문을 제출하기 전 반드시 `scripts/check-risk-policy.py`로 검증한다.
+구체적인 주문 계획은 `wiki/trade-ledger/orders/` 아래 JSON 파일로 작성한다. Alpaca MCP로 paper 주문을 제출하기 전 반드시 `scripts/check-risk-policy.py`로 검증한다.
 
 ```json
 {
@@ -68,16 +68,16 @@
       },
       "client_order_id": "YYYYMMDD-SPY-buy-001",
       "decision_id": "YYYYMMDD-SPY-long-term-quality-momentum-v1",
-      "source_refs": ["wiki/raw/sources/YYYY-MM-DD-alpaca-market-data.md"],
+      "source_refs": ["wiki/evidence-store/sources/YYYY-MM-DD-alpaca-market-data.md"],
       "rationale": "주문 근거를 한국어로 기록한다."
     }
   ],
   "source_refs": [
-    "wiki/raw/sources/YYYY-MM-DD-alpaca-account-clock.md",
-    "wiki/raw/sources/YYYY-MM-DD-alpaca-market-data.md"
+    "wiki/evidence-store/sources/YYYY-MM-DD-alpaca-account-clock.md",
+    "wiki/evidence-store/sources/YYYY-MM-DD-alpaca-market-data.md"
   ],
-  "manifest_path": "wiki/runs/YYYY-MM-DD-HHMM-run-id.json"
+  "manifest_path": "wiki/evidence-store/run-manifests/YYYY-MM-DD-HHMM-run-id.json"
 }
 ```
 
-과거 시점 추천 시뮬레이션에서 생성하는 주문 계획도 같은 형식을 사용하되, 반드시 `mode: "dry_run"`으로 둔다. 각 주문에는 `decision_id`, `client_order_id`, `strategy_id`, `policy_status`, 기대 초과수익, 기대 불리 이동, `confidence_score`, 유동성 정보, `historical_asof`, `review_horizons`, `rationale`, `quote_captured_at`, `asset_checked_at`, `source_refs`를 넣어 이후 `wiki/reviews/decisions/` 회고와 leakage 점검에 연결한다.
+과거 시점 추천 시뮬레이션에서 생성하는 주문 계획도 같은 형식을 사용하되, 반드시 `mode: "dry_run"`으로 둔다. 각 주문에는 `decision_id`, `client_order_id`, `strategy_id`, `policy_status`, 기대 초과수익, 기대 불리 이동, `confidence_score`, 유동성 정보, `historical_asof`, `review_horizons`, `rationale`, `quote_captured_at`, `asset_checked_at`, `source_refs`를 넣어 이후 `wiki/backtest-runs/results/` 회고와 leakage 점검에 연결한다.

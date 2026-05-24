@@ -8,14 +8,14 @@ Health-check the llm-wiki for stale, missing, contradictory, orphaned, or uncite
 
 ## Required Outputs
 
-- A lint report in `wiki/analyses/YYYY-MM-DD-wiki-lint.md`
+- A lint report in `wiki/research-notes/analyses/YYYY-MM-DD-wiki-lint.md`
 - Fixes to index/log references when safe
 - Updated pages only when the fix is mechanical or clearly source-backed
 - Appended `wiki/log.md` entry
 
 ## Checks
 
-- Every ticker in reports or order plans has a page in `wiki/tickers/`.
+- Every ticker in reports or order plans has a page in `wiki/research-notes/tickers/`.
 - Every ticker page has at least one source note or explicit Alpaca MCP citation.
 - `wiki/index.md` lists all ticker pages, daily reports, analyses, and important raw source groups.
 - `wiki/log.md` has an entry for each daily report and rebalance run.

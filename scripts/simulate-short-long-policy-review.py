@@ -348,7 +348,7 @@ def summarize_long_term(source: dict[str, Any], variant: str = "quality_top5") -
         }
 
     return {
-        "source_file": "wiki/raw/sources/2026-05-23-long-term-feb-mar-apr-may-simulation-data.json",
+        "source_file": "wiki/evidence-store/sources/2026-05-23-long-term-feb-mar-apr-may-simulation-data.json",
         "train_dates": source["train_dates"],
         "validation_dates": source["validation_dates"],
         "train_summary": calc(source["train_recommendations"], "train"),
@@ -372,7 +372,7 @@ def main() -> None:
     parser.add_argument(
         "--long-term-source-json",
         type=Path,
-        default=Path("wiki/raw/sources/2026-05-23-long-term-feb-mar-apr-may-simulation-data.json"),
+        default=Path("wiki/evidence-store/sources/2026-05-23-long-term-feb-mar-apr-may-simulation-data.json"),
     )
     args = parser.parse_args()
 

@@ -51,6 +51,18 @@ class LeakageCheckerTests(unittest.TestCase):
             errors, _ = check_leakage.check_file(path, None)
         self.assertTrue(any("review-only" in error for error in errors))
 
+    def test_backtest_runs_decisions_path_is_treated_as_simulation(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            path = Path(temp_dir) / "wiki" / "backtest-runs" / "decisions" / "decision.md"
+            path.parent.mkdir(parents=True)
+            path.write_text(
+                "historical_asof: 2026-05-08T20:00:00Z\n"
+                "actual_return: +3.0%\n",
+                encoding="utf-8",
+            )
+            errors, _ = check_leakage.check_file(path, None)
+        self.assertTrue(any("review-only" in error for error in errors))
+
 
 if __name__ == "__main__":
     unittest.main()

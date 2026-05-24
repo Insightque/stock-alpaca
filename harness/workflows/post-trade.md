@@ -8,7 +8,7 @@ Reconcile submitted orders, fills, current positions, cash, buying power, and po
 
 ## Required Outputs
 
-- Updated `wiki/portfolio/current.md`
+- Updated `wiki/trade-ledger/positions/current.md`
 - Updated relevant daily report if one exists
 - Updated ticker pages for symbols with fills or open orders
 - Trade review due markers for filled symbols when enough outcome data exists
@@ -20,7 +20,7 @@ Reconcile submitted orders, fills, current positions, cash, buying power, and po
 1. Read `AGENTS.md`, `wiki/index.md`, recent reports, and recent order plans.
 2. Use Alpaca MCP to get account info, open orders, recent filled/canceled orders, account activities, and all positions.
 3. Compare actual orders/fills against the latest order plan.
-4. Update `wiki/portfolio/current.md` using `harness/templates/portfolio-state.md`.
+4. Update `wiki/trade-ledger/positions/current.md` using `harness/templates/portfolio-state.md`.
 5. If a daily report exists for today, update its submitted orders, skipped orders, and unresolved issues sections.
 6. Update ticker pages touched by fills or open orders.
 7. Check whether a trade review is due:

@@ -16,17 +16,17 @@
 
 ## 필수 입력
 
-- `wiki/simulations/YYYY-MM-DD-historical-decision.md`
-- `wiki/portfolio/order-plans/YYYY-MM-DD-historical-decision.json`
-- `wiki/raw/sources/YYYY-MM-DD-historical-asof.md`
+- `wiki/backtest-runs/decisions/YYYY-MM-DD-historical-decision.md`
+- `wiki/trade-ledger/orders/YYYY-MM-DD-historical-decision.json`
+- `wiki/evidence-store/sources/YYYY-MM-DD-historical-asof.md`
 - 회고 평가일 기준 Alpaca MCP `get_stock_bars` 가격 데이터.
 - 비교용 SPY, QQQ, 관련 섹터 ETF 가격 데이터.
-- 현재 `wiki/policies/recommendation-policy.md`.
+- 현재 `wiki/policy-book/recommendation-policy.md`.
 
 ## 필수 산출물
 
-- `wiki/reviews/decisions/YYYY-MM-DD-historical-review.md`
-- 필요 시 `wiki/policies/recommendation-policy.md` 업데이트
+- `wiki/backtest-runs/results/YYYY-MM-DD-historical-review.md`
+- 필요 시 `wiki/policy-book/recommendation-policy.md` 업데이트
 - 관련 ticker page의 `회고 기록` 섹션 업데이트
 - `wiki/index.md` 업데이트
 - `wiki/log.md` append-only 항목 추가

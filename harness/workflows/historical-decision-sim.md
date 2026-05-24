@@ -21,13 +21,13 @@
 - 기준 시점 이전 또는 기준 시점에 생성된 daily report, ticker pages, order plans, portfolio snapshots, raw source notes.
 - 기준 시점 이전 Alpaca MCP stock bars, news, account/order/activity data. MCP가 특정 과거 데이터를 제공하지 못하면 로컬 raw source와 위키 기록을 우선 사용한다.
 - 기준 시점 이전 research MCP 데이터. `harness/mcp-source-map.md`에 따라 SEC filings, 실적 캘린더, macro series, IR/press release 캡처를 사용하되 기준 시점 이후 정보는 제외한다.
-- 기준 시점 당시 적용 가능했던 `wiki/policies/recommendation-policy.md`.
+- 기준 시점 당시 적용 가능했던 `wiki/policy-book/recommendation-policy.md`.
 
 ## 필수 산출물
 
-- `wiki/simulations/YYYY-MM-DD-historical-decision.md`
-- `wiki/raw/sources/YYYY-MM-DD-historical-asof.md`
-- `wiki/portfolio/order-plans/YYYY-MM-DD-historical-decision.json`
+- `wiki/backtest-runs/decisions/YYYY-MM-DD-historical-decision.md`
+- `wiki/evidence-store/sources/YYYY-MM-DD-historical-asof.md`
+- `wiki/trade-ledger/orders/YYYY-MM-DD-historical-decision.json`
 - `wiki/index.md` 업데이트
 - `wiki/log.md` append-only 항목 추가
 
@@ -50,7 +50,7 @@
    - `firecrawl`로 기준 시점 이전 회사 IR/보도자료/earnings presentation URL만 캡처한다. 키가 없으면 공백을 기록한다.
    - `yahoo-finance`로 기준 시점 이전 Yahoo 뉴스/analyst 보조 정보를 확인한다.
    - 당시 portfolio/order/activity 정보는 위키 기록과 Alpaca MCP 가능한 범위에서 복원한다.
-   - 캡처 결과를 `wiki/raw/sources/YYYY-MM-DD-historical-asof.md`에 저장한다.
+   - 캡처 결과를 `wiki/evidence-store/sources/YYYY-MM-DD-historical-asof.md`에 저장한다.
 4. 각 후보를 점수화한다.
    - 추세와 상대강도: 35점.
    - 뉴스/촉매/펀더멘털 맥락: 25점.

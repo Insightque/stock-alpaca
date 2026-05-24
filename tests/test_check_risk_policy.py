@@ -85,11 +85,11 @@ def base_plan() -> dict:
                 },
                 "client_order_id": "test-run-spy-buy",
                 "decision_id": "test-run-spy-decision",
-                "source_refs": ["wiki/raw/sources/test-market.md"],
+                "source_refs": ["wiki/evidence-store/sources/test-market.md"],
                 "rationale": "test order",
             }
         ],
-        "source_refs": ["wiki/raw/sources/test-clock.md"],
+        "source_refs": ["wiki/evidence-store/sources/test-clock.md"],
     }
 
 

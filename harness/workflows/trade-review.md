@@ -19,19 +19,19 @@
 - 당시 일일 리포트와 종목 페이지.
 - 관련 raw source notes.
 - 현재 종목 페이지, 현재 시장 데이터, 현재 뉴스.
-- `wiki/policies/recommendation-policy.md`.
+- `wiki/policy-book/recommendation-policy.md`.
 
 ## 필수 산출물
 
-- `wiki/reviews/trades/YYYY-MM-DD-SYMBOL-review.md` 또는 `wiki/reviews/trades/YYYY-MM-DD-portfolio-review.md`
-- 관련 `wiki/tickers/SYMBOL.md`의 `회고 기록` 섹션 업데이트
-- 필요 시 `wiki/policies/recommendation-policy.md` 업데이트
+- `wiki/trade-ledger/reviews/YYYY-MM-DD-SYMBOL-review.md` 또는 `wiki/trade-ledger/reviews/YYYY-MM-DD-portfolio-review.md`
+- 관련 `wiki/research-notes/tickers/SYMBOL.md`의 `회고 기록` 섹션 업데이트
+- 필요 시 `wiki/policy-book/recommendation-policy.md` 업데이트
 - `wiki/index.md` 업데이트
 - `wiki/log.md` append-only 항목 추가
 
 ## 절차
 
-1. `AGENTS.md`, `wiki/index.md`, `wiki/log.md`, `wiki/policies/recommendation-policy.md`를 읽는다.
+1. `AGENTS.md`, `wiki/index.md`, `wiki/log.md`, `wiki/policy-book/recommendation-policy.md`를 읽는다.
 2. Alpaca MCP로 계좌, 포지션, 최근 주문, 최근 체결 활동, 포트폴리오 히스토리를 확인한다.
 3. 회고 대상 거래를 식별한다.
    - 신규 체결 직후라 판단 근거가 부족하면 `회고 대기`로 기록한다.
@@ -58,7 +58,7 @@
    - 정책 변경은 `추가`, `완화`, `강화`, `보류` 중 하나로 표시한다.
 8. 회고 파일을 `harness/templates/trade-review.md` 형식으로 작성한다.
 9. 관련 ticker page에 `## 회고 기록` 섹션을 추가하거나 갱신한다.
-10. `wiki/policies/recommendation-policy.md`를 업데이트할 경우 변경 근거와 링크를 남긴다.
+10. `wiki/policy-book/recommendation-policy.md`를 업데이트할 경우 변경 근거와 링크를 남긴다.
 11. `wiki/index.md`와 `wiki/log.md`를 업데이트한다.
 
 ## 판단 기준

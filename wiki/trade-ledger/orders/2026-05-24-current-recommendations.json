@@ -1,0 +1,211 @@
+{
+  "run_id": "2026-05-24-1227-current-recommendations",
+  "schema_version": "1.1",
+  "risk_policy_version": "medium-risk-v1",
+  "recommendation_policy_sha": "sha256:f504450415edc03b1a9b5aa413209ba3ad4e5daf0d56a6904921e7224c43b546",
+  "created_at": "2026-05-24T03:27:34Z",
+  "mode": "dry_run",
+  "paper": true,
+  "market": {
+    "is_open": false,
+    "checked_at": "2026-05-24T03:21:12Z",
+    "next_open": "2026-05-26T13:30:00Z",
+    "next_close": "2026-05-26T20:00:00Z"
+  },
+  "account": {
+    "portfolio_value": 100418.67,
+    "cash": 44030.58,
+    "buying_power": 138261.25,
+    "currency": "USD"
+  },
+  "positions": [
+    {
+      "symbol": "AMD",
+      "asset_type": "stock",
+      "qty": 14,
+      "market_value": 6545.14,
+      "avg_entry_price": 462.73,
+      "current_price": 467.51
+    },
+    {
+      "symbol": "AVGO",
+      "asset_type": "stock",
+      "qty": 15,
+      "market_value": 6212.1,
+      "avg_entry_price": 410.73,
+      "current_price": 414.14
+    },
+    {
+      "symbol": "ETN",
+      "asset_type": "stock",
+      "qty": 15,
+      "market_value": 5870.25,
+      "avg_entry_price": 387.9,
+      "current_price": 391.35
+    },
+    {
+      "symbol": "IONQ",
+      "asset_type": "stock",
+      "qty": 45,
+      "market_value": 2863.8,
+      "avg_entry_price": 63.48,
+      "current_price": 63.64
+    },
+    {
+      "symbol": "LRCX",
+      "asset_type": "stock",
+      "qty": 20,
+      "market_value": 6107.0,
+      "avg_entry_price": 307.91,
+      "current_price": 305.35
+    },
+    {
+      "symbol": "NOK",
+      "asset_type": "stock",
+      "qty": 400,
+      "market_value": 6188.0,
+      "avg_entry_price": 15.04,
+      "current_price": 15.47
+    },
+    {
+      "symbol": "NVDA",
+      "asset_type": "stock",
+      "qty": 35,
+      "market_value": 7536.55,
+      "avg_entry_price": 215.32,
+      "current_price": 215.33
+    },
+    {
+      "symbol": "RGTI",
+      "asset_type": "stock",
+      "qty": 120,
+      "market_value": 3170.4,
+      "avg_entry_price": 25.569583,
+      "current_price": 26.42
+    },
+    {
+      "symbol": "TSM",
+      "asset_type": "stock",
+      "qty": 15,
+      "market_value": 6067.8,
+      "avg_entry_price": 405.2,
+      "current_price": 404.52
+    },
+    {
+      "symbol": "UNH",
+      "asset_type": "stock",
+      "qty": 15,
+      "market_value": 5827.05,
+      "avg_entry_price": 386.56,
+      "current_price": 388.47
+    }
+  ],
+  "orders": [
+    {
+      "symbol": "UNH",
+      "asset_type": "stock",
+      "asset_status": "active",
+      "asset_tradable": true,
+      "side": "buy",
+      "order_type": "limit",
+      "time_in_force": "day",
+      "qty": 10,
+      "limit_price": 388.545,
+      "reference_price": 388.545,
+      "quote_age_minutes": 1881.4,
+      "quote_captured_at": "2026-05-22T19:59:49Z",
+      "asset_checked_at": "2026-05-24T03:27:34Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-24-current-recommendation-sources.md",
+        "https://finance.yahoo.com/markets/stocks/articles/unitedhealth-group-unh-valuation-check-081306938.html"
+      ],
+      "rationale": "방어적 분산과 20D SPY 초과 추세가 동시에 확인된 1순위 추가매수 후보. 시장이 닫혀 있어 실제 주문은 금지하고 dry-run으로만 기록한다."
+    },
+    {
+      "symbol": "LRCX",
+      "asset_type": "stock",
+      "asset_status": "active",
+      "asset_tradable": true,
+      "side": "buy",
+      "order_type": "limit",
+      "time_in_force": "day",
+      "qty": 15,
+      "limit_price": 305.43,
+      "reference_price": 305.43,
+      "quote_age_minutes": 1881.3,
+      "quote_captured_at": "2026-05-22T19:59:54Z",
+      "asset_checked_at": "2026-05-24T03:27:34Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-24-current-recommendation-sources.md",
+        "https://finance.yahoo.com/markets/stocks/articles/does-lam-research-lrcx-playbook-151046844.html"
+      ],
+      "rationale": "AI 반도체 장비/advanced packaging 수혜와 20D/40D 상대강도가 양호한 추가매수 후보. stale quote라 submit 금지."
+    },
+    {
+      "symbol": "AMD",
+      "asset_type": "stock",
+      "asset_status": "active",
+      "asset_tradable": true,
+      "side": "buy",
+      "order_type": "limit",
+      "time_in_force": "day",
+      "qty": 5,
+      "limit_price": 467.64,
+      "reference_price": 467.64,
+      "quote_age_minutes": 1881.3,
+      "quote_captured_at": "2026-05-22T19:59:55Z",
+      "asset_checked_at": "2026-05-24T03:27:34Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-24-current-recommendation-sources.md",
+        "https://www.benzinga.com/markets/tech/26/05/52741867/what-is-going-on-with-amd-stock-on-friday-3"
+      ],
+      "rationale": "2nm Venice CPU, Taiwan AI supply chain 투자, 강한 상대강도가 확인되나 과열 구간이라 소액 staged entry만 후보로 둔다."
+    },
+    {
+      "symbol": "NVDA",
+      "asset_type": "stock",
+      "asset_status": "active",
+      "asset_tradable": true,
+      "side": "buy",
+      "order_type": "limit",
+      "time_in_force": "day",
+      "qty": 10,
+      "limit_price": 215.34,
+      "reference_price": 215.34,
+      "quote_age_minutes": 1881.2,
+      "quote_captured_at": "2026-05-22T19:59:59Z",
+      "asset_checked_at": "2026-05-24T03:27:34Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-24-current-recommendation-sources.md",
+        "https://www.benzinga.com/markets/tech/26/05/52750657/nvidia-crushes-earnings-but-ai-chip-supply-crunch-looms"
+      ],
+      "rationale": "실적과 AI 수요는 강하지만 sell-the-news와 공급 제약 부담이 있어 눌림 확인용 소액 추가 후보로만 기록한다."
+    },
+    {
+      "symbol": "TSM",
+      "asset_type": "stock",
+      "asset_status": "active",
+      "asset_tradable": true,
+      "side": "buy",
+      "order_type": "limit",
+      "time_in_force": "day",
+      "qty": 8,
+      "limit_price": 404.33,
+      "reference_price": 404.33,
+      "quote_age_minutes": 1874.4,
+      "quote_captured_at": "2026-05-22T20:06:46Z",
+      "asset_checked_at": "2026-05-24T03:27:34Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-24-current-recommendation-sources.md",
+        "https://www.benzinga.com/markets/tech/26/05/52741867/what-is-going-on-with-amd-stock-on-friday-3"
+      ],
+      "rationale": "AMD/AI supply chain 촉매의 기반 노출 후보. 단기 모멘텀은 약하므로 보조 분산 후보로만 기록한다."
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-24-current-recommendation-sources.md",
+    "wiki/policy-book/recommendation-policy.md",
+    "harness/risk-policy.yaml"
+  ],
+  "manifest_path": "wiki/evidence-store/run-manifests/2026-05-24-1227-current-recommendations.json"
+}

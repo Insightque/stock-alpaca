@@ -90,7 +90,7 @@ Track both:
 
 Create a daily dry-run note at:
 
-`wiki/analyses/YYYY-MM-DD-intraday-paper-dry-run.md`
+`wiki/research-notes/analyses/YYYY-MM-DD-intraday-paper-dry-run.md`
 
 Recommended table columns:
 
@@ -136,8 +136,8 @@ If 1Min bars are already captured to local JSON, run:
 python3 scripts/evaluate-intraday-dry-run.py \
   --bars-json path/to/captured-1min-bars.json \
   --date YYYY-MM-DD \
-  --output-md wiki/analyses/YYYY-MM-DD-intraday-paper-dry-run.md \
-  --output-json wiki/analyses/YYYY-MM-DD-intraday-paper-dry-run.json
+  --output-md wiki/research-notes/analyses/YYYY-MM-DD-intraday-paper-dry-run.md \
+  --output-json wiki/research-notes/analyses/YYYY-MM-DD-intraday-paper-dry-run.json
 ```
 
 The helper script must not call Alpaca APIs. It reads captured bars and optional quotes only.
@@ -154,7 +154,7 @@ After each dry-run:
    - v1 signal count,
    - whether bid/ask data was captured,
    - explicit `orders_submitted=0`.
-3. If the run reveals a repeated issue, add it as a hypothesis in `wiki/policies/recommendation-policy.md`; do not promote it to a current rule until evidence accumulates.
+3. If the run reveals a repeated issue, add it as a hypothesis in `wiki/policy-book/recommendation-policy.md`; do not promote it to a current rule until evidence accumulates.
 
 ## Stop Conditions
 

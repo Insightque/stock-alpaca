@@ -32,23 +32,40 @@
 - [[QTEX]] - 투기적 1달러 미만 mover, 2026-05-22 업데이트.
 - [[BIYA]] - 투기적 저가 mover, 2026-05-22 업데이트.
 
-## 일일 리포트
+## Current Runs
 
+- `wiki/current-runs/daily/` - 현재 계좌와 현재 시장을 대상으로 실행한 일일 trading workflow 결과.
 - [[2026-05-22]] - 현재 시장 분석과 이후 주식 중심 paper 매수 실행 업데이트.
-- [[2026-05-23-investment-simulation-insight-report]] - 지금까지의 실제 paper 투자, 과거 시뮬레이션, 정책학습 인사이트 종합 보고서.
-- [[2026-05-24-may-15-decision-process-report]] - 2026-05-15 기준 데이터 추출, 매입/매도 정책 결정 과정, 5D 사후 검증 리포트.
 - [[2026-05-24]] - 현재 기준 no-submit 종목 추천, dry-run 주문 후보, risk-check 결과.
 
-## 분석
+## Research Notes
+
+- `wiki/research-notes/tickers/` - 종목별 thesis와 추세 페이지.
+- `wiki/research-notes/portfolio/` - 다음 판단에 재사용할 포트폴리오 해석과 배분 메모.
+- `wiki/research-notes/analyses/` - 종목 간 비교, 정책 설명, MCP/source 감사, 재사용 가능한 분석.
 
 - [[2026-05-22-stock-only-trade-proposal]] - ETF 제외, 주식 중심 금일 거래 제안과 paper 주문 실행 결과.
+- [[2026-05-23-investment-simulation-insight-report]] - 지금까지의 실제 paper 투자, 과거 시뮬레이션, 정책학습 인사이트 종합 분석.
 - [[2026-05-24-mcp-comparison-2026-05-08-historical-simulation]] - 2026-05-08 과거 추천 표본을 Alpaca/SEC EDGAR/Alpha Vantage/Firecrawl/Yahoo MCP 보강 결과와 비교한 검토.
 - [[2026-05-24-mcp-policy-history-reaudit]] - 남은 과거 추천/단타/장타 정책 시뮬레이션 이력을 MCP 보강 정보로 재감사한 분석.
 - [[2026-05-25-request-implementation-review]] - Request.md 개선항목 반영 여부와 1년 시뮬레이션 결과 검토.
 
-## 백테스트/정책 검증
+## Backtest Runs
 
-- `wiki/backtests/` - 이후 성과 데이터를 포함하는 정책 시뮬레이션, event study, 단타/장타 검증 결과 저장소.
+- `wiki/backtest-runs/` - 과거 기준 실험, 모의 의사결정, 사후 검증 결과.
+- `wiki/backtest-runs/decisions/` - 과거 특정 시점 기준 모의 의사결정 저장소. 추천 문서는 미래 가격 정보를 포함하지 않는다.
+- `wiki/backtest-runs/results/` - 기준 시점 이후 실제 결과를 쓰는 모든 백테스트 결과. 개별 회고와 여러 날짜 집계 결과를 모두 포함한다.
+
+### Decisions
+
+- [[2026-04-23-to-2026-05-08-historical-decision-batch]] - 2026-04-23부터 2026-05-08까지 1일 단위 과거 추천 시뮬레이션 배치.
+- [[2026-04-23-to-2026-05-08-historical-decision-batch-v2]] - 추가 데이터 필요성을 반영한 2026-04-23~2026-05-08 진단용 재시뮬레이션.
+- [[2026-05-11-to-2026-05-15-historical-validation-decision]] - v2 규칙을 학습에 쓰지 않은 날짜에 적용한 out-of-sample 검증 추천.
+- [[2026-05-11-to-2026-05-15-mcp-enhanced-validation-decision]] - Alpha Vantage 실적 데이터와 MCP 공백 감점을 반영한 보강 검증 추천.
+- [[2026-05-18-to-2026-05-22-recent-7d-historical-decision]] - 최근 7일 이내 과거 추천 시뮬레이션. 2026-05-22 추천은 회고 대기.
+
+### Results
+
 - [[2026-05-23-news-price-lead-lag-simulation]] - 뉴스가 주가보다 빠른지/느린지 확인하기 위한 이벤트 스터디와 정책 반영 후보.
 - [[2026-05-23-march-april-intraday-scalping-simulation]] - 2026년 3월 변동일 3개와 2026년 4월 검증일 1개를 사용한 시간별 long-only 단타 정책 시뮬레이션.
 - [[2026-05-23-march-april-intraday-scalping-alt-simulation]] - 앞선 날짜를 제외한 3월/4월 다른 일정으로 같은 단타 정책을 재검증한 분석.
@@ -61,32 +78,23 @@
 - [[2026-05-24-six-month-3h-independent-policy-review]] - 2025-11-24~2026-05-22 최근 6개월을 3시간 구간으로 집계한 독립 단타/장타 정책 검토.
 - [[2026-05-24-policy-improvement-candidates]] - 현재 정책 개선 후보 5개를 최근 6개월 3시간/일봉 데이터로 검증한 백테스트.
 - [[2026-05-24-expanded-six-month-3h-policy-review]] - 기존 관심 종목 외 62개 확장 universe로 재수행한 최근 6개월 3시간 단위 정책 검토.
+- [[2026-05-24-may-15-decision-process-report]] - 2026-05-15 기준 데이터 추출, 매입/매도 정책 결정 과정, 5D 사후 검증 리포트.
 - [[2026-05-24-review-hardening-comparison]] - 외부 리뷰 개선사항 반영 후 확장 universe 재시뮬레이션과 이전 기준선 비교 분석.
 - [[2026-05-25-one-year-daily-policy-simulation]] - Alpaca MCP 2025-05-23~2026-05-22 일봉 62개 심볼로 수행한 장기 v1 일별 독립 시뮬레이션.
-
-## 과거 시점 시뮬레이션
-
-- `wiki/simulations/` - 과거 특정 시점 기준 추천 시뮬레이션 저장소. 추천 문서는 미래 가격 정보를 포함하지 않는다.
-- [[2026-04-23-to-2026-05-08-historical-decision-batch]] - 2026-04-23부터 2026-05-08까지 1일 단위 과거 추천 시뮬레이션 배치.
-- [[2026-04-23-to-2026-05-08-historical-decision-batch-v2]] - 추가 데이터 필요성을 반영한 2026-04-23~2026-05-08 진단용 재시뮬레이션.
-- [[2026-05-11-to-2026-05-15-historical-validation-decision]] - v2 규칙을 학습에 쓰지 않은 날짜에 적용한 out-of-sample 검증 추천.
-- [[2026-05-11-to-2026-05-15-mcp-enhanced-validation-decision]] - Alpha Vantage 실적 데이터와 MCP 공백 감점을 반영한 보강 검증 추천.
-- [[2026-05-18-to-2026-05-22-recent-7d-historical-decision]] - 최근 7일 이내 과거 추천 시뮬레이션. 2026-05-22 추천은 회고 대기.
-
-## 거래 회고
-
-2026-05-22 paper 주문 체결분은 다음 회고 대상이다. 회고는 `wiki/reviews/trades/`에 저장한다.
-
-## 과거 추천 회고
-
-- `wiki/reviews/decisions/` - 과거 추천 시뮬레이션을 1D/5D/20D 이후 실제 가격으로 평가하는 회고 저장소.
 - [[2026-04-23-to-2026-05-08-historical-review-batch]] - 2026-04-23부터 2026-05-08까지 추천 배치의 1D/5D/20D 회고.
 - [[2026-04-23-to-2026-05-08-historical-review-batch-v2]] - 보강 데이터와 v2 규칙 적용 후 5D 성과 재회고. 과최적화 위험 포함.
 - [[2026-05-11-to-2026-05-15-historical-validation-review]] - v2 규칙의 별도 검증셋 회고. 5D hit rate 60.0%, 평균 초과수익 +0.73%p.
 - [[2026-05-11-to-2026-05-15-mcp-enhanced-validation-review]] - MCP 보강 검증 회고. 5D hit rate 80.0%, 평균 초과수익 +3.35%p.
 - [[2026-05-18-to-2026-05-22-recent-7d-historical-review]] - 최근 7일 1D 회고. 검증 가능 추천 12/12 hit, 평균 SPY 대비 +5.63%p. 이벤트 집중으로 정책 승격 보류.
 
-## 추천 정책
+## Trade Ledger
+
+- `wiki/trade-ledger/orders/` - 실제 paper 주문과 dry-run 주문 계획 장부.
+- `wiki/trade-ledger/positions/` - 실제 paper 포지션과 계좌 상태 스냅샷.
+- `wiki/trade-ledger/reviews/` - 실제 paper 거래의 사후 회고.
+- 2026-05-22 paper 주문 체결분은 다음 회고 대상이다.
+
+## Policy Book
 
 - [[recommendation-policy]] - 거래 회고에서 나온 교훈을 반영하는 living policy.
 - `harness/recommendation-policy.yaml` / `harness/recommendation-policy.schema.json` - agent-readable 추천 정책 상태와 승격 기준.
@@ -106,9 +114,12 @@
 - `harness/order-plan.schema.json` - 신규 order-plan JSON의 필수 메타데이터와 source refs 스키마.
 - `scripts/check-risk-policy.py` - schema 검증, YAML 리스크 정책 검증, `--json` 구조화 결과 출력.
 - `scripts/check-leakage.py` - 과거 추천 시뮬레이션과 order plan의 미래 정보 누출 점검.
-- `harness/run-manifest.schema.json` / `wiki/runs/` - run provenance manifest 구조와 저장 위치.
+- `harness/run-manifest.schema.json` / `wiki/evidence-store/run-manifests/` - run provenance manifest 구조와 저장 위치.
 
-## 원천 자료
+## Evidence Store
+
+- `wiki/evidence-store/sources/` - 수정하지 않는 원천 캡처 자료.
+- `wiki/evidence-store/run-manifests/` - machine-readable 실행 manifest.
 
 - [[2026-05-22-alpaca-account-clock]] - 계좌, 시장 시계, 포지션, 주문, watchlist.
 - [[2026-05-22-alpaca-market-data]] - most-active, movers, 스냅샷, 봉 데이터, asset 확인.
@@ -136,13 +147,13 @@
 - [[2026-05-24-mcp-policy-history-reaudit-sources]] - 남은 정책 시뮬레이션 이력 MCP 재감사용 Alpaca/Alpha/SEC/Firecrawl 원천과 FRED 공백 기록.
 - [[2026-05-24-current-recommendation-sources]] - 현재 기준 종목 추천용 Alpaca account/clock/positions/prices/news, SEC/Yahoo/Alpha/Web 보강 원천.
 - [[2026-05-24-six-month-3h-simulation-sources]] - 최근 6개월 3시간 구간 시뮬레이션용 Alpaca MCP calendar/assets/IEX 30분봉 원천과 데이터 공백 기록.
-- `wiki/raw/sources/2026-05-24-policy-improvement-candidates-data.json` - 정책 개선 후보 5개 검증용 계산 결과.
+- `wiki/evidence-store/sources/2026-05-24-policy-improvement-candidates-data.json` - 정책 개선 후보 5개 검증용 계산 결과.
 - [[2026-05-24-expanded-six-month-3h-simulation-sources]] - 확장 universe 최근 6개월 3시간 구간 시뮬레이션용 Alpaca MCP 원천.
-- `wiki/raw/sources/2026-05-24-expanded-six-month-3h-simulation-data.json` - 확장 universe 3시간/일봉 계산 데이터.
-- `wiki/raw/sources/2026-05-24-review-hardening-expanded-policy-data.json` - 외부 리뷰 개선사항 반영 후 확장 universe 정책 개선 후보 재시뮬레이션 데이터.
+- `wiki/evidence-store/sources/2026-05-24-expanded-six-month-3h-simulation-data.json` - 확장 universe 3시간/일봉 계산 데이터.
+- `wiki/evidence-store/sources/2026-05-24-review-hardening-expanded-policy-data.json` - 외부 리뷰 개선사항 반영 후 확장 universe 정책 개선 후보 재시뮬레이션 데이터.
 - [[2026-05-24-may-15-mcp-context-sources]] - 2026-05-15 의사결정 리포트 보강용 Alpaca 뉴스/asset/corporate action 및 SEC EDGAR filing 원천.
-- `wiki/raw/sources/2026-05-24-may-15-mcp-context-data.json` - 2026-05-15 기준 후보/보유 종목 MCP 보강 원자료.
+- `wiki/evidence-store/sources/2026-05-24-may-15-mcp-context-data.json` - 2026-05-15 기준 후보/보유 종목 MCP 보강 원자료.
 - [[2026-05-25-one-year-daily-simulation-sources]] - Alpaca MCP 1년 일봉 캡처와 일별 독립 장기 정책 시뮬레이션 원천/데이터 공백.
-- `wiki/raw/sources/2026-05-25-one-year-daily-bars.json` - 62개 심볼 2025-05-23~2026-05-22 adjusted IEX 일봉 원자료.
-- `wiki/raw/sources/2026-05-25-one-year-daily-policy-simulation-data.json` - 장기 v1 일별 독립 시뮬레이션 계산 결과.
-- `wiki/raw/sources/2026-05-25-one-year-policy-scorecard.json` - 장기 v1 정책 scorecard.
+- `wiki/evidence-store/sources/2026-05-25-one-year-daily-bars.json` - 62개 심볼 2025-05-23~2026-05-22 adjusted IEX 일봉 원자료.
+- `wiki/evidence-store/sources/2026-05-25-one-year-daily-policy-simulation-data.json` - 장기 v1 일별 독립 시뮬레이션 계산 결과.
+- `wiki/evidence-store/sources/2026-05-25-one-year-policy-scorecard.json` - 장기 v1 정책 scorecard.

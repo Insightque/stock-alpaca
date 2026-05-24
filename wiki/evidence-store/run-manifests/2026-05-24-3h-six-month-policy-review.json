@@ -1,0 +1,28 @@
+{
+  "run_id": "2026-05-24-3h-six-month-policy-review",
+  "mode": "review",
+  "paper": true,
+  "created_at": "2026-05-24T04:04:26.687705Z",
+  "git_commit": "7c7ceb2-dirty",
+  "prompt_file_sha": "unavailable:inline-user-request-2026-05-24-six-month-3h-policy-review",
+  "risk_policy_version": "medium-risk-v1",
+  "recommendation_policy_sha": "sha256:f504450415edc03b1a9b5aa413209ba3ad4e5daf0d56a6904921e7224c43b546",
+  "schema_version": "1.0",
+  "mcp_servers_used": [
+    "alpaca"
+  ],
+  "mcp_failures": [],
+  "data_cutoff_time": "2026-05-22T20:00:00Z",
+  "market_clock_checked_at": "2026-05-24T00:03:24.227279448-04:00",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-24-six-month-3h-simulation-sources.md",
+    "wiki/backtest-runs/results/2026-05-24-six-month-3h-independent-policy-review.md",
+    "wiki/evidence-store/sources/2026-05-24-six-month-3h-simulation-data.json"
+  ],
+  "risk_check_result": {
+    "status": "NOT_APPLICABLE",
+    "reason": "policy review and historical dry-run simulation only; no order plan created"
+  },
+  "submitted_order_ids": [],
+  "post_trade_check_path": ""
+}

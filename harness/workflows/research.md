@@ -8,9 +8,9 @@
 
 ## 필수 산출물
 
-- `wiki/tickers/`의 종목 페이지 업데이트
-- `wiki/raw/sources/`의 새 immutable raw source note
-- 필요 시 `wiki/analyses/`의 교차 종목 분석
+- `wiki/research-notes/tickers/`의 종목 페이지 업데이트
+- `wiki/evidence-store/sources/`의 새 immutable raw source note
+- 필요 시 `wiki/research-notes/analyses/`의 교차 종목 분석
 - `wiki/index.md` 업데이트
 - `wiki/log.md` append-only 항목 추가
 
@@ -18,7 +18,7 @@
 
 ## 절차
 
-1. `AGENTS.md`, `wiki/index.md`, 최근 `wiki/log.md`, `wiki/policies/recommendation-policy.md`를 읽는다.
+1. `AGENTS.md`, `wiki/index.md`, 최근 `wiki/log.md`, `wiki/policy-book/recommendation-policy.md`를 읽는다.
 2. 요청된 티커 목록을 파싱한다. 사용자가 티커를 지정하지 않았다면 Alpaca watchlist를 유니버스로 사용한다.
 3. Alpaca MCP asset lookup으로 각 티커가 active/tradable 미국 주식 또는 ETF인지 확인한다.
 4. Alpaca MCP stock bars, snapshots, quotes/trades, news로 시장 맥락을 수집한다.
@@ -43,7 +43,7 @@
    - 출처 기반 신뢰도.
    - 포지션이 있으면 포트폴리오 관련성.
    - 추천 정책의 과거 회고 교훈이 적용된 부분.
-9. 종목 비교가 필요하면 `wiki/analyses/` 아래 페이지를 만들거나 업데이트한다.
+9. 종목 비교가 필요하면 `wiki/research-notes/analyses/` 아래 페이지를 만들거나 업데이트한다.
 10. `wiki/index.md`와 `wiki/log.md`를 업데이트한다.
 
 ## 하드 룰
