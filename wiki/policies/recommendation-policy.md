@@ -54,6 +54,7 @@ updated_at: 2026-05-24T18:40:00+09:00
 | 2026-05-24 | 정책 개선 후보 5개를 같은 6개월 데이터로 검증함. 장타는 과열 제한+theme cap, SPY/QQQ 동시 초과 확인, 변동성/drawdown 방어 필터, staged entry 필터를 채택/보조채택 후보로 추가했고 단타 `intraday-afternoon-followthrough-filter-v1`은 성과 개선에도 자동 주문 금지를 유지함 | [[2026-05-24-policy-improvement-candidates]] | 장타 정책 보강 / 단타 관찰 전용 |
 | 2026-05-24 | 기존 관심 종목 외 빅테크/금융/헬스케어/소비재/산업재/에너지/소재/유틸리티/고변동 성장주까지 62개 심볼로 확장해 최근 6개월 3시간 시뮬레이션을 재수행함. 단타 top3와 VWAP reclaim은 악화됐고, 장타 `daily-3h-theme-capped-top5`는 평균 SPY 초과 +7.65%p로 기존 +7.82%p와 유사하게 유지됨 | [[2026-05-24-expanded-six-month-3h-policy-review]] | 확장 universe는 theme cap 적용 시에만 사용 |
 | 2026-05-24 | 외부 리뷰 개선사항을 반영해 정책 개선 백테스트를 날짜 key 기반 정렬로 바꾸고, 주문 risk gate에 theme/factor/speculative exposure cap을 추가함. raw source에는 구조화 시그널 표를 추가해 뉴스/공시/밸류에이션/매크로 feature를 재사용 가능하게 기록하도록 함 | `scripts/simulate-policy-improvement-candidates.py`, `scripts/check-risk-policy.py`, `harness/risk-policy.yaml` | 적용 |
+| 2026-05-24 | 리뷰 개선사항 반영 후 확장 universe로 재시뮬레이션함. 장타 `lt-dual-benchmark-confirm-v1`과 `lt-drawdown-volatility-guard-v1`은 이전 기준선보다 검증 SPY 초과수익과 평균 불리 이동이 개선됐고, 단타 `intraday-afternoon-followthrough-filter-v1`은 기존 최고 variant보다 낮아 자동 주문 금지를 유지함 | [[2026-05-24-review-hardening-comparison]] | 장타 우선 필터 보강 / 단타 관찰 전용 |
 
 ## 검증 중인 가설
 
@@ -138,6 +139,7 @@ updated_at: 2026-05-24T18:40:00+09:00
 - `lt-anti-chase-staged-entry-v1`은 평균 SPY 초과 +6.65%p로 성과는 낮아지지만 추격 구간을 줄인다. 과열 후보는 한 번에 채우지 않고 staged entry로만 다룬다.
 - 2026-05-24 확장 universe 검증에서는 `daily-3h-theme-capped-top5`가 320개 완료 추천 평균 20D +9.68%, 평균 SPY 초과 +7.65%p, 검증 구간 SPY 초과 +11.84%p였다. 기존 관심 종목 중심 결과와 유사해 theme cap은 확장 universe에서도 유지한다.
 - 같은 확장 검증에서 `daily-3h-quality-top5`는 평균 SPY 초과 +6.73%p로 기존 +7.70%p보다 낮았고, `daily-3h-momentum-top3`는 평균 SPY 초과 +8.30%p지만 평균 불리 이동 -10.41%였다. 따라서 넓은 universe에서는 단순 quality 또는 단순 momentum보다 theme cap과 과열 제한을 우선한다.
+- 리뷰 개선사항 반영 후 확장 universe 재시뮬레이션에서는 `lt-dual-benchmark-confirm-v1`이 평균 SPY 초과 +8.03%p, 검증 +13.15%p, 평균 불리 이동 -7.86%였고, `lt-drawdown-volatility-guard-v1`이 평균 SPY 초과 +7.91%p, 검증 +13.25%p, 평균 불리 이동 -7.75%였다. 이전 `daily-3h-theme-capped-top5`의 평균 SPY 초과 +7.65%p, 검증 +11.84%p, 평균 불리 이동 -9.07%보다 방어적 품질이 좋아졌으므로 다음 장타 후보 선별의 우선 필터로 둔다.
 
 `momentum_top3`식 단순 20D 모멘텀 정책은 보조 비교군으로만 둔다. 검증 성과는 좋았지만 2~3월 학습에서 평균 20D +1.19%, 평균 20D 불리 이동 -11.20%로 장타 목적에 부적합했다.
 

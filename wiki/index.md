@@ -60,6 +60,7 @@
 - [[2026-05-24-six-month-3h-independent-policy-review]] - 2025-11-24~2026-05-22 최근 6개월을 3시간 구간으로 집계한 독립 단타/장타 정책 검토.
 - [[2026-05-24-policy-improvement-candidates]] - 현재 정책 개선 후보 5개를 최근 6개월 3시간/일봉 데이터로 검증한 백테스트.
 - [[2026-05-24-expanded-six-month-3h-policy-review]] - 기존 관심 종목 외 62개 확장 universe로 재수행한 최근 6개월 3시간 단위 정책 검토.
+- [[2026-05-24-review-hardening-comparison]] - 외부 리뷰 개선사항 반영 후 확장 universe 재시뮬레이션과 이전 기준선 비교 분석.
 
 ## 과거 시점 시뮬레이션
 
@@ -129,5 +130,6 @@
 - `wiki/raw/sources/2026-05-24-policy-improvement-candidates-data.json` - 정책 개선 후보 5개 검증용 계산 결과.
 - [[2026-05-24-expanded-six-month-3h-simulation-sources]] - 확장 universe 최근 6개월 3시간 구간 시뮬레이션용 Alpaca MCP 원천.
 - `wiki/raw/sources/2026-05-24-expanded-six-month-3h-simulation-data.json` - 확장 universe 3시간/일봉 계산 데이터.
+- `wiki/raw/sources/2026-05-24-review-hardening-expanded-policy-data.json` - 외부 리뷰 개선사항 반영 후 확장 universe 정책 개선 후보 재시뮬레이션 데이터.
 - [[2026-05-24-may-15-mcp-context-sources]] - 2026-05-15 의사결정 리포트 보강용 Alpaca 뉴스/asset/corporate action 및 SEC EDGAR filing 원천.
 - `wiki/raw/sources/2026-05-24-may-15-mcp-context-data.json` - 2026-05-15 기준 후보/보유 종목 MCP 보강 원자료.

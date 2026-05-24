@@ -470,3 +470,12 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - `harness/templates/raw-source.md`에 machine-readable `구조화 시그널` 표를 추가해 뉴스/공시/밸류에이션/매크로/유동성 신호를 정책학습 feature로 남길 수 있게 했다.
 - `tests/test_check_risk_policy.py`에 theme exposure와 speculative exposure 실패 케이스를 추가했다.
 - 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-24 18:55 Asia/Seoul] backtest | 리뷰 개선사항 반영 후 재시뮬레이션 비교
+
+- 사용자 요청에 따라 외부 리뷰 개선사항을 바탕으로 확장 universe 62개 심볼 기준 재시뮬레이션을 수행하고 이전 시뮬레이션과 비교했다.
+- 개선 후 계산 데이터는 `wiki/raw/sources/2026-05-24-review-hardening-expanded-policy-data.json`에 저장했다.
+- 비교 리포트는 `wiki/backtests/2026-05-24-review-hardening-comparison.md`에 작성했다.
+- 장타는 `lt-dual-benchmark-confirm-v1`과 `lt-drawdown-volatility-guard-v1`이 이전 `daily-3h-theme-capped-top5`보다 검증 SPY 초과수익과 평균 불리 이동 측면에서 개선됐다.
+- 단타는 `intraday-afternoon-followthrough-filter-v1`이 stop 횟수는 줄였지만 hit rate와 총 P/L이 기존 최고 `3h-afternoon-continuation-top2`보다 낮아 자동 주문 금지 결론을 유지했다.
+- 실제 주문, 취소, 포지션 변경은 없었다.
