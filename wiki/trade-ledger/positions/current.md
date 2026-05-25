@@ -1,6 +1,6 @@
 ---
 id: portfolio-current
-updated_at: 2026-05-24T03:27:34Z
+updated_at: 2026-05-24T23:42:18Z
 paper: true
 ---
 
@@ -8,9 +8,9 @@ paper: true
 
 ## 계좌
 
-- Source: [[2026-05-24-current-recommendation-sources]]
+- Source: [[2026-05-25-current-recommendation-sources]]
 - Alpaca account status: ACTIVE
-- Market clock at capture: closed, `2026-05-23T23:21:12.723342061-04:00`
+- Market clock at capture: closed, `2026-05-24T19:37:59.030503301-04:00`
 - Next regular open: `2026-05-26T09:30:00-04:00`
 
 | 지표 | 값 |
@@ -65,4 +65,5 @@ paper: true
 - 체결된 종목은 모두 현재 long 포지션으로 남아 있다.
 - 현재 총 미실현 손익은 418.67 USD, 총 수익률은 약 0.42%다.
 - 2026-05-24 추천 run은 dry-run order plan만 만들었고 실제 주문, 취소, 포지션 변경은 없었다.
+- 2026-05-25 추천 run은 시장 휴장/fresh quote 부재로 empty-order dry-run plan만 만들었고 실제 주문, 취소, 포지션 변경은 없었다.
 - 거래 회고는 아직 최종 판단하기 이르며, 현재 상태는 `회고 대기`다.

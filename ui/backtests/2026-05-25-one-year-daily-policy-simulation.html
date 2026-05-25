@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>과거 1년 일별 독립 정책 시뮬레이션</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f7f4;
+      --ink: #202523;
+      --muted: #68716d;
+      --line: #dde2da;
+      --panel: #ffffff;
+      --soft: #eef2ec;
+      --blue: #1f5f99;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font: 15px/1.55 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    .page { width: min(980px, calc(100vw - 28px)); margin: 0 auto; padding: 22px 0 44px; }
+    header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .source { color: var(--muted); font-size: 12px; word-break: break-all; margin-top: 7px; }
+    h1 { margin: 0; font-size: clamp(26px, 4vw, 42px); line-height: 1.08; letter-spacing: 0; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      height: 36px;
+      padding: 0 11px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--ink);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    main {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: clamp(16px, 3vw, 28px);
+    }
+    main h1 { font-size: clamp(24px, 3vw, 34px); margin: 0 0 18px; }
+    h2 { margin: 28px 0 10px; font-size: 20px; letter-spacing: 0; }
+    h3 { margin: 22px 0 8px; font-size: 17px; letter-spacing: 0; }
+    h4 { margin: 18px 0 8px; font-size: 15px; letter-spacing: 0; }
+    p { margin: 10px 0; }
+    ul { margin: 8px 0 16px; padding-left: 20px; }
+    li { margin: 5px 0; }
+    code {
+      background: var(--soft);
+      border-radius: 5px;
+      padding: 1px 5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+    pre {
+      overflow: auto;
+      background: #202523;
+      color: #f7f7f4;
+      border-radius: 8px;
+      padding: 14px;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    .table-scroll { overflow-x: auto; margin: 12px 0 20px; border: 1px solid var(--line); border-radius: 8px; }
+    table { width: 100%; border-collapse: collapse; min-width: 620px; }
+    th, td { border-bottom: 1px solid var(--line); padding: 9px 10px; text-align: left; vertical-align: top; }
+    th { background: var(--soft); font-size: 12px; color: var(--muted); }
+    tr:last-child td { border-bottom: 0; }
+    @media (max-width: 620px) {
+      header { display: block; }
+      .actions { justify-content: flex-start; margin-top: 12px; }
+      main { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <h1>과거 1년 일별 독립 정책 시뮬레이션</h1>
+        <div class="source">wiki/backtest-runs/results/2026-05-25-one-year-daily-policy-simulation.md</div>
+      </div>
+      <nav class="actions" aria-label="문서 이동">
+        <a class="btn" href="../agent-dashboard.html">Dashboard</a>
+      </nav>
+    </header>
+    <main>
+<h2>결론</h2>
+<ul><li>전략: <code>long-term-quality-momentum-v1</code></li><li>정책 상태: <code>active_dry_run_candidate</code></li><li>일별 독립 run 수: 191</li><li>완료 추천: 853 / 전체 추천 953</li><li>비용 차감 후 SPY 초과 hit rate: 58.73%</li><li>비용 차감 후 평균 SPY 초과수익: +3.75%</li><li>bootstrap 95% CI: +2.84% ~ +4.76%</li><li>평균 20D 불리 이동: -6.46%</li></ul>
+<p>이 시뮬레이션은 각 기준일을 독립 run으로 취급했다. 과거 하루의 추천은 다음 날 추천 상태를 이어받지 않으며, 보유/현금/체결 상태도 누적하지 않는다.</p>
+<h2>Walk-Forward 검증</h2>
+<div class="table-scroll"><table><thead><tr><th>train</th><th>validation</th><th>완료 추천</th><th>평균 비용차감 SPY 초과</th><th>hit rate</th></tr></thead><tbody><tr><td>2025-05-23~2025-07-31</td><td>2025-08-01~2025-08-29</td><td>40</td><td>+9.74%</td><td>70.00%</td></tr><tr><td>2025-06-02~2025-08-29</td><td>2025-09-02~2025-09-30</td><td>105</td><td>+8.88%</td><td>72.38%</td></tr><tr><td>2025-07-01~2025-09-30</td><td>2025-10-01~2025-10-31</td><td>115</td><td>+2.89%</td><td>63.48%</td></tr><tr><td>2025-08-01~2025-10-31</td><td>2025-11-03~2025-11-28</td><td>95</td><td>-0.28%</td><td>52.63%</td></tr><tr><td>2025-09-02~2025-11-28</td><td>2025-12-01~2025-12-31</td><td>110</td><td>+4.32%</td><td>54.55%</td></tr><tr><td>2025-10-01~2025-12-31</td><td>2026-01-02~2026-01-30</td><td>100</td><td>+7.20%</td><td>85.00%</td></tr><tr><td>2025-11-03~2026-01-30</td><td>2026-02-02~2026-02-27</td><td>95</td><td>+1.62%</td><td>55.79%</td></tr><tr><td>2025-12-01~2026-02-27</td><td>2026-03-02~2026-03-31</td><td>108</td><td>-5.48%</td><td>28.70%</td></tr><tr><td>2026-01-02~2026-03-31</td><td>2026-04-01~2026-04-30</td><td>85</td><td>+9.57%</td><td>52.94%</td></tr><tr><td>2026-02-02~2026-04-30</td><td>2026-05-01~2026-05-22</td><td>0</td><td>n/a</td><td>n/a</td></tr></tbody></table></div>
+<h2>집중도와 데이터 품질</h2>
+<ul><li>최대 단일 심볼 추천 비중: 9.96%</li><li>최대 단일 테마 추천 비중: 17.58%</li><li>원천 데이터 hash: <code>sha256:dd4652f26a5fee046692bf29e5b28f0dd91bedf738d0ff0dac36d252196db5ce</code></li><li>원천 파일: <code>wiki/evidence-store/sources/2026-05-25-one-year-daily-bars.json</code></li><li>source feed: <code>alpaca_iex</code>, bar interval: <code>1Day</code></li><li>fill model: 없음. 일봉 정책 검증이며 실제 limit fill probability는 아직 별도 검증 필요.</li><li>slippage model: strategy config의 spread/slippage bps를 단순 비용으로 차감.</li></ul>
+<h2>정책 반영 검토</h2>
+<ul><li>intraday 전략은 이 결과와 무관하게 <code>observation_only</code>이며 자동주문 대상이 아니다.</li><li>장기 전략은 비용 차감 walk-forward와 집중도 지표를 추가로 기록했지만, quote-level spread/fill 및 공시/실적/밸류에이션 feature가 아직 완전하지 않아 <code>active_dry_run_candidate</code> 상태를 유지한다.</li><li>정책 업데이트는 <code>harness/recommendation-policy.yaml</code>의 승격 기준을 기준으로 별도 proposal을 통과해야 한다.</li></ul>
+    </main>
+  </div>
+</body>
+</html>

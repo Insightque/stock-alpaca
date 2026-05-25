@@ -1,6 +1,6 @@
 ---
 id: NVDA
-updated_at: 2026-05-24T03:27:34Z
+updated_at: 2026-05-24T23:42:18Z
 symbol: NVDA
 asset_type: stock
 ---
@@ -56,3 +56,9 @@ NVDA는 stock-only 제안에서 가장 품질이 높은 핵심 후보로 본다.
 NVDA는 핵심 AI thesis는 유지하지만, 이번 run에서는 4순위 소액 추가 후보로만 둔다. 2026-05-22 종가 215.34 기준 5D -4.4%, 20D +3.4%로 단기 상대강도는 AMD/LRCX보다 약하다. Benzinga와 Yahoo Finance MCP에서는 실적, AI 수요, $80B buyback이 강점으로 확인됐지만, memory supply constraint와 높은 기대치가 단기 부담으로 확인됐다.
 
 dry-run order plan에는 10주 추가 후보를 기록했다. 다음 정규장 전 fresh quote와 post-earnings follow-through 확인 전에는 제출하지 않는다.
+
+## 2026-05-25 현재 추천 메모
+
+NVDA는 핵심 AI thesis와 보유 포지션은 유지하지만 오늘 신규 추가 우선순위에서는 낮췄다. 2026-05-22 종가 215.34 기준 5D -4.42%, 20D +3.44%로 SPY/QQQ 20D를 모두 이기지 못했다.
+
+Alpaca/Benzinga에서는 CPU 시장 기대와 post-earnings pullback/support narrative가 확인됐다. 긍정 뉴스 자체보다 다음 정규장에 눌림이 지지선에서 버티는지, 그리고 20D 상대강도가 회복되는지를 먼저 확인한다.

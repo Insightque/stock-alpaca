@@ -553,3 +553,33 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 검증: `python3 -m unittest discover -s tests` 33개 통과, `python3 scripts/check-risk-policy.py harness/examples/order-plan.example.json` PASS.
 - append-only 로그와 immutable source 본문을 제외한 실행 문서/스크립트/manifest에서 구 경로 참조가 남지 않았음을 확인했다.
 - 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 08:42 Asia/Seoul] daily | 현재 기준 종목 추천 no-submit
+
+- 사용자 요청에 따라 오늘 기준 종목 추천을 no-submit으로 수행했다.
+- Alpaca clock 기준 미국 동부 2026-05-24 19:37:59에 시장은 닫혀 있었고, 2026-05-25은 미국 휴장이라 다음 정규장은 2026-05-26 09:30 ET다.
+- Alpaca account/positions/orders/watchlists를 확인했다. Portfolio value 100418.67 USD, cash 44030.58 USD, long market value 56388.09 USD, 미체결 주문 없음, watchlist 없음.
+- Alpaca MCP로 22개 후보의 2026-02-01~2026-05-24 IEX adjusted daily bars를 캡처했고, Yahoo Finance MCP로 LRCX/UNH/AMD/NVDA 뉴스 맥락을 보강했다.
+- 추천 우선순위는 LRCX, UNH, AMD다. NVDA는 보유/확인, NOK와 quantum basket은 급등 과열과 valuation/short-interest risk로 신규 추격을 보류했다.
+- 시장 휴장과 stale/missing spread 때문에 신규 order entry는 만들지 않고 empty-order dry-run plan만 생성했다.
+- risk check: `python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-05-25-current-recommendations.json` PASS.
+- 리포트: `wiki/current-runs/daily/2026-05-25.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-25-current-recommendation-sources.md`, `wiki/evidence-store/sources/2026-05-25-current-recommendation-bars.json`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-25-0842-current-recommendations.json`.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 09:05 Asia/Seoul] ui | agent run 상태판 추가
+
+- 사용자 요청에 따라 각 agent 역할의 진행 상태, 결과, 추천, 관련 문서를 한눈에 볼 수 있는 서버 없는 정적 UI를 추가했다.
+- 생성 스크립트는 `scripts/build-agent-dashboard.py`이고, 결과 HTML은 `ui/agent-dashboard.html`이다.
+- UI는 최신 run manifest, current-run report, order plan, wiki log를 읽어 self-contained HTML로 생성한다.
+- 리포트, 주문계획, manifest, 원천 파일, 포지션 파일은 UI에서 클릭해 열 수 있다.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 09:21 Asia/Seoul] ui | backtest HTML viewer 적용
+
+- 사용자 요청에 따라 agent run 상태판에서 초보자 용어 설명 영역을 제거했다.
+- Backtests 카드는 원본 Markdown 파일을 직접 열지 않고 `ui/backtests/*.html`로 생성된 보기용 HTML 문서를 열도록 변경했다.
+- `scripts/build-agent-dashboard.py`가 상태판 생성 시 최신 백테스트 결과 Markdown을 표, 제목, 목록이 보이는 정적 HTML 문서로 함께 렌더링한다.
+- `README.md`, `ui/README.md`, `wiki/index.md`에 dashboard와 backtest viewer 기준을 반영했다.
+- 실제 주문, 취소, 포지션 변경은 없었다.

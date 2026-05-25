@@ -1,6 +1,6 @@
 ---
 id: UNH
-updated_at: 2026-05-24T03:27:34Z
+updated_at: 2026-05-24T23:42:18Z
 symbol: UNH
 asset_type: stock
 ---
@@ -54,3 +54,9 @@ UNH는 UnitedHealth Group으로, 이번 주식 중심 계획에서 기술/AI 집
 UNH는 이번 no-submit run의 1순위 추가매수 후보로 올렸다. 2026-05-22 종가 388.545 기준 20D +9.5%, SPY 대비 +5.0%p이고 5D는 -1.3%라 과열 추격 리스크가 낮다. 포트폴리오가 AI/반도체 중심으로 기울어져 있어 방어적 헬스케어 분산 역할도 크다.
 
 리스크는 Medicare Advantage 정책/비용 압력, Berkshire stake exit 관련 심리, 최근 회복 이후 valuation 논쟁이다. dry-run order plan에는 10주 추가 후보만 기록했고 실제 주문은 제출하지 않았다.
+
+## 2026-05-25 현재 추천 메모
+
+UNH는 오늘 기준 2순위 추가 후보로 유지한다. 2026-05-22 종가 388.55 기준 5D -1.27%, 20D +9.48%, SPY 대비 +5.04%p, QQQ 대비 +1.42%p라 과열 추격이 아니라 방어적 분산 성격이 더 강하다.
+
+Yahoo Finance MCP에서는 turnaround/valuation narrative와 Medicare Advantage overpayment 같은 정책 리스크가 같이 확인됐다. 따라서 방향은 긍정적이지만, 다음 정규장 fresh quote와 healthcare headline 리스크를 확인한 뒤 소액으로만 늘리는 후보로 둔다.

@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-24 KST 현재 추천 run 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-25 KST 현재 추천 run 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -37,6 +37,7 @@
 - `wiki/current-runs/daily/` - 현재 계좌와 현재 시장을 대상으로 실행한 일일 trading workflow 결과.
 - [[2026-05-22]] - 현재 시장 분석과 이후 주식 중심 paper 매수 실행 업데이트.
 - [[2026-05-24]] - 현재 기준 no-submit 종목 추천, dry-run 주문 후보, risk-check 결과.
+- [[2026-05-25]] - 미국 휴장 전 2026-05-22 종가 기준 현재 no-submit 종목 추천, empty-order risk-check 결과.
 
 ## Research Notes
 
@@ -106,6 +107,7 @@
 - `scripts/simulate-six-month-3h-policy-review.py` - Alpaca MCP read-only 30분봉을 3시간 구간으로 집계해 최근 6개월 단타/장타 정책을 독립 검증하는 헬퍼.
 - `scripts/fetch-alpaca-bars-mcp.py` - Alpaca MCP stdio를 통해 과거 bars를 캡처하는 로컬 헬퍼. Alpaca REST 직접 호출 없음.
 - `scripts/simulate-one-year-daily-policy.py` - 캡처된 일봉으로 장기 정책을 일별 독립 run으로 검증하는 헬퍼.
+- `scripts/build-agent-dashboard.py` / `ui/agent-dashboard.html` / `ui/backtests/` - 서버 없이 여는 agent run 상태판과 백테스트 HTML 뷰어 생성기.
 
 ## 운영/검증 도구
 
@@ -146,6 +148,7 @@
 - [[2026-05-24-mcp-comparison-2026-05-08-sources]] - 2026-05-08 과거 추천 표본의 MCP 보강 비교 원천과 데이터 공백 기록.
 - [[2026-05-24-mcp-policy-history-reaudit-sources]] - 남은 정책 시뮬레이션 이력 MCP 재감사용 Alpaca/Alpha/SEC/Firecrawl 원천과 FRED 공백 기록.
 - [[2026-05-24-current-recommendation-sources]] - 현재 기준 종목 추천용 Alpaca account/clock/positions/prices/news, SEC/Yahoo/Alpha/Web 보강 원천.
+- [[2026-05-25-current-recommendation-sources]] - 현재 기준 종목 추천용 Alpaca account/clock/positions/bars/news, Yahoo Finance 보강, stale quote 공백 원천.
 - [[2026-05-24-six-month-3h-simulation-sources]] - 최근 6개월 3시간 구간 시뮬레이션용 Alpaca MCP calendar/assets/IEX 30분봉 원천과 데이터 공백 기록.
 - `wiki/evidence-store/sources/2026-05-24-policy-improvement-candidates-data.json` - 정책 개선 후보 5개 검증용 계산 결과.
 - [[2026-05-24-expanded-six-month-3h-simulation-sources]] - 확장 universe 최근 6개월 3시간 구간 시뮬레이션용 Alpaca MCP 원천.

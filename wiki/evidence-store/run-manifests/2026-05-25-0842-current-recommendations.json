@@ -1,0 +1,72 @@
+{
+  "run_id": "2026-05-25-0842-current-recommendations",
+  "mode": "dry_run",
+  "paper": true,
+  "created_at": "2026-05-24T23:42:18Z",
+  "git_commit": "a4112c85b223fe477dad59024023e79b0a0086f5-dirty",
+  "prompt_file_sha": "unavailable:inline-user-request-2026-05-25-current-recommendation",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:4058a719aa65c40b9b0b9acf86cd44930b61df651eb59642053b50e916c302ea",
+  "schema_version": "1.1",
+  "mcp_servers_used": [
+    "alpaca",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [
+    {
+      "server": "sec-edgar",
+      "reason": "Not queried in this quick no-submit recommendation run; no SEC filing signal was used as positive evidence."
+    },
+    {
+      "server": "alpha-vantage",
+      "reason": "Not queried in this quick no-submit recommendation run; earnings-calendar signal remains a data gap before submit-mode."
+    },
+    {
+      "server": "fred",
+      "reason": "No callable FRED tool was exposed in this runtime; macro regime was not used as a positive signal."
+    },
+    {
+      "server": "firecrawl",
+      "reason": "Not queried in this quick no-submit recommendation run; official IR capture remains a data gap before submit-mode."
+    }
+  ],
+  "data_cutoff_time": "2026-05-24T23:42:18Z",
+  "market_clock_checked_at": "2026-05-24T23:37:59Z",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-25-current-recommendation-sources.md",
+    "wiki/evidence-store/sources/2026-05-25-current-recommendation-bars.json",
+    "wiki/current-runs/daily/2026-05-25.md",
+    "wiki/trade-ledger/positions/current.md"
+  ],
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-25-current-recommendations.json",
+  "risk_check_result": {
+    "status": "PASS",
+    "buy_notional": 0.0,
+    "sell_notional": 0.0,
+    "post_cash": 44030.58,
+    "post_invested": 56388.09,
+    "min_cash": 20083.73,
+    "max_invested": 80334.94,
+    "warnings": [
+      "Market is closed and next regular session is 2026-05-26.",
+      "No new order entries were created because fresh quote/spread gate could not be satisfied."
+    ]
+  },
+  "data_manifest": {
+    "source_feed": "alpaca_iex",
+    "bar_interval": "1Day",
+    "adjusted_prices": true,
+    "timezone": "America/New_York",
+    "trading_calendar": "nyse",
+    "symbols_requested": 22,
+    "symbols_loaded": 22,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 22,
+    "corporate_actions_checked": true,
+    "survivorship_bias_controlled": false,
+    "dataset_hash": "sha256:e3daf109e64ca13548e0820d845427af22de6dd5d883fe208ad32ff4bac5206d",
+    "raw_input_file": "wiki/evidence-store/sources/2026-05-25-current-recommendation-bars.json"
+  },
+  "submitted_order_ids": [],
+  "post_trade_check_path": "wiki/trade-ledger/positions/current.md"
+}

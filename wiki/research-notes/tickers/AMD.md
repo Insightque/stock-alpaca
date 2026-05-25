@@ -1,6 +1,6 @@
 ---
 id: AMD
-updated_at: 2026-05-24T03:27:34Z
+updated_at: 2026-05-24T23:42:18Z
 symbol: AMD
 asset_type: stock
 ---
@@ -56,3 +56,9 @@ AMD는 NVDA와 같은 AI 반도체 테마의 보조 핵심 후보로 본다. Alp
 AMD는 모멘텀과 촉매가 가장 강한 축이지만 신규 추격은 소액 staged entry로만 본다. 2026-05-22 종가 467.64 기준 20D +34.5%, SPY 대비 +30.0%p, 60D +129.6%라 가격 선반영 위험이 크다. Alpaca/Benzinga/Yahoo 원천에서는 2nm Venice CPU, 대만 AI supply chain $10B+ 투자, CPU 시장 성장 기대가 확인됐다.
 
 정책상 `earnings/theme overextension` 감점을 적용해 5주 추가 후보만 dry-run order plan에 기록했다. 실제 주문은 제출하지 않았다.
+
+## 2026-05-25 현재 추천 메모
+
+AMD는 오늘 기준 3순위 후보지만, 새 주문 후보가 아니라 `staged only`다. 2026-05-22 종가 467.64 기준 5D +10.30%, 20D +34.46%, 63D +137.84%로 강하지만, 정책상 20D +35% 부근은 추격 위험이 커진다.
+
+Alpaca/Yahoo Finance MCP에서는 2nm Venice CPU 생산 확대와 대만 AI supply chain 투자 맥락이 확인됐다. 촉매는 좋지만 가격이 이미 많이 반영했을 수 있어 다음 정규장 fresh quote와 장초반 반납 여부를 확인한 뒤 아주 작은 staged add만 고려한다.
