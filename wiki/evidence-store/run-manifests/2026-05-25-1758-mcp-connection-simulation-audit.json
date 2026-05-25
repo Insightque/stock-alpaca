@@ -1,0 +1,59 @@
+{
+  "run_id": "2026-05-25-1758-mcp-connection-simulation-audit",
+  "mode": "review",
+  "paper": true,
+  "created_at": "2026-05-25T17:58:00+09:00",
+  "git_commit": "eed2650a4a2f1a757bd47755516d76fbe0541fcb-dirty",
+  "prompt_file_sha": "sha256:ea576a5c6aa8163fde070c1afe2cb4ad6482c9598e76d0684ce289c2d4b4d370",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:c819bca82c77b3cedeb8c527bd85502f3415c4bba6b0c487a3066d7b71ed17c9",
+  "schema_version": "1.1",
+  "mcp_servers_used": [
+    "alpaca",
+    "alpha-vantage",
+    "sec-edgar",
+    "yahoo-finance",
+    "fred",
+    "firecrawl"
+  ],
+  "mcp_failures": [
+    {
+      "server": "fred",
+      "reason": "Official API health check could not be completed in this session because sandbox DNS blocked api.stlouisfed.org and escalated credentialed network execution was rejected. Local MCP initialize/tools-list succeeded."
+    },
+    {
+      "server": "alpaca-local-helper",
+      "reason": "scripts/fetch-alpaca-bars-mcp.py smoke output generation was blocked by sandbox access to the uv cache; escalated credentialed network execution was rejected. Direct Alpaca MCP get_stock_bars succeeded."
+    }
+  ],
+  "data_cutoff_time": "2026-05-22T23:59:59Z",
+  "market_clock_checked_at": "2026-05-25T17:58:00+09:00",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-25-mcp-connection-simulation-audit-sources.md",
+    "wiki/research-notes/analyses/2026-05-25-mcp-usage-and-simulation-impact-review.md",
+    "wiki/evidence-store/sources/2026-05-25-one-year-daily-bars.json",
+    "wiki/evidence-store/sources/2026-05-25-one-year-daily-policy-simulation-data.json",
+    "wiki/evidence-store/run-manifests/2026-05-25-one-year-daily-policy-simulation.json"
+  ],
+  "risk_check_result": {
+    "status": "NOT_APPLICABLE",
+    "reason": "MCP connectivity and simulation audit only; no order plan generated."
+  },
+  "data_manifest": {
+    "source_feed": "alpaca_iex_with_research_mcp_healthchecks",
+    "bar_interval": "1Day",
+    "adjusted_prices": true,
+    "timezone": "America/New_York",
+    "trading_calendar": "nyse",
+    "symbols_requested": 62,
+    "symbols_loaded": 62,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 0,
+    "corporate_actions_checked": true,
+    "survivorship_bias_controlled": false,
+    "dataset_hash": "sha256:dd4652f26a5fee046692bf29e5b28f0dd91bedf738d0ff0dac36d252196db5ce",
+    "raw_input_file": "wiki/evidence-store/sources/2026-05-25-one-year-daily-bars.json"
+  },
+  "submitted_order_ids": [],
+  "post_trade_check_path": ""
+}

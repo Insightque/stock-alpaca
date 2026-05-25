@@ -50,6 +50,8 @@
 - [[2026-05-24-mcp-comparison-2026-05-08-historical-simulation]] - 2026-05-08 과거 추천 표본을 Alpaca/SEC EDGAR/Alpha Vantage/Firecrawl/Yahoo MCP 보강 결과와 비교한 검토.
 - [[2026-05-24-mcp-policy-history-reaudit]] - 남은 과거 추천/단타/장타 정책 시뮬레이션 이력을 MCP 보강 정보로 재감사한 분석.
 - [[2026-05-25-request-implementation-review]] - Request.md 개선항목 반영 여부와 1년 시뮬레이션 결과 검토.
+- [[2026-05-25-mcp-usage-and-simulation-impact-review]] - 추천/시뮬레이션 workflow의 MCP 실제 사용 여부, 현재 세션 MCP 연결 재점검, 로컬 FRED/Firecrawl MCP, 1년 시뮬레이션 재현 검토.
+- [[2026-05-25-mcp-simulation-integration-verification]] - MCP-only market data 이전과 research MCP event feature cache 결합이 실제 시뮬레이션 결과에 반영되는지 검증하고 과거 장기/단기 결과와 비교한 분석.
 
 ## Backtest Runs
 
@@ -103,10 +105,12 @@
 - `harness/strategies/intraday-afternoon-followthrough-v1.yaml` - 단타 observation-only 전략 config.
 - `harness/workflows/intraday-paper-dry-run.md` - `intraday-rs-breakout-v0`/`intraday-rs-breadth-vwap-v1` 실시간 주문 없는 paper dry-run 운영안.
 - `harness/workflows/one-year-daily-simulation.md` - 과거 1년 일별 독립 정책 시뮬레이션 workflow.
+- `harness/templates/event-feature-cache.json` - SEC/Alpha/FRED/Firecrawl/Yahoo 등 research MCP feature cache 템플릿.
 - `scripts/evaluate-intraday-dry-run.py` - 캡처된 1분봉 JSON으로 11:00 ET v0/v1 신호와 fill 관찰 필드를 생성하는 로컬 헬퍼. Alpaca API 호출 없음.
+- `scripts/alpaca_mcp_bars.py` - read-only Alpaca `get_stock_bars` MCP 호출 공용 helper. 직접 REST 호출 없음.
 - `scripts/simulate-six-month-3h-policy-review.py` - Alpaca MCP read-only 30분봉을 3시간 구간으로 집계해 최근 6개월 단타/장타 정책을 독립 검증하는 헬퍼.
 - `scripts/fetch-alpaca-bars-mcp.py` - Alpaca MCP stdio를 통해 과거 bars를 캡처하는 로컬 헬퍼. Alpaca REST 직접 호출 없음.
-- `scripts/simulate-one-year-daily-policy.py` - 캡처된 일봉으로 장기 정책을 일별 독립 run으로 검증하는 헬퍼.
+- `scripts/simulate-one-year-daily-policy.py` - 캡처된 일봉으로 장기 정책을 일별 독립 run으로 검증하는 헬퍼. `--event-features-json`으로 research MCP feature cache 결합 가능.
 - `scripts/build-agent-dashboard.py` / `ui/agent-dashboard.html` / `ui/backtests/` - 서버 없이 여는 agent run 상태판과 백테스트 HTML 뷰어 생성기.
 
 ## 운영/검증 도구
@@ -116,6 +120,8 @@
 - `harness/order-plan.schema.json` - 신규 order-plan JSON의 필수 메타데이터와 source refs 스키마.
 - `scripts/check-risk-policy.py` - schema 검증, YAML 리스크 정책 검증, `--json` 구조화 결과 출력.
 - `scripts/check-leakage.py` - 과거 추천 시뮬레이션과 order plan의 미래 정보 누출 점검.
+- `scripts/fred-mcp-server.py` / `scripts/mcp-fred.sh` - FRED 공식 API를 호출하는 로컬 MCP 서버와 wrapper. `get_series_observations`, `get_series_info`, `search_series`, `get_macro_snapshot` 제공.
+- `scripts/firecrawl-mcp-server.py` / `scripts/mcp-firecrawl.sh` - Firecrawl 공식 API를 호출하는 로컬 MCP 서버와 wrapper. `firecrawl_scrape`, `firecrawl_map` 제공.
 - `harness/run-manifest.schema.json` / `wiki/evidence-store/run-manifests/` - run provenance manifest 구조와 저장 위치.
 
 ## Evidence Store
@@ -160,3 +166,13 @@
 - `wiki/evidence-store/sources/2026-05-25-one-year-daily-bars.json` - 62개 심볼 2025-05-23~2026-05-22 adjusted IEX 일봉 원자료.
 - `wiki/evidence-store/sources/2026-05-25-one-year-daily-policy-simulation-data.json` - 장기 v1 일별 독립 시뮬레이션 계산 결과.
 - `wiki/evidence-store/sources/2026-05-25-one-year-policy-scorecard.json` - 장기 v1 정책 scorecard.
+- [[2026-05-25-mcp-connection-simulation-audit-sources]] - 현재 세션 MCP 연결 재점검, Firecrawl/FRED 로컬 wrapper 상태, 1년 시뮬레이션 스모크 재현, 미사용 MCP/직접 REST 경로 공백 기록.
+- `wiki/evidence-store/run-manifests/2026-05-25-1758-mcp-connection-simulation-audit.json` - MCP 연결 및 시뮬레이션 감사 run manifest.
+- [[2026-05-25-mcp-simulation-integration-fix-sources]] - Alpaca market data 직접 REST 경로 제거, MCP event feature cache 결합, 회귀 테스트 결과.
+- `wiki/evidence-store/run-manifests/2026-05-25-1816-mcp-simulation-integration-fix.json` - MCP-only 시뮬레이션 경로와 event feature 결합 조치 run manifest.
+- [[2026-05-25-mcp-simulation-integration-verification-sources]] - MCP event feature cache 결합 검증, 1년 baseline/neutral/sensitivity 재시뮬레이션, 6개월 captured-row coverage 감사 원천.
+- `wiki/evidence-store/sources/2026-05-25-mcp-verification-neutral-event-feature-cache.json` - 62개 심볼 무영향 MCP event feature 검증 cache.
+- `wiki/evidence-store/sources/2026-05-25-mcp-verification-sensitivity-event-feature-cache.json` - MU 감도 테스트용 MCP event feature 검증 cache.
+- `wiki/evidence-store/run-manifests/2026-05-25-1828-mcp-simulation-integration-verification.json` - MCP 시뮬레이션 반영 검증 run manifest.
+- [[2026-05-25-mcp-uv-runtime-fix-sources]] - `uvx` 기반 MCP wrapper의 홈 캐시/도구 경로 sandbox 문제 조치와 남은 최초 dependency fetch 제약 기록.
+- `wiki/evidence-store/run-manifests/2026-05-25-1834-mcp-uv-runtime-fix.json` - MCP `uvx` runtime 경로 조치 run manifest.

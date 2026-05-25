@@ -1,0 +1,50 @@
+{
+  "run_id": "2026-05-25-1816-mcp-simulation-integration-fix",
+  "mode": "review",
+  "paper": true,
+  "created_at": "2026-05-25T18:16:00+09:00",
+  "git_commit": "eed2650a4a2f1a757bd47755516d76fbe0541fcb-dirty",
+  "prompt_file_sha": "unavailable:inline-user-request-2026-05-25-mcp-simulation-integration-fix",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:c819bca82c77b3cedeb8c527bd85502f3415c4bba6b0c487a3066d7b71ed17c9",
+  "schema_version": "1.1",
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [],
+  "data_cutoff_time": "2026-05-22T23:59:59Z",
+  "market_clock_checked_at": "2026-05-25T18:16:00+09:00",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-25-mcp-simulation-integration-fix-sources.md",
+    "wiki/research-notes/analyses/2026-05-25-mcp-usage-and-simulation-impact-review.md",
+    "harness/templates/event-feature-cache.json",
+    "tests/fixtures/event-feature-cache.sample.json",
+    "wiki/evidence-store/sources/2026-05-25-one-year-daily-bars.json"
+  ],
+  "risk_check_result": {
+    "status": "NOT_APPLICABLE",
+    "reason": "Code-level MCP simulation integration fix and smoke test only; no order plan generated."
+  },
+  "data_manifest": {
+    "source_feed": "alpaca_iex_with_research_mcp_event_feature_cache",
+    "bar_interval": "1Day",
+    "adjusted_prices": true,
+    "timezone": "America/New_York",
+    "trading_calendar": "nyse",
+    "symbols_requested": 62,
+    "symbols_loaded": 62,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 0,
+    "corporate_actions_checked": true,
+    "survivorship_bias_controlled": false,
+    "dataset_hash": "sha256:dd4652f26a5fee046692bf29e5b28f0dd91bedf738d0ff0dac36d252196db5ce",
+    "raw_input_file": "wiki/evidence-store/sources/2026-05-25-one-year-daily-bars.json"
+  },
+  "submitted_order_ids": [],
+  "post_trade_check_path": ""
+}

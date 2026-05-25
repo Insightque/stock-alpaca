@@ -1,0 +1,55 @@
+{
+  "run_id": "2026-05-25-1834-mcp-uv-runtime-fix",
+  "mode": "review",
+  "paper": true,
+  "created_at": "2026-05-25T18:34:00+09:00",
+  "git_commit": "eed2650a4a2f1a757bd47755516d76fbe0541fcb-dirty",
+  "prompt_file_sha": "unavailable:inline-user-request-2026-05-25-mcp-uv-runtime-fix",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:c819bca82c77b3cedeb8c527bd85502f3415c4bba6b0c487a3066d7b71ed17c9",
+  "schema_version": "1.1",
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpaca",
+      "reason": "After workspace-local uv runtime directories were configured, the limited six-month smoke run reached package resolution but failed because sandbox DNS blocked PyPI fetch for alpaca-mcp-server. Unsandboxed retry was rejected by execution policy."
+    }
+  ],
+  "data_cutoff_time": "2026-05-25T18:34:00+09:00",
+  "market_clock_checked_at": "2026-05-25T18:34:00+09:00",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-25-mcp-uv-runtime-fix-sources.md",
+    ".gitignore",
+    "scripts/alpaca-mcp.sh",
+    "scripts/mcp-alpha-vantage.sh",
+    "scripts/mcp-sec-edgar.sh",
+    "scripts/mcp-yahoo-finance.sh",
+    "tests/test_mcp_runtime_wrappers.py"
+  ],
+  "risk_check_result": {
+    "status": "NOT_APPLICABLE",
+    "reason": "Runtime wrapper fix and read-only smoke attempt only; no order plan generated."
+  },
+  "data_manifest": {
+    "source_feed": "mcp_runtime_wrapper_validation",
+    "bar_interval": "not_applicable",
+    "adjusted_prices": false,
+    "timezone": "Asia/Seoul",
+    "trading_calendar": "not_applicable",
+    "symbols_requested": 0,
+    "symbols_loaded": 0,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 0,
+    "corporate_actions_checked": false,
+    "survivorship_bias_controlled": false,
+    "dataset_hash": "not_applicable",
+    "raw_input_file": "not_applicable"
+  },
+  "submitted_order_ids": [],
+  "post_trade_check_path": ""
+}

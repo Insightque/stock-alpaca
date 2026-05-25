@@ -1,0 +1,58 @@
+{
+  "run_id": "2026-05-25-1828-mcp-simulation-integration-verification",
+  "mode": "review",
+  "paper": true,
+  "created_at": "2026-05-25T18:28:00+09:00",
+  "git_commit": "eed2650a4a2f1a757bd47755516d76fbe0541fcb-dirty",
+  "prompt_file_sha": "unavailable:inline-user-request-2026-05-25-mcp-simulation-integration-verification",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:c819bca82c77b3cedeb8c527bd85502f3415c4bba6b0c487a3066d7b71ed17c9",
+  "schema_version": "1.1",
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpaca",
+      "reason": "Limited six-month live MCP smoke run could not initialize because sandbox denied uv cache access; unsandboxed retry was not approved by execution policy. Existing captured six-month rows were audited with the event feature join logic instead."
+    }
+  ],
+  "data_cutoff_time": "2026-05-22T23:59:59Z",
+  "market_clock_checked_at": "2026-05-25T18:28:00+09:00",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-25-mcp-simulation-integration-verification-sources.md",
+    "wiki/research-notes/analyses/2026-05-25-mcp-simulation-integration-verification.md",
+    "wiki/evidence-store/sources/2026-05-25-one-year-daily-bars.json",
+    "wiki/evidence-store/sources/2026-05-25-one-year-daily-policy-simulation-data.json",
+    "wiki/evidence-store/sources/2026-05-24-six-month-3h-simulation-data.json",
+    "wiki/evidence-store/sources/2026-05-24-short-long-policy-simulation-data.json",
+    "wiki/evidence-store/sources/2026-05-25-mcp-verification-neutral-event-feature-cache.json",
+    "wiki/evidence-store/sources/2026-05-25-mcp-verification-sensitivity-event-feature-cache.json"
+  ],
+  "risk_check_result": {
+    "status": "NOT_APPLICABLE",
+    "reason": "Simulation verification only; no order plan generated."
+  },
+  "data_manifest": {
+    "source_feed": "captured_alpaca_iex_daily_and_captured_six_month_rows_with_research_mcp_event_feature_cache",
+    "bar_interval": "1Day_and_30Min_derived_3h",
+    "adjusted_prices": true,
+    "timezone": "America/New_York",
+    "trading_calendar": "nyse",
+    "symbols_requested": 62,
+    "symbols_loaded": 62,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 0,
+    "corporate_actions_checked": true,
+    "survivorship_bias_controlled": false,
+    "dataset_hash": "sha256:0fe9563b98eeffb1e176676acffa462bc7d291f27ef11484864aeda48b6f1596",
+    "raw_input_file": "wiki/evidence-store/sources/2026-05-25-one-year-daily-bars.json"
+  },
+  "submitted_order_ids": [],
+  "post_trade_check_path": ""
+}

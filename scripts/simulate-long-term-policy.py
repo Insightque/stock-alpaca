@@ -40,6 +40,11 @@ def parse_args() -> argparse.Namespace:
         default=ROOT_DIR / "harness" / "strategies" / "long-term-quality-momentum-v1.yaml",
     )
     parser.add_argument("--metadata-yaml", type=Path, default=ROOT_DIR / "harness" / "symbol-metadata.yaml")
+    parser.add_argument(
+        "--event-features-json",
+        type=Path,
+        help="Optional point-in-time research MCP feature cache to join by symbol and as-of date.",
+    )
     parser.add_argument("--scorecard-json", type=Path)
     return parser.parse_args()
 
@@ -70,16 +75,31 @@ def main() -> None:
     module = load_one_year_module()
     config = module.load_yaml(args.strategy_config)
     metadata = module.load_yaml(args.metadata_yaml)
+    event_features = module.load_event_features(args.event_features_json)
     rows = source.get("extracted", {}).get("daily_bars")
     if not isinstance(rows, dict):
         raise SystemExit("input JSON must contain extracted.daily_bars")
 
-    simulation = module.simulate(rows, config, metadata)
+    simulation = module.simulate(rows, config, metadata, event_features)
     data_manifest = {
         **source.get("data_manifest", {}),
         "dataset_hash": module.file_sha256(args.input_json),
         "raw_input_file": str(args.input_json),
     }
+    if args.event_features_json:
+        data_manifest["event_feature_cache_file"] = str(args.event_features_json)
+        data_manifest["event_feature_cache_hash"] = module.file_sha256(args.event_features_json)
+    data_gaps = source.get("data_gaps", []) + [
+        "This long-term simulator uses captured Alpaca MCP data only for price bars.",
+    ]
+    if args.event_features_json:
+        data_gaps.append(
+            "Research MCP event features are joined point-in-time by available_at/asof date."
+        )
+    else:
+        data_gaps.append(
+            "Event/source confidence, valuation, earnings, and filing features are represented by metadata buckets unless joined from a research MCP event feature cache."
+        )
     output = {
         "run_id": "long-term-policy-simulation",
         "created_at": module.datetime.now().astimezone().isoformat(timespec="seconds"),
@@ -87,12 +107,9 @@ def main() -> None:
         "orders_submitted": 0,
         "strategy_config": str(args.strategy_config),
         "metadata_yaml": str(args.metadata_yaml),
+        "event_features_json": str(args.event_features_json) if args.event_features_json else "",
         "data_manifest": data_manifest,
-        "data_gaps": source.get("data_gaps", [])
-        + [
-            "This long-term simulator uses captured Alpaca MCP data only.",
-            "Event/source confidence, valuation, earnings, and filing features are represented by metadata buckets unless joined from raw sources.",
-        ],
+        "data_gaps": data_gaps,
         "simulation": simulation,
     }
     args.output_json.parent.mkdir(parents=True, exist_ok=True)
@@ -108,6 +125,7 @@ def main() -> None:
             "summary": simulation["summary"],
             "promotion_decision": "active_dry_run_candidate",
             "promotion_reason": "rolling validation and cost metrics recorded; quote/source/valuation blockers remain",
+            "event_feature_cache_used": bool(args.event_features_json),
         }
         args.scorecard_json.parent.mkdir(parents=True, exist_ok=True)
         args.scorecard_json.write_text(json.dumps(scorecard, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")

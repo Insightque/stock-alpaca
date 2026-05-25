@@ -26,7 +26,7 @@
 
 `.env`에는 `ALPACA_PAPER_TRADE=true`가 설정되어 있어야 합니다. 이 값이 없거나 `true`가 아니면 trading workflow는 중단되어야 합니다.
 
-선택형 리서치 MCP는 `.env.example`과 `.vscode/mcp.json`에 정리되어 있습니다. 키가 없으면 해당 MCP 실패를 raw source의 데이터 공백으로 기록하고, 사용 가능한 원천으로 계속 진행합니다.
+선택형 리서치 MCP는 `.env.example`과 `.vscode/mcp.json`에 정리되어 있습니다. 키가 없으면 해당 MCP 실패를 raw source의 데이터 공백으로 기록하고, 사용 가능한 원천으로 계속 진행합니다. FRED와 Firecrawl은 각각 레포 내부 `scripts/fred-mcp-server.py`, `scripts/firecrawl-mcp-server.py`를 통해 실행되므로 외부 npm 패키지를 즉석 실행하지 않습니다.
 
 ### 간단한 Codex 명령
 
@@ -125,7 +125,7 @@ This project is not a promise of profitable trading. It is a disciplined feedbac
 
 `ALPACA_PAPER_TRADE=true` must be set in `.env`. If it is missing or not `true`, trading workflows should stop.
 
-Optional research MCPs are listed in `.env.example` and `.vscode/mcp.json`. If their keys are absent, record the MCP failure as a data gap in the raw source note and continue with available sources.
+Optional research MCPs are listed in `.env.example` and `.vscode/mcp.json`. If their keys are absent, record the MCP failure as a data gap in the raw source note and continue with available sources. FRED and Firecrawl run through the local `scripts/fred-mcp-server.py` and `scripts/firecrawl-mcp-server.py` wrappers, not runtime-fetched npm packages.
 
 ### Simple Codex Commands
 

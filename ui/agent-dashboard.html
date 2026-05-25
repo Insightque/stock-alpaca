@@ -263,70 +263,70 @@
   </div>
 
   <script type="application/json" id="dashboard-data">{
-  "generated_at": "2026-05-25T00:23:23Z",
+  "generated_at": "2026-05-25T09:32:38Z",
   "run": {
-    "run_id": "2026-05-25-0842-current-recommendations",
-    "mode": "dry_run",
-    "created_at": "2026-05-24T23:42:18Z",
+    "run_id": "2026-05-25-1828-mcp-simulation-integration-verification",
+    "mode": "review",
+    "created_at": "2026-05-25T18:28:00+09:00",
     "paper": true,
-    "risk_status": "PASS",
+    "risk_status": "NOT_APPLICABLE",
     "market": "closed",
-    "next_open": "2026-05-26T09:30:00-04:00",
+    "next_open": "",
     "orders_planned": 0,
     "orders_submitted": 0,
-    "symbols_loaded": 22,
-    "cash_ratio": 43.84700574106389,
-    "invested_ratio": 56.152994258936126,
+    "symbols_loaded": 62,
+    "cash_ratio": null,
+    "invested_ratio": null,
     "action_label": "관망",
     "action_reason": "장 닫힘 · 현재가 확인 대기"
   },
   "account": {
-    "portfolio_value": 100418.67,
-    "cash": 44030.58,
-    "invested": 56388.09000000001,
-    "cash_ratio": 43.84700574106389,
-    "invested_ratio": 56.152994258936126
+    "portfolio_value": 0.0,
+    "cash": 0.0,
+    "invested": 0,
+    "cash_ratio": null,
+    "invested_ratio": null
   },
   "agents": [
     {
       "id": "coordinator",
       "name": "Coordinator",
       "label": "계좌",
-      "status": "done",
-      "progress": 100,
+      "status": "waiting",
+      "progress": 20,
       "result": "closed"
     },
     {
       "id": "universe",
       "name": "Universe",
       "label": "후보군",
-      "status": "done",
-      "progress": 100,
-      "result": "22 symbols"
+      "status": "waiting",
+      "progress": 20,
+      "result": "62 symbols"
     },
     {
       "id": "market_data",
       "name": "Market Data",
       "label": "가격",
-      "status": "done",
-      "progress": 100,
-      "result": "alpaca_iex 1Day"
+      "status": "waiting",
+      "progress": 20,
+      "result": "captured_alpaca_iex_daily_and_captured_six_month_rows_with_research_mcp_event_feature_cache 1Day_and_30Min_derived_3h"
     },
     {
       "id": "web_research",
       "name": "Research",
       "label": "뉴스",
-      "status": "watch",
-      "progress": 90,
-      "result": "alpaca + yahoo-finance"
+      "status": "waiting",
+      "progress": 20,
+      "result": "alpaca + sec-edgar + alpha-vantage + fred + firecrawl + yahoo-finance"
     },
     {
       "id": "trend",
       "name": "Trend",
       "label": "점수",
-      "status": "done",
-      "progress": 100,
-      "result": "LRCX / UNH / AMD"
+      "status": "waiting",
+      "progress": 20,
+      "result": "scored"
     },
     {
       "id": "ticker_thesis",
@@ -334,15 +334,15 @@
       "label": "티커",
       "status": "done",
       "progress": 100,
-      "result": "LRCX / UNH / AMD"
+      "result": "notes"
     },
     {
       "id": "risk",
       "name": "Risk",
       "label": "리스크",
-      "status": "done",
-      "progress": 100,
-      "result": "PASS"
+      "status": "waiting",
+      "progress": 20,
+      "result": "NOT_APPLICABLE"
     },
     {
       "id": "executor",
@@ -369,141 +369,19 @@
       "result": "index + log"
     }
   ],
-  "picks": [
-    {
-      "symbol": "LRCX",
-      "action": "fresh quote 확인 후 소액 추가 후보",
-      "reason": "상대강도, 장비 체인 촉매, 기존 비중 6.08%로 여유",
-      "score": "73",
-      "confidence": "중상",
-      "return_20d": "+14.17%",
-      "vs_spy_20d": "+9.73%p",
-      "risk": "20D dual benchmark 통과, AI 장비/packaging 촉매, 과열 아님"
-    },
-    {
-      "symbol": "UNH",
-      "action": "fresh quote 확인 후 소액 추가 후보",
-      "reason": "기술주 집중 완화, 5D 과열 없음, 20D dual benchmark 통과",
-      "score": "72",
-      "confidence": "중상",
-      "return_20d": "+9.48%",
-      "vs_spy_20d": "+5.04%p",
-      "risk": "방어적 분산, 20D dual benchmark 통과, 5D 과열 없음"
-    },
-    {
-      "symbol": "AMD",
-      "action": "staged entry만 허용",
-      "reason": "강한 촉매와 모멘텀, 단 20D +34.46%/63D +137.84%로 추격 위험",
-      "score": "69",
-      "confidence": "중간",
-      "return_20d": "+34.46%",
-      "vs_spy_20d": "+30.02%p",
-      "risk": "촉매와 상대강도 최상위지만 63D 급등과 반도체 cluster 집중으로 staged only"
-    }
-  ],
-  "recommendations": [
-    {
-      "구분": "1순위",
-      "심볼": "LRCX",
-      "조치": "fresh quote 확인 후 소액 추가 후보",
-      "이유": "상대강도, 장비 체인 촉매, 기존 비중 6.08%로 여유"
-    },
-    {
-      "구분": "2순위",
-      "심볼": "UNH",
-      "조치": "fresh quote 확인 후 소액 추가 후보",
-      "이유": "기술주 집중 완화, 5D 과열 없음, 20D dual benchmark 통과"
-    },
-    {
-      "구분": "3순위",
-      "심볼": "AMD",
-      "조치": "staged entry만 허용",
-      "이유": "강한 촉매와 모멘텀, 단 20D +34.46%/63D +137.84%로 추격 위험"
-    },
-    {
-      "구분": "보유",
-      "심볼": "NVDA",
-      "조치": "추가보다 확인",
-      "이유": "AI thesis는 강하지만 20D 상대강도 미달과 실적 후 눌림"
-    },
-    {
-      "구분": "보유",
-      "심볼": "AVGO/TSM/ETN",
-      "조치": "신규 추가 보류",
-      "이유": "단기 상대강도 약함"
-    },
-    {
-      "구분": "보유/축소 검토 아님",
-      "심볼": "NOK",
-      "조치": "추격 금지",
-      "이유": "수익 중이나 20D +48.18%로 과열"
-    },
-    {
-      "구분": "관찰",
-      "심볼": "IONQ/RGTI/QBTS",
-      "조치": "신규 매수 금지",
-      "이유": "quantum 테마 급등, valuation/short-interest risk"
-    }
-  ],
-  "scores": [
-    {
-      "순위": "1",
-      "심볼": "LRCX",
-      "점수": "73",
-      "신뢰도": "중상",
-      "판단": "20D dual benchmark 통과, AI 장비/packaging 촉매, 과열 아님"
-    },
-    {
-      "순위": "2",
-      "심볼": "UNH",
-      "점수": "72",
-      "신뢰도": "중상",
-      "판단": "방어적 분산, 20D dual benchmark 통과, 5D 과열 없음"
-    },
-    {
-      "순위": "3",
-      "심볼": "AMD",
-      "점수": "69",
-      "신뢰도": "중간",
-      "판단": "촉매와 상대강도 최상위지만 63D 급등과 반도체 cluster 집중으로 staged only"
-    },
-    {
-      "순위": "4",
-      "심볼": "NVDA",
-      "점수": "64",
-      "신뢰도": "중간",
-      "판단": "핵심 thesis 유지, 그러나 20D 상대강도 미달이라 fresh reversal 확인 필요"
-    },
-    {
-      "순위": "5",
-      "심볼": "NOK",
-      "점수": "59",
-      "신뢰도": "중간",
-      "판단": "보유 유지 가능, 20D +48.18%라 신규 추격 보류"
-    },
-    {
-      "순위": "관찰",
-      "심볼": "IONQ/RGTI/QBTS",
-      "점수": "42-48",
-      "신뢰도": "낮음",
-      "판단": "quantum 테마 급등, valuation/short-interest risk, speculative cap 근접"
-    }
-  ],
+  "picks": [],
+  "recommendations": [],
+  "scores": [],
   "links": [
     {
       "label": "리포트",
-      "path": "wiki/current-runs/daily/2026-05-25.md",
-      "href": "../wiki/current-runs/daily/2026-05-25.md"
-    },
-    {
-      "label": "주문계획",
-      "path": "wiki/trade-ledger/orders/2026-05-25-current-recommendations.json",
-      "href": "../wiki/trade-ledger/orders/2026-05-25-current-recommendations.json"
+      "path": "wiki/research-notes/analyses/2026-05-25-mcp-simulation-integration-verification.md",
+      "href": "../wiki/research-notes/analyses/2026-05-25-mcp-simulation-integration-verification.md"
     },
     {
       "label": "Manifest",
-      "path": "wiki/evidence-store/run-manifests/2026-05-25-0842-current-recommendations.json",
-      "href": "../wiki/evidence-store/run-manifests/2026-05-25-0842-current-recommendations.json"
+      "path": "wiki/evidence-store/run-manifests/2026-05-25-1828-mcp-simulation-integration-verification.json",
+      "href": "../wiki/evidence-store/run-manifests/2026-05-25-1828-mcp-simulation-integration-verification.json"
     },
     {
       "label": "포지션",
@@ -511,31 +389,56 @@
       "href": "../wiki/trade-ledger/positions/current.md"
     },
     {
-      "label": "2026-05-25-current-recommendation-sources.md",
-      "path": "wiki/evidence-store/sources/2026-05-25-current-recommendation-sources.md",
-      "href": "../wiki/evidence-store/sources/2026-05-25-current-recommendation-sources.md"
+      "label": "2026-05-25-mcp-simulation-integration-verification-sources.md",
+      "path": "wiki/evidence-store/sources/2026-05-25-mcp-simulation-integration-verification-sources.md",
+      "href": "../wiki/evidence-store/sources/2026-05-25-mcp-simulation-integration-verification-sources.md"
     },
     {
-      "label": "2026-05-25-current-recommendation-bars.json",
-      "path": "wiki/evidence-store/sources/2026-05-25-current-recommendation-bars.json",
-      "href": "../wiki/evidence-store/sources/2026-05-25-current-recommendation-bars.json"
+      "label": "2026-05-25-one-year-daily-bars.json",
+      "path": "wiki/evidence-store/sources/2026-05-25-one-year-daily-bars.json",
+      "href": "../wiki/evidence-store/sources/2026-05-25-one-year-daily-bars.json"
+    },
+    {
+      "label": "2026-05-25-one-year-daily-policy-simulation-data.json",
+      "path": "wiki/evidence-store/sources/2026-05-25-one-year-daily-policy-simulation-data.json",
+      "href": "../wiki/evidence-store/sources/2026-05-25-one-year-daily-policy-simulation-data.json"
+    },
+    {
+      "label": "2026-05-24-six-month-3h-simulation-data.json",
+      "path": "wiki/evidence-store/sources/2026-05-24-six-month-3h-simulation-data.json",
+      "href": "../wiki/evidence-store/sources/2026-05-24-six-month-3h-simulation-data.json"
+    },
+    {
+      "label": "2026-05-24-short-long-policy-simulation-data.json",
+      "path": "wiki/evidence-store/sources/2026-05-24-short-long-policy-simulation-data.json",
+      "href": "../wiki/evidence-store/sources/2026-05-24-short-long-policy-simulation-data.json"
+    },
+    {
+      "label": "2026-05-25-mcp-verification-neutral-event-feature-cache.json",
+      "path": "wiki/evidence-store/sources/2026-05-25-mcp-verification-neutral-event-feature-cache.json",
+      "href": "../wiki/evidence-store/sources/2026-05-25-mcp-verification-neutral-event-feature-cache.json"
+    },
+    {
+      "label": "2026-05-25-mcp-verification-sensitivity-event-feature-cache.json",
+      "path": "wiki/evidence-store/sources/2026-05-25-mcp-verification-sensitivity-event-feature-cache.json",
+      "href": "../wiki/evidence-store/sources/2026-05-25-mcp-verification-sensitivity-event-feature-cache.json"
     }
   ],
   "timeline": [
     {
-      "time": "2026-05-25 09:21 Asia/Seoul",
-      "type": "ui",
-      "title": "backtest HTML viewer 적용"
+      "time": "2026-05-25 18:28 Asia/Seoul",
+      "type": "simulation",
+      "title": "MCP event feature 반영 검증 및 과거 시뮬레이션 대비 분석"
     },
     {
-      "time": "2026-05-25 09:05 Asia/Seoul",
-      "type": "ui",
-      "title": "agent run 상태판 추가"
+      "time": "2026-05-25 18:16 Asia/Seoul",
+      "type": "mcp",
+      "title": "시뮬레이션 MCP-only 경로와 event feature 결합 조치"
     },
     {
-      "time": "2026-05-25 08:42 Asia/Seoul",
-      "type": "daily",
-      "title": "현재 기준 종목 추천 no-submit"
+      "time": "2026-05-25 17:58 Asia/Seoul",
+      "type": "mcp",
+      "title": "현재 세션 MCP 연결 및 시뮬레이션 사용 감사"
     }
   ],
   "backtests": [
@@ -577,12 +480,7 @@
     }
   ],
   "warnings": [
-    "Market is closed and next regular session is 2026-05-26.",
-    "No new order entries were created because fresh quote/spread gate could not be satisfied.",
-    "Not queried in this quick no-submit recommendation run; no SEC filing signal was used as positive evidence.",
-    "Not queried in this quick no-submit recommendation run; earnings-calendar signal remains a data gap before submit-mode.",
-    "No callable FRED tool was exposed in this runtime; macro regime was not used as a positive signal.",
-    "Not queried in this quick no-submit recommendation run; official IR capture remains a data gap before submit-mode."
+    "Limited six-month live MCP smoke run could not initialize because sandbox denied uv cache access; unsandboxed retry was not approved by execution policy. Existing captured six-month rows were audited with the event feature join logic instead."
   ]
 }</script>
   <script>

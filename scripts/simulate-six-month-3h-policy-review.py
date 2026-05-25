@@ -113,6 +113,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--output-md", type=Path, required=True)
     parser.add_argument("--source-md", type=Path, required=True)
     parser.add_argument("--run-manifest", type=Path, required=True)
+    parser.add_argument(
+        "--event-features-json",
+        type=Path,
+        help="Optional point-in-time research MCP feature cache to join by symbol and as-of date.",
+    )
     parser.add_argument("--feed", default="iex")
     parser.add_argument("--timeframe", default="30Min")
     parser.add_argument("--limit", type=int, default=10000)
@@ -163,6 +168,139 @@ def safe_float(value: Any) -> float | None:
     if math.isfinite(number):
         return number
     return None
+
+
+def as_float(value: Any, default: float = 0.0) -> float:
+    number = safe_float(value)
+    return default if number is None else number
+
+
+def parse_date_key(value: Any) -> str | None:
+    if value in (None, ""):
+        return None
+    text = str(value)
+    if len(text) >= 10 and text[4:5] == "-" and text[7:8] == "-":
+        return text[:10]
+    return None
+
+
+def as_list(value: Any) -> list[Any]:
+    return value if isinstance(value, list) else []
+
+
+def normalize_event_features(raw: dict[str, Any] | None) -> dict[str, list[dict[str, Any]]]:
+    if not raw:
+        return {}
+    normalized: dict[str, list[dict[str, Any]]] = defaultdict(list)
+
+    def add_record(symbol_hint: str | None, date_hint: str | None, record: Any) -> None:
+        if not isinstance(record, dict):
+            return
+        row = dict(record)
+        symbol = str(row.get("symbol") or symbol_hint or "").upper().strip()
+        if not symbol:
+            return
+        available_date = (
+            parse_date_key(row.get("available_at"))
+            or parse_date_key(row.get("asof_date"))
+            or parse_date_key(row.get("date"))
+            or parse_date_key(date_hint)
+        )
+        if not available_date:
+            return
+        row["symbol"] = symbol
+        row["available_date"] = available_date
+        normalized[symbol].append(row)
+
+    features = raw.get("features")
+    if isinstance(features, dict):
+        for symbol, value in features.items():
+            if isinstance(value, list):
+                for record in value:
+                    add_record(str(symbol), None, record)
+            elif isinstance(value, dict):
+                for date_key, record in value.items():
+                    add_record(str(symbol), str(date_key), record)
+    for record in as_list(raw.get("records")):
+        add_record(None, None, record)
+    for rows in normalized.values():
+        rows.sort(key=lambda item: str(item["available_date"]))
+    return dict(normalized)
+
+
+def load_event_features(path: Path | None) -> dict[str, list[dict[str, Any]]]:
+    if not path:
+        return {}
+    raw = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(raw, dict):
+        raise ValueError(f"{path} must contain a JSON object")
+    return normalize_event_features(raw)
+
+
+def event_feature_for(
+    symbol: str,
+    asof: str,
+    event_features: dict[str, list[dict[str, Any]]] | None,
+) -> dict[str, Any] | None:
+    if not event_features:
+        return None
+    eligible = [
+        row
+        for row in event_features.get(symbol.upper(), [])
+        if str(row.get("available_date", "")) <= asof
+    ]
+    return eligible[-1] if eligible else None
+
+
+def event_score_adjustment(record: dict[str, Any] | None) -> float:
+    if not record:
+        return 0.0
+    total = as_float(record.get("score_adjustment"))
+    for key in (
+        "earnings_score_adjustment",
+        "sec_score_adjustment",
+        "macro_score_adjustment",
+        "ir_score_adjustment",
+        "analyst_score_adjustment",
+        "news_score_adjustment",
+        "valuation_score_adjustment",
+    ):
+        total += as_float(record.get(key))
+    return total
+
+
+def event_fields(symbol: str, asof: str, event_features: dict[str, list[dict[str, Any]]] | None) -> dict[str, Any]:
+    feature = event_feature_for(symbol, asof, event_features)
+    mcp_gaps = as_list((feature or {}).get("mcp_gaps") or (feature or {}).get("gap_flags"))
+    return {
+        "event_feature_present": feature is not None,
+        "event_available_date": (feature or {}).get("available_date"),
+        "event_score_adjustment": event_score_adjustment(feature),
+        "event_exclude": bool((feature or {}).get("exclude", False)),
+        "mcp_servers_used": [str(item) for item in as_list((feature or {}).get("mcp_servers_used"))],
+        "mcp_gap_count": len(mcp_gaps),
+        "mcp_gaps": [str(item) for item in mcp_gaps],
+        "mcp_source_refs": [str(item) for item in as_list((feature or {}).get("source_refs"))],
+    }
+
+
+def attach_event_fields_to_rows(
+    rows: list[dict[str, Any]],
+    event_features: dict[str, list[dict[str, Any]]] | None,
+    *,
+    date_key: str,
+    adjust_score: bool = False,
+) -> list[dict[str, Any]]:
+    out = []
+    for row in rows:
+        fields = event_fields(str(row["symbol"]), str(row[date_key]), event_features)
+        if fields["event_exclude"]:
+            continue
+        merged = {**row, **fields}
+        if adjust_score and "score" in merged:
+            merged["score"] = float(merged["score"]) + float(fields["event_score_adjustment"])
+        out.append(merged)
+    return out
 
 
 def date_chunks(start_day: date, end_day: date, days: int = 14) -> list[tuple[date, date]]:
@@ -339,6 +477,7 @@ def intraday_candidate_rows(
     windows: dict[str, dict[date, dict[int, WindowBar]]],
     regular_bars: dict[str, dict[date, list[Bar]]],
     calendar: list[CalendarDay],
+    event_features: dict[str, list[dict[str, Any]]] | None = None,
 ) -> dict[str, list[dict[str, Any]]]:
     candidates = [symbol for symbol in symbols if symbol not in BENCHMARKS]
     all_days = [item.day for item in calendar]
@@ -427,14 +566,29 @@ def intraday_candidate_rows(
                             "relative_strength_pctpt": rel_two,
                         }
                     )
-        ranked_momentum = sorted(momentum_pool, key=lambda row: (row["relative_strength_pctpt"], row["symbol_w0_return_pct"]), reverse=True)
+        momentum_pool = attach_event_fields_to_rows(momentum_pool, event_features, date_key="date")
+        reclaim_pool = attach_event_fields_to_rows(reclaim_pool, event_features, date_key="date")
+        afternoon_pool = attach_event_fields_to_rows(afternoon_pool, event_features, date_key="date")
+        ranked_momentum = sorted(
+            momentum_pool,
+            key=lambda row: (row["relative_strength_pctpt"] + row["event_score_adjustment"], row["symbol_w0_return_pct"]),
+            reverse=True,
+        )
         for policy, limit in (("3h-momentum-top3", 3), ("3h-momentum-top2", 2)):
             for rank, row in enumerate(ranked_momentum[:limit], start=1):
                 policy_rows[policy].append({"policy": policy, "rank": rank, **row})
-        ranked_reclaim = sorted(reclaim_pool, key=lambda row: (row["recovery_from_w0_low_pct"], -abs(row["symbol_w0_return_pct"])), reverse=True)
+        ranked_reclaim = sorted(
+            reclaim_pool,
+            key=lambda row: (row["recovery_from_w0_low_pct"] + row["event_score_adjustment"], -abs(row["symbol_w0_return_pct"])),
+            reverse=True,
+        )
         for rank, row in enumerate(ranked_reclaim[:2], start=1):
             policy_rows["3h-vwap-reclaim-top2"].append({"policy": "3h-vwap-reclaim-top2", "rank": rank, **row})
-        ranked_afternoon = sorted(afternoon_pool, key=lambda row: (row["relative_strength_pctpt"], row["symbol_two_window_return_pct"]), reverse=True)
+        ranked_afternoon = sorted(
+            afternoon_pool,
+            key=lambda row: (row["relative_strength_pctpt"] + row["event_score_adjustment"], row["symbol_two_window_return_pct"]),
+            reverse=True,
+        )
         for rank, row in enumerate(ranked_afternoon[:2], start=1):
             policy_rows["3h-afternoon-continuation-top2"].append({"policy": "3h-afternoon-continuation-top2", "rank": rank, **row})
     return policy_rows
@@ -495,6 +649,7 @@ def score_daily_symbol(
     daily: dict[str, list[dict[str, Any]]],
     first_window_returns: dict[str, dict[date, float]],
     asof: date,
+    event_features: dict[str, list[dict[str, Any]]] | None = None,
 ) -> dict[str, Any] | None:
     rows = daily.get(symbol, [])
     spy = daily.get("SPY", [])
@@ -536,7 +691,7 @@ def score_daily_symbol(
         - stability_penalty
         - overextension_penalty
     )
-    return {
+    row = {
         "symbol": symbol,
         "theme": THEMES.get(symbol, "other"),
         "asof_close": rows[idx]["close"],
@@ -549,6 +704,12 @@ def score_daily_symbol(
         "vol20": vol20,
         "w0_positive_rate_10d": w0_positive_rate,
     }
+    fields = event_fields(symbol, asof.isoformat(), event_features)
+    if fields["event_exclude"]:
+        return None
+    row.update(fields)
+    row["score"] = float(row["score"]) + float(fields["event_score_adjustment"])
+    return row
 
 
 def select_daily(scored: list[dict[str, Any]], variant: str) -> list[dict[str, Any]]:
@@ -578,6 +739,7 @@ def simulate_daily_policies(
     daily: dict[str, list[dict[str, Any]]],
     windows_by_symbol: dict[str, list[WindowBar]],
     calendar: list[CalendarDay],
+    event_features: dict[str, list[dict[str, Any]]] | None = None,
 ) -> dict[str, list[dict[str, Any]]]:
     candidate_symbols = [symbol for symbol in symbols if symbol not in BENCHMARKS]
     spy_days = [date.fromisoformat(row["date"]) for row in daily.get("SPY", [])]
@@ -591,7 +753,7 @@ def simulate_daily_policies(
     for asof in spy_days:
         scored = []
         for symbol in candidate_symbols:
-            row = score_daily_symbol(symbol, daily, first_window_returns, asof)
+            row = score_daily_symbol(symbol, daily, first_window_returns, asof, event_features)
             if row:
                 scored.append(row)
         if not scored:
@@ -681,6 +843,19 @@ def top_symbols(rows: list[dict[str, Any]], count: int = 8) -> list[dict[str, An
     return ranked[:count]
 
 
+def event_feature_summary(rows: list[dict[str, Any]], cache_used: bool) -> dict[str, Any]:
+    matches = [row for row in rows if row.get("event_feature_present")]
+    servers = sorted({server for row in matches for server in row.get("mcp_servers_used", [])})
+    return {
+        "event_feature_cache_used": cache_used,
+        "rows": len(rows),
+        "event_feature_matches": len(matches),
+        "event_feature_coverage_pct": len(matches) / len(rows) * 100.0 if rows else 0.0,
+        "mcp_event_servers_used": servers,
+        "mcp_event_gap_count": sum(int(row.get("mcp_gap_count", 0)) for row in matches),
+    }
+
+
 def format_pct(value: float | None) -> str:
     if value is None:
         return "n/a"
@@ -755,6 +930,13 @@ def build_markdown(result: dict[str, Any]) -> str:
         reverse=True,
     )
     created_at = result["created_at"]
+    mcp_event = result.get("mcp_event_features", {})
+    intraday_event = mcp_event.get("intraday", {})
+    daily_event = mcp_event.get("daily", {})
+    event_servers = sorted(
+        set(intraday_event.get("mcp_event_servers_used", []))
+        | set(daily_event.get("mcp_event_servers_used", []))
+    )
     return f"""---
 id: 2026-05-24-six-month-3h-independent-policy-review
 created_at: {created_at}
@@ -779,6 +961,14 @@ watchlist는 비어 있어 현재 paper 보유 종목과 기존 정책 후보, �
 - 원천: [[2026-05-24-six-month-3h-simulation-sources]]
 - 계산 데이터: `wiki/evidence-store/sources/2026-05-24-six-month-3h-simulation-data.json`
 - 학습/검증 분리 기준: `{split}`까지를 앞구간, 이후를 뒤구간으로 보았다. 규칙은 새로 튜닝하지 않고 고정식으로 적용했다.
+
+## MCP 이벤트 feature 결합
+
+- event feature cache 사용: `{str(bool(mcp_event.get('event_feature_cache_file'))).lower()}`
+- cache 파일: `{mcp_event.get('event_feature_cache_file') or '없음'}`
+- 단타 row 매칭: {intraday_event.get('event_feature_matches', 0)} / {intraday_event.get('rows', 0)} ({intraday_event.get('event_feature_coverage_pct', 0.0):.2f}%)
+- 장타 row 매칭: {daily_event.get('event_feature_matches', 0)} / {daily_event.get('rows', 0)} ({daily_event.get('event_feature_coverage_pct', 0.0):.2f}%)
+- 매칭된 research MCP 서버: {', '.join(event_servers) if event_servers else '없음'}
 
 ## 단타형 3시간 정책 결과
 
@@ -888,6 +1078,7 @@ orders_submitted: 0
 - `alpaca.get_calendar`: 거래일, 정규장 open/close 확인.
 - `alpaca.get_asset`: 후보 심볼의 active/tradable 여부 확인.
 - `alpaca.get_stock_bars`: IEX `30Min` bars 조회. 정규장 외 bar는 집계에서 제외했다.
+- Research MCP event feature cache: `{result.get('mcp_event_features', {}).get('event_feature_cache_file') or 'not supplied'}`. 공급된 경우 SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance feature를 `available_at` 기준으로 결합했다.
 
 ## 기준 시점과 범위
 
@@ -940,6 +1131,11 @@ def build_manifest(result: dict[str, Any], run_manifest: Path, source_refs: list
     except Exception:
         recommendation_policy_sha = "unavailable"
     created = datetime.now(UTC)
+    event_features = result.get("mcp_event_features", {})
+    event_servers = sorted(
+        set(event_features.get("intraday", {}).get("mcp_event_servers_used", []))
+        | set(event_features.get("daily", {}).get("mcp_event_servers_used", []))
+    )
     return {
         "run_id": run_manifest.stem,
         "mode": "review",
@@ -950,7 +1146,7 @@ def build_manifest(result: dict[str, Any], run_manifest: Path, source_refs: list
         "risk_policy_version": "medium-risk-v1",
         "recommendation_policy_sha": recommendation_policy_sha,
         "schema_version": "1.0",
-        "mcp_servers_used": ["alpaca"],
+        "mcp_servers_used": sorted({"alpaca", *event_servers}),
         "mcp_failures": [],
         "data_cutoff_time": f"{result['end_date']}T20:00:00Z",
         "market_clock_checked_at": result.get("market_clock_checked_at", result["created_at_utc"]),
@@ -970,6 +1166,7 @@ async def run() -> None:
     start_day = date.fromisoformat(args.start)
     end_day = date.fromisoformat(args.end)
     symbols_arg = [item.strip().upper() for item in args.symbols.split(",") if item.strip()]
+    event_features = load_event_features(args.event_features_json)
 
     params = StdioServerParameters(command=str(root / "scripts/alpaca-mcp.sh"), args=[], cwd=root)
     async with stdio_client(params) as (read, write):
@@ -1050,8 +1247,8 @@ async def run() -> None:
     windows_by_symbol, daily = aggregate_windows(symbols, bars_by_symbol, calendar)
     window_lookup = windows_by_day(windows_by_symbol)
     regular_bars = regular_bars_by_symbol_day(symbols, bars_by_symbol, calendar)
-    intraday_rows = intraday_candidate_rows(symbols, window_lookup, regular_bars, calendar)
-    daily_rows = simulate_daily_policies(symbols, daily, windows_by_symbol, calendar)
+    intraday_rows = intraday_candidate_rows(symbols, window_lookup, regular_bars, calendar, event_features)
+    daily_rows = simulate_daily_policies(symbols, daily, windows_by_symbol, calendar, event_features)
 
     trading_days = [item.day for item in calendar]
     split_day = trading_days[len(trading_days) // 2]
@@ -1073,6 +1270,27 @@ async def run() -> None:
             "validation": summarize_daily(validation),
             "top_symbols": top_symbols([row for row in rows if row["ret20_fwd"] is not None]),
         }
+    all_intraday_rows = [row for rows in intraday_rows.values() for row in rows]
+    all_daily_rows = [row for rows in daily_rows.values() for row in rows]
+    mcp_event_features = {
+        "event_feature_cache_file": str(args.event_features_json) if args.event_features_json else "",
+        "intraday": event_feature_summary(all_intraday_rows, bool(event_features)),
+        "daily": event_feature_summary(all_daily_rows, bool(event_features)),
+    }
+    data_gaps = list(DATA_GAPS)
+    if event_features:
+        data_gaps = [
+            item
+            for item in data_gaps
+            if not item.startswith("Policy review is price/volume based")
+        ]
+        data_gaps.append(
+            "Research MCP event features were joined point-in-time by available_at/asof date; missing symbols kept price-only scoring."
+        )
+    else:
+        data_gaps.append(
+            "No research MCP event feature cache was supplied; SEC, earnings, macro, IR, Yahoo analyst/news, and valuation context stayed out of the score."
+        )
 
     created_kst = datetime.now(KST)
     created_utc = datetime.now(UTC)
@@ -1135,7 +1353,8 @@ async def run() -> None:
                 "recommendations": daily_rows,
             },
         },
-        "data_gaps": DATA_GAPS,
+        "mcp_event_features": mcp_event_features,
+        "data_gaps": data_gaps,
     }
     result = round_json(result)
 
@@ -1152,7 +1371,8 @@ async def run() -> None:
             str(args.source_md),
             str(args.output_md),
             str(args.output_json),
-        ],
+        ]
+        + ([str(args.event_features_json)] if args.event_features_json else []),
     )
     args.run_manifest.parent.mkdir(parents=True, exist_ok=True)
     args.run_manifest.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")

@@ -583,3 +583,97 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - `scripts/build-agent-dashboard.py`가 상태판 생성 시 최신 백테스트 결과 Markdown을 표, 제목, 목록이 보이는 정적 HTML 문서로 함께 렌더링한다.
 - `README.md`, `ui/README.md`, `wiki/index.md`에 dashboard와 backtest viewer 기준을 반영했다.
 - 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 13:59 Asia/Seoul] mcp | FRED 로컬 MCP 서버 적용
+
+- 사용자 요청에 따라 `fred` MCP wrapper가 외부 npm 패키지를 즉석 실행하지 않고 레포 내부 `scripts/fred-mcp-server.py`를 실행하도록 변경했다.
+- 로컬 FRED MCP 서버는 `get_series_observations`, `get_series_info`, `search_series`, `get_macro_snapshot` 도구를 제공한다.
+- FRED 공식 API health check와 MCP `tools/list`, `tools/call(get_series_observations, DGS10)` 호출이 성공했다.
+- `harness/mcp-source-map.md`, `README.md`, `wiki/index.md`에 FRED 로컬 MCP 기준을 반영했다.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 14:20 Asia/Seoul] analysis | MCP 사용 여부와 시뮬레이션 영향 검토
+
+- 사용자 요청에 따라 daily/current recommendation, historical decision, MCP comparison, one-year daily simulation 이력에서 MCP 사용 여부를 감사했다.
+- `2026-05-25` 현재 추천은 Alpaca/Yahoo Finance 중심이었고 SEC/Alpha/FRED/Firecrawl은 quick run 데이터 공백으로 남았음을 확인했다.
+- FRED 로컬 MCP로 2026-05-15와 2026-05-22 macro snapshot을 조회했고, Alpha Vantage로 AMD earnings 및 AMD/UNH/LRCX earnings calendar를 확인했다.
+- 표본 영향 검토 결과 2026-05-25 추천 순위, 2026-05-15 decision, 2026-05-08 MCP 비교 표본의 큰 결론은 유지하되 AMD staged-only/과열 감점 근거가 강화됐다.
+- 대규모 가격 기반 backtest는 MCP 연결만으로 결과가 바뀌지 않으며, as-of event feature cache와 시뮬레이터 결합이 필요하다고 정리했다.
+- 분석 문서: `wiki/research-notes/analyses/2026-05-25-mcp-usage-and-simulation-impact-review.md`.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 17:26 Asia/Seoul] mcp | 키 교체 후 MCP 재확인 및 시뮬레이션 스모크 테스트
+
+- 사용자 요청에 따라 키 교체 후 MCP 정상 동작 여부를 재확인했다. 키 값은 출력하거나 기록하지 않았다.
+- `.env`의 필수 변수 존재와 `ALPACA_PAPER_TRADE=true`를 확인했다.
+- Alpha Vantage, SEC EDGAR, Yahoo Finance, FRED 로컬 MCP는 정상 응답을 확인했다.
+- 현재 세션에 로드된 Alpaca MCP 도구는 401이었지만, `scripts/fetch-alpaca-bars-mcp.py`로 새로 띄운 로컬 Alpaca MCP helper는 SPY/QQQ 일봉을 정상 수집했다. 현재 세션 MCP 재시작이 필요하다.
+- Firecrawl은 현재 MCP와 공식 API 최소 호출 모두 `Unauthorized`로 실패했다. Firecrawl 키 또는 Firecrawl 프로젝트/API 설정 재확인이 필요하다.
+- Alpaca MCP로 수집한 SPY/QQQ 2026-05-01~2026-05-22 일봉으로 시뮬레이션 helper 스모크 테스트를 통과했다.
+- 기존 1년 입력 데이터로 재실행한 결과 `daily_independent_runs=191`, `recommendations=953`, `completed=853`, 정책 상태 `active_dry_run_candidate`가 재현됐다.
+- 분석 문서와 인덱스에 최신 재확인 결과를 반영했다.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 17:36 Asia/Seoul] mcp | Firecrawl 로컬 MCP 전환 및 세션 재확인
+
+- 현재 세션에 이미 로드된 Alpaca MCP는 계좌/시세 조회 모두 401이지만, 새로 띄운 Alpaca MCP helper는 같은 `.env`로 SPY/QQQ 일봉을 정상 수집했다. 현재 세션 MCP 재시작 이슈로 판단한다.
+- 현재 세션에 이미 로드된 Firecrawl MCP는 `Invalid token`을 반환했지만, Firecrawl 공식 API는 `zeroDataRetention` 옵션 없이 정상 응답했다.
+- 기존 `npx firecrawl-mcp` wrapper는 외부 npm 패키지에 API 키를 넘기는 구조라 새로 실행하지 않고, 레포 내부 `scripts/firecrawl-mcp-server.py` 로컬 MCP 서버로 교체했다.
+- 새 Firecrawl 로컬 MCP wrapper의 health check, MCP `tools/list`, MCP `tools/call(firecrawl_scrape)`가 정상 동작했다.
+- `harness/mcp-source-map.md`, `wiki/index.md`, MCP 영향 검토 문서에 로컬 Firecrawl MCP 기준과 세션 재시작 필요성을 반영했다.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 17:58 Asia/Seoul] mcp | 현재 세션 MCP 연결 및 시뮬레이션 사용 감사
+
+- 사용자 요청에 따라 현재 세션에서 MCP 연결과 시뮬레이션의 MCP 사용 여부를 재점검했다. 키 값은 출력하거나 기록하지 않았다.
+- `.env`의 필수 변수 존재와 `ALPACA_PAPER_TRADE=true`를 확인했다.
+- 현재 Codex 세션 MCP 기준 Alpaca, Alpha Vantage, SEC EDGAR, Yahoo Finance는 read-only 호출이 정상 응답했다.
+- Firecrawl은 로컬 wrapper `initialize`/`tools/list`와 공식 API health check가 정상 응답했다.
+- FRED는 로컬 wrapper `initialize`/`tools/list`는 정상이나, 공식 API health check는 sandbox DNS 제한과 escalated credential network 거부로 이번 세션에서 확인하지 못했다.
+- 기존 Alpaca MCP 1년 일봉 입력으로 장기 시뮬레이션을 재실행해 `daily_independent_runs=191`, `recommendations=953`, `completed=853`, 비용 차감 hit rate `58.73388%`, 평균 SPY 초과수익 `+3.749958%p`, `active_dry_run_candidate` 상태를 재현했다.
+- 모든 시뮬레이션이 모든 MCP를 쓰는 구조는 아니며, 가격 기반 1년/6개월 시뮬레이션은 설계상 Alpaca bars 중심임을 확인했다. SEC/Alpha/FRED/Firecrawl/Yahoo는 아직 event-level feature cache로 결합되지 않았다.
+- `scripts/simulate-intraday-policy-candidates.py`와 `scripts/simulate-short-long-policy-review.py`에 Alpaca market data REST 직접 `curl` 경로가 남아 있어 MCP-only 원칙에 맞게 이전해야 한다.
+- 원천: `wiki/evidence-store/sources/2026-05-25-mcp-connection-simulation-audit-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-25-1758-mcp-connection-simulation-audit.json`.
+- 검증: `python3 -m unittest discover -s tests` 41개 통과.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 18:16 Asia/Seoul] mcp | 시뮬레이션 MCP-only 경로와 event feature 결합 조치
+
+- 사용자 요청에 따라 이전 감사에서 남은 공백을 조치했다.
+- `scripts/alpaca_mcp_bars.py`를 추가해 Alpaca `get_stock_bars` read-only MCP 호출을 공용 helper로 만들었다.
+- `scripts/simulate-intraday-policy-candidates.py`와 `scripts/simulate-short-long-policy-review.py`의 Alpaca market data REST 직접 `curl` 경로를 제거하고 MCP helper로 이전했다.
+- `scripts/simulate-one-year-daily-policy.py`, `scripts/simulate-long-term-policy.py`, `scripts/simulate-six-month-3h-policy-review.py`에 `--event-features-json` 입력을 추가했다.
+- event feature cache는 `available_at`/`asof_date` 기준으로만 과거 시점에 결합하며, `score_adjustment`, `source_confidence_delta`, `exclude`, `mcp_gaps`, `source_refs`를 반영한다.
+- `harness/templates/event-feature-cache.json` 템플릿과 `harness/workflows/one-year-daily-simulation.md`의 feature cache 단계를 추가했다.
+- 샘플 feature cache smoke에서 `mcp_event_servers_used=alpha-vantage,firecrawl,fred,sec-edgar,yahoo-finance`, `event_feature_cache_used=true`, `orders_submitted=0`을 확인했다.
+- 검증: `python3 -m py_compile ...` PASS, `python3 -m unittest discover -s tests` 45개 통과.
+- 원천: `wiki/evidence-store/sources/2026-05-25-mcp-simulation-integration-fix-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-25-1816-mcp-simulation-integration-fix.json`.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 18:28 Asia/Seoul] simulation | MCP event feature 반영 검증 및 과거 시뮬레이션 대비 분석
+
+- 사용자 요청에 따라 MCP-only market data 이전과 research MCP event feature cache 결합이 실제 시뮬레이션에 반영됐는지 검증했다.
+- 1년 장기 시뮬레이션 baseline 재실행은 기존 결과와 `recommendations=953`, `completed=853`, hit rate `58.73388%`, 평균 SPY 초과수익 `+3.749958%p`가 모두 일치했다.
+- 62개 심볼 무영향 event cache를 결합한 실행은 `event_feature_matches=953/953`, `mcp_event_servers_used=alpha-vantage,firecrawl,fred,sec-edgar,yahoo-finance`였고 성과/추천 구성은 baseline과 동일했다.
+- 감도 테스트 cache는 baseline 대비 추천 key 214개를 바꿔 event score adjustment가 ranking에 실제 반영됨을 확인했다.
+- 기존 6개월 3시간 결과의 단타 trade row 351개와 장타 recommendation row 1,074개에 최신 event join 로직을 적용해 모두 100% 매칭됨을 확인했다.
+- 6개월 live MCP smoke run은 sandbox의 `uv` cache 접근 제한으로 실패했고, unsandboxed 재시도는 정책상 승인되지 않아 기존 captured-row coverage 감사로 대체했다.
+- 검증: `python3 -m unittest discover -s tests` 45개 통과. 직접 Alpaca market data REST 흔적은 테스트 assertion 외 없음.
+- 분석 문서: `wiki/research-notes/analyses/2026-05-25-mcp-simulation-integration-verification.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-25-mcp-simulation-integration-verification-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-25-1828-mcp-simulation-integration-verification.json`.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 18:34 Asia/Seoul] mcp | uvx 기반 MCP wrapper runtime 경로 조치
+
+- 사용자 요청에 따라 6개월 live MCP smoke run 실패 원인을 설명하고 조치했다.
+- 원인은 `uvx`가 기본 홈 경로 `~/.cache/uv`, `~/.local/share/uv/tools`에 cache/tool environment를 만들려다 sandbox 권한에 막힌 것이었다.
+- `.gitignore`에 `.cache/`를 추가하고 Alpaca/SEC EDGAR/Alpha Vantage/Yahoo Finance wrapper가 `UV_CACHE_DIR`, `UV_TOOL_DIR`, `XDG_CACHE_HOME`, `XDG_DATA_HOME`을 레포 내부 `.cache/`로 사용하게 변경했다.
+- 로컬 설치된 MCP 실행 파일이 있으면 `uvx` 없이 우선 실행하도록 fallback을 추가했다.
+- 제한 범위 6개월 smoke 재시도에서 홈 cache/tool 권한 에러는 사라졌으나, 레포-local cache가 비어 있어 `alpaca-mcp-server` PyPI 조회가 필요했고 sandbox DNS 제한으로 실패했다. unsandboxed 재시도는 정책상 승인되지 않았다.
+- 검증: wrapper `bash -n` PASS, `python3 -m unittest tests.test_mcp_runtime_wrappers` 3개 통과, `python3 -m unittest discover -s tests` 48개 통과.
+- 원천: `wiki/evidence-store/sources/2026-05-25-mcp-uv-runtime-fix-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-25-1834-mcp-uv-runtime-fix.json`.
+- 실제 주문, 취소, 포지션 변경은 없었다.

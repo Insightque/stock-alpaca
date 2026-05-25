@@ -9,14 +9,13 @@ from __future__ import annotations
 
 import argparse
 import json
-import os
-import subprocess
-import urllib.parse
 from dataclasses import dataclass
 from datetime import date, datetime, time
 from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
+
+from alpaca_mcp_bars import fetch_stock_bars_mcp
 
 
 ET = ZoneInfo("America/New_York")
@@ -58,18 +57,6 @@ class Bar:
     volume: float
 
 
-def read_env(root: Path) -> dict[str, str]:
-    env = os.environ.copy()
-    env_file = root / ".env"
-    if env_file.exists():
-        for line in env_file.read_text(encoding="utf-8").splitlines():
-            if not line or line.strip().startswith("#") or "=" not in line:
-                continue
-            key, value = line.split("=", 1)
-            env.setdefault(key.strip(), value.strip().strip('"').strip("'"))
-    return env
-
-
 def parse_timestamp(value: str) -> datetime:
     return datetime.fromisoformat(value.replace("Z", "+00:00")).astimezone(ET)
 
@@ -103,40 +90,18 @@ def market_window(day: date) -> tuple[str, str]:
 
 
 def fetch_intraday_bars(root: Path, symbols: tuple[str, ...], day: date) -> dict[str, list[Bar]]:
-    env = read_env(root)
-    key = env.get("ALPACA_API_KEY")
-    secret = env.get("ALPACA_SECRET_KEY")
-    if not key or not secret:
-        raise SystemExit("Missing ALPACA_API_KEY or ALPACA_SECRET_KEY")
     start, end = market_window(day)
-    params = urllib.parse.urlencode(
-        {
-            "symbols": ",".join(symbols),
-            "timeframe": "1Min",
-            "start": start,
-            "end": end,
-            "feed": "iex",
-            "limit": "10000",
-        }
+    payload = fetch_stock_bars_mcp(
+        root=root,
+        symbols=symbols,
+        timeframe="1Min",
+        start=start,
+        end=end,
+        feed="iex",
+        adjustment="raw",
+        limit=10000,
     )
-    cmd = [
-        "curl",
-        "-sS",
-        "--fail",
-        "-H",
-        f"APCA-API-KEY-ID: {key}",
-        "-H",
-        f"APCA-API-SECRET-KEY: {secret}",
-        f"https://data.alpaca.markets/v2/stocks/bars?{params}",
-    ]
-    completed = subprocess.run(cmd, check=False, capture_output=True, text=True)
-    if completed.returncode != 0:
-        raise SystemExit(
-            f"Alpaca market data fetch failed for {day.isoformat()} "
-            f"with curl exit {completed.returncode}; credentials were not printed."
-        )
-    payload = json.loads(completed.stdout)
-    return {symbol.upper(): [parse_bar(row) for row in rows] for symbol, rows in payload.get("bars", {}).items()}
+    return {symbol.upper(): [parse_bar(row) for row in rows] for symbol, rows in payload.items()}
 
 
 def load_intraday_cache(path: Path) -> dict[str, Any]:
@@ -394,7 +359,7 @@ def main() -> None:
         "paper": True,
         "orders_submitted": 0,
         "source": {
-            "intraday": "Alpaca Market Data API IEX 1Min bars, read-only; selected Feb/Mar and Apr/May dates",
+            "intraday": "Alpaca MCP get_stock_bars IEX 1Min bars, read-only; selected Feb/Mar and Apr/May dates",
             "long_term": "Existing Alpaca IEX 1Day bar simulation data from 2026-05-23 raw source",
         },
         "intraday": {

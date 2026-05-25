@@ -1,0 +1,36 @@
+{
+  "schema_version": "event-feature-cache-v1",
+  "created_at": "YYYY-MM-DDTHH:MM:SSZ",
+  "paper": true,
+  "orders_submitted": 0,
+  "description": "Point-in-time research MCP feature cache. Each row must be available at or before the simulation as-of date.",
+  "mcp_servers_used": [
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "features": {
+    "AMD": {
+      "YYYY-MM-DD": {
+        "available_at": "YYYY-MM-DDTHH:MM:SSZ",
+        "mcp_servers_used": [
+          "sec-edgar",
+          "alpha-vantage",
+          "fred",
+          "firecrawl",
+          "yahoo-finance"
+        ],
+        "source_refs": [
+          "wiki/evidence-store/sources/YYYY-MM-DD-source.md"
+        ],
+        "score_adjustment": 0.0,
+        "source_confidence_delta": 0.0,
+        "mcp_gaps": [],
+        "exclude": false,
+        "notes": "Keep notes short; no future information."
+      }
+    }
+  }
+}

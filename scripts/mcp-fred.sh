@@ -1,10 +1,13 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-if [ -f .env ]; then
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+if [ -f "$ROOT_DIR/.env" ]; then
   set -a
   # shellcheck disable=SC1091
-  . ./.env
+  . "$ROOT_DIR/.env"
   set +a
 fi
 
@@ -13,4 +16,4 @@ if [ -z "${FRED_API_KEY:-}" ]; then
   exit 64
 fi
 
-exec npx -y fred-mcp-server
+exec python3 "$SCRIPT_DIR/fred-mcp-server.py" "$@"

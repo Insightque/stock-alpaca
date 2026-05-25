@@ -12,8 +12,8 @@
 | `sec-edgar` | `scripts/mcp-sec-edgar.sh` | SEC filings, XBRL 재무제표, insider 거래, 10-K/10-Q/8-K | `SEC_EDGAR_USER_AGENT` | 보강 사용 |
 | `yahoo-finance` | `scripts/mcp-yahoo-finance.sh` | Yahoo Finance 뉴스, 재무정보, analyst recommendation, holder/insider 보조 정보 | 없음 | 보강 사용 |
 | `alpha-vantage` | `scripts/mcp-alpha-vantage.sh` | 실적 캘린더, earnings, 기술지표, fundamental data | `ALPHA_VANTAGE_API_KEY` | 키 필요 |
-| `fred` | `scripts/mcp-fred.sh` | FRED 매크로 지표, 경제 release, 금리, CPI, 실업률 | `FRED_API_KEY` | 키 필요 |
-| `firecrawl` | `scripts/mcp-firecrawl.sh` | 회사 IR, 보도자료, earnings presentation, SEC/IR 웹페이지 캡처 | `FIRECRAWL_API_KEY` | 키 필요 |
+| `fred` | `scripts/mcp-fred.sh` -> `scripts/fred-mcp-server.py` | FRED 매크로 지표, 경제 release, 금리, CPI, 실업률 | `FRED_API_KEY` | 로컬 MCP 사용 |
+| `firecrawl` | `scripts/mcp-firecrawl.sh` -> `scripts/firecrawl-mcp-server.py` | 회사 IR, 보도자료, earnings presentation, SEC/IR 웹페이지 캡처 | `FIRECRAWL_API_KEY` | 로컬 MCP 사용 |
 
 ## 에이전트별 사용 규칙
 
@@ -37,6 +37,10 @@
 - 키 값을 로그, raw source, 커밋, 터미널 출력에 남기지 않는다.
 - 키가 없으면 해당 MCP를 건너뛰고 `데이터 공백`에 명시한다.
 - `ALPACA_PAPER_TRADE`가 없거나 `true`가 아니면 `scripts/alpaca-mcp.sh`는 실행을 중단한다.
+- FRED는 외부 npm 패키지를 즉석 실행하지 않고 레포 내부 `scripts/fred-mcp-server.py`를 통해 공식 FRED API만 호출한다. API 키는 curl stdin config로 전달해 process list와 일반 로그에 남기지 않는다.
+- Firecrawl도 외부 npm 패키지를 즉석 실행하지 않고 레포 내부 `scripts/firecrawl-mcp-server.py`를 통해 공식 Firecrawl API만 호출한다. API 키는 curl stdin config로 전달해 process list와 일반 로그에 남기지 않는다.
+- `uvx` 기반 wrapper인 Alpaca, SEC EDGAR, Alpha Vantage, Yahoo Finance는 sandbox 홈 디렉터리 접근을 피하기 위해 `UV_CACHE_DIR`, `UV_TOOL_DIR`, `XDG_CACHE_HOME`, `XDG_DATA_HOME`을 레포 내부 `.cache/`로 지정한다. `.cache/`는 git에 추적하지 않는다.
+- `uvx` package가 레포-local cache에 없고 실행 파일도 PATH에 없으면 최초 1회 PyPI/GitHub fetch가 필요하다. 네트워크가 제한된 실행 환경에서는 이를 MCP runtime 데이터 공백으로 기록한다.
 
 ## raw source 기록 형식
 

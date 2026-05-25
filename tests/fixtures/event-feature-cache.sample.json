@@ -1,0 +1,35 @@
+{
+  "schema_version": "event-feature-cache-v1",
+  "created_at": "2026-05-25T18:10:00+09:00",
+  "paper": true,
+  "orders_submitted": 0,
+  "mcp_servers_used": [
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "features": {
+    "AMD": {
+      "2026-05-05": {
+        "available_at": "2026-05-05T21:00:00Z",
+        "mcp_servers_used": [
+          "sec-edgar",
+          "alpha-vantage",
+          "fred",
+          "firecrawl",
+          "yahoo-finance"
+        ],
+        "source_refs": [
+          "wiki/evidence-store/sources/2026-05-23-mcp-enhanced-validation-sources.md"
+        ],
+        "score_adjustment": -0.75,
+        "source_confidence_delta": 0.05,
+        "mcp_gaps": [],
+        "exclude": false,
+        "notes": "Sample event feature for simulator wiring tests; not a trading recommendation."
+      }
+    }
+  }
+}
