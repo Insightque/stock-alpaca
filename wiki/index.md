@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-25 KST 현재 추천 run 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-25 22:06 KST 오늘 종목추천 재점검 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -37,7 +37,7 @@
 - `wiki/current-runs/daily/` - 현재 계좌와 현재 시장을 대상으로 실행한 일일 trading workflow 결과.
 - [[2026-05-22]] - 현재 시장 분석과 이후 주식 중심 paper 매수 실행 업데이트.
 - [[2026-05-24]] - 현재 기준 no-submit 종목 추천, dry-run 주문 후보, risk-check 결과.
-- [[2026-05-25]] - 미국 휴장 전 2026-05-22 종가 기준 현재 no-submit 종목 추천, empty-order risk-check 결과.
+- [[2026-05-25]] - 미국 휴장 전 2026-05-22 종가 기준 현재 no-submit 종목 추천과 22:06 KST 재점검, empty-order risk-check 결과.
 
 ## Research Notes
 
@@ -160,6 +160,7 @@
 - [[2026-05-24-mcp-policy-history-reaudit-sources]] - 남은 정책 시뮬레이션 이력 MCP 재감사용 Alpaca/Alpha/SEC/Firecrawl 원천과 FRED 공백 기록.
 - [[2026-05-24-current-recommendation-sources]] - 현재 기준 종목 추천용 Alpaca account/clock/positions/prices/news, SEC/Yahoo/Alpha/Web 보강 원천.
 - [[2026-05-25-current-recommendation-sources]] - 현재 기준 종목 추천용 Alpaca account/clock/positions/bars/news, Yahoo Finance 보강, stale quote 공백 원천.
+- [[2026-05-25-today-stock-recommendation-sources]] - 22:06 KST 오늘 종목추천 재점검용 Alpaca account/clock/positions/quotes/news, Yahoo Finance 보강, stale quote 공백 원천.
 - [[2026-05-24-six-month-3h-simulation-sources]] - 최근 6개월 3시간 구간 시뮬레이션용 Alpaca MCP calendar/assets/IEX 30분봉 원천과 데이터 공백 기록.
 - `wiki/evidence-store/sources/2026-05-24-policy-improvement-candidates-data.json` - 정책 개선 후보 5개 검증용 계산 결과.
 - [[2026-05-24-expanded-six-month-3h-simulation-sources]] - 확장 universe 최근 6개월 3시간 구간 시뮬레이션용 Alpaca MCP 원천.
@@ -189,3 +190,4 @@
 - `wiki/evidence-store/run-manifests/2026-05-25-1828-mcp-simulation-integration-verification.json` - MCP 시뮬레이션 반영 검증 run manifest.
 - [[2026-05-25-mcp-uv-runtime-fix-sources]] - `uvx` 기반 MCP wrapper의 홈 캐시/도구 경로 sandbox 문제 조치와 남은 최초 dependency fetch 제약 기록.
 - `wiki/evidence-store/run-manifests/2026-05-25-1834-mcp-uv-runtime-fix.json` - MCP `uvx` runtime 경로 조치 run manifest.
+- `wiki/evidence-store/run-manifests/2026-05-25-2206-today-stock-recommendation.json` - 오늘 종목추천 재점검 run manifest, `orders_submitted=0`, empty-order risk-check PASS.

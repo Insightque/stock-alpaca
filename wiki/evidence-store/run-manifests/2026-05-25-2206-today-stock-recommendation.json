@@ -1,0 +1,106 @@
+{
+  "run_id": "2026-05-25-2206-today-stock-recommendation",
+  "mode": "dry_run",
+  "paper": true,
+  "orders_submitted": 0,
+  "created_at": "2026-05-25T13:06:30Z",
+  "git_commit": "f9f5927-dirty",
+  "prompt_file_sha": "unavailable:inline-user-request-2026-05-25-today-stock-recommendation",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:679aaefb466b9aa1d824c84452ddd7f5d54ec30bace16dc2a3f405d5e689d8bf",
+  "schema_version": "1.2",
+  "mcp_servers_used": [
+    "alpaca",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpaca",
+      "tool_or_wrapper": "scripts/fetch-alpaca-bars-mcp.py",
+      "reason": "Expanded 62-symbol helper refetch failed with MCP HTTP transport DNS error. Existing same-day Alpaca MCP 22-symbol daily bar capture was reused because the US market was closed and no newer regular-session bars existed."
+    },
+    {
+      "server": "sec-edgar",
+      "reason": "Not queried in this quick no-submit recommendation refresh; SEC filing signal was not used as positive evidence."
+    },
+    {
+      "server": "alpha-vantage",
+      "reason": "Not queried in this quick no-submit recommendation refresh; earnings-calendar signal remains a submit-mode data gap."
+    },
+    {
+      "server": "fred",
+      "reason": "Not queried in this quick no-submit recommendation refresh; macro regime was not used as a positive signal."
+    },
+    {
+      "server": "firecrawl",
+      "reason": "Not queried in this quick no-submit recommendation refresh; official IR capture remains a submit-mode data gap."
+    }
+  ],
+  "data_cutoff_time": "2026-05-25T13:06:30Z",
+  "market_clock_checked_at": "2026-05-25T13:06:06Z",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-25-today-stock-recommendation-sources.md",
+    "wiki/evidence-store/sources/2026-05-25-current-recommendation-bars.json",
+    "wiki/current-runs/daily/2026-05-25.md",
+    "wiki/trade-ledger/positions/current.md"
+  ],
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-25-2206-today-stock-recommendation.json",
+  "risk_check_result": {
+    "status": "PASS",
+    "buy_notional": 0.0,
+    "sell_notional": 0.0,
+    "post_cash": 44030.58,
+    "post_invested": 56388.09,
+    "min_cash": 20083.734,
+    "max_invested": 80334.936,
+    "warnings": [
+      "orders is empty",
+      "Market is closed and next regular session is 2026-05-26.",
+      "No new order entries were created because fresh quote/spread gate could not be satisfied."
+    ]
+  },
+  "data_manifest": {
+    "source_feed": "alpaca_iex",
+    "bar_interval": "1Day",
+    "adjusted_prices": true,
+    "timezone": "America/New_York",
+    "trading_calendar": "nyse",
+    "latest_regular_bar_date": "2026-05-22",
+    "symbols_requested": 22,
+    "symbols_loaded": 22,
+    "quote_symbols_requested": 13,
+    "stale_quotes": 13,
+    "missing_or_zero_ask_symbols": [
+      "LRCX",
+      "UNH",
+      "AVGO",
+      "QBTS"
+    ],
+    "corporate_actions_checked": true,
+    "survivorship_bias_controlled": false,
+    "raw_input_file": "wiki/evidence-store/sources/2026-05-25-current-recommendation-bars.json",
+    "raw_source_note": "wiki/evidence-store/sources/2026-05-25-today-stock-recommendation-sources.md"
+  },
+  "recommendation_summary": [
+    {
+      "rank": 1,
+      "symbol": "LRCX",
+      "action": "fresh_quote_confirm_then_staged_add_candidate",
+      "orders_submitted": 0
+    },
+    {
+      "rank": 2,
+      "symbol": "UNH",
+      "action": "fresh_quote_confirm_then_staged_add_candidate",
+      "orders_submitted": 0
+    },
+    {
+      "rank": 3,
+      "symbol": "AMD",
+      "action": "small_staged_only_after_pullback_or_fresh_quote_confirmation",
+      "orders_submitted": 0
+    }
+  ],
+  "submitted_order_ids": [],
+  "post_trade_check_path": "wiki/trade-ledger/positions/current.md"
+}

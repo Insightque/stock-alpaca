@@ -715,3 +715,17 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - `wiki/policy-book/recommendation-policy.md`에 policy closeout 원칙, 시뮬레이션 정책 검토 프로토콜, 신규 정책학습 지표, 폐기/완화 규칙을 반영했다.
 - `harness/workflows/one-year-daily-simulation.md`에 baseline comparison, action/horizon split, decision label, failure lesson 기록을 필수 closeout으로 추가했다.
 - 실제 주문, 취소, 포지션 변경은 없었다. 정책 반영은 연구/백테스트 레슨 기록이며 자동 주문 허용 변경은 없다.
+
+## [2026-05-25 22:06 Asia/Seoul] daily | 오늘 종목추천 재점검
+
+- 사용자 요청 "오늘 종목추천"에 따라 simple command 변형을 `harness/workflows/daily.md` no-submit 모드로 처리했다.
+- Alpaca MCP로 account, positions, open orders, clock, latest quote, news를 재확인했다. 미국 동부 `2026-05-25T09:06:06-04:00` 기준 정규장은 닫혀 있고 다음 개장은 `2026-05-26T09:30:00-04:00`이다.
+- 포트폴리오 가치 100418.67 USD, 현금 44030.58 USD, long market value 56388.09 USD, 미체결 주문 0건을 확인했다.
+- 추천 우선순위는 `LRCX`, `UNH`, `AMD`다. `LRCX/UNH`는 fresh quote 확인 후 staged 추가 후보, `AMD`는 과열/cluster 노출 때문에 소액 staged only로 정리했다.
+- `TSLA`는 가격 필터는 통과했지만 이번 run에서 별도 이벤트/밸류에이션 원천을 캡처하지 않아 관찰 후보로만 두었다. `NOK/IONQ/RGTI/QBTS`는 급등 과열로 추격 금지다.
+- Alpaca IEX latest quote는 2026-05-22 장마감 근처 stale quote였고 일부 후보는 ask=0 또는 wide spread라 주문 항목을 만들지 않았다.
+- 원천: `wiki/evidence-store/sources/2026-05-25-today-stock-recommendation-sources.md`.
+- dry-run 주문계획: `wiki/trade-ledger/orders/2026-05-25-2206-today-stock-recommendation.json`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-25-2206-today-stock-recommendation.json`.
+- 검증: `python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-05-25-2206-today-stock-recommendation.json` PASS.
+- 실제 주문, 취소, 포지션 변경은 없었다. `orders_submitted=0`.
