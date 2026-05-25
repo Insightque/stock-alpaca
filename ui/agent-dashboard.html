@@ -107,6 +107,86 @@
     .stage.blocked .dot { background: var(--blocked); }
     .stage b { font-size: 12px; letter-spacing: 0; }
     .stage span { color: var(--muted); font-size: 11px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .portfolio-panel {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }
+    .portfolio-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .portfolio-meta {
+      color: var(--muted);
+      font-size: 12px;
+      text-align: right;
+      min-width: 170px;
+    }
+    .portfolio-stats {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(130px, 1fr));
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .portfolio-stat {
+      min-height: 62px;
+      padding: 11px 12px;
+      border-right: 1px solid var(--line);
+    }
+    .portfolio-stat:last-child { border-right: 0; }
+    .portfolio-stat span {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+    }
+    .portfolio-stat b {
+      display: block;
+      margin-top: 5px;
+      font-size: 19px;
+      line-height: 1.12;
+      overflow-wrap: anywhere;
+    }
+    .positions {
+      display: grid;
+      gap: 0;
+      margin-top: 10px;
+    }
+    .position-row {
+      display: grid;
+      grid-template-columns: 72px minmax(120px, 1fr) 86px 80px;
+      gap: 10px;
+      align-items: center;
+      min-height: 38px;
+      border-top: 1px solid var(--line);
+      font-size: 12px;
+    }
+    .position-row:first-child { border-top: 0; }
+    .position-symbol { font-weight: 900; font-size: 15px; }
+    .position-bar {
+      height: 6px;
+      background: var(--soft);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .position-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--blue);
+      border-radius: inherit;
+    }
+    .position-value, .position-pl {
+      text-align: right;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .position-pl.positive { color: var(--done); }
+    .position-pl.negative { color: var(--blocked); }
     .main {
       display: grid;
       grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
@@ -206,7 +286,9 @@
     summary { cursor: pointer; }
     .warning { margin-top: 6px; color: #604715; background: #fff8e8; padding: 8px; border-radius: 6px; }
     @media (max-width: 960px) {
-      .topline, .main, .dock { grid-template-columns: 1fr; }
+      .topline, .main, .dock, .portfolio-stats { grid-template-columns: 1fr; }
+      .portfolio-stat { border-right: 0; border-bottom: 1px solid var(--line); }
+      .portfolio-stat:last-child { border-bottom: 0; }
       .rail { grid-template-columns: repeat(5, minmax(64px, 1fr)); }
     }
     @media (max-width: 560px) {
@@ -216,6 +298,10 @@
       .backtests { grid-template-columns: 1fr; }
       .pick { grid-template-columns: 1fr; }
       .decision { grid-template-columns: 1fr; }
+      .portfolio-head { display: block; }
+      .portfolio-meta { text-align: left; margin-top: 6px; min-width: 0; }
+      .position-row { grid-template-columns: 58px minmax(80px, 1fr) 70px; }
+      .position-value { display: none; }
       .symbol { font-size: 18px; }
       .pill b { font-size: 20px; }
     }
@@ -234,6 +320,7 @@
     <div class="decision"><b id="decision-label"></b><span id="decision-reason"></span></div>
     <div class="topline" id="metrics"></div>
     <div class="rail" id="agents"></div>
+    <section class="portfolio-panel" id="portfolio"></section>
 
     <div class="main">
       <section class="panel">
@@ -263,11 +350,11 @@
   </div>
 
   <script type="application/json" id="dashboard-data">{
-  "generated_at": "2026-05-25T09:32:38Z",
+  "generated_at": "2026-05-25T12:59:41Z",
   "run": {
-    "run_id": "2026-05-25-1828-mcp-simulation-integration-verification",
-    "mode": "review",
-    "created_at": "2026-05-25T18:28:00+09:00",
+    "run_id": "2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation",
+    "mode": "research",
+    "created_at": "2026-05-25T21:47:28+09:00",
     "paper": true,
     "risk_status": "NOT_APPLICABLE",
     "market": "closed",
@@ -275,8 +362,8 @@
     "orders_planned": 0,
     "orders_submitted": 0,
     "symbols_loaded": 62,
-    "cash_ratio": null,
-    "invested_ratio": null,
+    "cash_ratio": 43.84700574106389,
+    "invested_ratio": 56.2,
     "action_label": "관망",
     "action_reason": "장 닫힘 · 현재가 확인 대기"
   },
@@ -286,6 +373,123 @@
     "invested": 0,
     "cash_ratio": null,
     "invested_ratio": null
+  },
+  "portfolio": {
+    "source_path": "wiki/trade-ledger/positions/current.md",
+    "href": "../wiki/trade-ledger/positions/current.md",
+    "updated_at": "2026-05-24T23:42:18Z",
+    "account_status": "ACTIVE",
+    "market_clock": "closed, `2026-05-24T19:37:59.030503301-04:00`",
+    "next_open": "2026-05-26T09:30:00-04:00",
+    "portfolio_value": "100418.67 USD",
+    "cash": "44030.58 USD",
+    "buying_power": "138261.25 USD",
+    "long_market_value": "56388.09 USD",
+    "total_pl": "418.67 USD",
+    "total_return": "0.42%",
+    "exposure": "약 56.2%",
+    "cash_ratio": 43.84700574106389,
+    "exposure_ratio": 56.2,
+    "positions_count": 10,
+    "open_orders": "없음",
+    "positions": [
+      {
+        "symbol": "NVDA",
+        "qty": "35",
+        "avg_entry_price": "215.32",
+        "current_price": "215.33",
+        "market_value": "7536.55",
+        "weight": "7.51%",
+        "unrealized_pl": "0.35",
+        "return_pct": "0.01%",
+        "weight_value": 7.51,
+        "pl_value": 0.35
+      },
+      {
+        "symbol": "AMD",
+        "qty": "14",
+        "avg_entry_price": "462.73",
+        "current_price": "467.51",
+        "market_value": "6545.14",
+        "weight": "6.52%",
+        "unrealized_pl": "66.92",
+        "return_pct": "1.03%",
+        "weight_value": 6.52,
+        "pl_value": 66.92
+      },
+      {
+        "symbol": "AVGO",
+        "qty": "15",
+        "avg_entry_price": "410.73",
+        "current_price": "414.14",
+        "market_value": "6212.10",
+        "weight": "6.19%",
+        "unrealized_pl": "51.15",
+        "return_pct": "0.83%",
+        "weight_value": 6.19,
+        "pl_value": 51.15
+      },
+      {
+        "symbol": "NOK",
+        "qty": "400",
+        "avg_entry_price": "15.04",
+        "current_price": "15.47",
+        "market_value": "6188.00",
+        "weight": "6.16%",
+        "unrealized_pl": "172.00",
+        "return_pct": "2.86%",
+        "weight_value": 6.16,
+        "pl_value": 172.0
+      },
+      {
+        "symbol": "LRCX",
+        "qty": "20",
+        "avg_entry_price": "307.91",
+        "current_price": "305.35",
+        "market_value": "6107.00",
+        "weight": "6.08%",
+        "unrealized_pl": "-51.20",
+        "return_pct": "-0.83%",
+        "weight_value": 6.08,
+        "pl_value": -51.2
+      },
+      {
+        "symbol": "TSM",
+        "qty": "15",
+        "avg_entry_price": "405.20",
+        "current_price": "404.52",
+        "market_value": "6067.80",
+        "weight": "6.04%",
+        "unrealized_pl": "-10.20",
+        "return_pct": "-0.17%",
+        "weight_value": 6.04,
+        "pl_value": -10.2
+      },
+      {
+        "symbol": "ETN",
+        "qty": "15",
+        "avg_entry_price": "387.90",
+        "current_price": "391.35",
+        "market_value": "5870.25",
+        "weight": "5.85%",
+        "unrealized_pl": "51.75",
+        "return_pct": "0.89%",
+        "weight_value": 5.85,
+        "pl_value": 51.75
+      },
+      {
+        "symbol": "UNH",
+        "qty": "15",
+        "avg_entry_price": "386.56",
+        "current_price": "388.47",
+        "market_value": "5827.05",
+        "weight": "5.80%",
+        "unrealized_pl": "28.65",
+        "return_pct": "0.49%",
+        "weight_value": 5.8,
+        "pl_value": 28.65
+      }
+    ]
   },
   "agents": [
     {
@@ -310,7 +514,7 @@
       "label": "가격",
       "status": "waiting",
       "progress": 20,
-      "result": "captured_alpaca_iex_daily_and_captured_six_month_rows_with_research_mcp_event_feature_cache 1Day_and_30Min_derived_3h"
+      "result": "alpaca_iex 1Hour"
     },
     {
       "id": "web_research",
@@ -318,7 +522,7 @@
       "label": "뉴스",
       "status": "waiting",
       "progress": 20,
-      "result": "alpaca + sec-edgar + alpha-vantage + fred + firecrawl + yahoo-finance"
+      "result": "alpaca"
     },
     {
       "id": "trend",
@@ -375,13 +579,13 @@
   "links": [
     {
       "label": "리포트",
-      "path": "wiki/research-notes/analyses/2026-05-25-mcp-simulation-integration-verification.md",
-      "href": "../wiki/research-notes/analyses/2026-05-25-mcp-simulation-integration-verification.md"
+      "path": "wiki/backtest-runs/results/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation.md",
+      "href": "../wiki/backtest-runs/results/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation.md"
     },
     {
       "label": "Manifest",
-      "path": "wiki/evidence-store/run-manifests/2026-05-25-1828-mcp-simulation-integration-verification.json",
-      "href": "../wiki/evidence-store/run-manifests/2026-05-25-1828-mcp-simulation-integration-verification.json"
+      "path": "wiki/evidence-store/run-manifests/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation.json",
+      "href": "../wiki/evidence-store/run-manifests/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation.json"
     },
     {
       "label": "포지션",
@@ -389,59 +593,73 @@
       "href": "../wiki/trade-ledger/positions/current.md"
     },
     {
-      "label": "2026-05-25-mcp-simulation-integration-verification-sources.md",
-      "path": "wiki/evidence-store/sources/2026-05-25-mcp-simulation-integration-verification-sources.md",
-      "href": "../wiki/evidence-store/sources/2026-05-25-mcp-simulation-integration-verification-sources.md"
+      "label": "2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation-sources.md",
+      "path": "wiki/evidence-store/sources/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation-sources.md",
+      "href": "../wiki/evidence-store/sources/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation-sources.md"
     },
     {
-      "label": "2026-05-25-one-year-daily-bars.json",
-      "path": "wiki/evidence-store/sources/2026-05-25-one-year-daily-bars.json",
-      "href": "../wiki/evidence-store/sources/2026-05-25-one-year-daily-bars.json"
+      "label": "2026-05-25-one-year-hourly-bars.json",
+      "path": "wiki/evidence-store/sources/2026-05-25-one-year-hourly-bars.json",
+      "href": "../wiki/evidence-store/sources/2026-05-25-one-year-hourly-bars.json"
     },
     {
-      "label": "2026-05-25-one-year-daily-policy-simulation-data.json",
-      "path": "wiki/evidence-store/sources/2026-05-25-one-year-daily-policy-simulation-data.json",
-      "href": "../wiki/evidence-store/sources/2026-05-25-one-year-daily-policy-simulation-data.json"
+      "label": "2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation-data.json",
+      "path": "wiki/evidence-store/sources/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation-data.json",
+      "href": "../wiki/evidence-store/sources/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation-data.json"
     },
     {
-      "label": "2026-05-24-six-month-3h-simulation-data.json",
-      "path": "wiki/evidence-store/sources/2026-05-24-six-month-3h-simulation-data.json",
-      "href": "../wiki/evidence-store/sources/2026-05-24-six-month-3h-simulation-data.json"
+      "label": "2026-05-25-one-year-hourly-trend-event-feature-cache.json",
+      "path": "wiki/evidence-store/sources/2026-05-25-one-year-hourly-trend-event-feature-cache.json",
+      "href": "../wiki/evidence-store/sources/2026-05-25-one-year-hourly-trend-event-feature-cache.json"
     },
     {
-      "label": "2026-05-24-short-long-policy-simulation-data.json",
-      "path": "wiki/evidence-store/sources/2026-05-24-short-long-policy-simulation-data.json",
-      "href": "../wiki/evidence-store/sources/2026-05-24-short-long-policy-simulation-data.json"
-    },
-    {
-      "label": "2026-05-25-mcp-verification-neutral-event-feature-cache.json",
-      "path": "wiki/evidence-store/sources/2026-05-25-mcp-verification-neutral-event-feature-cache.json",
-      "href": "../wiki/evidence-store/sources/2026-05-25-mcp-verification-neutral-event-feature-cache.json"
-    },
-    {
-      "label": "2026-05-25-mcp-verification-sensitivity-event-feature-cache.json",
-      "path": "wiki/evidence-store/sources/2026-05-25-mcp-verification-sensitivity-event-feature-cache.json",
-      "href": "../wiki/evidence-store/sources/2026-05-25-mcp-verification-sensitivity-event-feature-cache.json"
+      "label": "2026-05-25-one-year-hourly-buy-sell-trend-enhanced-scorecard.json",
+      "path": "wiki/evidence-store/sources/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-scorecard.json",
+      "href": "../wiki/evidence-store/sources/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-scorecard.json"
     }
   ],
   "timeline": [
     {
-      "time": "2026-05-25 18:28 Asia/Seoul",
+      "time": "2026-05-25 21:57 Asia/Seoul",
+      "type": "policy",
+      "title": "1년 1시간봉 시뮬레이션 정책학습 반영"
+    },
+    {
+      "time": "2026-05-25 21:48 Asia/Seoul",
       "type": "simulation",
-      "title": "MCP event feature 반영 검증 및 과거 시뮬레이션 대비 분석"
+      "title": "1년 1시간봉 일별 buy/sell 동향보강 시뮬레이션"
     },
     {
-      "time": "2026-05-25 18:16 Asia/Seoul",
-      "type": "mcp",
-      "title": "시뮬레이션 MCP-only 경로와 event feature 결합 조치"
-    },
-    {
-      "time": "2026-05-25 17:58 Asia/Seoul",
-      "type": "mcp",
-      "title": "현재 세션 MCP 연결 및 시뮬레이션 사용 감사"
+      "time": "2026-05-25 18:45 Asia/Seoul",
+      "type": "ui",
+      "title": "dashboard Alpaca paper 투자 현황 카드 추가"
     }
   ],
   "backtests": [
+    {
+      "title": "과거 1년 1시간봉 일별 매입/매도 dry-run 시뮬레이션",
+      "type": "one-year-hourly-buy-sell-simulation",
+      "created_at": "2026-05-25T21:47:28+09:00",
+      "metrics": [
+        "20D 방향성 hit rate: 53.21%",
+        "20D 평균 방향성 SPY 초과수익: +0.57%",
+        "정책 상태: `research_dry_run_observation_only`"
+      ],
+      "path": "wiki/backtest-runs/results/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation.md",
+      "href": "backtests/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation.html"
+    },
+    {
+      "title": "과거 1년 1시간봉 일별 매입/매도 dry-run 시뮬레이션",
+      "type": "one-year-hourly-buy-sell-simulation",
+      "created_at": "2026-05-25T21:40:49+09:00",
+      "metrics": [
+        "20D 방향성 hit rate: 54.26%",
+        "20D 평균 방향성 SPY 초과수익: +0.85%",
+        "정책 상태: `research_dry_run_observation_only`"
+      ],
+      "path": "wiki/backtest-runs/results/2026-05-25-one-year-hourly-buy-sell-simulation.md",
+      "href": "backtests/2026-05-25-one-year-hourly-buy-sell-simulation.html"
+    },
     {
       "title": "과거 1년 일별 독립 정책 시뮬레이션",
       "type": "one-year-daily-independent-policy-simulation",
@@ -461,27 +679,9 @@
       "metrics": [],
       "path": "wiki/backtest-runs/results/2026-05-24-review-hardening-comparison.md",
       "href": "backtests/2026-05-24-review-hardening-comparison.html"
-    },
-    {
-      "title": "정책 개선 후보 5개 시뮬레이션",
-      "type": "policy-improvement-backtest",
-      "created_at": "2026-05-24T18:25:12+09:00",
-      "metrics": [],
-      "path": "wiki/backtest-runs/results/2026-05-24-policy-improvement-candidates.md",
-      "href": "backtests/2026-05-24-policy-improvement-candidates.html"
-    },
-    {
-      "title": "2026-05-15 기준 매입/매도 정책 결정 과정 리포트",
-      "type": "historical-decision-process-report",
-      "created_at": "2026-05-24T16:35:00+09:00",
-      "metrics": [],
-      "path": "wiki/backtest-runs/results/2026-05-24-may-15-decision-process-report.md",
-      "href": "backtests/2026-05-24-may-15-decision-process-report.html"
     }
   ],
-  "warnings": [
-    "Limited six-month live MCP smoke run could not initialize because sandbox denied uv cache access; unsandboxed retry was not approved by execution policy. Existing captured six-month rows were audited with the event feature join logic instead."
-  ]
+  "warnings": []
 }</script>
   <script>
     const data = JSON.parse(document.getElementById('dashboard-data').textContent);
@@ -494,6 +694,11 @@
       return text.length > max ? `${text.slice(0, max - 1)}…` : text;
     };
     const cleanTitle = (value) => compact(String(value ?? '').replace(/^과거\s*/, ''), 32);
+    const numeric = (value) => {
+      const match = String(value ?? '').replace(/,/g, '').match(/[-+]?\d+(?:\.\d+)?/);
+      return match ? Number(match[0]) : 0;
+    };
+    const plClass = (value) => numeric(value) < 0 ? 'negative' : numeric(value) > 0 ? 'positive' : '';
 
     byId('subtitle').textContent = `${data.run.mode || '-'} · ${data.run.run_id}`;
 
@@ -517,6 +722,42 @@
         <span>${esc(compact(agent.result, 14))}</span>
       </article>
     `).join('');
+
+    const portfolio = data.portfolio || {};
+    const positions = portfolio.positions || [];
+    const portfolioStats = [
+      ['평가금액', portfolio.portfolio_value || '-'],
+      ['총 수익', `${portfolio.total_pl || '-'} · ${portfolio.total_return || '-'}`],
+      ['투자 노출', portfolio.exposure || '-'],
+      ['현금', portfolio.cash || '-'],
+    ];
+    byId('portfolio').innerHTML = `
+      <div class="portfolio-head">
+        <div>
+          <h2>Alpaca Paper</h2>
+          <div class="sub">${esc(portfolio.account_status || '-')} · 보유 ${esc(portfolio.positions_count || 0)}개 · 미체결 ${esc(portfolio.open_orders || '-')}</div>
+        </div>
+        <a class="portfolio-meta" href="${esc(portfolio.href || '#')}" target="_blank" title="${esc(portfolio.source_path || '')}">
+          ${esc(compact(portfolio.updated_at || portfolio.market_clock || '', 36))}
+        </a>
+      </div>
+      <div class="portfolio-stats">
+        ${portfolioStats.map(([label, value]) => `<div class="portfolio-stat"><span>${esc(label)}</span><b>${esc(value)}</b></div>`).join('')}
+      </div>
+      <div class="positions">
+        ${positions.length ? positions.map((position) => {
+          const weight = Math.max(0, Math.min(100, numeric(position.weight)));
+          return `<div class="position-row" title="${esc(position.symbol)} · ${esc(position.qty)}주 · 현재가 ${esc(position.current_price)} · 수익률 ${esc(position.return_pct)}">
+            <div class="position-symbol">${esc(position.symbol || '-')}</div>
+            <div>
+              <div class="position-bar"><div class="position-fill" style="width: ${weight}%"></div></div>
+            </div>
+            <div class="position-value">${esc(position.weight || '-')}</div>
+            <div class="position-pl ${plClass(position.unrealized_pl)}">${esc(position.unrealized_pl || '-')}</div>
+          </div>`;
+        }).join('') : '<div class="position-row"><div class="position-symbol">-</div><div>보유 포지션 없음</div><div class="position-value">-</div><div class="position-pl">-</div></div>'}
+      </div>
+    `;
 
     const recs = data.picks.length ? data.picks : [];
     byId('recommendations').innerHTML = recs.length ? recs.map((pick) => `

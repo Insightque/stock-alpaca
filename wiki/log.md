@@ -677,3 +677,41 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 원천: `wiki/evidence-store/sources/2026-05-25-mcp-uv-runtime-fix-sources.md`.
 - run manifest: `wiki/evidence-store/run-manifests/2026-05-25-1834-mcp-uv-runtime-fix.json`.
 - 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 18:45 Asia/Seoul] ui | dashboard Alpaca paper 투자 현황 카드 추가
+
+- 사용자 요청에 따라 `ui/agent-dashboard.html`에 현재 Alpaca paper 투자 현황을 간단히 볼 수 있는 `Alpaca Paper` 영역을 추가했다.
+- `scripts/build-agent-dashboard.py`가 최신 run manifest와 별개로 `wiki/trade-ledger/positions/current.md`를 읽어 평가금액, 총 수익, 투자 노출, 현금, 미체결 주문 여부, 주요 보유 종목을 렌더링한다.
+- 최신 run이 MCP 감사/시뮬레이션 검증처럼 order plan이 없는 경우에도 dashboard 상단 투자/현금 비율은 포트폴리오 스냅샷으로 fallback한다.
+- `tests/test_agent_dashboard_portfolio.py`를 추가해 포트폴리오 스냅샷 파싱과 dashboard fallback 비율을 검증했다.
+- `python3 scripts/build-agent-dashboard.py`로 정적 HTML을 재생성했다.
+- 검증: `python3 -m py_compile scripts/build-agent-dashboard.py`, `python3 -m unittest tests.test_agent_dashboard_portfolio`, `python3 -m unittest discover -s tests` 50개 통과.
+- 브라우저 자동화 확인은 현재 세션에 `playwright` 모듈이 없어 실행하지 못했다. 생성 HTML의 embedded data와 테스트로 Alpaca Paper 데이터 반영을 확인했다.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-25 21:48 Asia/Seoul] simulation | 1년 1시간봉 일별 buy/sell 동향보강 시뮬레이션
+
+- 사용자 요청에 따라 지난 1년 2025-05-23~2026-05-22 기간을 1시간봉 단위로 캡처하고, 일별 virtual buy/sell 결정을 same-day/1D/5D/20D/60D로 평가했다.
+- `ALPACA_PAPER_TRADE=true`를 확인했고, Alpaca MCP `get_stock_bars`로 62개 심볼 114,060개 1시간봉을 수집했다.
+- 사용자가 지적한 당시 동향정보 필요성을 반영해 Alpaca MCP `get_news` 38,131건과 전일 시장/섹터 추세를 결합한 point-in-time event feature cache 13,570개 row를 생성했다. 뉴스는 각 거래일 장 시작 전 3일 window만 집계해 당일 장중 이후 뉴스 누수를 피했다.
+- 가격-only 기준선은 추천 2,100개, 20D hit rate 54.263158%, 평균 방향성 SPY 초과수익 +0.849527%p였다.
+- 동향보강 실행은 추천 2,100개 모두 event feature와 매칭됐고, 20D hit rate 53.210526%, 평균 방향성 SPY 초과수익 +0.567017%p였다.
+- `virtual_sell`은 short가 아니라 기존 long 회피/매도 판단으로만 평가했다.
+- 실행 중 Coordinator/Market Data/Web Research/Trend/Simulation/Wiki Curator Agent 진행 줄을 Codex 작업창에 출력했고, 일별 agent report는 결과 JSON에 저장했다.
+- 신규 헬퍼: `scripts/fetch-alpaca-hourly-bars-mcp.py`, `scripts/build-one-year-hourly-trend-event-cache.py`, `scripts/simulate-one-year-hourly-buy-sell.py`.
+- 결과 문서: `wiki/backtest-runs/results/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation-sources.md`, `wiki/evidence-store/sources/2026-05-25-one-year-hourly-trend-event-cache-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation.json`.
+- 검증: `python3 -m py_compile scripts/fetch-alpaca-hourly-bars-mcp.py scripts/build-one-year-hourly-trend-event-cache.py scripts/simulate-one-year-hourly-buy-sell.py`, `python3 -m unittest tests.test_one_year_hourly_buy_sell`, `python3 -m unittest discover -s tests` 51개 통과.
+- 실제 주문, 취소, 포지션 변경은 없었다. 모든 산출물은 `orders_submitted=0`이다.
+
+## [2026-05-25 21:57 Asia/Seoul] policy | 1년 1시간봉 시뮬레이션 정책학습 반영
+
+- 사용자 요청에 따라 주식 전문 애널리스트 관점에서 1년 1시간봉 가격-only/동향보강 buy/sell 시뮬레이션의 정책학습 레슨을 검토했다.
+- 결론은 정책 승격 없음이다. 동향보강 cache는 전체 20D directional SPY 초과수익이 가격-only +0.849527%p보다 낮은 +0.567017%p였으므로 신규 feature로 채택하지 않았다.
+- `virtual_buy`는 20D +3.277523%p, 60D +14.809358%p로 장기 후보 보조 확인 가설로 기록했다.
+- `virtual_sell`은 20D directional SPY 초과수익 -2.143489%p로 장기 청산/회피 신호 채택을 금지하는 레슨으로 기록했다.
+- `harness/recommendation-policy.yaml`을 v1.2로 갱신하고 `one_year_hourly_buy_sell_v1`을 `observation_only` 전략 상태로 추가했다.
+- `wiki/policy-book/recommendation-policy.md`에 policy closeout 원칙, 시뮬레이션 정책 검토 프로토콜, 신규 정책학습 지표, 폐기/완화 규칙을 반영했다.
+- `harness/workflows/one-year-daily-simulation.md`에 baseline comparison, action/horizon split, decision label, failure lesson 기록을 필수 closeout으로 추가했다.
+- 실제 주문, 취소, 포지션 변경은 없었다. 정책 반영은 연구/백테스트 레슨 기록이며 자동 주문 허용 변경은 없다.

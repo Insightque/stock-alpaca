@@ -84,6 +84,8 @@
 - [[2026-05-24-may-15-decision-process-report]] - 2026-05-15 기준 데이터 추출, 매입/매도 정책 결정 과정, 5D 사후 검증 리포트.
 - [[2026-05-24-review-hardening-comparison]] - 외부 리뷰 개선사항 반영 후 확장 universe 재시뮬레이션과 이전 기준선 비교 분석.
 - [[2026-05-25-one-year-daily-policy-simulation]] - Alpaca MCP 2025-05-23~2026-05-22 일봉 62개 심볼로 수행한 장기 v1 일별 독립 시뮬레이션.
+- [[2026-05-25-one-year-hourly-buy-sell-simulation]] - Alpaca MCP 2025-05-23~2026-05-22 1시간봉 62개 심볼로 수행한 가격-only 일별 virtual buy/sell 기준선.
+- [[2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation]] - Alpaca MCP 뉴스와 전일 시장/섹터 동향 cache를 결합한 1년 1시간봉 일별 virtual buy/sell 보강 시뮬레이션.
 - [[2026-04-23-to-2026-05-08-historical-review-batch]] - 2026-04-23부터 2026-05-08까지 추천 배치의 1D/5D/20D 회고.
 - [[2026-04-23-to-2026-05-08-historical-review-batch-v2]] - 보강 데이터와 v2 규칙 적용 후 5D 성과 재회고. 과최적화 위험 포함.
 - [[2026-05-11-to-2026-05-15-historical-validation-review]] - v2 규칙의 별도 검증셋 회고. 5D hit rate 60.0%, 평균 초과수익 +0.73%p.
@@ -100,18 +102,21 @@
 ## Policy Book
 
 - [[recommendation-policy]] - 거래 회고에서 나온 교훈을 반영하는 living policy.
-- `harness/recommendation-policy.yaml` / `harness/recommendation-policy.schema.json` - agent-readable 추천 정책 상태와 승격 기준.
+- `harness/recommendation-policy.yaml` / `harness/recommendation-policy.schema.json` - agent-readable 추천 정책 상태, 승격 기준, 시뮬레이션 policy closeout 기준.
 - `harness/strategies/long-term-quality-momentum-v1.yaml` - 장기 dry-run 후보 전략 config.
 - `harness/strategies/intraday-afternoon-followthrough-v1.yaml` - 단타 observation-only 전략 config.
 - `harness/workflows/intraday-paper-dry-run.md` - `intraday-rs-breakout-v0`/`intraday-rs-breadth-vwap-v1` 실시간 주문 없는 paper dry-run 운영안.
-- `harness/workflows/one-year-daily-simulation.md` - 과거 1년 일별 독립 정책 시뮬레이션 workflow.
+- `harness/workflows/one-year-daily-simulation.md` - 과거 1년 일별 독립 정책 시뮬레이션과 policy closeout workflow.
 - `harness/templates/event-feature-cache.json` - SEC/Alpha/FRED/Firecrawl/Yahoo 등 research MCP feature cache 템플릿.
 - `scripts/evaluate-intraday-dry-run.py` - 캡처된 1분봉 JSON으로 11:00 ET v0/v1 신호와 fill 관찰 필드를 생성하는 로컬 헬퍼. Alpaca API 호출 없음.
 - `scripts/alpaca_mcp_bars.py` - read-only Alpaca `get_stock_bars` MCP 호출 공용 helper. 직접 REST 호출 없음.
 - `scripts/simulate-six-month-3h-policy-review.py` - Alpaca MCP read-only 30분봉을 3시간 구간으로 집계해 최근 6개월 단타/장타 정책을 독립 검증하는 헬퍼.
 - `scripts/fetch-alpaca-bars-mcp.py` - Alpaca MCP stdio를 통해 과거 bars를 캡처하는 로컬 헬퍼. Alpaca REST 직접 호출 없음.
+- `scripts/fetch-alpaca-hourly-bars-mcp.py` - Alpaca MCP stdio를 통해 과거 1시간봉 bars를 chunk/page 처리로 캡처하는 read-only 헬퍼.
+- `scripts/build-one-year-hourly-trend-event-cache.py` - Alpaca MCP 과거 뉴스와 전일 시장/섹터 추세로 일별 point-in-time 동향 feature cache를 만드는 헬퍼.
 - `scripts/simulate-one-year-daily-policy.py` - 캡처된 일봉으로 장기 정책을 일별 독립 run으로 검증하는 헬퍼. `--event-features-json`으로 research MCP feature cache 결합 가능.
-- `scripts/build-agent-dashboard.py` / `ui/agent-dashboard.html` / `ui/backtests/` - 서버 없이 여는 agent run 상태판과 백테스트 HTML 뷰어 생성기.
+- `scripts/simulate-one-year-hourly-buy-sell.py` - 캡처된 1시간봉과 선택적 event feature cache로 일별 virtual buy/sell 결정을 만들고 same-day/1D/5D/20D/60D를 평가하는 헬퍼.
+- `scripts/build-agent-dashboard.py` / `ui/agent-dashboard.html` / `ui/backtests/` - 서버 없이 여는 agent run 상태판, Alpaca paper 투자 현황 요약, 백테스트 HTML 뷰어 생성기.
 
 ## 운영/검증 도구
 
@@ -166,6 +171,14 @@
 - `wiki/evidence-store/sources/2026-05-25-one-year-daily-bars.json` - 62개 심볼 2025-05-23~2026-05-22 adjusted IEX 일봉 원자료.
 - `wiki/evidence-store/sources/2026-05-25-one-year-daily-policy-simulation-data.json` - 장기 v1 일별 독립 시뮬레이션 계산 결과.
 - `wiki/evidence-store/sources/2026-05-25-one-year-policy-scorecard.json` - 장기 v1 정책 scorecard.
+- [[2026-05-25-one-year-hourly-buy-sell-simulation-sources]] - Alpaca MCP 1년 1시간봉 가격-only virtual buy/sell 시뮬레이션 원천.
+- [[2026-05-25-one-year-hourly-trend-event-cache-sources]] - Alpaca MCP 과거 뉴스와 전일 시장/섹터 동향 feature cache 원천.
+- [[2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation-sources]] - 동향 feature cache를 결합한 1년 1시간봉 virtual buy/sell 시뮬레이션 원천.
+- `wiki/evidence-store/sources/2026-05-25-one-year-hourly-bars.json` - 62개 심볼 2025-05-23~2026-05-22 adjusted IEX 1시간봉 원자료.
+- `wiki/evidence-store/sources/2026-05-25-one-year-hourly-alpaca-news.json` - 1년 1시간봉 보강용 Alpaca MCP 뉴스 원자료.
+- `wiki/evidence-store/sources/2026-05-25-one-year-hourly-trend-event-feature-cache.json` - 일별 point-in-time 동향 feature cache.
+- `wiki/evidence-store/sources/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-scorecard.json` - 보강 시뮬레이션 scorecard.
+- `wiki/evidence-store/run-manifests/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation.json` - 보강 시뮬레이션 run manifest.
 - [[2026-05-25-mcp-connection-simulation-audit-sources]] - 현재 세션 MCP 연결 재점검, Firecrawl/FRED 로컬 wrapper 상태, 1년 시뮬레이션 스모크 재현, 미사용 MCP/직접 REST 경로 공백 기록.
 - `wiki/evidence-store/run-manifests/2026-05-25-1758-mcp-connection-simulation-audit.json` - MCP 연결 및 시뮬레이션 감사 run manifest.
 - [[2026-05-25-mcp-simulation-integration-fix-sources]] - Alpaca market data 직접 REST 경로 제거, MCP event feature cache 결합, 회귀 테스트 결과.

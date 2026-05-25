@@ -58,8 +58,15 @@ python3 scripts/simulate-one-year-daily-policy.py \
 ```
 
 5. Review the result against `harness/recommendation-policy.yaml` promotion criteria.
-6. If a rule change is warranted, create a proposal from `wiki/policy-book/proposals/TEMPLATE-policy-change.md`; do not silently promote a strategy from one simulation.
-7. Update `wiki/index.md` and append `wiki/log.md`.
+6. Complete the policy closeout:
+
+   - Compare the candidate run with the relevant baseline, normally price-only or the current active policy.
+   - Split results by action and horizon when the strategy emits different action types such as buy, sell, hold, or skip.
+   - Record whether each feature or rule is `adopt`, `adopt_as_secondary_filter`, `observation_only`, `reject`, or `needs_out_of_sample`.
+   - If the rule is not adopted, still write the lesson, failure mode, and next evidence required into `wiki/policy-book/recommendation-policy.md` or `harness/recommendation-policy.yaml`.
+
+7. If a rule change is warranted, create a proposal from `wiki/policy-book/proposals/TEMPLATE-policy-change.md`; do not silently promote a strategy from one simulation.
+8. Update `wiki/index.md` and append `wiki/log.md`.
 
 ## Required Output Checks
 
@@ -68,4 +75,5 @@ python3 scripts/simulate-one-year-daily-policy.py \
 - Results must show whether costs were applied.
 - Results must show `data_manifest.source_feed`, `bar_interval`, `fill_model`, and `slippage_model` or an explicit data gap.
 - Results must show whether an MCP event feature cache was used, how many selected recommendations matched it, and which research MCP servers contributed to matched features.
+- Results must include a policy closeout section with baseline comparison, action/horizon split, decision label, failure lessons, and required next evidence.
 - Intraday strategies remain `observation_only`; a one-year daily simulation cannot promote intraday automation.

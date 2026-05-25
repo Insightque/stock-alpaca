@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>과거 1년 1시간봉 일별 매입/매도 dry-run 시뮬레이션</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f7f4;
+      --ink: #202523;
+      --muted: #68716d;
+      --line: #dde2da;
+      --panel: #ffffff;
+      --soft: #eef2ec;
+      --blue: #1f5f99;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font: 15px/1.55 ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    .page { width: min(980px, calc(100vw - 28px)); margin: 0 auto; padding: 22px 0 44px; }
+    header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .source { color: var(--muted); font-size: 12px; word-break: break-all; margin-top: 7px; }
+    h1 { margin: 0; font-size: clamp(26px, 4vw, 42px); line-height: 1.08; letter-spacing: 0; }
+    .actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      height: 36px;
+      padding: 0 11px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--ink);
+      font-size: 13px;
+      white-space: nowrap;
+    }
+    main {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: clamp(16px, 3vw, 28px);
+    }
+    main h1 { font-size: clamp(24px, 3vw, 34px); margin: 0 0 18px; }
+    h2 { margin: 28px 0 10px; font-size: 20px; letter-spacing: 0; }
+    h3 { margin: 22px 0 8px; font-size: 17px; letter-spacing: 0; }
+    h4 { margin: 18px 0 8px; font-size: 15px; letter-spacing: 0; }
+    p { margin: 10px 0; }
+    ul { margin: 8px 0 16px; padding-left: 20px; }
+    li { margin: 5px 0; }
+    code {
+      background: var(--soft);
+      border-radius: 5px;
+      padding: 1px 5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.92em;
+    }
+    pre {
+      overflow: auto;
+      background: #202523;
+      color: #f7f7f4;
+      border-radius: 8px;
+      padding: 14px;
+    }
+    pre code { background: transparent; color: inherit; padding: 0; }
+    .table-scroll { overflow-x: auto; margin: 12px 0 20px; border: 1px solid var(--line); border-radius: 8px; }
+    table { width: 100%; border-collapse: collapse; min-width: 620px; }
+    th, td { border-bottom: 1px solid var(--line); padding: 9px 10px; text-align: left; vertical-align: top; }
+    th { background: var(--soft); font-size: 12px; color: var(--muted); }
+    tr:last-child td { border-bottom: 0; }
+    @media (max-width: 620px) {
+      header { display: block; }
+      .actions { justify-content: flex-start; margin-top: 12px; }
+      main { padding: 14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <h1>과거 1년 1시간봉 일별 매입/매도 dry-run 시뮬레이션</h1>
+        <div class="source">wiki/backtest-runs/results/2026-05-25-one-year-hourly-buy-sell-simulation.md</div>
+      </div>
+      <nav class="actions" aria-label="문서 이동">
+        <a class="btn" href="../agent-dashboard.html">Dashboard</a>
+      </nav>
+    </header>
+    <main>
+<h2>결론</h2>
+<ul><li>전략: <code>one-year-hourly-buy-sell-v1</code></li><li>정책 상태: <code>research_dry_run_observation_only</code></li><li>일별 독립 run 수: 210</li><li>전체 추천: 2100개, virtual buy 1050개, virtual sell 1050개</li><li>20D 완료 평가: 1900개</li><li>20D 방향성 hit rate: 54.26%</li><li>20D 평균 방향성 SPY 초과수익: +0.85%</li></ul>
+<p>virtual sell은 short 주문이 아니라 기존 long 보유분을 팔거나 신규 매수를 피하는 dry-run 판단으로 평가했다. 따라서 sell 평가의 방향성 수익은 해당 종목이 이후 SPY보다 부진했는지를 보는 회피 성과다.</p>
+<h2>단기/장기 평가</h2>
+<div class="table-scroll"><table><thead><tr><th>action</th><th>horizon</th><th>completed</th><th>directional hit</th><th>avg directional SPY excess</th><th>avg long P/L</th><th>avg adverse/opportunity</th></tr></thead><tbody><tr><td>virtual_buy</td><td>same_day</td><td>1050</td><td>41.05%</td><td>-0.21%</td><td>-0.19%</td><td>-1.53%</td></tr><tr><td>virtual_buy</td><td>1D</td><td>1045</td><td>48.23%</td><td>-0.01%</td><td>+0.10%</td><td>-2.48%</td></tr><tr><td>virtual_buy</td><td>5D</td><td>1025</td><td>51.90%</td><td>+0.47%</td><td>+0.90%</td><td>-4.57%</td></tr><tr><td>virtual_buy</td><td>20D</td><td>950</td><td>54.32%</td><td>+3.51%</td><td>+5.15%</td><td>-7.59%</td></tr><tr><td>virtual_buy</td><td>60D</td><td>750</td><td>71.87%</td><td>+15.18%</td><td>+18.08%</td><td>-10.33%</td></tr><tr><td>virtual_sell</td><td>same_day</td><td>1050</td><td>58.00%</td><td>+0.14%</td><td>+0.00%</td><td>+2.13%</td></tr><tr><td>virtual_sell</td><td>1D</td><td>1045</td><td>52.92%</td><td>-0.04%</td><td>+0.00%</td><td>+3.67%</td></tr><tr><td>virtual_sell</td><td>5D</td><td>1025</td><td>53.56%</td><td>-0.43%</td><td>+0.00%</td><td>+7.32%</td></tr><tr><td>virtual_sell</td><td>20D</td><td>950</td><td>54.21%</td><td>-1.82%</td><td>+0.00%</td><td>+17.38%</td></tr><tr><td>virtual_sell</td><td>60D</td><td>750</td><td>61.33%</td><td>+1.21%</td><td>+0.00%</td><td>+31.15%</td></tr></tbody></table></div>
+<h2>상위 20D 방향성 결과</h2>
+<div class="table-scroll"><table><thead><tr><th>asof</th><th>action</th><th>symbol</th><th>rank</th><th>20D directional</th><th>5D directional</th></tr></thead><tbody><tr><td>2026-04-07</td><td>virtual_buy</td><td>INTC</td><td>5</td><td>+100.61%</td><td>+16.35%</td></tr><tr><td>2026-04-13</td><td>virtual_buy</td><td>INTC</td><td>1</td><td>+93.57%</td><td>-1.43%</td></tr><tr><td>2026-04-10</td><td>virtual_buy</td><td>INTC</td><td>1</td><td>+91.29%</td><td>+4.41%</td></tr><tr><td>2026-04-08</td><td>virtual_buy</td><td>INTC</td><td>3</td><td>+85.90%</td><td>+9.21%</td></tr><tr><td>2026-04-14</td><td>virtual_buy</td><td>INTC</td><td>3</td><td>+83.34%</td><td>+2.27%</td></tr><tr><td>2026-04-13</td><td>virtual_buy</td><td>AMD</td><td>4</td><td>+78.81%</td><td>+8.02%</td></tr><tr><td>2026-04-15</td><td>virtual_buy</td><td>INTC</td><td>1</td><td>+76.92%</td><td>-2.52%</td></tr><tr><td>2026-04-10</td><td>virtual_buy</td><td>AMD</td><td>3</td><td>+74.53%</td><td>+7.40%</td></tr><tr><td>2026-04-09</td><td>virtual_buy</td><td>INTC</td><td>1</td><td>+73.30%</td><td>+9.39%</td></tr><tr><td>2026-04-14</td><td>virtual_buy</td><td>AMD</td><td>1</td><td>+72.81%</td><td>+12.08%</td></tr></tbody></table></div>
+<h2>에이전트 진행 기록</h2>
+<ul><li>일별 agent report: 251일치가 JSON에 저장됐다.</li><li>Coordinator/Universe/Market Data/Web Research/Simulation/Risk-Policy Agent가 각 기준일 상태를 기록했다.</li><li>실행 중 Codex 작업창에는 Market Data Agent와 Simulation Agent 진행 줄을 출력하도록 <code>--progress</code>를 사용했다.</li></ul>
+<h2>데이터 품질과 MCP</h2>
+<ul><li>source feed: <code>alpaca_iex</code></li><li>bar interval: <code>1Hour</code></li><li>symbols loaded: 62 / 62</li><li>hourly bars loaded: 114060</li><li>fill model: virtual entry at second available 1Hour bar close; horizon exits at regular-session daily close</li><li>slippage model: strategy config round-trip spread/slippage bps applied to directional evaluation</li><li>event feature cache 사용: false</li><li>event feature 매칭: 0 / 2100 (0.00%)</li><li>research MCP 서버: 없음</li><li>원천 hash: <code>sha256:20f49fc662e0153d8aaa357961b94a37867cddf60e76dd4cacff9eb9c079c7c1</code></li></ul>
+<h2>정책 반영</h2>
+<ul><li>이 결과는 research/backtest 전용이며 <code>orders_submitted=0</code>이다.</li><li>1시간봉 기반 판단은 자동 주문 후보로 승격하지 않고 <code>observation_only</code>로 유지한다.</li><li>실제 정책 변경은 별도 proposal과 추가 out-of-sample 검증이 필요하다.</li></ul>
+    </main>
+  </div>
+</body>
+</html>

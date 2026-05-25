@@ -1,6 +1,6 @@
-policy_id: recommendation-policy-v1.1
-updated_at: "2026-05-25T02:06:00+09:00"
-policy_version: v1.1
+policy_id: recommendation-policy-v1.2
+updated_at: "2026-05-25T21:56:00+09:00"
+policy_version: v1.2
 strategy_status:
   long_term_quality_momentum_v1:
     status: active_dry_run_candidate
@@ -62,6 +62,51 @@ strategy_status:
       - limit_fill_probability_model
       - minute_level_stop_take_ordering
       - cost_adjusted_walk_forward_positive
+  one_year_hourly_buy_sell_v1:
+    status: observation_only
+    auto_orders_allowed: false
+    promotion_status: blocked_until_incremental_lift_and_fill_validation
+    evidence_metrics:
+      daily_independent_runs: 210
+      recommendations: 2100
+      virtual_buy_recommendations: 1050
+      virtual_sell_recommendations: 1050
+      completed_20d: 1900
+      costs_applied: true
+      event_feature_cache_used: true
+      event_feature_coverage_pct: 100.0
+      price_only_20d_directional_excess_after_cost_pct: 0.849527
+      trend_enhanced_20d_directional_excess_after_cost_pct: 0.567017
+      event_feature_incremental_lift_pct: -0.28251
+      virtual_buy_20d_excess_after_cost_pct: 3.277523
+      virtual_buy_20d_ci_lower_bound_pct: 2.363656
+      virtual_buy_60d_excess_after_cost_pct: 14.809358
+      virtual_sell_20d_directional_excess_after_cost_pct: -2.143489
+      virtual_sell_20d_ci_upper_bound_pct: -0.684332
+      source_refs:
+        - wiki/backtest-runs/results/2026-05-25-one-year-hourly-buy-sell-simulation.md
+        - wiki/backtest-runs/results/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation.md
+        - wiki/evidence-store/sources/2026-05-25-one-year-hourly-buy-sell-trend-enhanced-scorecard.json
+    active_filters:
+      - hourly_buy_signal_secondary_confirmation_only
+      - virtual_sell_is_avoidance_signal_only
+      - no_short_or_auto_sell_from_hourly_signal
+      - baseline_ablation_required
+      - event_feature_incremental_lift_required
+    blockers:
+      - virtual_fill_model_only
+      - no_quote_level_fill_model
+      - no_spread_pct_history
+      - trend_event_cache_underperformed_price_only_baseline
+      - virtual_sell_signal_false_negative_at_20d
+      - concentration_and_regime_attribution_needed
+    required_next_evidence:
+      - out_of_sample_hourly_buy_confirmation
+      - baseline_ablation_positive_after_cost
+      - action_horizon_split_review
+      - quote_spread_fill_validation
+      - false_negative_sell_review
+      - theme_concentration_report
 promotion_criteria:
   long_term:
     min_completed_recommendations: 250
@@ -84,6 +129,31 @@ promotion_criteria:
     max_stop_rate_pct: 25
     min_profit_factor_after_cost: 1.25
     auto_orders_allowed: false_until_all_pass
+  hourly_buy_sell:
+    required_status_before_auto: quote_level_validated
+    min_completed_20d_per_action: 900
+    min_virtual_buy_20d_excess_after_cost_pct: 3.0
+    min_virtual_buy_20d_ci_lower_bound_pct: 0.0
+    min_event_feature_incremental_lift_vs_price_only_pct: 0.5
+    require_virtual_sell_directional_excess_positive: true
+    require_action_horizon_split: true
+    require_baseline_ablation: true
+    require_quote_level_validation: true
+    auto_orders_allowed: false_until_merged_into_long_term_policy_and_all_pass
+  simulation_policy_review:
+    require_policy_decision: true
+    require_baseline_comparison: true
+    require_action_horizon_split: true
+    require_incremental_lift_after_cost: true
+    require_confidence_interval: true
+    require_failure_lesson_logged: true
+    require_policy_book_update_even_when_rejected: true
+    decision_labels:
+      - adopt
+      - adopt_as_secondary_filter
+      - observation_only
+      - reject
+      - needs_out_of_sample
 source_confidence:
   minimum_for_new_buy: 0.50
   provider_gap_blocks_order: true
@@ -123,6 +193,8 @@ alpha_signal_layer:
   - event_confirmation
   - earnings_filing_news_quality
   - valuation_risk
+  - hourly_entry_quality
+  - event_feature_incremental_lift
 execution_portfolio_layer:
   - current_holding_weight
   - theme_factor_speculative_cap

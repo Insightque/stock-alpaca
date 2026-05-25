@@ -89,13 +89,13 @@ python3 scripts/check-risk-policy.py --json harness/examples/order-plan.example.
 
 ### Agent Run Board
 
-서버 없이 볼 수 있는 정적 UI는 `ui/agent-dashboard.html`에 있습니다. 최신 작업 상태를 반영하려면 아래 명령으로 HTML을 다시 생성합니다.
+서버 없이 볼 수 있는 정적 UI는 `ui/agent-dashboard.html`에 있습니다. 최신 작업 상태와 `wiki/trade-ledger/positions/current.md`의 Alpaca paper 투자 현황을 반영하려면 아래 명령으로 HTML을 다시 생성합니다.
 
 ```bash
 python3 scripts/build-agent-dashboard.py
 ```
 
-Backtests 카드는 원본 Markdown이 아니라 `ui/backtests/*.html`로 생성된 보기용 문서로 열립니다.
+상단 `Alpaca Paper` 영역은 평가금액, 총 수익, 투자 노출, 현금, 주요 보유 종목을 간단히 보여줍니다. Backtests 카드는 원본 Markdown이 아니라 `ui/backtests/*.html`로 생성된 보기용 문서로 열립니다.
 
 ---
 
@@ -188,10 +188,10 @@ The default operating mode is manual execution through Codex. Optional macOS lau
 
 ### Agent Run Board
 
-A serverless static dashboard is available at `ui/agent-dashboard.html`. Regenerate it after a run to embed the latest status snapshot.
+A serverless static dashboard is available at `ui/agent-dashboard.html`. Regenerate it after a run to embed the latest status snapshot and the Alpaca paper portfolio view from `wiki/trade-ledger/positions/current.md`.
 
 ```bash
 python3 scripts/build-agent-dashboard.py
 ```
 
-Backtest cards open generated reader pages under `ui/backtests/*.html` instead of raw Markdown.
+The `Alpaca Paper` area summarizes portfolio value, total P/L, exposure, cash, and top holdings. Backtest cards open generated reader pages under `ui/backtests/*.html` instead of raw Markdown.

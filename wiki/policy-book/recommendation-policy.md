@@ -1,6 +1,6 @@
 ---
 id: recommendation-policy
-updated_at: 2026-05-25T02:06:00+09:00
+updated_at: 2026-05-25T21:56:00+09:00
 ---
 
 # 추천 정책
@@ -36,6 +36,9 @@ updated_at: 2026-05-25T02:06:00+09:00
 - `confidence_score < 0.50`, `source_confidence=low`, provider gap, stale quote, missing spread, missing metadata가 있으면 신규 order plan entry를 만들지 않는다.
 - 확장 universe는 theme cap, factor cap, active/tradable 확인, 최소 가격, 유동성, spread, source confidence, SPY/QQQ 상대강도를 모두 통과할 때만 사용한다.
 - 정책 변경은 `wiki/policy-book/proposals/TEMPLATE-policy-change.md` 구조를 통과해야 하며, 단일 백테스트 평균만으로 `auto_eligible_paper`로 승격하지 않는다.
+- 모든 정책개선형 시뮬레이션은 채택 여부와 무관하게 policy closeout을 남긴다. 결과가 약하면 `reject`, `observation_only`, `needs_out_of_sample` 중 하나로 분류하고 실패에서 배운 레슨도 정책학습 지표에 기록한다.
+- 새 feature cache나 동향 보강은 절대수익이 아니라 가격-only 기준선 대비 비용 차감 incremental lift를 먼저 확인한다. lift가 없으면 점수 feature로 채택하지 않고 원인 분석 대상으로 둔다.
+- 1시간봉 virtual buy/sell 결과는 action별로 분리한다. `virtual_buy`는 장기 후보 보조 확인 신호가 될 수 있지만, `virtual_sell`은 short나 자동 청산 신호가 아니라 long 회피/축소 가설로만 검증한다.
 
 ## 회고에서 나온 정책 변경
 
@@ -63,6 +66,7 @@ updated_at: 2026-05-25T02:06:00+09:00
 | 2026-05-24 | 외부 리뷰 개선사항을 반영해 정책 개선 백테스트를 날짜 key 기반 정렬로 바꾸고, 주문 risk gate에 theme/factor/speculative exposure cap을 추가함. raw source에는 구조화 시그널 표를 추가해 뉴스/공시/밸류에이션/매크로 feature를 재사용 가능하게 기록하도록 함 | `scripts/simulate-policy-improvement-candidates.py`, `scripts/check-risk-policy.py`, `harness/risk-policy.yaml` | 적용 |
 | 2026-05-24 | 리뷰 개선사항 반영 후 확장 universe로 재시뮬레이션함. 장타 `lt-dual-benchmark-confirm-v1`과 `lt-drawdown-volatility-guard-v1`은 이전 기준선보다 검증 SPY 초과수익과 평균 불리 이동이 개선됐고, 단타 `intraday-afternoon-followthrough-filter-v1`은 기존 최고 variant보다 낮아 자동 주문 금지를 유지함 | [[2026-05-24-review-hardening-comparison]] | 장타 우선 필터 보강 / 단타 관찰 전용 |
 | 2026-05-25 | Request.md 개선사항을 반영해 recommendation-policy YAML/schema, strategy config, symbol metadata, risk-policy v1.1, order-plan schema v1.2, 유동성/스프레드/클러스터/중복 ID gate, 일별 독립 1년 시뮬레이션 워크플로우를 추가함 | `Request.md`, `harness/recommendation-policy.yaml`, `harness/strategies/long-term-quality-momentum-v1.yaml`, `scripts/simulate-one-year-daily-policy.py` | 적용 / 장타 dry-run 후보 유지 / 단타 observation_only |
+| 2026-05-25 | 1년 1시간봉 virtual buy/sell를 가격-only와 Alpaca 뉴스/전일 동향 보강으로 비교함. 보강 cache는 전체 20D 성과를 개선하지 못했고, virtual sell은 20D 회피 신호로 부적합했다. virtual buy의 20D/60D 양호한 결과는 장기 후보 보조 확인 가설로만 유지한다 | [[2026-05-25-one-year-hourly-buy-sell-simulation]], [[2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation]] | 정책 승격 없음 / 보조 가설 기록 / policy closeout 원칙 적용 |
 
 ## 검증 중인 가설
 
@@ -165,6 +169,18 @@ updated_at: 2026-05-25T02:06:00+09:00
 - `intraday-afternoon-followthrough-filter-v1`은 첫 3시간 QQQ risk-on, 첫 두 3시간 구간의 QQQ 대비 상대강도, window VWAP 확인, speculative theme 과열 제외를 결합한 관찰 후보로 추가한다. 2025-11-24~2026-05-22 백테스트에서 78거래, hit rate 58.97%, 가상 P/L +$1,386.98였지만, IEX 30분봉과 실제 bid/ask/fill 공백 때문에 자동 주문은 계속 금지한다.
 - 확장 universe 검증에서는 `3h-momentum-top3`가 기존 $+981.43에서 $-150.28로 악화됐고 `3h-vwap-reclaim-top2`도 $+734.04에서 $-580.17로 악화됐다. 단타에 broad universe를 그대로 쓰지 말고 top2 제한, 후속 유지 확인, fresh quote/spread/fill 확인을 통과한 paper-only 관찰에만 사용한다.
 
+## 시뮬레이션 정책 검토 프로토콜
+
+정책 개선을 목적으로 하는 시뮬레이션은 결과 문서 작성 후 아래 순서로 closeout한다.
+
+1. 실행 전 가설을 명시한다. 예를 들어 `event feature가 price-only보다 20D 비용차감 SPY 초과수익을 개선한다`, `hourly buy signal이 장기 후보 확인에 도움 된다`처럼 정책에 연결될 문장으로 쓴다.
+2. 항상 기준선을 둔다. 새 feature, 새 universe, 새 action rule은 price-only 또는 현행 정책 기준선 대비 incremental lift를 비교하고, lift가 없으면 채택하지 않는다.
+3. action과 horizon을 분리한다. `virtual_buy`, `virtual_sell`, `hold/skip`을 합산 평균으로만 판단하지 않고 same-day, 1D, 5D, 20D, 60D를 따로 본다.
+4. 애널리스트 검토를 붙인다. 성과가 특정 종목, 테마, 사건, regime에 몰렸는지 보고, 상위/하위 표본이 실제 투자 논리와 맞는지 확인한다.
+5. 실행 가능성을 별도로 본다. quote-level spread, limit fill probability, slippage, stale quote, corporate action, source confidence 공백이 있으면 자동 주문 승격을 보류한다.
+6. policy decision을 `adopt`, `adopt_as_secondary_filter`, `observation_only`, `reject`, `needs_out_of_sample` 중 하나로 남긴다.
+7. 채택하지 않은 결과도 정책학습 지표에 기록한다. 실패한 feature와 false positive/false negative는 다음 추천에서 같은 실수를 줄이는 재료다.
+
 ## 뉴스-가격 선후관계 적용 규칙
 
 후보 점수화 전에 각 뉴스 이벤트를 아래 네 유형으로 분류한다.
@@ -226,8 +242,13 @@ updated_at: 2026-05-25T02:06:00+09:00
 | lt-anti-chase-staged-entry-v1 | 5D -7%~+12%, 20D +2%~+35% 범위에서만 staged entry 후보로 둔다 | 82 as-of days / 282 recommendations / 188 completed | 117/188 SPY hit | +6.65%p avg 20D SPY excess | 평균 불리 이동 -7.26%, 검증 구간 SPY 초과 +11.38%p. 추격 제한용으로 사용 | staged-entry filter | [[2026-05-24-policy-improvement-candidates]] |
 | intraday-afternoon-followthrough-filter-v1 | 첫 3시간 QQQ risk-on, 첫 두 3시간 상대강도 유지, VWAP 위 가격, speculative 과열 제외를 결합한다 | 124 trading days / 78 trades | 59.0% trade hit | +$1,386.98 on $10k per trade simulation | 검증 구간 +$1,053.78. IEX 30분봉, spread/fill 미반영으로 자동 주문 금지 | paper-only research candidate | [[2026-05-24-policy-improvement-candidates]] |
 | expanded-universe-theme-capped-quality | 관심 종목 외 다양한 업종을 포함한 broad universe에서 장타 theme cap top5를 유지한다 | 84 as-of days / 420 recommendations / 320 completed | 186/320 SPY hit | +7.65%p avg 20D SPY excess | 검증 구간 +11.84%p. INTC/NOK/AMD 성과 집중이 있어 실적/filing/valuation 확인 필요 | long-term universe rule | [[2026-05-24-expanded-six-month-3h-policy-review]] |
+| hourly-buy-secondary-confirmation | 1시간봉 기준 두 번째 regular-session bar close 진입 신호는 독립 장기 후보가 아니라 기존 장타 후보의 보조 확인 신호로만 쓴다 | 210 as-of days / 1050 virtual buys | 20D 53.3%, 60D 71.1% | 20D +3.28%p, 60D +14.81%p | 20D 평균 불리 이동 -7.66%, 60D -10.47%. INTC/AMD 등 특정 구간 성과 집중 가능 | secondary-filter hypothesis | [[2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation]] |
+| hourly-virtual-sell-false-negative | 1시간봉 `virtual_sell`은 long 청산/회피 신호로 채택하지 않는다 | 210 as-of days / 1050 virtual sells | 20D directional 53.2% | 20D directional -2.14%p | sell로 분류한 종목이 20D에는 오히려 SPY를 앞섰고 opportunity cost가 컸다 | rejected as sell/avoid rule | [[2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation]] |
+| event-cache-incremental-lift-required | Alpaca 뉴스와 전일 시장/섹터 동향 cache는 기준선 대비 lift가 있을 때만 점수 feature로 채택한다 | 2100 rows / 100% matched | 20D 53.2% | trend-enhanced +0.57%p vs price-only +0.85%p | coverage가 높아도 성과 개선이 없으면 정보량이 아니라 잡음일 수 있다 | applied principle | [[2026-05-25-one-year-hourly-buy-sell-simulation]], [[2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation]] |
+| policy-closeout-required | 정책개선형 시뮬레이션은 채택 실패도 레슨으로 남긴다 | all future policy simulations |  |  | 결과 문서, scorecard, policy book/YAML 중 최소 한 곳에 decision label과 next evidence를 남긴다 | 적용 원칙 | `harness/recommendation-policy.yaml` |
 
 ## 폐기하거나 완화한 규칙
 
 | 날짜 | 규칙 | 이유 |
 | --- | --- | --- |
+| 2026-05-25 | 1시간봉 `virtual_sell`을 장기 매도/회피 신호로 쓰는 규칙 | 20D directional SPY 초과수익이 -2.14%p이고 CI 상단도 음수라 장기 회피 신호로 쓰면 기회비용이 커질 수 있다 |

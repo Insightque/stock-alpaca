@@ -78,6 +78,8 @@ async def fetch_batch(session: ClientSession, symbols: list[str], args: argparse
     }
     result = await session.call_tool("get_stock_bars", payload)
     parsed = parse_tool_payload(result)
+    if parsed.get("error"):
+        raise RuntimeError(f"MCP get_stock_bars returned error: {parsed['error']}")
     if parsed.get("next_page_token"):
         raise RuntimeError(
             "MCP get_stock_bars returned next_page_token; reduce --batch-size or date range to avoid pagination loss"

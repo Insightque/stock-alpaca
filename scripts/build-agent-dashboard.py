@@ -543,6 +543,11 @@ def pct_text(value: float | None) -> str:
     return "-" if value is None else f"{value:.0f}%"
 
 
+def numeric_value(text: Any) -> float | None:
+    match = re.search(r"[-+]?\d+(?:\.\d+)?", str(text or "").replace(",", ""))
+    return float(match.group(0)) if match else None
+
+
 def account_snapshot(order_plan: dict[str, Any]) -> dict[str, Any]:
     account = order_plan.get("account", {}) if isinstance(order_plan.get("account"), dict) else {}
     positions = order_plan.get("positions", []) if isinstance(order_plan.get("positions"), list) else []
@@ -557,6 +562,114 @@ def account_snapshot(order_plan: dict[str, Any]) -> dict[str, Any]:
         "invested": invested,
         "cash_ratio": cash_ratio,
         "invested_ratio": invested_ratio,
+    }
+
+
+def latest_current_order_plan_path() -> Path | None:
+    paths = sorted((ROOT / "wiki" / "trade-ledger" / "orders").glob("*current-recommendations.json"))
+    return paths[-1] if paths else None
+
+
+def portfolio_snapshot() -> dict[str, Any]:
+    position_path = ROOT / "wiki" / "trade-ledger" / "positions" / "current.md"
+    text = read_text(position_path)
+    if text:
+        account_rows = parse_table(text, "계좌")
+        metrics = {row.get("지표", ""): row.get("값", "") for row in account_rows}
+        position_rows = parse_table(text, "포지션")
+        positions = [
+            {
+                "symbol": row.get("티커", ""),
+                "qty": row.get("수량", ""),
+                "avg_entry_price": row.get("평균 단가", ""),
+                "current_price": row.get("현재가", ""),
+                "market_value": row.get("시장 가치", ""),
+                "weight": row.get("포트폴리오 비중", ""),
+                "unrealized_pl": row.get("미실현 손익", ""),
+                "return_pct": row.get("수익률", ""),
+                "weight_value": numeric_value(row.get("포트폴리오 비중")) or 0.0,
+                "pl_value": numeric_value(row.get("미실현 손익")) or 0.0,
+            }
+            for row in position_rows
+            if row.get("티커")
+        ]
+        positions.sort(key=lambda item: item["weight_value"], reverse=True)
+        portfolio_value_num = numeric_value(metrics.get("포트폴리오 가치"))
+        cash_num = numeric_value(metrics.get("현금"))
+        cash_ratio = cash_num / portfolio_value_num * 100 if portfolio_value_num and cash_num is not None else None
+        exposure_ratio = numeric_value(metrics.get("투자 노출"))
+        account_status_match = re.search(r"Alpaca account status:\s*(.+)$", text, flags=re.MULTILINE)
+        market_clock_match = re.search(r"Market clock at capture:\s*(.+)$", text, flags=re.MULTILINE)
+        next_open_match = re.search(r"Next regular open:\s*`?([^`\n]+)`?", text, flags=re.MULTILINE)
+        open_orders_section = extract_section(text, "미체결 주문")
+        open_orders = "없음" if "없음" in open_orders_section else "확인 필요"
+        return {
+            "source_path": repo_path(position_path),
+            "href": href_for(repo_path(position_path)),
+            "updated_at": frontmatter_value(text, "updated_at"),
+            "account_status": account_status_match.group(1).strip() if account_status_match else "",
+            "market_clock": market_clock_match.group(1).strip() if market_clock_match else "",
+            "next_open": next_open_match.group(1).strip() if next_open_match else "",
+            "portfolio_value": metrics.get("포트폴리오 가치", "-"),
+            "cash": metrics.get("현금", "-"),
+            "buying_power": metrics.get("Buying power", "-"),
+            "long_market_value": metrics.get("Long market value", "-"),
+            "total_pl": metrics.get("총 수익", "-"),
+            "total_return": metrics.get("총 수익률", "-"),
+            "exposure": metrics.get("투자 노출", "-"),
+            "cash_ratio": cash_ratio,
+            "exposure_ratio": exposure_ratio,
+            "positions_count": len(positions),
+            "open_orders": open_orders,
+            "positions": positions[:8],
+        }
+
+    order_path = latest_current_order_plan_path()
+    order_plan = load_json(order_path) if order_path else {}
+    if not order_plan:
+        return {"positions": [], "positions_count": 0}
+    account = account_snapshot(order_plan)
+    positions = order_plan.get("positions", []) if isinstance(order_plan.get("positions"), list) else []
+    normalized_positions = []
+    for row in positions:
+        if not isinstance(row, dict):
+            continue
+        market_value = to_float(row.get("market_value")) or 0.0
+        weight = market_value / account["portfolio_value"] * 100 if account["portfolio_value"] else 0.0
+        normalized_positions.append(
+            {
+                "symbol": row.get("symbol", ""),
+                "qty": row.get("qty", ""),
+                "avg_entry_price": row.get("avg_entry_price", ""),
+                "current_price": row.get("current_price", ""),
+                "market_value": f"{market_value:.2f}",
+                "weight": f"{weight:.2f}%",
+                "unrealized_pl": "-",
+                "return_pct": "-",
+                "weight_value": weight,
+                "pl_value": 0.0,
+            }
+        )
+    normalized_positions.sort(key=lambda item: item["weight_value"], reverse=True)
+    return {
+        "source_path": repo_path(order_path) if order_path else "",
+        "href": href_for(repo_path(order_path)) if order_path else "",
+        "updated_at": str(order_plan.get("created_at", "")),
+        "account_status": "ACTIVE" if order_plan else "",
+        "market_clock": "order plan snapshot",
+        "next_open": order_plan.get("market", {}).get("next_open", "") if isinstance(order_plan.get("market"), dict) else "",
+        "portfolio_value": f"{account['portfolio_value']:.2f} USD",
+        "cash": f"{account['cash']:.2f} USD",
+        "buying_power": str(order_plan.get("account", {}).get("buying_power", "-")),
+        "long_market_value": f"{account['invested']:.2f} USD",
+        "total_pl": "-",
+        "total_return": "-",
+        "exposure": pct_text(account.get("invested_ratio")),
+        "cash_ratio": account.get("cash_ratio"),
+        "exposure_ratio": account.get("invested_ratio"),
+        "positions_count": len(normalized_positions),
+        "open_orders": "없음" if not order_plan.get("open_orders") else "있음",
+        "positions": normalized_positions[:8],
     }
 
 
@@ -694,6 +807,13 @@ def build_dashboard_data() -> dict[str, Any]:
     orders = order_plan.get("orders", []) if isinstance(order_plan.get("orders"), list) else []
     submitted = manifest.get("submitted_order_ids", [])
     account = account_snapshot(order_plan)
+    portfolio = portfolio_snapshot()
+    cash_ratio = account.get("cash_ratio")
+    invested_ratio = account.get("invested_ratio")
+    if cash_ratio is None:
+        cash_ratio = portfolio.get("cash_ratio")
+    if invested_ratio is None:
+        invested_ratio = portfolio.get("exposure_ratio")
     warnings = risk.get("warnings", []) + [item.get("reason", "") for item in manifest.get("mcp_failures", [])]
     market_closed = not bool(market.get("is_open"))
     no_orders = len(orders) == 0 and len(submitted) == 0
@@ -736,12 +856,13 @@ def build_dashboard_data() -> dict[str, Any]:
             "orders_planned": len(orders),
             "orders_submitted": len(submitted),
             "symbols_loaded": data_manifest.get("symbols_loaded", 0),
-            "cash_ratio": account.get("cash_ratio"),
-            "invested_ratio": account.get("invested_ratio"),
+            "cash_ratio": cash_ratio,
+            "invested_ratio": invested_ratio,
             "action_label": action_label,
             "action_reason": action_reason,
         },
         "account": account,
+        "portfolio": portfolio,
         "agents": agent_cards(manifest, report_text, order_plan),
         "picks": enriched_picks(report_text),
         "recommendations": recommendation_rows,
@@ -864,6 +985,86 @@ def html_template(data: dict[str, Any]) -> str:
     .stage.blocked .dot {{ background: var(--blocked); }}
     .stage b {{ font-size: 12px; letter-spacing: 0; }}
     .stage span {{ color: var(--muted); font-size: 11px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }}
+    .portfolio-panel {{
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      margin-bottom: 14px;
+    }}
+    .portfolio-head {{
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }}
+    .portfolio-meta {{
+      color: var(--muted);
+      font-size: 12px;
+      text-align: right;
+      min-width: 170px;
+    }}
+    .portfolio-stats {{
+      display: grid;
+      grid-template-columns: repeat(4, minmax(130px, 1fr));
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }}
+    .portfolio-stat {{
+      min-height: 62px;
+      padding: 11px 12px;
+      border-right: 1px solid var(--line);
+    }}
+    .portfolio-stat:last-child {{ border-right: 0; }}
+    .portfolio-stat span {{
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+    }}
+    .portfolio-stat b {{
+      display: block;
+      margin-top: 5px;
+      font-size: 19px;
+      line-height: 1.12;
+      overflow-wrap: anywhere;
+    }}
+    .positions {{
+      display: grid;
+      gap: 0;
+      margin-top: 10px;
+    }}
+    .position-row {{
+      display: grid;
+      grid-template-columns: 72px minmax(120px, 1fr) 86px 80px;
+      gap: 10px;
+      align-items: center;
+      min-height: 38px;
+      border-top: 1px solid var(--line);
+      font-size: 12px;
+    }}
+    .position-row:first-child {{ border-top: 0; }}
+    .position-symbol {{ font-weight: 900; font-size: 15px; }}
+    .position-bar {{
+      height: 6px;
+      background: var(--soft);
+      border-radius: 999px;
+      overflow: hidden;
+    }}
+    .position-fill {{
+      height: 100%;
+      width: 0%;
+      background: var(--blue);
+      border-radius: inherit;
+    }}
+    .position-value, .position-pl {{
+      text-align: right;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }}
+    .position-pl.positive {{ color: var(--done); }}
+    .position-pl.negative {{ color: var(--blocked); }}
     .main {{
       display: grid;
       grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
@@ -963,7 +1164,9 @@ def html_template(data: dict[str, Any]) -> str:
     summary {{ cursor: pointer; }}
     .warning {{ margin-top: 6px; color: #604715; background: #fff8e8; padding: 8px; border-radius: 6px; }}
     @media (max-width: 960px) {{
-      .topline, .main, .dock {{ grid-template-columns: 1fr; }}
+      .topline, .main, .dock, .portfolio-stats {{ grid-template-columns: 1fr; }}
+      .portfolio-stat {{ border-right: 0; border-bottom: 1px solid var(--line); }}
+      .portfolio-stat:last-child {{ border-bottom: 0; }}
       .rail {{ grid-template-columns: repeat(5, minmax(64px, 1fr)); }}
     }}
     @media (max-width: 560px) {{
@@ -973,6 +1176,10 @@ def html_template(data: dict[str, Any]) -> str:
       .backtests {{ grid-template-columns: 1fr; }}
       .pick {{ grid-template-columns: 1fr; }}
       .decision {{ grid-template-columns: 1fr; }}
+      .portfolio-head {{ display: block; }}
+      .portfolio-meta {{ text-align: left; margin-top: 6px; min-width: 0; }}
+      .position-row {{ grid-template-columns: 58px minmax(80px, 1fr) 70px; }}
+      .position-value {{ display: none; }}
       .symbol {{ font-size: 18px; }}
       .pill b {{ font-size: 20px; }}
     }}
@@ -991,6 +1198,7 @@ def html_template(data: dict[str, Any]) -> str:
     <div class="decision"><b id="decision-label"></b><span id="decision-reason"></span></div>
     <div class="topline" id="metrics"></div>
     <div class="rail" id="agents"></div>
+    <section class="portfolio-panel" id="portfolio"></section>
 
     <div class="main">
       <section class="panel">
@@ -1031,6 +1239,11 @@ def html_template(data: dict[str, Any]) -> str:
       return text.length > max ? `${{text.slice(0, max - 1)}}…` : text;
     }};
     const cleanTitle = (value) => compact(String(value ?? '').replace(/^과거\\s*/, ''), 32);
+    const numeric = (value) => {{
+      const match = String(value ?? '').replace(/,/g, '').match(/[-+]?\\d+(?:\\.\\d+)?/);
+      return match ? Number(match[0]) : 0;
+    }};
+    const plClass = (value) => numeric(value) < 0 ? 'negative' : numeric(value) > 0 ? 'positive' : '';
 
     byId('subtitle').textContent = `${{data.run.mode || '-'}} · ${{data.run.run_id}}`;
 
@@ -1054,6 +1267,42 @@ def html_template(data: dict[str, Any]) -> str:
         <span>${{esc(compact(agent.result, 14))}}</span>
       </article>
     `).join('');
+
+    const portfolio = data.portfolio || {{}};
+    const positions = portfolio.positions || [];
+    const portfolioStats = [
+      ['평가금액', portfolio.portfolio_value || '-'],
+      ['총 수익', `${{portfolio.total_pl || '-'}} · ${{portfolio.total_return || '-'}}`],
+      ['투자 노출', portfolio.exposure || '-'],
+      ['현금', portfolio.cash || '-'],
+    ];
+    byId('portfolio').innerHTML = `
+      <div class="portfolio-head">
+        <div>
+          <h2>Alpaca Paper</h2>
+          <div class="sub">${{esc(portfolio.account_status || '-')}} · 보유 ${{esc(portfolio.positions_count || 0)}}개 · 미체결 ${{esc(portfolio.open_orders || '-')}}</div>
+        </div>
+        <a class="portfolio-meta" href="${{esc(portfolio.href || '#')}}" target="_blank" title="${{esc(portfolio.source_path || '')}}">
+          ${{esc(compact(portfolio.updated_at || portfolio.market_clock || '', 36))}}
+        </a>
+      </div>
+      <div class="portfolio-stats">
+        ${{portfolioStats.map(([label, value]) => `<div class="portfolio-stat"><span>${{esc(label)}}</span><b>${{esc(value)}}</b></div>`).join('')}}
+      </div>
+      <div class="positions">
+        ${{positions.length ? positions.map((position) => {{
+          const weight = Math.max(0, Math.min(100, numeric(position.weight)));
+          return `<div class="position-row" title="${{esc(position.symbol)}} · ${{esc(position.qty)}}주 · 현재가 ${{esc(position.current_price)}} · 수익률 ${{esc(position.return_pct)}}">
+            <div class="position-symbol">${{esc(position.symbol || '-')}}</div>
+            <div>
+              <div class="position-bar"><div class="position-fill" style="width: ${{weight}}%"></div></div>
+            </div>
+            <div class="position-value">${{esc(position.weight || '-')}}</div>
+            <div class="position-pl ${{plClass(position.unrealized_pl)}}">${{esc(position.unrealized_pl || '-')}}</div>
+          </div>`;
+        }}).join('') : '<div class="position-row"><div class="position-symbol">-</div><div>보유 포지션 없음</div><div class="position-value">-</div><div class="position-pl">-</div></div>'}}
+      </div>
+    `;
 
     const recs = data.picks.length ? data.picks : [];
     byId('recommendations').innerHTML = recs.length ? recs.map((pick) => `
