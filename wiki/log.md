@@ -855,3 +855,12 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - run manifest: `wiki/evidence-store/run-manifests/2026-05-26-2301-hourly-autopilot.json`.
 - order plan: `wiki/trade-ledger/orders/2026-05-26-2301-hourly-autopilot.json`.
 - 실제 주문, 취소, 포지션 변경은 없었다. `orders_submitted=0`.
+
+## [2026-05-26 23:22 Asia/Seoul] reliability-update | scheduled MCP 자동실행 보강
+
+- `scripts/run-hourly-autopilot-codex.sh`에서 scheduled Codex 실행에 `--ephemeral`, MCP `approval_mode="auto"` override, research MCP용 `network-full-access` sandbox permission을 명시해 비대화형 실행 중 `user cancelled MCP tool call`과 FRED/Firecrawl DNS gap을 줄이도록 했다.
+- hourly autopilot 전용 override에는 Alpaca read-only 도구와 paper `place_stock_order`만 포함했다. 주문은 계속 workflow hard gate와 risk policy를 통과해야 한다.
+- `scripts/run-analyst-review-codex.sh`도 같은 scheduled read-only MCP override와 timeout 구조를 사용하도록 보강했다. analyst review는 주문 제출 도구를 auto-approve하지 않는다.
+- hourly/analyst scheduled runner 모두 `CODEX_HOME` 기본값을 `${HOME}/.codex`로 고정하되 `CODEX_SCHEDULED_CODEX_HOME` 또는 각 workflow 전용 override로 바꿀 수 있게 했다.
+- `scripts/mcp-alpha-vantage.sh`가 API key를 process argv로 넘기지 않고 `ALPHA_VANTAGE_API_KEY` 환경변수로만 전달하도록 수정했다.
+- 검증: `bash -n` 통과, `python3 -m unittest discover -s tests` 66개 통과, Codex MCP config override parse 확인, Alpha Vantage wrapper argv smoke test 통과.

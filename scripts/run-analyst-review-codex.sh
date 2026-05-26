@@ -2,6 +2,7 @@
 set -euo pipefail
 
 export PATH="/opt/homebrew/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.11/bin:${PATH}"
+export CODEX_HOME="${CODEX_ANALYST_REVIEW_CODEX_HOME:-${CODEX_SCHEDULED_CODEX_HOME:-${HOME}/.codex}}"
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 LOCK_DIR="${ROOT_DIR}/.locks/analyst-review.lock"
@@ -30,7 +31,13 @@ if ! grep -q '^ALPACA_PAPER_TRADE=true$' .env; then
   exit 64
 fi
 
-cat <<'PROMPT' | codex --search -a never exec -C "${ROOT_DIR}" -
+PROMPT_TMP="$(mktemp "${LOG_DIR}/analyst-review-prompt.XXXXXX")"
+cleanup_prompt() {
+  rm -f "${PROMPT_TMP}" 2>/dev/null || true
+}
+trap 'cleanup_prompt; cleanup' EXIT
+
+cat >"${PROMPT_TMP}" <<'PROMPT'
 You are running the stock-alpaca scheduled analyst review cycle.
 
 Execute `harness/workflows/analyst-review-cycle.md` exactly.
@@ -45,5 +52,56 @@ Hard requirements:
 
 Start now.
 PROMPT
+
+python3 - "${ROOT_DIR}" "${PROMPT_TMP}" <<'PY'
+from __future__ import annotations
+
+import os
+import subprocess
+import sys
+
+
+root_dir = sys.argv[1]
+prompt_path = sys.argv[2]
+timeout_seconds = int(os.environ.get("CODEX_ANALYST_REVIEW_TIMEOUT_SECONDS", "2400"))
+prompt = open(prompt_path, "r", encoding="utf-8").read()
+scheduled_mcp_config = [
+    'sandbox_permissions=["network-full-access"]',
+    'mcp_servers.alpaca.tools.get_asset.approval_mode="auto"',
+    'mcp_servers.alpaca.tools.get_news.approval_mode="auto"',
+    'mcp_servers.alpaca.tools.get_market_movers.approval_mode="auto"',
+    'mcp_servers.alpaca.tools.get_all_positions.approval_mode="auto"',
+]
+codex_command = [
+    "codex",
+    "--search",
+    "-a",
+    "never",
+    "exec",
+    "--ephemeral",
+    "-C",
+    root_dir,
+]
+for item in scheduled_mcp_config:
+    codex_command.extend(["-c", item])
+codex_command.append("-")
+
+try:
+    completed = subprocess.run(
+        codex_command,
+        input=prompt,
+        text=True,
+        timeout=timeout_seconds,
+        check=False,
+    )
+except subprocess.TimeoutExpired:
+    print(
+        f"analyst review timed out after {timeout_seconds}s; lock will be released.",
+        file=sys.stderr,
+    )
+    raise SystemExit(124)
+
+raise SystemExit(completed.returncode)
+PY
 
 "${ROOT_DIR}/scripts/git-autopush-artifacts.sh" "analyst-review"

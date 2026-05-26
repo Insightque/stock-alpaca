@@ -24,8 +24,10 @@ if [ -z "${ALPHA_VANTAGE_API_KEY:-}" ]; then
   exit 64
 fi
 
+export ALPHA_VANTAGE_API_KEY
+
 if command -v marketdata-mcp >/dev/null 2>&1; then
-  exec marketdata-mcp "$ALPHA_VANTAGE_API_KEY"
+  exec marketdata-mcp
 fi
 
-exec uvx --from marketdata-mcp-server marketdata-mcp "$ALPHA_VANTAGE_API_KEY"
+exec uvx --from marketdata-mcp-server marketdata-mcp

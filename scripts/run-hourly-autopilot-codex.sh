@@ -2,7 +2,7 @@
 set -euo pipefail
 
 export PATH="/opt/homebrew/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.11/bin:${PATH}"
-export CODEX_HOME="${CODEX_AUTOPILOT_CODEX_HOME:-${HOME}/.codex}"
+export CODEX_HOME="${CODEX_AUTOPILOT_CODEX_HOME:-${CODEX_SCHEDULED_CODEX_HOME:-${HOME}/.codex}}"
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 LOCK_DIR="${ROOT_DIR}/.locks/hourly-autopilot.lock"
@@ -70,10 +70,31 @@ root_dir = sys.argv[1]
 prompt_path = sys.argv[2]
 timeout_seconds = int(os.environ.get("CODEX_AUTOPILOT_TIMEOUT_SECONDS", "2400"))
 prompt = open(prompt_path, "r", encoding="utf-8").read()
+scheduled_mcp_config = [
+    'sandbox_permissions=["network-full-access"]',
+    'mcp_servers.alpaca.tools.get_asset.approval_mode="auto"',
+    'mcp_servers.alpaca.tools.get_news.approval_mode="auto"',
+    'mcp_servers.alpaca.tools.get_market_movers.approval_mode="auto"',
+    'mcp_servers.alpaca.tools.get_all_positions.approval_mode="auto"',
+    'mcp_servers.alpaca.tools.place_stock_order.approval_mode="auto"',
+]
+codex_command = [
+    "codex",
+    "--search",
+    "-a",
+    "never",
+    "exec",
+    "--ephemeral",
+    "-C",
+    root_dir,
+]
+for item in scheduled_mcp_config:
+    codex_command.extend(["-c", item])
+codex_command.append("-")
 
 try:
     completed = subprocess.run(
-        ["codex", "--search", "-a", "never", "exec", "-C", root_dir, "-"],
+        codex_command,
         input=prompt,
         text=True,
         timeout=timeout_seconds,

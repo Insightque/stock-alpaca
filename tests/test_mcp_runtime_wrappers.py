@@ -40,6 +40,40 @@ class McpRuntimeWrapperTests(unittest.TestCase):
         gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
         self.assertIn(".cache/", gitignore.splitlines())
 
+    def test_alpha_vantage_key_is_not_passed_as_process_argument(self):
+        text = (ROOT / "scripts/mcp-alpha-vantage.sh").read_text(encoding="utf-8")
+
+        self.assertIn("export ALPHA_VANTAGE_API_KEY", text)
+        self.assertNotIn('marketdata-mcp "$ALPHA_VANTAGE_API_KEY"', text)
+
+    def test_scheduled_codex_runs_auto_approve_required_mcp_tools(self):
+        expectations = {
+            "scripts/run-hourly-autopilot-codex.sh": [
+                'sandbox_permissions=["network-full-access"]',
+                'mcp_servers.alpaca.tools.get_asset.approval_mode="auto"',
+                'mcp_servers.alpaca.tools.get_news.approval_mode="auto"',
+                'mcp_servers.alpaca.tools.get_market_movers.approval_mode="auto"',
+                'mcp_servers.alpaca.tools.get_all_positions.approval_mode="auto"',
+                'mcp_servers.alpaca.tools.place_stock_order.approval_mode="auto"',
+            ],
+            "scripts/run-analyst-review-codex.sh": [
+                'sandbox_permissions=["network-full-access"]',
+                'mcp_servers.alpaca.tools.get_asset.approval_mode="auto"',
+                'mcp_servers.alpaca.tools.get_news.approval_mode="auto"',
+                'mcp_servers.alpaca.tools.get_market_movers.approval_mode="auto"',
+                'mcp_servers.alpaca.tools.get_all_positions.approval_mode="auto"',
+            ],
+        }
+        for relative_path, snippets in expectations.items():
+            text = (ROOT / relative_path).read_text(encoding="utf-8")
+            with self.subTest(path=relative_path):
+                self.assertIn("CODEX_HOME", text)
+                self.assertIn("CODEX_SCHEDULED_CODEX_HOME", text)
+                self.assertIn("--ephemeral", text)
+                self.assertNotIn("--dangerously-bypass-approvals-and-sandbox", text)
+                for snippet in snippets:
+                    self.assertIn(snippet, text)
+
 
 if __name__ == "__main__":
     unittest.main()
