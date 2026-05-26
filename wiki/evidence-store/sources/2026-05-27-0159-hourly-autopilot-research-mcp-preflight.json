@@ -1,0 +1,77 @@
+{
+  "run_id": "2026-05-27-0159-hourly-autopilot",
+  "created_at": "2026-05-26T16:59:29+00:00",
+  "paper": true,
+  "source": "scheduler local MCP stdio preflight",
+  "providers": [
+    {
+      "server": "fred",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T16:59:29+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_macro_snapshot",
+      "payload": {
+        "observation_end": null,
+        "series": [
+          {
+            "series_id": "DGS10",
+            "latest": {
+              "realtime_start": "2026-05-22",
+              "realtime_end": "2026-05-22",
+              "date": "2026-05-21",
+              "value": "4.57"
+            }
+          },
+          {
+            "series_id": "DGS2",
+            "latest": {
+              "realtime_start": "2026-05-22",
+              "realtime_end": "2026-05-22",
+              "date": "2026-05-21",
+              "value": "4.08"
+            }
+          },
+          {
+            "series_id": "FEDFUNDS",
+            "latest": {
+              "realtime_start": "2026-05-01",
+              "realtime_end": "2026-05-01",
+              "date": "2026-04-01",
+              "value": "3.64"
+            }
+          },
+          {
+            "series_id": "CPIAUCSL",
+            "latest": {
+              "realtime_start": "2026-05-12",
+              "realtime_end": "2026-05-12",
+              "date": "2026-04-01",
+              "value": "332.407"
+            }
+          },
+          {
+            "series_id": "UNRATE",
+            "latest": {
+              "realtime_start": "2026-05-08",
+              "realtime_end": "2026-05-08",
+              "date": "2026-04-01",
+              "value": "4.3"
+            }
+          },
+          {
+            "series_id": "NFCI",
+            "latest": {
+              "realtime_start": "2026-05-21",
+              "realtime_end": "2026-05-21",
+              "date": "2026-05-15",
+              "value": "-0.52300"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

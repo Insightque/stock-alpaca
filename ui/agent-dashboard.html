@@ -350,29 +350,29 @@
   </div>
 
   <script type="application/json" id="dashboard-data">{
-  "generated_at": "2026-05-26T16:57:06Z",
+  "generated_at": "2026-05-26T17:08:45Z",
   "run": {
-    "run_id": "2026-05-27-0131-hourly-autopilot",
+    "run_id": "2026-05-27-0159-hourly-autopilot",
     "mode": "submit",
-    "created_at": "2026-05-26T16:38:00Z",
+    "created_at": "2026-05-26T17:02:00Z",
     "paper": true,
     "risk_status": "PASS",
     "market": "open",
     "next_open": "2026-05-27T13:30:00Z",
-    "orders_planned": 1,
-    "orders_submitted": 1,
+    "orders_planned": 0,
+    "orders_submitted": 0,
     "symbols_loaded": 62,
-    "cash_ratio": 42.27266871269196,
-    "invested_ratio": 57.73969631257791,
-    "action_label": "주문 후보",
-    "action_reason": "1건"
+    "cash_ratio": 42.238813952088925,
+    "invested_ratio": 57.741327908087825,
+    "action_label": "검토",
+    "action_reason": "주문 후보 없음"
   },
   "account": {
-    "portfolio_value": 101605.13,
-    "cash": 42951.2,
-    "invested": 58666.493500000004,
-    "cash_ratio": 42.27266871269196,
-    "invested_ratio": 57.73969631257791
+    "portfolio_value": 101535.19,
+    "cash": 42887.26,
+    "invested": 58627.767,
+    "cash_ratio": 42.238813952088925,
+    "invested_ratio": 57.741327908087825
   },
   "portfolio": {
     "source_path": "wiki/trade-ledger/positions/current.md",
@@ -514,7 +514,7 @@
       "label": "가격",
       "status": "done",
       "progress": 100,
-      "result": "alpaca_iex 1Day + snapshot/quote"
+      "result": "alpaca_iex 1Day + latest_quote"
     },
     {
       "id": "web_research",
@@ -530,7 +530,7 @@
       "label": "점수",
       "status": "done",
       "progress": 100,
-      "result": "FCX / NOK / SMH"
+      "result": "NOK / SMH / FCX"
     },
     {
       "id": "ticker_thesis",
@@ -538,7 +538,7 @@
       "label": "티커",
       "status": "done",
       "progress": 100,
-      "result": "FCX / NOK / SMH"
+      "result": "NOK / SMH / FCX"
     },
     {
       "id": "risk",
@@ -552,9 +552,9 @@
       "id": "executor",
       "name": "Executor",
       "label": "주문",
-      "status": "done",
+      "status": "skipped",
       "progress": 100,
-      "result": "1 submitted"
+      "result": "0 submitted"
     },
     {
       "id": "post_trade",
@@ -575,23 +575,23 @@
   ],
   "picks": [
     {
-      "symbol": "FCX",
-      "action": "paper validation buy",
-      "reason": "fresh quote, pre-submit 0.031% spread, SEC/Yahoo/FRED 3개 research confirmation, unheld materials/mining diversification · commodity-cyclical risk 때문에 1주 검증 주문으로 제한",
+      "symbol": "NOK",
+      "action": "recheck",
+      "reason": "52-week high 관련 Alpaca news, Yahoo AI infrastructure/news, SEC 6-K recent filing, quote spread 0.060% · 이미 400주 보유, account/order/position/asset gate cancelled",
       "score": "",
       "rank": "1",
-      "score_label": "신뢰 58%",
-      "confidence": "auto_eligible_paper",
+      "score_label": "순위 #1",
+      "confidence": "shortlist",
       "return_20d": "",
       "vs_spy_20d": "",
-      "primary_chip": "20D 기대 +2.2%",
-      "secondary_chip": "불리 -7.8%",
+      "primary_chip": "20D -",
+      "secondary_chip": "시장대비 -",
       "risk": ""
     },
     {
-      "symbol": "NOK",
+      "symbol": "SMH",
       "action": "recheck",
-      "reason": "fresh quote, spread pass, most-active volume, Alpaca news momentum · 이미 400주 보유, 추가매수보다 exposure 관찰 우선",
+      "reason": "반도체 ETF 모멘텀, quote spread 0.025%, AI semiconductor basket proxy · 기존 AMD/AVGO/LRCX/NVDA/TSM 보유로 cluster 집중, SEC ETF lookup 없음",
       "score": "",
       "rank": "2",
       "score_label": "순위 #2",
@@ -603,9 +603,9 @@
       "risk": ""
     },
     {
-      "symbol": "SMH",
+      "symbol": "FCX",
       "action": "recheck",
-      "reason": "fresh quote, spread pass, semiconductor ETF momentum · 기존 AMD/AVGO/LRCX/NVDA/TSM 보유로 반도체 cluster 집중",
+      "reason": "quote spread 0.016%, 보유 1주 validation fill 이후 materials/mining 분산 후보 · 직전 run 신규 매수 직후라 duplicate/same-day order gate 확인 필요하나 open-order check cancelled",
       "score": "",
       "rank": "3",
       "score_label": "순위 #3",
@@ -619,38 +619,38 @@
   ],
   "recommendations": [
     {
-      "심볼": "FCX",
-      "조치": "paper validation buy",
-      "이유": "fresh quote, pre-submit 0.031% spread, SEC/Yahoo/FRED 3개 research confirmation, unheld materials/mining diversification",
-      "주의": "commodity-cyclical risk 때문에 1주 검증 주문으로 제한",
-      "순위": "1"
-    },
-    {
       "심볼": "NOK",
       "조치": "recheck",
-      "이유": "fresh quote, spread pass, most-active volume, Alpaca news momentum",
-      "주의": "이미 400주 보유, 추가매수보다 exposure 관찰 우선",
-      "순위": "2"
+      "이유": "52-week high 관련 Alpaca news, Yahoo AI infrastructure/news, SEC 6-K recent filing, quote spread 0.060%",
+      "주의": "이미 400주 보유, account/order/position/asset gate cancelled",
+      "순위": "1"
     },
     {
       "심볼": "SMH",
       "조치": "recheck",
-      "이유": "fresh quote, spread pass, semiconductor ETF momentum",
-      "주의": "기존 AMD/AVGO/LRCX/NVDA/TSM 보유로 반도체 cluster 집중",
+      "이유": "반도체 ETF 모멘텀, quote spread 0.025%, AI semiconductor basket proxy",
+      "주의": "기존 AMD/AVGO/LRCX/NVDA/TSM 보유로 cluster 집중, SEC ETF lookup 없음",
+      "순위": "2"
+    },
+    {
+      "심볼": "FCX",
+      "조치": "recheck",
+      "이유": "quote spread 0.016%, 보유 1주 validation fill 이후 materials/mining 분산 후보",
+      "주의": "직전 run 신규 매수 직후라 duplicate/same-day order gate 확인 필요하나 open-order check cancelled",
       "순위": "3"
     },
     {
-      "심볼": "MU",
+      "심볼": "NVDA",
       "조치": "recheck",
-      "이유": "강한 당일/월간 모멘텀과 관련 뉴스",
-      "주의": "과열 위험과 반도체 concentration",
+      "이유": "fresh tight quote, AI semiconductor quality 후보",
+      "주의": "기존 보유와 반도체 cluster 집중",
       "순위": "4"
     },
     {
       "심볼": "AAPL",
       "조치": "recheck",
-      "이유": "fresh quote, broad liquidity, benchmark 대비 안정",
-      "주의": "FCX보다 current catalyst와 diversification 점수 낮음",
+      "이유": "fresh quote와 mega-cap liquidity",
+      "주의": "catalyst 점수는 NOK/SMH/FCX보다 낮음",
       "순위": "5"
     }
   ],
@@ -658,18 +658,18 @@
   "links": [
     {
       "label": "리포트",
-      "path": "wiki/current-runs/daily/2026-05-27-0131-hourly-autopilot.md",
-      "href": "../wiki/current-runs/daily/2026-05-27-0131-hourly-autopilot.md"
+      "path": "wiki/current-runs/daily/2026-05-27-0159-hourly-autopilot.md",
+      "href": "../wiki/current-runs/daily/2026-05-27-0159-hourly-autopilot.md"
     },
     {
       "label": "주문계획",
-      "path": "wiki/trade-ledger/orders/2026-05-27-0131-hourly-autopilot.json",
-      "href": "../wiki/trade-ledger/orders/2026-05-27-0131-hourly-autopilot.json"
+      "path": "wiki/trade-ledger/orders/2026-05-27-0159-hourly-autopilot.json",
+      "href": "../wiki/trade-ledger/orders/2026-05-27-0159-hourly-autopilot.json"
     },
     {
       "label": "Manifest",
-      "path": "wiki/evidence-store/run-manifests/2026-05-27-0131-hourly-autopilot.json",
-      "href": "../wiki/evidence-store/run-manifests/2026-05-27-0131-hourly-autopilot.json"
+      "path": "wiki/evidence-store/run-manifests/2026-05-27-0159-hourly-autopilot.json",
+      "href": "../wiki/evidence-store/run-manifests/2026-05-27-0159-hourly-autopilot.json"
     },
     {
       "label": "포지션",
@@ -677,17 +677,22 @@
       "href": "../wiki/trade-ledger/positions/current.md"
     },
     {
-      "label": "2026-05-27-0131-hourly-autopilot-sources.md",
-      "path": "wiki/evidence-store/sources/2026-05-27-0131-hourly-autopilot-sources.md",
-      "href": "../wiki/evidence-store/sources/2026-05-27-0131-hourly-autopilot-sources.md"
+      "label": "2026-05-27-0159-hourly-autopilot-sources.md",
+      "path": "wiki/evidence-store/sources/2026-05-27-0159-hourly-autopilot-sources.md",
+      "href": "../wiki/evidence-store/sources/2026-05-27-0159-hourly-autopilot-sources.md"
     },
     {
-      "label": "2026-05-27-0131-hourly-autopilot-research-mcp-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-27-0131-hourly-autopilot-research-mcp-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-27-0131-hourly-autopilot-research-mcp-preflight.json"
+      "label": "2026-05-27-0159-hourly-autopilot-research-mcp-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-05-27-0159-hourly-autopilot-research-mcp-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-05-27-0159-hourly-autopilot-research-mcp-preflight.json"
     }
   ],
   "timeline": [
+    {
+      "time": "2026-05-27 02:06 Asia/Seoul",
+      "type": "hourly-autopilot",
+      "title": "paper 자동 운영 gate 점검"
+    },
     {
       "time": "2026-05-27 01:50 Asia/Seoul",
       "type": "policy",
@@ -697,11 +702,6 @@
       "time": "2026-05-27 01:43 Asia/Seoul",
       "type": "hourly-autopilot",
       "title": "paper 자동 운영 gate 점검"
-    },
-    {
-      "time": "2026-05-27 01:29 Asia/Seoul",
-      "type": "ui",
-      "title": "추천 점수 표시 라벨 수정"
     }
   ],
   "backtests": [
@@ -751,7 +751,9 @@
     }
   ],
   "warnings": [
-    "TOOL_LIST and TOOL_GET(PING) succeeded, but TOOL_CALL(PING,{}) was cancelled by the MCP wrapper. Per workflow instruction, no non-PING Alpha Vantage candidate call was attempted after the health-check cancellation.",
+    "orders is empty",
+    "Alpaca clock, activities, quotes, bars, and news were usable, but account, positions, open orders, watchlists, snapshot, latest trade, and asset checks were cancelled by MCP safety/user cancellation. First hard blocking gate was alpaca_account.",
+    "TOOL_LIST, TOOL_GET(PING), and TOOL_CALL(PING,{}) succeeded. Candidate NEWS_SENTIMENT call was cancelled once after immediate TOOL_GET(NEWS_SENTIMENT), so Alpha retries stopped per workflow.",
     "No registered Firecrawl MCP tool was exposed in the Codex tool catalog; shell/curl/local wrapper retry was prohibited by the workflow."
   ]
 }</script>

@@ -48,6 +48,7 @@
 - [[2026-05-27-0032-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/quote/risk는 통과했지만 research MCP minimum 3개 미달로 주문 없음.
 - [[2026-05-27-0052-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 LLY 1주 paper validation buy 체결.
 - [[2026-05-27-0131-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 FCX 1주 paper validation buy 체결.
+- [[2026-05-27-0159-hourly-autopilot]] - hourly paper autopilot 실행. Market clock/quote/research 일부는 통과했지만 Alpaca account/order/position/asset core gate와 MCP strict 실패로 주문 없음.
 
 ## Research Notes
 
@@ -117,6 +118,7 @@
 - `wiki/trade-ledger/orders/2026-05-27-0032-hourly-autopilot.json` - 2026-05-27 00:32 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-27-0052-hourly-autopilot.json` - 2026-05-27 00:52 KST hourly autopilot LLY 1주 paper validation buy plan, universe/MCP/risk PASS, order filled.
 - `wiki/trade-ledger/orders/2026-05-27-0131-hourly-autopilot.json` - 2026-05-27 01:31 KST hourly autopilot FCX 1주 paper validation buy plan, universe/MCP/risk PASS, order filled.
+- `wiki/trade-ledger/orders/2026-05-27-0159-hourly-autopilot.json` - 2026-05-27 01:59 KST hourly autopilot empty-order plan, universe/risk PASS, Alpaca core/MCP strict FAIL.
 - 2026-05-22 paper 주문 체결분은 다음 회고 대상이다.
 
 ## Policy Book
@@ -223,6 +225,8 @@
 - [[2026-05-26-2331-hourly-autopilot-sources]] - hourly autopilot의 Alpaca MCP 부분 성공/핵심 실패, research MCP gap 분류, fresh quote와 주문 차단 근거.
 - [[2026-05-27-0131-hourly-autopilot-sources]] - hourly autopilot의 Alpaca core, FCX quote/asset/news, SEC/Yahoo/FRED evidence, Alpha/Firecrawl gap 분류.
 - `wiki/evidence-store/run-manifests/2026-05-27-0131-hourly-autopilot.json` - hourly autopilot manifest, FCX submit candidate, universe/MCP/risk gate 검증 대상.
+- [[2026-05-27-0159-hourly-autopilot-sources]] - hourly autopilot의 Alpaca core partial pass/cancelled gate, NOK SEC/Yahoo evidence, FRED preflight, Alpha/Firecrawl gap 분류.
+- `wiki/evidence-store/run-manifests/2026-05-27-0159-hourly-autopilot.json` - hourly autopilot manifest, universe/risk PASS, Alpaca core/MCP strict FAIL, 주문 없음.
 - `wiki/evidence-store/run-manifests/2026-05-26-2331-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
 - [[2026-05-26-2351-hourly-autopilot-sources]] - hourly autopilot의 Alpaca core PASS, SEC/Yahoo usable, Alpha/FRED/Firecrawl gap, spread 차단 근거.
 - `wiki/evidence-store/run-manifests/2026-05-26-2351-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.

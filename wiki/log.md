@@ -1028,3 +1028,22 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 스케줄은 launchd `StartCalendarInterval`을 미국 정규장과 겹칠 수 있는 KST 시간대의 20분 후보 슬롯으로 바꾸고, wrapper가 Alpaca MCP `get_clock.is_open=true`를 확인한 경우에만 research preflight/nested Codex/wiki/order planning을 시작하도록 변경했다. `22:31 KST` run은 계속 미국 정규장 market-open validation run이다.
 - 장외 wakeup은 `scripts/check-alpaca-market-open-mcp.py`에서 fail-closed로 종료하며, 장외에는 report/manifest/order plan을 만들지 않는다.
 - 문서/검증: `harness/workflows/hourly-autopilot.md`, `scheduler/README.md`, `README.md`, `wiki/index.md`, 관련 schema/test를 함께 갱신했다.
+
+## [2026-05-27 02:06 Asia/Seoul] hourly-autopilot | paper 자동 운영 gate 점검
+
+- run id: `2026-05-27-0159-hourly-autopilot`.
+- 사용자 승인에 따라 `harness/workflows/hourly-autopilot.md`를 실행했다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고, API key 값은 출력하거나 기록하지 않았다.
+- Alpaca MCP `get_clock`은 `2026-05-26T13:00:24.142399574-04:00` 기준 open을 반환했다. `get_account_activities`, 후보 `get_stock_latest_quote`, `get_stock_bars`, `get_news`는 usable했다.
+- Alpaca MCP `get_account_info`는 2회 cancelled, `get_all_positions`는 2회 cancelled, `get_orders(status=open)`는 2회 cancelled였다. `get_watchlists`, `get_stock_snapshot`, `get_stock_latest_trade`, `get_asset`도 cancelled였다. 첫 Alpaca core blocking gate는 `alpaca_account`다.
+- Universe: 62개 metadata universe와 `SPY`/`QQQ`를 포함했다. Watchlist는 Alpaca cancellation 때문에 추가하지 못했다. Pre-MCP shortlist는 `NOK`, `SMH`, `FCX`, `NVDA`, `AAPL`, `INTC`, `MU`, `LLY`, `AVGO`, `PLTR`, final candidates는 `NOK`, `SMH`, `FCX`.
+- Candidate quote/spread: `NOK`, `SMH`, `FCX`, `NVDA`, `AAPL`, `INTC`는 fresh quote와 spread gate를 통과했다. `MU`, `LLY`, `AVGO`, `PLTR`는 spread fail이다.
+- SEC EDGAR는 local CIK cache로 `NOK -> 0000924613` 확인 후 company info/recent filings pass. Yahoo Finance는 NOK news/recommendations pass. FRED는 scheduler preflight `2026-05-27-0159-hourly-autopilot-research-mcp-preflight.json`의 `get_macro_snapshot` pass를 usable evidence로 사용했다.
+- Alpha Vantage는 `TOOL_LIST` -> `TOOL_GET("PING")` -> `TOOL_CALL("PING", {})` pass 후 `TOOL_GET("NEWS_SENTIMENT")` 직후 첫 candidate `TOOL_CALL`이 cancelled되어 `gap_category=cancelled`로 기록하고 retry를 중단했다. Firecrawl은 Codex tool catalog에 registered MCP tool이 노출되지 않아 `gap_category=wrapper_error`로 기록했다.
+- 검증: universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
+- submitted orders: 없음. skipped orders: 모든 buy/sell 후보. 이유는 Alpaca account/order/position/asset core gate 미확정 및 MCP strict fail.
+- 리포트: `wiki/current-runs/daily/2026-05-27-0159-hourly-autopilot.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-27-0159-hourly-autopilot-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-27-0159-hourly-autopilot.json`.
+- order plan: `wiki/trade-ledger/orders/2026-05-27-0159-hourly-autopilot.json`.
+- review due markers: LLY/FCX 및 2026-05-22 체결분은 계속 `회고 대기`; 이번 run 신규 fill 없음.
