@@ -1,0 +1,99 @@
+{
+  "run_id": "2026-05-27-0251-hourly-autopilot",
+  "schema_version": "1.2",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:bdce1db89dc526840059853d7273be6a782f3be109f4ff6231b1f02d1b362502",
+  "created_at": "2026-05-26T17:56:10Z",
+  "mode": "submit",
+  "paper": true,
+  "market": {
+    "is_open": true,
+    "checked_at": "2026-05-26T17:58:37Z",
+    "next_open": "2026-05-27T13:30:00Z",
+    "next_close": "2026-05-26T20:00:00Z"
+  },
+  "account": {
+    "portfolio_value": 101662.85,
+    "cash": 42657.04,
+    "buying_power": 137687.35,
+    "currency": "USD",
+    "daily_realized_loss": 0
+  },
+  "positions": [
+    {"symbol": "AMD", "asset_type": "stock", "qty": 14, "market_value": 6961.92, "avg_entry_price": 462.73, "current_price": 497.28, "theme": "ai_semiconductor", "factor": "ai_semiconductor", "volatility_bucket": "high", "speculative_flag": false, "liquidity_bucket": "mega", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "AVGO", "asset_type": "stock", "qty": 15, "market_value": 6346.275, "avg_entry_price": 410.73, "current_price": 423.085, "theme": "ai_semiconductor", "factor": "ai_semiconductor", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "mega", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "ETN", "asset_type": "stock", "qty": 15, "market_value": 6082.95, "avg_entry_price": 387.9, "current_price": 405.53, "theme": "power_infrastructure", "factor": "industrial_power", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "electrification_infrastructure"},
+    {"symbol": "FCX", "asset_type": "stock", "qty": 1, "market_value": 64.0575, "avg_entry_price": 63.94, "current_price": 64.0575, "theme": "materials_mining", "factor": "commodity_cyclical", "volatility_bucket": "high", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "energy_commodity"},
+    {"symbol": "IONQ", "asset_type": "stock", "qty": 45, "market_value": 2889.45, "avg_entry_price": 63.48, "current_price": 64.21, "theme": "quantum_speculative", "factor": "speculative_growth", "volatility_bucket": "high", "speculative_flag": true, "liquidity_bucket": "medium", "source_confidence": "medium", "correlated_cluster": "quantum_speculative"},
+    {"symbol": "LLY", "asset_type": "stock", "qty": 1, "market_value": 1076.87, "avg_entry_price": 1079.38, "current_price": 1076.87, "theme": "healthcare_pharma", "factor": "healthcare_growth", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "mega", "source_confidence": "high", "correlated_cluster": "healthcare"},
+    {"symbol": "LRCX", "asset_type": "stock", "qty": 20, "market_value": 6410.2, "avg_entry_price": 307.91, "current_price": 320.51, "theme": "semicap_equipment", "factor": "ai_semiconductor", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "NOK", "asset_type": "stock", "qty": 401, "market_value": 6632.54, "avg_entry_price": 15.043641, "current_price": 16.54, "theme": "networking", "factor": "international_adr", "volatility_bucket": "high", "speculative_flag": false, "liquidity_bucket": "medium", "source_confidence": "medium", "correlated_cluster": "communications_infrastructure"},
+    {"symbol": "NVDA", "asset_type": "stock", "qty": 36, "market_value": 7698.2436, "avg_entry_price": 215.275556, "current_price": 213.8401, "theme": "ai_semiconductor", "factor": "ai_semiconductor", "volatility_bucket": "high", "speculative_flag": false, "liquidity_bucket": "mega", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "RGTI", "asset_type": "stock", "qty": 120, "market_value": 2986.8, "avg_entry_price": 25.569583, "current_price": 24.89, "theme": "quantum_speculative", "factor": "speculative_growth", "volatility_bucket": "high", "speculative_flag": true, "liquidity_bucket": "medium", "source_confidence": "medium", "correlated_cluster": "quantum_speculative"},
+    {"symbol": "TSM", "asset_type": "stock", "qty": 15, "market_value": 6180.375, "avg_entry_price": 405.2, "current_price": 412.025, "theme": "ai_semiconductor", "factor": "ai_semiconductor", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "UNH", "asset_type": "stock", "qty": 15, "market_value": 5675.325, "avg_entry_price": 386.56, "current_price": 378.355, "theme": "healthcare", "factor": "defensive_healthcare", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "healthcare"}
+  ],
+  "open_orders": [],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.01655,
+    "weekly_turnover_ratio": 0.01655,
+    "stop_triggered_orders_today": 0,
+    "risk_recomputed_after_partial_fill": true
+  },
+  "orders": [
+    {
+      "symbol": "AAPL",
+      "asset_type": "stock",
+      "asset_status": "active",
+      "asset_tradable": true,
+      "side": "buy",
+      "order_type": "limit",
+      "time_in_force": "day",
+      "qty": 1,
+      "limit_price": 309.46,
+      "reference_price": 309.445,
+      "quote_age_minutes": 2.6,
+      "quote_captured_at": "2026-05-26T17:56:03.094445Z",
+      "asset_checked_at": "2026-05-26T17:51:26Z",
+      "theme": "mega_cap_tech",
+      "factor": "growth_quality",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high",
+      "correlated_cluster": "mega_cap_tech",
+      "strategy_id": "hourly-paper-validation",
+      "strategy_version": "recommendation-policy-v1.7",
+      "policy_status": "auto_eligible_paper",
+      "expected_excess_return_20d_pct": 1.8,
+      "expected_adverse_move_20d_pct": -5.5,
+      "confidence_score": 0.62,
+      "sizing_basis": "1-share validation buy; notional is below the 2% per-order validation cap, below the 6% daily validation cap including LLY/FCX/NOK/NVDA same-day validation buys, and remains below ticker/theme/factor/cluster/cash limits",
+      "entry_style": "single",
+      "max_additional_entry_count": 0,
+      "liquidity": {
+        "bid": 309.43,
+        "ask": 309.46,
+        "spread_pct": 0.0097,
+        "avg_daily_dollar_volume": 5000000000,
+        "quote_source": "alpaca",
+        "measured_at": "2026-05-26T17:56:03.094445Z"
+      },
+      "client_order_id": "hourly-20260527-0251-aapl-buy-1",
+      "decision_id": "2026-05-27-0251-hourly-autopilot-aapl-buy-validation",
+      "review_horizons": ["1D", "5D", "20D"],
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0251-hourly-autopilot-sources.md",
+        "wiki/evidence-store/sources/2026-05-27-0251-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-05-27-0251-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "rationale": "AAPL passed paper-mode, market-open, Alpaca core preflight, active/tradable US equity asset validation, no open order, no same-day duplicate buy, refreshed IEX quote freshness, 0.0097% spread, SEC company/recent filing evidence after local CIK fallback, Yahoo Finance news/recommendation confirmation, and passing FRED macro preflight. The thesis is a small paper validation entry in mega-cap quality/agentic AI optionality rather than another AI semiconductor add, which improves cluster diversification after same-day LLY/FCX/NOK/NVDA validation fills. Size is deliberately one share to collect 1D/5D/20D evidence without breaching ticker, cash, invested, or cluster limits."
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-27-0251-hourly-autopilot-sources.md",
+    "wiki/evidence-store/sources/2026-05-27-0251-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-27-0251-hourly-autopilot-research-mcp-preflight.json"
+  ],
+  "manifest_path": "wiki/evidence-store/run-manifests/2026-05-27-0251-hourly-autopilot.json"
+}

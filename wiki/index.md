@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-27 02:26 KST hourly autopilot NVDA paper validation fill 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-27 02:51 KST hourly autopilot AAPL open order 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -51,6 +51,7 @@
 - [[2026-05-27-0159-hourly-autopilot]] - hourly paper autopilot 실행. Market clock/quote/research 일부는 통과했지만 Alpaca account/order/position/asset core gate와 MCP strict 실패로 주문 없음.
 - [[2026-05-27-0211-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 NOK 1주 paper validation buy 체결.
 - [[2026-05-27-0226-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 NVDA 1주 paper validation buy 체결.
+- [[2026-05-27-0251-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 AAPL 1주 paper validation buy 제출, open `new`.
 
 ## Research Notes
 
@@ -123,6 +124,7 @@
 - `wiki/trade-ledger/orders/2026-05-27-0159-hourly-autopilot.json` - 2026-05-27 01:59 KST hourly autopilot empty-order plan, universe/risk PASS, Alpaca core/MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-27-0211-hourly-autopilot.json` - 2026-05-27 02:11 KST hourly autopilot NOK 1주 paper validation buy plan, universe/MCP/risk PASS, order filled.
 - `wiki/trade-ledger/orders/2026-05-27-0226-hourly-autopilot.json` - 2026-05-27 02:26 KST hourly autopilot NVDA 1주 paper validation buy plan, universe/MCP/risk PASS, order filled.
+- `wiki/trade-ledger/orders/2026-05-27-0251-hourly-autopilot.json` - 2026-05-27 02:51 KST hourly autopilot AAPL 1주 paper validation buy plan, universe/MCP/risk PASS, order open `new`.
 - 2026-05-22 paper 주문 체결분은 다음 회고 대상이다.
 
 ## Policy Book
