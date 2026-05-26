@@ -1047,3 +1047,51 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - run manifest: `wiki/evidence-store/run-manifests/2026-05-27-0159-hourly-autopilot.json`.
 - order plan: `wiki/trade-ledger/orders/2026-05-27-0159-hourly-autopilot.json`.
 - review due markers: LLY/FCX 및 2026-05-22 체결분은 계속 `회고 대기`; 이번 run 신규 fill 없음.
+
+## [2026-05-27 02:24 Asia/Seoul] hourly-autopilot | paper validation NOK 주문 체결
+
+- run id: `2026-05-27-0211-hourly-autopilot`.
+- 사용자 승인에 따라 `harness/workflows/hourly-autopilot.md`를 실행했다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고, API key 값은 출력하거나 기록하지 않았다.
+- Alpaca MCP core `get_clock`, `get_account_info`, `get_orders`, `get_all_positions`, `get_account_activities`, `get_watchlists`, 후보 `get_stock_latest_quote`, `get_asset`, `get_news`, `get_stock_bars`를 사용했다.
+- Market clock: `2026-05-26T13:20:55.139534731-04:00` 기준 open, next close `2026-05-26T16:00:00-04:00`.
+- Account before order: portfolio value 101680.85 USD, cash 42887.26 USD, buying power 137946.11 USD, open US equity orders 0건, same-day fills 2건 LLY/FCX buy, current positions 12개.
+- Universe: 62개 metadata universe와 `SPY`/`QQQ`를 스크리닝했다. Pre-MCP shortlist는 `NOK`, `SMH`, `FCX`, `NVDA`, `AAPL`, `AMD`, `MU`, `INTC`, `LLY`, `PLTR`, final candidates는 `NOK`, `SMH`, `NVDA`.
+- Candidate quote/spread: pre-submit NOK quote bid 16.50, ask 16.51, spread 0.0606%, quote time `2026-05-26T17:20:40.787261Z`.
+- SEC EDGAR는 local CIK cache로 `NOK -> 0000924613` 확인 후 company info/recent filings pass. Alpha Vantage는 `TOOL_LIST` -> `TOOL_GET("PING")` -> `TOOL_CALL("PING", {})` -> `TOOL_GET("NEWS_SENTIMENT")` -> `TOOL_CALL("NEWS_SENTIMENT")` pass. FRED는 scheduler preflight `2026-05-27-0211-hourly-autopilot-research-mcp-preflight.json`의 `get_macro_snapshot` pass를 usable evidence로 사용했다.
+- Firecrawl은 Codex tool catalog에 registered MCP tool이 노출되지 않아 `gap_category=wrapper_error`로 기록했고 shell/curl/local wrapper는 호출하지 않았다. Yahoo Finance registered MCP call은 wrapper cancelled로 `gap_category=cancelled` 기록했다.
+- First blocking gate: 없음. 검증: universe strict PASS, MCP strict PASS, risk-check PASS.
+- 제출 전 gate summary: paper mode, market clock, order plan, universe/MCP/risk validator, quote freshness/spread, order shape, duplicate/open-order check, source refs를 plain text로 기록했다.
+- 제출: NOK 1주 day limit buy, limit 16.51, client_order_id `hourly-20260527-0211-nok-buy-1`.
+- Post-trade: Alpaca order id `63e51a21-cbff-429c-82dc-9651d9756426`, status filled, filled_qty 1, filled_avg_price 16.50, filled_at `2026-05-26T17:21:49.961677153Z`. `get_all_positions`에서 NOK 401주 포지션 확인.
+- Reconciliation gap: `get_order_by_client_id`와 post-fill `get_account_info`는 wrapper cancelled였고, `get_orders`, `get_account_activities`, `get_all_positions`로 체결/포지션을 확인했다.
+- submitted orders: `NOK` 1주. skipped orders: `SMH`, `NVDA`, `AMD`, `MU`, `INTC`는 cluster/slot 우선순위, `FCX`/`LLY`는 같은 거래일 buy duplicate 회피.
+- 리포트: `wiki/current-runs/daily/2026-05-27-0211-hourly-autopilot.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-27-0211-hourly-autopilot-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-27-0211-hourly-autopilot.json`.
+- order plan: `wiki/trade-ledger/orders/2026-05-27-0211-hourly-autopilot.json`.
+- review due markers: 신규 NOK fill은 1D/5D/20D `회고 대기`; LLY/FCX 및 2026-05-22 체결분도 계속 `회고 대기`.
+
+## [2026-05-27 02:35 Asia/Seoul] hourly-autopilot | paper validation NVDA 주문 체결
+
+- run id: `2026-05-27-0226-hourly-autopilot`.
+- 사용자 승인에 따라 `harness/workflows/hourly-autopilot.md`를 실행했다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고, API key 값은 출력하거나 기록하지 않았다.
+- Scheduler-owned Alpaca core preflight `wiki/evidence-store/sources/2026-05-27-0226-hourly-autopilot-alpaca-core-preflight.json`을 먼저 읽었다. Hard gate pass, market open, account/positions/open orders/fills/watchlists/asset/quotes/snapshots/latest trades 모두 pass로 기록되어 Alpaca core evidence로 사용했다.
+- Market clock: `2026-05-26T13:26:42.969065887-04:00` 기준 open, next close `2026-05-26T16:00:00-04:00`.
+- Account before order: portfolio value 101643.29 USD, cash 42870.76 USD, buying power 137899.56 USD, open US equity orders 0건, same-day fills 3건 LLY/FCX/NOK buy, current positions 12개.
+- Universe: 62개 metadata universe와 `SPY`/`QQQ`를 스크리닝했다. Pre-MCP shortlist는 `NVDA`, `SMH`, `AAPL`, `INTC`, `MU`, `AMD`, `PLTR`, `FCX`, `NOK`, `LLY`, final candidates는 `NVDA`, `SMH`, `AAPL`.
+- Candidate quote/spread: `NVDA` bid 213.48, ask 213.72, spread 0.1124%, quote time `2026-05-26T17:27:05.819127537Z`. `MU`는 spread 0.846%로 skip했고, `FCX`/`NOK`/`LLY`는 같은 거래일 buy duplicate 회피로 skip했다.
+- SEC EDGAR는 local CIK cache로 `NVDA -> 0001045810` 확인 후 company info/recent filings pass. Yahoo Finance는 NVDA news/recommendations pass. FRED는 scheduler preflight `2026-05-27-0226-hourly-autopilot-research-mcp-preflight.json`의 `get_macro_snapshot` pass를 usable evidence로 사용했다.
+- Alpha Vantage는 `TOOL_LIST` pass, `TOOL_GET("PING")` 첫 시도 cancelled 후 retry pass, `TOOL_CALL("PING", {})` cancelled로 health check가 막혀 `gap_category=cancelled`로 기록하고 후보 데이터 호출을 중단했다. Firecrawl은 Codex tool catalog에 registered MCP tool이 노출되지 않아 `gap_category=wrapper_error`로 기록했고 shell/curl/local wrapper는 호출하지 않았다.
+- First blocking gate: 없음. 검증: universe strict PASS, MCP strict PASS, risk-check PASS.
+- 제출 전 gate summary: paper mode, market clock, order plan, universe/MCP/risk validator, quote freshness/spread, order shape, duplicate/open-order check, source refs를 plain text로 기록했다.
+- 제출: NVDA 1주 day limit buy, limit 213.72, client_order_id `hourly-20260527-0226-nvda-buy-1`.
+- Post-trade: Alpaca order id `e4c49769-2341-404e-8ee9-15a20809bdfd`, status filled, filled_qty 1, filled_avg_price 213.72, filled_at `2026-05-26T17:34:00.662457Z`. `get_orders(status=open)`은 open orders 0건을 반환했다.
+- Reconciliation gap: `get_order_by_client_id`, post-fill `get_all_positions`, post-fill `get_account_activities`는 wrapper cancelled였고, `get_orders(status=all, symbols=NVDA)`로 같은 client_order_id/order_id의 fill을 확인했다.
+- submitted orders: `NVDA` 1주. skipped orders: `SMH`, `AAPL`, `INTC`는 recheck, `MU`는 spread fail, `FCX`/`NOK`/`LLY`는 same-day duplicate buy 회피.
+- 리포트: `wiki/current-runs/daily/2026-05-27-0226-hourly-autopilot.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-27-0226-hourly-autopilot-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-27-0226-hourly-autopilot.json`.
+- order plan: `wiki/trade-ledger/orders/2026-05-27-0226-hourly-autopilot.json`.
+- review due markers: 신규 NVDA fill은 1D/5D/20D `회고 대기`; LLY/FCX/NOK 및 2026-05-22 체결분도 계속 `회고 대기`.

@@ -1,0 +1,189 @@
+{
+  "run_id": "2026-05-27-0211-hourly-autopilot",
+  "mode": "submit",
+  "paper": true,
+  "created_at": "2026-05-26T17:17:03Z",
+  "git_commit": "not_checked_in_workflow",
+  "prompt_file_sha": "sha256:5f324d8d86ac55c0431d4f64a2a768c6a4ab86af3cbd825ad488ce6d387c7340",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:bdce1db89dc526840059853d7273be6a782f3be109f4ff6231b1f02d1b362502",
+  "schema_version": "1.3",
+  "mcp_servers_used": ["alpaca", "sec-edgar", "alpha-vantage", "fred", "firecrawl", "yahoo-finance"],
+  "mcp_failures": [
+    {"server": "firecrawl", "reason": "No registered Firecrawl MCP tool was exposed in the Codex tool catalog; shell/curl/local wrapper retry was prohibited by the workflow."},
+    {"server": "yahoo-finance", "reason": "Registered Yahoo Finance MCP get_yahoo_finance_news(NOK) was attempted and cancelled by the wrapper."}
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T17:15:20Z",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0211-hourly-autopilot-sources.md"],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T17:14:50Z",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0211-hourly-autopilot-sources.md"],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T17:16:10Z",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0211-hourly-autopilot-sources.md"],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T17:11:08Z",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0211-hourly-autopilot-research-mcp-preflight.json"],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T17:14:20Z",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0211-hourly-autopilot-sources.md"],
+      "gap_reason": "Registered Firecrawl MCP tool was not exposed in the Codex tool catalog; shell/curl/local wrapper retry was prohibited.",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T17:15:00Z",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0211-hourly-autopilot-sources.md"],
+      "gap_reason": "Registered Yahoo Finance MCP get_yahoo_finance_news(NOK) was cancelled by wrapper safety logic.",
+      "gap_category": "cancelled",
+      "retry_count": 0
+    }
+  ],
+  "mcp_gate_policy": {
+    "core_servers": ["alpaca"],
+    "research_servers": ["sec-edgar", "alpha-vantage", "fred", "firecrawl", "yahoo-finance"],
+    "min_research_confirmations": 3,
+    "all_research_must_be_attempted": true,
+    "provider_gap_blocks_order": false
+  },
+  "recommendation_actionability": "submit_candidate",
+  "first_blocking_gate": "",
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + Alpaca watchlists + benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": ["SPY", "QQQ"],
+    "screening_method": "broad_universe_price_liquidity_screen_then_all_mcp_shortlist_validation",
+    "pre_mcp_shortlist": ["NOK", "SMH", "FCX", "NVDA", "AAPL", "AMD", "MU", "INTC", "LLY", "PLTR"],
+    "final_candidates": ["NOK", "SMH", "NVDA"],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "data_cutoff_time": "2026-05-26T17:20:55Z",
+  "market_clock_checked_at": "2026-05-26T13:20:55.139534731-04:00",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-27-0211-hourly-autopilot-sources.md",
+    "wiki/evidence-store/sources/2026-05-27-0211-hourly-autopilot-research-mcp-preflight.json"
+  ],
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-27-0211-hourly-autopilot.json",
+  "risk_check_result": {
+    "status": "PASS",
+    "warnings": [],
+    "summary": {
+      "buy_notional": 16.51,
+      "max_cluster_value": 45756.38250000001,
+      "max_factor_value": 50840.425,
+      "max_invested": 81344.68000000001,
+      "max_speculative_value": 12201.702000000001,
+      "max_theme_value": 35588.2975,
+      "max_ticker_value": 15252.1275,
+      "min_cash": 20336.170000000002,
+      "policy_version": "medium-risk-v1.1",
+      "post_cash": 42870.75,
+      "post_invested": 58814.250000000015,
+      "sell_notional": 0.0,
+      "speculative_value": 5897.55
+    }
+  },
+  "validation_results": {
+    "universe_coverage_strict": {"status": "PASS"},
+    "mcp_coverage_strict": {"status": "PASS"},
+    "risk_policy": {"status": "PASS", "warnings": []}
+  },
+  "data_manifest": {
+    "source_feed": "alpaca_iex",
+    "bar_interval": "1Day + quote/news",
+    "adjusted_prices": true,
+    "timezone": "America/New_York",
+    "trading_calendar": "nyse",
+    "symbols_requested": 62,
+    "symbols_loaded": 62,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 0,
+    "corporate_actions_checked": true,
+    "survivorship_bias_controlled": false,
+    "raw_input_file": "wiki/evidence-store/sources/2026-05-27-0211-hourly-autopilot-sources.md"
+  },
+  "submitted_order_ids": ["63e51a21-cbff-429c-82dc-9651d9756426"],
+  "execution_result": {
+    "orders_submitted": 1,
+    "orders_filled": 1,
+    "submitted": [
+      {
+        "symbol": "NOK",
+        "side": "buy",
+        "qty": 1,
+        "limit_price": 16.51,
+        "filled_avg_price": 16.5,
+        "status": "filled",
+        "order_id": "63e51a21-cbff-429c-82dc-9651d9756426",
+        "client_order_id": "hourly-20260527-0211-nok-buy-1",
+        "filled_at": "2026-05-26T17:21:49.961677153Z"
+      }
+    ],
+    "reconciliation_gaps": [
+      {
+        "check": "get_order_by_client_id",
+        "gap_category": "cancelled",
+        "reason": "wrapper cancellation; get_orders by symbol and fill activities confirmed the same client_order_id/order_id"
+      },
+      {
+        "check": "post_fill_get_account_info",
+        "gap_category": "cancelled",
+        "reason": "wrapper cancellation after submit; positions/order/fill reconciliation was usable"
+      }
+    ]
+  },
+  "post_trade_check_path": "wiki/trade-ledger/positions/current.md"
+}
