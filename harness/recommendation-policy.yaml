@@ -1,6 +1,6 @@
-policy_id: recommendation-policy-v1.2
-updated_at: "2026-05-25T21:56:00+09:00"
-policy_version: v1.2
+policy_id: recommendation-policy-v1.3
+updated_at: "2026-05-26T16:12:00+09:00"
+policy_version: v1.3
 strategy_status:
   long_term_quality_momentum_v1:
     status: active_dry_run_candidate
@@ -168,6 +168,18 @@ source_confidence:
     - confidence_score
 universe_policy:
   allow_expanded_universe: true
+  default_scope: expanded_metadata_universe
+  minimum_screened_symbols: 50
+  required_benchmarks:
+    - SPY
+    - QQQ
+  require_two_stage_recommendation:
+    stage_1: broad_universe_price_liquidity_screen
+    stage_2: all_mcp_shortlist_validation
+  max_pre_mcp_shortlist_size: 10
+  min_pre_mcp_shortlist_size: 5
+  actionable_requires_universe_gate: true
+  limited_scope_requires_user_instruction: true
   require:
     - theme_cap
     - factor_cap
@@ -177,11 +189,15 @@ universe_policy:
     - max_spread_filter
     - dual_benchmark_relative_strength
     - missing_theme_metadata_reject
+    - broad_universe_screen
+    - universe_coverage_manifest
+    - universe_coverage_gate_pass
   reject:
     - low_source_spike
     - low_float_extreme_volatility
     - stale_quote
     - missing_theme_metadata
+    - narrow_universe_without_user_scope
 alpha_signal_layer:
   - ret20
   - ret40

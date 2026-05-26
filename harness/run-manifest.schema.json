@@ -16,6 +16,7 @@
     "schema_version",
     "mcp_servers_used",
     "mcp_failures",
+    "mcp_coverage",
     "data_cutoff_time",
     "market_clock_checked_at",
     "source_refs",
@@ -57,7 +58,7 @@
     },
     "schema_version": {
       "type": "string",
-      "const": "1.1"
+      "enum": ["1.1", "1.2", "1.3"]
     },
     "mcp_servers_used": {
       "type": "array",
@@ -78,6 +79,125 @@
           "reason": {
             "type": "string"
           }
+        }
+      }
+    },
+    "mcp_coverage": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "server",
+          "required",
+          "queried",
+          "used_in_score",
+          "outcome",
+          "checked_at",
+          "source_refs",
+          "gap_reason"
+        ],
+        "properties": {
+          "server": {
+            "type": "string",
+            "enum": ["alpaca", "sec-edgar", "alpha-vantage", "fred", "firecrawl", "yahoo-finance"]
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "queried": {
+            "type": "boolean"
+          },
+          "used_in_score": {
+            "type": "boolean"
+          },
+          "outcome": {
+            "type": "string",
+            "enum": ["pass", "usable", "ok", "gap", "failed", "unavailable", "not_applicable"]
+          },
+          "checked_at": {
+            "type": "string"
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "gap_reason": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "recommendation_actionability": {
+      "type": "string",
+      "enum": ["actionable", "order_candidate", "submit_candidate", "non_actionable_research", "blocked"]
+    },
+    "universe_coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "universe_source",
+        "scope_limited_by_user",
+        "symbols_considered",
+        "symbols_loaded",
+        "minimum_required_symbols",
+        "benchmarks",
+        "screening_method",
+        "pre_mcp_shortlist",
+        "final_candidates",
+        "passed",
+        "gap_reason"
+      ],
+      "properties": {
+        "universe_source": {
+          "type": "string",
+          "minLength": 1
+        },
+        "scope_limited_by_user": {
+          "type": "boolean"
+        },
+        "symbols_considered": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "symbols_loaded": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "minimum_required_symbols": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "benchmarks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "screening_method": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pre_mcp_shortlist": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "final_candidates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "passed": {
+          "type": "boolean"
+        },
+        "gap_reason": {
+          "type": "string"
         }
       }
     },

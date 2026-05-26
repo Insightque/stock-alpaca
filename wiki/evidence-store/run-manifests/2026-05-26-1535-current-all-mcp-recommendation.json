@@ -1,0 +1,147 @@
+{
+  "run_id": "2026-05-26-1535-current-all-mcp-recommendation",
+  "mode": "dry_run",
+  "paper": true,
+  "created_at": "2026-05-26T06:35:00Z",
+  "git_commit": "dirty",
+  "prompt_file_sha": "manual-telegram-request",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:current-policy-dirty",
+  "schema_version": "1.2",
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T06:35:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-current-alpaca-account-news.json",
+        "wiki/evidence-store/sources/2026-05-26-current-recommendation-bars.json"
+      ],
+      "gap_reason": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T06:35:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-current-sec-edgar.json"
+      ],
+      "gap_reason": ""
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T06:35:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-current-alpha-vantage.json"
+      ],
+      "gap_reason": ""
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T06:35:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-current-fred-macro.json"
+      ],
+      "gap_reason": ""
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T06:35:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-current-firecrawl-ir.json"
+      ],
+      "gap_reason": ""
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T06:35:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-current-yahoo-finance.json"
+      ],
+      "gap_reason": ""
+    }
+  ],
+  "recommendation_actionability": "non_actionable_research",
+  "data_cutoff_time": "2026-05-26T06:35:00Z",
+  "market_clock_checked_at": "2026-05-26T06:35:00Z",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-26-current-alpaca-account-news.json",
+    "wiki/evidence-store/sources/2026-05-26-current-recommendation-bars.json",
+    "wiki/evidence-store/sources/2026-05-26-current-sec-edgar.json",
+    "wiki/evidence-store/sources/2026-05-26-current-alpha-vantage.json",
+    "wiki/evidence-store/sources/2026-05-26-current-fred-macro.json",
+    "wiki/evidence-store/sources/2026-05-26-current-firecrawl-ir.json",
+    "wiki/evidence-store/sources/2026-05-26-current-yahoo-finance.json"
+  ],
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-26-1535-current-all-mcp-recommendation.json",
+  "risk_check_result": {
+    "errors": [],
+    "path": "wiki/trade-ledger/orders/2026-05-26-1535-current-all-mcp-recommendation.json",
+    "status": "PASS",
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 45625.194,
+      "max_factor_value": 50694.66,
+      "max_invested": 81111.456,
+      "max_speculative_value": 12166.7184,
+      "max_theme_value": 35486.262,
+      "max_ticker_value": 15208.398000000001,
+      "min_cash": 20277.864,
+      "policy_version": "medium-risk-v1.1",
+      "post_cash": 44030.58,
+      "post_invested": 57358.45999999999,
+      "sell_notional": 0.0,
+      "speculative_value": 6148.65
+    },
+    "warnings": [
+      "orders is empty"
+    ]
+  },
+  "data_manifest": {
+    "source_feed": "alpaca_iex_with_all_research_mcp_coverage",
+    "bar_interval": "1Day",
+    "adjusted_prices": true,
+    "timezone": "America/New_York",
+    "trading_calendar": "nyse",
+    "symbols_requested": 13,
+    "symbols_loaded": 13,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 6,
+    "corporate_actions_checked": true,
+    "survivorship_bias_controlled": false,
+    "raw_input_file": "wiki/evidence-store/sources/2026-05-26-current-recommendation-bars.json"
+  },
+  "submitted_order_ids": [],
+  "post_trade_check_path": ""
+}

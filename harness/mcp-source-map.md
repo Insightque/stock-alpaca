@@ -18,6 +18,7 @@
 ## 에이전트별 사용 규칙
 
 - Market Data Agent는 Alpaca MCP를 기본 가격/뉴스 원천으로 사용한다.
+- Daily/current recommendation에서 빠른 판단을 위해 보강 MCP를 생략하지 않는다. 최종 후보 순위와 주문 후보를 만들기 전에 Alpaca, SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance coverage를 모두 기록한다.
 - Web Research Agent는 아래 순서로 이벤트 보강을 수행한다.
   1. Alpaca `get_news`, `get_corporate_action_announcements`, `get_calendar`.
   2. `sec-edgar`로 최근 10-K, 10-Q, 8-K, Form 4, 주요 재무제표 확인.
@@ -28,6 +29,8 @@
 - Historical Decision Agent는 기준 시점 이후 정보가 섞이지 않게 각 MCP 조회 기간을 기준 시점 이전으로 제한한다.
 - Historical Review Agent는 미래 가격과 이벤트를 회고 문서에서만 사용한다. 원래 추천 문서는 수정하지 않는다.
 - Portfolio/Risk Agent와 Executor Agent는 외부 리서치 MCP를 주문 제출 근거 보강에만 사용하고, 실제 주문은 Alpaca MCP와 risk gate만 통과한 뒤 수행한다.
+- `wiki/evidence-store/run-manifests/`의 각 recommendation manifest는 `mcp_coverage`를 포함해야 한다. Actionable dry-run 또는 submit-mode에서는 `scripts/check-mcp-coverage.py --strict <manifest>`가 PASS하기 전까지 주문 후보를 만들거나 제출하지 않는다.
+- MCP가 실패하거나 0건을 반환하면 긍정 근거로 사용하지 않는다. `gap_reason`을 남기고 관련 ticker의 source confidence를 낮추거나 recommendation을 `non_actionable_research`로 유지한다.
 
 ## 키 관리
 
@@ -52,6 +55,19 @@
 - 원문 URL 또는 filing accession/source identifier.
 - 에이전트 판단에 사용한 요약.
 - 데이터 공백과 실패한 MCP 호출.
+
+## Manifest coverage gate
+
+각 recommendation run은 아래 MCP별 coverage row를 남긴다.
+
+- `server`: `alpaca`, `sec-edgar`, `alpha-vantage`, `fred`, `firecrawl`, `yahoo-finance`.
+- `queried`: 실제 호출 여부.
+- `used_in_score`: 점수, confidence, risk, allocation 판단에 반영했는지.
+- `outcome`: `pass`, `usable`, `ok`, `gap`, `failed`, `unavailable`, `not_applicable`.
+- `source_refs`: raw source note 또는 캡처 파일.
+- `gap_reason`: 호출 실패, provider 0건, key/runtime 공백, 기준시점 누수 위험 등.
+
+Actionable 추천은 모든 required MCP가 `queried=true`, `outcome=pass|usable|ok`, source ref 1개 이상이어야 한다. Submit mode에서는 모든 required MCP가 `used_in_score=true`여야 한다.
 
 ## 우선순위
 

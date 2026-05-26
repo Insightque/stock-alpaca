@@ -1,0 +1,179 @@
+{
+  "run_id": "2026-05-26-1620-expanded-universe-recommendation",
+  "mode": "dry_run",
+  "paper": true,
+  "created_at": "2026-05-26T07:20:00Z",
+  "git_commit": "dirty",
+  "prompt_file_sha": "manual-telegram-request",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:recommendation-policy-v1.3-dirty",
+  "schema_version": "1.3",
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [
+    {
+      "server": "firecrawl",
+      "reason": "Expanded shortlist Firecrawl scrape failed; actionability blocked until successful IR capture for final candidates."
+    }
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T07:20:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-current-alpaca-account-news.json",
+        "wiki/evidence-store/sources/2026-05-26-expanded-universe-bars.json",
+        "wiki/evidence-store/sources/2026-05-26-expanded-universe-screen.json"
+      ],
+      "gap_reason": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T07:20:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-expanded-shortlist-all-mcp.json"
+      ],
+      "gap_reason": ""
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T07:20:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-expanded-shortlist-all-mcp.json"
+      ],
+      "gap_reason": ""
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T07:20:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-current-fred-macro.json"
+      ],
+      "gap_reason": ""
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T07:20:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-expanded-shortlist-all-mcp.json",
+        "wiki/evidence-store/sources/2026-05-26-current-firecrawl-ir.json"
+      ],
+      "gap_reason": "Expanded shortlist Firecrawl calls returned TaskGroup errors; only earlier same-day IR capture is usable for LRCX/AMD/UNH, not the full expanded shortlist."
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T07:20:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-expanded-shortlist-all-mcp.json"
+      ],
+      "gap_reason": ""
+    }
+  ],
+  "recommendation_actionability": "non_actionable_research",
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + Alpaca watchlists + current holdings + user requested tickers",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_universe_price_liquidity_screen_then_all_mcp_shortlist_validation",
+    "pre_mcp_shortlist": [
+      "LLY",
+      "LRCX",
+      "AAPL",
+      "SMH",
+      "ASML"
+    ],
+    "final_candidates": [
+      "LRCX",
+      "LLY",
+      "ASML"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "data_cutoff_time": "2026-05-26T07:20:00Z",
+  "market_clock_checked_at": "2026-05-26T07:20:00Z",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-26-current-alpaca-account-news.json",
+    "wiki/evidence-store/sources/2026-05-26-expanded-universe-bars.json",
+    "wiki/evidence-store/sources/2026-05-26-expanded-universe-screen.json",
+    "wiki/evidence-store/sources/2026-05-26-expanded-shortlist-all-mcp.json",
+    "wiki/evidence-store/sources/2026-05-26-current-fred-macro.json",
+    "wiki/evidence-store/sources/2026-05-26-current-firecrawl-ir.json"
+  ],
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-26-1620-expanded-universe-recommendation.json",
+  "risk_check_result": {
+    "errors": [],
+    "path": "wiki/trade-ledger/orders/2026-05-26-1620-expanded-universe-recommendation.json",
+    "status": "PASS",
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 45625.194,
+      "max_factor_value": 50694.66,
+      "max_invested": 81111.456,
+      "max_speculative_value": 12166.7184,
+      "max_theme_value": 35486.262,
+      "max_ticker_value": 15208.398000000001,
+      "min_cash": 20277.864,
+      "policy_version": "medium-risk-v1.1",
+      "post_cash": 44030.58,
+      "post_invested": 57358.45999999999,
+      "sell_notional": 0.0,
+      "speculative_value": 6148.65
+    },
+    "warnings": [
+      "orders is empty"
+    ]
+  },
+  "data_manifest": {
+    "source_feed": "alpaca_iex_with_expanded_universe_and_research_mcp",
+    "bar_interval": "1Day",
+    "adjusted_prices": true,
+    "timezone": "America/New_York",
+    "trading_calendar": "nyse",
+    "symbols_requested": 62,
+    "symbols_loaded": 62,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 6,
+    "corporate_actions_checked": true,
+    "survivorship_bias_controlled": false,
+    "raw_input_file": "wiki/evidence-store/sources/2026-05-26-expanded-universe-bars.json"
+  },
+  "submitted_order_ids": [],
+  "post_trade_check_path": ""
+}

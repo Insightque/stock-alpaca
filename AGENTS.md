@@ -15,6 +15,8 @@ Additional research MCPs may be available for SEC filings, earnings calendars, c
 - Automatic paper orders are allowed only after the risk gate passes.
 - If Alpaca MCP is unavailable, continue with research and wiki updates, but do not submit orders.
 - Current market/news claims must cite Alpaca MCP output, a dedicated research MCP output, a captured web source, or an explicit source URL in a raw wiki note.
+- Accuracy takes priority over quick recommendations. Current recommendation runs must record `mcp_coverage` for Alpaca, SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance. Actionable recommendations and submit-mode runs must pass `python3 scripts/check-mcp-coverage.py --strict <run-manifest>`.
+- Unless the user explicitly asks for a limited ticker set, current recommendation runs must first screen the broad metadata universe in `harness/symbol-metadata.yaml`, include `SPY` and `QQQ`, record `universe_coverage`, and pass `python3 scripts/check-universe-coverage.py --strict <run-manifest>` before any recommendation can be actionable.
 - Never print, summarize, or commit third-party API keys such as Alpha Vantage, FRED, Firecrawl, Octagon, or similar research-provider keys.
 
 ## Simple User Commands

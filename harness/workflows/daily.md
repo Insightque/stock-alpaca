@@ -10,6 +10,7 @@ Default simple-command mode:
 
 - `오늘 분석해줘` means no-submit mode.
 - In no-submit mode, create recommendations and order candidates, but do not submit orders.
+- Accuracy is more important than speed. Do not use a "quick recommendation" shortcut that skips required decision MCPs.
 
 ## Inputs
 
@@ -40,9 +41,16 @@ For any report or cross-ticker analysis that includes calculated metrics, add a 
    - If MCP is unavailable, switch to research-only mode and record the blocker.
 
 2. Universe Agent
-   - Build the candidate universe from Alpaca watchlists plus any tickers explicitly requested by the user.
+   - Build a broad first-pass candidate universe before looking at final recommendations. Start from `harness/symbol-metadata.yaml` `symbols`, Alpaca watchlists, current holdings, and any tickers explicitly requested by the user.
+   - Unless the user explicitly limits the scope, daily recommendation runs must screen at least 50 symbols and include broad-market benchmarks `SPY` and `QQQ`. If fewer than 50 active/tradable candidates can be loaded, keep the run as `non_actionable_research` and record the reason.
    - Use Alpaca MCP asset lookup to keep only active, tradable US stocks/ETFs.
    - Exclude options, crypto, inactive assets, non-tradable assets, and anything requiring fractional shares.
+   - Record `universe_coverage` in the run manifest with `universe_source`, `symbols_considered`, `symbols_loaded`, `screening_method`, `pre_mcp_shortlist`, `final_candidates`, `benchmarks`, and `gap_reason`.
+   - Validate universe breadth before treating recommendations as actionable:
+
+```bash
+python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-manifests/YYYY-MM-DD-HHMM-run-id.json
+```
 
 3. Market Data Agent
    - For each candidate, gather daily bars for roughly 5 trading days, 20 trading days, and 63 trading days when available.
@@ -51,15 +59,19 @@ For any report or cross-ticker analysis that includes calculated metrics, add a 
 
 4. Web Research Agent
    - Read `harness/mcp-source-map.md`.
-   - Use Alpaca news first, then enrich event context with research MCPs:
+   - Use Alpaca news first, then enrich event context with all required research MCPs before final ranking:
      - `sec-edgar` for recent 10-K, 10-Q, 8-K, Form 4, XBRL financials, and filing risks.
      - `alpha-vantage` for earnings calendar and earnings surprise when the API key is present.
      - `fred` for macro regime indicators when the API key is present.
      - `firecrawl` for company IR pages, press releases, and earnings presentation capture when the API key is present.
      - `yahoo-finance` for analyst recommendations, Yahoo news, holders, insider, and supplemental actions.
+   - Apply all required research MCPs to the top 5 scored candidates from the broad first-pass screen and every ticker with a proposed order entry. Record MCP coverage for all six decision MCPs: Alpaca, SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance.
+   - A ticker can receive a positive catalyst, source-confidence upgrade, or actionable allocation only from MCP rows with `queried=true`, `outcome=pass|usable|ok`, and at least one `source_ref`.
+   - If a required MCP fails, is unavailable, or returns no usable data, record `gap_reason`, set `used_in_score=false` for that MCP, cap affected ticker confidence at `medium`, and do not create submit-mode order entries until the gap is resolved.
    - Browse for current company, earnings, guidance, analyst, sector, and macro context only when MCP data is insufficient or a source URL needs capture.
    - Capture each useful source as `wiki/evidence-store/sources/YYYY-MM-DD-source-slug.md` using `harness/templates/raw-source.md`.
    - Keep summaries concise and include source URLs, MCP names, query periods, and any missing-key/data-gap notes.
+   - Add a `## MCP Coverage Matrix` section to the daily report with columns: MCP, queried, used_in_score, outcome, source_refs, gap_reason.
 
 5. Trend Agent
    - Compute daily, weekly, and monthly trend using price direction, volume, momentum, volatility, drawdown, and relative strength.
@@ -89,6 +101,15 @@ For any report or cross-ticker analysis that includes calculated metrics, add a 
    - Include `schema_version`, `risk_policy_version`, `recommendation_policy_sha`, `created_at`, root `source_refs`, and per-order `quote_captured_at`, `asset_checked_at`, `source_refs`.
    - Validate it with `python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YYYY-MM-DD-daily.json`.
    - Create a run manifest in `wiki/evidence-store/run-manifests/YYYY-MM-DD-HHMM-run-id.json` using `harness/templates/run-manifest.json`.
+   - Fill `mcp_coverage` for all required decision MCPs. For actionable dry-run order candidates or submit mode, every required MCP must have `queried=true` and `outcome=pass|usable|ok`.
+   - Validate universe breadth and MCP coverage before treating the recommendation as actionable:
+
+```bash
+python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-manifests/YYYY-MM-DD-HHMM-run-id.json
+python3 scripts/check-mcp-coverage.py --strict wiki/evidence-store/run-manifests/YYYY-MM-DD-HHMM-run-id.json
+```
+
+   - If universe or MCP validation fails, keep the run as `non_actionable_research`, leave `orders: []`, record the failures in the report and manifest, and do not submit orders.
 
 8. Executor Agent
    - If the order plan fails validation, submit nothing.
@@ -113,4 +134,6 @@ For any report or cross-ticker analysis that includes calculated metrics, add a 
 - Alpaca MCP unavailable for submit-mode order execution.
 - Market closed for US equities.
 - Risk-policy validation fails.
+- Universe coverage validation fails for an actionable recommendation or submit-mode run.
+- MCP coverage validation fails for an actionable recommendation or submit-mode run.
 - Any order would be options, crypto, short, fractional, non-US, or non-tradable.

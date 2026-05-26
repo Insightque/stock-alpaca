@@ -729,3 +729,35 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - run manifest: `wiki/evidence-store/run-manifests/2026-05-25-2206-today-stock-recommendation.json`.
 - 검증: `python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-05-25-2206-today-stock-recommendation.json` PASS.
 - 실제 주문, 취소, 포지션 변경은 없었다. `orders_submitted=0`.
+
+## [2026-05-26 15:18 Asia/Seoul] policy | 추천 MCP coverage gate 강화
+
+- 사용자 요청에 따라 빠른 판단보다 정확한 판단을 우선하도록 추천 정책 실행 기준을 강화했다.
+- `scripts/check-mcp-coverage.py`를 추가해 recommendation run manifest의 MCP coverage를 검증하도록 했다.
+- Actionable dry-run 또는 submit-mode 추천은 Alpaca, SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance가 모두 `queried=true`, `outcome=pass|usable|ok`, source ref 1개 이상이어야 통과한다.
+- Submit mode에서는 모든 required MCP가 `used_in_score=true`여야 한다.
+- `harness/templates/run-manifest.json`와 `harness/run-manifest.schema.json`에 `mcp_coverage`와 `recommendation_actionability` 필드를 추가했다.
+- `harness/workflows/daily.md`, `harness/templates/daily-report.md`, `harness/mcp-source-map.md`, `AGENTS.md`, `README.md`에 all-MCP coverage gate와 `MCP Coverage Matrix` 기준을 반영했다.
+- 최신 기존 추천 manifest `2026-05-25-2206-today-stock-recommendation.json`은 새 검증 기준에서 `mcp_coverage` 부재로 FAIL함을 확인했다. 앞으로 같은 빠른 Alpaca+Yahoo 추천은 actionable 추천으로 통과하지 못한다.
+- 검증: `python3 -m py_compile scripts/check-mcp-coverage.py`, `python3 -m unittest tests.test_check_mcp_coverage`, `python3 -m unittest discover -s tests` 56개 통과.
+- 실제 주문, 취소, 포지션 변경은 없었다.
+
+## [2026-05-26 15:35 Asia/Seoul] daily | all-MCP 현재 종목 추천
+
+- 사용자 요청에 따라 강화된 MCP coverage gate 기준으로 현재 종목 추천을 다시 수행했다.
+- Alpaca, SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance를 모두 확인했다.
+- Alpaca account는 ACTIVE, portfolio value 101389.32 USD, cash 44030.58 USD, long market value 57358.74 USD, 미체결 주문 없음.
+- Alpaca clock은 미국 동부 2026-05-26 02:27 기준 closed이고 next open은 2026-05-26 09:30 ET다.
+- 최신 정규장 일봉은 2026-05-22 종가이며, 최신 quote는 2026-05-22 장마감 부근 stale quote라 주문 후보는 만들지 않았다.
+- 추천 우선순위는 `LRCX`, `UNH`, `AMD`다. `LRCX/UNH`는 개장 후 fresh quote 확인 시 staged 후보, `AMD`는 과열 감점 때문에 소액 staged only다.
+- MCP coverage 검증: `python3 scripts/check-mcp-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-05-26-1535-current-all-mcp-recommendation.json` PASS.
+- Risk check: `python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-05-26-1535-current-all-mcp-recommendation.json` PASS with empty orders warning.
+- 리포트: `wiki/current-runs/daily/2026-05-26.md`.
+- 실제 주문, 취소, 포지션 변경은 없었다. `orders_submitted=0`.
+## [2026-05-26 16:20 Asia/Seoul] daily | expanded-universe 종목 재추천
+
+- 요청: 추천 정책을 한 단계 더 강화한 뒤 종목을 재추천.
+- 변경: `harness/recommendation-policy.yaml`을 v1.3으로 올리고 broad universe screen, universe coverage manifest, universe gate를 추가. `scripts/check-universe-coverage.py`와 테스트 추가.
+- 실행: `harness/symbol-metadata.yaml`의 62개 확장 universe를 Alpaca MCP daily bars로 1차 스크리닝하고 `LLY`, `LRCX`, `AAPL`, `SMH`, `ASML`을 pre-MCP shortlist로 선정.
+- 결과: 최종 연구 추천은 `LRCX`, `LLY`, `ASML`. 다만 expanded shortlist Firecrawl IR scrape 실패로 strict MCP coverage는 실패하므로 `non_actionable_research`, 주문 없음.
+- 산출물: `wiki/current-runs/daily/2026-05-26-expanded-universe.md`, `wiki/evidence-store/run-manifests/2026-05-26-1620-expanded-universe-recommendation.json`, `wiki/trade-ledger/orders/2026-05-26-1620-expanded-universe-recommendation.json`.

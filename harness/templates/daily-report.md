@@ -12,12 +12,37 @@ status: draft|completed|blocked
 
 - 시장 시계:
 - 계좌 스냅샷:
-- Watchlist 유니버스:
+- Universe:
+
+## Universe Coverage
+
+| 항목 | 값 |
+| --- | --- |
+| Universe source |  |
+| Symbols considered |  |
+| Symbols loaded |  |
+| Minimum required |  |
+| Benchmarks |  |
+| Screening method |  |
+| Pre-MCP shortlist |  |
+| Final candidates |  |
+| Gate result |  |
 
 ## 후보 순위
 
 | 순위 | 티커 | 점수 | 일/주/月 추세 | Thesis | 핵심 리스크 |
 | --- | --- | ---: | --- | --- | --- |
+
+## MCP Coverage Matrix
+
+| MCP | queried | used_in_score | outcome | source_refs | gap_reason |
+| --- | --- | --- | --- | --- | --- |
+| Alpaca |  |  |  |  |  |
+| SEC EDGAR |  |  |  |  |  |
+| Alpha Vantage |  |  |  |  |  |
+| FRED |  |  |  |  |  |
+| Firecrawl |  |  |  |  |  |
+| Yahoo Finance |  |  |  |  |  |
 
 ## 배분 제안
 

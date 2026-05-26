@@ -55,6 +55,7 @@ Codex는 `AGENTS.md`를 따르고, `harness/simple-commands.md`에서 명령을 
 - 한 번의 run에서 신규 주문은 최대 10개입니다.
 - 주문 계획은 반드시 `scripts/check-risk-policy.py`를 통과해야 합니다. CI나 agent-readable 출력이 필요하면 `--json`을 사용합니다.
 - 신규 주문 계획은 `harness/order-plan.schema.json`을 따라야 하며 account, market, quote, asset 확인 원천을 인용해야 합니다.
+- 종목 추천은 빠른 판단보다 정확한 판단을 우선합니다. 사용자가 특정 종목만 보라고 명시하지 않는 한 `harness/symbol-metadata.yaml`의 확장 universe를 먼저 스크리닝하고 `universe_coverage`를 run manifest에 기록해야 합니다. Actionable 추천이나 주문 후보를 만들기 전에는 universe gate와 Alpaca, SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance의 `mcp_coverage` gate를 모두 통과해야 합니다.
 - 주문 제출은 Alpaca MCP를 통해서만 가능합니다. Alpaca trading REST endpoint를 직접 호출하는 custom trading 코드는 금지합니다.
 - 과거 1년 정책 검증은 `harness/workflows/one-year-daily-simulation.md`를 사용하며, 각 기준일을 독립적으로 시뮬레이션합니다.
 
@@ -63,6 +64,8 @@ Codex는 `AGENTS.md`를 따르고, `harness/simple-commands.md`에서 명령을 
 ```bash
 python3 scripts/check-risk-policy.py harness/examples/order-plan.example.json
 python3 scripts/check-risk-policy.py --json harness/examples/order-plan.example.json
+python3 scripts/check-mcp-coverage.py --strict wiki/evidence-store/run-manifests/YOUR-RUN.json
+python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-manifests/YOUR-RUN.json
 ```
 
 ### Wiki 구조
@@ -154,6 +157,7 @@ See `harness/agent-tasking-guide.md` for examples of assigning work to agents.
 - Maximum 10 new orders per run.
 - Orders must pass `scripts/check-risk-policy.py`; use `--json` for CI and agent-readable results.
 - New order plans must conform to `harness/order-plan.schema.json` and cite source refs for account, market, quote, and asset checks.
+- Stock recommendations prioritize accuracy over speed. Unless the user explicitly limits the ticker set, the run must first screen the expanded universe in `harness/symbol-metadata.yaml` and record `universe_coverage` in the run manifest. Before an actionable recommendation or order candidate is created, both the universe gate and the `mcp_coverage` gate for Alpaca, SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance must pass.
 - Orders must be submitted through Alpaca MCP only. Custom code must never call Alpaca trading REST endpoints directly.
 - Historical one-year policy checks use `harness/workflows/one-year-daily-simulation.md` and run each as-of day independently.
 
@@ -162,6 +166,8 @@ Order-plan validation:
 ```bash
 python3 scripts/check-risk-policy.py harness/examples/order-plan.example.json
 python3 scripts/check-risk-policy.py --json harness/examples/order-plan.example.json
+python3 scripts/check-mcp-coverage.py --strict wiki/evidence-store/run-manifests/YOUR-RUN.json
+python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-manifests/YOUR-RUN.json
 ```
 
 ### Wiki Structure
