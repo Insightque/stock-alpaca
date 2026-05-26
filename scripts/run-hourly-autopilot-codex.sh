@@ -2,6 +2,7 @@
 set -euo pipefail
 
 export PATH="/opt/homebrew/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.11/bin:${PATH}"
+export CODEX_HOME="${CODEX_AUTOPILOT_CODEX_HOME:-${HOME}/.codex}"
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 LOCK_DIR="${ROOT_DIR}/.locks/hourly-autopilot.lock"

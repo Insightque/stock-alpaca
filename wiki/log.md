@@ -837,3 +837,4 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - `scripts/run-hourly-autopilot-codex.sh`에 Codex 실행 timeout 기본 2400초를 추가해 장시간 stuck 상태가 다음 스케줄을 막지 않도록 했다.
 - SEC EDGAR ticker lookup 보강을 위해 SEC `company_tickers.json` 기반 로컬 캐시 `harness/sec-ticker-cik-map.json`을 추가했다. 현재 universe 62개 중 61개가 매핑되고 `SMH`만 SEC company ticker 캐시에서 제외됐다.
 - 검증: `python3 -m unittest discover -s tests` 64개 통과, shell syntax 통과.
+- 예외 수동 실행 중 OpenClaw `CODEX_HOME`을 상속하면 Codex CLI가 사용자 `~/.codex/auth.json`을 보지 못해 `401 Unauthorized`가 발생하는 것을 확인했다. 자동운영 wrapper에서 `CODEX_HOME=${HOME}/.codex`를 명시하도록 보완했다.
