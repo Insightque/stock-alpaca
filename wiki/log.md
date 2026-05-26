@@ -927,3 +927,46 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - order plan: `wiki/trade-ledger/orders/2026-05-27-0012-hourly-autopilot.json`.
 - review due markers: 2026-05-22 체결분은 계속 `회고 대기`; 이번 run 신규 fill 없음.
 - 실제 주문, 취소, 포지션 변경은 없었다. `orders_submitted=0`.
+
+## [2026-05-27 00:43 Asia/Seoul] hourly-autopilot | paper 자동 운영 gate 점검
+
+- run id: `2026-05-27-0032-hourly-autopilot`.
+- 사용자 승인에 따라 `harness/workflows/hourly-autopilot.md`를 실행했다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고, API key 값은 출력하거나 기록하지 않았다.
+- Alpaca MCP core `get_clock`, `get_account_info`, `get_orders`, `get_all_positions`, `get_account_activities`, `get_watchlists`, 후보 `get_stock_latest_quote`, `get_stock_snapshot`, `get_stock_bars`, `get_asset`, `get_news`, `get_market_movers`, `get_most_active_stocks`는 usable했다.
+- Market clock: `2026-05-26T11:33:01-04:00` 기준 open, next close `2026-05-26T16:00:00-04:00`.
+- Account: portfolio value 101264.45 USD, cash 44030.58 USD, buying power 138855.03 USD, open US equity orders 0건, same-day fills 0건, current positions 10개.
+- Universe: 62개 metadata universe와 `SPY`/`QQQ`를 스크리닝했다. Pre-MCP shortlist는 `MU`, `AMD`, `KLAC`, `SMH`, `INTC`, `AAPL`, `LLY`, `NOK`, `ASML`, `AMAT`, final candidates는 `LLY`, `AMD`, `MU`.
+- Candidate quote/spread: `LLY`, `AMD`, `MU`, `SMH`, `INTC`, `AAPL`, `NOK`는 fresh quote와 spread gate를 통과했다. `KLAC`, `ASML`, `AMAT`, `LRCX`, `ETN`은 spread fail로 skip했다.
+- SEC EDGAR와 Yahoo Finance는 usable했다. Alpha Vantage는 `TOOL_LIST` -> `TOOL_GET` 후 `TOOL_CALL`이 cancelled, FRED/Firecrawl은 DNS failure로 gap 분류했다. Research MCP usable count는 2라 최소 3에 미달했다.
+- First blocking gate: `mcp_research_min_confirmations`.
+- 검증: universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
+- submitted orders: 없음. skipped orders: `LLY`, `AMD`, `MU`, `SMH`, `INTC`, `AAPL`, `KLAC`, `ASML`, `AMAT`, `LRCX`, 보유 전 종목 sell.
+- 리포트: `wiki/current-runs/daily/2026-05-27-0032-hourly-autopilot.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-27-0032-hourly-autopilot-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-27-0032-hourly-autopilot.json`.
+- order plan: `wiki/trade-ledger/orders/2026-05-27-0032-hourly-autopilot.json`.
+- review due markers: 2026-05-22 체결분은 계속 `회고 대기`; 이번 run 신규 fill 없음.
+- 실제 주문, 취소, 포지션 변경은 없었다. `orders_submitted=0`.
+
+## [2026-05-27 01:04 Asia/Seoul] hourly-autopilot | paper validation LLY 주문 체결
+
+- run id: `2026-05-27-0052-hourly-autopilot`.
+- 사용자 승인에 따라 `harness/workflows/hourly-autopilot.md`를 실행했다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고, API key 값은 출력하거나 기록하지 않았다.
+- Alpaca MCP core `get_clock`, `get_account_info`, `get_orders`, `get_all_positions`, `get_account_activities`, `get_watchlists`, 후보 `get_stock_latest_quote`, `get_stock_snapshot`, `get_asset`, `get_news`, `get_stock_bars`, `get_most_active_stocks`를 사용했다. Positions와 LLY asset은 각각 첫 시도 cancelled 후 retry pass였다.
+- Market clock: `2026-05-26T12:00:39-04:00` 기준 open, next close `2026-05-26T16:00:00-04:00`.
+- Account before order: portfolio value 101003.86 USD, cash 44030.58 USD, buying power 138599.44 USD, open US equity orders 0건, same-day fills 0건, current positions 10개.
+- Universe: 62개 metadata universe와 `SPY`/`QQQ`를 스크리닝했다. Pre-MCP shortlist는 `MU`, `AMD`, `LLY`, `NOK`, `FCX`, `SMH`, `INTC`, `AAPL`, `LRCX`, `NVDA`, final candidates는 `LLY`, `FCX`, `NOK`.
+- Candidate quote/spread: `LLY`, `FCX`, `NOK`, `SMH`, `AAPL`, `MU`, `NVDA`는 fresh quote와 spread gate를 통과했다. `AMD`, `LRCX`, `INTC`는 spread fail로 skip했다.
+- SEC EDGAR는 local CIK cache로 `LLY -> 0000059478` 확인 후 company info/recent filings pass. Yahoo Finance는 LLY news/recommendations pass. FRED는 scheduler preflight `2026-05-27-0051-hourly-autopilot-research-mcp-preflight.json`의 `get_macro_snapshot` pass를 usable evidence로 사용했다.
+- Alpha Vantage는 `TOOL_LIST` -> `TOOL_GET("PING")` 후 `TOOL_CALL("PING", {})`이 cancelled 되어 `gap_category=cancelled`로 기록했다. Firecrawl은 Codex tool catalog에 registered MCP tool이 노출되지 않아 `gap_category=wrapper_error`로 기록했고 shell/curl/local wrapper는 호출하지 않았다.
+- First blocking gate: 없음. 검증: universe strict PASS, MCP strict PASS, risk-check PASS.
+- 제출: LLY 1주 day limit buy, limit 1079.78, client_order_id `hourly-20260527-0052-lly-buy-1`. 첫 submit attempt는 MCP safety wrapper cancelled, 동일 idempotent client_order_id retry로 제출 성공.
+- Post-trade: Alpaca order id `f2626164-9d01-4134-97ab-5e73748fc790`, status filled, filled_qty 1, filled_avg_price 1079.38, filled_at `2026-05-26T16:02:35.719698Z`. `get_all_positions`에서 LLY 1주 포지션 확인. `get_account_activities`는 즉시 조회에서 fill row 0건이었으나 order/position endpoint로 체결 확인.
+- submitted orders: `LLY` 1주. skipped orders: `FCX`, `NOK`, `MU`, `AMD`, `LRCX`, `INTC`, 보유 전 종목 sell/trim.
+- 리포트: `wiki/current-runs/daily/2026-05-27-0052-hourly-autopilot.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-27-0052-hourly-autopilot-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-27-0052-hourly-autopilot.json`.
+- order plan: `wiki/trade-ledger/orders/2026-05-27-0052-hourly-autopilot.json`.
+- review due markers: 신규 LLY fill은 1D/5D/20D `회고 대기`; 2026-05-22 체결분도 계속 `회고 대기`.

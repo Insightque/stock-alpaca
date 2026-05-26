@@ -1,0 +1,95 @@
+{
+  "run_id": "2026-05-27-0052-hourly-autopilot",
+  "schema_version": "1.2",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:79c639ba60aca7ce0ce98cb64c8984fbbaba59435f15ea80dfaeefd5026553a9",
+  "created_at": "2026-05-26T15:57:00Z",
+  "mode": "submit",
+  "paper": true,
+  "market": {
+    "is_open": true,
+    "checked_at": "2026-05-26T16:00:39.240516Z",
+    "next_open": "2026-05-27T13:30:00Z",
+    "next_close": "2026-05-26T20:00:00Z"
+  },
+  "account": {
+    "portfolio_value": 101003.86,
+    "cash": 44030.58,
+    "buying_power": 138599.44,
+    "currency": "USD",
+    "daily_realized_loss": 0
+  },
+  "positions": [
+    {"symbol": "AMD", "asset_type": "stock", "qty": 14, "market_value": 6844.95, "avg_entry_price": 462.73, "current_price": 488.925, "theme": "ai_semiconductor", "factor": "ai_semiconductor", "volatility_bucket": "high", "speculative_flag": false, "liquidity_bucket": "mega", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "AVGO", "asset_type": "stock", "qty": 15, "market_value": 6352.125, "avg_entry_price": 410.73, "current_price": 423.475, "theme": "ai_semiconductor", "factor": "ai_semiconductor", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "mega", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "ETN", "asset_type": "stock", "qty": 15, "market_value": 6108.675, "avg_entry_price": 387.9, "current_price": 407.245, "theme": "power_infrastructure", "factor": "industrial_power", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "electrification_infrastructure"},
+    {"symbol": "IONQ", "asset_type": "stock", "qty": 45, "market_value": 2786.4, "avg_entry_price": 63.48, "current_price": 61.92, "theme": "quantum_speculative", "factor": "speculative_growth", "volatility_bucket": "high", "speculative_flag": true, "liquidity_bucket": "medium", "source_confidence": "medium", "correlated_cluster": "quantum_speculative"},
+    {"symbol": "LRCX", "asset_type": "stock", "qty": 20, "market_value": 6275.5, "avg_entry_price": 307.91, "current_price": 313.775, "theme": "semicap_equipment", "factor": "ai_semiconductor", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "NOK", "asset_type": "stock", "qty": 400, "market_value": 6440.0, "avg_entry_price": 15.04, "current_price": 16.1, "theme": "networking", "factor": "international_adr", "volatility_bucket": "high", "speculative_flag": false, "liquidity_bucket": "medium", "source_confidence": "medium", "correlated_cluster": "communications_infrastructure"},
+    {"symbol": "NVDA", "asset_type": "stock", "qty": 35, "market_value": 7462.7035, "avg_entry_price": 215.32, "current_price": 213.2201, "theme": "ai_semiconductor", "factor": "ai_semiconductor", "volatility_bucket": "high", "speculative_flag": false, "liquidity_bucket": "mega", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "RGTI", "asset_type": "stock", "qty": 120, "market_value": 2868.6, "avg_entry_price": 25.569583, "current_price": 23.905, "theme": "quantum_speculative", "factor": "speculative_growth", "volatility_bucket": "high", "speculative_flag": true, "liquidity_bucket": "medium", "source_confidence": "medium", "correlated_cluster": "quantum_speculative"},
+    {"symbol": "TSM", "asset_type": "stock", "qty": 15, "market_value": 6170.625, "avg_entry_price": 405.2, "current_price": 411.375, "theme": "ai_semiconductor", "factor": "ai_semiconductor", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "UNH", "asset_type": "stock", "qty": 15, "market_value": 5676.15, "avg_entry_price": 386.56, "current_price": 378.41, "theme": "healthcare", "factor": "defensive_healthcare", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "healthcare"}
+  ],
+  "open_orders": [],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.01069,
+    "weekly_turnover_ratio": 0.01069,
+    "stop_triggered_orders_today": 0,
+    "risk_recomputed_after_partial_fill": true
+  },
+  "orders": [
+    {
+      "symbol": "LLY",
+      "asset_type": "stock",
+      "asset_status": "active",
+      "asset_tradable": true,
+      "side": "buy",
+      "order_type": "limit",
+      "time_in_force": "day",
+      "qty": 1,
+      "limit_price": 1079.78,
+      "reference_price": 1079.34,
+      "quote_age_minutes": 0.3,
+      "quote_captured_at": "2026-05-26T16:00:23.918218Z",
+      "asset_checked_at": "2026-05-26T15:54:30Z",
+      "theme": "healthcare_pharma",
+      "factor": "healthcare_growth",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high",
+      "correlated_cluster": "healthcare",
+      "strategy_id": "hourly-paper-validation",
+      "strategy_version": "recommendation-policy-v1.6",
+      "policy_status": "auto_eligible_paper",
+      "expected_excess_return_20d_pct": 3.0,
+      "expected_adverse_move_20d_pct": -7.5,
+      "confidence_score": 0.62,
+      "sizing_basis": "1-share validation order; under 2% portfolio validation cap and below ticker/theme/cash limits",
+      "entry_style": "single",
+      "max_additional_entry_count": 0,
+      "liquidity": {
+        "bid": 1078.9,
+        "ask": 1079.78,
+        "spread_pct": 0.08153,
+        "avg_daily_dollar_volume": 144533575.0,
+        "quote_source": "alpaca",
+        "measured_at": "2026-05-26T16:00:23.918218Z"
+      },
+      "client_order_id": "hourly-20260527-0052-lly-buy-1",
+      "decision_id": "2026-05-27-0052-hourly-autopilot-lly-buy-validation",
+      "review_horizons": ["1D", "5D", "20D"],
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0052-hourly-autopilot-sources.md",
+        "wiki/evidence-store/sources/2026-05-27-0051-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "rationale": "LLY passed Alpaca paper core, active/tradable US equity, no open duplicate order, fresh IEX quote, 0.105% spread, SEC company/recent filing evidence, Yahoo news/analyst evidence, and passing FRED macro preflight. Alpaca news showed current GLP-1/gene-therapy catalysts, while the account has no existing LLY exposure. The order is a one-share paper validation buy, not a full conviction allocation."
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-27-0052-hourly-autopilot-sources.md",
+    "wiki/evidence-store/sources/2026-05-27-0051-hourly-autopilot-research-mcp-preflight.json"
+  ],
+  "manifest_path": "wiki/evidence-store/run-manifests/2026-05-27-0052-hourly-autopilot.json"
+}
