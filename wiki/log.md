@@ -906,3 +906,24 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - run manifest: `wiki/evidence-store/run-manifests/2026-05-26-2351-hourly-autopilot.json`.
 - order plan: `wiki/trade-ledger/orders/2026-05-26-2351-hourly-autopilot.json`.
 - 실제 주문, 취소, 포지션 변경은 없었다. `orders_submitted=0`.
+
+## [2026-05-27 00:24 Asia/Seoul] hourly-autopilot | paper 자동 운영 gate 점검
+
+- run id: `2026-05-27-0012-hourly-autopilot`.
+- 사용자 승인에 따라 `harness/workflows/hourly-autopilot.md`를 실행했다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고, API key 값은 출력하거나 기록하지 않았다.
+- Alpaca MCP core `get_clock`, `get_account_info`, `get_orders`, `get_all_positions`, `get_account_activities`, `get_watchlists`, 후보 `get_stock_latest_quote`, `get_stock_snapshot`, `get_asset`, `get_news`, `get_market_movers`, `get_most_active_stocks`는 usable했다.
+- Market clock: `2026-05-26T11:14:12-04:00` 기준 open, next close `2026-05-26T16:00:00-04:00`.
+- Account: portfolio value 101301.19 USD, cash 44030.58 USD, buying power 138895.81 USD, open US equity orders 0건, same-day fills 0건, current positions 10개.
+- Universe: 62개 metadata universe와 `SPY`/`QQQ`를 스크리닝했다. Pre-MCP shortlist는 `ASML`, `LLY`, `AAPL`, `SMH`, `FCX`, final candidates는 `ASML`, `LLY`, `AAPL`.
+- Candidate quote/spread: `ASML`, `LLY`, `AAPL`, `SMH`, `FCX`는 fresh quote와 spread gate를 통과했다. `AMD`, `KLAC`, `AMAT`, `LRCX`, `MU`는 spread fail로 skip했다.
+- SEC EDGAR와 Yahoo Finance는 usable했다. Alpha Vantage는 `TOOL_LIST` -> `TOOL_GET` 후 `TOOL_CALL`이 cancelled, FRED/Firecrawl은 DNS failure로 gap 분류했다. Research MCP usable count는 2라 최소 3에 미달했다.
+- First blocking gate: `mcp_research_min_confirmations`.
+- 검증: universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
+- submitted orders: 없음. skipped orders: `ASML`, `LLY`, `AAPL`, `SMH`, `FCX`, `AMD`, `KLAC`, `AMAT`, `LRCX`, `MU`, 보유 전 종목 sell.
+- 리포트: `wiki/current-runs/daily/2026-05-27-0012-hourly-autopilot.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-27-0012-hourly-autopilot-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-27-0012-hourly-autopilot.json`.
+- order plan: `wiki/trade-ledger/orders/2026-05-27-0012-hourly-autopilot.json`.
+- review due markers: 2026-05-22 체결분은 계속 `회고 대기`; 이번 run 신규 fill 없음.
+- 실제 주문, 취소, 포지션 변경은 없었다. `orders_submitted=0`.
