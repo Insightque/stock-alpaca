@@ -1,0 +1,432 @@
+{
+  "run_id": "2026-05-27-0331-hourly-autopilot",
+  "schema_version": "1.0",
+  "created_at": "2026-05-26T18:34:56Z",
+  "mode": "submit",
+  "paper": false,
+  "paper_mode_env_present": false,
+  "first_blocking_gate": "paper_mode_env_missing",
+  "market_clock_checked_at": "2026-05-26T18:31:08Z",
+  "data_cutoff_time": "2026-05-26T18:31:33Z",
+  "git_commit": "0cdd25f",
+  "prompt_file_sha": "sha256:8ffc654f38f6f5ccd1c4cd6476c584eae9a2bf7a162afdb4c47970f5bba34c0d",
+  "recommendation_policy_sha": "sha256:bdce1db89dc526840059853d7273be6a782f3be109f4ff6231b1f02d1b362502",
+  "risk_policy_version": "medium-risk-v1.1",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-sources.md"
+  ],
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-27-0331-hourly-autopilot.json",
+  "post_trade_check_path": null,
+  "submitted_order_ids": [],
+  "execution_result": {
+    "submitted_orders": [],
+    "skipped_orders": [
+      {
+        "symbol": "AMZN",
+        "side": "buy",
+        "reason": "paper_mode_env_missing; mcp_strict_fail; risk_open_order_lifecycle_fail"
+      },
+      {
+        "symbol": "INTC",
+        "side": "buy",
+        "reason": "paper_mode_env_missing; mcp_strict_fail; risk_open_order_lifecycle_fail"
+      },
+      {
+        "symbol": "SMH",
+        "side": "buy",
+        "reason": "paper_mode_env_missing; mcp_strict_fail; risk_open_order_lifecycle_fail"
+      }
+    ],
+    "place_stock_order_called": false,
+    "post_trade_reconciliation_required": false
+  },
+  "recommendation_actionability": "blocked_by_paper_mode_env_and_gates",
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + Alpaca watchlists + benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_universe_price_liquidity_screen_then_mcp_shortlist_validation",
+    "pre_mcp_shortlist": [
+      "AMZN",
+      "INTC",
+      "SMH",
+      "AAPL",
+      "MU",
+      "NVDA",
+      "FCX",
+      "NOK",
+      "LLY",
+      "AMD"
+    ],
+    "final_candidates": [
+      "AMZN",
+      "INTC",
+      "SMH"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "all_research_must_be_attempted": true,
+    "tiered_policy": true
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T18:31:36Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T18:34:56Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Local CIK fallback found AMZN 0001018724 and INTC 0000050863; SMH was absent from the local SEC ticker-CIK cache as an ETF lookup gap. The registered SEC EDGAR MCP get_recommended_tools attempt returned user cancelled MCP tool call, so filing-level evidence was not usable.",
+      "gap_category": "cancelled",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T18:34:56Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "TOOL_LIST, TOOL_GET(\"PING\"), and TOOL_CALL(\"PING\", {}) passed. TOOL_GET(\"NEWS_SENTIMENT\") passed, but the first non-PING TOOL_CALL for AMZN NEWS_SENTIMENT was cancelled; no second Alpha function was attempted.",
+      "gap_category": "cancelled",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T18:31:36Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T18:34:56Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Registered Firecrawl MCP tool was not exposed in the Codex tool catalog; shell/curl/local wrapper use was prohibited.",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "checked_at": "2026-05-26T18:34:56Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T18:34:56Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Local CIK fallback found AMZN 0001018724 and INTC 0000050863; SMH was absent from the local SEC ticker-CIK cache as an ETF lookup gap. The registered SEC EDGAR MCP get_recommended_tools attempt returned user cancelled MCP tool call, so filing-level evidence was not usable.",
+      "gap_category": "cancelled",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T18:34:56Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "TOOL_LIST, TOOL_GET(\"PING\"), and TOOL_CALL(\"PING\", {}) passed. TOOL_GET(\"NEWS_SENTIMENT\") passed, but the first non-PING TOOL_CALL for AMZN NEWS_SENTIMENT was cancelled; no second Alpha function was attempted.",
+      "gap_category": "cancelled",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T18:34:56Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Registered Firecrawl MCP tool was not exposed in the Codex tool catalog; shell/curl/local wrapper use was prohibited.",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    }
+  ],
+  "risk_check_result": {
+    "status": "FAIL",
+    "errors": [
+      "AAPL: open order age 34.8 minutes exceeds lifecycle limit 30.0"
+    ],
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": {
+      "buy_notional": 0.0,
+      "sell_notional": 0.0,
+      "post_cash": 42657.04,
+      "post_invested": 58963.522,
+      "min_cash": 20324.218,
+      "max_invested": 81296.872,
+      "policy_version": "medium-risk-v1.1"
+    }
+  },
+  "validation_results": {
+    "universe": {
+      "status": "PASS",
+      "errors": [],
+      "warnings": [],
+      "summary": {
+        "strict_required": true,
+        "actionable": true,
+        "minimum_required_symbols": 50,
+        "symbols_considered": 62,
+        "symbols_loaded": 62,
+        "benchmarks": [
+          "QQQ",
+          "SPY"
+        ],
+        "pre_mcp_shortlist_count": 10,
+        "final_candidate_count": 3,
+        "scope_limited_by_user": false
+      }
+    },
+    "mcp": {
+      "status": "FAIL",
+      "errors": [
+        "research MCP gate requires at least 3 usable/pass research providers; got 2 (fred, yahoo-finance)",
+        "submit mode requires at least 3 positive research MCPs to be used_in_score: fred, yahoo-finance"
+      ],
+      "warnings": [],
+      "summary": {
+        "required_servers": [
+          "alpaca",
+          "sec-edgar",
+          "alpha-vantage",
+          "fred",
+          "firecrawl",
+          "yahoo-finance"
+        ],
+        "core_servers": [
+          "alpaca"
+        ],
+        "research_servers": [
+          "sec-edgar",
+          "alpha-vantage",
+          "fred",
+          "firecrawl",
+          "yahoo-finance"
+        ],
+        "covered_servers": [
+          "alpaca",
+          "alpha-vantage",
+          "firecrawl",
+          "fred",
+          "sec-edgar",
+          "yahoo-finance"
+        ],
+        "strict_required": true,
+        "actionable": true,
+        "min_research_confirmations": 3,
+        "positive_research_confirmations": [
+          "fred",
+          "yahoo-finance"
+        ]
+      }
+    },
+    "risk": {
+      "status": "FAIL",
+      "errors": [
+        "AAPL: open order age 34.8 minutes exceeds lifecycle limit 30.0"
+      ],
+      "warnings": [
+        "orders is empty"
+      ],
+      "summary": {
+        "buy_notional": 0.0,
+        "sell_notional": 0.0,
+        "post_cash": 42657.04,
+        "post_invested": 58963.522,
+        "min_cash": 20324.218,
+        "max_invested": 81296.872,
+        "policy_version": "medium-risk-v1.1"
+      }
+    }
+  },
+  "data_manifest": {
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-research-mcp-preflight.json",
+    "source_note": "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-sources.md",
+    "quote_rows": [
+      {
+        "symbol": "AMZN",
+        "bid": 263.26,
+        "ask": 263.29,
+        "quote_time": "2026-05-26T18:31:31.02721451Z",
+        "spread_pct": 0.0114,
+        "spread_gate": true
+      },
+      {
+        "symbol": "INTC",
+        "bid": 122.39,
+        "ask": 122.42,
+        "quote_time": "2026-05-26T18:31:32.126892757Z",
+        "spread_pct": 0.0245,
+        "spread_gate": true
+      },
+      {
+        "symbol": "SMH",
+        "bid": 600.18,
+        "ask": 600.47,
+        "quote_time": "2026-05-26T18:31:32.580431757Z",
+        "spread_pct": 0.0483,
+        "spread_gate": true
+      },
+      {
+        "symbol": "AAPL",
+        "bid": 309.6,
+        "ask": 310.2,
+        "quote_time": "2026-05-26T18:31:32.324221533Z",
+        "spread_pct": 0.1936,
+        "spread_gate": true
+      },
+      {
+        "symbol": "MU",
+        "bid": 906.81,
+        "ask": 912.5,
+        "quote_time": "2026-05-26T18:31:32.617881386Z",
+        "spread_pct": 0.6255,
+        "spread_gate": false
+      },
+      {
+        "symbol": "NVDA",
+        "bid": 213.74,
+        "ask": 213.77,
+        "quote_time": "2026-05-26T18:31:32.658801539Z",
+        "spread_pct": 0.014,
+        "spread_gate": true
+      },
+      {
+        "symbol": "FCX",
+        "bid": 64.17,
+        "ask": 64.19,
+        "quote_time": "2026-05-26T18:31:31.246506057Z",
+        "spread_pct": 0.0312,
+        "spread_gate": true
+      },
+      {
+        "symbol": "NOK",
+        "bid": 16.42,
+        "ask": 16.43,
+        "quote_time": "2026-05-26T18:31:32.506175072Z",
+        "spread_pct": 0.0609,
+        "spread_gate": true
+      },
+      {
+        "symbol": "LLY",
+        "bid": 1073,
+        "ask": 1081.96,
+        "quote_time": "2026-05-26T18:31:32.400101831Z",
+        "spread_pct": 0.8316,
+        "spread_gate": false
+      },
+      {
+        "symbol": "AMD",
+        "bid": 498.51,
+        "ask": 500,
+        "quote_time": "2026-05-26T18:31:30.823815325Z",
+        "spread_pct": 0.2984,
+        "spread_gate": true
+      }
+    ],
+    "open_orders": [
+      {
+        "symbol": "AAPL",
+        "side": "buy",
+        "qty": 1.0,
+        "filled_qty": 0.0,
+        "status": "new",
+        "client_order_id": "hourly-20260527-0251-aapl-buy-1",
+        "submitted_at": "2026-05-26T18:00:09.509581776Z",
+        "age_minutes": 34.8
+      }
+    ],
+    "recent_fill_count": 20
+  }
+}

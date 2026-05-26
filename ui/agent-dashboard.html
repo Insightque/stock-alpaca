@@ -350,29 +350,29 @@
   </div>
 
   <script type="application/json" id="dashboard-data">{
-  "generated_at": "2026-05-26T18:19:58Z",
+  "generated_at": "2026-05-26T18:38:35Z",
   "run": {
-    "run_id": "2026-05-27-0311-hourly-autopilot",
-    "mode": "research",
-    "created_at": "2026-05-26T18:13:20Z",
-    "paper": true,
-    "risk_status": "PASS",
+    "run_id": "2026-05-27-0331-hourly-autopilot",
+    "mode": "submit",
+    "created_at": "2026-05-26T18:34:56Z",
+    "paper": false,
+    "risk_status": "FAIL",
     "market": "open",
-    "next_open": "2026-05-27T13:30:00Z",
+    "next_open": "2026-05-27T09:30:00-04:00",
     "orders_planned": 0,
     "orders_submitted": 0,
-    "symbols_loaded": 62,
-    "cash_ratio": 41.96881439710901,
-    "invested_ratio": 58.03139221476615,
+    "symbols_loaded": 0,
+    "cash_ratio": 41.97656214866422,
+    "invested_ratio": 58.022918274149596,
     "action_label": "검토",
     "action_reason": "주문 후보 없음"
   },
   "account": {
-    "portfolio_value": 101639.85,
+    "portfolio_value": 101621.09,
     "cash": 42657.04,
-    "invested": 58983.02,
-    "cash_ratio": 41.96881439710901,
-    "invested_ratio": 58.03139221476615
+    "invested": 58963.522,
+    "cash_ratio": 41.97656214866422,
+    "invested_ratio": 58.022918274149596
   },
   "portfolio": {
     "source_path": "wiki/trade-ledger/positions/current.md",
@@ -506,15 +506,15 @@
       "label": "후보군",
       "status": "done",
       "progress": 100,
-      "result": "62 symbols"
+      "result": "ready"
     },
     {
       "id": "market_data",
       "name": "Market Data",
       "label": "가격",
-      "status": "done",
-      "progress": 100,
-      "result": "alpaca_iex snapshot + quote/latest trade"
+      "status": "waiting",
+      "progress": 20,
+      "result": "data"
     },
     {
       "id": "web_research",
@@ -528,9 +528,9 @@
       "id": "trend",
       "name": "Trend",
       "label": "점수",
-      "status": "done",
-      "progress": 100,
-      "result": "AMZN / INTC / SMH"
+      "status": "waiting",
+      "progress": 20,
+      "result": "scored"
     },
     {
       "id": "ticker_thesis",
@@ -538,15 +538,15 @@
       "label": "티커",
       "status": "done",
       "progress": 100,
-      "result": "AMZN / INTC / SMH"
+      "result": "notes"
     },
     {
       "id": "risk",
       "name": "Risk",
       "label": "리스크",
-      "status": "done",
+      "status": "blocked",
       "progress": 100,
-      "result": "PASS"
+      "result": "FAIL"
     },
     {
       "id": "executor",
@@ -573,103 +573,24 @@
       "result": "index + log"
     }
   ],
-  "picks": [
-    {
-      "symbol": "AMZN",
-      "action": "actionable_if_provider_recovered",
-      "reason": "mega-cap quality 분산 후보, Alpaca quote spread 0.0152%, Yahoo recommendation usable · SEC/Alpha cancelled로 research confirmation 2개에 그침",
-      "score": "",
-      "rank": "1",
-      "score_label": "순위 #1",
-      "confidence": "shortlist",
-      "return_20d": "",
-      "vs_spy_20d": "",
-      "primary_chip": "20D -",
-      "secondary_chip": "시장대비 -",
-      "risk": ""
-    },
-    {
-      "symbol": "INTC",
-      "action": "actionable_if_provider_recovered",
-      "reason": "반도체 laggard/AI capex 재평가 후보, spread 0.0408% · high-volatility, SEC/Alpha cancelled",
-      "score": "",
-      "rank": "2",
-      "score_label": "순위 #2",
-      "confidence": "shortlist",
-      "return_20d": "",
-      "vs_spy_20d": "",
-      "primary_chip": "20D -",
-      "secondary_chip": "시장대비 -",
-      "risk": ""
-    },
-    {
-      "symbol": "SMH",
-      "action": "recheck",
-      "reason": "반도체 ETF momentum, spread 0.0467% · ETF라 SEC CIK lookup 공백, AI semiconductor cluster 집중 주의",
-      "score": "",
-      "rank": "3",
-      "score_label": "순위 #3",
-      "confidence": "shortlist",
-      "return_20d": "",
-      "vs_spy_20d": "",
-      "primary_chip": "20D -",
-      "secondary_chip": "시장대비 -",
-      "risk": ""
-    }
-  ],
-  "recommendations": [
-    {
-      "심볼": "AMZN",
-      "조치": "actionable_if_provider_recovered",
-      "이유": "mega-cap quality 분산 후보, Alpaca quote spread 0.0152%, Yahoo recommendation usable",
-      "주의": "SEC/Alpha cancelled로 research confirmation 2개에 그침",
-      "순위": "1"
-    },
-    {
-      "심볼": "INTC",
-      "조치": "actionable_if_provider_recovered",
-      "이유": "반도체 laggard/AI capex 재평가 후보, spread 0.0408%",
-      "주의": "high-volatility, SEC/Alpha cancelled",
-      "순위": "2"
-    },
-    {
-      "심볼": "SMH",
-      "조치": "recheck",
-      "이유": "반도체 ETF momentum, spread 0.0467%",
-      "주의": "ETF라 SEC CIK lookup 공백, AI semiconductor cluster 집중 주의",
-      "순위": "3"
-    },
-    {
-      "심볼": "AAPL",
-      "조치": "skip",
-      "이유": "spread 0.0097%로 quote gate는 양호",
-      "주의": "직전 run의 AAPL buy order `new`가 열려 있어 duplicate/open-order gate 차단",
-      "순위": "4"
-    },
-    {
-      "심볼": "MU",
-      "조치": "recheck",
-      "이유": "강한 momentum",
-      "주의": "spread 0.4796%로 0.50% 상한에 근접",
-      "순위": "5"
-    }
-  ],
+  "picks": [],
+  "recommendations": [],
   "scores": [],
   "links": [
     {
       "label": "리포트",
-      "path": "wiki/current-runs/daily/2026-05-27-0311-hourly-autopilot.md",
-      "href": "../wiki/current-runs/daily/2026-05-27-0311-hourly-autopilot.md"
+      "path": "wiki/current-runs/daily/2026-05-27-0331-hourly-autopilot.md",
+      "href": "../wiki/current-runs/daily/2026-05-27-0331-hourly-autopilot.md"
     },
     {
       "label": "주문계획",
-      "path": "wiki/trade-ledger/orders/2026-05-27-0311-hourly-autopilot.json",
-      "href": "../wiki/trade-ledger/orders/2026-05-27-0311-hourly-autopilot.json"
+      "path": "wiki/trade-ledger/orders/2026-05-27-0331-hourly-autopilot.json",
+      "href": "../wiki/trade-ledger/orders/2026-05-27-0331-hourly-autopilot.json"
     },
     {
       "label": "Manifest",
-      "path": "wiki/evidence-store/run-manifests/2026-05-27-0311-hourly-autopilot.json",
-      "href": "../wiki/evidence-store/run-manifests/2026-05-27-0311-hourly-autopilot.json"
+      "path": "wiki/evidence-store/run-manifests/2026-05-27-0331-hourly-autopilot.json",
+      "href": "../wiki/evidence-store/run-manifests/2026-05-27-0331-hourly-autopilot.json"
     },
     {
       "label": "포지션",
@@ -677,22 +598,27 @@
       "href": "../wiki/trade-ledger/positions/current.md"
     },
     {
-      "label": "2026-05-27-0311-hourly-autopilot-sources.md",
-      "path": "wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-sources.md",
-      "href": "../wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-sources.md"
+      "label": "2026-05-27-0331-hourly-autopilot-alpaca-core-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-alpaca-core-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-alpaca-core-preflight.json"
     },
     {
-      "label": "2026-05-27-0311-hourly-autopilot-alpaca-core-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-alpaca-core-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-alpaca-core-preflight.json"
+      "label": "2026-05-27-0331-hourly-autopilot-research-mcp-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-research-mcp-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-research-mcp-preflight.json"
     },
     {
-      "label": "2026-05-27-0311-hourly-autopilot-research-mcp-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-research-mcp-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-research-mcp-preflight.json"
+      "label": "2026-05-27-0331-hourly-autopilot-sources.md",
+      "path": "wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-sources.md",
+      "href": "../wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-sources.md"
     }
   ],
   "timeline": [
+    {
+      "time": "2026-05-27 03:35 Asia/Seoul",
+      "type": "hourly-autopilot",
+      "title": "paper mode gate 실패로 주문 없음"
+    },
     {
       "time": "2026-05-27 03:14 Asia/Seoul",
       "type": "hourly-autopilot",
@@ -702,11 +628,6 @@
       "time": "2026-05-27 03:00 Asia/Seoul",
       "type": "hourly-autopilot",
       "title": "paper validation AAPL 주문 제출"
-    },
-    {
-      "time": "2026-05-27 02:38 Asia/Seoul",
-      "type": "automation-maintenance",
-      "title": "Alpaca MCP core preflight 안정화"
     }
   ],
   "backtests": [
@@ -757,9 +678,9 @@
   ],
   "warnings": [
     "orders is empty",
-    "local CIK fallback succeeded for AMZN/INTC but SEC EDGAR MCP get_financials cancelled twice for actionable research.",
-    "first non-PING NEWS_SENTIMENT TOOL_CALL cancelled after successful health sequence.",
-    "no registered Firecrawl MCP tool exposed in Codex tool catalog."
+    "",
+    "",
+    ""
   ]
 }</script>
   <script>

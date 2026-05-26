@@ -53,6 +53,7 @@
 - [[2026-05-27-0226-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 NVDA 1주 paper validation buy 체결.
 - [[2026-05-27-0251-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 AAPL 1주 paper validation buy 제출, open `new`.
 - [[2026-05-27-0311-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/risk/quote/spread는 통과했지만 research MCP usable/pass 2개로 strict gate 실패, 주문 없음.
+- [[2026-05-27-0331-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/quote는 preflight 통과했지만 nested paper-mode env와 MCP strict gate 실패로 주문 없음.
 
 ## Research Notes
 
@@ -127,6 +128,7 @@
 - `wiki/trade-ledger/orders/2026-05-27-0226-hourly-autopilot.json` - 2026-05-27 02:26 KST hourly autopilot NVDA 1주 paper validation buy plan, universe/MCP/risk PASS, order filled.
 - `wiki/trade-ledger/orders/2026-05-27-0251-hourly-autopilot.json` - 2026-05-27 02:51 KST hourly autopilot AAPL 1주 paper validation buy plan, universe/MCP/risk PASS, order open `new`.
 - `wiki/trade-ledger/orders/2026-05-27-0311-hourly-autopilot.json` - 2026-05-27 03:11 KST hourly autopilot empty-order plan, universe/risk PASS, MCP strict FAIL.
+- `wiki/trade-ledger/orders/2026-05-27-0331-hourly-autopilot.json` - 2026-05-27 03:31 KST hourly autopilot empty-order plan, paper-mode env FAIL, MCP strict FAIL.
 - 2026-05-22 paper 주문 체결분은 다음 회고 대상이다.
 
 ## Policy Book

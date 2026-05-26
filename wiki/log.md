@@ -1151,3 +1151,24 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - run manifest: `wiki/evidence-store/run-manifests/2026-05-27-0311-hourly-autopilot.json`.
 - order plan: `wiki/trade-ledger/orders/2026-05-27-0311-hourly-autopilot.json`.
 - review due markers: 이번 run 신규 fill 없음. AAPL order는 open `new`라 아직 fill review due가 아니며, LLY/FCX/NOK/NVDA 및 2026-05-22 체결분은 계속 `회고 대기`.
+
+## [2026-05-27 03:35 Asia/Seoul] hourly-autopilot | paper mode gate 실패로 주문 없음
+
+- run id: `2026-05-27-0331-hourly-autopilot`.
+- 사용자 승인에 따라 `harness/workflows/hourly-autopilot.md`를 실행했다.
+- nested Codex shell에서 `ALPACA_PAPER_TRADE=true`가 확인되지 않아 첫 hard blocking gate를 `paper_mode_env_missing`으로 기록했고, `place_stock_order`는 호출하지 않았다.
+- Scheduler-owned Alpaca core preflight `wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-alpaca-core-preflight.json`를 먼저 읽었다. Hard gate pass, market open, account/positions/open orders/fills/watchlists/asset/quotes/snapshots/latest trades pass를 Alpaca MCP evidence로 사용했다.
+- Market clock: `2026-05-26T14:31:10.242063192-04:00` 기준 open, next close `2026-05-26T16:00:00-04:00`.
+- Account before decision: portfolio value 101621.09 USD, cash 42657.04 USD, buying power 137380.24 USD, current positions 12개, open order 1건 AAPL buy `new`.
+- Universe: 62개 metadata universe와 `SPY`/`QQQ`를 스크리닝했다. Pre-MCP shortlist는 `AMZN`, `INTC`, `SMH`, `AAPL`, `MU`, `NVDA`, `FCX`, `NOK`, `LLY`, `AMD`, final candidates는 `AMZN`, `INTC`, `SMH`.
+- Candidate quote/spread: AMZN 0.0114%, INTC 0.0245%, SMH 0.0483%, quote rows are from `2026-05-26T18:31:31Z` to `2026-05-26T18:31:32Z`.
+- SEC EDGAR는 local CIK cache로 `AMZN -> 0001018724`, `INTC -> 0000050863` 확인 후 registered MCP call이 cancelled되어 `gap_category=cancelled`로 기록했다. `SMH`는 ETF로 local CIK lookup 공백이다.
+- Alpha Vantage는 `TOOL_LIST` -> `TOOL_GET("PING")` -> `TOOL_CALL("PING", {})` pass 후 `TOOL_GET("NEWS_SENTIMENT")` 직후 첫 candidate `TOOL_CALL("NEWS_SENTIMENT")`이 cancelled되어 `gap_category=cancelled`로 기록하고 retry를 중단했다.
+- FRED는 scheduler preflight `wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-research-mcp-preflight.json`의 `get_macro_snapshot` pass를 usable evidence로 사용했다. Yahoo Finance AMZN news는 usable했다. Firecrawl은 Codex tool catalog에 registered MCP tool이 노출되지 않아 `gap_category=wrapper_error`로 기록했고 shell/curl/local wrapper는 호출하지 않았다.
+- First blocking gate: `paper_mode_env_missing`. 검증 결과 universe strict PASS, MCP strict FAIL, risk-check FAIL(AAPL open order age 34.8분 > lifecycle limit 30분).
+- submitted orders: 없음. `place_stock_order` 호출 없음. skipped orders: 모든 buy/sell 후보. 이유는 nested paper-mode env 미확인 및 MCP strict fail.
+- 리포트: `wiki/current-runs/daily/2026-05-27-0331-hourly-autopilot.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-27-0331-hourly-autopilot-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-27-0331-hourly-autopilot.json`.
+- order plan: `wiki/trade-ledger/orders/2026-05-27-0331-hourly-autopilot.json`.
+- review due markers: 이번 run 신규 fill 없음. AAPL order는 open `new`라 아직 fill review due가 아니며, LLY/FCX/NOK/NVDA 및 2026-05-22 체결분은 계속 `회고 대기`.
