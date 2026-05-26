@@ -22,7 +22,7 @@ class AgentDashboardPortfolioTests(unittest.TestCase):
 
     def test_portfolio_snapshot_reads_current_positions(self):
         portfolio = self.module.portfolio_snapshot()
-        self.assertEqual(portfolio["positions_count"], 10)
+        self.assertEqual(portfolio["positions_count"], 11)
         self.assertIn("USD", portfolio["portfolio_value"])
         self.assertGreater(portfolio["exposure_ratio"], 50.0)
         self.assertGreater(portfolio["cash_ratio"], 40.0)

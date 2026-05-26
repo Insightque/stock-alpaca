@@ -9,6 +9,8 @@ LOCK_DIR="${ROOT_DIR}/.locks/hourly-autopilot.lock"
 LOG_DIR="${ROOT_DIR}/logs"
 PROMPT_FILE="${ROOT_DIR}/harness/workflows/hourly-autopilot.md"
 PROMPT_TMP=""
+RUN_ID="$(date '+%Y-%m-%d-%H%M')-hourly-autopilot"
+RESEARCH_PREFLIGHT_PATH="${ROOT_DIR}/wiki/evidence-store/sources/${RUN_ID}-research-mcp-preflight.json"
 
 mkdir -p "${ROOT_DIR}/.locks" "${LOG_DIR}"
 
@@ -37,6 +39,12 @@ if ! grep -q '^ALPACA_PAPER_TRADE=true$' .env; then
 fi
 
 PROMPT_TMP="$(mktemp "${LOG_DIR}/hourly-autopilot-prompt.XXXXXX")"
+if ! PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/scripts/fetch-research-mcp-preflight.py" \
+  --run-id "${RUN_ID}" \
+  --output-json "${RESEARCH_PREFLIGHT_PATH}"; then
+  echo "$(now_iso) research MCP preflight failed; nested workflow will classify provider gaps."
+fi
+
 cat >"${PROMPT_TMP}" <<'PROMPT'
 You are running the stock-alpaca hourly paper autopilot.
 
@@ -51,17 +59,36 @@ Hard requirements:
 - Classify every MCP gap as one of: timeout, cancelled, dns, auth, empty_response, provider_error, wrapper_error, unknown.
 - For Alpaca core, make short independent attempts for clock, account, orders, positions, and quotes. Record which exact core check was the first blocking gate.
 - For SEC EDGAR, use the local `harness/sec-ticker-cik-map.json` mapping as a ticker-to-CIK fallback before marking a ticker lookup gap.
+- Use registered Codex MCP tools for Alpaca, SEC EDGAR, Alpha Vantage, and Yahoo Finance. Do not run local Alpaca/FRED/Firecrawl network helper scripts or curl from the nested shell for current-market data.
+- A scheduler-owned research MCP preflight may exist at `RESEARCH_PREFLIGHT_PATH_PLACEHOLDER`. If it exists, read it and use any provider row with `outcome=pass` as MCP evidence with that file as the source_ref. In particular, count a passing FRED `get_macro_snapshot` preflight as queried/usable FRED macro evidence. If it is missing or failed, classify the provider gap; do not retry that provider through shell/curl.
+- For Firecrawl, use a registered MCP tool only if it is exposed in the Codex tool catalog. If it is not exposed, classify it as `gap_category=wrapper_error`; do not call `scripts/mcp-firecrawl.sh` or `curl` from shell.
+- For Alpha Vantage, first use `TOOL_LIST`, then `TOOL_GET("PING")`, then `TOOL_CALL("PING", {})` as a health check. For candidate data, call `TOOL_GET` immediately before the matching `TOOL_CALL`. If any non-PING `TOOL_CALL` is cancelled once, stop Alpha retries and classify `alpha-vantage` as `gap_category=cancelled`; do not try a second Alpha function in the same run.
+- When running Python validators, use `PATH=/usr/local/bin:$PATH python3 ...` if the default `python3` is missing PyYAML.
+- Use `LC_ALL=C` for checksum commands that otherwise fail on unavailable `C.UTF-8` locales.
+- In zsh snippets, avoid using `status` as a variable name because it is read-only.
 - Record detailed buy/sell rationale for every proposed or submitted order so analyst reviews can improve policy later.
+- Immediately before any `place_stock_order` call, write a concise pre-submit gate summary in plain text: paper mode, market clock timestamp, order plan path, universe/MCP/risk validator status, quote freshness, spread, order shape, duplicate/open-order check, and source refs. If `place_stock_order` returns cancelled, reconcile orders and positions with the same `client_order_id` before retrying; never retry with a different client order id.
 - After any submit attempt, run post-trade reconciliation.
 - Do not touch unrelated dirty files.
 
 Start now.
 PROMPT
 
+python3 - "${PROMPT_TMP}" "${RESEARCH_PREFLIGHT_PATH}" <<'PY'
+from pathlib import Path
+import sys
+
+prompt_path = Path(sys.argv[1])
+preflight_path = sys.argv[2]
+text = prompt_path.read_text(encoding="utf-8")
+prompt_path.write_text(text.replace("RESEARCH_PREFLIGHT_PATH_PLACEHOLDER", preflight_path), encoding="utf-8")
+PY
+
 python3 - "${ROOT_DIR}" "${PROMPT_TMP}" <<'PY'
 from __future__ import annotations
 
 import os
+import json
 import subprocess
 import sys
 
@@ -70,13 +97,39 @@ root_dir = sys.argv[1]
 prompt_path = sys.argv[2]
 timeout_seconds = int(os.environ.get("CODEX_AUTOPILOT_TIMEOUT_SECONDS", "2400"))
 prompt = open(prompt_path, "r", encoding="utf-8").read()
+# In non-interactive `-a never` scheduled runs, MCP tools that would prompt
+# for approval are reported as "user cancelled".  Use the Codex MCP
+# `approve` mode here to pre-approve only the tools this paper workflow needs;
+# the workflow and risk gates still decide whether orders are allowed.
 scheduled_mcp_config = [
     'sandbox_permissions=["network-full-access"]',
-    'mcp_servers.alpaca.tools.get_asset.approval_mode="auto"',
-    'mcp_servers.alpaca.tools.get_news.approval_mode="auto"',
-    'mcp_servers.alpaca.tools.get_market_movers.approval_mode="auto"',
-    'mcp_servers.alpaca.tools.get_all_positions.approval_mode="auto"',
-    'mcp_servers.alpaca.tools.place_stock_order.approval_mode="auto"',
+    f'mcp_servers.alpaca.command={json.dumps(os.path.join(root_dir, "scripts", "alpaca-mcp.sh"))}',
+    f'mcp_servers.sec-edgar.command={json.dumps(os.path.join(root_dir, "scripts", "mcp-sec-edgar.sh"))}',
+    f'mcp_servers.alpha-vantage.command={json.dumps(os.path.join(root_dir, "scripts", "mcp-alpha-vantage.sh"))}',
+    f'mcp_servers.yahoo-finance.command={json.dumps(os.path.join(root_dir, "scripts", "mcp-yahoo-finance.sh"))}',
+    'mcp_servers.alpaca.tools.get_clock.approval_mode="approve"',
+    'mcp_servers.alpaca.tools.get_account_info.approval_mode="approve"',
+    'mcp_servers.alpaca.tools.get_orders.approval_mode="approve"',
+    'mcp_servers.alpaca.tools.get_all_positions.approval_mode="approve"',
+    'mcp_servers.alpaca.tools.get_account_activities.approval_mode="approve"',
+    'mcp_servers.alpaca.tools.get_watchlists.approval_mode="approve"',
+    'mcp_servers.alpaca.tools.get_asset.approval_mode="approve"',
+    'mcp_servers.alpaca.tools.get_stock_bars.approval_mode="approve"',
+    'mcp_servers.alpaca.tools.get_stock_quotes.approval_mode="approve"',
+    'mcp_servers.alpaca.tools.get_stock_latest_quote.approval_mode="approve"',
+    'mcp_servers.alpaca.tools.get_stock_snapshot.approval_mode="approve"',
+    'mcp_servers.alpaca.tools.get_news.approval_mode="approve"',
+    'mcp_servers.alpaca.tools.get_market_movers.approval_mode="approve"',
+    'mcp_servers.alpaca.tools.get_most_active_stocks.approval_mode="approve"',
+    'mcp_servers.sec-edgar.tools.get_company_info.approval_mode="approve"',
+    'mcp_servers.sec-edgar.tools.get_recent_filings.approval_mode="approve"',
+    'mcp_servers.alpha-vantage.tools.TOOL_LIST.approval_mode="approve"',
+    'mcp_servers.alpha-vantage.tools.TOOL_GET.approval_mode="approve"',
+    'mcp_servers.alpha-vantage.tools.TOOL_CALL.approval_mode="approve"',
+    'mcp_servers.yahoo-finance.tools.get_stock_info.approval_mode="approve"',
+    'mcp_servers.yahoo-finance.tools.get_yahoo_finance_news.approval_mode="approve"',
+    'mcp_servers.yahoo-finance.tools.get_recommendations.approval_mode="approve"',
+    'mcp_servers.alpaca.tools.place_stock_order.approval_mode="approve"',
 ]
 codex_command = [
     "codex",
@@ -84,6 +137,9 @@ codex_command = [
     "-a",
     "never",
     "exec",
+    "--ignore-user-config",
+    "--sandbox",
+    "workspace-write",
     "--ephemeral",
     "-C",
     root_dir,

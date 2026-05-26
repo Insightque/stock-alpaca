@@ -12,7 +12,7 @@ The sample time is local machine time. Adjust it for US market hours and dayligh
 
 `com.insightque.stock-alpaca.hourly-autopilot.plist.example` runs `scripts/run-hourly-autopilot-codex.sh` at minute 31 of every hour. The script asks Codex to execute `harness/workflows/hourly-autopilot.md`.
 
-The wrapper runs Codex in non-interactive mode with scheduled-run MCP overrides: read-only Alpaca tools and the paper-order submission tool use `approval_mode="auto"` only for this scheduled process, and network access is enabled for research MCPs such as FRED and Firecrawl. The global Codex config can remain conservative for manual sessions.
+The wrapper runs Codex in non-interactive mode with scheduled-run MCP overrides: required Alpaca, SEC EDGAR, Alpha Vantage, Yahoo Finance tools and the paper-order submission tool use `approval_mode="approve"` only for this scheduled process. The nested run ignores the global Codex config and loads only those MCP servers; scheduler-owned FRED preflight captures macro context before launch so local research wrappers cannot stall nested shutdown. The global Codex config can remain conservative for manual sessions.
 
 This is allowed to submit Alpaca paper orders only when every gate passes:
 
@@ -43,7 +43,7 @@ launchctl enable "gui/$(id -u)/com.insightque.stock-alpaca.hourly-autopilot"
 `com.insightque.stock-alpaca.analyst-review.plist.example` runs `scripts/run-analyst-review-codex.sh` once per day after the US market close in Korea time. The workflow performs post-trade reconciliation, checks 1D/5D/20D review horizons, writes analyst-style reviews, and updates policy only when evidence accumulates.
 
 This workflow never submits, replaces, cancels, or closes orders.
-The wrapper uses the same non-interactive read-only MCP approval overrides as the hourly runner, but it does not auto-approve any order submission tool.
+The wrapper uses the same non-interactive read-only MCP approval overrides as the hourly runner, but it does not pre-approve any order submission tool.
 After a successful analyst review run, `scripts/git-autopush-artifacts.sh analyst-review` commits and pushes only generated review/policy artifacts. It does not stage unrelated local workspace edits.
 
 Install:
