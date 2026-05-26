@@ -10,6 +10,7 @@ class McpRuntimeWrapperTests(unittest.TestCase):
     def test_uvx_wrappers_use_workspace_local_runtime_dirs(self):
         for relative_path in (
             "scripts/alpaca-mcp.sh",
+            "scripts/cancel-stale-autopilot-orders.py",
             "scripts/fetch-alpaca-core-preflight.py",
             "scripts/fetch-research-mcp-preflight.py",
             "scripts/mcp-alpha-vantage.sh",
@@ -19,7 +20,10 @@ class McpRuntimeWrapperTests(unittest.TestCase):
             text = (ROOT / relative_path).read_text(encoding="utf-8")
             with self.subTest(path=relative_path):
                 if relative_path.endswith(".py"):
-                    if relative_path == "scripts/fetch-alpaca-core-preflight.py":
+                    if relative_path in {
+                        "scripts/cancel-stale-autopilot-orders.py",
+                        "scripts/fetch-alpaca-core-preflight.py",
+                    }:
                         self.assertIn("session.call_tool", text)
                     else:
                         self.assertIn("Content-Length", text)
@@ -61,6 +65,8 @@ class McpRuntimeWrapperTests(unittest.TestCase):
         expectations = {
             "scripts/run-hourly-autopilot-codex.sh": [
                 "check-alpaca-market-open-mcp.py",
+                "cancel-stale-autopilot-orders.py",
+                "STALE_ORDER_CLEANUP_PATH",
                 "fetch-alpaca-core-preflight.py",
                 "ALPACA_PREFLIGHT_PATH",
                 "Alpaca market is closed; scheduled autopilot exits before research/Codex run",
@@ -68,6 +74,8 @@ class McpRuntimeWrapperTests(unittest.TestCase):
                 "mcp_servers.alpaca.command=",
                 "mcp_servers.sec-edgar.command=",
                 "mcp_servers.alpha-vantage.command=",
+                "mcp_servers.fred.command=",
+                "mcp_servers.firecrawl.command=",
                 "mcp_servers.yahoo-finance.command=",
                 'mcp_servers.alpaca.tools.get_clock.approval_mode="approve"',
                 'mcp_servers.alpaca.tools.get_account_info.approval_mode="approve"',
@@ -79,15 +87,20 @@ class McpRuntimeWrapperTests(unittest.TestCase):
                 'mcp_servers.alpaca.tools.get_stock_latest_quote.approval_mode="approve"',
                 'mcp_servers.alpaca.tools.get_stock_snapshot.approval_mode="approve"',
                 'mcp_servers.alpaca.tools.get_most_active_stocks.approval_mode="approve"',
+                'mcp_servers.alpaca.tools.cancel_order_by_id.approval_mode="approve"',
+                'mcp_servers.alpaca.tools.get_order_by_id.approval_mode="approve"',
+                'mcp_servers.alpaca.tools.get_order_by_client_id.approval_mode="approve"',
                 'mcp_servers.alpaca.tools.place_stock_order.approval_mode="approve"',
                 'mcp_servers.sec-edgar.tools.get_recent_filings.approval_mode="approve"',
                 'mcp_servers.alpha-vantage.tools.TOOL_LIST.approval_mode="approve"',
                 'mcp_servers.alpha-vantage.tools.TOOL_GET.approval_mode="approve"',
                 'mcp_servers.alpha-vantage.tools.TOOL_CALL.approval_mode="approve"',
+                'mcp_servers.fred.tools.get_macro_snapshot.approval_mode="approve"',
+                'mcp_servers.firecrawl.tools.firecrawl_scrape.approval_mode="approve"',
                 'mcp_servers.yahoo-finance.tools.get_stock_info.approval_mode="approve"',
                 "fetch-research-mcp-preflight.py",
                 "RESEARCH_PREFLIGHT_PATH",
-                "Do not run local Alpaca/FRED/Firecrawl network helper scripts",
+                "Do not run ad hoc local network helper scripts",
                 "pre-submit gate summary",
                 "client_order_id",
                 "build-agent-dashboard.py",
@@ -98,6 +111,8 @@ class McpRuntimeWrapperTests(unittest.TestCase):
                 "mcp_servers.alpaca.command=",
                 "mcp_servers.sec-edgar.command=",
                 "mcp_servers.alpha-vantage.command=",
+                "mcp_servers.fred.command=",
+                "mcp_servers.firecrawl.command=",
                 "mcp_servers.yahoo-finance.command=",
                 'mcp_servers.alpaca.tools.get_clock.approval_mode="approve"',
                 'mcp_servers.alpaca.tools.get_account_info.approval_mode="approve"',
@@ -112,8 +127,10 @@ class McpRuntimeWrapperTests(unittest.TestCase):
                 'mcp_servers.alpha-vantage.tools.TOOL_LIST.approval_mode="approve"',
                 'mcp_servers.alpha-vantage.tools.TOOL_GET.approval_mode="approve"',
                 'mcp_servers.alpha-vantage.tools.TOOL_CALL.approval_mode="approve"',
+                'mcp_servers.fred.tools.get_macro_snapshot.approval_mode="approve"',
+                'mcp_servers.firecrawl.tools.firecrawl_scrape.approval_mode="approve"',
                 'mcp_servers.yahoo-finance.tools.get_stock_info.approval_mode="approve"',
-                "Do not run local Alpaca/FRED/Firecrawl network helper scripts",
+                "Do not run ad hoc local network helper scripts",
                 "build-agent-dashboard.py",
             ],
         }
@@ -125,10 +142,9 @@ class McpRuntimeWrapperTests(unittest.TestCase):
                 self.assertIn("--ephemeral", text)
                 self.assertIn("--ignore-user-config", text)
                 self.assertIn("workspace-write", text)
+                self.assertIn("source .env", text)
                 self.assertNotIn('approval_mode="auto"', text)
                 self.assertNotIn("--dangerously-bypass-approvals-and-sandbox", text)
-                self.assertNotIn("mcp_servers.fred.tools", text)
-                self.assertNotIn("mcp_servers.firecrawl.tools", text)
                 for snippet in snippets:
                     self.assertIn(snippet, text)
 

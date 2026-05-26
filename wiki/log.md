@@ -1255,3 +1255,13 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 1D 결과: AMD/NOK/LRCX/ETN/AVGO/TSM은 양호했고, RGTI/UNH/IONQ/NVDA는 event risk, healthcare headline risk, 양자 변동성, 대형 AI 기대 선반영 부담이 확인됐다. Skipped PLTR/QBTS 제외는 1D 기준 타당, TSLA 제외는 중립에 가까웠다.
 - 산출물: [[2026-05-27-portfolio-review]], [[2026-05-27-0624-analyst-review-cycle-sources]], `wiki/evidence-store/run-manifests/2026-05-27-0624-analyst-review-cycle.json`, [[portfolio-current]].
 - 정책 변경: 없음. 1D 단일 회고이고 5D/20D가 남아 있으며 portfolio history gap도 있어 evidence threshold를 충족하지 않았다.
+
+## [2026-05-27 07:57 Asia/Seoul] automation-maintenance | scheduled MCP 재발 방지 강화
+
+- 원인 분석 결과를 반영해 scheduled wrapper가 `.env`를 export한 뒤 nested Codex를 실행하도록 수정했다. 이는 nested shell에서 `ALPACA_PAPER_TRADE=true`가 비어 `paper_mode_env_missing`으로 오탐되는 문제를 막기 위한 조치다.
+- `scripts/cancel-stale-autopilot-orders.py`를 추가했다. 이 helper는 Alpaca MCP만 사용하며, paper mode에서 `client_order_id`가 `hourly-`로 시작하는 stale/unfilled/day-limit/us-equity autopilot 주문만 취소 대상으로 삼는다. 비-autopilot 주문, 부분체결 주문, options, crypto, short/live 주문은 취소하지 않는다.
+- hourly wrapper는 stale order cleanup을 먼저 실행하고, 이후 Alpaca core preflight를 다시 캡처한다. cleanup 실패 또는 stale 주문 잔존 시 workflow는 `risk_open_order_lifecycle`로 신규 주문을 막도록 문서화했다.
+- scheduled Codex MCP override에 FRED와 Firecrawl 로컬 MCP를 정식 등록하고 approval mode를 명시했다. Analyst review wrapper에도 같은 read-only research MCP 등록을 적용했다.
+- SEC EDGAR는 scheduled autopilot에서 local CIK fallback 후 lightweight `get_company_info`/`get_recent_filings`를 우선 사용하도록 명시해, 불필요한 heavy financials 호출 cancellation이 SEC usable evidence를 깨지 않게 했다.
+- 검증: stale cleanup live dry-run `manual-stale-cleanup-dry-run-2026-05-27` PASS, stale candidates 0, cancel attempts 0, remaining open orders 0.
+- 검증: `python3 -m unittest discover -s tests` 70개 PASS, wrapper `bash -n` PASS, 관련 Python helper `py_compile` PASS, launchd plist lint PASS.

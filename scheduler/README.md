@@ -12,7 +12,7 @@ The sample time is local machine time. Adjust it for US market hours and dayligh
 
 `com.insightque.stock-alpaca.hourly-autopilot.plist.example` runs `scripts/run-hourly-autopilot-codex.sh` every 20 minutes during the KST windows that can overlap US regular market hours. The wrapper first checks Alpaca MCP `get_clock`; if the US equity market is closed, it exits before research preflight, nested Codex, wiki mutation, or order planning. The script asks Codex to execute `harness/workflows/hourly-autopilot.md`; the legacy name remains `hourly-autopilot` for artifact compatibility.
 
-The wrapper runs Codex in non-interactive mode with scheduled-run MCP overrides: required Alpaca, SEC EDGAR, Alpha Vantage, Yahoo Finance tools and the paper-order submission tool use `approval_mode="approve"` only for this scheduled process. The nested run ignores the global Codex config and loads only those MCP servers; scheduler-owned Alpaca core preflight captures read-only account, position, open-order, asset, and quote evidence before launch, and scheduler-owned FRED preflight captures macro context before launch so local research wrappers cannot stall nested shutdown. The global Codex config can remain conservative for manual sessions.
+The wrapper runs Codex in non-interactive mode with scheduled-run MCP overrides: required Alpaca, SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance tools and the paper-order submission tool use `approval_mode="approve"` only for this scheduled process. The nested run ignores the global Codex config and loads only those MCP servers; scheduler-owned stale-order cleanup cancels only stale unfilled autopilot paper orders when the risk policy allows it, scheduler-owned Alpaca core preflight captures read-only account, position, open-order, asset, and quote evidence before launch, and scheduler-owned FRED preflight captures macro context before launch so local research wrappers cannot stall nested shutdown. The global Codex config can remain conservative for manual sessions.
 
 This is allowed to submit Alpaca paper orders only when every gate passes:
 
@@ -23,6 +23,8 @@ This is allowed to submit Alpaca paper orders only when every gate passes:
 - all-MCP coverage strict gate
 - risk policy gate
 - whole-share day limit stock/ETF order shape
+
+If `harness/risk-policy.yaml` has `order_lifecycle.cancel_stale_unfilled_orders=true`, the wrapper may call Alpaca MCP `cancel_order_by_id` before nested Codex starts, but only for stale unfilled day limit US-equity orders whose `client_order_id` starts with `hourly-`. It never cancels non-autopilot orders, partially filled orders, options, crypto, shorts, or live orders.
 
 If the Alpaca clock is closed, the scheduled wakeup exits with no workflow artifacts. If the clock is open but any later gate fails, the scheduled run must submit nothing and still write a report, manifest, order plan, and log entry.
 After a successful scheduled run, the wrapper regenerates `ui/agent-dashboard.html`, then `scripts/git-autopush-artifacts.sh hourly-autopilot` commits and pushes the scheduled-run artifact paths such as `wiki/`, `wiki/log.md`, generated dashboard files, and recommendation policy files. It leaves unrelated local files unstaged.

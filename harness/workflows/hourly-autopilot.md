@@ -56,27 +56,32 @@ Run a 20-minute current-market recommendation loop. If and only if every safety,
 1. Acquire the automation lock if the shell wrapper has not already done so. If another run is active, exit without side effects.
 2. Confirm `.env` has `ALPACA_PAPER_TRADE=true`.
 3. In the shell wrapper, call Alpaca MCP `get_clock` through `scripts/check-alpaca-market-open-mcp.py`. If the market is closed or cannot be confirmed open, exit before research MCP preflight, nested Codex, order planning, or wiki mutation.
-4. In the shell wrapper, capture scheduler-owned Alpaca core read-only evidence through `scripts/fetch-alpaca-core-preflight.py`.
+4. In the shell wrapper, run `scripts/cancel-stale-autopilot-orders.py`.
+   - This helper is Alpaca MCP only and paper-mode only.
+   - It may cancel only stale, unfilled, day limit US-equity orders whose `client_order_id` starts with `hourly-`, and only when `harness/risk-policy.yaml` has `order_lifecycle.cancel_stale_unfilled_orders=true`.
+   - It must never cancel non-autopilot orders, partially filled orders, options, crypto, shorts, or live orders.
+   - If stale autopilot orders remain because cancellation or reconciliation failed, block new submissions with `first_blocking_gate=risk_open_order_lifecycle`.
+5. In the shell wrapper, capture scheduler-owned Alpaca core read-only evidence through `scripts/fetch-alpaca-core-preflight.py`.
    - This helper talks to the Alpaca MCP stdio server only. It never submits, replaces, cancels, closes, or REST-calls orders.
    - If the preflight JSON exists and its `hard_gate_summary.status` is `pass`, use its `mcp_coverage_hint` and passing tool rows as Alpaca MCP evidence for clock, account, positions, open orders, recent fills, watchlists, tradability checks, latest quotes, snapshots, and latest trades.
    - The preflight exists to prevent non-interactive scheduled runs from turning read-only Alpaca core calls into false `cancelled` gaps. If a row is missing, stale, or failed, retry only that missing read-only Alpaca MCP tool through the registered Codex MCP tool, then classify any remaining gap.
    - Do not submit on a quote row that would be older than 20 minutes at submit time; refresh through Alpaca MCP or skip the order.
-5. Use Alpaca MCP evidence to check market clock, account, cash, positions, open orders, recent activities, current quotes, snapshots, and relevant news.
-6. Build a broad universe from `harness/symbol-metadata.yaml`, current holdings, Alpaca watchlists, and benchmarks `SPY` and `QQQ`.
-7. Run the expanded-universe first-pass screen. Record `universe_coverage` in the run manifest.
-8. For the pre-MCP shortlist and any proposed order symbol, query all decision MCPs:
+6. Use Alpaca MCP evidence to check market clock, account, cash, positions, open orders, recent activities, current quotes, snapshots, and relevant news.
+7. Build a broad universe from `harness/symbol-metadata.yaml`, current holdings, Alpaca watchlists, and benchmarks `SPY` and `QQQ`.
+8. Run the expanded-universe first-pass screen. Record `universe_coverage` in the run manifest.
+9. For the pre-MCP shortlist and any proposed order symbol, query all decision MCPs:
    - Core: Alpaca
    - Research: SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance
    - For Alpaca core, call and record clock, account, positions, open orders, recent activities, and per-candidate quotes/spreads as separate checks. If the core gate fails, record the first failed check in `first_blocking_gate`.
-   - For SEC EDGAR, resolve ticker to CIK with `harness/sec-ticker-cik-map.json` before marking a ticker lookup failure. If a ticker is absent from the cache, record `gap_category=empty_response` for lookup gaps rather than conflating it with provider failure.
+   - For SEC EDGAR, resolve ticker to CIK with `harness/sec-ticker-cik-map.json` before marking a ticker lookup failure. If a ticker is absent from the cache, record `gap_category=empty_response` for lookup gaps rather than conflating it with provider failure. Scheduled autopilot should use lightweight company info and recent filing checks first; do not let a heavier financials call turn otherwise usable SEC evidence into a cancellation gap.
    - If a required MCP fails due to timeout, cancellation, DNS, or transient network error, retry up to 2 times with a short backoff before marking it failed.
    - For DNS/network failures, run a read-only connectivity probe when practical and record whether the provider endpoint itself was reachable.
    - Classify failed/gap coverage rows with `gap_category`: `timeout`, `cancelled`, `dns`, `auth`, `empty_response`, `provider_error`, `wrapper_error`, `not_applicable`, or `unknown`.
    - Never mark a failed provider as usable because of a retry. Retries only prevent false negatives from transient failures.
    - Record `mcp_gate_policy` in the run manifest with `core_servers=["alpaca"]`, the five research servers, `min_research_confirmations=3`, and `all_research_must_be_attempted=true`.
    - If fewer than 3 research MCPs are usable/pass, set `recommendation_actionability=actionable_if_provider_recovered` for otherwise strong candidates and submit nothing.
-9. Create a detailed current recommendation report under `wiki/current-runs/daily/` or a scheduled-run subreport if multiple runs happen on the same date.
-10. Create a concrete order-plan JSON under `wiki/trade-ledger/orders/`.
+10. Create a detailed current recommendation report under `wiki/current-runs/daily/` or a scheduled-run subreport if multiple runs happen on the same date.
+11. Create a concrete order-plan JSON under `wiki/trade-ledger/orders/`.
    - Include detailed per-order `rationale`.
    - Include source refs, quote timestamp, asset check timestamp, liquidity/spread, confidence score, strategy id/version, policy status, expected excess return, expected adverse move, entry style, sizing basis, and review horizons.
    - If all hard gates pass during regular market hours, prefer validation buys for the highest-ranked actionable candidates that pass position/theme/factor/speculative caps.
@@ -87,7 +92,7 @@ Run a 20-minute current-market recommendation loop. If and only if every safety,
    - Valid sell/trim rationales: thesis-break, risk-limit, stale-thesis, position-sizing, portfolio-fit, speculative cap exceeded, correlated cluster cap exceeded, theme/factor cap exceeded, or overheat profit protection.
    - Evaluate active trim triggers every run using `risk_trim_policy.active_trim_triggers`: position overweight, theme/factor/cluster cap warning, overheat reversal, stale thesis underperformance, and speculative loss control should produce a trim candidate when quote/spread/open-order/risk gates pass.
    - Do not sell solely because a new buy candidate ranks higher.
-11. Validate:
+12. Validate:
 
 ```bash
 python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-manifests/YOUR-RUN.json
@@ -95,7 +100,7 @@ python3 scripts/check-mcp-coverage.py --strict wiki/evidence-store/run-manifests
 python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YOUR-RUN.json
 ```
 
-12. Submit paper orders only when all of the following are true:
+13. Submit paper orders only when all of the following are true:
     - Market is open.
     - `ALPACA_PAPER_TRADE=true`.
     - Universe strict gate passes.
@@ -107,9 +112,9 @@ python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YOUR-RUN.js
     - Order shape is whole-share day limit stock/ETF.
     - No same-day duplicate symbol/side conflict.
     - For validation buys, the order respects the `paper_validation_execution.validation_order_sizing` limits in `harness/recommendation-policy.yaml`.
-13. Submit only through Alpaca MCP order tools. Do not call Alpaca trading REST endpoints directly.
-14. Run post-trade reconciliation immediately after any submit attempt.
-15. Append `wiki/log.md` with:
+14. Submit only through Alpaca MCP order tools. Do not call Alpaca trading REST endpoints directly.
+15. Run post-trade reconciliation immediately after any submit attempt.
+16. Append `wiki/log.md` with:
     - run id
     - market clock
     - recommendation shortlist
@@ -119,7 +124,7 @@ python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YOUR-RUN.js
     - order-plan path
     - report path
     - review due markers
-16. Let the scheduled shell wrapper commit and push generated artifacts after the workflow exits successfully. Do not run ad hoc git commands inside this workflow unless explicitly requested.
+17. Let the scheduled shell wrapper commit and push generated artifacts after the workflow exits successfully. Do not run ad hoc git commands inside this workflow unless explicitly requested.
 
 ## Stop Conditions
 
