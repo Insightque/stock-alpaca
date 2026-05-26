@@ -9,6 +9,7 @@
     "updated_at",
     "policy_version",
     "strategy_status",
+    "cadence_policy",
     "promotion_criteria",
     "source_confidence",
     "universe_policy"
@@ -71,6 +72,63 @@
     "promotion_criteria": {
       "type": "object",
       "additionalProperties": true
+    },
+    "cadence_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scheduled_interval_minutes",
+        "market_hours_only",
+        "alpaca_clock_preflight_required",
+        "launchd_minutes",
+        "launchd_hour_window_kst",
+        "overlap_behavior",
+        "off_market_behavior",
+        "market_open_validation_run_kst",
+        "notes"
+      ],
+      "properties": {
+        "scheduled_interval_minutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "launchd_minutes": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 59
+          }
+        },
+        "launchd_hour_window_kst": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 23
+          }
+        },
+        "market_hours_only": {
+          "type": "boolean"
+        },
+        "alpaca_clock_preflight_required": {
+          "type": "boolean"
+        },
+        "overlap_behavior": {
+          "type": "string"
+        },
+        "off_market_behavior": {
+          "type": "string"
+        },
+        "market_open_validation_run_kst": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "string"
+        }
+      }
     },
     "source_confidence": {
       "type": "object",
@@ -179,6 +237,12 @@
           "items": {
             "type": "string"
           }
+        },
+        "active_trim_triggers": {
+          "type": "object",
+          "additionalProperties": {
+            "type": ["number", "integer", "boolean", "string"]
+          }
         }
       }
     },
@@ -274,6 +338,52 @@
             },
             "allow_existing_position_add_only_if_position_cap_passes": {
               "type": "boolean"
+            },
+            "allow_multiple_candidates_per_run": {
+              "type": "boolean"
+            },
+            "prefer_different_clusters_for_additional_orders": {
+              "type": "boolean"
+            },
+            "max_same_cluster_new_buys_per_run": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "cash_ratio_floor_for_second_order": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "cash_ratio_floor_for_third_order": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "confidence_tiers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["name", "min_confidence_score", "max_notional_pct", "max_qty"],
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "min_confidence_score": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1
+                  },
+                  "max_notional_pct": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "max_qty": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                }
+              }
             }
           }
         },

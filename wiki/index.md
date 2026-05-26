@@ -122,8 +122,8 @@
 ## Policy Book
 
 - [[recommendation-policy]] - 거래 회고에서 나온 교훈을 반영하는 living policy.
-- `harness/recommendation-policy.yaml` / `harness/recommendation-policy.schema.json` - agent-readable 추천 정책 상태, 승격 기준, 시뮬레이션 policy closeout 기준.
-- `harness/strategies/long-term-quality-momentum-v1.yaml` - 장기 dry-run 후보 전략 config.
+- `harness/recommendation-policy.yaml` / `harness/recommendation-policy.schema.json` - agent-readable 추천 정책 상태, 승격 기준, 20분 paper validation cadence, active trim trigger, 시뮬레이션 policy closeout 기준.
+- `harness/strategies/long-term-quality-momentum-v1.yaml` - 장기 quality momentum paper 자동 validation 가능 전략 config.
 - `harness/strategies/intraday-afternoon-followthrough-v1.yaml` - 단타 observation-only 전략 config.
 - `harness/workflows/intraday-paper-dry-run.md` - `intraday-rs-breakout-v0`/`intraday-rs-breadth-vwap-v1` 실시간 주문 없는 paper dry-run 운영안.
 - `harness/workflows/one-year-daily-simulation.md` - 과거 1년 일별 독립 정책 시뮬레이션과 policy closeout workflow.
@@ -136,6 +136,7 @@
 - `scripts/build-one-year-hourly-trend-event-cache.py` - Alpaca MCP 과거 뉴스와 전일 시장/섹터 추세로 일별 point-in-time 동향 feature cache를 만드는 헬퍼.
 - `scripts/simulate-one-year-daily-policy.py` - 캡처된 일봉으로 장기 정책을 일별 독립 run으로 검증하는 헬퍼. `--event-features-json`으로 research MCP feature cache 결합 가능.
 - `scripts/simulate-one-year-hourly-buy-sell.py` - 캡처된 1시간봉과 선택적 event feature cache로 일별 virtual buy/sell 결정을 만들고 same-day/1D/5D/20D/60D를 평가하는 헬퍼.
+- `scripts/check-alpaca-market-open-mcp.py` / `scripts/run-hourly-autopilot-codex.sh` / `scheduler/com.insightque.stock-alpaca.hourly-autopilot.plist.example` - legacy 이름은 hourly지만 Alpaca MCP clock이 open인 장중에만 20분 주기로 paper autopilot workflow를 실행한다.
 - `scripts/build-agent-dashboard.py` / `ui/agent-dashboard.html` / `ui/backtests/` - 서버 없이 여는 agent run 상태판, Alpaca paper 투자 현황 요약, 백테스트 HTML 뷰어 생성기. Hourly `추천 Shortlist`와 포지션별 미실현 손익을 dashboard 카드로 normalize하며, scheduled hourly/analyst wrapper가 성공 후 재생성하고 autopush artifact에 포함한다.
 
 ## 운영/검증 도구

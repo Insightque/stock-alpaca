@@ -93,7 +93,7 @@ python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-mani
 
 기본 운용 방식은 Codex 수동 실행입니다. 선택형 macOS launchd 파일은 `scheduler/`에 있습니다.
 
-자동 paper 운용은 `harness/workflows/hourly-autopilot.md`와 `scripts/run-hourly-autopilot-codex.sh`를 사용합니다. 이 작업은 매시간 현재 종목 추천을 다시 만들고, 장중이며 universe/MCP/risk/quote/spread gate가 모두 통과할 때만 Alpaca MCP로 paper day limit 주문을 제출합니다. 회고와 정책학습은 `harness/workflows/analyst-review-cycle.md`와 `scripts/run-analyst-review-codex.sh`가 장 마감 후 반복 수행합니다.
+자동 paper 운용은 `harness/workflows/hourly-autopilot.md`와 `scripts/run-hourly-autopilot-codex.sh`를 사용합니다. legacy 이름은 hourly지만 launchd 작업은 미국 정규장과 겹칠 수 있는 KST 시간대에 20분마다 깨우고, wrapper가 Alpaca MCP `get_clock`으로 장중임을 확인한 경우에만 추천/주문 workflow를 실행합니다. 장중이며 universe/MCP/risk/quote/spread gate가 모두 통과할 때만 Alpaca MCP로 paper day limit 주문을 제출합니다. 회고와 정책학습은 `harness/workflows/analyst-review-cycle.md`와 `scripts/run-analyst-review-codex.sh`가 장 마감 후 반복 수행합니다.
 
 ### Agent Run Board
 
@@ -200,7 +200,7 @@ python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-mani
 
 The default operating mode is manual execution through Codex. Optional macOS launchd files are available under `scheduler/`.
 
-Automated paper operation uses `harness/workflows/hourly-autopilot.md` and `scripts/run-hourly-autopilot-codex.sh`. The fixed hourly job runs at minute 31 of every hour, rebuilds current recommendations, and may submit Alpaca MCP paper day limit orders only during market hours after the universe, MCP, risk, quote, and spread gates all pass. The 22:31 KST run is also the market-open validation run for US regular sessions. Analyst review and policy learning are handled by `harness/workflows/analyst-review-cycle.md` and `scripts/run-analyst-review-codex.sh` after the market close.
+Automated paper operation uses `harness/workflows/hourly-autopilot.md` and `scripts/run-hourly-autopilot-codex.sh`. The legacy name remains hourly, but the launchd job wakes every 20 minutes only during KST windows that can overlap US regular market hours. The wrapper confirms Alpaca MCP `get_clock.is_open=true` before it runs recommendations or order planning, and may submit Alpaca MCP paper day limit orders only after the universe, MCP, risk, quote, and spread gates all pass. The 22:31 KST run remains the market-open validation run for US regular sessions. Analyst review and policy learning are handled by `harness/workflows/analyst-review-cycle.md` and `scripts/run-analyst-review-codex.sh` after the market close.
 
 ### Agent Run Board
 

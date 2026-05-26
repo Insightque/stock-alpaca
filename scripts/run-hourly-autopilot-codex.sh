@@ -38,6 +38,20 @@ if ! grep -q '^ALPACA_PAPER_TRADE=true$' .env; then
   exit 64
 fi
 
+set +e
+MARKET_CLOCK_STATUS="$(PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/scripts/check-alpaca-market-open-mcp.py" 2>&1)"
+MARKET_CLOCK_EXIT=$?
+set -e
+if [ "${MARKET_CLOCK_EXIT}" -eq 75 ]; then
+  echo "$(now_iso) Alpaca market is closed; scheduled autopilot exits before research/Codex run. ${MARKET_CLOCK_STATUS}"
+  exit 0
+fi
+if [ "${MARKET_CLOCK_EXIT}" -ne 0 ]; then
+  echo "$(now_iso) Unable to confirm Alpaca market is open through MCP; scheduled autopilot exits closed. ${MARKET_CLOCK_STATUS}"
+  exit 0
+fi
+echo "$(now_iso) Alpaca market open confirmed. ${MARKET_CLOCK_STATUS}"
+
 PROMPT_TMP="$(mktemp "${LOG_DIR}/hourly-autopilot-prompt.XXXXXX")"
 if ! PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/scripts/fetch-research-mcp-preflight.py" \
   --run-id "${RUN_ID}" \
@@ -46,9 +60,9 @@ if ! PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/scripts/fetch-research-m
 fi
 
 cat >"${PROMPT_TMP}" <<'PROMPT'
-You are running the stock-alpaca hourly paper autopilot.
+You are running the stock-alpaca scheduled paper autopilot.
 
-Execute `harness/workflows/hourly-autopilot.md` exactly. The user explicitly authorized hourly current-market recommendations and automatic Alpaca paper buy/sell operation on 2026-05-26, but only within the workflow's safety rules.
+Execute `harness/workflows/hourly-autopilot.md` exactly. The user explicitly authorized scheduled current-market recommendations and automatic Alpaca paper buy/sell operation on 2026-05-26, and requested a 20-minute cadence on 2026-05-27, but only within the workflow's safety rules.
 
 Hard requirements:
 - Paper trading only; abort if `ALPACA_PAPER_TRADE=true` is not present.

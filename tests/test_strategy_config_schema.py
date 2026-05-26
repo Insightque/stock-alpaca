@@ -26,6 +26,26 @@ class StrategyConfigSchemaTests(unittest.TestCase):
         errors = sorted(Draft202012Validator(schema).iter_errors(policy), key=lambda error: list(error.absolute_path))
         self.assertEqual([], [error.message for error in errors])
 
+    def test_recommendation_policy_active_paper_validation_settings(self) -> None:
+        policy = yaml.safe_load((ROOT / "harness" / "recommendation-policy.yaml").read_text(encoding="utf-8"))
+
+        long_term = policy["strategy_status"]["long_term_quality_momentum_v1"]
+        self.assertEqual("auto_eligible_paper", long_term["status"])
+        self.assertTrue(long_term["auto_orders_allowed"])
+
+        cadence = policy["cadence_policy"]
+        self.assertEqual(20, cadence["scheduled_interval_minutes"])
+        self.assertTrue(cadence["market_hours_only"])
+        self.assertTrue(cadence["alpaca_clock_preflight_required"])
+        self.assertEqual([11, 31, 51], cadence["launchd_minutes"])
+        self.assertEqual([22, 23, 0, 1, 2, 3, 4, 5], cadence["launchd_hour_window_kst"])
+        self.assertEqual("exit_before_research_preflight_or_codex", cadence["off_market_behavior"])
+
+        sizing = policy["paper_validation_execution"]["validation_order_sizing"]
+        self.assertEqual(3, sizing["max_new_buy_orders_per_run"])
+        self.assertEqual(0.06, sizing["max_validation_notional_pct_per_day"])
+        self.assertTrue(sizing["allow_multiple_candidates_per_run"])
+
 
 if __name__ == "__main__":
     unittest.main()

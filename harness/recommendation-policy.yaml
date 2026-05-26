@@ -1,11 +1,11 @@
-policy_id: recommendation-policy-v1.6
-updated_at: "2026-05-26T22:42:00+09:00"
-policy_version: v1.6
+policy_id: recommendation-policy-v1.7
+updated_at: "2026-05-27T01:52:00+09:00"
+policy_version: v1.7
 strategy_status:
   long_term_quality_momentum_v1:
-    status: active_dry_run_candidate
-    auto_orders_allowed: false
-    promotion_status: not_auto_yet
+    status: auto_eligible_paper
+    auto_orders_allowed: true
+    promotion_status: paper_validation_enabled
     evidence_metrics:
       evidence_count: 282
       validation_periods: 3
@@ -25,10 +25,11 @@ strategy_status:
       - source_confidence_pass
       - liquidity_filter_pass
     blockers:
-      - cost_adjusted_walk_forward_needed
-      - event_source_confirmation_needed
-      - concentration_adjusted_score_needed
-      - valuation_and_filing_features_needed
+      - production_or_live_trading_not_allowed
+      - cost_adjusted_walk_forward_needed_for_size_scaling
+      - event_source_confirmation_needed_for_larger_than_validation_size
+      - concentration_adjusted_score_needed_for_larger_than_validation_size
+      - valuation_and_filing_features_needed_for_larger_than_validation_size
     required_next_evidence:
       - cost_adjusted_walk_forward
       - event_source_confirmation
@@ -107,6 +108,27 @@ strategy_status:
       - quote_spread_fill_validation
       - false_negative_sell_review
       - theme_concentration_report
+cadence_policy:
+  scheduled_interval_minutes: 20
+  market_hours_only: true
+  alpaca_clock_preflight_required: true
+  launchd_minutes:
+    - 11
+    - 31
+    - 51
+  launchd_hour_window_kst:
+    - 22
+    - 23
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+  overlap_behavior: lock_skip
+  off_market_behavior: exit_before_research_preflight_or_codex
+  market_open_validation_run_kst: "22:31"
+  notes: keep_hourly_autopilot_name_for_compatibility_but_run_every_20_minutes_only_when_alpaca_clock_is_open
 promotion_criteria:
   long_term:
     min_completed_recommendations: 250
@@ -196,12 +218,27 @@ risk_trim_policy:
     - correlated_cluster_cap_exceeded
     - theme_factor_cap_exceeded
     - overheat_profit_protection
+    - underperformance_control
+    - duplicate_cluster_de_risking
   trim_requires:
     - fresh_quote
     - spread_within_policy
     - open_order_check
     - risk_check
     - whole_share_day_limit_order
+  active_trim_triggers:
+    default_trim_fraction_pct: 25
+    minimum_trim_qty: 1
+    keep_minimum_remaining_qty: 1
+    position_weight_over_target_pct: 20
+    theme_or_factor_usage_warning_ratio: 0.90
+    correlated_cluster_usage_warning_ratio: 0.90
+    overheat_profit_pct: 12
+    overheat_reversal_5d_pct: -3
+    stale_thesis_age_days: 5
+    stale_thesis_underperform_spy_20d_pct: -5
+    speculative_loss_pct: -8
+    require_no_same_day_buy_for_trim: true
 paper_validation_execution:
   purpose: evidence_collection_not_return_maximization
   enabled_for_hourly_autopilot: true
@@ -223,14 +260,32 @@ paper_validation_execution:
     local_time_zone: Asia/Seoul
     start_time: "22:31"
     end_time: "23:31"
-    objective: use_the_fixed_hourly_31_minute_run_as_the_market_open_validation_run
+    objective: use_the_fixed_20_minute_cadence_with_22_31_kst_as_market_open_validation_run
   validation_order_sizing:
     default_qty: 1
-    max_new_buy_orders_per_run: 2
+    max_new_buy_orders_per_run: 3
     max_validation_notional_pct_per_order: 0.02
-    max_validation_notional_pct_per_day: 0.04
+    max_validation_notional_pct_per_day: 0.06
     prefer_existing_highest_ranked_actionable_candidate: true
     allow_existing_position_add_only_if_position_cap_passes: true
+    allow_multiple_candidates_per_run: true
+    prefer_different_clusters_for_additional_orders: true
+    max_same_cluster_new_buys_per_run: 1
+    cash_ratio_floor_for_second_order: 0.30
+    cash_ratio_floor_for_third_order: 0.35
+    confidence_tiers:
+      - name: validation_floor
+        min_confidence_score: 0.50
+        max_notional_pct: 0.005
+        max_qty: 1
+      - name: standard
+        min_confidence_score: 0.60
+        max_notional_pct: 0.01
+        max_qty: 2
+      - name: high_conviction
+        min_confidence_score: 0.72
+        max_notional_pct: 0.02
+        max_qty: 3
   candidate_floor:
     minimum_confidence_score: 0.50
     allow_medium_source_confidence: true
@@ -239,7 +294,7 @@ paper_validation_execution:
   no_action_diagnostics:
     record_first_blocking_gate: true
     record_next_relaxation_candidate: true
-    record_top_recheck_candidates: 3
+    record_top_recheck_candidates: 5
 universe_policy:
   allow_expanded_universe: true
   default_scope: expanded_metadata_universe

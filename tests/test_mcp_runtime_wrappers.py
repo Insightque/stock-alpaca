@@ -1,3 +1,4 @@
+import plistlib
 from pathlib import Path
 import unittest
 
@@ -55,6 +56,8 @@ class McpRuntimeWrapperTests(unittest.TestCase):
     def test_scheduled_codex_runs_preapprove_required_mcp_tools(self):
         expectations = {
             "scripts/run-hourly-autopilot-codex.sh": [
+                "check-alpaca-market-open-mcp.py",
+                "Alpaca market is closed; scheduled autopilot exits before research/Codex run",
                 'sandbox_permissions=["network-full-access"]',
                 "mcp_servers.alpaca.command=",
                 "mcp_servers.sec-edgar.command=",
@@ -127,6 +130,21 @@ class McpRuntimeWrapperTests(unittest.TestCase):
 
         self.assertIn("ui/agent-dashboard.html", text)
         self.assertIn("ui/backtests", text)
+
+    def test_hourly_autopilot_launchd_runs_every_20_minutes(self):
+        plist = plistlib.loads(
+            (ROOT / "scheduler" / "com.insightque.stock-alpaca.hourly-autopilot.plist.example").read_bytes()
+        )
+
+        intervals = plist["StartCalendarInterval"]
+        self.assertIsInstance(intervals, list)
+        pairs = {(item["Hour"], item["Minute"]) for item in intervals}
+        self.assertIn((22, 31), pairs)
+        self.assertIn((22, 51), pairs)
+        for hour in [23, 0, 1, 2, 3, 4, 5]:
+            for minute in [11, 31, 51]:
+                self.assertIn((hour, minute), pairs)
+        self.assertNotIn((6, 11), pairs)
 
 
 if __name__ == "__main__":

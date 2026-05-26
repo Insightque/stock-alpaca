@@ -1019,3 +1019,12 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Reconciliation gap: `get_order_by_client_id`, `get_order_by_id`, 일부 `get_orders`/`get_all_positions`, `get_account_activities` 호출은 cancelled 또는 safety cancellation이 있었고, 같은 주문 id 기준의 `get_orders` retry와 positions retry로 체결 확인했다.
 - submitted orders: `FCX` 1주. skipped orders: `NOK`, `SMH`, `MU`, `AMD`, `LLY`, `AAPL`, `NVDA`, `AVGO`, `INTC`, `PLTR`, 보유 전 종목 sell/trim.
 - review due markers: 신규 FCX fill은 1D/5D/20D `회고 대기`; LLY 및 2026-05-22 체결분도 계속 `회고 대기`.
+
+## [2026-05-27 01:50 Asia/Seoul] policy | paper autopilot 적극 운용 및 20분 주기 전환
+
+- 사용자 요청에 따라 `harness/recommendation-policy.yaml`을 `v1.7`로 올리고 `long_term_quality_momentum_v1`을 `auto_eligible_paper` / `auto_orders_allowed=true`로 승격했다. 이는 paper validation 전용이며 live/production 거래는 계속 금지한다.
+- 매수 쪽은 hard gate 유지 조건에서 run당 최대 신규 buy 3개, validation notional 일일 6%, second/third slot cash floor, cluster 분산, confidence tier를 명시했다.
+- 매도/trim 쪽은 `risk_trim_policy.active_trim_triggers`에 포지션 과대, 테마/팩터/cluster 경고, overheat reversal, stale thesis underperformance, speculative loss control 기준을 수치화했다.
+- 스케줄은 launchd `StartCalendarInterval`을 미국 정규장과 겹칠 수 있는 KST 시간대의 20분 후보 슬롯으로 바꾸고, wrapper가 Alpaca MCP `get_clock.is_open=true`를 확인한 경우에만 research preflight/nested Codex/wiki/order planning을 시작하도록 변경했다. `22:31 KST` run은 계속 미국 정규장 market-open validation run이다.
+- 장외 wakeup은 `scripts/check-alpaca-market-open-mcp.py`에서 fail-closed로 종료하며, 장외에는 report/manifest/order plan을 만들지 않는다.
+- 문서/검증: `harness/workflows/hourly-autopilot.md`, `scheduler/README.md`, `README.md`, `wiki/index.md`, 관련 schema/test를 함께 갱신했다.

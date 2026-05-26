@@ -22,7 +22,7 @@ class AgentDashboardPortfolioTests(unittest.TestCase):
 
     def test_portfolio_snapshot_reads_current_positions(self):
         portfolio = self.module.portfolio_snapshot()
-        self.assertEqual(portfolio["positions_count"], 11)
+        self.assertEqual(portfolio["positions_count"], 12)
         self.assertIn("USD", portfolio["portfolio_value"])
         self.assertNotEqual(portfolio["total_pl"], "-")
         self.assertNotEqual(portfolio["total_return"], "-")
@@ -35,9 +35,9 @@ class AgentDashboardPortfolioTests(unittest.TestCase):
         data = self.module.build_dashboard_data()
         self.assertIn("portfolio", data)
         self.assertGreaterEqual(len(data["picks"]), 3)
-        self.assertEqual(data["picks"][0]["symbol"], "LLY")
-        self.assertEqual(data["picks"][0]["score_label"], "신뢰 62%")
-        self.assertEqual(data["picks"][0]["primary_chip"], "20D 기대 +3.0%")
+        self.assertEqual(data["picks"][0]["symbol"], "FCX")
+        self.assertEqual(data["picks"][0]["score_label"], "신뢰 58%")
+        self.assertEqual(data["picks"][0]["primary_chip"], "20D 기대 +2.2%")
         self.assertEqual(data["picks"][1]["score_label"], "순위 #2")
         self.assertNotIn("waiting", {agent["status"] for agent in data["agents"]})
         self.assertGreater(data["run"]["invested_ratio"], 50.0)
