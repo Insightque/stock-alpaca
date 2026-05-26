@@ -1,0 +1,90 @@
+{
+  "run_id": "2026-05-27-0624-analyst-review-cycle",
+  "created_at": "2026-05-26T21:24:00Z",
+  "mode": "review-only",
+  "paper": true,
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "review_scope": {
+    "paper_trades_reviewed": ["AMD", "AVGO", "LRCX", "TSM", "NOK", "UNH", "ETN", "RGTI", "IONQ", "NVDA"],
+    "open_positions_reviewed": ["AAPL", "AMD", "AVGO", "ETN", "FCX", "IONQ", "LLY", "LRCX", "NOK", "NVDA", "RGTI", "TSM", "UNH"],
+    "skipped_recommendations_reviewed": ["PLTR", "QBTS", "TSLA"],
+    "review_horizons_due": ["2026-05-22 stock-only 1D"],
+    "review_horizons_pending": ["2026-05-22 stock-only 5D", "2026-05-22 stock-only 20D", "2026-05-26 validation fills 1D/5D/20D"]
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_review": true,
+      "outcome": "usable",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0624-analyst-review-cycle-sources.md"],
+      "gap_reason": "get_portfolio_history cancelled on initial call and 2 retries; account, orders, fills, positions, snapshots, bars, and news passed.",
+      "gap_category": "cancelled",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_review": true,
+      "outcome": "usable",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0624-analyst-review-cycle-sources.md"],
+      "gap_reason": "NVDA, UNH, RGTI, LLY recent filings passed; AMD recent filings call was cancelled by runtime safety guard.",
+      "gap_category": "cancelled",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_review": false,
+      "outcome": "failed",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0624-analyst-review-cycle-sources.md"],
+      "gap_reason": "TOOL_LIST, TOOL_GET(\"PING\"), TOOL_CALL(\"PING\", {}) passed; first non-PING TOOL_CALL(\"NEWS_SENTIMENT\") was cancelled, so Alpha retries stopped.",
+      "gap_category": "cancelled",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "queried": false,
+      "used_in_review": false,
+      "outcome": "unavailable",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0624-analyst-review-cycle-sources.md"],
+      "gap_reason": "No registered FRED MCP tool exposed in Codex tool catalog; shell/curl/local wrapper probing prohibited.",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": false,
+      "used_in_review": false,
+      "outcome": "unavailable",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0624-analyst-review-cycle-sources.md"],
+      "gap_reason": "No registered Firecrawl MCP tool exposed in Codex tool catalog; shell/curl/local wrapper probing prohibited.",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_review": true,
+      "outcome": "usable",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0624-analyst-review-cycle-sources.md"],
+      "gap_reason": "AMD/NOK/UNH/RGTI recommendations and NOK news passed; NVDA recommendations call cancelled by runtime safety guard.",
+      "gap_category": "cancelled",
+      "retry_count": 0
+    }
+  ],
+  "artifacts": {
+    "review": "wiki/trade-ledger/reviews/2026-05-27-portfolio-review.md",
+    "source_note": "wiki/evidence-store/sources/2026-05-27-0624-analyst-review-cycle-sources.md",
+    "portfolio_snapshot": "wiki/trade-ledger/positions/current.md"
+  },
+  "policy_update": {
+    "updated": false,
+    "reason": "Only 1D horizon is complete and portfolio history was unavailable; evidence threshold for policy-book change is not met."
+  }
+}

@@ -55,3 +55,7 @@ NOK는 stock-only 제안에서 중간 위험의 인프라 후보로 본다. Alpa
 NOK는 보유 유지 후보지만 신규 추격은 금지한다. 2026-05-22 종가 15.46 기준 5D +10.79%, 20D +48.18%, 63D +104.46%로 모멘텀은 강하지만 장기 정책의 overheat guard인 20D +45% 초과 구간에 들어갔다.
 
 현재 포지션 수익은 양호하므로 축소 신호는 아니지만, 새 매수는 다음 정규장 후속 유지와 fresh quote 확인 전까지 보류한다.
+
+## 회고 기록
+
+- 2026-05-27: [[2026-05-27-portfolio-review]]에서 2026-05-22 stock-only 매수 1D interim review를 작성했다. NOK 전체 포지션은 평균 15.043641 USD 대비 Alpaca 현재가 16.75 USD, 미실현 +11.34%였다. Yahoo/Alpaca 뉴스에서도 AI networking/infrastructure 재평가가 확인됐지만 5D/20D 유지 여부는 대기한다.

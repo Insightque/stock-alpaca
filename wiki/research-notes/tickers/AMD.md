@@ -62,3 +62,7 @@ AMD는 모멘텀과 촉매가 가장 강한 축이지만 신규 추격은 소액
 AMD는 오늘 기준 3순위 후보지만, 새 주문 후보가 아니라 `staged only`다. 2026-05-22 종가 467.64 기준 5D +10.30%, 20D +34.46%, 63D +137.84%로 강하지만, 정책상 20D +35% 부근은 추격 위험이 커진다.
 
 Alpaca/Yahoo Finance MCP에서는 2nm Venice CPU 생산 확대와 대만 AI supply chain 투자 맥락이 확인됐다. 촉매는 좋지만 가격이 이미 많이 반영했을 수 있어 다음 정규장 fresh quote와 장초반 반납 여부를 확인한 뒤 아주 작은 staged add만 고려한다.
+
+## 회고 기록
+
+- 2026-05-27: [[2026-05-27-portfolio-review]]에서 2026-05-22 stock-only 매수 1D interim review를 작성했다. AMD는 462.73 USD 진입 대비 Alpaca 현재가 504.60 USD, 미실현 +9.05%로 SPY/QQQ/SMH를 모두 상회했다. 단일 1D 결과라 정책 변경은 보류했다.

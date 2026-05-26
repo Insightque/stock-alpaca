@@ -1242,3 +1242,16 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - order plan: `wiki/trade-ledger/orders/2026-05-27-0451-hourly-autopilot.json`.
 - portfolio snapshot: `wiki/trade-ledger/positions/current.md`.
 - review due markers: 이번 run 신규 fill 없음. AMZN open order는 아직 fill review due가 아니며, AAPL/LLY/FCX/NOK/NVDA 및 2026-05-22 체결분은 계속 `회고 대기`.
+
+## [2026-05-27 06:24 Asia/Seoul] analyst-review-cycle | 2026-05-22 stock-only 1D 회고
+
+- `harness/workflows/analyst-review-cycle.md`를 review-only로 실행했다. 주문 제출/교체/취소/청산 도구는 호출하지 않았다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고, API key 값은 출력하거나 기록하지 않았다.
+- Alpaca MCP reconciliation: account, positions, open/all orders, FILL activities, snapshots, daily bars, news pass. `get_portfolio_history`는 최초 호출과 2회 retry 모두 cancelled라 `gap_category=cancelled`, `retry_count=2`로 기록했다.
+- 현재 계좌: portfolio value 101779.63 USD, cash 42347.59 USD, buying power 137406.46 USD, long market value 59432.04 USD, open orders 0건. AMZN `hourly-20260527-0411-amzn-buy-1`는 `expired`, filled_qty 0으로 확인했다.
+- Review candidates: 2026-05-22 stock-only 체결분 AMD, AVGO, LRCX, TSM, NOK, UNH, ETN, RGTI, IONQ, NVDA의 1D interim review가 due. 2026-05-26 LLY/FCX/NOK/NVDA/AAPL validation fills는 아직 1D review 대기. PLTR/QBTS/TSLA skipped recommendations도 1D 결과를 비교했다.
+- Alpha Vantage는 `TOOL_LIST` -> `TOOL_GET("PING")` -> `TOOL_CALL("PING", {})` pass 후 `TOOL_GET("NEWS_SENTIMENT")` 직후 첫 non-PING `TOOL_CALL("NEWS_SENTIMENT")`이 cancelled되어 추가 Alpha retries를 중단하고 `gap_category=cancelled`로 기록했다.
+- SEC EDGAR는 NVDA/UNH/RGTI/LLY recent filings pass, AMD filing call은 cancelled. Yahoo Finance는 AMD/NOK/UNH/RGTI recommendations와 NOK news pass, NVDA recommendations는 cancelled. FRED/Firecrawl은 Codex tool catalog에 exposed tools가 없어 shell/curl/local wrapper를 호출하지 않고 `gap_category=wrapper_error`로 기록했다.
+- 1D 결과: AMD/NOK/LRCX/ETN/AVGO/TSM은 양호했고, RGTI/UNH/IONQ/NVDA는 event risk, healthcare headline risk, 양자 변동성, 대형 AI 기대 선반영 부담이 확인됐다. Skipped PLTR/QBTS 제외는 1D 기준 타당, TSLA 제외는 중립에 가까웠다.
+- 산출물: [[2026-05-27-portfolio-review]], [[2026-05-27-0624-analyst-review-cycle-sources]], `wiki/evidence-store/run-manifests/2026-05-27-0624-analyst-review-cycle.json`, [[portfolio-current]].
+- 정책 변경: 없음. 1D 단일 회고이고 5D/20D가 남아 있으며 portfolio history gap도 있어 evidence threshold를 충족하지 않았다.

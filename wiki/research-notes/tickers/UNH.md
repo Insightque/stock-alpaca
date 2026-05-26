@@ -60,3 +60,7 @@ UNH는 이번 no-submit run의 1순위 추가매수 후보로 올렸다. 2026-05
 UNH는 오늘 기준 2순위 추가 후보로 유지한다. 2026-05-22 종가 388.55 기준 5D -1.27%, 20D +9.48%, SPY 대비 +5.04%p, QQQ 대비 +1.42%p라 과열 추격이 아니라 방어적 분산 성격이 더 강하다.
 
 Yahoo Finance MCP에서는 turnaround/valuation narrative와 Medicare Advantage overpayment 같은 정책 리스크가 같이 확인됐다. 따라서 방향은 긍정적이지만, 다음 정규장 fresh quote와 healthcare headline 리스크를 확인한 뒤 소액으로만 늘리는 후보로 둔다.
+
+## 회고 기록
+
+- 2026-05-27: [[2026-05-27-portfolio-review]]에서 2026-05-22 stock-only 매수 1D interim review를 작성했다. UNH는 386.56 USD 진입 대비 Alpaca 현재가 376.8175 USD, 미실현 -2.52%로 방어적 분산 의도가 1D에는 작동하지 않았다. Healthcare policy/headline risk를 다음 회고에서 계속 확인한다.

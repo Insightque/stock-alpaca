@@ -60,3 +60,7 @@ LRCX는 이번 no-submit run의 2순위 추가매수 후보로 유지했다. 202
 LRCX는 오늘 기준 1순위 추가 후보로 올렸다. 2026-05-22 종가 305.43 기준 5D +7.41%, 20D +14.17%, SPY 대비 +9.73%p, QQQ 대비 +6.10%p로 `dual benchmark`를 통과한다. Yahoo Finance MCP에서도 AI-era tools, advanced packaging R&D, Morgan Stanley upgrade, capital return 맥락이 이어졌다.
 
 다만 미국 정규장이 닫혀 있고 2026-05-25은 휴장이라 fresh quote가 없다. 따라서 실제 주문 항목은 만들지 않고, 다음 정규장에 bid/ask spread와 quote freshness를 다시 확인한 뒤 소액 staged add 후보로 둔다.
+
+## 회고 기록
+
+- 2026-05-27: [[2026-05-27-portfolio-review]]에서 2026-05-22 stock-only 매수 1D interim review를 작성했다. LRCX는 307.91 USD 진입 대비 Alpaca 현재가 322.62 USD, 미실현 +4.78%로 반도체 장비 체인 편입 판단이 1D 기준 타당했다.

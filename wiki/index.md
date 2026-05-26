@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-27 04:51 KST hourly autopilot risk-blocked run 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-27 06:24 KST analyst review cycle 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -116,6 +116,7 @@
 - `wiki/trade-ledger/orders/` - 실제 paper 주문과 dry-run 주문 계획 장부.
 - `wiki/trade-ledger/positions/` - 실제 paper 포지션과 계좌 상태 스냅샷.
 - `wiki/trade-ledger/reviews/` - 실제 paper 거래의 사후 회고.
+- [[2026-05-27-portfolio-review]] - 2026-05-22 stock-only paper 포트폴리오의 1D interim analyst review. 정책 변경 없음.
 - `wiki/trade-ledger/orders/2026-05-26-1853-hourly-autopilot.json` - 2026-05-26 18:53 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2011-hourly-autopilot.json` - 2026-05-26 20:11 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2124-hourly-autopilot.json` - 2026-05-26 21:24 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
@@ -214,6 +215,7 @@
 - [[2026-05-25-one-year-hourly-buy-sell-simulation-sources]] - Alpaca MCP 1년 1시간봉 가격-only virtual buy/sell 시뮬레이션 원천.
 - [[2026-05-25-one-year-hourly-trend-event-cache-sources]] - Alpaca MCP 과거 뉴스와 전일 시장/섹터 동향 feature cache 원천.
 - [[2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation-sources]] - 동향 feature cache를 결합한 1년 1시간봉 virtual buy/sell 시뮬레이션 원천.
+- [[2026-05-27-0624-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/SEC/Alpha/Yahoo reconciliation, FRED/Firecrawl catalog gap, 1D 회고 원천.
 - `wiki/evidence-store/sources/2026-05-25-one-year-hourly-bars.json` - 62개 심볼 2025-05-23~2026-05-22 adjusted IEX 1시간봉 원자료.
 - `wiki/evidence-store/sources/2026-05-25-one-year-hourly-alpaca-news.json` - 1년 1시간봉 보강용 Alpaca MCP 뉴스 원자료.
 - `wiki/evidence-store/sources/2026-05-25-one-year-hourly-trend-event-feature-cache.json` - 일별 point-in-time 동향 feature cache.

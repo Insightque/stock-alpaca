@@ -47,3 +47,7 @@ ETN은 Eaton으로, 전력/인프라/데이터센터 투자 사이클의 간접 
 
 - 2026-05-22: paper 매수 15주가 평균 387.90 USD에 체결됐다.
 - 주문/체결 출처: [[2026-05-22-paper-order-submission]]
+
+## 회고 기록
+
+- 2026-05-27: [[2026-05-27-portfolio-review]]에서 2026-05-22 stock-only 매수 1D interim review를 작성했다. ETN은 387.90 USD 진입 대비 Alpaca 현재가 403.02 USD, 미실현 +3.90%로 전력/인프라 분산 후보 역할이 1D 기준 양호했다.

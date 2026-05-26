@@ -48,3 +48,7 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 
 - 2026-05-22: paper 매수 15주가 평균 410.73 USD에 체결됐다.
 - 주문/체결 출처: [[2026-05-22-paper-order-submission]]
+
+## 회고 기록
+
+- 2026-05-27: [[2026-05-27-portfolio-review]]에서 2026-05-22 stock-only 매수 1D interim review를 작성했다. AVGO는 410.73 USD 진입 대비 Alpaca 현재가 422.50 USD, 미실현 +2.87%였다. AI 인프라 thesis는 유효하지만 AMD/LRCX보다 1D follow-through는 약했다.
