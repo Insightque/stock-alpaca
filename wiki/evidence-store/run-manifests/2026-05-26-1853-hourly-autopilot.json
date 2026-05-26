@@ -1,0 +1,229 @@
+{
+  "run_id": "2026-05-26-1853-hourly-autopilot",
+  "mode": "dry_run",
+  "paper": true,
+  "created_at": "2026-05-26T09:54:00Z",
+  "git_commit": "4c3740c833e435c924b3e7bcf637eb4096dfb2b4",
+  "prompt_file_sha": "sha256:45016b0cce593b206bcc71e2a0f46f57e5de3abecf321973294333a8bfd9b9e5",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:c960264a8424fb3829bd4d911d663d7aa22ee4f942dcf2643cefb0068c69e34b",
+  "schema_version": "1.3",
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpaca",
+      "tools": [
+        "get_clock",
+        "get_account_info",
+        "get_orders",
+        "get_account_activities",
+        "get_watchlists",
+        "get_stock_latest_quote",
+        "get_stock_snapshot",
+        "get_stock_latest_bar"
+      ],
+      "reason": "in-session tool call cancelled or repo-local stdio DNS failure"
+    },
+    {
+      "server": "sec-edgar",
+      "tools": [
+        "get_recent_filings",
+        "get_company_info"
+      ],
+      "reason": "in-session MCP tool call cancelled"
+    },
+    {
+      "server": "alpha-vantage",
+      "tools": [
+        "TOOL_LIST"
+      ],
+      "reason": "in-session MCP tool call cancelled"
+    },
+    {
+      "server": "fred",
+      "tools": [
+        "get_macro_snapshot"
+      ],
+      "reason": "local MCP DNS failure to api.stlouisfed.org"
+    },
+    {
+      "server": "firecrawl",
+      "tools": [
+        "firecrawl_scrape"
+      ],
+      "reason": "local MCP DNS failure to api.firecrawl.dev"
+    },
+    {
+      "server": "yahoo-finance",
+      "tools": [
+        "get_stock_info"
+      ],
+      "reason": "in-session MCP tool call cancelled"
+    }
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "checked_at": "2026-05-26T09:54:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-1853-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Account, clock, order, fill, watchlist, quote, and snapshot tools were not usable; bars/news/assets/positions were usable for non-actionable scoring only."
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T09:54:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-1853-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "In-session MCP tool call cancelled for SEC EDGAR."
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T09:54:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-1853-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Alpha Vantage MCP TOOL_LIST call cancelled."
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T09:54:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-1853-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Local FRED MCP returned curl DNS failure for api.stlouisfed.org."
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T09:54:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-1853-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Local Firecrawl MCP returned curl DNS failure for api.firecrawl.dev."
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T09:54:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-1853-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Yahoo Finance MCP get_stock_info call cancelled."
+    }
+  ],
+  "recommendation_actionability": "non_actionable_research",
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_universe_price_liquidity_screen_then_all_mcp_shortlist_validation",
+    "pre_mcp_shortlist": [
+      "LLY",
+      "LRCX",
+      "ASML",
+      "AAPL",
+      "SMH"
+    ],
+    "final_candidates": [
+      "LLY",
+      "LRCX",
+      "ASML"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "data_cutoff_time": "2026-05-26T09:54:00Z",
+  "market_clock_checked_at": "2026-05-26T09:54:00Z",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-26-1853-hourly-autopilot-sources.md"
+  ],
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-26-1853-hourly-autopilot.json",
+  "risk_check_result": {
+    "status": "PASS",
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": {
+      "buy_notional": 0.0,
+      "sell_notional": 0.0,
+      "post_cash": 44030.58,
+      "post_invested": 57073.19999999999,
+      "policy_version": "medium-risk-v1.1"
+    }
+  },
+  "validation_results": {
+    "universe_coverage_strict": {
+      "status": "PASS"
+    },
+    "mcp_coverage_strict": {
+      "status": "FAIL",
+      "errors": [
+        "sec-edgar: strict recommendation coverage requires usable/pass outcome",
+        "alpha-vantage: strict recommendation coverage requires usable/pass outcome",
+        "fred: strict recommendation coverage requires usable/pass outcome",
+        "firecrawl: strict recommendation coverage requires usable/pass outcome",
+        "yahoo-finance: strict recommendation coverage requires usable/pass outcome"
+      ]
+    },
+    "risk_policy": {
+      "status": "PASS",
+      "warnings": [
+        "orders is empty"
+      ]
+    }
+  },
+  "data_manifest": {
+    "source_feed": "alpaca_iex",
+    "bar_interval": "1Day",
+    "adjusted_prices": true,
+    "timezone": "America/New_York",
+    "trading_calendar": "nyse",
+    "symbols_requested": 62,
+    "symbols_loaded": 62,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 0,
+    "corporate_actions_checked": false,
+    "survivorship_bias_controlled": false,
+    "dataset_hash": "unavailable:mcp-tool-output-not-written-as-json",
+    "raw_input_file": "wiki/evidence-store/sources/2026-05-26-1853-hourly-autopilot-sources.md"
+  },
+  "submitted_order_ids": [],
+  "post_trade_check_path": ""
+}

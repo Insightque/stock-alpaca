@@ -44,3 +44,5 @@ Hard requirements:
 
 Start now.
 PROMPT
+
+"${ROOT_DIR}/scripts/git-autopush-artifacts.sh" "hourly-autopilot"

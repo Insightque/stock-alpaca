@@ -23,6 +23,7 @@ This is allowed to submit Alpaca paper orders only when every gate passes:
 - whole-share day limit stock/ETF order shape
 
 If any gate fails, the hourly run must submit nothing and still write a report, manifest, order plan, and log entry.
+After a successful hourly run, `scripts/git-autopush-artifacts.sh hourly-autopilot` commits and pushes only the scheduled-run artifact paths such as `wiki/`, `wiki/log.md`, and recommendation policy files. It leaves unrelated local files unstaged.
 
 Install:
 
@@ -40,6 +41,7 @@ launchctl enable "gui/$(id -u)/com.insightque.stock-alpaca.hourly-autopilot"
 `com.insightque.stock-alpaca.analyst-review.plist.example` runs `scripts/run-analyst-review-codex.sh` once per day after the US market close in Korea time. The workflow performs post-trade reconciliation, checks 1D/5D/20D review horizons, writes analyst-style reviews, and updates policy only when evidence accumulates.
 
 This workflow never submits, replaces, cancels, or closes orders.
+After a successful analyst review run, `scripts/git-autopush-artifacts.sh analyst-review` commits and pushes only generated review/policy artifacts. It does not stage unrelated local workspace edits.
 
 Install:
 

@@ -38,6 +38,7 @@
 - [[2026-05-22]] - 현재 시장 분석과 이후 주식 중심 paper 매수 실행 업데이트.
 - [[2026-05-24]] - 현재 기준 no-submit 종목 추천, dry-run 주문 후보, risk-check 결과.
 - [[2026-05-25]] - 미국 휴장 전 2026-05-22 종가 기준 현재 no-submit 종목 추천과 22:06 KST 재점검, empty-order risk-check 결과.
+- [[2026-05-26-1853-hourly-autopilot]] - hourly paper autopilot 실행. universe/risk gate는 통과했지만 MCP/quote/spread/account-order gate 실패로 주문 없음.
 
 ## Research Notes
 
@@ -97,6 +98,7 @@
 - `wiki/trade-ledger/orders/` - 실제 paper 주문과 dry-run 주문 계획 장부.
 - `wiki/trade-ledger/positions/` - 실제 paper 포지션과 계좌 상태 스냅샷.
 - `wiki/trade-ledger/reviews/` - 실제 paper 거래의 사후 회고.
+- `wiki/trade-ledger/orders/2026-05-26-1853-hourly-autopilot.json` - 2026-05-26 18:53 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - 2026-05-22 paper 주문 체결분은 다음 회고 대상이다.
 
 ## Policy Book
@@ -191,3 +193,5 @@
 - [[2026-05-25-mcp-uv-runtime-fix-sources]] - `uvx` 기반 MCP wrapper의 홈 캐시/도구 경로 sandbox 문제 조치와 남은 최초 dependency fetch 제약 기록.
 - `wiki/evidence-store/run-manifests/2026-05-25-1834-mcp-uv-runtime-fix.json` - MCP `uvx` runtime 경로 조치 run manifest.
 - `wiki/evidence-store/run-manifests/2026-05-25-2206-today-stock-recommendation.json` - 오늘 종목추천 재점검 run manifest, `orders_submitted=0`, empty-order risk-check PASS.
+- [[2026-05-26-1853-hourly-autopilot-sources]] - hourly autopilot의 Alpaca MCP 성공/실패, research MCP 실패, universe source, 주문 차단 근거.
+- `wiki/evidence-store/run-manifests/2026-05-26-1853-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
