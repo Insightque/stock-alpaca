@@ -548,6 +548,18 @@ def numeric_value(text: Any) -> float | None:
     return float(match.group(0)) if match else None
 
 
+def format_usd(value: float | None) -> str:
+    if value is None:
+        return "-"
+    return f"{value:+.2f} USD"
+
+
+def format_pct(value: float | None) -> str:
+    if value is None:
+        return "-"
+    return f"{value:+.2f}%"
+
+
 def account_snapshot(order_plan: dict[str, Any]) -> dict[str, Any]:
     account = order_plan.get("account", {}) if isinstance(order_plan.get("account"), dict) else {}
     positions = order_plan.get("positions", []) if isinstance(order_plan.get("positions"), list) else []
@@ -598,6 +610,12 @@ def portfolio_snapshot() -> dict[str, Any]:
         cash_num = numeric_value(metrics.get("현금"))
         cash_ratio = cash_num / portfolio_value_num * 100 if portfolio_value_num and cash_num is not None else None
         exposure_ratio = numeric_value(metrics.get("투자 노출"))
+        total_pl_num = sum(position["pl_value"] for position in positions)
+        cost_basis = sum(
+            (numeric_value(position["market_value"]) or 0.0) - position["pl_value"]
+            for position in positions
+        )
+        total_return_num = total_pl_num / cost_basis * 100 if cost_basis else None
         account_status_match = re.search(r"Alpaca account status:\s*(.+)$", text, flags=re.MULTILINE)
         market_clock_match = re.search(r"Market clock at capture:\s*(.+)$", text, flags=re.MULTILINE)
         next_open_match = re.search(r"Next regular open:\s*`?([^`\n]+)`?", text, flags=re.MULTILINE)
@@ -607,15 +625,15 @@ def portfolio_snapshot() -> dict[str, Any]:
             "source_path": repo_path(position_path),
             "href": href_for(repo_path(position_path)),
             "updated_at": frontmatter_value(text, "updated_at"),
-            "account_status": account_status_match.group(1).strip() if account_status_match else "",
+            "account_status": account_status_match.group(1).strip() if account_status_match else "PAPER",
             "market_clock": market_clock_match.group(1).strip() if market_clock_match else "",
             "next_open": next_open_match.group(1).strip() if next_open_match else "",
             "portfolio_value": metrics.get("포트폴리오 가치", "-"),
             "cash": metrics.get("현금", "-"),
             "buying_power": metrics.get("Buying power", "-"),
             "long_market_value": metrics.get("Long market value", "-"),
-            "total_pl": metrics.get("총 수익", "-"),
-            "total_return": metrics.get("총 수익률", "-"),
+            "total_pl": metrics.get("총 수익") or format_usd(total_pl_num),
+            "total_return": metrics.get("총 수익률") or format_pct(total_return_num),
             "exposure": metrics.get("투자 노출", "-"),
             "cash_ratio": cash_ratio,
             "exposure_ratio": exposure_ratio,
@@ -673,8 +691,31 @@ def portfolio_snapshot() -> dict[str, Any]:
     }
 
 
+def recommendation_table(report_text: str) -> list[dict[str, str]]:
+    rows = parse_table(report_text, "추천 조치")
+    if rows:
+        return rows
+
+    shortlist = parse_table(report_text, "추천 Shortlist")
+    normalized: list[dict[str, str]] = []
+    for row in shortlist:
+        symbol = row.get("티커", "")
+        if not symbol:
+            continue
+        normalized.append(
+            {
+                "심볼": symbol,
+                "조치": row.get("판단", ""),
+                "이유": row.get("근거", ""),
+                "주의": row.get("차단/주의", ""),
+                "순위": row.get("순위", ""),
+            }
+        )
+    return normalized
+
+
 def enriched_picks(report_text: str) -> list[dict[str, str]]:
-    rec_rows = parse_table(report_text, "추천 조치")
+    rec_rows = recommendation_table(report_text)
     market_rows = {row.get("심볼", ""): row for row in parse_table(report_text, "Market Data Agent")}
     trend_rows = {row.get("심볼", ""): row for row in parse_table(report_text, "Trend Agent")}
     picks: list[dict[str, str]] = []
@@ -682,13 +723,15 @@ def enriched_picks(report_text: str) -> list[dict[str, str]]:
         symbol = row.get("심볼", "")
         market = market_rows.get(symbol, {})
         trend = trend_rows.get(symbol, {})
+        reason = row.get("이유", "")
+        caution = row.get("주의", "")
         picks.append(
             {
                 "symbol": symbol,
                 "action": row.get("조치", ""),
-                "reason": row.get("이유", ""),
-                "score": trend.get("점수", ""),
-                "confidence": trend.get("신뢰도", ""),
+                "reason": f"{reason} · {caution}" if reason and caution else reason or caution,
+                "score": trend.get("점수", "") or row.get("순위", ""),
+                "confidence": trend.get("신뢰도", "") or ("shortlist" if row.get("순위") else ""),
                 "return_20d": market.get("20D", ""),
                 "vs_spy_20d": market.get("SPY 대비 20D", ""),
                 "risk": trend.get("판단", ""),
@@ -718,10 +761,12 @@ def compact_agent_result(agent_id: str, manifest: dict[str, Any], report_text: s
         return " + ".join(mcp_used) if mcp_used else "sources"
     if agent_id == "trend":
         rows = parse_table(report_text, "Trend Agent")
+        if not rows:
+            rows = recommendation_table(report_text)
         top = [row.get("심볼", "") for row in rows[:3] if row.get("심볼")]
         return " / ".join(top) if top else "scored"
     if agent_id == "ticker_thesis":
-        rows = parse_table(report_text, "추천 조치")
+        rows = recommendation_table(report_text)
         top = [row.get("심볼", "") for row in rows[:3] if row.get("심볼")]
         return " / ".join(top) if top else "notes"
     if agent_id == "risk":
@@ -737,10 +782,14 @@ def compact_agent_result(agent_id: str, manifest: dict[str, Any], report_text: s
 
 def agent_cards(manifest: dict[str, Any], report_text: str, order_plan: dict[str, Any]) -> list[dict[str, Any]]:
     mcp_failures = manifest.get("mcp_failures", [])
+    mcp_coverage = manifest.get("mcp_coverage", [])
     report_has_run = bool(report_text)
     order_plan_exists = bool(order_plan)
     risk_status = str(manifest.get("risk_check_result", {}).get("status", "")).upper()
     submitted = manifest.get("submitted_order_ids", [])
+    universe_passed = bool(manifest.get("universe_coverage", {}).get("passed"))
+    data_manifest = manifest.get("data_manifest", {})
+    recommendations = recommendation_table(report_text)
     log_text = read_text(ROOT / "wiki" / "log.md")
     run_id = str(manifest.get("run_id", ""))
 
@@ -751,6 +800,21 @@ def agent_cards(manifest: dict[str, Any], report_text: str, order_plan: dict[str
         progress = 20
 
         if section_done:
+            status = "done"
+            progress = 100
+        if agent["id"] == "coordinator" and report_has_run:
+            status = "done"
+            progress = 100
+        if agent["id"] == "universe" and universe_passed:
+            status = "done"
+            progress = 100
+        if agent["id"] == "market_data" and data_manifest.get("symbols_loaded"):
+            status = "done"
+            progress = 100
+        if agent["id"] == "web_research" and mcp_coverage:
+            status = "done"
+            progress = 100
+        if agent["id"] == "trend" and recommendations:
             status = "done"
             progress = 100
         if agent["id"] == "ticker_thesis" and report_has_run:
@@ -799,7 +863,7 @@ def build_dashboard_data() -> dict[str, Any]:
     order_plan_path = path_from_ref(order_plan_path_raw) if order_plan_path_raw else None
     order_plan = load_json(order_plan_path) if order_plan_path else {}
 
-    recommendation_rows = parse_table(report_text, "추천 조치")
+    recommendation_rows = recommendation_table(report_text)
     trend_rows = parse_table(report_text, "Trend Agent")
     risk = manifest.get("risk_check_result", {})
     market = order_plan.get("market", {}) if isinstance(order_plan.get("market"), dict) else {}

@@ -350,7 +350,7 @@
   </div>
 
   <script type="application/json" id="dashboard-data">{
-  "generated_at": "2026-05-26T16:19:50Z",
+  "generated_at": "2026-05-26T16:25:24Z",
   "run": {
     "run_id": "2026-05-27-0052-hourly-autopilot",
     "mode": "submit",
@@ -378,15 +378,15 @@
     "source_path": "wiki/trade-ledger/positions/current.md",
     "href": "../wiki/trade-ledger/positions/current.md",
     "updated_at": "2026-05-26T16:03:00Z",
-    "account_status": "",
+    "account_status": "PAPER",
     "market_clock": "",
     "next_open": "",
     "portfolio_value": "101200.17 USD",
     "cash": "44030.58 USD",
     "buying_power": "137631.37 USD",
     "long_market_value": "57169.59 USD",
-    "total_pl": "-",
-    "total_return": "-",
+    "total_pl": "+1239.44 USD",
+    "total_return": "+2.17%",
     "exposure": "약 56.49%",
     "cash_ratio": 43.50840517362767,
     "exposure_ratio": 56.49,
@@ -496,41 +496,41 @@
       "id": "coordinator",
       "name": "Coordinator",
       "label": "계좌",
-      "status": "waiting",
-      "progress": 20,
+      "status": "done",
+      "progress": 100,
       "result": "open"
     },
     {
       "id": "universe",
       "name": "Universe",
       "label": "후보군",
-      "status": "waiting",
-      "progress": 20,
+      "status": "done",
+      "progress": 100,
       "result": "62 symbols"
     },
     {
       "id": "market_data",
       "name": "Market Data",
       "label": "가격",
-      "status": "waiting",
-      "progress": 20,
+      "status": "done",
+      "progress": 100,
       "result": "alpaca_iex 1Day + snapshot/quote"
     },
     {
       "id": "web_research",
       "name": "Research",
       "label": "뉴스",
-      "status": "waiting",
-      "progress": 20,
+      "status": "watch",
+      "progress": 90,
       "result": "alpaca + sec-edgar + alpha-vantage + fred + firecrawl + yahoo-finance"
     },
     {
       "id": "trend",
       "name": "Trend",
       "label": "점수",
-      "status": "waiting",
-      "progress": 20,
-      "result": "scored"
+      "status": "done",
+      "progress": 100,
+      "result": "LLY / FCX / NOK"
     },
     {
       "id": "ticker_thesis",
@@ -538,7 +538,7 @@
       "label": "티커",
       "status": "done",
       "progress": 100,
-      "result": "notes"
+      "result": "LLY / FCX / NOK"
     },
     {
       "id": "risk",
@@ -573,8 +573,75 @@
       "result": "index + log"
     }
   ],
-  "picks": [],
-  "recommendations": [],
+  "picks": [
+    {
+      "symbol": "LLY",
+      "action": "paper validation buy",
+      "reason": "fresh quote, 0.105% spread, SEC/Yahoo/FRED 3개 research confirmation, Alpaca catalyst news, 미보유 · 단일 1주 검증 주문으로 제한",
+      "score": "1",
+      "confidence": "shortlist",
+      "return_20d": "",
+      "vs_spy_20d": "",
+      "risk": ""
+    },
+    {
+      "symbol": "FCX",
+      "action": "recheck",
+      "reason": "fresh quote, spread pass, commodity rebound · LLY보다 회사 이벤트/분석 confirmation 약함",
+      "score": "2",
+      "confidence": "shortlist",
+      "return_20d": "",
+      "vs_spy_20d": "",
+      "risk": ""
+    },
+    {
+      "symbol": "NOK",
+      "action": "recheck",
+      "reason": "fresh quote, spread pass, Alpaca news momentum · 이미 400주 보유, 추가매수보다 관찰 우선",
+      "score": "3",
+      "confidence": "shortlist",
+      "return_20d": "",
+      "vs_spy_20d": "",
+      "risk": ""
+    }
+  ],
+  "recommendations": [
+    {
+      "심볼": "LLY",
+      "조치": "paper validation buy",
+      "이유": "fresh quote, 0.105% spread, SEC/Yahoo/FRED 3개 research confirmation, Alpaca catalyst news, 미보유",
+      "주의": "단일 1주 검증 주문으로 제한",
+      "순위": "1"
+    },
+    {
+      "심볼": "FCX",
+      "조치": "recheck",
+      "이유": "fresh quote, spread pass, commodity rebound",
+      "주의": "LLY보다 회사 이벤트/분석 confirmation 약함",
+      "순위": "2"
+    },
+    {
+      "심볼": "NOK",
+      "조치": "recheck",
+      "이유": "fresh quote, spread pass, Alpaca news momentum",
+      "주의": "이미 400주 보유, 추가매수보다 관찰 우선",
+      "순위": "3"
+    },
+    {
+      "심볼": "MU",
+      "조치": "recheck",
+      "이유": "강한 당일/월간 모멘텀",
+      "주의": "과열 위험과 포트폴리오 반도체 클러스터 집중",
+      "순위": "4"
+    },
+    {
+      "심볼": "AMD",
+      "조치": "skip",
+      "이유": "보유 중, 모멘텀 양호",
+      "주의": "snapshot spread fail",
+      "순위": "5"
+    }
+  ],
   "scores": [],
   "links": [
     {
@@ -610,6 +677,11 @@
   ],
   "timeline": [
     {
+      "time": "2026-05-27 01:24 Asia/Seoul",
+      "type": "ui",
+      "title": "hourly dashboard 회색 fallback 수정"
+    },
+    {
       "time": "2026-05-27 01:19 Asia/Seoul",
       "type": "ui",
       "title": "dashboard 자동 갱신 누락 수정"
@@ -618,11 +690,6 @@
       "time": "2026-05-27 01:04 Asia/Seoul",
       "type": "hourly-autopilot",
       "title": "paper validation LLY 주문 체결"
-    },
-    {
-      "time": "2026-05-27 00:43 Asia/Seoul",
-      "type": "hourly-autopilot",
-      "title": "paper 자동 운영 gate 점검"
     }
   ],
   "backtests": [

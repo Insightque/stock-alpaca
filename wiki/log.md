@@ -978,3 +978,11 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 수정: `scripts/git-autopush-artifacts.sh`의 trackable artifact 경로에 `ui/agent-dashboard.html`과 `ui/backtests`를 추가했다.
 - 재생성: `python3 scripts/build-agent-dashboard.py`로 현재 dashboard를 `2026-05-27-0052-hourly-autopilot` 및 LLY 1주 포지션 반영 상태로 갱신했다.
 - 검증: dashboard embedded JSON parse와 렌더 스크립트 fake-DOM 실행 pass, `bash -n` pass, `python3 -m unittest discover -s tests` 67개 pass.
+
+## [2026-05-27 01:24 Asia/Seoul] ui | hourly dashboard 회색 fallback 수정
+
+- 증상: 최신 hourly report가 `추천 Shortlist` 형식을 쓰지만 dashboard 파서는 예전 `추천 조치`, `Trend Agent` 섹션만 읽어 Today 추천과 일부 agent status가 회색/빈 값으로 표시됐다.
+- 증상: `wiki/trade-ledger/positions/current.md`에 `총 수익`, `총 수익률` 행이 없어 Alpaca Paper 총수익 카드가 `-`로 표시됐다.
+- 수정: `scripts/build-agent-dashboard.py`가 `추천 Shortlist`를 Today pick으로 normalize하고, manifest/order-plan 근거로 agent status를 완료 판정하며, 포지션별 미실현 손익을 합산해 총수익/총수익률을 계산하도록 변경했다.
+- 재생성: `ui/agent-dashboard.html`은 Today `LLY`, `FCX`, `NOK`, 총수익 `+1239.44 USD`, 총수익률 `+2.17%`, waiting status 0개 상태로 갱신됐다.
+- 검증: dashboard embedded JSON parse와 렌더 스크립트 fake-DOM 실행 pass, `bash -n` pass, `python3 -m unittest discover -s tests` 67개 pass.
