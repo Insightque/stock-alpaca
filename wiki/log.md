@@ -864,3 +864,20 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - hourly/analyst scheduled runner 모두 `CODEX_HOME` 기본값을 `${HOME}/.codex`로 고정하되 `CODEX_SCHEDULED_CODEX_HOME` 또는 각 workflow 전용 override로 바꿀 수 있게 했다.
 - `scripts/mcp-alpha-vantage.sh`가 API key를 process argv로 넘기지 않고 `ALPHA_VANTAGE_API_KEY` 환경변수로만 전달하도록 수정했다.
 - 검증: `bash -n` 통과, `python3 -m unittest discover -s tests` 66개 통과, Codex MCP config override parse 확인, Alpha Vantage wrapper argv smoke test 통과.
+
+## [2026-05-26 23:35 Asia/Seoul] hourly-autopilot | paper 자동 운영 gate 점검
+
+- 사용자 승인에 따라 `harness/workflows/hourly-autopilot.md`를 실행했다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고, API key 값은 출력하거나 기록하지 않았다.
+- Alpaca MCP `get_stock_bars` broad universe와 후보 `get_stock_quotes`는 일부 usable했다.
+- Alpaca MCP `get_clock`, `get_account_info`, `get_orders`, `get_all_positions`, `get_account_activities`, `get_watchlists`, `get_stock_latest_quote`, `get_stock_snapshot`, `get_asset`, `get_news`, `get_market_movers`는 retry 후에도 cancelled였고 첫 차단 gate는 `alpaca_clock`이다.
+- 62개 metadata universe와 `SPY`/`QQQ`를 스크리닝했다. pre-MCP shortlist는 `LLY`, `LRCX`, `ASML`, `SMH`, `AAPL`, final research candidates는 `LLY`, `LRCX`, `ASML`.
+- 후보 quote는 fresh였고 `LLY`, `ASML`, `SMH`, `AAPL` spread는 통과했지만 `LRCX` spread는 9.16%로 실패했다. Alpaca core와 research MCP gate 실패 때문에 주문은 제출하지 않았다.
+- SEC EDGAR는 로컬 CIK cache를 사용한 뒤 direct MCP calls가 cancelled였다. `SMH`는 SEC ticker lookup empty_response로 provider failure와 구분했다.
+- Alpha Vantage/Yahoo Finance는 cancelled, FRED/Firecrawl은 DNS failure로 gap 분류했다. research MCP usable count는 0이다.
+- 검증: universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
+- 리포트: `wiki/current-runs/daily/2026-05-26-2331-hourly-autopilot.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-26-2331-hourly-autopilot-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-26-2331-hourly-autopilot.json`.
+- order plan: `wiki/trade-ledger/orders/2026-05-26-2331-hourly-autopilot.json`.
+- 실제 주문, 취소, 포지션 변경은 없었다. `orders_submitted=0`.

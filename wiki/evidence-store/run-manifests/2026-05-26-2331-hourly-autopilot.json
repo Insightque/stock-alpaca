@@ -1,0 +1,236 @@
+{
+  "run_id": "2026-05-26-2331-hourly-autopilot",
+  "mode": "dry_run",
+  "paper": true,
+  "created_at": "2026-05-26T14:35:23Z",
+  "git_commit": "a2ceaa0f6af248a623f21356b43dfe8ec11fdf3c",
+  "prompt_file_sha": "sha256:5f324d8d86ac55c0431d4f64a2a768c6a4ab86af3cbd825ad488ce6d387c7340",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:79c639ba60aca7ce0ce98cb64c8984fbbaba59435f15ea80dfaeefd5026553a9",
+  "schema_version": "1.3",
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpaca",
+      "reason": "Broad-universe bars and candidate historical IEX quotes were usable, but core clock/account/open-order/position/activity/watchlist/latest-quote/snapshot/asset/news/movers reads were cancelled or unavailable. First hard blocking gate: alpaca_clock."
+    },
+    {
+      "server": "sec-edgar",
+      "reason": "Local SEC ticker-to-CIK cache resolved LLY, LRCX, ASML, and AAPL; SMH was absent as an ETF/lookup empty response. Direct SEC EDGAR MCP get_recent_filings calls were cancelled after retries."
+    },
+    {
+      "server": "alpha-vantage",
+      "reason": "Alpha Vantage MCP TOOL_LIST entry point was cancelled after retries, so earnings/fundamental tools could not be selected or called."
+    },
+    {
+      "server": "fred",
+      "reason": "Read-only endpoint probe failed DNS resolution for api.stlouisfed.org after retries."
+    },
+    {
+      "server": "firecrawl",
+      "reason": "Read-only endpoint probe failed DNS resolution for api.firecrawl.dev after retries."
+    },
+    {
+      "server": "yahoo-finance",
+      "reason": "Yahoo Finance MCP stock info call returned cancelled after retries."
+    }
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T14:35:23Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-2331-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Alpaca MCP broad bars and candidate historical quotes were partially usable, but core clock/account/open-order/position/activity/watchlist/latest-quote/snapshot/asset/news/movers calls returned cancelled. Clock/account/order/position gates block all submission.",
+      "gap_category": "cancelled",
+      "retry_count": 2,
+      "first_blocking_gate": "alpaca_clock"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T14:35:23Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-2331-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Local CIK cache resolved LLY=0000059478, LRCX=0000707549, ASML=0000937966, AAPL=0000320193; SMH was missing from the SEC company cache and recorded as ticker lookup empty_response. Direct get_recent_filings calls returned cancelled after retries.",
+      "gap_category": "cancelled",
+      "retry_count": 2
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T14:35:23Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-2331-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Alpha Vantage MCP TOOL_LIST was cancelled after retries, preventing schema discovery and earnings/fundamental calls.",
+      "gap_category": "cancelled",
+      "retry_count": 2
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T14:35:23Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-2331-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Read-only endpoint probe failed DNS resolution for api.stlouisfed.org.",
+      "gap_category": "dns",
+      "retry_count": 2
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T14:35:23Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-2331-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Read-only endpoint probe failed DNS resolution for api.firecrawl.dev.",
+      "gap_category": "dns",
+      "retry_count": 2
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T14:35:23Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-2331-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Yahoo Finance MCP stock info call returned cancelled after retries.",
+      "gap_category": "cancelled",
+      "retry_count": 2
+    }
+  ],
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "all_research_must_be_attempted": true,
+    "provider_gap_blocks_order": false
+  },
+  "recommendation_actionability": "blocked",
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_universe_price_liquidity_screen_then_all_mcp_shortlist_validation",
+    "pre_mcp_shortlist": [
+      "LLY",
+      "LRCX",
+      "ASML",
+      "SMH",
+      "AAPL"
+    ],
+    "final_candidates": [
+      "LLY",
+      "LRCX",
+      "ASML"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "data_cutoff_time": "2026-05-26T14:35:23Z",
+  "market_clock_checked_at": "2026-05-26T14:35:23Z",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-26-2331-hourly-autopilot-sources.md"
+  ],
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-26-2331-hourly-autopilot.json",
+  "risk_check_result": {
+    "status": "PASS",
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 45504.0018,
+      "max_factor_value": 50560.002,
+      "max_invested": 80896.0032,
+      "max_speculative_value": 12134.40048,
+      "max_theme_value": 35392.0014,
+      "max_ticker_value": 15168.0006,
+      "min_cash": 20224.0008,
+      "policy_version": "medium-risk-v1.1",
+      "post_cash": 44030.58,
+      "post_invested": 57089.424,
+      "sell_notional": 0.0,
+      "speculative_value": 5679.975
+    }
+  },
+  "validation_results": {
+    "universe_coverage_strict": {
+      "status": "PASS"
+    },
+    "mcp_coverage_strict": {
+      "status": "FAIL",
+      "errors": [
+        "alpaca: core MCP gate requires usable/pass outcome",
+        "research MCP gate requires at least 3 usable/pass research providers; got 0 (none)"
+      ]
+    },
+    "risk_policy": {
+      "status": "PASS",
+      "warnings": [
+        "orders is empty"
+      ]
+    }
+  },
+  "data_manifest": {
+    "source_feed": "alpaca_iex",
+    "bar_interval": "1Day",
+    "adjusted_prices": true,
+    "timezone": "America/New_York",
+    "trading_calendar": "nyse",
+    "symbols_requested": 62,
+    "symbols_loaded": 62,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 0,
+    "corporate_actions_checked": false,
+    "survivorship_bias_controlled": false,
+    "dataset_hash": "unavailable:mcp-tool-output-not-written-as-json",
+    "raw_input_file": "wiki/evidence-store/sources/2026-05-26-2331-hourly-autopilot-sources.md"
+  },
+  "submitted_order_ids": [],
+  "post_trade_check_path": ""
+}
