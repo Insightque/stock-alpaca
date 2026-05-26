@@ -27,7 +27,7 @@ if ! grep -q '^ALPACA_PAPER_TRADE=true$' .env; then
   exit 64
 fi
 
-cat <<'PROMPT' | codex exec --search -a never -C "${ROOT_DIR}" -
+cat <<'PROMPT' | codex --search -a never exec -C "${ROOT_DIR}" -
 You are running the stock-alpaca hourly paper autopilot.
 
 Execute `harness/workflows/hourly-autopilot.md` exactly. The user explicitly authorized hourly current-market recommendations and automatic Alpaca paper buy/sell operation on 2026-05-26, but only within the workflow's safety rules.

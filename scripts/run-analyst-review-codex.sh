@@ -26,7 +26,7 @@ if ! grep -q '^ALPACA_PAPER_TRADE=true$' .env; then
   exit 64
 fi
 
-cat <<'PROMPT' | codex exec --search -a never -C "${ROOT_DIR}" -
+cat <<'PROMPT' | codex --search -a never exec -C "${ROOT_DIR}" -
 You are running the stock-alpaca scheduled analyst review cycle.
 
 Execute `harness/workflows/analyst-review-cycle.md` exactly.
