@@ -1095,3 +1095,13 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - run manifest: `wiki/evidence-store/run-manifests/2026-05-27-0226-hourly-autopilot.json`.
 - order plan: `wiki/trade-ledger/orders/2026-05-27-0226-hourly-autopilot.json`.
 - review due markers: 신규 NVDA fill은 1D/5D/20D `회고 대기`; LLY/FCX/NOK 및 2026-05-22 체결분도 계속 `회고 대기`.
+
+## [2026-05-27 02:38 Asia/Seoul] automation-maintenance | Alpaca MCP core preflight 안정화
+
+- `scripts/fetch-alpaca-core-preflight.py`를 추가해 scheduled autopilot이 nested Codex 진입 전에 Alpaca MCP read-only core evidence를 캡처하도록 했다.
+- 대상 도구는 `get_clock`, `get_account_info`, `get_all_positions`, `get_orders(status=open)`, `get_account_activities(FILL)`, `get_watchlists`, `get_asset`, `get_stock_latest_quote`, `get_stock_snapshot`, `get_stock_latest_trade`다. 주문 제출/교체/취소/청산 및 Alpaca REST 직접 호출은 하지 않는다.
+- `scripts/run-hourly-autopilot-codex.sh`는 preflight JSON을 nested prompt에 전달하고, hard gate pass 및 fresh quote rows를 Alpaca MCP evidence로 사용하도록 바꿨다. 누락/실패/stale row만 registered Codex MCP tool로 1회 재시도한다.
+- nested Codex timeout 기본값을 900초로 줄여 20분 cadence를 오래 점유하지 않게 했다.
+- 직접 검증: `manual-validate-2026-05-27` read-only Alpaca core preflight PASS, market open true, 62 symbols, first blocking gate 없음.
+- 자동화 검증: `python3 -m unittest discover -s tests` 69개 PASS, `bash -n scripts/run-hourly-autopilot-codex.sh` PASS, `plutil -lint scheduler/com.insightque.stock-alpaca.hourly-autopilot.plist.example` PASS.
+- launchd 확인: 실제 LaunchAgent는 22:31부터 05:51 KST까지 20분 단위 calendar interval로 로드되어 있고, 상태는 not running, last exit code 0이다.

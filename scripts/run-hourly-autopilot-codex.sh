@@ -10,6 +10,7 @@ LOG_DIR="${ROOT_DIR}/logs"
 PROMPT_FILE="${ROOT_DIR}/harness/workflows/hourly-autopilot.md"
 PROMPT_TMP=""
 RUN_ID="$(date '+%Y-%m-%d-%H%M')-hourly-autopilot"
+ALPACA_PREFLIGHT_PATH="${ROOT_DIR}/wiki/evidence-store/sources/${RUN_ID}-alpaca-core-preflight.json"
 RESEARCH_PREFLIGHT_PATH="${ROOT_DIR}/wiki/evidence-store/sources/${RUN_ID}-research-mcp-preflight.json"
 
 mkdir -p "${ROOT_DIR}/.locks" "${LOG_DIR}"
@@ -53,6 +54,12 @@ fi
 echo "$(now_iso) Alpaca market open confirmed. ${MARKET_CLOCK_STATUS}"
 
 PROMPT_TMP="$(mktemp "${LOG_DIR}/hourly-autopilot-prompt.XXXXXX")"
+if ! PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/scripts/fetch-alpaca-core-preflight.py" \
+  --run-id "${RUN_ID}" \
+  --output-json "${ALPACA_PREFLIGHT_PATH}"; then
+  echo "$(now_iso) Alpaca core MCP preflight failed; nested workflow will classify the core gap."
+fi
+
 if ! PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/scripts/fetch-research-mcp-preflight.py" \
   --run-id "${RUN_ID}" \
   --output-json "${RESEARCH_PREFLIGHT_PATH}"; then
@@ -74,6 +81,7 @@ Hard requirements:
 - For Alpaca core, make short independent attempts for clock, account, orders, positions, and quotes. Record which exact core check was the first blocking gate.
 - For SEC EDGAR, use the local `harness/sec-ticker-cik-map.json` mapping as a ticker-to-CIK fallback before marking a ticker lookup gap.
 - Use registered Codex MCP tools for Alpaca, SEC EDGAR, Alpha Vantage, and Yahoo Finance. Do not run local Alpaca/FRED/Firecrawl network helper scripts or curl from the nested shell for current-market data.
+- A scheduler-owned Alpaca core preflight may exist at `ALPACA_PREFLIGHT_PATH_PLACEHOLDER`. If it exists, read it before making any Alpaca read-only calls. Treat `mcp_coverage_hint` plus passing tool rows in this file as Alpaca MCP evidence with that file as the source_ref. This preflight is read-only MCP stdio evidence for clock, account, positions, open orders, recent fills, watchlists, asset checks, latest quotes, snapshots, and latest trades; it exists to avoid non-interactive false `cancelled` gaps in nested Codex. If the preflight hard gate is `pass` and quote rows are less than 20 minutes old at decision time, set Alpaca core coverage to `outcome=pass` and `used_in_score=true`. If any required preflight row is missing, stale, or failed, call only the missing read-only Alpaca MCP tool once through the registered Codex MCP tool; if it is still cancelled, classify the exact row and submit nothing.
 - A scheduler-owned research MCP preflight may exist at `RESEARCH_PREFLIGHT_PATH_PLACEHOLDER`. If it exists, read it and use any provider row with `outcome=pass` as MCP evidence with that file as the source_ref. In particular, count a passing FRED `get_macro_snapshot` preflight as queried/usable FRED macro evidence. If it is missing or failed, classify the provider gap; do not retry that provider through shell/curl.
 - For Firecrawl, use a registered MCP tool only if it is exposed in the Codex tool catalog. If it is not exposed, classify it as `gap_category=wrapper_error`; do not call `scripts/mcp-firecrawl.sh` or `curl` from shell.
 - For Alpha Vantage, first use `TOOL_LIST`, then `TOOL_GET("PING")`, then `TOOL_CALL("PING", {})` as a health check. For candidate data, call `TOOL_GET` immediately before the matching `TOOL_CALL`. If any non-PING `TOOL_CALL` is cancelled once, stop Alpha retries and classify `alpha-vantage` as `gap_category=cancelled`; do not try a second Alpha function in the same run.
@@ -88,14 +96,20 @@ Hard requirements:
 Start now.
 PROMPT
 
-python3 - "${PROMPT_TMP}" "${RESEARCH_PREFLIGHT_PATH}" <<'PY'
+python3 - "${PROMPT_TMP}" "${ALPACA_PREFLIGHT_PATH}" "${RESEARCH_PREFLIGHT_PATH}" <<'PY'
 from pathlib import Path
 import sys
 
 prompt_path = Path(sys.argv[1])
-preflight_path = sys.argv[2]
+alpaca_preflight_path = sys.argv[2]
+research_preflight_path = sys.argv[3]
 text = prompt_path.read_text(encoding="utf-8")
-prompt_path.write_text(text.replace("RESEARCH_PREFLIGHT_PATH_PLACEHOLDER", preflight_path), encoding="utf-8")
+prompt_path.write_text(
+    text.replace("ALPACA_PREFLIGHT_PATH_PLACEHOLDER", alpaca_preflight_path).replace(
+        "RESEARCH_PREFLIGHT_PATH_PLACEHOLDER", research_preflight_path
+    ),
+    encoding="utf-8",
+)
 PY
 
 python3 - "${ROOT_DIR}" "${PROMPT_TMP}" <<'PY'
@@ -109,7 +123,7 @@ import sys
 
 root_dir = sys.argv[1]
 prompt_path = sys.argv[2]
-timeout_seconds = int(os.environ.get("CODEX_AUTOPILOT_TIMEOUT_SECONDS", "2400"))
+timeout_seconds = int(os.environ.get("CODEX_AUTOPILOT_TIMEOUT_SECONDS", "900"))
 prompt = open(prompt_path, "r", encoding="utf-8").read()
 # In non-interactive `-a never` scheduled runs, MCP tools that would prompt
 # for approval are reported as "user cancelled".  Use the Codex MCP

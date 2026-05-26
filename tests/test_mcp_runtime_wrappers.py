@@ -10,6 +10,7 @@ class McpRuntimeWrapperTests(unittest.TestCase):
     def test_uvx_wrappers_use_workspace_local_runtime_dirs(self):
         for relative_path in (
             "scripts/alpaca-mcp.sh",
+            "scripts/fetch-alpaca-core-preflight.py",
             "scripts/fetch-research-mcp-preflight.py",
             "scripts/mcp-alpha-vantage.sh",
             "scripts/mcp-sec-edgar.sh",
@@ -18,8 +19,11 @@ class McpRuntimeWrapperTests(unittest.TestCase):
             text = (ROOT / relative_path).read_text(encoding="utf-8")
             with self.subTest(path=relative_path):
                 if relative_path.endswith(".py"):
-                    self.assertIn("Content-Length", text)
-                    self.assertIn("tools/call", text)
+                    if relative_path == "scripts/fetch-alpaca-core-preflight.py":
+                        self.assertIn("session.call_tool", text)
+                    else:
+                        self.assertIn("Content-Length", text)
+                        self.assertIn("tools/call", text)
                     self.assertIn("MCP_TIMEOUT_SECONDS", text)
                     continue
                 self.assertIn("XDG_CACHE_HOME", text)
@@ -57,6 +61,8 @@ class McpRuntimeWrapperTests(unittest.TestCase):
         expectations = {
             "scripts/run-hourly-autopilot-codex.sh": [
                 "check-alpaca-market-open-mcp.py",
+                "fetch-alpaca-core-preflight.py",
+                "ALPACA_PREFLIGHT_PATH",
                 "Alpaca market is closed; scheduled autopilot exits before research/Codex run",
                 'sandbox_permissions=["network-full-access"]',
                 "mcp_servers.alpaca.command=",
@@ -85,6 +91,7 @@ class McpRuntimeWrapperTests(unittest.TestCase):
                 "pre-submit gate summary",
                 "client_order_id",
                 "build-agent-dashboard.py",
+                'CODEX_AUTOPILOT_TIMEOUT_SECONDS", "900"',
             ],
             "scripts/run-analyst-review-codex.sh": [
                 'sandbox_permissions=["network-full-access"]',
