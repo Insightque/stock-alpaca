@@ -822,3 +822,10 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 단 Alpaca paper mode, 시장 개장, Alpaca core account/clock/position/order/quote/spread, universe strict, tiered MCP strict, risk policy, fresh quote, spread, whole-share day limit order gate는 계속 필수다.
 - hard gate 실패 시에는 강제 주문하지 않고 첫 차단 gate, 다음 완화 후보, 상위 재점검 후보를 기록하도록 했다.
 - hourly interval drift로 22:30 KST 개장 직후를 놓치지 않도록 `scripts/run-market-open-autopilot-codex.sh`와 `scheduler/com.insightque.stock-alpaca.market-open-autopilot.plist.example`을 추가했다.
+
+## [2026-05-26 22:42 Asia/Seoul] scheduler-update | hourly 자동운영 단일화
+
+- `hourly-autopilot`과 `market-open-autopilot`이 같은 목적의 paper 자동운영 판단을 수행하므로 별도 market-open 작업을 제거하고 hourly 작업 하나로 통합했다.
+- `hourly-autopilot` launchd 예제를 `StartInterval=3600`에서 `StartCalendarInterval Minute=31`로 변경했다.
+- 22:31 KST 실행을 US regular market-open validation run으로 사용하도록 `harness/recommendation-policy.yaml`을 `recommendation-policy-v1.6`으로 갱신했다.
+- 설치된 launchd도 현재 실행 중인 hourly 작업이 끝난 뒤 같은 구조로 재등록할 예정이다.

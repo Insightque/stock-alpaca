@@ -196,7 +196,7 @@ python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-mani
 
 The default operating mode is manual execution through Codex. Optional macOS launchd files are available under `scheduler/`.
 
-Automated paper operation uses `harness/workflows/hourly-autopilot.md`, `scripts/run-hourly-autopilot-codex.sh`, and the market-open pulse in `scripts/run-market-open-autopilot-codex.sh`. The hourly job rebuilds current recommendations and may submit Alpaca MCP paper day limit orders only during market hours after the universe, MCP, risk, quote, and spread gates all pass. The market-open pulse exists so the first post-open validation window is not missed by hourly interval drift. Analyst review and policy learning are handled by `harness/workflows/analyst-review-cycle.md` and `scripts/run-analyst-review-codex.sh` after the market close.
+Automated paper operation uses `harness/workflows/hourly-autopilot.md` and `scripts/run-hourly-autopilot-codex.sh`. The fixed hourly job runs at minute 31 of every hour, rebuilds current recommendations, and may submit Alpaca MCP paper day limit orders only during market hours after the universe, MCP, risk, quote, and spread gates all pass. The 22:31 KST run is also the market-open validation run for US regular sessions. Analyst review and policy learning are handled by `harness/workflows/analyst-review-cycle.md` and `scripts/run-analyst-review-codex.sh` after the market close.
 
 ### Agent Run Board
 

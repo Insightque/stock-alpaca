@@ -24,8 +24,8 @@ Run an hourly current-market recommendation loop. If and only if every safety, u
 
 ## Required Cadence
 
-- Scheduled runner: hourly.
-- Market-open pulse: once near the US regular open, in addition to hourly, to avoid missing the first actionable window.
+- Scheduled runner: fixed hourly calendar schedule at minute 31.
+- The 22:31 KST run is also the market-open validation run for US regular sessions.
 - Recommendation cadence: every hourly run.
 - Submit cadence: only during regular US equity market hours, after fresh quote validation.
 - Post-trade reconciliation: every run after any submit attempt, and on any run with open orders or same-day fills.

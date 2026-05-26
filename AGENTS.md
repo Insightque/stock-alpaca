@@ -152,6 +152,6 @@ If any step is uncertain, skip submission and record the uncertainty.
 - Hourly paper autopilot is allowed only through `harness/workflows/hourly-autopilot.md`.
 - The hourly autopilot must create a detailed recommendation report, run manifest, and order plan on every run, even when it submits nothing.
 - The hourly autopilot may submit Alpaca paper buy/sell orders only if all strict gates pass and the market is open.
-- The market-open pulse may run the same workflow near the US regular open to avoid missing the first actionable window. It may prefer a tiny 1-share validation order only when every hard gate passes; it must not force orders through missing Alpaca core, stale quote, spread, MCP, universe, or risk evidence.
+- The hourly autopilot should run on a fixed minute-31 calendar schedule. The 22:31 KST run is also the US regular market-open validation run. It may prefer a tiny 1-share validation order only when every hard gate passes; it must not force orders through missing Alpaca core, stale quote, spread, MCP, universe, or risk evidence.
 - The analyst review cycle runs through `harness/workflows/analyst-review-cycle.md` and never mutates account/order/position state.
 - Buy/sell rationale must be detailed enough for later 1D/5D/20D analyst review and policy-learning updates.

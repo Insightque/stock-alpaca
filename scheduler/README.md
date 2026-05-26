@@ -10,7 +10,7 @@ The sample time is local machine time. Adjust it for US market hours and dayligh
 
 ## Hourly paper autopilot
 
-`com.insightque.stock-alpaca.hourly-autopilot.plist.example` runs `scripts/run-hourly-autopilot-codex.sh` every hour. The script asks Codex to execute `harness/workflows/hourly-autopilot.md`.
+`com.insightque.stock-alpaca.hourly-autopilot.plist.example` runs `scripts/run-hourly-autopilot-codex.sh` at minute 31 of every hour. The script asks Codex to execute `harness/workflows/hourly-autopilot.md`.
 
 This is allowed to submit Alpaca paper orders only when every gate passes:
 
@@ -52,29 +52,4 @@ cp scheduler/com.insightque.stock-alpaca.analyst-review.plist.example \
 launchctl bootstrap "gui/$(id -u)" \
   ~/Library/LaunchAgents/com.insightque.stock-alpaca.analyst-review.plist
 launchctl enable "gui/$(id -u)/com.insightque.stock-alpaca.analyst-review"
-```
-
-## Market-open paper validation pulse
-
-`com.insightque.stock-alpaca.market-open-autopilot.plist.example` runs `scripts/run-market-open-autopilot-codex.sh` once near the US regular open. This supplements the hourly interval job so a run that happens shortly before 22:30 KST does not defer the first market-open decision until the next hourly interval.
-
-The pulse uses the same hard gates as the hourly autopilot. It may prefer a tiny validation order only when all hard gates pass:
-
-- Alpaca paper mode
-- market open
-- Alpaca core account, clock, position, open-order, quote, and spread checks
-- broad universe coverage strict gate
-- tiered MCP strict gate
-- risk policy gate
-- whole-share day limit stock/ETF order shape
-
-Install:
-
-```bash
-mkdir -p ~/Library/LaunchAgents
-cp scheduler/com.insightque.stock-alpaca.market-open-autopilot.plist.example \
-  ~/Library/LaunchAgents/com.insightque.stock-alpaca.market-open-autopilot.plist
-launchctl bootstrap "gui/$(id -u)" \
-  ~/Library/LaunchAgents/com.insightque.stock-alpaca.market-open-autopilot.plist
-launchctl enable "gui/$(id -u)/com.insightque.stock-alpaca.market-open-autopilot"
 ```

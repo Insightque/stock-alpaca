@@ -59,7 +59,7 @@ updated_at: 2026-05-25T21:56:00+09:00
 | 2026-05-23 | `intraday-rs-breakout-v0`를 다른 일정으로 재검증함. 플러스였지만 take profit 도달 없이 EOD 수익과 무거래 필터 기여가 컸음 | [[2026-05-23-march-april-intraday-scalping-alt-simulation]] | 검증 중 |
 | 2026-05-23 | 2026년 2월~5월 임의 일자로 5회 추가 반복 검증함. 총손익은 플러스였지만 hit rate가 47.8%로 낮아지고 동시 stop 위험이 확인됨 | [[2026-05-23-random-intraday-scalping-5x-simulation]] | 자동 주문 부적합 |
 | 2026-05-23 | 1시간봉 timestamp를 보정하고 1분봉으로 stop/take 순서를 검증함. v0는 플러스였지만 confirmation variants가 안정적으로 개선하지 못해 자동 주문 부적합 유지 | [[2026-05-23-intraday-scalping-minute-validation]] | paper-only manual candidate |
-| 2026-05-26 | Paper pilot 검증 목적상 개장 직후 pulse와 tiny validation order 선호 규칙을 추가함. hard gate는 유지하고, 조건 통과 시 1주 단위 소액 주문으로 정책 검증 evidence를 쌓도록 함 | [[2026-05-26-2124-hourly-autopilot]] | validation pilot |
+| 2026-05-26 | Paper pilot 검증 목적상 매시 31분 고정 실행과 tiny validation order 선호 규칙을 추가함. hard gate는 유지하고, 조건 통과 시 1주 단위 소액 주문으로 정책 검증 evidence를 쌓도록 함 | [[2026-05-26-2124-hourly-autopilot]] | validation pilot |
 | 2026-05-23 | 단타 성과 개선용 추가 필터를 검증함. 시장 VWAP, SMH VWAP, 종목 VWAP, 반도체 breadth 4개 이상을 결합한 v1이 v0보다 평균 거래 손익과 hit rate를 개선함 | [[2026-05-23-intraday-scalping-feature-filter-simulation]] | paper-only manual candidate |
 | 2026-05-23 | 기존 v0/v1에서 덜 다룬 VWAP 평균회귀·장중 반전·거래량 확인 모멘텀을 검증함. 장초반 눌림 후 VWAP 회복 후보는 플러스였지만 v1보다 약했고, 거래량 확인 모멘텀은 폐기 후보로 분류함 | [[2026-05-23-intraday-policy-candidates-simulation]] | paper-only secondary candidate |
 | 2026-05-23 | 장타 투자 목적의 20D 보유 정책을 2026년 2~3월 13개 기준일로 학습하고 4~5월 10개 기준일로 검증함. `quality_top5`가 학습/검증 모두 플러스이고 단순 모멘텀보다 drawdown이 낮아 장타 후보 정책으로 기록함 | [[2026-05-23-long-term-feb-mar-apr-may-simulation]] | paper-only long-term candidate |

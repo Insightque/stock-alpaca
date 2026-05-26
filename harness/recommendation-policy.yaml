@@ -1,6 +1,6 @@
-policy_id: recommendation-policy-v1.5
-updated_at: "2026-05-26T22:18:00+09:00"
-policy_version: v1.5
+policy_id: recommendation-policy-v1.6
+updated_at: "2026-05-26T22:42:00+09:00"
+policy_version: v1.6
 strategy_status:
   long_term_quality_momentum_v1:
     status: active_dry_run_candidate
@@ -205,7 +205,7 @@ risk_trim_policy:
 paper_validation_execution:
   purpose: evidence_collection_not_return_maximization
   enabled_for_hourly_autopilot: true
-  enabled_for_market_open_pulse: true
+  enabled_for_market_open_pulse: false
   prefer_small_validation_order_when_gates_pass: true
   do_not_force_trade_when_any_hard_gate_fails: true
   hard_gates:
@@ -222,8 +222,8 @@ paper_validation_execution:
     enabled: true
     local_time_zone: Asia/Seoul
     start_time: "22:31"
-    end_time: "23:10"
-    objective: place_at_least_one_tiny_paper_validation_order_if_all_hard_gates_pass
+    end_time: "23:31"
+    objective: use_the_fixed_hourly_31_minute_run_as_the_market_open_validation_run
   validation_order_sizing:
     default_qty: 1
     max_new_buy_orders_per_run: 2

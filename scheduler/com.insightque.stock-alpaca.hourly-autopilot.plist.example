@@ -13,8 +13,11 @@
   <key>WorkingDirectory</key>
   <string>/Users/insightque/stock-alpaca</string>
 
-  <key>StartInterval</key>
-  <integer>3600</integer>
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Minute</key>
+    <integer>31</integer>
+  </dict>
 
   <key>RunAtLoad</key>
   <false/>
