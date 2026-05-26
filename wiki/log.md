@@ -838,3 +838,20 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - SEC EDGAR ticker lookup 보강을 위해 SEC `company_tickers.json` 기반 로컬 캐시 `harness/sec-ticker-cik-map.json`을 추가했다. 현재 universe 62개 중 61개가 매핑되고 `SMH`만 SEC company ticker 캐시에서 제외됐다.
 - 검증: `python3 -m unittest discover -s tests` 64개 통과, shell syntax 통과.
 - 예외 수동 실행 중 OpenClaw `CODEX_HOME`을 상속하면 Codex CLI가 사용자 `~/.codex/auth.json`을 보지 못해 `401 Unauthorized`가 발생하는 것을 확인했다. 자동운영 wrapper에서 `CODEX_HOME=${HOME}/.codex`를 명시하도록 보완했다.
+
+## [2026-05-26 23:01 Asia/Seoul] hourly-autopilot | paper 자동 운영 gate 점검
+
+- 사용자 승인에 따라 `harness/workflows/hourly-autopilot.md`를 실행했다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고, API key 값은 출력하거나 기록하지 않았다.
+- Alpaca MCP `get_all_positions`, broad universe `get_stock_bars`, 후보 `get_asset`, `get_stock_quotes`, `get_market_movers`, `get_news`는 일부 usable했다.
+- Alpaca MCP `get_clock`, `get_account_info`, `get_orders`, `get_account_activities`, `get_watchlists`, `get_stock_latest_quote`, `get_stock_snapshot`은 retry 후에도 cancelled였고 첫 차단 gate는 `alpaca_clock`이다.
+- 62개 metadata universe와 `SPY`/`QQQ`를 스크리닝했다. pre-MCP shortlist는 `LLY`, `LRCX`, `ASML`, `SMH`, `AAPL`, final research candidates는 `LLY`, `LRCX`, `ASML`.
+- 후보 quote는 fresh였지만 `LLY` 10.46%, `LRCX` 9.16%, `ASML` 0.66% spread로 buy spread gate가 실패했다.
+- SEC EDGAR는 로컬 CIK cache를 사용한 뒤 direct MCP calls가 cancelled였다. `SMH`는 SEC ticker lookup empty_response로 provider failure와 구분했다.
+- Alpha Vantage/Yahoo Finance는 cancelled, FRED/Firecrawl은 DNS failure로 gap 분류했다. research MCP usable count는 0이다.
+- 검증: universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
+- 리포트: `wiki/current-runs/daily/2026-05-26-2301-hourly-autopilot.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-26-2301-hourly-autopilot-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-26-2301-hourly-autopilot.json`.
+- order plan: `wiki/trade-ledger/orders/2026-05-26-2301-hourly-autopilot.json`.
+- 실제 주문, 취소, 포지션 변경은 없었다. `orders_submitted=0`.
