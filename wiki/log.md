@@ -881,3 +881,28 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - run manifest: `wiki/evidence-store/run-manifests/2026-05-26-2331-hourly-autopilot.json`.
 - order plan: `wiki/trade-ledger/orders/2026-05-26-2331-hourly-autopilot.json`.
 - 실제 주문, 취소, 포지션 변경은 없었다. `orders_submitted=0`.
+
+## [2026-05-26 23:45 Asia/Seoul] reliability-update | nested Codex MCP 승인 모드 수정
+
+- 23:31 one-off hourly autopilot에서 scheduled wrapper 자체, lock, artifact 생성, autopush는 동작했지만 nested Codex의 MCP tool 호출이 다수 `user cancelled MCP tool call`로 실패하는 것을 확인했다.
+- 원인은 scheduled runner가 MCP override에 `approval_mode="auto"`를 사용한 점으로 판단했다. 현재 Codex MCP 설정에서 비대화형 `-a never` 실행 중 prompt 없이 진행해야 하는 도구는 `approval_mode="approve"`로 명시해야 한다.
+- hourly runner에 Alpaca core/read/quote/news/mover/order 도구와 SEC EDGAR, Alpha Vantage, Yahoo Finance, FRED, Firecrawl research 도구의 scheduled-only `approval_mode="approve"` override를 추가했다.
+- analyst review runner에도 주문 제출 도구를 제외한 read/research 도구의 scheduled-only `approval_mode="approve"` override를 추가했다.
+- 검증: `python3 -m unittest discover -s tests` 66개 통과, nested Codex read-only smoke에서 Alpaca MCP `get_clock` 호출 성공.
+
+## [2026-05-27 00:05 Asia/Seoul] hourly-autopilot | paper 자동 운영 gate 점검
+
+- 사용자 승인에 따라 `harness/workflows/hourly-autopilot.md`를 실행했다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고, API key 값은 출력하거나 기록하지 않았다.
+- Alpaca MCP core `get_clock`, `get_account_info`, `get_orders`, `get_all_positions`, `get_account_activities`, `get_watchlists`, 후보 `get_stock_latest_quote`, `get_stock_snapshot`, `get_asset`, `get_news`는 usable했다.
+- Alpaca market clock은 `2026-05-26T10:51:43-04:00` 기준 open이었고, open equity orders 0건, same-day fills 0건, current positions 10개를 확인했다.
+- Alpaca core first blocking gate는 없고, 전체 첫 차단 gate는 `mcp_research_min_confirmations`이다.
+- 62개 metadata universe와 `SPY`/`QQQ`를 스크리닝했다. pre-MCP shortlist는 `LRCX`, `SMH`, `ASML`, `AAPL`, `LLY`, final research candidates는 `AAPL`, `ASML`, `LLY`.
+- 후보 quote는 fresh였다. `AAPL` 0.010%, `SMH` 0.060% spread는 통과했고 `LLY` 5.598%, `LRCX` 5.193%, `ASML` 0.562%는 spread gate 실패다.
+- SEC EDGAR와 Yahoo Finance는 usable했지만 Alpha Vantage는 wrapper/schema data gap, FRED와 Firecrawl은 DNS gap으로 실패했다. research MCP usable count는 2라 최소 3에 미달했다.
+- 검증: universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
+- 리포트: `wiki/current-runs/daily/2026-05-26-2351-hourly-autopilot.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-26-2351-hourly-autopilot-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-26-2351-hourly-autopilot.json`.
+- order plan: `wiki/trade-ledger/orders/2026-05-26-2351-hourly-autopilot.json`.
+- 실제 주문, 취소, 포지션 변경은 없었다. `orders_submitted=0`.

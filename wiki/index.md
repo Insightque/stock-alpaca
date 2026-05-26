@@ -43,6 +43,7 @@
 - [[2026-05-26-2124-hourly-autopilot]] - hourly paper autopilot 실행. universe/risk gate는 통과했지만 Alpaca core/MCP/quote/spread/account-order gate 실패로 주문 없음.
 - [[2026-05-26-2301-hourly-autopilot]] - hourly paper autopilot 실행. universe/risk gate는 통과했지만 Alpaca clock/account/order, MCP, spread gate 실패로 주문 없음.
 - [[2026-05-26-2331-hourly-autopilot]] - hourly paper autopilot 실행. universe/risk gate는 통과했지만 Alpaca core/MCP gate 실패로 주문 없음.
+- [[2026-05-26-2351-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/risk는 통과했지만 research MCP minimum과 일부 spread gate 실패로 주문 없음.
 
 ## Research Notes
 
@@ -107,6 +108,7 @@
 - `wiki/trade-ledger/orders/2026-05-26-2124-hourly-autopilot.json` - 2026-05-26 21:24 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2301-hourly-autopilot.json` - 2026-05-26 23:01 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2331-hourly-autopilot.json` - 2026-05-26 23:31 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
+- `wiki/trade-ledger/orders/2026-05-26-2351-hourly-autopilot.json` - 2026-05-26 23:51 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - 2026-05-22 paper 주문 체결분은 다음 회고 대상이다.
 
 ## Policy Book
@@ -211,3 +213,5 @@
 - `wiki/evidence-store/run-manifests/2026-05-26-2301-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
 - [[2026-05-26-2331-hourly-autopilot-sources]] - hourly autopilot의 Alpaca MCP 부분 성공/핵심 실패, research MCP gap 분류, fresh quote와 주문 차단 근거.
 - `wiki/evidence-store/run-manifests/2026-05-26-2331-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
+- [[2026-05-26-2351-hourly-autopilot-sources]] - hourly autopilot의 Alpaca core PASS, SEC/Yahoo usable, Alpha/FRED/Firecrawl gap, spread 차단 근거.
+- `wiki/evidence-store/run-manifests/2026-05-26-2351-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
