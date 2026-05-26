@@ -36,6 +36,7 @@ updated_at: 2026-05-25T21:56:00+09:00
 - `confidence_score < 0.50`, `source_confidence=low`, Alpaca core gap, stale quote, missing spread, missing metadata가 있으면 신규 order plan entry를 만들지 않는다.
 - MCP gate는 Alpaca core gate와 research confirmation gate로 나눈다. Alpaca account/clock/order/position/quote/spread는 항상 필수이고, SEC EDGAR/Alpha Vantage/FRED/Firecrawl/Yahoo Finance는 모두 시도하되 최소 3개 이상 usable/pass면 외부 provider 일부 장애만으로 paper buy 후보를 전면 차단하지 않는다.
 - 최소 research confirmation이 부족하지만 가격/포트폴리오/리스크 조건이 강한 후보는 `actionable_if_provider_recovered`로 남겨 다음 hourly run에서 자동 재확인한다.
+- Paper 검증 운용은 실거래 수익 극대화가 아니라 정책 검증 데이터 수집을 우선한다. 개장 직후 validation window에서는 모든 hard gate가 통과하면 1주 단위의 작은 검증 주문을 선호하되, Alpaca core, 시장 개장, fresh quote, spread, universe, MCP, risk gate 중 하나라도 실패하면 강제 주문하지 않고 첫 차단 gate와 다음 완화 후보를 기록한다.
 - 자동 sell/trim은 thesis-break만이 아니라 speculative cap, correlated cluster cap, theme/factor cap, 과열 후 손익 보호, position sizing 같은 risk trim 사유로도 가능하다. 단 Alpaca core, fresh quote/spread, open-order state, risk gate는 반드시 통과해야 한다.
 - 확장 universe는 theme cap, factor cap, active/tradable 확인, 최소 가격, 유동성, spread, source confidence, SPY/QQQ 상대강도를 모두 통과할 때만 사용한다.
 - 정책 변경은 `wiki/policy-book/proposals/TEMPLATE-policy-change.md` 구조를 통과해야 하며, 단일 백테스트 평균만으로 `auto_eligible_paper`로 승격하지 않는다.
@@ -58,6 +59,7 @@ updated_at: 2026-05-25T21:56:00+09:00
 | 2026-05-23 | `intraday-rs-breakout-v0`를 다른 일정으로 재검증함. 플러스였지만 take profit 도달 없이 EOD 수익과 무거래 필터 기여가 컸음 | [[2026-05-23-march-april-intraday-scalping-alt-simulation]] | 검증 중 |
 | 2026-05-23 | 2026년 2월~5월 임의 일자로 5회 추가 반복 검증함. 총손익은 플러스였지만 hit rate가 47.8%로 낮아지고 동시 stop 위험이 확인됨 | [[2026-05-23-random-intraday-scalping-5x-simulation]] | 자동 주문 부적합 |
 | 2026-05-23 | 1시간봉 timestamp를 보정하고 1분봉으로 stop/take 순서를 검증함. v0는 플러스였지만 confirmation variants가 안정적으로 개선하지 못해 자동 주문 부적합 유지 | [[2026-05-23-intraday-scalping-minute-validation]] | paper-only manual candidate |
+| 2026-05-26 | Paper pilot 검증 목적상 개장 직후 pulse와 tiny validation order 선호 규칙을 추가함. hard gate는 유지하고, 조건 통과 시 1주 단위 소액 주문으로 정책 검증 evidence를 쌓도록 함 | [[2026-05-26-2124-hourly-autopilot]] | validation pilot |
 | 2026-05-23 | 단타 성과 개선용 추가 필터를 검증함. 시장 VWAP, SMH VWAP, 종목 VWAP, 반도체 breadth 4개 이상을 결합한 v1이 v0보다 평균 거래 손익과 hit rate를 개선함 | [[2026-05-23-intraday-scalping-feature-filter-simulation]] | paper-only manual candidate |
 | 2026-05-23 | 기존 v0/v1에서 덜 다룬 VWAP 평균회귀·장중 반전·거래량 확인 모멘텀을 검증함. 장초반 눌림 후 VWAP 회복 후보는 플러스였지만 v1보다 약했고, 거래량 확인 모멘텀은 폐기 후보로 분류함 | [[2026-05-23-intraday-policy-candidates-simulation]] | paper-only secondary candidate |
 | 2026-05-23 | 장타 투자 목적의 20D 보유 정책을 2026년 2~3월 13개 기준일로 학습하고 4~5월 10개 기준일로 검증함. `quality_top5`가 학습/검증 모두 플러스이고 단순 모멘텀보다 drawdown이 낮아 장타 후보 정책으로 기록함 | [[2026-05-23-long-term-feb-mar-apr-may-simulation]] | paper-only long-term candidate |

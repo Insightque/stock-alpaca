@@ -1,6 +1,6 @@
-policy_id: recommendation-policy-v1.4
-updated_at: "2026-05-26T19:32:00+09:00"
-policy_version: v1.4
+policy_id: recommendation-policy-v1.5
+updated_at: "2026-05-26T22:18:00+09:00"
+policy_version: v1.5
 strategy_status:
   long_term_quality_momentum_v1:
     status: active_dry_run_candidate
@@ -202,6 +202,44 @@ risk_trim_policy:
     - open_order_check
     - risk_check
     - whole_share_day_limit_order
+paper_validation_execution:
+  purpose: evidence_collection_not_return_maximization
+  enabled_for_hourly_autopilot: true
+  enabled_for_market_open_pulse: true
+  prefer_small_validation_order_when_gates_pass: true
+  do_not_force_trade_when_any_hard_gate_fails: true
+  hard_gates:
+    - alpaca_paper_mode
+    - market_open
+    - alpaca_core_account_clock_position_order_quote_spread
+    - universe_strict
+    - mcp_tiered_strict
+    - risk_policy
+    - fresh_quote
+    - spread_within_policy
+    - whole_share_day_limit_order
+  opening_window:
+    enabled: true
+    local_time_zone: Asia/Seoul
+    start_time: "22:31"
+    end_time: "23:10"
+    objective: place_at_least_one_tiny_paper_validation_order_if_all_hard_gates_pass
+  validation_order_sizing:
+    default_qty: 1
+    max_new_buy_orders_per_run: 2
+    max_validation_notional_pct_per_order: 0.02
+    max_validation_notional_pct_per_day: 0.04
+    prefer_existing_highest_ranked_actionable_candidate: true
+    allow_existing_position_add_only_if_position_cap_passes: true
+  candidate_floor:
+    minimum_confidence_score: 0.50
+    allow_medium_source_confidence: true
+    require_positive_expected_excess_return: true
+    require_no_thesis_break: true
+  no_action_diagnostics:
+    record_first_blocking_gate: true
+    record_next_relaxation_candidate: true
+    record_top_recheck_candidates: 3
 universe_policy:
   allow_expanded_universe: true
   default_scope: expanded_metadata_universe

@@ -16,10 +16,16 @@ Run an hourly current-market recommendation loop. If and only if every safety, u
   - Core MCP gate: Alpaca account, clock, positions, open orders, recent activities, tradability, fresh quote, and spread must pass.
   - Research MCP gate: SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance must all be attempted; at least 3 must be usable/pass for actionable buy candidates.
   - A failed non-core research provider no longer blocks paper action by itself when core and minimum research confirmations pass.
+- Paper validation execution is intentionally less passive than production trading, but it must not bypass hard gates:
+  - During the market-open validation window, prefer one tiny paper validation order when all hard gates pass.
+  - Default validation size is 1 share, with at most 2 new buy orders per run, 2% of portfolio value per validation order, and 4% of portfolio value per day.
+  - Medium source confidence is allowed only when confidence score is at least 0.50, expected excess return is positive, no thesis-break is present, and tiered MCP validation passes.
+  - If no order is submitted, record the first blocking gate, the next relaxation candidate, and the top recheck candidates. Do not submit a forced order.
 
 ## Required Cadence
 
 - Scheduled runner: hourly.
+- Market-open pulse: once near the US regular open, in addition to hourly, to avoid missing the first actionable window.
 - Recommendation cadence: every hourly run.
 - Submit cadence: only during regular US equity market hours, after fresh quote validation.
 - Post-trade reconciliation: every run after any submit attempt, and on any run with open orders or same-day fills.
@@ -61,6 +67,7 @@ Run an hourly current-market recommendation loop. If and only if every safety, u
 8. Create a concrete order-plan JSON under `wiki/trade-ledger/orders/`.
    - Include detailed per-order `rationale`.
    - Include source refs, quote timestamp, asset check timestamp, liquidity/spread, confidence score, strategy id/version, policy status, expected excess return, expected adverse move, entry style, sizing basis, and review horizons.
+   - If this run is inside the market-open validation window and all hard gates pass, prefer a 1-share validation buy for the highest-ranked actionable candidate that passes position/theme/factor/speculative caps. If the highest-ranked candidate is already held, add only when the ticker cap and cluster caps still pass.
    - Buy orders require core MCP pass, at least 3 usable/pass research MCPs, universe pass, fresh quote, spread, and risk pass.
    - Sell/trim orders require core MCP pass, fresh quote, spread, open-order check, and risk pass. Full research MCP pass is not required for risk trim.
    - Valid sell/trim rationales: thesis-break, risk-limit, stale-thesis, position-sizing, portfolio-fit, speculative cap exceeded, correlated cluster cap exceeded, theme/factor cap exceeded, or overheat profit protection.
@@ -84,6 +91,7 @@ python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YOUR-RUN.js
     - Order plan mode is `submit`.
     - Order shape is whole-share day limit stock/ETF.
     - No same-day duplicate symbol/side conflict.
+    - For validation buys, the order respects the `paper_validation_execution.validation_order_sizing` limits in `harness/recommendation-policy.yaml`.
 11. Submit only through Alpaca MCP order tools. Do not call Alpaca trading REST endpoints directly.
 12. Run post-trade reconciliation immediately after any submit attempt.
 13. Append `wiki/log.md` with:
@@ -109,6 +117,7 @@ python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YOUR-RUN.js
 - Risk gate fails.
 - Quote or spread validation fails.
 - Any order would violate long-only, whole-share, day-limit, stock/ETF-only constraints.
+- The only way to create an order is to pass the hard gates; paper validation must increase observation frequency, not override missing Alpaca core, stale quote, spread, universe, MCP, or risk evidence.
 - Codex cannot write a complete report, manifest, and order plan.
 
 ## Output Contract

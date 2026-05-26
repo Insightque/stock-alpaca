@@ -814,3 +814,11 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - run manifest: `wiki/evidence-store/run-manifests/2026-05-26-2124-hourly-autopilot.json`.
 - order plan: `wiki/trade-ledger/orders/2026-05-26-2124-hourly-autopilot.json`.
 - 실제 주문, 취소, 포지션 변경은 없었다. `orders_submitted=0`.
+
+## [2026-05-26 22:18 Asia/Seoul] policy-update | paper 검증 실행성 강화
+
+- 사용자 우려에 따라 paper pilot이 지나치게 보수적으로 아무 주문도 만들지 못하는 문제를 줄이기 위해 `harness/recommendation-policy.yaml`을 `recommendation-policy-v1.5`로 갱신했다.
+- `paper_validation_execution`을 추가해, 모든 hard gate가 통과하면 개장 직후 1주 단위의 작은 검증 주문을 선호하도록 했다.
+- 단 Alpaca paper mode, 시장 개장, Alpaca core account/clock/position/order/quote/spread, universe strict, tiered MCP strict, risk policy, fresh quote, spread, whole-share day limit order gate는 계속 필수다.
+- hard gate 실패 시에는 강제 주문하지 않고 첫 차단 gate, 다음 완화 후보, 상위 재점검 후보를 기록하도록 했다.
+- hourly interval drift로 22:30 KST 개장 직후를 놓치지 않도록 `scripts/run-market-open-autopilot-codex.sh`와 `scheduler/com.insightque.stock-alpaca.market-open-autopilot.plist.example`을 추가했다.

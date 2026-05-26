@@ -182,6 +182,150 @@
         }
       }
     },
+    "paper_validation_execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "purpose",
+        "enabled_for_hourly_autopilot",
+        "enabled_for_market_open_pulse",
+        "prefer_small_validation_order_when_gates_pass",
+        "do_not_force_trade_when_any_hard_gate_fails",
+        "hard_gates",
+        "opening_window",
+        "validation_order_sizing",
+        "candidate_floor",
+        "no_action_diagnostics"
+      ],
+      "properties": {
+        "purpose": {
+          "type": "string"
+        },
+        "enabled_for_hourly_autopilot": {
+          "type": "boolean"
+        },
+        "enabled_for_market_open_pulse": {
+          "type": "boolean"
+        },
+        "prefer_small_validation_order_when_gates_pass": {
+          "type": "boolean"
+        },
+        "do_not_force_trade_when_any_hard_gate_fails": {
+          "type": "boolean"
+        },
+        "hard_gates": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "opening_window": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["enabled", "local_time_zone", "start_time", "end_time", "objective"],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "local_time_zone": {
+              "type": "string"
+            },
+            "start_time": {
+              "type": "string"
+            },
+            "end_time": {
+              "type": "string"
+            },
+            "objective": {
+              "type": "string"
+            }
+          }
+        },
+        "validation_order_sizing": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "default_qty",
+            "max_new_buy_orders_per_run",
+            "max_validation_notional_pct_per_order",
+            "max_validation_notional_pct_per_day",
+            "prefer_existing_highest_ranked_actionable_candidate",
+            "allow_existing_position_add_only_if_position_cap_passes"
+          ],
+          "properties": {
+            "default_qty": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "max_new_buy_orders_per_run": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "max_validation_notional_pct_per_order": {
+              "type": "number",
+              "minimum": 0
+            },
+            "max_validation_notional_pct_per_day": {
+              "type": "number",
+              "minimum": 0
+            },
+            "prefer_existing_highest_ranked_actionable_candidate": {
+              "type": "boolean"
+            },
+            "allow_existing_position_add_only_if_position_cap_passes": {
+              "type": "boolean"
+            }
+          }
+        },
+        "candidate_floor": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "minimum_confidence_score",
+            "allow_medium_source_confidence",
+            "require_positive_expected_excess_return",
+            "require_no_thesis_break"
+          ],
+          "properties": {
+            "minimum_confidence_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "allow_medium_source_confidence": {
+              "type": "boolean"
+            },
+            "require_positive_expected_excess_return": {
+              "type": "boolean"
+            },
+            "require_no_thesis_break": {
+              "type": "boolean"
+            }
+          }
+        },
+        "no_action_diagnostics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "record_first_blocking_gate",
+            "record_next_relaxation_candidate",
+            "record_top_recheck_candidates"
+          ],
+          "properties": {
+            "record_first_blocking_gate": {
+              "type": "boolean"
+            },
+            "record_next_relaxation_candidate": {
+              "type": "boolean"
+            },
+            "record_top_recheck_candidates": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        }
+      }
+    },
     "universe_policy": {
       "type": "object",
       "additionalProperties": true
