@@ -994,3 +994,28 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 수정: 주문 후보 chip은 `20D 기대 +3.0%`, `불리 -7.5%`처럼 order-plan의 기대/불리 이동 값을 사용한다.
 - 재생성: `ui/agent-dashboard.html`에서 `점수 1` 표시는 사라지고 `LLY 신뢰 62%`, `FCX 순위 #2`, `NOK 순위 #3`로 표시된다.
 - 검증: dashboard embedded JSON parse와 렌더 스크립트 fake-DOM 실행 pass, `bash -n` pass, `python3 -m unittest discover -s tests` 67개 pass.
+
+## [2026-05-27 01:43 Asia/Seoul] hourly-autopilot | paper 자동 운영 gate 점검
+
+- run id: `2026-05-27-0131-hourly-autopilot`.
+- 사용자 승인에 따라 `harness/workflows/hourly-autopilot.md`를 실행했다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고, API key 값은 출력하거나 기록하지 않았다.
+- Alpaca MCP core `get_clock`, `get_account_info`, `get_orders`, `get_all_positions`, `get_account_activities`, `get_watchlists`, 후보 `get_stock_latest_quote`, `get_stock_snapshot`, `get_stock_bars`, `get_asset`, `get_news`, `get_market_movers`, `get_most_active_stocks`를 사용했다.
+- Market clock: `2026-05-26T12:32:08-04:00` 기준 open, next close `2026-05-26T16:00:00-04:00`.
+- Account: portfolio value 101605.13 USD, cash 42951.20 USD, buying power 137932.33 USD, open US equity orders 0건, same-day fills 1건 LLY buy 1주, current positions 11개.
+- Universe: 62개 metadata universe와 `SPY`/`QQQ`를 스크리닝했다. Pre-MCP shortlist는 `MU`, `NOK`, `FCX`, `SMH`, `AMD`, `INTC`, `AAPL`, `AVGO`, `PLTR`, `NVDA`, final candidates는 `FCX`, `NOK`, `SMH`.
+- Candidate quote/spread: `FCX`, `NOK`, `SMH`, `MU`, `AAPL`, `NVDA`, `AVGO`, `INTC`, `PLTR`는 fresh quote와 spread gate를 통과했다. `AMD`, `LLY`는 spread fail로 skip했다.
+- SEC EDGAR는 local CIK cache로 `FCX -> 0000831259` 확인 후 company info/recent filings pass. Yahoo Finance는 FCX news pass. FRED는 scheduler preflight `2026-05-27-0131-hourly-autopilot-research-mcp-preflight.json`의 `get_macro_snapshot` pass를 usable evidence로 사용했다.
+- Alpha Vantage는 `TOOL_LIST` -> `TOOL_GET("PING")` 후 `TOOL_CALL("PING", {})`이 cancelled 되어 `gap_category=cancelled`로 기록했다. Firecrawl은 Codex tool catalog에 registered MCP tool이 노출되지 않아 `gap_category=wrapper_error`로 기록했고 shell/curl/local wrapper는 호출하지 않았다.
+- First blocking gate: 없음. 검증 및 제출 결과는 같은 run entry의 후속 업데이트로 기록한다.
+- 리포트: `wiki/current-runs/daily/2026-05-27-0131-hourly-autopilot.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-27-0131-hourly-autopilot-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-27-0131-hourly-autopilot.json`.
+- order plan: `wiki/trade-ledger/orders/2026-05-27-0131-hourly-autopilot.json`.
+- 검증: universe strict PASS, MCP strict PASS, risk-check PASS.
+- 제출 전 fresh quote 재확인: FCX bid 63.95, ask 63.97, spread 0.031%, quote time `2026-05-26T16:40:36Z`. Open US equity orders 0건.
+- 제출: FCX 1주 day limit buy, limit 63.97, client_order_id `hourly-20260527-0131-fcx-buy-1`.
+- Post-trade: Alpaca order id `6c6a31ab-2a07-4da1-9e2e-c1dfb57ccee1`, status filled, filled_qty 1, filled_avg_price 63.94, filled_at `2026-05-26T16:41:44.795047598Z`. `get_all_positions`에서 FCX 1주 포지션 확인.
+- Reconciliation gap: `get_order_by_client_id`, `get_order_by_id`, 일부 `get_orders`/`get_all_positions`, `get_account_activities` 호출은 cancelled 또는 safety cancellation이 있었고, 같은 주문 id 기준의 `get_orders` retry와 positions retry로 체결 확인했다.
+- submitted orders: `FCX` 1주. skipped orders: `NOK`, `SMH`, `MU`, `AMD`, `LLY`, `AAPL`, `NVDA`, `AVGO`, `INTC`, `PLTR`, 보유 전 종목 sell/trim.
+- review due markers: 신규 FCX fill은 1D/5D/20D `회고 대기`; LLY 및 2026-05-22 체결분도 계속 `회고 대기`.

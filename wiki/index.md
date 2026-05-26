@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-27 00:52 KST hourly autopilot LLY paper validation fill 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-27 01:31 KST hourly autopilot FCX paper validation fill 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -47,6 +47,7 @@
 - [[2026-05-27-0012-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/quote/risk는 통과했지만 research MCP minimum 3개 미달로 주문 없음.
 - [[2026-05-27-0032-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/quote/risk는 통과했지만 research MCP minimum 3개 미달로 주문 없음.
 - [[2026-05-27-0052-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 LLY 1주 paper validation buy 체결.
+- [[2026-05-27-0131-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 FCX 1주 paper validation buy 체결.
 
 ## Research Notes
 
@@ -115,6 +116,7 @@
 - `wiki/trade-ledger/orders/2026-05-27-0012-hourly-autopilot.json` - 2026-05-27 00:12 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-27-0032-hourly-autopilot.json` - 2026-05-27 00:32 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-27-0052-hourly-autopilot.json` - 2026-05-27 00:52 KST hourly autopilot LLY 1주 paper validation buy plan, universe/MCP/risk PASS, order filled.
+- `wiki/trade-ledger/orders/2026-05-27-0131-hourly-autopilot.json` - 2026-05-27 01:31 KST hourly autopilot FCX 1주 paper validation buy plan, universe/MCP/risk PASS, order filled.
 - 2026-05-22 paper 주문 체결분은 다음 회고 대상이다.
 
 ## Policy Book
@@ -218,6 +220,8 @@
 - [[2026-05-26-2301-hourly-autopilot-sources]] - hourly autopilot의 Alpaca MCP 부분 성공/핵심 실패, research MCP gap 분류, fresh quote와 spread 차단 근거.
 - `wiki/evidence-store/run-manifests/2026-05-26-2301-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
 - [[2026-05-26-2331-hourly-autopilot-sources]] - hourly autopilot의 Alpaca MCP 부분 성공/핵심 실패, research MCP gap 분류, fresh quote와 주문 차단 근거.
+- [[2026-05-27-0131-hourly-autopilot-sources]] - hourly autopilot의 Alpaca core, FCX quote/asset/news, SEC/Yahoo/FRED evidence, Alpha/Firecrawl gap 분류.
+- `wiki/evidence-store/run-manifests/2026-05-27-0131-hourly-autopilot.json` - hourly autopilot manifest, FCX submit candidate, universe/MCP/risk gate 검증 대상.
 - `wiki/evidence-store/run-manifests/2026-05-26-2331-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
 - [[2026-05-26-2351-hourly-autopilot-sources]] - hourly autopilot의 Alpaca core PASS, SEC/Yahoo usable, Alpha/FRED/Firecrawl gap, spread 차단 근거.
 - `wiki/evidence-store/run-manifests/2026-05-26-2351-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.

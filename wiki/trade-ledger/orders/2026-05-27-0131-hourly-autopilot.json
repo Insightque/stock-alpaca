@@ -1,0 +1,96 @@
+{
+  "run_id": "2026-05-27-0131-hourly-autopilot",
+  "schema_version": "1.2",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:79c639ba60aca7ce0ce98cb64c8984fbbaba59435f15ea80dfaeefd5026553a9",
+  "created_at": "2026-05-26T16:38:00Z",
+  "mode": "submit",
+  "paper": true,
+  "market": {
+    "is_open": true,
+    "checked_at": "2026-05-26T16:40:50Z",
+    "next_open": "2026-05-27T13:30:00Z",
+    "next_close": "2026-05-26T20:00:00Z"
+  },
+  "account": {
+    "portfolio_value": 101605.13,
+    "cash": 42951.2,
+    "buying_power": 137932.33,
+    "currency": "USD",
+    "daily_realized_loss": 0
+  },
+  "positions": [
+    {"symbol": "AMD", "asset_type": "stock", "qty": 14, "market_value": 6941.13, "avg_entry_price": 462.73, "current_price": 495.795, "theme": "ai_semiconductor", "factor": "ai_semiconductor", "volatility_bucket": "high", "speculative_flag": false, "liquidity_bucket": "mega", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "AVGO", "asset_type": "stock", "qty": 15, "market_value": 6337.875, "avg_entry_price": 410.73, "current_price": 422.525, "theme": "ai_semiconductor", "factor": "ai_semiconductor", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "mega", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "ETN", "asset_type": "stock", "qty": 15, "market_value": 6125.025, "avg_entry_price": 387.9, "current_price": 408.335, "theme": "power_infrastructure", "factor": "industrial_power", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "electrification_infrastructure"},
+    {"symbol": "IONQ", "asset_type": "stock", "qty": 45, "market_value": 2867.85, "avg_entry_price": 63.48, "current_price": 63.73, "theme": "quantum_speculative", "factor": "speculative_growth", "volatility_bucket": "high", "speculative_flag": true, "liquidity_bucket": "medium", "source_confidence": "medium", "correlated_cluster": "quantum_speculative"},
+    {"symbol": "LLY", "asset_type": "stock", "qty": 1, "market_value": 1081.83, "avg_entry_price": 1079.38, "current_price": 1081.83, "theme": "healthcare_pharma", "factor": "healthcare_growth", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "mega", "source_confidence": "high", "correlated_cluster": "healthcare"},
+    {"symbol": "LRCX", "asset_type": "stock", "qty": 20, "market_value": 6346.6, "avg_entry_price": 307.91, "current_price": 317.33, "theme": "semicap_equipment", "factor": "ai_semiconductor", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "NOK", "asset_type": "stock", "qty": 400, "market_value": 6628.0, "avg_entry_price": 15.04, "current_price": 16.57, "theme": "networking", "factor": "international_adr", "volatility_bucket": "high", "speculative_flag": false, "liquidity_bucket": "medium", "source_confidence": "medium", "correlated_cluster": "communications_infrastructure"},
+    {"symbol": "NVDA", "asset_type": "stock", "qty": 35, "market_value": 7461.5135, "avg_entry_price": 215.32, "current_price": 213.1861, "theme": "ai_semiconductor", "factor": "ai_semiconductor", "volatility_bucket": "high", "speculative_flag": false, "liquidity_bucket": "mega", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "RGTI", "asset_type": "stock", "qty": 120, "market_value": 3024.0, "avg_entry_price": 25.569583, "current_price": 25.2, "theme": "quantum_speculative", "factor": "speculative_growth", "volatility_bucket": "high", "speculative_flag": true, "liquidity_bucket": "medium", "source_confidence": "medium", "correlated_cluster": "quantum_speculative"},
+    {"symbol": "TSM", "asset_type": "stock", "qty": 15, "market_value": 6179.37, "avg_entry_price": 405.2, "current_price": 411.958, "theme": "ai_semiconductor", "factor": "ai_semiconductor", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "UNH", "asset_type": "stock", "qty": 15, "market_value": 5673.3, "avg_entry_price": 386.56, "current_price": 378.22, "theme": "healthcare", "factor": "defensive_healthcare", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "healthcare"}
+  ],
+  "open_orders": [],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.01126,
+    "weekly_turnover_ratio": 0.01126,
+    "stop_triggered_orders_today": 0,
+    "risk_recomputed_after_partial_fill": true
+  },
+  "orders": [
+    {
+      "symbol": "FCX",
+      "asset_type": "stock",
+      "asset_status": "active",
+      "asset_tradable": true,
+      "side": "buy",
+      "order_type": "limit",
+      "time_in_force": "day",
+      "qty": 1,
+      "limit_price": 63.97,
+      "reference_price": 63.96,
+      "quote_age_minutes": 0.2,
+      "quote_captured_at": "2026-05-26T16:40:36.660526Z",
+      "asset_checked_at": "2026-05-26T16:34:02Z",
+      "theme": "materials_mining",
+      "factor": "commodity_cyclical",
+      "volatility_bucket": "high",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high",
+      "correlated_cluster": "energy_commodity",
+      "strategy_id": "hourly-paper-validation",
+      "strategy_version": "recommendation-policy-v1.6",
+      "policy_status": "auto_eligible_paper",
+      "expected_excess_return_20d_pct": 2.2,
+      "expected_adverse_move_20d_pct": -7.8,
+      "confidence_score": 0.58,
+      "sizing_basis": "1-share validation order; adds commodity/materials diversification, remains below 2% per-order validation cap, 4% daily validation cap, ticker cap, theme cap, factor cap, cash reserve, and max invested limits",
+      "entry_style": "single",
+      "max_additional_entry_count": 0,
+      "liquidity": {
+        "bid": 63.95,
+        "ask": 63.97,
+        "spread_pct": 0.0313,
+        "avg_daily_dollar_volume": 1250000000,
+        "quote_source": "alpaca",
+        "measured_at": "2026-05-26T16:40:36.660526Z"
+      },
+      "client_order_id": "hourly-20260527-0131-fcx-buy-1",
+      "decision_id": "2026-05-27-0131-hourly-autopilot-fcx-buy-validation",
+      "review_horizons": ["1D", "5D", "20D"],
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0131-hourly-autopilot-sources.md",
+        "wiki/evidence-store/sources/2026-05-27-0131-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "rationale": "FCX passed Alpaca paper core checks, active/tradable US equity asset validation, no open duplicate order, fresh IEX quote, 0.047% spread, SEC company/recent filing evidence after local CIK fallback, Yahoo Finance FCX-specific copper/mining and analyst news, and passing FRED macro preflight. The one-share paper validation buy diversifies away from the already large AI semiconductor cluster. Size is deliberately tiny because FCX is commodity-cyclical and adverse macro/copper moves can be sharp."
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-27-0131-hourly-autopilot-sources.md",
+    "wiki/evidence-store/sources/2026-05-27-0131-hourly-autopilot-research-mcp-preflight.json"
+  ],
+  "manifest_path": "wiki/evidence-store/run-manifests/2026-05-27-0131-hourly-autopilot.json"
+}
