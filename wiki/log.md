@@ -1172,3 +1172,28 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - run manifest: `wiki/evidence-store/run-manifests/2026-05-27-0331-hourly-autopilot.json`.
 - order plan: `wiki/trade-ledger/orders/2026-05-27-0331-hourly-autopilot.json`.
 - review due markers: 이번 run 신규 fill 없음. AAPL order는 open `new`라 아직 fill review due가 아니며, LLY/FCX/NOK/NVDA 및 2026-05-22 체결분은 계속 `회고 대기`.
+
+## [2026-05-27 04:20 Asia/Seoul] hourly-autopilot | paper validation AMZN 주문 제출
+
+- run id: `2026-05-27-0411-hourly-autopilot`.
+- 사용자 승인에 따라 `harness/workflows/hourly-autopilot.md`를 실행했다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고, API key 값은 출력하거나 기록하지 않았다.
+- Scheduler-owned Alpaca core preflight `wiki/evidence-store/sources/2026-05-27-0411-hourly-autopilot-alpaca-core-preflight.json`을 먼저 읽었다. Hard gate pass, market open, account/positions/open orders/fills/watchlists/asset/quotes/snapshots/latest trades 모두 pass로 기록되어 Alpaca core evidence로 사용했다.
+- Market clock: `2026-05-26T15:11:05.905788802-04:00` 기준 open, next close `2026-05-26T16:00:00-04:00`.
+- Account before decision: portfolio value 101684.58 USD, cash 42347.59 USD, buying power 137455.77 USD, current positions 13개, open orders 0건.
+- Universe: 62개 metadata universe와 `SPY`/`QQQ`를 스크리닝했다. Pre-MCP shortlist는 `MU`, `AMD`, `KLAC`, `NOK`, `LRCX`, `AMAT`, `SMH`, `FCX`, `AMZN`, `INTC`, final candidates는 `AMZN`, `INTC`, `AMAT`.
+- Candidate quote/spread: AMZN bid 263.06, ask 263.10, spread 0.0152%, quote time `2026-05-26T19:11:29.894160Z`.
+- SEC EDGAR는 local CIK cache로 `AMZN -> 0001018724` 확인 후 company info/recent filings pass. Yahoo Finance는 AMZN news/recommendations usable. FRED는 scheduler preflight `2026-05-27-0411-hourly-autopilot-research-mcp-preflight.json`의 `get_macro_snapshot` pass를 usable evidence로 사용했다.
+- Alpha Vantage는 `TOOL_LIST` -> `TOOL_GET("PING")` -> `TOOL_CALL("PING", {})` -> `TOOL_GET("NEWS_SENTIMENT")` 후 첫 non-PING `TOOL_CALL("NEWS_SENTIMENT")`이 wrapper cancelled되어 `gap_category=cancelled`로 기록하고 candidate data retry를 중단했다. Firecrawl은 Codex tool catalog에 registered MCP tool이 노출되지 않아 `gap_category=wrapper_error`로 기록했고 shell/curl/local wrapper는 호출하지 않았다.
+- First blocking gate: 없음. 검증: universe strict PASS, MCP strict PASS, risk-check PASS.
+- 제출 전 gate summary: paper mode, market clock, order plan, universe/MCP/risk validator, quote freshness/spread, order shape, duplicate/open-order check, source refs를 plain text로 기록했다.
+- 제출: AMZN 1주 day limit buy, limit 263.10, client_order_id `hourly-20260527-0411-amzn-buy-1`.
+- Post-trade: Alpaca order id `642f83f9-cce5-4555-b4eb-9bee644d8545`, status `new`, filled_qty 0, submitted_at `2026-05-26T19:19:07.508236707Z`. `get_orders(status=open)`에서 same client id/order id를 확인했고 `get_account_activities(FILL, after=2026-05-26T19:10:00Z)`는 신규 fill 0건이었다.
+- Reconciliation gap: symbol-filtered `get_orders`, `get_order_by_id`, post-submit `get_all_positions`, post-submit `get_account_info`는 wrapper/user cancellation으로 `gap_category=cancelled` 기록했다.
+- submitted orders: `AMZN` 1주 open order. skipped orders: `INTC`는 AMZN 대비 낮은 확신, `AMAT`/`SMH`/`MU`/`AMD`/`KLAC`/`LRCX`는 spread 또는 semiconductor cluster 부담, `NOK`/`FCX`는 same-day duplicate buy 회피.
+- 리포트: `wiki/current-runs/daily/2026-05-27-0411-hourly-autopilot.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-27-0411-hourly-autopilot-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-27-0411-hourly-autopilot.json`.
+- order plan: `wiki/trade-ledger/orders/2026-05-27-0411-hourly-autopilot.json`.
+- post-trade snapshot: `wiki/trade-ledger/positions/current.md`.
+- review due markers: AMZN은 open order라 아직 fill review due가 아니다. AAPL/LLY/FCX/NOK/NVDA 및 2026-05-22 체결분은 계속 `회고 대기`.
