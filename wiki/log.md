@@ -799,3 +799,18 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - run manifest: `wiki/evidence-store/run-manifests/2026-05-26-2011-hourly-autopilot.json`.
 - order plan: `wiki/trade-ledger/orders/2026-05-26-2011-hourly-autopilot.json`.
 - 실제 주문, 취소, 포지션 변경은 없었다. `orders_submitted=0`.
+
+## [2026-05-26 21:24 Asia/Seoul] hourly-autopilot | paper 자동 운영 gate 점검
+
+- 사용자 승인에 따라 `harness/workflows/hourly-autopilot.md`를 실행했다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고, API key 값은 출력하거나 기록하지 않았다.
+- Alpaca MCP `get_all_positions`, broad universe `get_stock_bars`, shortlist `get_asset`, `get_market_movers`, `get_news`, `get_stock_quotes(SPY)`는 일부 usable했다.
+- Alpaca MCP clock/account/orders/fills/watchlists/calendar/latest quote/snapshot/latest bar와 후보별 recent quote는 usable하지 않았거나 비어 있었다.
+- 62개 metadata universe와 `SPY`/`QQQ`를 스크리닝했다. pre-MCP shortlist는 `LLY`, `LRCX`, `ASML`, `AAPL`, `SMH`, final research candidates는 `LLY`, `LRCX`, `ASML`.
+- SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance coverage가 실패해 MCP strict gate가 FAIL했다. quote freshness와 spread도 확인 불가라 자동 주문 gate가 실패했다.
+- 검증: universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
+- 리포트: `wiki/current-runs/daily/2026-05-26-2124-hourly-autopilot.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-26-2124-hourly-autopilot-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-26-2124-hourly-autopilot.json`.
+- order plan: `wiki/trade-ledger/orders/2026-05-26-2124-hourly-autopilot.json`.
+- 실제 주문, 취소, 포지션 변경은 없었다. `orders_submitted=0`.

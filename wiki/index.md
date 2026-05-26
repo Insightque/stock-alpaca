@@ -40,6 +40,7 @@
 - [[2026-05-25]] - 미국 휴장 전 2026-05-22 종가 기준 현재 no-submit 종목 추천과 22:06 KST 재점검, empty-order risk-check 결과.
 - [[2026-05-26-1853-hourly-autopilot]] - hourly paper autopilot 실행. universe/risk gate는 통과했지만 MCP/quote/spread/account-order gate 실패로 주문 없음.
 - [[2026-05-26-2011-hourly-autopilot]] - hourly paper autopilot 실행. universe/risk gate는 통과했지만 Alpaca core/MCP/quote/spread/account-order gate 실패로 주문 없음.
+- [[2026-05-26-2124-hourly-autopilot]] - hourly paper autopilot 실행. universe/risk gate는 통과했지만 Alpaca core/MCP/quote/spread/account-order gate 실패로 주문 없음.
 
 ## Research Notes
 
@@ -101,6 +102,7 @@
 - `wiki/trade-ledger/reviews/` - 실제 paper 거래의 사후 회고.
 - `wiki/trade-ledger/orders/2026-05-26-1853-hourly-autopilot.json` - 2026-05-26 18:53 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2011-hourly-autopilot.json` - 2026-05-26 20:11 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
+- `wiki/trade-ledger/orders/2026-05-26-2124-hourly-autopilot.json` - 2026-05-26 21:24 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - 2026-05-22 paper 주문 체결분은 다음 회고 대상이다.
 
 ## Policy Book
@@ -199,3 +201,5 @@
 - `wiki/evidence-store/run-manifests/2026-05-26-1853-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
 - [[2026-05-26-2011-hourly-autopilot-sources]] - hourly autopilot의 Alpaca MCP 성공/실패, research MCP 실패, universe source, 주문 차단 근거.
 - `wiki/evidence-store/run-manifests/2026-05-26-2011-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
+- [[2026-05-26-2124-hourly-autopilot-sources]] - hourly autopilot의 Alpaca MCP 성공/실패, research MCP 실패, universe source, 주문 차단 근거.
+- `wiki/evidence-store/run-manifests/2026-05-26-2124-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
