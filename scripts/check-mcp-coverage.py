@@ -31,6 +31,17 @@ DEFAULT_MIN_RESEARCH_CONFIRMATIONS = 3
 RECO_MODES = {"dry_run", "submit", "research"}
 POSITIVE_OUTCOMES = {"pass", "usable", "ok"}
 GAP_OUTCOMES = {"gap", "failed", "unavailable", "not_applicable"}
+GAP_CATEGORIES = {
+    "timeout",
+    "cancelled",
+    "dns",
+    "auth",
+    "empty_response",
+    "provider_error",
+    "wrapper_error",
+    "not_applicable",
+    "unknown",
+}
 
 
 def as_bool(value: Any) -> bool:
@@ -125,6 +136,7 @@ def validate(manifest: dict[str, Any], *, strict: bool = False) -> tuple[list[st
         used = as_bool(row.get("used_in_score"))
         outcome = str(row.get("outcome", "")).lower()
         gap_reason = str(row.get("gap_reason", "")).strip()
+        gap_category = str(row.get("gap_category", "")).strip().lower()
         source_refs = [str(item) for item in as_list(row.get("source_refs")) if str(item).strip()]
 
         if outcome not in POSITIVE_OUTCOMES | GAP_OUTCOMES:
@@ -144,6 +156,12 @@ def validate(manifest: dict[str, Any], *, strict: bool = False) -> tuple[list[st
 
         if outcome in GAP_OUTCOMES and not gap_reason:
             errors.append(f"{server}: gap/failed outcome requires gap_reason")
+
+        if outcome in GAP_OUTCOMES and gap_category and gap_category not in GAP_CATEGORIES:
+            errors.append(f"{server}: gap_category must be one of {sorted(GAP_CATEGORIES)}")
+
+        if strict_required and outcome in GAP_OUTCOMES and not gap_category:
+            errors.append(f"{server}: strict failed/gap outcome requires gap_category")
 
         if server in RESEARCH_DECISION_MCPS and queried and outcome in POSITIVE_OUTCOMES:
             positive_research.append(server)

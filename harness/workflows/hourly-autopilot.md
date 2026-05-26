@@ -46,6 +46,7 @@ Run an hourly current-market recommendation loop. If and only if every safety, u
 - `harness/risk-policy.yaml`
 - `harness/recommendation-policy.yaml`
 - `harness/symbol-metadata.yaml`
+- `harness/sec-ticker-cik-map.json`
 - Recent `wiki/log.md`, daily reports, order plans, positions, ticker notes, and reviews.
 
 ## Procedure
@@ -58,8 +59,11 @@ Run an hourly current-market recommendation loop. If and only if every safety, u
 6. For the pre-MCP shortlist and any proposed order symbol, query all decision MCPs:
    - Core: Alpaca
    - Research: SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance
+   - For Alpaca core, call and record clock, account, positions, open orders, recent activities, and per-candidate quotes/spreads as separate checks. If the core gate fails, record the first failed check in `first_blocking_gate`.
+   - For SEC EDGAR, resolve ticker to CIK with `harness/sec-ticker-cik-map.json` before marking a ticker lookup failure. If a ticker is absent from the cache, record `gap_category=empty_response` for lookup gaps rather than conflating it with provider failure.
    - If a required MCP fails due to timeout, cancellation, DNS, or transient network error, retry up to 2 times with a short backoff before marking it failed.
    - For DNS/network failures, run a read-only connectivity probe when practical and record whether the provider endpoint itself was reachable.
+   - Classify failed/gap coverage rows with `gap_category`: `timeout`, `cancelled`, `dns`, `auth`, `empty_response`, `provider_error`, `wrapper_error`, `not_applicable`, or `unknown`.
    - Never mark a failed provider as usable because of a retry. Retries only prevent false negatives from transient failures.
    - Record `mcp_gate_policy` in the run manifest with `core_servers=["alpaca"]`, the five research servers, `min_research_confirmations=3`, and `all_research_must_be_attempted=true`.
    - If fewer than 3 research MCPs are usable/pass, set `recommendation_actionability=actionable_if_provider_recovered` for otherwise strong candidates and submit nothing.

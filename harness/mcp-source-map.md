@@ -38,6 +38,7 @@
 - API 키와 provider 설정은 `.env`에만 둔다.
 - 키 이름은 `ALPHA_VANTAGE_API_KEY`, `FRED_API_KEY`, `FIRECRAWL_API_KEY`를 사용한다.
 - SEC EDGAR는 API 키 대신 `SEC_EDGAR_USER_AGENT`가 필요하다. 예: `stock-alpaca/0.1 contact@example.com`.
+- SEC EDGAR ticker lookup은 먼저 `harness/sec-ticker-cik-map.json`의 로컬 SEC `company_tickers.json` 캐시를 사용한다. 캐시에 없는 ETF/티커는 ticker lookup gap으로 분류하고 provider 장애와 구분한다.
 - 키 값을 로그, raw source, 커밋, 터미널 출력에 남기지 않는다.
 - 키가 없으면 해당 MCP를 건너뛰고 `데이터 공백`에 명시한다.
 - `ALPACA_PAPER_TRADE`가 없거나 `true`가 아니면 `scripts/alpaca-mcp.sh`는 실행을 중단한다.
@@ -67,6 +68,9 @@
 - `outcome`: `pass`, `usable`, `ok`, `gap`, `failed`, `unavailable`, `not_applicable`.
 - `source_refs`: raw source note 또는 캡처 파일.
 - `gap_reason`: 호출 실패, provider 0건, key/runtime 공백, 기준시점 누수 위험 등.
+- `gap_category`: `timeout`, `cancelled`, `dns`, `auth`, `empty_response`, `provider_error`, `wrapper_error`, `not_applicable`, `unknown` 중 하나.
+- `retry_count`: transient 실패를 줄이기 위해 시도한 재시도 횟수.
+- `first_blocking_gate`: Alpaca core처럼 주문을 막은 첫 hard gate.
 
 Actionable buy 추천은 Alpaca core MCP가 `queried=true`, `outcome=pass|usable|ok`, source ref 1개 이상이어야 하며, research MCP 5개는 모두 시도하고 그중 최소 3개가 `outcome=pass|usable|ok`여야 한다. Submit mode에서는 core MCP와 최소 3개 positive research MCP가 `used_in_score=true`여야 한다. Risk trim sell은 Alpaca core MCP, fresh quote/spread, open-order state, risk gate가 핵심이며 full research MCP pass를 요구하지 않는다.
 

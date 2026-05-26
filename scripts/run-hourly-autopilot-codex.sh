@@ -7,6 +7,7 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 LOCK_DIR="${ROOT_DIR}/.locks/hourly-autopilot.lock"
 LOG_DIR="${ROOT_DIR}/logs"
 PROMPT_FILE="${ROOT_DIR}/harness/workflows/hourly-autopilot.md"
+PROMPT_TMP=""
 
 mkdir -p "${ROOT_DIR}/.locks" "${LOG_DIR}"
 
@@ -20,6 +21,9 @@ if ! mkdir "${LOCK_DIR}" 2>/dev/null; then
 fi
 
 cleanup() {
+  if [ -n "${PROMPT_TMP}" ]; then
+    rm -f "${PROMPT_TMP}" 2>/dev/null || true
+  fi
   rmdir "${LOCK_DIR}" 2>/dev/null || true
 }
 trap cleanup EXIT
@@ -31,7 +35,8 @@ if ! grep -q '^ALPACA_PAPER_TRADE=true$' .env; then
   exit 64
 fi
 
-cat <<'PROMPT' | codex --search -a never exec -C "${ROOT_DIR}" -
+PROMPT_TMP="$(mktemp "${LOG_DIR}/hourly-autopilot-prompt.XXXXXX")"
+cat >"${PROMPT_TMP}" <<'PROMPT'
 You are running the stock-alpaca hourly paper autopilot.
 
 Execute `harness/workflows/hourly-autopilot.md` exactly. The user explicitly authorized hourly current-market recommendations and automatic Alpaca paper buy/sell operation on 2026-05-26, but only within the workflow's safety rules.
@@ -42,11 +47,45 @@ Hard requirements:
 - Do not call Alpaca trading REST endpoints directly.
 - Submit paper orders only if the market is open and universe, MCP, quote, spread, and risk gates all pass.
 - If any gate fails, submit nothing and still write the report, manifest, order plan, and log entry.
+- Classify every MCP gap as one of: timeout, cancelled, dns, auth, empty_response, provider_error, wrapper_error, unknown.
+- For Alpaca core, make short independent attempts for clock, account, orders, positions, and quotes. Record which exact core check was the first blocking gate.
+- For SEC EDGAR, use the local `harness/sec-ticker-cik-map.json` mapping as a ticker-to-CIK fallback before marking a ticker lookup gap.
 - Record detailed buy/sell rationale for every proposed or submitted order so analyst reviews can improve policy later.
 - After any submit attempt, run post-trade reconciliation.
 - Do not touch unrelated dirty files.
 
 Start now.
 PROMPT
+
+python3 - "${ROOT_DIR}" "${PROMPT_TMP}" <<'PY'
+from __future__ import annotations
+
+import os
+import subprocess
+import sys
+
+
+root_dir = sys.argv[1]
+prompt_path = sys.argv[2]
+timeout_seconds = int(os.environ.get("CODEX_AUTOPILOT_TIMEOUT_SECONDS", "2400"))
+prompt = open(prompt_path, "r", encoding="utf-8").read()
+
+try:
+    completed = subprocess.run(
+        ["codex", "--search", "-a", "never", "exec", "-C", root_dir, "-"],
+        input=prompt,
+        text=True,
+        timeout=timeout_seconds,
+        check=False,
+    )
+except subprocess.TimeoutExpired:
+    print(
+        f"hourly autopilot timed out after {timeout_seconds}s; lock will be released.",
+        file=sys.stderr,
+    )
+    raise SystemExit(124)
+
+raise SystemExit(completed.returncode)
+PY
 
 "${ROOT_DIR}/scripts/git-autopush-artifacts.sh" "hourly-autopilot"

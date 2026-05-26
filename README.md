@@ -28,6 +28,8 @@
 
 선택형 리서치 MCP는 `.env.example`과 `.vscode/mcp.json`에 정리되어 있습니다. 키가 없으면 해당 MCP 실패를 raw source의 데이터 공백으로 기록하고, 사용 가능한 원천으로 계속 진행합니다. FRED와 Firecrawl은 각각 레포 내부 `scripts/fred-mcp-server.py`, `scripts/firecrawl-mcp-server.py`를 통해 실행되므로 외부 npm 패키지를 즉석 실행하지 않습니다.
 
+SEC EDGAR ticker lookup은 `harness/sec-ticker-cik-map.json`의 로컬 SEC `company_tickers.json` 캐시를 먼저 사용합니다. 자동 실행은 MCP 실패를 `timeout`, `cancelled`, `dns`, `auth`, `empty_response`, `provider_error`, `wrapper_error`, `unknown` 등으로 분류해 주문 차단 원인을 남깁니다.
+
 ### 간단한 Codex 명령
 
 Codex에게 아래처럼 짧게 말하면 됩니다.
@@ -132,6 +134,8 @@ This project is not a promise of profitable trading. It is a disciplined feedbac
 `ALPACA_PAPER_TRADE=true` must be set in `.env`. If it is missing or not `true`, trading workflows should stop.
 
 Optional research MCPs are listed in `.env.example` and `.vscode/mcp.json`. If their keys are absent, record the MCP failure as a data gap in the raw source note and continue with available sources. FRED and Firecrawl run through the local `scripts/fred-mcp-server.py` and `scripts/firecrawl-mcp-server.py` wrappers, not runtime-fetched npm packages.
+
+SEC EDGAR ticker lookup uses the local SEC `company_tickers.json` cache at `harness/sec-ticker-cik-map.json` before classifying a ticker lookup miss as a provider failure. Scheduled runs classify MCP gaps as `timeout`, `cancelled`, `dns`, `auth`, `empty_response`, `provider_error`, `wrapper_error`, or `unknown`.
 
 ### Simple Codex Commands
 

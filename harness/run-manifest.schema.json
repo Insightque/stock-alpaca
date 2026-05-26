@@ -127,6 +127,27 @@
           },
           "gap_reason": {
             "type": "string"
+          },
+          "gap_category": {
+            "type": "string",
+            "enum": [
+              "timeout",
+              "cancelled",
+              "dns",
+              "auth",
+              "empty_response",
+              "provider_error",
+              "wrapper_error",
+              "not_applicable",
+              "unknown"
+            ]
+          },
+          "retry_count": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "first_blocking_gate": {
+            "type": "string"
           }
         }
       }

@@ -829,3 +829,11 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - `hourly-autopilot` launchd 예제를 `StartInterval=3600`에서 `StartCalendarInterval Minute=31`로 변경했다.
 - 22:31 KST 실행을 US regular market-open validation run으로 사용하도록 `harness/recommendation-policy.yaml`을 `recommendation-policy-v1.6`으로 갱신했다.
 - 설치된 launchd도 현재 실행 중인 hourly 작업이 끝난 뒤 같은 구조로 재등록할 예정이다.
+
+## [2026-05-26 22:50 Asia/Seoul] reliability-update | MCP gap 분류와 실행 timeout 강화
+
+- 자동운영 MCP 실패 원인을 `timeout`, `cancelled`, `dns`, `auth`, `empty_response`, `provider_error`, `wrapper_error`, `unknown` 등으로 분리 기록하도록 run manifest schema와 checker를 확장했다.
+- Alpaca core 실패 시 `first_blocking_gate`를 남겨 clock/account/orders/positions/quotes 중 무엇이 주문을 막았는지 추적하도록 했다.
+- `scripts/run-hourly-autopilot-codex.sh`에 Codex 실행 timeout 기본 2400초를 추가해 장시간 stuck 상태가 다음 스케줄을 막지 않도록 했다.
+- SEC EDGAR ticker lookup 보강을 위해 SEC `company_tickers.json` 기반 로컬 캐시 `harness/sec-ticker-cik-map.json`을 추가했다. 현재 universe 62개 중 61개가 매핑되고 `SMH`만 SEC company ticker 캐시에서 제외됐다.
+- 검증: `python3 -m unittest discover -s tests` 64개 통과, shell syntax 통과.

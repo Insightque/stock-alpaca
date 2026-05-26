@@ -28,6 +28,8 @@ def coverage_row(server: str, *, queried: bool = True, used: bool = True, outcom
         "checked_at": "2026-05-26T06:00:00Z",
         "source_refs": [f"wiki/evidence-store/sources/test-{server}.md"] if queried else [],
         "gap_reason": "" if queried and outcome == "pass" else "test gap",
+        "gap_category": "not_applicable" if outcome == "pass" else "unknown",
+        "retry_count": 0,
     }
 
 
@@ -103,6 +105,23 @@ class McpCoverageTests(unittest.TestCase):
                 )
         errors, _, _ = check_mcp_coverage.validate(manifest, strict=True)
         self.assertTrue(any("research MCP gate requires at least 3" in e for e in errors))
+
+    def test_strict_gap_requires_gap_category(self) -> None:
+        manifest = base_manifest()
+        for row in manifest["mcp_coverage"]:
+            if row["server"] == "sec-edgar":
+                row.update(
+                    {
+                        "queried": True,
+                        "used_in_score": False,
+                        "outcome": "failed",
+                        "source_refs": [],
+                        "gap_reason": "tool call cancelled after retry",
+                        "gap_category": "",
+                    }
+                )
+        errors, _, _ = check_mcp_coverage.validate(manifest, strict=True)
+        self.assertTrue(any("sec-edgar: strict failed/gap outcome requires gap_category" in e for e in errors))
 
     def test_non_actionable_research_allows_gap_with_warning(self) -> None:
         manifest = base_manifest()
