@@ -350,7 +350,7 @@
   </div>
 
   <script type="application/json" id="dashboard-data">{
-  "generated_at": "2026-05-26T16:25:24Z",
+  "generated_at": "2026-05-26T16:29:34Z",
   "run": {
     "run_id": "2026-05-27-0052-hourly-autopilot",
     "mode": "submit",
@@ -578,30 +578,42 @@
       "symbol": "LLY",
       "action": "paper validation buy",
       "reason": "fresh quote, 0.105% spread, SEC/Yahoo/FRED 3개 research confirmation, Alpaca catalyst news, 미보유 · 단일 1주 검증 주문으로 제한",
-      "score": "1",
-      "confidence": "shortlist",
+      "score": "",
+      "rank": "1",
+      "score_label": "신뢰 62%",
+      "confidence": "auto_eligible_paper",
       "return_20d": "",
       "vs_spy_20d": "",
+      "primary_chip": "20D 기대 +3.0%",
+      "secondary_chip": "불리 -7.5%",
       "risk": ""
     },
     {
       "symbol": "FCX",
       "action": "recheck",
       "reason": "fresh quote, spread pass, commodity rebound · LLY보다 회사 이벤트/분석 confirmation 약함",
-      "score": "2",
+      "score": "",
+      "rank": "2",
+      "score_label": "순위 #2",
       "confidence": "shortlist",
       "return_20d": "",
       "vs_spy_20d": "",
+      "primary_chip": "20D -",
+      "secondary_chip": "시장대비 -",
       "risk": ""
     },
     {
       "symbol": "NOK",
       "action": "recheck",
       "reason": "fresh quote, spread pass, Alpaca news momentum · 이미 400주 보유, 추가매수보다 관찰 우선",
-      "score": "3",
+      "score": "",
+      "rank": "3",
+      "score_label": "순위 #3",
       "confidence": "shortlist",
       "return_20d": "",
       "vs_spy_20d": "",
+      "primary_chip": "20D -",
+      "secondary_chip": "시장대비 -",
       "risk": ""
     }
   ],
@@ -677,6 +689,11 @@
   ],
   "timeline": [
     {
+      "time": "2026-05-27 01:29 Asia/Seoul",
+      "type": "ui",
+      "title": "추천 점수 표시 라벨 수정"
+    },
+    {
       "time": "2026-05-27 01:24 Asia/Seoul",
       "type": "ui",
       "title": "hourly dashboard 회색 fallback 수정"
@@ -685,11 +702,6 @@
       "time": "2026-05-27 01:19 Asia/Seoul",
       "type": "ui",
       "title": "dashboard 자동 갱신 누락 수정"
-    },
-    {
-      "time": "2026-05-27 01:04 Asia/Seoul",
-      "type": "hourly-autopilot",
-      "title": "paper validation LLY 주문 체결"
     }
   ],
   "backtests": [
@@ -824,14 +836,14 @@
       <div class="pick" title="${esc(pick.reason || pick.risk)}">
         <div class="pick-side">
           <div class="symbol">${esc(pick.symbol || '-')}</div>
-          <div class="score">점수 ${esc(pick.score || '-')} · ${esc(pick.confidence || '-')}</div>
+          <div class="score">${esc(pick.score_label || '-')}${pick.confidence ? ` · ${esc(pick.confidence)}` : ''}</div>
         </div>
         <div class="pick-main">
           <div class="action">${esc(compact(pick.action, 42))}</div>
           <div class="reason">${esc(compact(pick.reason, 54))}</div>
           <div class="chips">
-            <span class="chip">20D ${esc(pick.return_20d || '-')}</span>
-            <span class="chip">시장대비 ${esc(pick.vs_spy_20d || '-')}</span>
+            <span class="chip">${esc(pick.primary_chip || '-')}</span>
+            <span class="chip">${esc(pick.secondary_chip || '-')}</span>
           </div>
         </div>
       </div>

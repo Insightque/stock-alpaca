@@ -560,6 +560,11 @@ def format_pct(value: float | None) -> str:
     return f"{value:+.2f}%"
 
 
+def format_signed_pct_value(value: Any) -> str:
+    number = to_float(value)
+    return "-" if number is None else f"{number:+.1f}%"
+
+
 def account_snapshot(order_plan: dict[str, Any]) -> dict[str, Any]:
     account = order_plan.get("account", {}) if isinstance(order_plan.get("account"), dict) else {}
     positions = order_plan.get("positions", []) if isinstance(order_plan.get("positions"), list) else []
@@ -714,26 +719,62 @@ def recommendation_table(report_text: str) -> list[dict[str, str]]:
     return normalized
 
 
-def enriched_picks(report_text: str) -> list[dict[str, str]]:
+def order_by_symbol(order_plan: dict[str, Any]) -> dict[str, dict[str, Any]]:
+    orders = order_plan.get("orders", []) if isinstance(order_plan.get("orders"), list) else []
+    return {
+        str(order.get("symbol", "")): order
+        for order in orders
+        if isinstance(order, dict) and order.get("symbol")
+    }
+
+
+def enriched_picks(report_text: str, order_plan: dict[str, Any] | None = None) -> list[dict[str, str]]:
     rec_rows = recommendation_table(report_text)
     market_rows = {row.get("심볼", ""): row for row in parse_table(report_text, "Market Data Agent")}
     trend_rows = {row.get("심볼", ""): row for row in parse_table(report_text, "Trend Agent")}
+    orders = order_by_symbol(order_plan or {})
     picks: list[dict[str, str]] = []
     for row in rec_rows[:3]:
         symbol = row.get("심볼", "")
         market = market_rows.get(symbol, {})
         trend = trend_rows.get(symbol, {})
+        order = orders.get(symbol, {})
         reason = row.get("이유", "")
         caution = row.get("주의", "")
+        confidence_score = to_float(order.get("confidence_score")) if order else None
+        score = trend.get("점수", "")
+        rank = row.get("순위", "")
+        if confidence_score is not None:
+            score_label = f"신뢰 {confidence_score * 100:.0f}%"
+            confidence_label = str(order.get("policy_status", "") or "order plan")
+        elif score:
+            score_label = f"점수 {score}"
+            confidence_label = trend.get("신뢰도", "")
+        elif rank:
+            score_label = f"순위 #{rank}"
+            confidence_label = "shortlist"
+        else:
+            score_label = "-"
+            confidence_label = ""
+        primary_chip = f"20D 기대 {format_signed_pct_value(order.get('expected_excess_return_20d_pct'))}" if order else f"20D {market.get('20D', '-')}"
+        secondary_chip = (
+            f"불리 {format_signed_pct_value(order.get('expected_adverse_move_20d_pct'))}"
+            if order
+            else f"시장대비 {market.get('SPY 대비 20D', '-')}"
+        )
         picks.append(
             {
                 "symbol": symbol,
                 "action": row.get("조치", ""),
                 "reason": f"{reason} · {caution}" if reason and caution else reason or caution,
-                "score": trend.get("점수", "") or row.get("순위", ""),
-                "confidence": trend.get("신뢰도", "") or ("shortlist" if row.get("순위") else ""),
+                "score": score,
+                "rank": rank,
+                "score_label": score_label,
+                "confidence": confidence_label,
                 "return_20d": market.get("20D", ""),
                 "vs_spy_20d": market.get("SPY 대비 20D", ""),
+                "primary_chip": primary_chip,
+                "secondary_chip": secondary_chip,
                 "risk": trend.get("판단", ""),
             }
         )
@@ -928,7 +969,7 @@ def build_dashboard_data() -> dict[str, Any]:
         "account": account,
         "portfolio": portfolio,
         "agents": agent_cards(manifest, report_text, order_plan),
-        "picks": enriched_picks(report_text),
+        "picks": enriched_picks(report_text, order_plan),
         "recommendations": recommendation_rows,
         "scores": trend_rows,
         "links": links,
@@ -1373,14 +1414,14 @@ def html_template(data: dict[str, Any]) -> str:
       <div class="pick" title="${{esc(pick.reason || pick.risk)}}">
         <div class="pick-side">
           <div class="symbol">${{esc(pick.symbol || '-')}}</div>
-          <div class="score">점수 ${{esc(pick.score || '-')}} · ${{esc(pick.confidence || '-')}}</div>
+          <div class="score">${{esc(pick.score_label || '-')}}${{pick.confidence ? ` · ${{esc(pick.confidence)}}` : ''}}</div>
         </div>
         <div class="pick-main">
           <div class="action">${{esc(compact(pick.action, 42))}}</div>
           <div class="reason">${{esc(compact(pick.reason, 54))}}</div>
           <div class="chips">
-            <span class="chip">20D ${{esc(pick.return_20d || '-')}}</span>
-            <span class="chip">시장대비 ${{esc(pick.vs_spy_20d || '-')}}</span>
+            <span class="chip">${{esc(pick.primary_chip || '-')}}</span>
+            <span class="chip">${{esc(pick.secondary_chip || '-')}}</span>
           </div>
         </div>
       </div>

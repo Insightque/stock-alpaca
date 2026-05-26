@@ -986,3 +986,11 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 수정: `scripts/build-agent-dashboard.py`가 `추천 Shortlist`를 Today pick으로 normalize하고, manifest/order-plan 근거로 agent status를 완료 판정하며, 포지션별 미실현 손익을 합산해 총수익/총수익률을 계산하도록 변경했다.
 - 재생성: `ui/agent-dashboard.html`은 Today `LLY`, `FCX`, `NOK`, 총수익 `+1239.44 USD`, 총수익률 `+2.17%`, waiting status 0개 상태로 갱신됐다.
 - 검증: dashboard embedded JSON parse와 렌더 스크립트 fake-DOM 실행 pass, `bash -n` pass, `python3 -m unittest discover -s tests` 67개 pass.
+
+## [2026-05-27 01:29 Asia/Seoul] ui | 추천 점수 표시 라벨 수정
+
+- 증상: dashboard Today 카드가 `추천 Shortlist`의 순위 값을 실제 점수처럼 `점수 1 · shortlist`로 표시해 추천 점수처럼 오해될 수 있었다.
+- 수정: `scripts/build-agent-dashboard.py`가 order-plan의 `confidence_score`가 있는 제출 후보는 `신뢰 62%`로 표시하고, shortlist-only 후보는 `순위 #2`, `순위 #3`처럼 표시하도록 분리했다.
+- 수정: 주문 후보 chip은 `20D 기대 +3.0%`, `불리 -7.5%`처럼 order-plan의 기대/불리 이동 값을 사용한다.
+- 재생성: `ui/agent-dashboard.html`에서 `점수 1` 표시는 사라지고 `LLY 신뢰 62%`, `FCX 순위 #2`, `NOK 순위 #3`로 표시된다.
+- 검증: dashboard embedded JSON parse와 렌더 스크립트 fake-DOM 실행 pass, `bash -n` pass, `python3 -m unittest discover -s tests` 67개 pass.
