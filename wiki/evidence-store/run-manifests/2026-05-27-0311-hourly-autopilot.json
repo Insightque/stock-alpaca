@@ -1,0 +1,238 @@
+{
+  "run_id": "2026-05-27-0311-hourly-autopilot",
+  "mode": "research",
+  "paper": true,
+  "created_at": "2026-05-26T18:13:20Z",
+  "git_commit": "not_checked_in_workflow",
+  "prompt_file_sha": "sha256:8ffc654f38f6f5ccd1c4cd64776c584eae9a2bf7a162afdb4c47970f5bba34c0d",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:bdce1db89dc526840059853d7273be6a782f3be109f4ff6231b1f02d1b362502",
+  "schema_version": "1.3",
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [
+    {
+      "server": "sec-edgar",
+      "reason": "local CIK fallback succeeded for AMZN/INTC but SEC EDGAR MCP get_financials cancelled twice for actionable research."
+    },
+    {
+      "server": "alpha-vantage",
+      "reason": "first non-PING NEWS_SENTIMENT TOOL_CALL cancelled after successful health sequence."
+    },
+    {
+      "server": "firecrawl",
+      "reason": "no registered Firecrawl MCP tool exposed in Codex tool catalog."
+    }
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T18:11:37Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T18:13:20Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Local CIK fallback found AMZN 0001018724 and INTC 0000050863, but SEC EDGAR MCP get_financials calls were cancelled; SMH absent from local CIK cache as ETF lookup gap.",
+      "gap_category": "cancelled",
+      "retry_count": 1
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T18:13:20Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Alpha health sequence passed, but first non-PING NEWS_SENTIMENT TOOL_CALL was cancelled; no second Alpha function attempted.",
+      "gap_category": "cancelled",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T18:11:37Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T18:13:20Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Registered Firecrawl MCP tool was not exposed in the Codex tool catalog; shell/curl/local wrapper use was prohibited.",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "checked_at": "2026-05-26T18:13:20Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "all_research_must_be_attempted": true,
+    "provider_gap_blocks_order": false
+  },
+  "recommendation_actionability": "actionable_if_provider_recovered",
+  "first_blocking_gate": "research_mcp_minimum_confirmations",
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + Alpaca watchlists + benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_universe_price_liquidity_screen_then_mcp_shortlist_validation",
+    "pre_mcp_shortlist": [
+      "AMZN",
+      "INTC",
+      "SMH",
+      "AAPL",
+      "MU",
+      "NVDA",
+      "FCX",
+      "NOK",
+      "LLY",
+      "AMD"
+    ],
+    "final_candidates": [
+      "AMZN",
+      "INTC",
+      "SMH"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "data_cutoff_time": "2026-05-26T18:11:37Z",
+  "market_clock_checked_at": "2026-05-26T14:11:10.836217373-04:00",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-sources.md",
+    "wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-research-mcp-preflight.json"
+  ],
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-27-0311-hourly-autopilot.json",
+  "data_manifest": {
+    "source_feed": "alpaca_iex",
+    "bar_interval": "snapshot + quote/latest trade",
+    "adjusted_prices": true,
+    "timezone": "America/New_York",
+    "trading_calendar": "nyse",
+    "symbols_requested": 62,
+    "symbols_loaded": 62,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 0,
+    "corporate_actions_checked": true,
+    "survivorship_bias_controlled": false,
+    "raw_input_file": "wiki/evidence-store/sources/2026-05-27-0311-hourly-autopilot-sources.md"
+  },
+  "risk_check_result": {
+    "status": "PASS",
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 45737.9325,
+      "max_factor_value": 50819.925,
+      "max_invested": 81311.88,
+      "max_speculative_value": 12196.782000000001,
+      "max_theme_value": 35573.9475,
+      "max_ticker_value": 15245.9775,
+      "min_cash": 20327.97,
+      "policy_version": "medium-risk-v1.1",
+      "post_cash": 42657.04,
+      "post_invested": 58983.02,
+      "sell_notional": 0.0,
+      "speculative_value": 5844.6,
+      "order_count": 0
+    }
+  },
+  "validation_results": {
+    "universe_coverage_strict": {
+      "status": "PASS"
+    },
+    "mcp_coverage_strict": {
+      "status": "FAIL",
+      "errors": [
+        "research MCP gate requires at least 3 usable/pass research providers; got 2 (fred, yahoo-finance)"
+      ]
+    },
+    "risk_policy": {
+      "status": "PASS",
+      "warnings": [
+        "orders is empty"
+      ]
+    }
+  },
+  "submitted_order_ids": [],
+  "execution_result": {
+    "orders_submitted": 0,
+    "orders_filled": 0,
+    "submitted": [],
+    "reconciliation_gaps": []
+  },
+  "post_trade_check_path": ""
+}
