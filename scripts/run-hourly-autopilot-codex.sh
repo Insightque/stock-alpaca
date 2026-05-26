@@ -166,4 +166,5 @@ except subprocess.TimeoutExpired:
 raise SystemExit(completed.returncode)
 PY
 
+PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/scripts/build-agent-dashboard.py"
 "${ROOT_DIR}/scripts/git-autopush-artifacts.sh" "hourly-autopilot"

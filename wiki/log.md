@@ -970,3 +970,11 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - run manifest: `wiki/evidence-store/run-manifests/2026-05-27-0052-hourly-autopilot.json`.
 - order plan: `wiki/trade-ledger/orders/2026-05-27-0052-hourly-autopilot.json`.
 - review due markers: 신규 LLY fill은 1D/5D/20D `회고 대기`; 2026-05-22 체결분도 계속 `회고 대기`.
+
+## [2026-05-27 01:19 Asia/Seoul] ui | dashboard 자동 갱신 누락 수정
+
+- 증상: hourly/analyst scheduled run은 wiki 산출물을 자동 commit/push했지만 `ui/agent-dashboard.html`은 재생성 및 autopush 대상에서 빠져 dashboard가 최신 run을 반영하지 못할 수 있었다.
+- 수정: `scripts/run-hourly-autopilot-codex.sh`와 `scripts/run-analyst-review-codex.sh`가 성공 후 `scripts/build-agent-dashboard.py`를 실행하도록 변경했다.
+- 수정: `scripts/git-autopush-artifacts.sh`의 trackable artifact 경로에 `ui/agent-dashboard.html`과 `ui/backtests`를 추가했다.
+- 재생성: `python3 scripts/build-agent-dashboard.py`로 현재 dashboard를 `2026-05-27-0052-hourly-autopilot` 및 LLY 1주 포지션 반영 상태로 갱신했다.
+- 검증: dashboard embedded JSON parse와 렌더 스크립트 fake-DOM 실행 pass, `bash -n` pass, `python3 -m unittest discover -s tests` 67개 pass.

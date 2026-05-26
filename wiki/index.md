@@ -134,7 +134,7 @@
 - `scripts/build-one-year-hourly-trend-event-cache.py` - Alpaca MCP 과거 뉴스와 전일 시장/섹터 추세로 일별 point-in-time 동향 feature cache를 만드는 헬퍼.
 - `scripts/simulate-one-year-daily-policy.py` - 캡처된 일봉으로 장기 정책을 일별 독립 run으로 검증하는 헬퍼. `--event-features-json`으로 research MCP feature cache 결합 가능.
 - `scripts/simulate-one-year-hourly-buy-sell.py` - 캡처된 1시간봉과 선택적 event feature cache로 일별 virtual buy/sell 결정을 만들고 same-day/1D/5D/20D/60D를 평가하는 헬퍼.
-- `scripts/build-agent-dashboard.py` / `ui/agent-dashboard.html` / `ui/backtests/` - 서버 없이 여는 agent run 상태판, Alpaca paper 투자 현황 요약, 백테스트 HTML 뷰어 생성기.
+- `scripts/build-agent-dashboard.py` / `ui/agent-dashboard.html` / `ui/backtests/` - 서버 없이 여는 agent run 상태판, Alpaca paper 투자 현황 요약, 백테스트 HTML 뷰어 생성기. Scheduled hourly/analyst wrapper가 성공 후 재생성하고 autopush artifact에 포함한다.
 
 ## 운영/검증 도구
 

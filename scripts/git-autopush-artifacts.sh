@@ -30,7 +30,9 @@ for path in \
   wiki/policy-book \
   wiki/backtest-runs \
   harness/recommendation-policy.yaml \
-  harness/strategies
+  harness/strategies \
+  ui/agent-dashboard.html \
+  ui/backtests
 do
   if [[ -e "${path}" ]]; then
     TRACKABLE_PATHS+=("${path}")

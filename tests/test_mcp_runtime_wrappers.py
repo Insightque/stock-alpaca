@@ -81,6 +81,7 @@ class McpRuntimeWrapperTests(unittest.TestCase):
                 "Do not run local Alpaca/FRED/Firecrawl network helper scripts",
                 "pre-submit gate summary",
                 "client_order_id",
+                "build-agent-dashboard.py",
             ],
             "scripts/run-analyst-review-codex.sh": [
                 'sandbox_permissions=["network-full-access"]',
@@ -103,6 +104,7 @@ class McpRuntimeWrapperTests(unittest.TestCase):
                 'mcp_servers.alpha-vantage.tools.TOOL_CALL.approval_mode="approve"',
                 'mcp_servers.yahoo-finance.tools.get_stock_info.approval_mode="approve"',
                 "Do not run local Alpaca/FRED/Firecrawl network helper scripts",
+                "build-agent-dashboard.py",
             ],
         }
         for relative_path, snippets in expectations.items():
@@ -119,6 +121,12 @@ class McpRuntimeWrapperTests(unittest.TestCase):
                 self.assertNotIn("mcp_servers.firecrawl.tools", text)
                 for snippet in snippets:
                     self.assertIn(snippet, text)
+
+    def test_scheduled_autopush_tracks_dashboard_artifacts(self):
+        text = (ROOT / "scripts/git-autopush-artifacts.sh").read_text(encoding="utf-8")
+
+        self.assertIn("ui/agent-dashboard.html", text)
+        self.assertIn("ui/backtests", text)
 
 
 if __name__ == "__main__":
