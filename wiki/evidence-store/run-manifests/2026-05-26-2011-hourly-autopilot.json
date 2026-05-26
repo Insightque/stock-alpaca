@@ -1,0 +1,223 @@
+{
+  "run_id": "2026-05-26-2011-hourly-autopilot",
+  "mode": "dry_run",
+  "paper": true,
+  "created_at": "2026-05-26T11:11:14Z",
+  "git_commit": "5b55d66fc4cad1d076be5f04c6a05b3ea18a5c3c",
+  "prompt_file_sha": "sha256:a56401acc50b49ee720467bf0ebd1d64529de88146bc11eb6a7d45c820ea44bf",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:b6767c9ea9158313a2428ac0958c3522f67319ff7d9388be21357839228b2500",
+  "schema_version": "1.3",
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpaca",
+      "reason": "Core account, clock, open-order, fill, watchlist, quote, snapshot, and latest-bar reads were unavailable or cancelled; repo-local Alpaca MCP get_clock returned DNS failure."
+    },
+    {
+      "server": "sec-edgar",
+      "reason": "Direct MCP call cancelled; repo-local get_recent_filings returned ticker lookup gap for LLY."
+    },
+    {
+      "server": "alpha-vantage",
+      "reason": "Local MCP TOOL_LIST and TOOL_GET worked, but TOOL_CALL(EARNINGS, LLY) failed with DNS error."
+    },
+    {
+      "server": "fred",
+      "reason": "Local MCP get_macro_snapshot failed DNS resolution for api.stlouisfed.org."
+    },
+    {
+      "server": "firecrawl",
+      "reason": "Local MCP firecrawl_scrape failed DNS resolution for api.firecrawl.dev."
+    },
+    {
+      "server": "yahoo-finance",
+      "reason": "Direct MCP call cancelled; repo-local wrapper failed dependency Git fetch."
+    }
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T11:11:14Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-2011-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Positions, market movers, bars, assets, and news were partially usable, but core gate fields clock/account/orders/fills/watchlists/fresh quote/spread were not usable."
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T11:11:14Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-2011-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Direct MCP call cancelled; local SEC EDGAR recent-filings query returned ticker lookup gap."
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T11:11:14Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-2011-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Local MCP TOOL_CALL for EARNINGS returned DNS failure."
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T11:11:14Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-2011-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Local FRED MCP returned curl DNS failure for api.stlouisfed.org."
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T11:11:14Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-2011-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Local Firecrawl MCP returned curl DNS failure for api.firecrawl.dev."
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T11:11:14Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-26-2011-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "Direct MCP get_stock_info call cancelled; local wrapper failed dependency Git fetch."
+    }
+  ],
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "all_research_must_be_attempted": true,
+    "provider_gap_blocks_order": false
+  },
+  "recommendation_actionability": "blocked",
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_universe_price_liquidity_screen_then_all_mcp_shortlist_validation",
+    "pre_mcp_shortlist": [
+      "LLY",
+      "LRCX",
+      "ASML",
+      "AAPL",
+      "SMH"
+    ],
+    "final_candidates": [
+      "LLY",
+      "LRCX",
+      "ASML"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "data_cutoff_time": "2026-05-26T11:11:14Z",
+  "market_clock_checked_at": "2026-05-26T11:11:14Z",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-26-2011-hourly-autopilot-sources.md"
+  ],
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-26-2011-hourly-autopilot.json",
+  "risk_check_result": {
+    "status": "PASS",
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 45558.1845,
+      "max_factor_value": 50620.205,
+      "max_invested": 80992.32800000001,
+      "max_speculative_value": 12148.8492,
+      "max_theme_value": 35434.1435,
+      "max_ticker_value": 15186.0615,
+      "min_cash": 20248.082000000002,
+      "policy_version": "medium-risk-v1.1",
+      "post_cash": 44030.58,
+      "post_invested": 57209.829999999994,
+      "sell_notional": 0.0,
+      "speculative_value": 6124.5
+    }
+  },
+  "validation_results": {
+    "universe_coverage_strict": {
+      "status": "PASS"
+    },
+    "mcp_coverage_strict": {
+      "status": "FAIL",
+      "errors": [
+        "alpaca: core MCP gate requires usable/pass outcome",
+        "research MCP gate requires at least 3 usable/pass research providers; got 0 (none)"
+      ]
+    },
+    "risk_policy": {
+      "status": "PASS",
+      "warnings": [
+        "orders is empty"
+      ]
+    }
+  },
+  "data_manifest": {
+    "source_feed": "alpaca_iex",
+    "bar_interval": "1Day",
+    "adjusted_prices": true,
+    "timezone": "America/New_York",
+    "trading_calendar": "nyse",
+    "symbols_requested": 62,
+    "symbols_loaded": 62,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 0,
+    "corporate_actions_checked": false,
+    "survivorship_bias_controlled": false,
+    "dataset_hash": "unavailable:mcp-tool-output-not-written-as-json",
+    "raw_input_file": "wiki/evidence-store/sources/2026-05-26-2011-hourly-autopilot-sources.md"
+  },
+  "submitted_order_ids": [],
+  "post_trade_check_path": ""
+}
