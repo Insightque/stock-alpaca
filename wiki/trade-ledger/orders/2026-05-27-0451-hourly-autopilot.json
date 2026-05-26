@@ -1,0 +1,62 @@
+{
+  "run_id": "2026-05-27-0451-hourly-autopilot",
+  "schema_version": "1.2",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:bdce1db89dc526840059853d7273be6a782f3be109f4ff6231b1f02d1b362502",
+  "created_at": "2026-05-26T19:53:30Z",
+  "mode": "submit",
+  "paper": true,
+  "market": {
+    "is_open": true,
+    "checked_at": "2026-05-26T19:51:38Z",
+    "next_open": "2026-05-27T13:30:00Z",
+    "next_close": "2026-05-26T20:00:00Z"
+  },
+  "account": {
+    "portfolio_value": 101738.22,
+    "cash": 42347.59,
+    "buying_power": 137240.29,
+    "currency": "USD",
+    "daily_realized_loss": 0
+  },
+  "positions": [
+    {"symbol": "AAPL", "asset_type": "stock", "qty": 1, "market_value": 308.57, "avg_entry_price": 309.45, "current_price": 308.57, "theme": "mega_cap_tech", "factor": "growth_quality", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "mega", "source_confidence": "high", "correlated_cluster": "mega_cap_tech"},
+    {"symbol": "AMD", "asset_type": "stock", "qty": 14, "market_value": 7039.662, "avg_entry_price": 462.73, "current_price": 502.833, "theme": "ai_semiconductor", "factor": "ai_semiconductor", "volatility_bucket": "high", "speculative_flag": false, "liquidity_bucket": "mega", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "AVGO", "asset_type": "stock", "qty": 15, "market_value": 6365.4, "avg_entry_price": 410.73, "current_price": 424.36, "theme": "ai_semiconductor", "factor": "ai_semiconductor", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "mega", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "ETN", "asset_type": "stock", "qty": 15, "market_value": 6060.9, "avg_entry_price": 387.90, "current_price": 404.06, "theme": "power_infrastructure", "factor": "industrial_power", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "electrification_infrastructure"},
+    {"symbol": "FCX", "asset_type": "stock", "qty": 1, "market_value": 64.345, "avg_entry_price": 63.94, "current_price": 64.345, "theme": "materials_mining", "factor": "commodity_cyclical", "volatility_bucket": "high", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "energy_commodity"},
+    {"symbol": "IONQ", "asset_type": "stock", "qty": 45, "market_value": 2857.5, "avg_entry_price": 63.48, "current_price": 63.5, "theme": "quantum_speculative", "factor": "speculative_growth", "volatility_bucket": "high", "speculative_flag": true, "liquidity_bucket": "medium", "source_confidence": "medium", "correlated_cluster": "quantum_speculative"},
+    {"symbol": "LLY", "asset_type": "stock", "qty": 1, "market_value": 1069.9, "avg_entry_price": 1079.38, "current_price": 1069.9, "theme": "healthcare_pharma", "factor": "healthcare_growth", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "mega", "source_confidence": "high", "correlated_cluster": "healthcare"},
+    {"symbol": "LRCX", "asset_type": "stock", "qty": 20, "market_value": 6455.2, "avg_entry_price": 307.91, "current_price": 322.76, "theme": "semicap_equipment", "factor": "ai_semiconductor", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "NOK", "asset_type": "stock", "qty": 401, "market_value": 6582.415, "avg_entry_price": 15.043641, "current_price": 16.415, "theme": "networking", "factor": "international_adr", "volatility_bucket": "high", "speculative_flag": false, "liquidity_bucket": "medium", "source_confidence": "medium", "correlated_cluster": "communications_infrastructure"},
+    {"symbol": "NVDA", "asset_type": "stock", "qty": 36, "market_value": 7706.52, "avg_entry_price": 215.275556, "current_price": 214.07, "theme": "ai_semiconductor", "factor": "ai_semiconductor", "volatility_bucket": "high", "speculative_flag": false, "liquidity_bucket": "mega", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "RGTI", "asset_type": "stock", "qty": 120, "market_value": 3006.6, "avg_entry_price": 25.569583, "current_price": 25.055, "theme": "quantum_speculative", "factor": "speculative_growth", "volatility_bucket": "high", "speculative_flag": true, "liquidity_bucket": "medium", "source_confidence": "medium", "correlated_cluster": "quantum_speculative"},
+    {"symbol": "TSM", "asset_type": "stock", "qty": 15, "market_value": 6194.25, "avg_entry_price": 405.20, "current_price": 412.95, "theme": "ai_semiconductor", "factor": "ai_semiconductor", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "ai_semiconductor_complex"},
+    {"symbol": "UNH", "asset_type": "stock", "qty": 15, "market_value": 5676.375, "avg_entry_price": 386.56, "current_price": 378.425, "theme": "healthcare", "factor": "defensive_healthcare", "volatility_bucket": "medium", "speculative_flag": false, "liquidity_bucket": "large", "source_confidence": "high", "correlated_cluster": "healthcare"}
+  ],
+  "open_orders": [
+    {
+      "symbol": "AMZN",
+      "side": "buy",
+      "qty": 1,
+      "filled_qty": 0,
+      "status": "new",
+      "client_order_id": "hourly-20260527-0411-amzn-buy-1",
+      "submitted_at": "2026-05-26T19:19:07.535085886Z",
+      "age_minutes": 34.37
+    }
+  ],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.02035,
+    "weekly_turnover_ratio": 0.02035,
+    "stop_triggered_orders_today": 0,
+    "risk_recomputed_after_partial_fill": true
+  },
+  "orders": [],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-27-0451-hourly-autopilot-sources.md",
+    "wiki/evidence-store/sources/2026-05-27-0451-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-27-0451-hourly-autopilot-research-mcp-preflight.json"
+  ],
+  "manifest_path": "wiki/evidence-store/run-manifests/2026-05-27-0451-hourly-autopilot.json"
+}

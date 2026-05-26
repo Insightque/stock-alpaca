@@ -1220,3 +1220,25 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - run manifest: `wiki/evidence-store/run-manifests/2026-05-27-0431-hourly-autopilot.json`.
 - order plan: `wiki/trade-ledger/orders/2026-05-27-0431-hourly-autopilot.json`.
 - review due markers: 이번 run 신규 fill 없음. AMZN open order는 아직 fill review due가 아니며, AAPL/LLY/FCX/NOK/NVDA 및 2026-05-22 체결분은 계속 `회고 대기`.
+
+## [2026-05-27 04:54 Asia/Seoul] hourly-autopilot | AMZN open-order lifecycle risk gate 실패로 주문 없음
+
+- run id: `2026-05-27-0451-hourly-autopilot`.
+- 사용자 승인에 따라 `harness/workflows/hourly-autopilot.md`를 실행했다.
+- `.env`에서 `ALPACA_PAPER_TRADE=true`를 확인했고, API key 값은 출력하거나 기록하지 않았다. Nested shell export는 비어 있었지만 repository paper-mode 설정이 true라 workflow file check는 통과로 기록했다.
+- Scheduler-owned Alpaca core preflight `wiki/evidence-store/sources/2026-05-27-0451-hourly-autopilot-alpaca-core-preflight.json`을 먼저 읽었다. Hard gate pass, market open, account/positions/open orders/fills/watchlists/asset/quotes/snapshots/latest trades pass를 Alpaca core evidence로 사용했다.
+- Market clock: `2026-05-26T15:51:09.581579613-04:00` 기준 open, next close `2026-05-26T16:00:00-04:00`.
+- Account before decision: portfolio value 101738.22 USD, cash 42347.59 USD, buying power 137240.29 USD, current positions 13개, open order 1건 AMZN buy `new`.
+- Universe: 62개 metadata universe와 `SPY`/`QQQ`를 스크리닝했다. Pre-MCP shortlist는 `MU`, `AMD`, `KLAC`, `NOK`, `LRCX`, `AMAT`, `SMH`, `FCX`, `GE`, `INTC`, final candidates는 `INTC`, `SMH`, `AMAT`.
+- Candidate quote/spread: INTC bid 123.30, ask 123.38, spread 0.0649%, quote time `2026-05-26T19:51:32.634964759Z`; quote age는 decision time 기준 20분 이내였다.
+- SEC EDGAR는 local CIK cache로 `INTC -> 0000050863` 확인 후 company info/recent filings pass. Yahoo Finance는 INTC news/recommendations usable. FRED는 scheduler preflight `2026-05-27-0451-hourly-autopilot-research-mcp-preflight.json`의 `get_macro_snapshot` pass를 usable evidence로 사용했다.
+- Alpha Vantage는 `TOOL_LIST` -> `TOOL_GET("PING")` -> `TOOL_CALL("PING", {})` pass 후 candidate data용 `TOOL_GET("NEWS_SENTIMENT")`가 wrapper cancelled되어 `gap_category=cancelled`로 기록했고 추가 Alpha candidate function은 시도하지 않았다. Firecrawl은 Codex tool catalog에 registered MCP tool이 노출되지 않아 `gap_category=wrapper_error`로 기록했고 shell/curl/local wrapper는 호출하지 않았다.
+- First blocking gate: `risk_open_order_lifecycle`. 검증: universe strict PASS, MCP strict PASS, risk-check FAIL(`AMZN: open order age 34.4 minutes exceeds lifecycle limit 30.0`).
+- submitted orders: 없음. `place_stock_order` 호출 없음. skipped orders: INTC validation buy 후보는 기존 AMZN open order lifecycle risk gate 실패로 차단, SMH/AMAT은 recheck.
+- Post-trade reconciliation: 신규 submit attempt는 없었고, Alpaca preflight 기준 AMZN open order `new` filled_qty 0, same-day fills LLY/FCX/NOK/NVDA/AAPL, positions 13개를 확인했다.
+- 리포트: `wiki/current-runs/daily/2026-05-27-0451-hourly-autopilot.md`.
+- 원천: `wiki/evidence-store/sources/2026-05-27-0451-hourly-autopilot-sources.md`.
+- run manifest: `wiki/evidence-store/run-manifests/2026-05-27-0451-hourly-autopilot.json`.
+- order plan: `wiki/trade-ledger/orders/2026-05-27-0451-hourly-autopilot.json`.
+- portfolio snapshot: `wiki/trade-ledger/positions/current.md`.
+- review due markers: 이번 run 신규 fill 없음. AMZN open order는 아직 fill review due가 아니며, AAPL/LLY/FCX/NOK/NVDA 및 2026-05-22 체결분은 계속 `회고 대기`.

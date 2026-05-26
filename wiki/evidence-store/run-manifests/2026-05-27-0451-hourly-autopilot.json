@@ -1,0 +1,187 @@
+{
+  "run_id": "2026-05-27-0451-hourly-autopilot",
+  "created_at": "2026-05-26T19:53:30Z",
+  "mode": "submit",
+  "paper": true,
+  "workflow": "harness/workflows/hourly-autopilot.md",
+  "market": {
+    "is_open": true,
+    "checked_at": "2026-05-26T19:51:38Z",
+    "clock_timestamp": "2026-05-26T15:51:09.581579613-04:00",
+    "next_open": "2026-05-27T13:30:00Z",
+    "next_close": "2026-05-26T20:00:00Z"
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + Alpaca preflight universe + benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": ["SPY", "QQQ"],
+    "screening_method": "broad_universe_current_momentum_quote_spread_duplicate_cluster_screen_then_mcp_shortlist_validation",
+    "pre_mcp_shortlist": ["MU", "AMD", "KLAC", "NOK", "LRCX", "AMAT", "SMH", "FCX", "GE", "INTC"],
+    "final_candidates": ["INTC", "SMH", "AMAT"],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "mcp_gate_policy": {
+    "core_servers": ["alpaca"],
+    "research_servers": ["sec-edgar", "alpha-vantage", "fred", "firecrawl", "yahoo-finance"],
+    "min_research_confirmations": 3,
+    "all_research_must_be_attempted": true,
+    "tiered_policy": true
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T19:51:38Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-27-0451-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-05-27-0451-hourly-autopilot-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T19:52:12Z",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0451-hourly-autopilot-sources.md"],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T19:52:45Z",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0451-hourly-autopilot-sources.md"],
+      "gap_reason": "TOOL_LIST, TOOL_GET(\"PING\"), and TOOL_CALL(\"PING\", {}) passed. The required candidate-data TOOL_GET(\"NEWS_SENTIMENT\") call was cancelled by the wrapper before a non-PING TOOL_CALL could be made, so Alpha candidate retries were stopped for this run.",
+      "gap_category": "cancelled",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-26T19:51:38+00:00",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0451-hourly-autopilot-research-mcp-preflight.json"],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-26T19:52:49Z",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0451-hourly-autopilot-sources.md"],
+      "gap_reason": "Registered Firecrawl MCP tool was not exposed in the Codex tool catalog; shell/curl/local wrapper use was prohibited.",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "checked_at": "2026-05-26T19:52:24Z",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-27-0451-hourly-autopilot-sources.md"],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "recommendation_actionability": "blocked_by_risk_gate",
+  "first_blocking_gate": "risk_open_order_lifecycle",
+  "validators": {
+    "universe_strict": "PASS",
+    "mcp_strict": "PASS",
+    "risk_check": "FAIL"
+  },
+  "risk_check_result": {
+    "status": "FAIL",
+    "errors": [
+      "AMZN: open order age 34.4 minutes exceeds lifecycle limit 30.0"
+    ],
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": {
+      "buy_notional": 0.0,
+      "sell_notional": 0.0,
+      "post_cash": 42347.59,
+      "post_invested": 59387.636999999995,
+      "min_cash": 20347.644,
+      "max_invested": 81390.576,
+      "max_ticker_value": 15260.733,
+      "max_theme_value": 35608.377,
+      "max_factor_value": 50869.11,
+      "max_cluster_value": 45782.199,
+      "max_speculative_value": 12208.5864,
+      "speculative_value": 5864.1,
+      "policy_version": "medium-risk-v1.1"
+    }
+  },
+  "orders_submitted": 0,
+  "recommendation_shortlist": [
+    {
+      "symbol": "INTC",
+      "rank": 1,
+      "action": "skip_risk_gate",
+      "confidence_score": 0.54,
+      "reason": "fresh quote and spread pass, SEC/FRED/Yahoo usable, but AMZN open order age exceeds the 30-minute lifecycle risk gate"
+    },
+    {
+      "symbol": "SMH",
+      "rank": 2,
+      "action": "recheck",
+      "confidence_score": 0.53,
+      "reason": "tight spread and broad semiconductor exposure, but existing AI semiconductor cluster exposure remains high"
+    },
+    {
+      "symbol": "AMAT",
+      "rank": 3,
+      "action": "recheck",
+      "confidence_score": 0.52,
+      "reason": "momentum and spread pass, but lower priority than INTC and semiconductor cluster concentration argues against adding while risk gate is blocked"
+    }
+  ],
+  "order_plan": {
+    "path": "wiki/trade-ledger/orders/2026-05-27-0451-hourly-autopilot.json",
+    "orders": []
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-27-0451-hourly-autopilot-sources.md",
+    "wiki/evidence-store/sources/2026-05-27-0451-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-27-0451-hourly-autopilot-research-mcp-preflight.json"
+  ],
+  "submission": {
+    "attempted": false,
+    "status": "skipped_risk_gate",
+    "reason": "Open AMZN buy order hourly-20260527-0411-amzn-buy-1 was still new and older than the 30-minute lifecycle limit at decision time.",
+    "post_trade_reconciliation": {
+      "source": "scheduler Alpaca core preflight",
+      "open_orders": "AMZN buy 1 status new filled_qty 0",
+      "same_day_fills": ["LLY buy 1", "FCX buy 1", "NOK buy 1", "NVDA buy 1", "AAPL buy 1"],
+      "positions_count": 13
+    }
+  }
+}
