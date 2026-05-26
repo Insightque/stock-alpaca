@@ -36,6 +36,8 @@ Repeatedly review whether paper buy/sell decisions were high-quality decisions b
    - filled/canceled/rejected orders
    - positions
    - portfolio history when available
+   - Retry transient Alpaca MCP timeout, cancellation, DNS, or network failures up to 2 times before declaring a data gap.
+   - If reconciliation remains incomplete, write a data-gap review and do not mutate policy from incomplete evidence.
 4. Identify review candidates:
    - newly filled orders with no review marker
    - open positions older than 1D/5D/20D review horizons
@@ -62,6 +64,7 @@ Repeatedly review whether paper buy/sell decisions were high-quality decisions b
    - repeated pattern -> policy proposal
    - statistically or operationally useful repeated pattern -> active rule
 10. Append `wiki/log.md` with review status, policy changes, and pending review dates.
+11. Let the scheduled shell wrapper commit and push generated artifacts after the workflow exits successfully. Do not run ad hoc git commands inside this workflow unless explicitly requested.
 
 ## Policy-Learning Rules
 

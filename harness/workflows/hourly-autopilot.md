@@ -52,6 +52,9 @@ Run an hourly current-market recommendation loop. If and only if every safety, u
    - FRED
    - Firecrawl
    - Yahoo Finance
+   - If a required MCP fails due to timeout, cancellation, DNS, or transient network error, retry up to 2 times with a short backoff before marking it failed.
+   - For DNS/network failures, run a read-only connectivity probe when practical and record whether the provider endpoint itself was reachable.
+   - Never downgrade the strict gate to pass because of a retry. Retries only prevent false negatives from transient failures.
 7. Create a detailed current recommendation report under `wiki/current-runs/daily/` or an hourly subreport if multiple runs happen on the same date.
 8. Create a concrete order-plan JSON under `wiki/trade-ledger/orders/`.
    - Include detailed per-order `rationale`.
@@ -88,6 +91,7 @@ python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YOUR-RUN.js
     - order-plan path
     - report path
     - review due markers
+14. Let the scheduled shell wrapper commit and push generated artifacts after the workflow exits successfully. Do not run ad hoc git commands inside this workflow unless explicitly requested.
 
 ## Stop Conditions
 
