@@ -9,8 +9,12 @@ LOG_DIR="${ROOT_DIR}/logs"
 
 mkdir -p "${ROOT_DIR}/.locks" "${LOG_DIR}"
 
+now_iso() {
+  date '+%Y-%m-%dT%H:%M:%S%z'
+}
+
 if ! mkdir "${LOCK_DIR}" 2>/dev/null; then
-  echo "$(date -Is) analyst review already running; exiting."
+  echo "$(now_iso) analyst review already running; exiting."
   exit 0
 fi
 
@@ -22,7 +26,7 @@ trap cleanup EXIT
 cd "${ROOT_DIR}"
 
 if ! grep -q '^ALPACA_PAPER_TRADE=true$' .env; then
-  echo "$(date -Is) ALPACA_PAPER_TRADE=true is required; exiting."
+  echo "$(now_iso) ALPACA_PAPER_TRADE=true is required; exiting."
   exit 64
 fi
 
