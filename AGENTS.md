@@ -29,8 +29,10 @@ Read `harness/simple-commands.md` before interpreting user-facing trading comman
 - `포트폴리오 점검해줘`: use `harness/workflows/post-trade.md`.
 - `리밸런싱 계획 짜줘`: use `harness/workflows/rebalance.md` in no-submit mode.
 - `paper 주문까지 실행해줘`: use the latest validated order plan or `harness/workflows/rebalance.md` in submit mode, then run post-trade check.
+- `시간 단위로 자동 운영해줘`, `자동으로 매입/매도해줘`: use `harness/workflows/hourly-autopilot.md` through `scripts/run-hourly-autopilot-codex.sh`. This is Alpaca paper-only automation; submit only when market, universe, MCP, quote, spread, and risk gates all pass.
 - `거래 후 점검해줘`: use `harness/workflows/post-trade.md`.
 - `거래 회고해줘`: use `harness/workflows/trade-review.md`.
+- Scheduled analyst reviews use `harness/workflows/analyst-review-cycle.md` through `scripts/run-analyst-review-codex.sh`; this workflow never submits orders.
 - `YYYY-MM-DD 기준 추천 시뮬레이션해줘`: use `harness/workflows/historical-decision-sim.md` in dry-run mode only.
 - `YYYY-MM-DD 추천 회고해줘`: use `harness/workflows/historical-decision-review.md`; do not submit orders.
 - `위키 정리해줘`: use `harness/workflows/wiki-lint.md`.
@@ -144,3 +146,11 @@ Before submitting any paper order:
 7. Immediately run a post-trade check and update the wiki.
 
 If any step is uncertain, skip submission and record the uncertainty.
+
+## Automation
+
+- Hourly paper autopilot is allowed only through `harness/workflows/hourly-autopilot.md`.
+- The hourly autopilot must create a detailed recommendation report, run manifest, and order plan on every run, even when it submits nothing.
+- The hourly autopilot may submit Alpaca paper buy/sell orders only if all strict gates pass and the market is open.
+- The analyst review cycle runs through `harness/workflows/analyst-review-cycle.md` and never mutates account/order/position state.
+- Buy/sell rationale must be detailed enough for later 1D/5D/20D analyst review and policy-learning updates.

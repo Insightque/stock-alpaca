@@ -90,6 +90,8 @@ python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-mani
 
 기본 운용 방식은 Codex 수동 실행입니다. 선택형 macOS launchd 파일은 `scheduler/`에 있습니다.
 
+자동 paper 운용은 `harness/workflows/hourly-autopilot.md`와 `scripts/run-hourly-autopilot-codex.sh`를 사용합니다. 이 작업은 매시간 현재 종목 추천을 다시 만들고, 장중이며 universe/MCP/risk/quote/spread gate가 모두 통과할 때만 Alpaca MCP로 paper day limit 주문을 제출합니다. 회고와 정책학습은 `harness/workflows/analyst-review-cycle.md`와 `scripts/run-analyst-review-codex.sh`가 장 마감 후 반복 수행합니다.
+
 ### Agent Run Board
 
 서버 없이 볼 수 있는 정적 UI는 `ui/agent-dashboard.html`에 있습니다. 최신 작업 상태와 `wiki/trade-ledger/positions/current.md`의 Alpaca paper 투자 현황을 반영하려면 아래 명령으로 HTML을 다시 생성합니다.
@@ -191,6 +193,8 @@ python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-mani
 ### Optional Scheduler
 
 The default operating mode is manual execution through Codex. Optional macOS launchd files are available under `scheduler/`.
+
+Automated paper operation uses `harness/workflows/hourly-autopilot.md` and `scripts/run-hourly-autopilot-codex.sh`. The hourly job rebuilds current recommendations and may submit Alpaca MCP paper day limit orders only during market hours after the universe, MCP, risk, quote, and spread gates all pass. Analyst review and policy learning are handled by `harness/workflows/analyst-review-cycle.md` and `scripts/run-analyst-review-codex.sh` after the market close.
 
 ### Agent Run Board
 
