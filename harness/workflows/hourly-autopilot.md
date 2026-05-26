@@ -4,7 +4,7 @@ Use this only when the user explicitly asks for automatic hourly stock recommend
 
 ## Goal
 
-Run an hourly current-market recommendation loop. If and only if every safety, universe, MCP, quote, and risk gate passes while the US equity market is open, submit Alpaca paper day limit stock/ETF orders through Alpaca MCP. Record detailed decision evidence for later analyst-style reviews and policy improvement.
+Run an hourly current-market recommendation loop. If and only if every safety, universe, core MCP, quote, spread, and risk gate passes while the US equity market is open, submit Alpaca paper day limit stock/ETF orders through Alpaca MCP. Record detailed decision evidence for later analyst-style reviews and policy improvement.
 
 ## Authorization
 
@@ -12,6 +12,10 @@ Run an hourly current-market recommendation loop. If and only if every safety, u
 - Paper trading only. Abort if `ALPACA_PAPER_TRADE` is missing or not exactly `true`.
 - Never place live, crypto, options, short, margin-expansion, market, fractional, or custom REST orders.
 - Never bypass `scripts/check-risk-policy.py`, `scripts/check-universe-coverage.py --strict`, or `scripts/check-mcp-coverage.py --strict`.
+- MCP gating is tiered for paper automation:
+  - Core MCP gate: Alpaca account, clock, positions, open orders, recent activities, tradability, fresh quote, and spread must pass.
+  - Research MCP gate: SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance must all be attempted; at least 3 must be usable/pass for actionable buy candidates.
+  - A failed non-core research provider no longer blocks paper action by itself when core and minimum research confirmations pass.
 
 ## Required Cadence
 
@@ -45,21 +49,22 @@ Run an hourly current-market recommendation loop. If and only if every safety, u
 3. Use Alpaca MCP to check market clock, account, cash, positions, open orders, recent activities, current quotes, snapshots, and relevant news.
 4. Build a broad universe from `harness/symbol-metadata.yaml`, current holdings, Alpaca watchlists, and benchmarks `SPY` and `QQQ`.
 5. Run the expanded-universe first-pass screen. Record `universe_coverage` in the run manifest.
-6. For the pre-MCP shortlist and any proposed order symbol, query all required decision MCPs:
-   - Alpaca
-   - SEC EDGAR
-   - Alpha Vantage
-   - FRED
-   - Firecrawl
-   - Yahoo Finance
+6. For the pre-MCP shortlist and any proposed order symbol, query all decision MCPs:
+   - Core: Alpaca
+   - Research: SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance
    - If a required MCP fails due to timeout, cancellation, DNS, or transient network error, retry up to 2 times with a short backoff before marking it failed.
    - For DNS/network failures, run a read-only connectivity probe when practical and record whether the provider endpoint itself was reachable.
-   - Never downgrade the strict gate to pass because of a retry. Retries only prevent false negatives from transient failures.
+   - Never mark a failed provider as usable because of a retry. Retries only prevent false negatives from transient failures.
+   - Record `mcp_gate_policy` in the run manifest with `core_servers=["alpaca"]`, the five research servers, `min_research_confirmations=3`, and `all_research_must_be_attempted=true`.
+   - If fewer than 3 research MCPs are usable/pass, set `recommendation_actionability=actionable_if_provider_recovered` for otherwise strong candidates and submit nothing.
 7. Create a detailed current recommendation report under `wiki/current-runs/daily/` or an hourly subreport if multiple runs happen on the same date.
 8. Create a concrete order-plan JSON under `wiki/trade-ledger/orders/`.
    - Include detailed per-order `rationale`.
    - Include source refs, quote timestamp, asset check timestamp, liquidity/spread, confidence score, strategy id/version, policy status, expected excess return, expected adverse move, entry style, sizing basis, and review horizons.
-   - Sell/trim orders require a thesis-break, risk-limit, stale-thesis, position-sizing, or portfolio-fit rationale. Do not sell solely because a new buy candidate ranks higher.
+   - Buy orders require core MCP pass, at least 3 usable/pass research MCPs, universe pass, fresh quote, spread, and risk pass.
+   - Sell/trim orders require core MCP pass, fresh quote, spread, open-order check, and risk pass. Full research MCP pass is not required for risk trim.
+   - Valid sell/trim rationales: thesis-break, risk-limit, stale-thesis, position-sizing, portfolio-fit, speculative cap exceeded, correlated cluster cap exceeded, theme/factor cap exceeded, or overheat profit protection.
+   - Do not sell solely because a new buy candidate ranks higher.
 9. Validate:
 
 ```bash
@@ -72,7 +77,7 @@ python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YOUR-RUN.js
     - Market is open.
     - `ALPACA_PAPER_TRADE=true`.
     - Universe strict gate passes.
-    - MCP strict gate passes.
+    - MCP strict gate passes under the tiered policy: Alpaca core pass and at least 3 usable/pass research MCPs for buys; Alpaca core pass for risk trim sells.
     - Risk gate passes.
     - Quote age is within policy.
     - Spread is present and within policy.
@@ -97,7 +102,8 @@ python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YOUR-RUN.js
 
 - Paper mode is not true.
 - Market closed for submit action.
-- Any required MCP is unavailable or returns unusable data for an actionable order candidate.
+- Alpaca core MCP is unavailable or returns unusable data for an actionable order candidate.
+- Fewer than 3 research MCPs are usable/pass for a buy candidate after retries.
 - Universe strict gate fails.
 - MCP strict gate fails.
 - Risk gate fails.

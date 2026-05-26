@@ -131,9 +131,44 @@
         }
       }
     },
+    "mcp_gate_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "core_servers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "research_servers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "min_research_confirmations": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "all_research_must_be_attempted": {
+          "type": "boolean"
+        },
+        "provider_gap_blocks_order": {
+          "type": "boolean"
+        }
+      }
+    },
     "recommendation_actionability": {
       "type": "string",
-      "enum": ["actionable", "order_candidate", "submit_candidate", "non_actionable_research", "blocked"]
+      "enum": [
+        "actionable",
+        "order_candidate",
+        "submit_candidate",
+        "actionable_if_provider_recovered",
+        "non_actionable_research",
+        "blocked"
+      ]
     },
     "universe_coverage": {
       "type": "object",

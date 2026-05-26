@@ -24,6 +24,9 @@ REQUIRED_DECISION_MCPS = (
     "firecrawl",
     "yahoo-finance",
 )
+CORE_DECISION_MCPS = ("alpaca",)
+RESEARCH_DECISION_MCPS = tuple(server for server in REQUIRED_DECISION_MCPS if server not in CORE_DECISION_MCPS)
+DEFAULT_MIN_RESEARCH_CONFIRMATIONS = 3
 
 RECO_MODES = {"dry_run", "submit", "research"}
 POSITIVE_OUTCOMES = {"pass", "usable", "ok"}
@@ -90,6 +93,18 @@ def validate(manifest: dict[str, Any], *, strict: bool = False) -> tuple[list[st
     coverage = normalize_coverage(manifest)
     actionable = actionable_recommendation(manifest)
     strict_required = strict or actionable or mode == "submit"
+    gate_policy = manifest.get("mcp_gate_policy", {})
+    if not isinstance(gate_policy, dict):
+        gate_policy = {}
+    try:
+        min_research_confirmations = int(
+            gate_policy.get("min_research_confirmations", DEFAULT_MIN_RESEARCH_CONFIRMATIONS)
+        )
+    except (TypeError, ValueError):
+        min_research_confirmations = DEFAULT_MIN_RESEARCH_CONFIRMATIONS
+    min_research_confirmations = max(0, min(min_research_confirmations, len(RESEARCH_DECISION_MCPS)))
+    positive_research: list[str] = []
+    used_positive_research: list[str] = []
 
     if mode in RECO_MODES and not coverage:
         errors.append("mcp_coverage is required for recommendation/research manifests")
@@ -130,20 +145,41 @@ def validate(manifest: dict[str, Any], *, strict: bool = False) -> tuple[list[st
         if outcome in GAP_OUTCOMES and not gap_reason:
             errors.append(f"{server}: gap/failed outcome requires gap_reason")
 
-        if strict_required and not queried:
-            errors.append(f"{server}: strict recommendation coverage requires queried=true")
+        if server in RESEARCH_DECISION_MCPS and queried and outcome in POSITIVE_OUTCOMES:
+            positive_research.append(server)
+            if used:
+                used_positive_research.append(server)
 
-        if strict_required and outcome not in POSITIVE_OUTCOMES:
-            errors.append(f"{server}: strict recommendation coverage requires usable/pass outcome")
+        if strict_required and server in CORE_DECISION_MCPS and not queried:
+            errors.append(f"{server}: core MCP gate requires queried=true")
+
+        if strict_required and server in CORE_DECISION_MCPS and outcome not in POSITIVE_OUTCOMES:
+            errors.append(f"{server}: core MCP gate requires usable/pass outcome")
+
+        if strict_required and server in RESEARCH_DECISION_MCPS and not queried:
+            errors.append(f"{server}: research MCP gate requires queried=true or an attempted failure row")
+
+    if strict_required and len(positive_research) < min_research_confirmations:
+        errors.append(
+            "research MCP gate requires at least "
+            f"{min_research_confirmations} usable/pass research providers; got {len(positive_research)} "
+            f"({', '.join(sorted(positive_research)) or 'none'})"
+        )
 
     if mode == "submit":
-        unused = [
+        unused_core = [
             server
             for server, row in coverage.items()
-            if server in REQUIRED_DECISION_MCPS and not as_bool(row.get("used_in_score"))
+            if server in CORE_DECISION_MCPS and not as_bool(row.get("used_in_score"))
         ]
-        if unused:
-            errors.append(f"submit mode requires every decision MCP to be used_in_score: {', '.join(sorted(unused))}")
+        if unused_core:
+            errors.append(f"submit mode requires core MCPs to be used_in_score: {', '.join(sorted(unused_core))}")
+        if len(used_positive_research) < min_research_confirmations:
+            errors.append(
+                "submit mode requires at least "
+                f"{min_research_confirmations} positive research MCPs to be used_in_score: "
+                f"{', '.join(sorted(used_positive_research)) or 'none'}"
+            )
 
     if mode in RECO_MODES and coverage and not strict_required:
         gaps = [
@@ -159,9 +195,13 @@ def validate(manifest: dict[str, Any], *, strict: bool = False) -> tuple[list[st
 
     return errors, warnings, {
         "required_servers": list(REQUIRED_DECISION_MCPS),
+        "core_servers": list(CORE_DECISION_MCPS),
+        "research_servers": list(RESEARCH_DECISION_MCPS),
         "covered_servers": sorted(coverage),
         "strict_required": strict_required,
         "actionable": actionable,
+        "min_research_confirmations": min_research_confirmations,
+        "positive_research_confirmations": sorted(positive_research),
     }
 
 

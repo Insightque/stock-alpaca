@@ -33,7 +33,10 @@ updated_at: 2026-05-25T21:56:00+09:00
 - 장기 `long-term-quality-momentum-v1`은 `active_dry_run_candidate`로 승격하되 자동 주문은 아직 금지한다. 핵심 필터는 SPY/QQQ dual benchmark, drawdown/volatility guard, theme/factor cap, overheat guard, source confidence, liquidity check다.
 - 단타 `intraday-afternoon-followthrough-v1`과 기존 intraday variants는 모두 `observation_only`다. 결과는 수익률 후보가 아니라 `signal_log`, `skip_reason`, `spread_fill_observation`을 쌓는 체결 품질 학습 자료로만 사용한다.
 - 알파 점수와 주문 결정을 분리한다. 가격/상대강도/이벤트 품질은 후보 점수이고, 실제 주문 크기는 보유 비중, cash reserve, theme/factor/speculative/cluster cap, spread/liquidity, expected adverse move, open orders, staged entry를 통과한 뒤 별도로 결정한다.
-- `confidence_score < 0.50`, `source_confidence=low`, provider gap, stale quote, missing spread, missing metadata가 있으면 신규 order plan entry를 만들지 않는다.
+- `confidence_score < 0.50`, `source_confidence=low`, Alpaca core gap, stale quote, missing spread, missing metadata가 있으면 신규 order plan entry를 만들지 않는다.
+- MCP gate는 Alpaca core gate와 research confirmation gate로 나눈다. Alpaca account/clock/order/position/quote/spread는 항상 필수이고, SEC EDGAR/Alpha Vantage/FRED/Firecrawl/Yahoo Finance는 모두 시도하되 최소 3개 이상 usable/pass면 외부 provider 일부 장애만으로 paper buy 후보를 전면 차단하지 않는다.
+- 최소 research confirmation이 부족하지만 가격/포트폴리오/리스크 조건이 강한 후보는 `actionable_if_provider_recovered`로 남겨 다음 hourly run에서 자동 재확인한다.
+- 자동 sell/trim은 thesis-break만이 아니라 speculative cap, correlated cluster cap, theme/factor cap, 과열 후 손익 보호, position sizing 같은 risk trim 사유로도 가능하다. 단 Alpaca core, fresh quote/spread, open-order state, risk gate는 반드시 통과해야 한다.
 - 확장 universe는 theme cap, factor cap, active/tradable 확인, 최소 가격, 유동성, spread, source confidence, SPY/QQQ 상대강도를 모두 통과할 때만 사용한다.
 - 정책 변경은 `wiki/policy-book/proposals/TEMPLATE-policy-change.md` 구조를 통과해야 하며, 단일 백테스트 평균만으로 `auto_eligible_paper`로 승격하지 않는다.
 - 모든 정책개선형 시뮬레이션은 채택 여부와 무관하게 policy closeout을 남긴다. 결과가 약하면 `reject`, `observation_only`, `needs_out_of_sample` 중 하나로 분류하고 실패에서 배운 레슨도 정책학습 지표에 기록한다.

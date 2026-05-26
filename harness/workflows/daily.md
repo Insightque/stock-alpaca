@@ -65,9 +65,11 @@ python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-mani
      - `fred` for macro regime indicators when the API key is present.
      - `firecrawl` for company IR pages, press releases, and earnings presentation capture when the API key is present.
      - `yahoo-finance` for analyst recommendations, Yahoo news, holders, insider, and supplemental actions.
-   - Apply all required research MCPs to the top 5 scored candidates from the broad first-pass screen and every ticker with a proposed order entry. Record MCP coverage for all six decision MCPs: Alpaca, SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance.
+   - Apply all research MCPs to the top 5 scored candidates from the broad first-pass screen and every ticker with a proposed order entry. Record MCP coverage for all six decision MCPs: Alpaca, SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance.
+   - Treat Alpaca as the core MCP gate. Treat SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance as research MCPs that must all be attempted; at least 3 must be usable/pass before buy candidates can be actionable.
    - A ticker can receive a positive catalyst, source-confidence upgrade, or actionable allocation only from MCP rows with `queried=true`, `outcome=pass|usable|ok`, and at least one `source_ref`.
-   - If a required MCP fails, is unavailable, or returns no usable data, record `gap_reason`, set `used_in_score=false` for that MCP, cap affected ticker confidence at `medium`, and do not create submit-mode order entries until the gap is resolved.
+   - If a research MCP fails, is unavailable, or returns no usable data, record `gap_reason`, set `used_in_score=false` for that MCP, cap affected ticker confidence at `medium`, and continue only if the core gate and minimum research confirmations pass.
+   - If a candidate is otherwise strong but minimum research confirmations fail, mark it `actionable_if_provider_recovered`, write the recheck reason, and do not submit.
    - Browse for current company, earnings, guidance, analyst, sector, and macro context only when MCP data is insufficient or a source URL needs capture.
    - Capture each useful source as `wiki/evidence-store/sources/YYYY-MM-DD-source-slug.md` using `harness/templates/raw-source.md`.
    - Keep summaries concise and include source URLs, MCP names, query periods, and any missing-key/data-gap notes.
@@ -101,7 +103,7 @@ python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-mani
    - Include `schema_version`, `risk_policy_version`, `recommendation_policy_sha`, `created_at`, root `source_refs`, and per-order `quote_captured_at`, `asset_checked_at`, `source_refs`.
    - Validate it with `python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YYYY-MM-DD-daily.json`.
    - Create a run manifest in `wiki/evidence-store/run-manifests/YYYY-MM-DD-HHMM-run-id.json` using `harness/templates/run-manifest.json`.
-   - Fill `mcp_coverage` for all required decision MCPs. For actionable dry-run order candidates or submit mode, every required MCP must have `queried=true` and `outcome=pass|usable|ok`.
+   - Fill `mcp_coverage` for all decision MCPs and `mcp_gate_policy` for the tiered gate. For actionable buy candidates or submit mode, Alpaca core must pass and at least 3 research MCPs must have `queried=true` and `outcome=pass|usable|ok`.
    - Validate universe breadth and MCP coverage before treating the recommendation as actionable:
 
 ```bash
@@ -109,7 +111,7 @@ python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-mani
 python3 scripts/check-mcp-coverage.py --strict wiki/evidence-store/run-manifests/YYYY-MM-DD-HHMM-run-id.json
 ```
 
-   - If universe or MCP validation fails, keep the run as `non_actionable_research`, leave `orders: []`, record the failures in the report and manifest, and do not submit orders.
+   - If universe or MCP validation fails, keep the run as `non_actionable_research` or `actionable_if_provider_recovered`, leave `orders: []`, record the failures in the report and manifest, and do not submit orders.
 
 8. Executor Agent
    - If the order plan fails validation, submit nothing.

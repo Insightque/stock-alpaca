@@ -730,6 +730,14 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 검증: `python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-05-25-2206-today-stock-recommendation.json` PASS.
 - 실제 주문, 취소, 포지션 변경은 없었다. `orders_submitted=0`.
 
+## [2026-05-26 19:32 Asia/Seoul] policy-update | paper 자동운영 보수성 완화
+
+- 사용자 요청에 따라 paper pilot 목적에 맞게 과도한 provider-all-pass 요구를 완화했다. 별도 paper pilot tier는 추가하지 않았다.
+- MCP gate를 Alpaca core gate와 research confirmation gate로 분리했다. Alpaca account/clock/order/position/quote/spread는 계속 필수이고, SEC EDGAR/Alpha Vantage/FRED/Firecrawl/Yahoo Finance는 모두 시도하되 최소 3개 usable/pass면 research gate가 통과할 수 있다.
+- provider 일부 장애로 막힌 강한 후보는 `actionable_if_provider_recovered`로 남겨 다음 hourly run에서 재검토하게 했다.
+- sell/trim은 thesis-break 외에도 speculative cap, cluster cap, theme/factor cap, overheat profit protection 등 risk trim 사유를 허용한다. 단 Alpaca core, fresh quote/spread, open-order state, risk gate는 계속 필수다.
+- 검증: `python3 -m unittest discover -s tests` 63개 통과.
+
 ## [2026-05-26 15:18 Asia/Seoul] policy | 추천 MCP coverage gate 강화
 
 - 사용자 요청에 따라 빠른 판단보다 정확한 판단을 우선하도록 추천 정책 실행 기준을 강화했다.

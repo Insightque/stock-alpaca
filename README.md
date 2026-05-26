@@ -159,7 +159,7 @@ See `harness/agent-tasking-guide.md` for examples of assigning work to agents.
 - Maximum 10 new orders per run.
 - Orders must pass `scripts/check-risk-policy.py`; use `--json` for CI and agent-readable results.
 - New order plans must conform to `harness/order-plan.schema.json` and cite source refs for account, market, quote, and asset checks.
-- Stock recommendations prioritize accuracy over speed. Unless the user explicitly limits the ticker set, the run must first screen the expanded universe in `harness/symbol-metadata.yaml` and record `universe_coverage` in the run manifest. Before an actionable recommendation or order candidate is created, both the universe gate and the `mcp_coverage` gate for Alpaca, SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance must pass.
+- Stock recommendations prioritize accuracy over speed. Unless the user explicitly limits the ticker set, the run must first screen the expanded universe in `harness/symbol-metadata.yaml` and record `universe_coverage` in the run manifest. Before an actionable recommendation or order candidate is created, the universe gate must pass, Alpaca core MCP must pass, and at least 3 of the 5 research MCPs must be usable/pass after all research MCPs are attempted.
 - Orders must be submitted through Alpaca MCP only. Custom code must never call Alpaca trading REST endpoints directly.
 - Historical one-year policy checks use `harness/workflows/one-year-daily-simulation.md` and run each as-of day independently.
 

@@ -67,7 +67,42 @@ class McpCoverageTests(unittest.TestCase):
                     }
                 )
         errors, _, _ = check_mcp_coverage.validate(manifest)
-        self.assertTrue(any("firecrawl: strict recommendation coverage requires queried=true" in e for e in errors))
+        self.assertTrue(any("firecrawl: research MCP gate requires queried=true" in e for e in errors))
+
+    def test_actionable_manifest_allows_research_gap_when_minimum_confirmations_pass(self) -> None:
+        manifest = base_manifest()
+        for row in manifest["mcp_coverage"]:
+            if row["server"] in {"fred", "firecrawl"}:
+                row.update(
+                    {
+                        "queried": True,
+                        "used_in_score": False,
+                        "outcome": "failed",
+                        "source_refs": [],
+                        "gap_reason": "transient provider failure after retry",
+                    }
+                )
+        errors, warnings, summary = check_mcp_coverage.validate(manifest, strict=True)
+        self.assertEqual([], errors)
+        self.assertEqual([], warnings)
+        self.assertEqual(3, summary["min_research_confirmations"])
+        self.assertEqual(["alpha-vantage", "sec-edgar", "yahoo-finance"], summary["positive_research_confirmations"])
+
+    def test_actionable_manifest_fails_when_research_confirmations_too_low(self) -> None:
+        manifest = base_manifest()
+        for row in manifest["mcp_coverage"]:
+            if row["server"] in check_mcp_coverage.RESEARCH_DECISION_MCPS[:3]:
+                row.update(
+                    {
+                        "queried": True,
+                        "used_in_score": False,
+                        "outcome": "failed",
+                        "source_refs": [],
+                        "gap_reason": "provider failure",
+                    }
+                )
+        errors, _, _ = check_mcp_coverage.validate(manifest, strict=True)
+        self.assertTrue(any("research MCP gate requires at least 3" in e for e in errors))
 
     def test_non_actionable_research_allows_gap_with_warning(self) -> None:
         manifest = base_manifest()

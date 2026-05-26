@@ -96,6 +96,92 @@
         }
       }
     },
+    "mcp_gate_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "core_servers",
+        "research_servers",
+        "all_research_must_be_attempted",
+        "min_research_confirmations_for_actionable",
+        "min_research_confirmations_for_submit",
+        "core_gate_blocks_order",
+        "provider_gap_blocks_order",
+        "provider_gap_creates_recheck_candidate",
+        "recheck_label"
+      ],
+      "properties": {
+        "core_servers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "research_servers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "all_research_must_be_attempted": {
+          "type": "boolean"
+        },
+        "min_research_confirmations_for_actionable": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "min_research_confirmations_for_submit": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "core_gate_blocks_order": {
+          "type": "boolean"
+        },
+        "provider_gap_blocks_order": {
+          "type": "string"
+        },
+        "provider_gap_creates_recheck_candidate": {
+          "type": "boolean"
+        },
+        "recheck_label": {
+          "type": "string"
+        }
+      }
+    },
+    "risk_trim_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "allow_core_only_risk_trim",
+        "requires_alpaca_position_quote_order_state",
+        "research_mcp_full_pass_required",
+        "allowed_reasons",
+        "trim_requires"
+      ],
+      "properties": {
+        "allow_core_only_risk_trim": {
+          "type": "boolean"
+        },
+        "requires_alpaca_position_quote_order_state": {
+          "type": "boolean"
+        },
+        "research_mcp_full_pass_required": {
+          "type": "boolean"
+        },
+        "allowed_reasons": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "trim_requires": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
     "universe_policy": {
       "type": "object",
       "additionalProperties": true

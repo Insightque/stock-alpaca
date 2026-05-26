@@ -86,7 +86,22 @@
       "gap_reason": ""
     }
   ],
-  "recommendation_actionability": "actionable|non_actionable_research",
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "all_research_must_be_attempted": true,
+    "provider_gap_blocks_order": false
+  },
+  "recommendation_actionability": "actionable|actionable_if_provider_recovered|non_actionable_research",
   "universe_coverage": {
     "universe_source": "harness/symbol-metadata.yaml + Alpaca watchlists + current holdings + user requested tickers",
     "scope_limited_by_user": false,

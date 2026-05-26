@@ -1,6 +1,6 @@
-policy_id: recommendation-policy-v1.3
-updated_at: "2026-05-26T16:12:00+09:00"
-policy_version: v1.3
+policy_id: recommendation-policy-v1.4
+updated_at: "2026-05-26T19:32:00+09:00"
+policy_version: v1.4
 strategy_status:
   long_term_quality_momentum_v1:
     status: active_dry_run_candidate
@@ -156,7 +156,7 @@ promotion_criteria:
       - needs_out_of_sample
 source_confidence:
   minimum_for_new_buy: 0.50
-  provider_gap_blocks_order: true
+  provider_gap_blocks_order: false
   timestamp_basis: market_relevant_timestamp
   required_fields:
     - sec_filing_confirmed
@@ -166,6 +166,42 @@ source_confidence:
     - provider_gap
     - event_timestamp_known
     - confidence_score
+mcp_gate_policy:
+  core_servers:
+    - alpaca
+  research_servers:
+    - sec-edgar
+    - alpha-vantage
+    - fred
+    - firecrawl
+    - yahoo-finance
+  all_research_must_be_attempted: true
+  min_research_confirmations_for_actionable: 3
+  min_research_confirmations_for_submit: 3
+  core_gate_blocks_order: true
+  provider_gap_blocks_order: false_when_core_and_min_research_pass
+  provider_gap_creates_recheck_candidate: true
+  recheck_label: actionable_if_provider_recovered
+risk_trim_policy:
+  allow_core_only_risk_trim: true
+  requires_alpaca_position_quote_order_state: true
+  research_mcp_full_pass_required: false
+  allowed_reasons:
+    - thesis_break
+    - risk_limit
+    - stale_thesis
+    - position_sizing
+    - portfolio_fit
+    - speculative_cap_exceeded
+    - correlated_cluster_cap_exceeded
+    - theme_factor_cap_exceeded
+    - overheat_profit_protection
+  trim_requires:
+    - fresh_quote
+    - spread_within_policy
+    - open_order_check
+    - risk_check
+    - whole_share_day_limit_order
 universe_policy:
   allow_expanded_universe: true
   default_scope: expanded_metadata_universe
