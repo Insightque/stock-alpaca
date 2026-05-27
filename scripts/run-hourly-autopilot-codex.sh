@@ -1,8 +1,23 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+export HOME="${HOME:-/Users/insightque}"
+export LANG="${LANG:-en_US.UTF-8}"
+export LC_ALL="${LC_ALL:-en_US.UTF-8}"
 export PATH="/opt/homebrew/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.11/bin:${PATH}"
 export CODEX_HOME="${CODEX_AUTOPILOT_CODEX_HOME:-${CODEX_SCHEDULED_CODEX_HOME:-${HOME}/.codex}}"
+export HTTPS_PROXY="${HTTPS_PROXY:-${https_proxy:-}}"
+export HTTP_PROXY="${HTTP_PROXY:-${http_proxy:-}}"
+export NO_PROXY="${NO_PROXY:-${no_proxy:-127.0.0.1,localhost}}"
+if [ -z "${SSL_CERT_FILE:-}" ]; then
+  SSL_CERT_CANDIDATE="$(python3 -c 'import certifi; print(certifi.where())' 2>/dev/null || true)"
+  if [ -n "${SSL_CERT_CANDIDATE}" ]; then
+    export SSL_CERT_FILE="${SSL_CERT_CANDIDATE}"
+  fi
+fi
+if [ -n "${SSL_CERT_FILE:-}" ]; then
+  export REQUESTS_CA_BUNDLE="${REQUESTS_CA_BUNDLE:-${SSL_CERT_FILE}}"
+fi
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 LOCK_DIR="${ROOT_DIR}/.locks/hourly-autopilot.lock"
@@ -13,6 +28,10 @@ RUN_ID="$(date '+%Y-%m-%d-%H%M')-hourly-autopilot"
 STALE_ORDER_CLEANUP_PATH="${ROOT_DIR}/wiki/evidence-store/sources/${RUN_ID}-stale-order-cleanup.json"
 ALPACA_PREFLIGHT_PATH="${ROOT_DIR}/wiki/evidence-store/sources/${RUN_ID}-alpaca-core-preflight.json"
 RESEARCH_PREFLIGHT_PATH="${ROOT_DIR}/wiki/evidence-store/sources/${RUN_ID}-research-mcp-preflight.json"
+RESEARCH_CACHE_TTL_ARGS=()
+if [ -n "${CODEX_AUTOPILOT_RESEARCH_CACHE_TTL_SECONDS:-}" ]; then
+  RESEARCH_CACHE_TTL_ARGS=(--cache-ttl-seconds "${CODEX_AUTOPILOT_RESEARCH_CACHE_TTL_SECONDS}")
+fi
 
 mkdir -p "${ROOT_DIR}/.locks" "${LOG_DIR}"
 
@@ -43,6 +62,10 @@ set -a
 # shellcheck disable=SC1091
 source .env
 set +a
+export CODEX_HOME="${CODEX_AUTOPILOT_CODEX_HOME:-${CODEX_SCHEDULED_CODEX_HOME:-${HOME}/.codex}}"
+export HTTPS_PROXY="${HTTPS_PROXY:-${https_proxy:-}}"
+export HTTP_PROXY="${HTTP_PROXY:-${http_proxy:-}}"
+export NO_PROXY="${NO_PROXY:-${no_proxy:-127.0.0.1,localhost}}"
 
 set +e
 MARKET_CLOCK_STATUS="$(PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/scripts/check-alpaca-market-open-mcp.py" 2>&1)"
@@ -76,7 +99,10 @@ if ! PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/scripts/fetch-research-m
   --output-json "${RESEARCH_PREFLIGHT_PATH}" \
   --alpaca-preflight-json "${ALPACA_PREFLIGHT_PATH}" \
   --max-symbols "${CODEX_AUTOPILOT_RESEARCH_SYMBOL_LIMIT:-12}" \
-  --timeout "${CODEX_AUTOPILOT_RESEARCH_MCP_TIMEOUT_SECONDS:-75}"; then
+  --timeout "${CODEX_AUTOPILOT_RESEARCH_MCP_TIMEOUT_SECONDS:-75}" \
+  --cache-dir "${CODEX_AUTOPILOT_RESEARCH_CACHE_DIR:-${ROOT_DIR}/.cache/research-mcp-preflight}" \
+  --circuit-breaker-seconds "${CODEX_AUTOPILOT_RESEARCH_CIRCUIT_SECONDS:-600}" \
+  "${RESEARCH_CACHE_TTL_ARGS[@]}"; then
   echo "$(now_iso) research MCP preflight failed; nested workflow will classify provider gaps."
 fi
 
@@ -94,11 +120,12 @@ Hard requirements:
 - Classify every MCP gap as one of: timeout, cancelled, dns, auth, empty_response, provider_error, wrapper_error, unknown.
 - For Alpaca core, make short independent attempts for clock, account, orders, positions, and quotes. Record which exact core check was the first blocking gate.
 - For SEC EDGAR, use the local `harness/sec-ticker-cik-map.json` mapping as a ticker-to-CIK fallback before marking a ticker lookup gap. In scheduled autopilot, prefer `get_company_info` and `get_recent_filings`; do not escalate to heavier SEC financials calls unless those tools are explicitly exposed and the lighter filing evidence is insufficient.
-- Use registered Codex MCP tools for Alpaca, SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance. Do not run ad hoc local network helper scripts or curl from the nested shell for current-market data.
+- Use registered Codex MCP tools for Alpaca. For SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance, first use the scheduler-owned research preflight when present; only use registered Codex MCP tools for missing preflight evidence. Do not run ad hoc local network helper scripts or curl from the nested shell for current-market data.
 - A scheduler-owned stale order cleanup report may exist at `STALE_ORDER_CLEANUP_PATH_PLACEHOLDER`. Read it before risk validation. If it cancelled stale unfilled autopilot orders, cite it. If stale autopilot orders remain because cleanup failed, block new orders with `risk_open_order_lifecycle`.
 - A scheduler-owned Alpaca core preflight may exist at `ALPACA_PREFLIGHT_PATH_PLACEHOLDER`. If it exists, read it before making any Alpaca read-only calls. Treat `mcp_coverage_hint` plus passing tool rows in this file as Alpaca MCP evidence with that file as the source_ref. This preflight is read-only MCP stdio evidence for clock, account, positions, open orders, recent fills, watchlists, asset checks, latest quotes, snapshots, and latest trades; it exists to avoid non-interactive false `cancelled` gaps in nested Codex. If the preflight hard gate is `pass` and quote rows are less than 20 minutes old at decision time, set Alpaca core coverage to `outcome=pass` and `used_in_score=true`. If any required preflight row is missing, stale, or failed, call only the missing read-only Alpaca MCP tool once through the registered Codex MCP tool; if it is still cancelled, classify the exact row and submit nothing.
 - A scheduler-owned research MCP preflight may exist at `RESEARCH_PREFLIGHT_PATH_PLACEHOLDER`. If it exists, read it before any research MCP calls. It is the authoritative scheduled evidence for SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance for the symbols listed in its `symbols` field. Use its `mcp_coverage_hint` rows directly when present; otherwise use any provider row with `outcome=pass|usable|ok` as MCP evidence with that file as the source_ref. In particular, count passing SEC lightweight filings, Yahoo recommendations/news, and FRED macro rows as usable research confirmations. If a provider row has `outcome=gap|failed|unavailable`, classify that provider gap from the preflight; do not retry that provider through shell/curl from nested Codex.
-- For Firecrawl, use the registered `firecrawl` MCP server only. If it is unexpectedly not exposed, classify it as `gap_category=wrapper_error`; do not call `scripts/mcp-firecrawl.sh` or `curl` from shell.
+- If the research preflight already contains rows for all required research providers, those research MCP tools may intentionally not be registered in nested Codex to avoid a second cold start. Treat the preflight, including `cache_hit` and `circuit_breaker_open` payloads, as the scheduler-owned source of truth for that cycle.
+- For Firecrawl, use the scheduler research preflight first. If Firecrawl evidence is missing and the `firecrawl` MCP server is registered, use that registered MCP server only. If it is unexpectedly not exposed while needed, classify it as `gap_category=wrapper_error`; do not call `scripts/mcp-firecrawl.sh` or `curl` from shell.
 - For Alpha Vantage, first use `TOOL_LIST`, then `TOOL_GET("PING")`, then `TOOL_CALL("PING", {})` as a health check. For candidate data, call `TOOL_GET` immediately before the matching `TOOL_CALL`. If any non-PING `TOOL_CALL` is cancelled once, stop Alpha retries and classify `alpha-vantage` as `gap_category=cancelled`; do not try a second Alpha function in the same run.
 - If `harness/risk-policy.yaml` has `order_lifecycle.cancel_stale_unfilled_orders=true`, stale unfilled autopilot orders whose `client_order_id` starts with `hourly-` may be cancelled only through Alpaca MCP `cancel_order_by_id`; never cancel non-autopilot, partially filled, live, option, crypto, or short-related orders. If cancellation is cancelled or cannot be reconciled, submit nothing.
 - When running Python validators, use `PATH=/usr/local/bin:$PATH python3 ...` if the default `python3` is missing PyYAML.
@@ -129,7 +156,7 @@ prompt_path.write_text(
 )
 PY
 
-python3 - "${ROOT_DIR}" "${PROMPT_TMP}" <<'PY'
+python3 - "${ROOT_DIR}" "${PROMPT_TMP}" "${RESEARCH_PREFLIGHT_PATH}" <<'PY'
 from __future__ import annotations
 
 import os
@@ -140,20 +167,44 @@ import sys
 
 root_dir = sys.argv[1]
 prompt_path = sys.argv[2]
+research_preflight_path = sys.argv[3]
 timeout_seconds = int(os.environ.get("CODEX_AUTOPILOT_TIMEOUT_SECONDS", "900"))
 prompt = open(prompt_path, "r", encoding="utf-8").read()
 # In non-interactive `-a never` scheduled runs, MCP tools that would prompt
 # for approval are reported as "user cancelled".  Use the Codex MCP
-# `approve` mode here to pre-approve only the tools this paper workflow needs;
-# the workflow and risk gates still decide whether orders are allowed.
+# `approve` mode here to pre-approve only the tools this paper workflow needs.
+# The workflow and risk gates still decide whether orders are allowed.
+required_research_mcp = {"sec-edgar", "alpha-vantage", "fred", "firecrawl", "yahoo-finance"}
+
+
+def has_authoritative_research_preflight(path: str) -> bool:
+    try:
+        with open(path, "r", encoding="utf-8") as handle:
+            payload = json.load(handle)
+    except (OSError, json.JSONDecodeError):
+        return False
+    rows = payload.get("mcp_coverage_hint") or payload.get("providers") or []
+    if not isinstance(rows, list):
+        return False
+    servers = {
+        str(row.get("server"))
+        for row in rows
+        if isinstance(row, dict) and row.get("queried", True)
+    }
+    return required_research_mcp <= servers
+
+
+register_research_mode = os.environ.get("CODEX_AUTOPILOT_REGISTER_RESEARCH_MCP", "auto").strip().lower()
+if register_research_mode in {"1", "true", "yes", "always"}:
+    include_research_mcp = True
+elif register_research_mode in {"0", "false", "no", "never"}:
+    include_research_mcp = False
+else:
+    include_research_mcp = not has_authoritative_research_preflight(research_preflight_path)
+
 scheduled_mcp_config = [
     'sandbox_permissions=["network-full-access"]',
     f'mcp_servers.alpaca.command={json.dumps(os.path.join(root_dir, "scripts", "alpaca-mcp.sh"))}',
-    f'mcp_servers.sec-edgar.command={json.dumps(os.path.join(root_dir, "scripts", "mcp-sec-edgar.sh"))}',
-    f'mcp_servers.alpha-vantage.command={json.dumps(os.path.join(root_dir, "scripts", "mcp-alpha-vantage.sh"))}',
-    f'mcp_servers.fred.command={json.dumps(os.path.join(root_dir, "scripts", "mcp-fred.sh"))}',
-    f'mcp_servers.firecrawl.command={json.dumps(os.path.join(root_dir, "scripts", "mcp-firecrawl.sh"))}',
-    f'mcp_servers.yahoo-finance.command={json.dumps(os.path.join(root_dir, "scripts", "mcp-yahoo-finance.sh"))}',
     'mcp_servers.alpaca.tools.get_clock.approval_mode="approve"',
     'mcp_servers.alpaca.tools.get_account_info.approval_mode="approve"',
     'mcp_servers.alpaca.tools.get_orders.approval_mode="approve"',
@@ -171,6 +222,14 @@ scheduled_mcp_config = [
     'mcp_servers.alpaca.tools.get_order_by_id.approval_mode="approve"',
     'mcp_servers.alpaca.tools.get_order_by_client_id.approval_mode="approve"',
     'mcp_servers.alpaca.tools.cancel_order_by_id.approval_mode="approve"',
+    'mcp_servers.alpaca.tools.place_stock_order.approval_mode="approve"',
+]
+research_mcp_config = [
+    f'mcp_servers.sec-edgar.command={json.dumps(os.path.join(root_dir, "scripts", "mcp-sec-edgar.sh"))}',
+    f'mcp_servers.alpha-vantage.command={json.dumps(os.path.join(root_dir, "scripts", "mcp-alpha-vantage.sh"))}',
+    f'mcp_servers.fred.command={json.dumps(os.path.join(root_dir, "scripts", "mcp-fred.sh"))}',
+    f'mcp_servers.firecrawl.command={json.dumps(os.path.join(root_dir, "scripts", "mcp-firecrawl.sh"))}',
+    f'mcp_servers.yahoo-finance.command={json.dumps(os.path.join(root_dir, "scripts", "mcp-yahoo-finance.sh"))}',
     'mcp_servers.sec-edgar.tools.get_company_info.approval_mode="approve"',
     'mcp_servers.sec-edgar.tools.get_recent_filings.approval_mode="approve"',
     'mcp_servers.alpha-vantage.tools.TOOL_LIST.approval_mode="approve"',
@@ -185,8 +244,9 @@ scheduled_mcp_config = [
     'mcp_servers.yahoo-finance.tools.get_stock_info.approval_mode="approve"',
     'mcp_servers.yahoo-finance.tools.get_yahoo_finance_news.approval_mode="approve"',
     'mcp_servers.yahoo-finance.tools.get_recommendations.approval_mode="approve"',
-    'mcp_servers.alpaca.tools.place_stock_order.approval_mode="approve"',
 ]
+if include_research_mcp:
+    scheduled_mcp_config.extend(research_mcp_config)
 codex_command = [
     "codex",
     "--search",

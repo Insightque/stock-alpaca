@@ -12,9 +12,11 @@ from __future__ import annotations
 import argparse
 import asyncio
 import contextlib
+import copy
+import hashlib
 import json
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -23,6 +25,15 @@ ROOT_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_FRED_SERIES = ["DGS10", "DGS2", "FEDFUNDS", "CPIAUCSL", "UNRATE", "NFCI"]
 DEFAULT_MAX_SYMBOLS = 12
 DEFAULT_MCP_TIMEOUT_SECONDS = 75
+DEFAULT_CACHE_DIR = ROOT_DIR / ".cache" / "research-mcp-preflight"
+DEFAULT_CIRCUIT_BREAKER_SECONDS = 600
+PROVIDER_CACHE_TTL_SECONDS = {
+    "sec-edgar": 3600,
+    "alpha-vantage": 900,
+    "fred": 3600,
+    "firecrawl": 3600,
+    "yahoo-finance": 1800,
+}
 MCP_TIMEOUT_SECONDS = DEFAULT_MCP_TIMEOUT_SECONDS
 STDERR_CAPTURE_LIMIT = 4000
 STDIO_READ_LIMIT = 8 * 1024 * 1024
@@ -32,6 +43,18 @@ SYSTEMIC_GAP_CATEGORIES = {"timeout", "cancelled", "dns", "auth", "wrapper_error
 
 def now_utc() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
+
+
+def parse_utc(value: Any) -> datetime | None:
+    if not value:
+        return None
+    try:
+        parsed = datetime.fromisoformat(str(value).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if parsed.tzinfo is None:
+        return parsed.replace(tzinfo=timezone.utc)
+    return parsed.astimezone(timezone.utc)
 
 
 def read_env(root: Path = ROOT_DIR) -> dict[str, str]:
@@ -290,6 +313,32 @@ async def call_with_retries(
     }
 
 
+async def call_sequence_with_retries(
+    *,
+    command: Path,
+    env: dict[str, str],
+    calls: list[tuple[str, dict[str, Any]]],
+    retries: int,
+    protocol: str = "headers",
+) -> dict[str, Any]:
+    last_error: BaseException | None = None
+    for attempt in range(retries + 1):
+        try:
+            payloads = await call_stdio_tool_sequence(command=command, env=env, calls=calls, protocol=protocol)
+            return {"outcome": "pass", "payloads": payloads, "retry_count": attempt}
+        except Exception as exc:  # noqa: BLE001 - preflight should classify and continue.
+            last_error = exc
+            if attempt < retries:
+                await asyncio.sleep(1 + attempt)
+    assert last_error is not None
+    return {
+        "outcome": "failed",
+        "gap_category": classify_error(last_error),
+        "gap_reason": str(last_error)[:240],
+        "retry_count": retries,
+    }
+
+
 def parse_symbols(value: str) -> list[str]:
     seen: set[str] = set()
     symbols: list[str] = []
@@ -436,6 +485,158 @@ def skipped_after(row: dict[str, Any], tool_name: str) -> dict[str, Any]:
     }
 
 
+def provider_cache_key(server: str, symbols: list[str]) -> str:
+    payload = {"version": 2, "server": server, "symbols": sorted(symbols)}
+    body = json.dumps(payload, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(body.encode("utf-8")).hexdigest()
+
+
+def provider_cache_path(cache_dir: Path, server: str, cache_key: str) -> Path:
+    return cache_dir / "providers" / server / f"{cache_key}.json"
+
+
+def provider_cache_ttl(server: str, override_seconds: int | None) -> int:
+    if override_seconds is not None:
+        return max(0, override_seconds)
+    return PROVIDER_CACHE_TTL_SECONDS.get(server, 0)
+
+
+def load_cached_provider(cache_dir: Path, server: str, cache_key: str, *, ttl_seconds: int) -> dict[str, Any] | None:
+    if ttl_seconds <= 0:
+        return None
+    path = provider_cache_path(cache_dir, server, cache_key)
+    if not path.exists():
+        return None
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    row = payload.get("provider")
+    stored_at = parse_utc(payload.get("stored_at"))
+    if not isinstance(row, dict) or stored_at is None:
+        return None
+    if datetime.now(timezone.utc) - stored_at > timedelta(seconds=ttl_seconds):
+        return None
+    cached = copy.deepcopy(row)
+    cached["cache_hit"] = True
+    cached["cache_stored_at"] = stored_at.isoformat(timespec="seconds")
+    cached["cache_reused_at"] = now_utc()
+    cached["cache_ttl_seconds"] = ttl_seconds
+    return cached
+
+
+def save_cached_provider(cache_dir: Path, server: str, cache_key: str, row: dict[str, Any], *, ttl_seconds: int) -> None:
+    if ttl_seconds <= 0 or str(row.get("outcome", "")).lower() not in POSITIVE_OUTCOMES:
+        return
+    path = provider_cache_path(cache_dir, server, cache_key)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "stored_at": now_utc(),
+        "ttl_seconds": ttl_seconds,
+        "provider": row,
+    }
+    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def circuit_state_path(cache_dir: Path) -> Path:
+    return cache_dir / "circuit-breaker.json"
+
+
+def load_circuit_state(cache_dir: Path) -> dict[str, Any]:
+    path = circuit_state_path(cache_dir)
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return payload if isinstance(payload, dict) else {}
+
+
+def save_circuit_state(cache_dir: Path, state: dict[str, Any]) -> None:
+    path = circuit_state_path(cache_dir)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def circuit_open_row(server: str, state: dict[str, Any]) -> dict[str, Any] | None:
+    row = state.get(server)
+    if not isinstance(row, dict):
+        return None
+    opened_until = parse_utc(row.get("opened_until"))
+    if opened_until is None or opened_until <= datetime.now(timezone.utc):
+        return None
+    gap_category = str(row.get("gap_category") or "unknown")
+    gap_reason = str(row.get("gap_reason") or "provider circuit breaker is open")
+    return provider_row(
+        server=server,
+        queried=True,
+        outcome="failed",
+        checked_at=now_utc(),
+        gap_category=gap_category,
+        gap_reason=(
+            f"Circuit breaker open until {opened_until.isoformat(timespec='seconds')} after recent "
+            f"{gap_category} failure: {gap_reason}"
+        )[:240],
+        retry_count=0,
+        payload={"circuit_breaker_open": True, "opened_until": opened_until.isoformat(timespec="seconds")},
+    )
+
+
+def update_circuit_state(
+    cache_dir: Path,
+    state: dict[str, Any],
+    server: str,
+    row: dict[str, Any],
+    *,
+    circuit_seconds: int,
+) -> None:
+    outcome = str(row.get("outcome", "")).lower()
+    if outcome in POSITIVE_OUTCOMES:
+        if server in state:
+            state.pop(server, None)
+            save_circuit_state(cache_dir, state)
+        return
+    gap_category = str(row.get("gap_category") or "")
+    if circuit_seconds <= 0 or gap_category not in SYSTEMIC_GAP_CATEGORIES:
+        return
+    opened_until = datetime.now(timezone.utc) + timedelta(seconds=circuit_seconds)
+    state[server] = {
+        "opened_at": now_utc(),
+        "opened_until": opened_until.isoformat(timespec="seconds"),
+        "gap_category": gap_category,
+        "gap_reason": str(row.get("gap_reason") or "")[:240],
+    }
+    save_circuit_state(cache_dir, state)
+
+
+async def cached_or_capture_provider(
+    *,
+    server: str,
+    symbols: list[str],
+    cache_dir: Path,
+    cache_ttl_override: int | None,
+    no_cache: bool,
+    circuit_state: dict[str, Any],
+    circuit_seconds: int,
+    capture,
+) -> dict[str, Any]:
+    cache_key = provider_cache_key(server, symbols)
+    ttl_seconds = provider_cache_ttl(server, cache_ttl_override)
+    if not no_cache:
+        cached = load_cached_provider(cache_dir, server, cache_key, ttl_seconds=ttl_seconds)
+        if cached is not None:
+            return cached
+    open_row = circuit_open_row(server, circuit_state)
+    if open_row is not None:
+        return open_row
+    row = await capture()
+    if not no_cache:
+        save_cached_provider(cache_dir, server, cache_key, row, ttl_seconds=ttl_seconds)
+    update_circuit_state(cache_dir, circuit_state, server, row, circuit_seconds=circuit_seconds)
+    return row
+
+
 async def capture_fred(env: dict[str, str]) -> dict[str, Any]:
     checked_at = now_utc()
     if not env.get("FRED_API_KEY"):
@@ -503,10 +704,7 @@ async def capture_sec_edgar(env: dict[str, str], symbols: list[str], ciks: dict[
 
     command = ROOT_DIR / "scripts" / "mcp-sec-edgar.sh"
     per_symbol: dict[str, Any] = {}
-    pass_count = 0
-    max_retry = 0
-    first_gap_category = ""
-    first_gap_reason = ""
+    active: list[tuple[str, str]] = []
     for symbol in symbols:
         cik = ciks.get(symbol)
         if not cik:
@@ -516,61 +714,87 @@ async def capture_sec_edgar(env: dict[str, str], symbols: list[str], ciks: dict[
                 "gap_reason": "symbol missing from local SEC ticker-CIK cache; likely ETF/non-company lookup gap",
             }
             continue
-        company = await call_with_retries(
-            command=command,
-            env=env,
-            tool_name="get_company_info",
-            arguments={"identifier": cik},
-            retries=1,
-            protocol="jsonl",
+        active.append((symbol, cik))
+
+    if not active:
+        return provider_row(
+            server="sec-edgar",
+            queried=True,
+            outcome="gap",
+            checked_at=checked_at,
+            gap_category="empty_response",
+            gap_reason="No candidate symbol had a local SEC CIK mapping for lightweight filing checks.",
+            retry_count=0,
+            tool="get_company_info|get_recent_filings",
+            per_symbol=per_symbol,
         )
-        if company["outcome"] != "pass":
-            first_gap_category, first_gap_reason = first_gap_category or gap_from_failed_call(company)[0], (
-                first_gap_reason or gap_from_failed_call(company)[1]
-            )
+
+    calls: list[tuple[str, dict[str, Any]]] = []
+    for _, cik in active:
+        calls.append(("get_company_info", {"identifier": cik}))
+        calls.append(("get_recent_filings", {"identifier": cik, "days": 30, "limit": 5}))
+
+    result = await call_sequence_with_retries(
+        command=command,
+        env=env,
+        calls=calls,
+        retries=1,
+        protocol="jsonl",
+    )
+    if result["outcome"] != "pass":
+        gap_category, gap_reason = gap_from_failed_call(result)
+        failed_row = {
+            "outcome": "failed",
+            "gap_category": gap_category,
+            "gap_reason": gap_reason,
+            "retry_count": int(result.get("retry_count", 0)),
+        }
+        for symbol, cik in active:
             per_symbol[symbol] = {
                 "cik": cik,
                 "outcome": "failed",
-                "company_info": company,
-                "recent_filings": skipped_after(company, "get_recent_filings"),
+                "company_info": failed_row,
+                "recent_filings": skipped_after(failed_row, "get_recent_filings"),
             }
-            max_retry = max(max_retry, int(company.get("retry_count", 0)))
-            if company.get("gap_category") in SYSTEMIC_GAP_CATEGORIES:
-                break
-            continue
-        filings = await call_with_retries(
-            command=command,
-            env=env,
-            tool_name="get_recent_filings",
-            arguments={"identifier": cik, "days": 30, "limit": 5},
-            retries=1,
-            protocol="jsonl",
+        return provider_row(
+            server="sec-edgar",
+            queried=True,
+            outcome="failed",
+            checked_at=checked_at,
+            gap_category=gap_category,
+            gap_reason=gap_reason,
+            retry_count=int(result.get("retry_count", 0)),
+            tool="get_company_info|get_recent_filings",
+            per_symbol=per_symbol,
         )
-        max_retry = max(max_retry, int(company.get("retry_count", 0)), int(filings.get("retry_count", 0)))
-        symbol_outcome = "pass" if company["outcome"] == "pass" and filings["outcome"] == "pass" else "failed"
-        if filings["outcome"] != "pass":
-            first_gap_category, first_gap_reason = first_gap_category or gap_from_failed_call(filings)[0], (
-                first_gap_reason or gap_from_failed_call(filings)[1]
-            )
-        if symbol_outcome == "pass":
-            pass_count += 1
+
+    payloads = result.get("payloads") or []
+    for index, (symbol, cik) in enumerate(active):
+        company_payload = payloads[index * 2] if index * 2 < len(payloads) else {}
+        filings_payload = payloads[index * 2 + 1] if index * 2 + 1 < len(payloads) else {}
         per_symbol[symbol] = {
             "cik": cik,
-            "outcome": symbol_outcome,
-            "company_info": company,
-            "recent_filings": filings,
+            "outcome": "pass",
+            "company_info": {
+                "outcome": "pass",
+                "payload": company_payload,
+                "retry_count": int(result.get("retry_count", 0)),
+            },
+            "recent_filings": {
+                "outcome": "pass",
+                "payload": filings_payload,
+                "retry_count": int(result.get("retry_count", 0)),
+            },
         }
-        if symbol_outcome != "pass" and filings.get("gap_category") in SYSTEMIC_GAP_CATEGORIES:
-            break
 
     return provider_row(
         server="sec-edgar",
         queried=True,
-        outcome="pass" if pass_count else "failed",
+        outcome="pass",
         checked_at=checked_at,
-        gap_category="not_applicable" if pass_count else first_gap_category or "provider_error",
-        gap_reason="" if pass_count else first_gap_reason or "No candidate symbol returned both company info and recent filings.",
-        retry_count=max_retry,
+        gap_category="not_applicable",
+        gap_reason="",
+        retry_count=int(result.get("retry_count", 0)),
         tool="get_company_info|get_recent_filings",
         per_symbol=per_symbol,
     )
@@ -591,63 +815,77 @@ async def capture_yahoo_finance(env: dict[str, str], symbols: list[str]) -> dict
 
     command = ROOT_DIR / "scripts" / "mcp-yahoo-finance.sh"
     per_symbol: dict[str, Any] = {}
-    pass_count = 0
-    max_retry = 0
-    first_gap_category = ""
-    first_gap_reason = ""
+    calls: list[tuple[str, dict[str, Any]]] = []
     for symbol in symbols:
-        recommendations = await call_with_retries(
-            command=command,
-            env=env,
-            tool_name="get_recommendations",
-            arguments={"ticker": symbol, "recommendation_type": "recommendations", "months_back": 12},
-            retries=1,
-            protocol="jsonl",
-        )
-        if recommendations["outcome"] != "pass":
-            first_gap_category, first_gap_reason = first_gap_category or gap_from_failed_call(recommendations)[0], (
-                first_gap_reason or gap_from_failed_call(recommendations)[1]
+        calls.append(
+            (
+                "get_recommendations",
+                {"ticker": symbol, "recommendation_type": "recommendations", "months_back": 12},
             )
-            if recommendations.get("gap_category") in SYSTEMIC_GAP_CATEGORIES:
-                per_symbol[symbol] = {
-                    "outcome": "failed",
-                    "recommendations": recommendations,
-                    "news": skipped_after(recommendations, "get_yahoo_finance_news"),
-                }
-                max_retry = max(max_retry, int(recommendations.get("retry_count", 0)))
-                break
-        news = await call_with_retries(
-            command=command,
-            env=env,
-            tool_name="get_yahoo_finance_news",
-            arguments={"ticker": symbol},
-            retries=1,
-            protocol="jsonl",
         )
-        max_retry = max(max_retry, int(recommendations.get("retry_count", 0)), int(news.get("retry_count", 0)))
-        symbol_pass = recommendations["outcome"] == "pass" or news["outcome"] == "pass"
-        if news["outcome"] != "pass":
-            first_gap_category, first_gap_reason = first_gap_category or gap_from_failed_call(news)[0], (
-                first_gap_reason or gap_from_failed_call(news)[1]
-            )
-        if symbol_pass:
-            pass_count += 1
-        per_symbol[symbol] = {
-            "outcome": "pass" if symbol_pass else "failed",
-            "recommendations": recommendations,
-            "news": news,
+        calls.append(("get_yahoo_finance_news", {"ticker": symbol}))
+
+    result = await call_sequence_with_retries(
+        command=command,
+        env=env,
+        calls=calls,
+        retries=1,
+        protocol="jsonl",
+    )
+    if result["outcome"] != "pass":
+        gap_category, gap_reason = gap_from_failed_call(result)
+        failed_row = {
+            "outcome": "failed",
+            "gap_category": gap_category,
+            "gap_reason": gap_reason,
+            "retry_count": int(result.get("retry_count", 0)),
         }
-        if not symbol_pass and news.get("gap_category") in SYSTEMIC_GAP_CATEGORIES:
-            break
+        for symbol in symbols:
+            per_symbol[symbol] = {
+                "outcome": "failed",
+                "recommendations": failed_row,
+                "news": skipped_after(failed_row, "get_yahoo_finance_news"),
+            }
+        return provider_row(
+            server="yahoo-finance",
+            queried=True,
+            outcome="failed",
+            checked_at=checked_at,
+            gap_category=gap_category,
+            gap_reason=gap_reason,
+            retry_count=int(result.get("retry_count", 0)),
+            tool="get_recommendations|get_yahoo_finance_news",
+            per_symbol=per_symbol,
+        )
+
+    payloads = result.get("payloads") or []
+    pass_count = 0
+    for index, symbol in enumerate(symbols):
+        recommendations_payload = payloads[index * 2] if index * 2 < len(payloads) else {}
+        news_payload = payloads[index * 2 + 1] if index * 2 + 1 < len(payloads) else {}
+        pass_count += 1
+        per_symbol[symbol] = {
+            "outcome": "pass",
+            "recommendations": {
+                "outcome": "pass",
+                "payload": recommendations_payload,
+                "retry_count": int(result.get("retry_count", 0)),
+            },
+            "news": {
+                "outcome": "pass",
+                "payload": news_payload,
+                "retry_count": int(result.get("retry_count", 0)),
+            },
+        }
 
     return provider_row(
         server="yahoo-finance",
         queried=True,
-        outcome="pass" if pass_count else "failed",
+        outcome="pass" if pass_count else "gap",
         checked_at=checked_at,
-        gap_category="not_applicable" if pass_count else first_gap_category or "provider_error",
-        gap_reason="" if pass_count else first_gap_reason or "No Yahoo Finance candidate call returned usable data.",
-        retry_count=max_retry,
+        gap_category="not_applicable" if pass_count else "empty_response",
+        gap_reason="" if pass_count else "No Yahoo Finance candidate call returned usable data.",
+        retry_count=int(result.get("retry_count", 0)),
         tool="get_recommendations|get_yahoo_finance_news",
         per_symbol=per_symbol,
     )
@@ -821,6 +1059,26 @@ async def main_async() -> int:
         default=int(os.environ.get("CODEX_AUTOPILOT_RESEARCH_MCP_TIMEOUT_SECONDS", DEFAULT_MCP_TIMEOUT_SECONDS)),
         help="Per MCP stdio call sequence timeout in seconds.",
     )
+    parser.add_argument(
+        "--cache-dir",
+        type=Path,
+        default=Path(os.environ.get("CODEX_AUTOPILOT_RESEARCH_CACHE_DIR", str(DEFAULT_CACHE_DIR))),
+        help="Directory for short-lived provider preflight cache and circuit-breaker state.",
+    )
+    parser.add_argument(
+        "--cache-ttl-seconds",
+        type=int,
+        help="Override per-provider positive-result cache TTL. Use 0 to disable positive-result cache writes.",
+    )
+    parser.add_argument("--no-cache", action="store_true", help="Disable provider preflight cache reads/writes.")
+    parser.add_argument(
+        "--circuit-breaker-seconds",
+        type=int,
+        default=int(
+            os.environ.get("CODEX_AUTOPILOT_RESEARCH_CIRCUIT_SECONDS", DEFAULT_CIRCUIT_BREAKER_SECONDS)
+        ),
+        help="Seconds to skip a provider after systemic timeout/cancelled/dns/auth/wrapper failures.",
+    )
     parser.add_argument("--sec-cik-map", type=Path, default=ROOT_DIR / "harness" / "sec-ticker-cik-map.json")
     args = parser.parse_args()
 
@@ -832,13 +1090,60 @@ async def main_async() -> int:
     preflight_symbols = extract_symbols_from_alpaca_preflight(args.alpaca_preflight_json, max_symbols=max_symbols)
     symbols = (explicit_symbols or preflight_symbols)[:max_symbols]
     ciks = load_cik_map(args.sec_cik_map)
+    cache_dir = args.cache_dir
+    circuit_state = load_circuit_state(cache_dir)
 
     sec_edgar, alpha_vantage, fred, firecrawl, yahoo_finance = await asyncio.gather(
-        capture_sec_edgar(env, symbols, ciks),
-        capture_alpha_vantage(env, symbols),
-        capture_fred(env),
-        capture_firecrawl(env, symbols, ciks),
-        capture_yahoo_finance(env, symbols),
+        cached_or_capture_provider(
+            server="sec-edgar",
+            symbols=symbols,
+            cache_dir=cache_dir,
+            cache_ttl_override=args.cache_ttl_seconds,
+            no_cache=args.no_cache,
+            circuit_state=circuit_state,
+            circuit_seconds=max(0, int(args.circuit_breaker_seconds)),
+            capture=lambda: capture_sec_edgar(env, symbols, ciks),
+        ),
+        cached_or_capture_provider(
+            server="alpha-vantage",
+            symbols=symbols,
+            cache_dir=cache_dir,
+            cache_ttl_override=args.cache_ttl_seconds,
+            no_cache=args.no_cache,
+            circuit_state=circuit_state,
+            circuit_seconds=max(0, int(args.circuit_breaker_seconds)),
+            capture=lambda: capture_alpha_vantage(env, symbols),
+        ),
+        cached_or_capture_provider(
+            server="fred",
+            symbols=[],
+            cache_dir=cache_dir,
+            cache_ttl_override=args.cache_ttl_seconds,
+            no_cache=args.no_cache,
+            circuit_state=circuit_state,
+            circuit_seconds=max(0, int(args.circuit_breaker_seconds)),
+            capture=lambda: capture_fred(env),
+        ),
+        cached_or_capture_provider(
+            server="firecrawl",
+            symbols=symbols,
+            cache_dir=cache_dir,
+            cache_ttl_override=args.cache_ttl_seconds,
+            no_cache=args.no_cache,
+            circuit_state=circuit_state,
+            circuit_seconds=max(0, int(args.circuit_breaker_seconds)),
+            capture=lambda: capture_firecrawl(env, symbols, ciks),
+        ),
+        cached_or_capture_provider(
+            server="yahoo-finance",
+            symbols=symbols,
+            cache_dir=cache_dir,
+            cache_ttl_override=args.cache_ttl_seconds,
+            no_cache=args.no_cache,
+            circuit_state=circuit_state,
+            circuit_seconds=max(0, int(args.circuit_breaker_seconds)),
+            capture=lambda: capture_yahoo_finance(env, symbols),
+        ),
     )
     providers = [sec_edgar, alpha_vantage, fred, firecrawl, yahoo_finance]
     try:
@@ -855,6 +1160,9 @@ async def main_async() -> int:
         "source": "scheduler local MCP stdio preflight",
         "symbols": symbols,
         "symbol_source": "explicit" if explicit_symbols else "alpaca_core_preflight" if preflight_symbols else "none",
+        "cache_dir": str(cache_dir),
+        "cache_enabled": not args.no_cache,
+        "circuit_breaker_seconds": max(0, int(args.circuit_breaker_seconds)),
         "providers": providers,
         "mcp_coverage_hint": build_mcp_coverage_hint(providers, source_ref),
     }

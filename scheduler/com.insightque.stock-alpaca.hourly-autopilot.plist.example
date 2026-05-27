@@ -13,6 +13,28 @@
   <key>WorkingDirectory</key>
   <string>/Users/insightque/stock-alpaca</string>
 
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.11/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <key>HOME</key>
+    <string>/Users/insightque</string>
+    <key>LANG</key>
+    <string>en_US.UTF-8</string>
+    <key>LC_ALL</key>
+    <string>en_US.UTF-8</string>
+    <key>NO_PROXY</key>
+    <string>127.0.0.1,localhost</string>
+    <key>CODEX_SCHEDULED_CODEX_HOME</key>
+    <string>/Users/insightque/.codex</string>
+    <key>CODEX_AUTOPILOT_RESEARCH_CACHE_DIR</key>
+    <string>/Users/insightque/stock-alpaca/.cache/research-mcp-preflight</string>
+    <key>CODEX_AUTOPILOT_RESEARCH_CIRCUIT_SECONDS</key>
+    <string>600</string>
+    <key>CODEX_AUTOPILOT_REGISTER_RESEARCH_MCP</key>
+    <string>auto</string>
+  </dict>
+
   <key>StartCalendarInterval</key>
   <array>
     <dict>

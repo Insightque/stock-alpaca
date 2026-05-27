@@ -5,6 +5,7 @@ import json
 import sys
 import tempfile
 import unittest
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from unittest.mock import patch
 
@@ -91,17 +92,62 @@ class ResearchMcpPreflightTests(unittest.TestCase):
         self.assertTrue(rows[1]["queried"])
         self.assertEqual("auth", rows[1]["gap_category"])
 
+    def test_provider_cache_round_trip_marks_cache_hit(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            cache_dir = Path(directory)
+            cache_key = research_preflight.provider_cache_key("fred", [])
+            row = research_preflight.provider_row(
+                server="fred",
+                queried=True,
+                outcome="pass",
+                checked_at="2026-05-27T01:00:00+00:00",
+                gap_category="not_applicable",
+                gap_reason="",
+                retry_count=0,
+                payload={"series": ["DGS10"]},
+            )
+
+            research_preflight.save_cached_provider(cache_dir, "fred", cache_key, row, ttl_seconds=600)
+            cached = research_preflight.load_cached_provider(cache_dir, "fred", cache_key, ttl_seconds=600)
+
+        self.assertIsNotNone(cached)
+        assert cached is not None
+        self.assertEqual("fred", cached["server"])
+        self.assertEqual("pass", cached["outcome"])
+        self.assertTrue(cached["cache_hit"])
+        self.assertEqual(600, cached["cache_ttl_seconds"])
+
+    def test_provider_cache_ignores_expired_rows(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            cache_dir = Path(directory)
+            cache_key = research_preflight.provider_cache_key("fred", [])
+            path = research_preflight.provider_cache_path(cache_dir, "fred", cache_key)
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(
+                json.dumps(
+                    {
+                        "stored_at": (datetime.now(timezone.utc) - timedelta(seconds=120)).isoformat(),
+                        "provider": {"server": "fred", "outcome": "pass"},
+                    }
+                ),
+                encoding="utf-8",
+            )
+
+            cached = research_preflight.load_cached_provider(cache_dir, "fred", cache_key, ttl_seconds=60)
+
+        self.assertIsNone(cached)
+
 
 class ResearchMcpPreflightAsyncTests(unittest.IsolatedAsyncioTestCase):
     async def test_sec_edgar_uses_local_cik_cache_and_lightweight_tools(self) -> None:
         calls: list[tuple[str, dict]] = []
 
-        async def fake_call_with_retries(**kwargs):
-            calls.append((kwargs["tool_name"], kwargs["arguments"]))
+        async def fake_call_sequence_with_retries(**kwargs):
+            calls.extend(kwargs["calls"])
             self.assertEqual("jsonl", kwargs["protocol"])
-            return {"outcome": "pass", "payload": {"ok": True}, "retry_count": 0}
+            return {"outcome": "pass", "payloads": [{"company": "ok"}, {"filings": []}], "retry_count": 0}
 
-        with patch.object(research_preflight, "call_with_retries", new=fake_call_with_retries):
+        with patch.object(research_preflight, "call_sequence_with_retries", new=fake_call_sequence_with_retries):
             row = await research_preflight.capture_sec_edgar(
                 {"SEC_EDGAR_USER_AGENT": "present"},
                 ["AMZN", "SMH"],
@@ -119,10 +165,10 @@ class ResearchMcpPreflightAsyncTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual("empty_response", row["per_symbol"]["SMH"]["gap_category"])
 
     async def test_sec_edgar_fails_fast_on_systemic_timeout(self) -> None:
-        calls: list[str] = []
+        calls: list[tuple[str, dict]] = []
 
-        async def fake_call_with_retries(**kwargs):
-            calls.append(kwargs["tool_name"])
+        async def fake_call_sequence_with_retries(**kwargs):
+            calls.extend(kwargs["calls"])
             self.assertEqual("jsonl", kwargs["protocol"])
             return {
                 "outcome": "failed",
@@ -131,7 +177,7 @@ class ResearchMcpPreflightAsyncTests(unittest.IsolatedAsyncioTestCase):
                 "retry_count": 1,
             }
 
-        with patch.object(research_preflight, "call_with_retries", new=fake_call_with_retries):
+        with patch.object(research_preflight, "call_sequence_with_retries", new=fake_call_sequence_with_retries):
             row = await research_preflight.capture_sec_edgar(
                 {"SEC_EDGAR_USER_AGENT": "present"},
                 ["AMZN", "INTC"],
@@ -140,15 +186,23 @@ class ResearchMcpPreflightAsyncTests(unittest.IsolatedAsyncioTestCase):
 
         self.assertEqual("failed", row["outcome"])
         self.assertEqual("timeout", row["gap_category"])
-        self.assertEqual(["get_company_info"], calls)
-        self.assertNotIn("INTC", row["per_symbol"])
+        self.assertEqual(
+            [
+                ("get_company_info", {"identifier": "0001018724"}),
+                ("get_recent_filings", {"identifier": "0001018724", "days": 30, "limit": 5}),
+                ("get_company_info", {"identifier": "0000050863"}),
+                ("get_recent_filings", {"identifier": "0000050863", "days": 30, "limit": 5}),
+            ],
+            calls,
+        )
+        self.assertIn("INTC", row["per_symbol"])
         self.assertEqual("timeout", row["per_symbol"]["AMZN"]["recent_filings"]["gap_category"])
 
     async def test_yahoo_finance_fails_fast_on_systemic_timeout(self) -> None:
-        calls: list[str] = []
+        calls: list[tuple[str, dict]] = []
 
-        async def fake_call_with_retries(**kwargs):
-            calls.append(kwargs["tool_name"])
+        async def fake_call_sequence_with_retries(**kwargs):
+            calls.extend(kwargs["calls"])
             self.assertEqual("jsonl", kwargs["protocol"])
             return {
                 "outcome": "failed",
@@ -157,13 +211,27 @@ class ResearchMcpPreflightAsyncTests(unittest.IsolatedAsyncioTestCase):
                 "retry_count": 1,
             }
 
-        with patch.object(research_preflight, "call_with_retries", new=fake_call_with_retries):
+        with patch.object(research_preflight, "call_sequence_with_retries", new=fake_call_sequence_with_retries):
             row = await research_preflight.capture_yahoo_finance({"ALPHA_VANTAGE_API_KEY": "irrelevant"}, ["AMZN", "INTC"])
 
         self.assertEqual("failed", row["outcome"])
         self.assertEqual("timeout", row["gap_category"])
-        self.assertEqual(["get_recommendations"], calls)
-        self.assertNotIn("INTC", row["per_symbol"])
+        self.assertEqual(
+            [
+                (
+                    "get_recommendations",
+                    {"ticker": "AMZN", "recommendation_type": "recommendations", "months_back": 12},
+                ),
+                ("get_yahoo_finance_news", {"ticker": "AMZN"}),
+                (
+                    "get_recommendations",
+                    {"ticker": "INTC", "recommendation_type": "recommendations", "months_back": 12},
+                ),
+                ("get_yahoo_finance_news", {"ticker": "INTC"}),
+            ],
+            calls,
+        )
+        self.assertIn("INTC", row["per_symbol"])
         self.assertEqual("timeout", row["per_symbol"]["AMZN"]["news"]["gap_category"])
 
     async def test_alpha_vantage_sequence_counts_candidate_news(self) -> None:
@@ -207,6 +275,65 @@ class ResearchMcpPreflightAsyncTests(unittest.IsolatedAsyncioTestCase):
 
         self.assertEqual("gap", row["outcome"])
         self.assertEqual("empty_response", row["gap_category"])
+
+    async def test_cached_or_capture_provider_uses_cache_before_capture(self) -> None:
+        async def capture_should_not_run():
+            raise AssertionError("cache hit should avoid provider capture")
+
+        with tempfile.TemporaryDirectory() as directory:
+            cache_dir = Path(directory)
+            cache_key = research_preflight.provider_cache_key("fred", [])
+            row = research_preflight.provider_row(
+                server="fred",
+                queried=True,
+                outcome="pass",
+                checked_at="2026-05-27T01:00:00+00:00",
+                gap_category="not_applicable",
+                gap_reason="",
+                retry_count=0,
+            )
+            research_preflight.save_cached_provider(cache_dir, "fred", cache_key, row, ttl_seconds=600)
+
+            cached = await research_preflight.cached_or_capture_provider(
+                server="fred",
+                symbols=[],
+                cache_dir=cache_dir,
+                cache_ttl_override=None,
+                no_cache=False,
+                circuit_state={},
+                circuit_seconds=600,
+                capture=capture_should_not_run,
+            )
+
+        self.assertTrue(cached["cache_hit"])
+        self.assertEqual("pass", cached["outcome"])
+
+    async def test_cached_or_capture_provider_returns_circuit_row(self) -> None:
+        async def capture_should_not_run():
+            raise AssertionError("open circuit should avoid provider capture")
+
+        state = {
+            "sec-edgar": {
+                "opened_until": (datetime.now(timezone.utc) + timedelta(seconds=60)).isoformat(),
+                "gap_category": "timeout",
+                "gap_reason": "recent timeout",
+            }
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            row = await research_preflight.cached_or_capture_provider(
+                server="sec-edgar",
+                symbols=["AMZN"],
+                cache_dir=Path(directory),
+                cache_ttl_override=0,
+                no_cache=False,
+                circuit_state=state,
+                circuit_seconds=600,
+                capture=capture_should_not_run,
+            )
+
+        self.assertEqual("failed", row["outcome"])
+        self.assertEqual("timeout", row["gap_category"])
+        self.assertTrue(row["payload"]["circuit_breaker_open"])
 
 
 if __name__ == "__main__":

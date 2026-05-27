@@ -103,9 +103,20 @@ class McpRuntimeWrapperTests(unittest.TestCase):
                 "--alpaca-preflight-json",
                 "CODEX_AUTOPILOT_RESEARCH_SYMBOL_LIMIT",
                 "CODEX_AUTOPILOT_RESEARCH_MCP_TIMEOUT_SECONDS",
+                "CODEX_AUTOPILOT_RESEARCH_CACHE_DIR",
+                "CODEX_AUTOPILOT_RESEARCH_CACHE_TTL_SECONDS",
+                "CODEX_AUTOPILOT_RESEARCH_CIRCUIT_SECONDS",
+                "CODEX_AUTOPILOT_REGISTER_RESEARCH_MCP",
+                "cache_hit",
+                "circuit_breaker_open",
+                "has_authoritative_research_preflight",
                 "authoritative scheduled evidence",
                 "mcp_coverage_hint",
                 "Do not run ad hoc local network helper scripts",
+                "SSL_CERT_FILE",
+                "REQUESTS_CA_BUNDLE",
+                "LANG",
+                "LC_ALL",
                 "pre-submit gate summary",
                 "client_order_id",
                 "build-agent-dashboard.py",
@@ -173,6 +184,14 @@ class McpRuntimeWrapperTests(unittest.TestCase):
             for minute in [11, 31, 51]:
                 self.assertIn((hour, minute), pairs)
         self.assertNotIn((6, 11), pairs)
+        env = plist["EnvironmentVariables"]
+        self.assertEqual("/Users/insightque", env["HOME"])
+        self.assertEqual("en_US.UTF-8", env["LANG"])
+        self.assertEqual("en_US.UTF-8", env["LC_ALL"])
+        self.assertIn("/usr/local/bin", env["PATH"])
+        self.assertEqual("127.0.0.1,localhost", env["NO_PROXY"])
+        self.assertEqual("600", env["CODEX_AUTOPILOT_RESEARCH_CIRCUIT_SECONDS"])
+        self.assertEqual("auto", env["CODEX_AUTOPILOT_REGISTER_RESEARCH_MCP"])
 
 
 if __name__ == "__main__":

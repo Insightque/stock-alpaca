@@ -1324,3 +1324,25 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 실제 재검증: `/private/tmp/research-mcp-preflight-alpha-buffer-check.json` 기준 `AMZN` 1종목 preflight에서 SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance 5개 모두 pass.
 - 검증: `python3 -m py_compile scripts/fetch-research-mcp-preflight.py` PASS, `python3 -m unittest tests.test_fetch_research_mcp_preflight tests.test_mcp_runtime_wrappers` 16개 PASS, `python3 -m unittest discover -s tests` 79개 PASS.
 - 이번 maintenance에서는 Alpaca 주문 제출/교체/취소/청산 도구를 호출하지 않았고, 실제 주문/포지션 변경도 없었다.
+
+## [2026-05-27 11:22 Asia/Seoul] automation-test | MCP 호출 경로 재점검
+
+- 사용자 지적에 따라 "MCP 호출 때문에 남은 이슈가 없는지"를 다시 점검했다.
+- 주문 상태를 바꿀 수 있는 stale cleanup/order submit/cancel 경로는 호출하지 않았고, read-only preflight만 실행했다.
+- Alpaca core read-only preflight `/private/tmp/alpaca-core-mcp-check.json`: `get_clock`, `get_account_info`, `get_all_positions`, `get_orders(status=open)`, `get_account_activities(FILL)`, `get_watchlists`, 62개 symbol `get_asset`, `get_stock_latest_quote`, `get_stock_snapshot`, `get_stock_latest_trade` 모두 pass. Hard gate는 장외라 `market_closed`로만 failed.
+- Research MCP preflight `/private/tmp/research-mcp-check.json`: `AMZN`, `INTC` 기준 SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance 5개 모두 pass, retry 0. `mcp_coverage_hint`도 5개 모두 `queried=true`, `used_in_score=true`, `outcome=pass`로 생성됐다.
+- `scripts/check-mcp-coverage.py --strict` 임시 manifest는 Alpaca row가 장외 `market_closed`로 failed라 strict fail이 정상이다. MCP read-only 호출 자체의 failure는 확인되지 않았다.
+- 검증: `python3 -m unittest discover -s tests` 79개 PASS.
+- 이번 점검에서는 Alpaca 주문 제출/교체/취소/청산 도구를 호출하지 않았고, 실제 주문/포지션 변경도 없었다.
+
+## [2026-05-27 11:55 Asia/Seoul] automation-maintenance | research MCP timeout 구조 개선
+
+- 사용자 분석을 재점검했다. 한 사이클에서 preflight와 nested Codex가 research MCP를 각각 cold start할 수 있고, SEC/Yahoo가 심볼별로 MCP 프로세스를 반복 기동하던 구조, 사이클 간 cache 부재, provider circuit breaker 부재, launchd 환경 의존성은 실제 timeout 재발 위험으로 확인했다. Provider 5개 자체는 `asyncio.gather`로 병렬이었지만 provider 내부 호출이 병목이었다.
+- `scripts/fetch-research-mcp-preflight.py`에서 SEC EDGAR와 Yahoo Finance를 provider당 단일 MCP stdio session으로 batch 호출하게 수정했다. 이제 12개 심볼이어도 SEC/Yahoo timeout 상한이 심볼 수만큼 곱해지지 않는다.
+- Research provider positive row cache를 추가했다. 기본 TTL은 SEC/FRED/Firecrawl 60분, Yahoo 30분, Alpha Vantage 15분이며 `CODEX_AUTOPILOT_RESEARCH_CACHE_TTL_SECONDS`로 override 가능하다.
+- Provider circuit breaker를 추가했다. `timeout`, `cancelled`, `dns`, `auth`, `wrapper_error` 같은 systemic failure가 나면 기본 600초 동안 해당 provider를 재시도하지 않고 `circuit_breaker_open` gap row로 기록한다.
+- `scripts/run-hourly-autopilot-codex.sh`는 authoritative research preflight가 5개 provider row를 모두 포함하면 nested Codex에 research MCP를 의도적으로 등록하지 않아 두 번째 research MCP cold start를 피한다. 필요하면 `CODEX_AUTOPILOT_REGISTER_RESEARCH_MCP=always|never|auto`로 제어할 수 있다.
+- Launchd 기본 환경 의존을 줄이기 위해 wrapper와 hourly plist example에 `HOME`, `LANG`, `LC_ALL`, `NO_PROXY`, scheduled Codex home, research cache/circuit env를 명시했고, wrapper는 `SSL_CERT_FILE`/`REQUESTS_CA_BUNDLE`을 certifi 경로로 보강한다.
+- 실제 MCP 검증: `/private/tmp/research-cache-check-a.json` 첫 실행에서 `AMZN`, `INTC` 기준 SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance 5개 모두 pass, retry 0. `/private/tmp/research-cache-check-b.json` 두 번째 실행에서 5개 provider 모두 `cache_hit=true`.
+- 검증: `python3 -m py_compile scripts/fetch-research-mcp-preflight.py` PASS, `bash -n scripts/run-hourly-autopilot-codex.sh` PASS, `python3 -m unittest tests.test_fetch_research_mcp_preflight tests.test_mcp_runtime_wrappers` 20개 PASS, `python3 -m unittest discover -s tests` 83개 PASS.
+- 이번 maintenance에서는 Alpaca 주문 제출/교체/취소/청산 도구를 호출하지 않았고, 실제 주문/포지션 변경도 없었다.
