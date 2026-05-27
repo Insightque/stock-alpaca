@@ -309,6 +309,7 @@
           "type": "object",
           "additionalProperties": false,
           "required": [
+            "allocation_mode",
             "default_qty",
             "max_new_buy_orders_per_run",
             "max_validation_notional_pct_per_order",
@@ -317,6 +318,9 @@
             "allow_existing_position_add_only_if_position_cap_passes"
           ],
           "properties": {
+            "allocation_mode": {
+              "type": "string"
+            },
             "default_qty": {
               "type": "integer",
               "minimum": 1
@@ -358,6 +362,72 @@
               "type": "number",
               "minimum": 0,
               "maximum": 1
+            },
+            "target_exposure_path": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "current_to_accelerate_until_ratio",
+                "selective_allocation_until_ratio",
+                "max_policy_target_ratio",
+                "max_new_exposure_pct_per_run_normal",
+                "max_new_exposure_pct_per_run_high_conviction",
+                "prefer_rebalance_over_new_buy_above_ratio"
+              ],
+              "properties": {
+                "current_to_accelerate_until_ratio": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "selective_allocation_until_ratio": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "max_policy_target_ratio": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                },
+                "max_new_exposure_pct_per_run_normal": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "max_new_exposure_pct_per_run_high_conviction": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "prefer_rebalance_over_new_buy_above_ratio": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 1
+                }
+              }
+            },
+            "open_order_policy": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "block_same_symbol_side_new_buy",
+                "block_same_correlated_cluster_new_buy_when_open_order_exists",
+                "allow_different_cluster_new_buy_when_open_orders_are_fresh",
+                "require_lifecycle_gate_pass"
+              ],
+              "properties": {
+                "block_same_symbol_side_new_buy": {
+                  "type": "boolean"
+                },
+                "block_same_correlated_cluster_new_buy_when_open_order_exists": {
+                  "type": "boolean"
+                },
+                "allow_different_cluster_new_buy_when_open_orders_are_fresh": {
+                  "type": "boolean"
+                },
+                "require_lifecycle_gate_pass": {
+                  "type": "boolean"
+                }
+              }
             },
             "confidence_tiers": {
               "type": "array",

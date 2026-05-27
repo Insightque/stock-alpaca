@@ -18,8 +18,11 @@ Run a 20-minute current-market recommendation loop. If and only if every safety,
   - A failed non-core research provider no longer blocks paper action by itself when core and minimum research confirmations pass.
 - Paper validation execution is intentionally less passive than production trading, but it must not bypass hard gates:
   - During regular market hours, prefer active paper validation orders when all hard gates pass.
-  - Default validation size is 1 share, with at most 3 new buy orders per run, 2% of portfolio value per validation order, and 6% of portfolio value per day.
+  - Default exploratory validation size is 1 share, but strategic allocation uses confidence/notional sizing: validation-floor candidates remain 1 share, standard candidates may scale up to 1% of portfolio value, and high-conviction candidates may scale up to 2% of portfolio value, subject to whole-share rounding and risk caps.
+  - Use at most 3 new buy orders per run, 2% of portfolio value per validation order, and 10% of portfolio value per day.
+  - Treat the 80% invested ratio as a staged policy target, not a one-shot order target: below 70% invested, allow normal acceleration; from 70% to 75%, require stronger candidate quality and diversification benefit; above 75%, prefer trim/rebalance and only add high-conviction candidates.
   - Use additional buy slots only for different correlated clusters, or for a clearly higher-confidence candidate that still passes ticker, theme, factor, speculative, cash, turnover, duplicate-order, and spread gates.
+  - Fresh open orders block new buys for the same symbol/side and normally for the same correlated cluster, but they do not automatically block different-cluster candidates when the open-order lifecycle gate passes.
   - Medium source confidence is allowed only when confidence score is at least 0.50, expected excess return is positive, no thesis-break is present, and tiered MCP validation passes.
   - If no order is submitted, record the first blocking gate, the next relaxation candidate, and the top recheck candidates. Do not submit a forced order.
 
@@ -107,6 +110,9 @@ For the 2026-05-27 US regular session, apply this user-requested overlay after a
    - Include source refs, quote timestamp, asset check timestamp, liquidity/spread, confidence score, strategy id/version, policy status, expected excess return, expected adverse move, entry style, sizing basis, and review horizons.
    - If all hard gates pass during regular market hours, prefer validation buys for the highest-ranked actionable candidates that pass position/theme/factor/speculative caps.
    - Use up to `paper_validation_execution.validation_order_sizing.max_new_buy_orders_per_run` buy slots. The second and third slots should normally be different correlated clusters and must satisfy the cash-ratio floors in `harness/recommendation-policy.yaml`.
+   - Size validation buys from `paper_validation_execution.validation_order_sizing.confidence_tiers` rather than defaulting every candidate to 1 share. Use the largest whole-share quantity that fits the candidate tier's `max_notional_pct` and `max_qty`, then run the normal risk validator.
+   - Apply `target_exposure_path`: below the acceleration threshold, a strong diversified run may use up to the normal per-run exposure budget; high-conviction runs may use the high-conviction budget. Between the selective threshold and the max policy target, submit only candidates that improve portfolio quality or diversify risk. Above the rebalance threshold, evaluate trim/rebalance before new buys.
+   - Apply `open_order_policy`: same symbol/side open orders block duplicates; same correlated-cluster open orders normally block additional buys in that cluster; fresh open orders in other clusters do not by themselves block a new candidate if the lifecycle and risk gates pass.
    - If the highest-ranked candidate is already held, add only when the ticker cap and cluster caps still pass.
    - Buy orders require core MCP pass, at least 3 usable/pass research MCPs, universe pass, fresh quote, spread, and risk pass.
    - Sell/trim orders require core MCP pass, fresh quote, spread, open-order check, and risk pass. Full research MCP pass is not required for risk trim.

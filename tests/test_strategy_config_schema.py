@@ -42,9 +42,14 @@ class StrategyConfigSchemaTests(unittest.TestCase):
         self.assertEqual("exit_before_research_preflight_or_codex", cadence["off_market_behavior"])
 
         sizing = policy["paper_validation_execution"]["validation_order_sizing"]
+        self.assertEqual("staged_confidence_notional", sizing["allocation_mode"])
         self.assertEqual(3, sizing["max_new_buy_orders_per_run"])
-        self.assertEqual(0.06, sizing["max_validation_notional_pct_per_day"])
+        self.assertEqual(0.10, sizing["max_validation_notional_pct_per_day"])
         self.assertTrue(sizing["allow_multiple_candidates_per_run"])
+        self.assertEqual(0.80, sizing["target_exposure_path"]["max_policy_target_ratio"])
+        self.assertEqual(0.75, sizing["target_exposure_path"]["prefer_rebalance_over_new_buy_above_ratio"])
+        self.assertTrue(sizing["open_order_policy"]["allow_different_cluster_new_buy_when_open_orders_are_fresh"])
+        self.assertEqual(6, sizing["confidence_tiers"][-1]["max_qty"])
 
 
 if __name__ == "__main__":

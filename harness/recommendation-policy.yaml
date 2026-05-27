@@ -240,10 +240,10 @@ risk_trim_policy:
     speculative_loss_pct: -8
     require_no_same_day_buy_for_trim: true
 paper_validation_execution:
-  purpose: evidence_collection_not_return_maximization
+  purpose: strategy_learning_and_capital_allocation
   enabled_for_hourly_autopilot: true
   enabled_for_market_open_pulse: false
-  prefer_small_validation_order_when_gates_pass: true
+  prefer_small_validation_order_when_gates_pass: false
   do_not_force_trade_when_any_hard_gate_fails: true
   hard_gates:
     - alpaca_paper_mode
@@ -262,17 +262,30 @@ paper_validation_execution:
     end_time: "23:31"
     objective: use_the_fixed_20_minute_cadence_with_22_31_kst_as_market_open_validation_run
   validation_order_sizing:
+    allocation_mode: staged_confidence_notional
     default_qty: 1
     max_new_buy_orders_per_run: 3
     max_validation_notional_pct_per_order: 0.02
-    max_validation_notional_pct_per_day: 0.06
+    max_validation_notional_pct_per_day: 0.10
     prefer_existing_highest_ranked_actionable_candidate: true
     allow_existing_position_add_only_if_position_cap_passes: true
     allow_multiple_candidates_per_run: true
     prefer_different_clusters_for_additional_orders: true
     max_same_cluster_new_buys_per_run: 1
-    cash_ratio_floor_for_second_order: 0.30
-    cash_ratio_floor_for_third_order: 0.35
+    cash_ratio_floor_for_second_order: 0.25
+    cash_ratio_floor_for_third_order: 0.25
+    target_exposure_path:
+      current_to_accelerate_until_ratio: 0.70
+      selective_allocation_until_ratio: 0.75
+      max_policy_target_ratio: 0.80
+      max_new_exposure_pct_per_run_normal: 0.03
+      max_new_exposure_pct_per_run_high_conviction: 0.05
+      prefer_rebalance_over_new_buy_above_ratio: 0.75
+    open_order_policy:
+      block_same_symbol_side_new_buy: true
+      block_same_correlated_cluster_new_buy_when_open_order_exists: true
+      allow_different_cluster_new_buy_when_open_orders_are_fresh: true
+      require_lifecycle_gate_pass: true
     confidence_tiers:
       - name: validation_floor
         min_confidence_score: 0.50
@@ -281,11 +294,11 @@ paper_validation_execution:
       - name: standard
         min_confidence_score: 0.60
         max_notional_pct: 0.01
-        max_qty: 2
+        max_qty: 4
       - name: high_conviction
         min_confidence_score: 0.72
         max_notional_pct: 0.02
-        max_qty: 3
+        max_qty: 6
   candidate_floor:
     minimum_confidence_score: 0.50
     allow_medium_source_confidence: true
