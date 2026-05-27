@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-27 23:51 KST hourly autopilot post-trade 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-28 00:31 KST hourly autopilot preflight 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -62,6 +62,7 @@
 - [[2026-05-27-2331-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 AMZN, BAC, XOM 각 1주 paper validation buy 체결. GOOGL prior open buy는 유지.
 - [[2026-05-27-2351-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 V 1주 paper validation buy 제출, open `new`.
 - [[2026-05-28-0011-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate는 통과했지만 ET 2026-05-27 daily validation order budget 소진과 V open-order lifecycle로 주문 없음.
+- [[2026-05-28-0031-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate는 통과했지만 ET 2026-05-27 daily validation order budget 소진으로 주문 없음. V prior open buy는 scheduler preflight에서 체결 확인.
 
 ## Research Notes
 
@@ -147,6 +148,7 @@
 - `wiki/trade-ledger/orders/2026-05-27-2331-hourly-autopilot.json` - 2026-05-27 23:31 KST hourly autopilot AMZN/BAC/XOM 1주 paper validation buy plan, universe/MCP/risk PASS, orders filled.
 - `wiki/trade-ledger/orders/2026-05-27-2351-hourly-autopilot.json` - 2026-05-27 23:51 KST hourly autopilot V 1주 paper validation buy plan, universe/MCP/risk PASS, order open `new`.
 - `wiki/trade-ledger/orders/2026-05-28-0011-hourly-autopilot.json` - 2026-05-28 00:11 KST hourly autopilot empty-order plan, universe/MCP/risk PASS, daily validation order budget 소진으로 주문 없음.
+- `wiki/trade-ledger/orders/2026-05-28-0031-hourly-autopilot.json` - 2026-05-28 00:31 KST hourly autopilot empty-order plan, universe/MCP/risk PASS, daily validation order budget 소진으로 주문 없음.
 - 2026-05-22 paper 주문 체결분은 다음 회고 대상이다.
 
 ## Policy Book
