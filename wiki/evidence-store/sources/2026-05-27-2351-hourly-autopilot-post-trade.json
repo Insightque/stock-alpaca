@@ -1,0 +1,53 @@
+{
+  "run_id": "2026-05-27-2351-hourly-autopilot",
+  "created_at": "2026-05-27T15:02:06Z",
+  "paper": true,
+  "source": "registered Alpaca MCP post-trade reconciliation",
+  "submitted_order": {
+    "id": "e4553e02-67a8-442b-9e15-8470e4267320",
+    "client_order_id": "hourly-20260527-2351-v-buy-1",
+    "symbol": "V",
+    "side": "buy",
+    "qty": "1",
+    "type": "limit",
+    "time_in_force": "day",
+    "limit_price": "330.01",
+    "status": "new",
+    "filled_qty": "0",
+    "filled_avg_price": null,
+    "submitted_at": "2026-05-27T15:00:22.244592675Z"
+  },
+  "open_orders": [
+    {
+      "id": "e4553e02-67a8-442b-9e15-8470e4267320",
+      "client_order_id": "hourly-20260527-2351-v-buy-1",
+      "symbol": "V",
+      "side": "buy",
+      "qty": "1",
+      "filled_qty": "0",
+      "status": "new",
+      "limit_price": "330.01",
+      "submitted_at": "2026-05-27T15:00:22.244592675Z"
+    }
+  ],
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 100727.49,
+    "cash": 41505.99,
+    "buying_power": 135615.79,
+    "long_market_value": 59221.5
+  },
+  "recent_fill_symbols": [
+    "XOM",
+    "BAC",
+    "AMZN",
+    "NEE",
+    "WMT",
+    "SO",
+    "PFE",
+    "NKE"
+  ],
+  "v_fill_found": false,
+  "positions_checked": true,
+  "positions_note": "V is not present in positions because the 23:51 validation order was still open/new at reconciliation time."
+}
