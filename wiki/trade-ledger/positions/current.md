@@ -1,69 +1,39 @@
 ---
 id: portfolio-current
-updated_at: 2026-05-27T14:20:30Z
+updated_at: 2026-05-27T14:39:53Z
 paper: true
 ---
 
-# 현재 포트폴리오
+# Portfolio Current
 
-## 계좌
+2026-05-27 23:39 KST hourly autopilot post-trade reconciliation 기준.
 
-- Source: [[2026-05-27-2311-hourly-autopilot]]
-- Alpaca reconciliation source: MCP `get_account_info`, `get_all_positions`, `get_order_by_client_id`, `get_account_activities(FILL)`.
-- 이번 hourly autopilot에서 WMT 1주 validation buy가 체결됐다. GOOGL, NEE 각 1주 day limit buy는 `new` open 상태다.
-- Post-trade gap: `get_orders(status=open)` list reconciliation 1회가 `cancelled`였으나, 각 submitted `client_order_id`별 조회는 성공했다.
+## Account
 
-| 지표 | 값 |
+| 항목 | 값 |
 | --- | ---: |
-| 포트폴리오 가치 | 101221.29 USD |
-| 현금 | 42062.51 USD |
-| Buying power | 136411.95 USD |
-| Long market value | 59158.78 USD |
+| Portfolio value | 100,853.90 USD |
+| Cash | 41,505.99 USD |
+| Buying power | 135,667.60 USD |
+| Long market value | 59,347.91 USD |
 | Short market value | 0.00 USD |
-| 투자 노출 | 약 58.45% |
 
-## 포지션
+## 이번 run 체결
 
-| 티커 | 수량 | 평균 단가 | 현재가 | 시장 가치 | 포트폴리오 비중 | 미실현 손익 | 수익률 |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| AAPL | 1 | 309.45 | 312.135 | 312.135 | 0.31% | 2.685 | 0.87% |
-| AMD | 14 | 462.73 | 494.785 | 6926.99 | 6.84% | 448.77 | 6.93% |
-| AVGO | 15 | 410.73 | 421.96 | 6329.40 | 6.25% | 168.45 | 2.73% |
-| ETN | 15 | 387.90 | 402.8575 | 6042.8625 | 5.97% | 224.3625 | 3.86% |
-| FCX | 1 | 63.94 | 63.70 | 63.70 | 0.06% | -0.24 | -0.38% |
-| IONQ | 45 | 63.48 | 60.8175 | 2736.7875 | 2.70% | -119.8125 | -4.19% |
-| LLY | 1 | 1079.38 | 1090.41 | 1090.41 | 1.08% | 11.03 | 1.02% |
-| LRCX | 20 | 307.91 | 319.125 | 6382.50 | 6.31% | 224.30 | 3.64% |
-| NKE | 1 | 46.15 | 46.485 | 46.485 | 0.05% | 0.335 | 0.73% |
-| NOK | 401 | 15.0436 | 15.9398 | 6391.8598 | 6.31% | 359.359759 | 5.96% |
-| NVDA | 36 | 215.2756 | 210.33 | 7571.88 | 7.48% | -178.040016 | -2.30% |
-| PFE | 1 | 26.34 | 26.355 | 26.355 | 0.03% | 0.015 | 0.06% |
-| RGTI | 120 | 25.5696 | 24.28 | 2913.60 | 2.88% | -154.74996 | -5.04% |
-| SO | 1 | 94.28 | 94.02 | 94.02 | 0.09% | -0.26 | -0.28% |
-| TSM | 15 | 405.20 | 424.83 | 6372.45 | 6.30% | 294.45 | 4.85% |
-| UNH | 15 | 386.56 | 383.40 | 5751.00 | 5.68% | -47.40 | -0.82% |
-| WMT | 1 | 118.31 | 118.35 | 118.35 | 0.12% | 0.04 | 0.03% |
+| 티커 | 방향 | 수량 | 평균 체결가 | client_order_id |
+| --- | --- | ---: | ---: | --- |
+| AMZN | buy | 1 | 270.05 | `hourly-20260527-2331-amzn-buy-1` |
+| BAC | buy | 1 | 52.06 | `hourly-20260527-2331-bac-buy-1` |
+| XOM | buy | 1 | 147.07 | `hourly-20260527-2331-xom-buy-1` |
 
 ## 미체결 주문
 
-| 티커 | 방향 | 수량 | 지정가 | 상태 | 제출 시각 |
+| 티커 | 방향 | 수량 | 지정가 | 상태 | client_order_id |
 | --- | --- | ---: | ---: | --- | --- |
-| GOOGL | buy | 1 | 390.57 | new | 2026-05-27T14:17:31.432099441Z |
-| NEE | buy | 1 | 87.34 | new | 2026-05-27T14:17:49.899774835Z |
+| GOOGL | buy | 1 | 390.57 | new | `hourly-20260527-2311-googl-buy-1` |
 
-## 2026-05-27 주문/체결 요약
+## 보유 포지션 요약
 
-| 티커 | 방향 | 체결 수량 | 평균 체결가 | 주문 상태 | 체결 시각 |
-| --- | --- | ---: | ---: | --- | --- |
-| GOOGL | buy | 0 | - | new | - |
-| WMT | buy | 1 | 118.31 | filled | 2026-05-27T14:17:41.665623Z |
-| NEE | buy | 0 | - | new | - |
-| NKE | buy | 1 | 46.15 | filled | 2026-05-27T13:55:58.025440Z |
-| PFE | buy | 1 | 26.34 | filled | 2026-05-27T13:57:28.001204Z |
-| SO | buy | 1 | 94.28 | filled | 2026-05-27T13:57:42.809055Z |
+Post-trade Alpaca MCP `get_all_positions`에서 AMZN, BAC, XOM 신규 long 포지션이 확인됐다. 세 종목 모두 1주 validation size이며 1D/5D/20D 회고 대상이다.
 
-## 회고 상태
-
-- 2026-05-22 stock-only 체결분 10개는 2026-05-26 미국 정규장 종가 기준 1D interim review를 작성했다: [[2026-05-27-portfolio-review]].
-- 2026-05-26 체결분 LLY, FCX, NOK, NVDA, AAPL과 2026-05-27 체결분 NKE, PFE, SO, WMT는 `회고 대기`다.
-- GOOGL, NEE는 아직 미체결 open order라 fill review due가 아니다. 체결되면 1D/5D/20D review horizon에 추가한다.
+Source: `wiki/evidence-store/sources/2026-05-27-2331-hourly-autopilot-post-trade.json`.

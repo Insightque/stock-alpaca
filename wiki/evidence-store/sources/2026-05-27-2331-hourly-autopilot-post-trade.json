@@ -1,0 +1,126 @@
+{
+  "run_id": "2026-05-27-2331-hourly-autopilot",
+  "created_at": "2026-05-27T14:39:53Z",
+  "paper": true,
+  "source": "registered Codex Alpaca MCP post-trade reconciliation",
+  "account": {
+    "status": "ACTIVE",
+    "currency": "USD",
+    "buying_power": 135667.6,
+    "cash": 41505.99,
+    "portfolio_value": 100853.9,
+    "equity": 100853.9,
+    "long_market_value": 59347.91,
+    "short_market_value": 0.0
+  },
+  "submitted_orders": [
+    {
+      "symbol": "AMZN",
+      "client_order_id": "hourly-20260527-2331-amzn-buy-1",
+      "order_id": "64f8fdfd-57e6-4c23-aa6f-565c87b3628a",
+      "status": "filled",
+      "qty": "1",
+      "filled_qty": "1",
+      "filled_avg_price": "270.05",
+      "limit_price": "270.20",
+      "filled_at": "2026-05-27T14:38:30.048040772Z"
+    },
+    {
+      "symbol": "BAC",
+      "client_order_id": "hourly-20260527-2331-bac-buy-1",
+      "order_id": "175f093e-1c74-4077-a648-91ca8eb6f723",
+      "status": "filled",
+      "qty": "1",
+      "filled_qty": "1",
+      "filled_avg_price": "52.06",
+      "limit_price": "52.19",
+      "filled_at": "2026-05-27T14:38:42.292590472Z"
+    },
+    {
+      "symbol": "XOM",
+      "client_order_id": "hourly-20260527-2331-xom-buy-1",
+      "order_id": "343a19db-5334-4c1d-868c-385dadda6184",
+      "status": "filled",
+      "qty": "1",
+      "filled_qty": "1",
+      "filled_avg_price": "147.07",
+      "limit_price": "147.15",
+      "filled_at": "2026-05-27T14:38:53.580761916Z"
+    }
+  ],
+  "fills_after_submit": [
+    {
+      "symbol": "AMZN",
+      "side": "buy",
+      "qty": "1",
+      "price": "270.05",
+      "transaction_time": "2026-05-27T14:38:30.048041Z"
+    },
+    {
+      "symbol": "BAC",
+      "side": "buy",
+      "qty": "1",
+      "price": "52.06",
+      "transaction_time": "2026-05-27T14:38:42.292590Z"
+    },
+    {
+      "symbol": "XOM",
+      "side": "buy",
+      "qty": "1",
+      "price": "147.07",
+      "transaction_time": "2026-05-27T14:38:53.580762Z"
+    }
+  ],
+  "open_orders_after_submit": [
+    {
+      "symbol": "GOOGL",
+      "side": "buy",
+      "qty": "1",
+      "filled_qty": "0",
+      "status": "new",
+      "limit_price": "390.57",
+      "client_order_id": "hourly-20260527-2311-googl-buy-1",
+      "submitted_at": "2026-05-27T14:17:31.432099441Z"
+    }
+  ],
+  "reconciliation_checks": {
+    "get_order_by_client_id": [
+      "pass",
+      "pass",
+      "pass"
+    ],
+    "get_orders_open": "pass",
+    "get_account_activities_fill": "pass",
+    "get_all_positions": "pass",
+    "get_account_info": "pass"
+  },
+  "review_due_markers": [
+    {
+      "symbol": "AMZN",
+      "status": "회고 대기",
+      "horizons": [
+        "1D",
+        "5D",
+        "20D"
+      ]
+    },
+    {
+      "symbol": "BAC",
+      "status": "회고 대기",
+      "horizons": [
+        "1D",
+        "5D",
+        "20D"
+      ]
+    },
+    {
+      "symbol": "XOM",
+      "status": "회고 대기",
+      "horizons": [
+        "1D",
+        "5D",
+        "20D"
+      ]
+    }
+  ]
+}

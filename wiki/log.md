@@ -1367,3 +1367,13 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Post-trade reconciliation: `get_order_by_client_id` pass for all three submitted client IDs, account/positions/FILL activity pass. `get_orders(status=open)` list reconciliation returned `cancelled`, so GOOGL/NEE open state is sourced to direct client-order checks.
 - Manifest: `wiki/evidence-store/run-manifests/2026-05-27-2311-hourly-autopilot.json`. Order plan: `wiki/trade-ledger/orders/2026-05-27-2311-hourly-autopilot.json`. Report: `wiki/current-runs/daily/2026-05-27-2311-hourly-autopilot.md`.
 - Review due markers: WMT `회고 대기` for 1D/5D/20D analyst review. GOOGL/NEE review markers pending fill; stale open-order lifecycle should be checked on the next scheduled run.
+
+## [2026-05-27 23:40 Asia/Seoul] hourly-autopilot | 2026-05-27-2331-hourly-autopilot scheduled paper autopilot
+
+- Run id: `2026-05-27-2331-hourly-autopilot`. Market clock open at `2026-05-27T10:31:09.601135165-04:00`, next close `2026-05-27T16:00:00-04:00`.
+- Scheduler stale-order cleanup passed: stale candidates 0, cancel attempts 0, remaining fresh open autopilot order 1 for GOOGL.
+- Recommendation shortlist: AMZN, BAC, XOM as validation buys; GOOGL skipped due fresh open buy order; same-day NKE/PFE/SO/WMT/NEE duplicate buys skipped.
+- Validation: universe strict PASS, MCP strict PASS, risk policy PASS. Alpaca core pass; SEC EDGAR/FRED/Firecrawl/Yahoo pass; Alpha Vantage gap `empty_response`.
+- Submitted/skipped orders: AMZN buy 1 filled @ 270.05, BAC buy 1 filled @ 52.06, XOM buy 1 filled @ 147.07. Open orders after reconciliation: GOOGL buy 1 `new` from 23:11 run.
+- Manifest: `wiki/evidence-store/run-manifests/2026-05-27-2331-hourly-autopilot.json`. Order plan: `wiki/trade-ledger/orders/2026-05-27-2331-hourly-autopilot.json`. Report: `wiki/current-runs/daily/2026-05-27-2331-hourly-autopilot.md`.
+- Review due markers: AMZN/BAC/XOM `회고 대기` for 1D/5D/20D analyst review.
