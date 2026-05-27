@@ -1,0 +1,115 @@
+{
+  "run_id": "2026-05-27-2311-hourly-autopilot",
+  "created_at": "2026-05-27T14:20:30Z",
+  "source": "registered Alpaca MCP post-trade reconciliation",
+  "paper": true,
+  "submitted_orders": [
+    {
+      "symbol": "GOOGL",
+      "client_order_id": "hourly-20260527-2311-googl-buy-1",
+      "order_id": "66b9ed8e-ae7b-42e4-8af3-7ccbfcad57d0",
+      "status": "new",
+      "qty": "1",
+      "filled_qty": "0",
+      "limit_price": "390.57",
+      "submitted_at": "2026-05-27T14:17:31.432099441Z"
+    },
+    {
+      "symbol": "WMT",
+      "client_order_id": "hourly-20260527-2311-wmt-buy-1",
+      "order_id": "ee0ac63b-cc8e-4b86-b397-cddb74030b65",
+      "status": "filled",
+      "qty": "1",
+      "filled_qty": "1",
+      "filled_avg_price": "118.31",
+      "limit_price": "118.38",
+      "filled_at": "2026-05-27T14:17:41.665623447Z"
+    },
+    {
+      "symbol": "NEE",
+      "client_order_id": "hourly-20260527-2311-nee-buy-1",
+      "order_id": "164a2a73-c9a8-449b-bb73-0c66e8caad6a",
+      "status": "new",
+      "qty": "1",
+      "filled_qty": "0",
+      "limit_price": "87.34",
+      "submitted_at": "2026-05-27T14:17:49.899774835Z"
+    }
+  ],
+  "account": {
+    "portfolio_value": 101221.29,
+    "cash": 42062.51,
+    "buying_power": 136411.95,
+    "long_market_value": 59158.78,
+    "short_market_value": 0.0
+  },
+  "fills_after_submit": [
+    {
+      "symbol": "WMT",
+      "side": "buy",
+      "qty": "1",
+      "price": "118.31",
+      "transaction_time": "2026-05-27T14:17:41.665623Z"
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "GOOGL",
+      "side": "buy",
+      "qty": "1",
+      "filled_qty": "0",
+      "status": "new",
+      "limit_price": "390.57",
+      "client_order_id": "hourly-20260527-2311-googl-buy-1",
+      "submitted_at": "2026-05-27T14:17:31.432099441Z"
+    },
+    {
+      "symbol": "NEE",
+      "side": "buy",
+      "qty": "1",
+      "filled_qty": "0",
+      "status": "new",
+      "limit_price": "87.34",
+      "client_order_id": "hourly-20260527-2311-nee-buy-1",
+      "submitted_at": "2026-05-27T14:17:49.899774835Z"
+    }
+  ],
+  "gaps": [
+    {
+      "tool": "get_orders(status=open)",
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "gap_reason": "registered Alpaca MCP open-order list reconciliation returned user cancelled MCP tool call after successful get_order_by_client_id checks for all submitted client_order_id values",
+      "retry_count": 0
+    }
+  ],
+  "review_due_markers": [
+    {
+      "symbol": "WMT",
+      "status": "회고 대기",
+      "horizons": [
+        "1D",
+        "5D",
+        "20D"
+      ]
+    },
+    {
+      "symbol": "GOOGL",
+      "status": "open order, fill review pending only if filled",
+      "horizons": [
+        "1D",
+        "5D",
+        "20D"
+      ]
+    },
+    {
+      "symbol": "NEE",
+      "status": "open order, fill review pending only if filled",
+      "horizons": [
+        "1D",
+        "5D",
+        "20D"
+      ]
+    }
+  ]
+}

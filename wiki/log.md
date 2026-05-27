@@ -1356,3 +1356,14 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Submitted/skipped orders: NKE buy 1 filled @ 46.15, PFE buy 1 filled @ 26.34 after same-client-id retry following wrapper cancellation reconciliation, SO buy 1 filled @ 94.28. Open orders after reconciliation: 0.
 - Manifest: `wiki/evidence-store/run-manifests/2026-05-27-2246-hourly-autopilot.json`. Order plan: `wiki/trade-ledger/orders/2026-05-27-2246-hourly-autopilot.json`. Report: `wiki/current-runs/daily/2026-05-27-2246-hourly-autopilot.md`.
 - Review due markers: NKE/PFE/SO `회고 대기` for 1D/5D/20D analyst review.
+
+## [2026-05-27 23:20 Asia/Seoul] hourly-autopilot | 2026-05-27-2311 scheduled paper autopilot
+
+- Run id: `2026-05-27-2311-hourly-autopilot`. Market clock open at `2026-05-27T10:11:13.225633645-04:00`, next close `2026-05-27T16:00:00-04:00`.
+- Scheduler stale-order cleanup passed: stale candidates 0, remaining open autopilot orders 0.
+- Recommendation shortlist: GOOGL, WMT, NEE as validation buys; AAPL, BAC, QQQ, SPY, FCX, NOK, IONQ retained as recheck candidates. Same-day NKE/PFE/SO duplicate buys were skipped.
+- Validation: universe strict PASS, MCP strict PASS, risk policy PASS. Alpaca core pass; SEC EDGAR/FRED/Firecrawl/Yahoo pass; Alpha Vantage gap `empty_response`. Optional registered quote refresh returned `cancelled`, but scheduler preflight quote rows were pass and less than 20 minutes old.
+- Submitted/skipped orders: GOOGL buy 1 submitted open `new`; WMT buy 1 filled @ 118.31; NEE buy 1 submitted open `new`.
+- Post-trade reconciliation: `get_order_by_client_id` pass for all three submitted client IDs, account/positions/FILL activity pass. `get_orders(status=open)` list reconciliation returned `cancelled`, so GOOGL/NEE open state is sourced to direct client-order checks.
+- Manifest: `wiki/evidence-store/run-manifests/2026-05-27-2311-hourly-autopilot.json`. Order plan: `wiki/trade-ledger/orders/2026-05-27-2311-hourly-autopilot.json`. Report: `wiki/current-runs/daily/2026-05-27-2311-hourly-autopilot.md`.
+- Review due markers: WMT `회고 대기` for 1D/5D/20D analyst review. GOOGL/NEE review markers pending fill; stale open-order lifecycle should be checked on the next scheduled run.
