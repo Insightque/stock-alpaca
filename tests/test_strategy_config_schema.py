@@ -43,13 +43,22 @@ class StrategyConfigSchemaTests(unittest.TestCase):
 
         sizing = policy["paper_validation_execution"]["validation_order_sizing"]
         self.assertEqual("staged_confidence_notional", sizing["allocation_mode"])
-        self.assertEqual(3, sizing["max_new_buy_orders_per_run"])
+        self.assertEqual(5, sizing["max_new_buy_orders_per_run"])
         self.assertEqual(0.10, sizing["max_validation_notional_pct_per_day"])
         self.assertTrue(sizing["allow_multiple_candidates_per_run"])
+        self.assertEqual(0.25, sizing["cash_ratio_floor_for_additional_orders"])
         self.assertEqual(0.80, sizing["target_exposure_path"]["max_policy_target_ratio"])
         self.assertEqual(0.75, sizing["target_exposure_path"]["prefer_rebalance_over_new_buy_above_ratio"])
         self.assertTrue(sizing["open_order_policy"]["allow_different_cluster_new_buy_when_open_orders_are_fresh"])
         self.assertEqual(6, sizing["confidence_tiers"][-1]["max_qty"])
+
+    def test_order_caps_match_strategic_allocation_policy(self) -> None:
+        risk_policy = yaml.safe_load((ROOT / "harness" / "risk-policy.yaml").read_text(encoding="utf-8"))
+        order_plan_schema = json.loads((ROOT / "harness" / "order-plan.schema.json").read_text())
+
+        self.assertEqual(20, risk_policy["order_limits"]["max_orders_per_run"])
+        self.assertEqual(20, risk_policy["daily_limits"]["max_new_orders_per_day"])
+        self.assertEqual(20, order_plan_schema["properties"]["orders"]["maxItems"])
 
 
 if __name__ == "__main__":

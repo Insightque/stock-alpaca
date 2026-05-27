@@ -264,7 +264,7 @@ paper_validation_execution:
   validation_order_sizing:
     allocation_mode: staged_confidence_notional
     default_qty: 1
-    max_new_buy_orders_per_run: 3
+    max_new_buy_orders_per_run: 5
     max_validation_notional_pct_per_order: 0.02
     max_validation_notional_pct_per_day: 0.10
     prefer_existing_highest_ranked_actionable_candidate: true
@@ -274,6 +274,7 @@ paper_validation_execution:
     max_same_cluster_new_buys_per_run: 1
     cash_ratio_floor_for_second_order: 0.25
     cash_ratio_floor_for_third_order: 0.25
+    cash_ratio_floor_for_additional_orders: 0.25
     target_exposure_path:
       current_to_accelerate_until_ratio: 0.70
       selective_allocation_until_ratio: 0.75

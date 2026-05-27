@@ -121,7 +121,7 @@ liquidity_limits:
   max_spread_pct: 0.50
   reject_if_spread_missing: true
 daily_limits:
-  max_new_orders_per_day: 10
+  max_new_orders_per_day: 20
   max_policy_turnover_ratio: 0.20
   max_daily_realized_loss_ratio: 0.02
   max_stop_triggered_orders_per_day: 3
