@@ -1346,3 +1346,13 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 실제 MCP 검증: `/private/tmp/research-cache-check-a.json` 첫 실행에서 `AMZN`, `INTC` 기준 SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance 5개 모두 pass, retry 0. `/private/tmp/research-cache-check-b.json` 두 번째 실행에서 5개 provider 모두 `cache_hit=true`.
 - 검증: `python3 -m py_compile scripts/fetch-research-mcp-preflight.py` PASS, `bash -n scripts/run-hourly-autopilot-codex.sh` PASS, `python3 -m unittest tests.test_fetch_research_mcp_preflight tests.test_mcp_runtime_wrappers` 20개 PASS, `python3 -m unittest discover -s tests` 83개 PASS.
 - 이번 maintenance에서는 Alpaca 주문 제출/교체/취소/청산 도구를 호출하지 않았고, 실제 주문/포지션 변경도 없었다.
+
+## [2026-05-27 22:58 Asia/Seoul] hourly-autopilot | 2026-05-27-2246 scheduled paper autopilot
+
+- Run id: `2026-05-27-2246-hourly-autopilot`. Market clock open at `2026-05-27T09:46:40.303390074-04:00`, next close `2026-05-27T16:00:00-04:00`.
+- Scheduler stale-order cleanup passed: no initial/stale/remaining open autopilot orders.
+- Recommendation shortlist: NKE, PFE, SO as validation buys; AMZN and PLTR retained as recheck candidates.
+- Validation: universe strict PASS, MCP strict PASS, risk policy PASS. Alpaca core pass; SEC EDGAR/FRED/Firecrawl/Yahoo pass; Alpha Vantage gap `empty_response`.
+- Submitted/skipped orders: NKE buy 1 filled @ 46.15, PFE buy 1 filled @ 26.34 after same-client-id retry following wrapper cancellation reconciliation, SO buy 1 filled @ 94.28. Open orders after reconciliation: 0.
+- Manifest: `wiki/evidence-store/run-manifests/2026-05-27-2246-hourly-autopilot.json`. Order plan: `wiki/trade-ledger/orders/2026-05-27-2246-hourly-autopilot.json`. Report: `wiki/current-runs/daily/2026-05-27-2246-hourly-autopilot.md`.
+- Review due markers: NKE/PFE/SO `회고 대기` for 1D/5D/20D analyst review.

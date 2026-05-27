@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-27 06:24 KST analyst review cycle 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-27 22:46 KST hourly autopilot post-trade 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -57,6 +57,7 @@
 - [[2026-05-27-0411-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 AMZN 1주 paper validation buy 제출, open `new`.
 - [[2026-05-27-0431-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 INTC 1주 paper validation buy 제출을 시도했지만 MCP wrapper cancelled로 실제 주문 없음.
 - [[2026-05-27-0451-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/quote/spread는 통과했지만 AMZN open order lifecycle risk gate 실패로 주문 없음.
+- [[2026-05-27-2246-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 NKE, PFE, SO 각 1주 paper validation buy 체결.
 
 ## Research Notes
 
@@ -137,6 +138,7 @@
 - `wiki/trade-ledger/orders/2026-05-27-0411-hourly-autopilot.json` - 2026-05-27 04:11 KST hourly autopilot AMZN 1주 paper validation buy plan, universe/MCP/risk PASS, order open `new`.
 - `wiki/trade-ledger/orders/2026-05-27-0431-hourly-autopilot.json` - 2026-05-27 04:31 KST hourly autopilot INTC 1주 paper validation buy plan, universe/MCP/risk PASS, submit cancelled, 실제 주문 없음.
 - `wiki/trade-ledger/orders/2026-05-27-0451-hourly-autopilot.json` - 2026-05-27 04:51 KST hourly autopilot empty-order plan, universe/MCP PASS, risk-check FAIL(AMZN open order age >30분).
+- `wiki/trade-ledger/orders/2026-05-27-2246-hourly-autopilot.json` - 2026-05-27 22:46 KST hourly autopilot NKE/PFE/SO 1주 paper validation buy plan, universe/MCP/risk PASS, orders filled.
 - 2026-05-22 paper 주문 체결분은 다음 회고 대상이다.
 
 ## Policy Book

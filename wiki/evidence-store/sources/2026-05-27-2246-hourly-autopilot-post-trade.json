@@ -1,0 +1,72 @@
+{
+  "run_id": "2026-05-27-2246-hourly-autopilot",
+  "created_at": "2026-05-27T13:58:30Z",
+  "paper": true,
+  "source": "Alpaca MCP post-trade reconciliation",
+  "tools": [
+    "get_order_by_client_id",
+    "get_orders(status=open)",
+    "get_account_info",
+    "get_all_positions",
+    "get_account_activities(FILL)"
+  ],
+  "orders": [
+    {
+      "symbol": "NKE",
+      "id": "47826e52-14ed-437d-b8db-c55a0e255bf9",
+      "client_order_id": "hourly-20260527-2246-nke-buy-1",
+      "status": "filled",
+      "qty": 1,
+      "filled_qty": 1,
+      "limit_price": 46.25,
+      "filled_avg_price": 46.15,
+      "submitted_at": "2026-05-27T13:55:57.224114966Z",
+      "filled_at": "2026-05-27T13:55:58.025439755Z"
+    },
+    {
+      "symbol": "PFE",
+      "id": "230a1212-7660-40ed-a12d-b2ad73c1b59e",
+      "client_order_id": "hourly-20260527-2246-pfe-buy-1",
+      "status": "filled",
+      "qty": 1,
+      "filled_qty": 1,
+      "limit_price": 26.46,
+      "filled_avg_price": 26.34,
+      "submitted_at": "2026-05-27T13:57:27.321045732Z",
+      "filled_at": "2026-05-27T13:57:28.001204350Z"
+    },
+    {
+      "symbol": "SO",
+      "id": "958582ba-cdaa-4be0-942e-27da20cc6daa",
+      "client_order_id": "hourly-20260527-2246-so-buy-1",
+      "status": "filled",
+      "qty": 1,
+      "filled_qty": 1,
+      "limit_price": 94.52,
+      "filled_avg_price": 94.28,
+      "submitted_at": "2026-05-27T13:57:41.958190198Z",
+      "filled_at": "2026-05-27T13:57:42.809054814Z"
+    }
+  ],
+  "open_orders": [],
+  "account": {
+    "portfolio_value": 101385.2,
+    "cash": 42180.82,
+    "buying_power": 137192.13,
+    "long_market_value": 59204.38,
+    "short_market_value": 0.0,
+    "status": "ACTIVE"
+  },
+  "positions_count": 16,
+  "new_positions": [
+    "NKE",
+    "PFE",
+    "SO"
+  ],
+  "recent_fill_ids": [
+    "20260527095742809::59612065-40e4-4d36-93f3-82a7e30da712",
+    "20260527095728001::3ef96705-ccc0-4548-a14a-1f021ba349aa",
+    "20260527095558025::c9e4c92c-1cb7-415a-9b8a-7d9b3e6d1703"
+  ],
+  "status": "pass"
+}
