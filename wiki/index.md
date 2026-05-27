@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-28 00:31 KST hourly autopilot preflight 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-28 01:51 KST hourly autopilot preflight 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -66,6 +66,7 @@
 - [[2026-05-28-0051-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 ET 2026-05-27 daily validation order budget 소진으로 주문 없음.
 - [[2026-05-28-0111-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 ET 2026-05-27 daily validation order budget 소진으로 주문 없음.
 - [[2026-05-28-0131-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 ET 2026-05-27 daily validation order budget 소진으로 주문 없음.
+- [[2026-05-28-0151-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 ET 2026-05-27 daily validation order budget 소진으로 주문 없음.
 
 ## Research Notes
 
@@ -155,6 +156,7 @@
 - `wiki/trade-ledger/orders/2026-05-28-0051-hourly-autopilot.json` - 2026-05-28 00:51 KST hourly autopilot empty-order plan, universe/MCP/risk PASS, daily validation order budget 소진으로 주문 없음.
 - `wiki/trade-ledger/orders/2026-05-28-0111-hourly-autopilot.json` - 2026-05-28 01:11 KST hourly autopilot empty-order plan, universe/MCP/risk PASS, daily validation order budget 소진으로 주문 없음.
 - `wiki/trade-ledger/orders/2026-05-28-0131-hourly-autopilot.json` - 2026-05-28 01:31 KST hourly autopilot empty-order plan, universe/MCP/risk PASS, daily validation order budget 소진으로 주문 없음.
+- `wiki/trade-ledger/orders/2026-05-28-0151-hourly-autopilot.json` - 2026-05-28 01:51 KST hourly autopilot empty-order plan, universe/MCP/risk PASS, daily validation order budget 소진으로 주문 없음.
 - 2026-05-22 paper 주문 체결분은 다음 회고 대상이다.
 
 ## Policy Book
