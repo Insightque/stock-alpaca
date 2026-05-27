@@ -106,7 +106,7 @@ class McpCoverageTests(unittest.TestCase):
         errors, _, _ = check_mcp_coverage.validate(manifest, strict=True)
         self.assertTrue(any("research MCP gate requires at least 3" in e for e in errors))
 
-    def test_strict_gap_requires_gap_category(self) -> None:
+    def test_strict_gap_defaults_missing_gap_category_to_unknown(self) -> None:
         manifest = base_manifest()
         for row in manifest["mcp_coverage"]:
             if row["server"] == "sec-edgar":
@@ -120,8 +120,9 @@ class McpCoverageTests(unittest.TestCase):
                         "gap_category": "",
                     }
                 )
-        errors, _, _ = check_mcp_coverage.validate(manifest, strict=True)
-        self.assertTrue(any("sec-edgar: strict failed/gap outcome requires gap_category" in e for e in errors))
+        errors, warnings, _ = check_mcp_coverage.validate(manifest, strict=True)
+        self.assertEqual([], errors)
+        self.assertTrue(any("sec-edgar: gap_category missing; defaulted to unknown" in warning for warning in warnings))
 
     def test_non_actionable_research_allows_gap_with_warning(self) -> None:
         manifest = base_manifest()

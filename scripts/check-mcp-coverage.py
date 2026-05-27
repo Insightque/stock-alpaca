@@ -44,6 +44,15 @@ GAP_CATEGORIES = {
 }
 
 
+def normalize_gap_category(value: Any, outcome: str) -> str:
+    category = str(value or "").strip().lower()
+    if category:
+        return category
+    if outcome in GAP_OUTCOMES:
+        return "unknown"
+    return ""
+
+
 def as_bool(value: Any) -> bool:
     return bool(value) if isinstance(value, bool) else False
 
@@ -136,7 +145,8 @@ def validate(manifest: dict[str, Any], *, strict: bool = False) -> tuple[list[st
         used = as_bool(row.get("used_in_score"))
         outcome = str(row.get("outcome", "")).lower()
         gap_reason = str(row.get("gap_reason", "")).strip()
-        gap_category = str(row.get("gap_category", "")).strip().lower()
+        raw_gap_category = str(row.get("gap_category", "")).strip()
+        gap_category = normalize_gap_category(raw_gap_category, outcome)
         source_refs = [str(item) for item in as_list(row.get("source_refs")) if str(item).strip()]
 
         if outcome not in POSITIVE_OUTCOMES | GAP_OUTCOMES:
@@ -160,8 +170,8 @@ def validate(manifest: dict[str, Any], *, strict: bool = False) -> tuple[list[st
         if outcome in GAP_OUTCOMES and gap_category and gap_category not in GAP_CATEGORIES:
             errors.append(f"{server}: gap_category must be one of {sorted(GAP_CATEGORIES)}")
 
-        if strict_required and outcome in GAP_OUTCOMES and not gap_category:
-            errors.append(f"{server}: strict failed/gap outcome requires gap_category")
+        if strict_required and outcome in GAP_OUTCOMES and not raw_gap_category:
+            warnings.append(f"{server}: gap_category missing; defaulted to unknown")
 
         if server in RESEARCH_DECISION_MCPS and queried and outcome in POSITIVE_OUTCOMES:
             positive_research.append(server)

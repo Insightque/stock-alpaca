@@ -92,6 +92,24 @@ class ResearchMcpPreflightTests(unittest.TestCase):
         self.assertTrue(rows[1]["queried"])
         self.assertEqual("auth", rows[1]["gap_category"])
 
+    def test_build_mcp_coverage_hint_defaults_missing_gap_category(self) -> None:
+        providers = [
+            {
+                "server": "firecrawl",
+                "queried": True,
+                "outcome": "failed",
+                "checked_at": "2026-05-27T01:00:00+00:00",
+                "gap_category": "",
+                "gap_reason": "wrapper returned no structured error classification",
+                "retry_count": 0,
+            },
+        ]
+
+        rows = research_preflight.build_mcp_coverage_hint(providers, "wiki/evidence-store/sources/test.json")
+
+        self.assertFalse(rows[0]["used_in_score"])
+        self.assertEqual("unknown", rows[0]["gap_category"])
+
     def test_provider_cache_round_trip_marks_cache_hit(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             cache_dir = Path(directory)

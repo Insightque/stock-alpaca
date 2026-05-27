@@ -87,6 +87,15 @@ def classify_error(exc: BaseException) -> str:
     return "unknown"
 
 
+def normalize_gap_category(value: Any, outcome: str) -> str:
+    category = str(value or "").strip().lower()
+    if category:
+        return category
+    if str(outcome).lower() in {"gap", "failed", "unavailable", "not_applicable"}:
+        return "unknown"
+    return ""
+
+
 def encode_message(payload: dict[str, Any], *, protocol: str) -> bytes:
     body = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
     if protocol == "jsonl":
@@ -447,7 +456,7 @@ def provider_row(
         "queried": queried,
         "outcome": outcome,
         "checked_at": checked_at,
-        "gap_category": gap_category,
+        "gap_category": normalize_gap_category(gap_category, outcome),
         "gap_reason": gap_reason,
         "retry_count": retry_count,
     }
@@ -1037,7 +1046,7 @@ def build_mcp_coverage_hint(providers: list[dict[str, Any]], source_ref: str) ->
                 "checked_at": provider.get("checked_at"),
                 "source_refs": [source_ref],
                 "gap_reason": provider.get("gap_reason", ""),
-                "gap_category": provider.get("gap_category", "unknown"),
+                "gap_category": normalize_gap_category(provider.get("gap_category"), outcome or "failed"),
                 "retry_count": int(provider.get("retry_count", 0) or 0),
             }
         )
