@@ -223,6 +223,7 @@ def validate(
         errors,
     )
     max_stop_count = int(daily_limits.get("max_stop_triggered_orders_per_day", 999999))
+    max_new_orders_per_day = int(daily_limits.get("max_new_orders_per_day", 999999))
     max_open_age = as_float(
         order_lifecycle.get("max_open_order_age_minutes", 999999),
         "risk_policy.order_lifecycle.max_open_order_age_minutes",
@@ -278,6 +279,19 @@ def validate(
     turnover = as_float(risk_inputs.get("policy_turnover_ratio", 0.0), "risk_inputs.policy_turnover_ratio", errors)
     weekly_turnover = as_float(risk_inputs.get("weekly_turnover_ratio", 0.0), "risk_inputs.weekly_turnover_ratio", errors)
     stop_count = int(risk_inputs.get("stop_triggered_orders_today", 0) or 0)
+    raw_new_orders_today = risk_inputs.get("new_orders_submitted_today")
+    new_orders_submitted_today = 0
+    if raw_new_orders_today is not None:
+        if isinstance(raw_new_orders_today, bool):
+            errors.append("risk_inputs.new_orders_submitted_today must be an integer")
+        else:
+            try:
+                new_orders_submitted_today = int(raw_new_orders_today)
+            except (TypeError, ValueError):
+                errors.append("risk_inputs.new_orders_submitted_today must be an integer")
+                new_orders_submitted_today = 0
+            if new_orders_submitted_today < 0:
+                errors.append("risk_inputs.new_orders_submitted_today must be non-negative")
     if turnover > max_policy_turnover:
         errors.append(f"policy turnover {turnover:.2%} exceeds daily limit {max_policy_turnover:.2%}")
     if weekly_turnover > max_weekly_turnover:
@@ -380,6 +394,13 @@ def validate(
         errors.append(f"orders has {len(orders)} entries; maximum is {max_orders}")
     if not orders:
         warnings.append("orders is empty")
+    if mode == "submit" and orders and raw_new_orders_today is None:
+        errors.append("submit mode requires risk_inputs.new_orders_submitted_today for daily order cap validation")
+    planned_new_orders = len(orders)
+    if new_orders_submitted_today + planned_new_orders > max_new_orders_per_day:
+        errors.append(
+            f"daily new orders {new_orders_submitted_today + planned_new_orders} exceeds limit {max_new_orders_per_day}"
+        )
 
     buy_notional = 0.0
     sell_notional = 0.0

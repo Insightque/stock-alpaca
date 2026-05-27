@@ -42,6 +42,7 @@ def base_plan() -> dict:
             "policy_turnover_ratio": 0.05,
             "weekly_turnover_ratio": 0.10,
             "stop_triggered_orders_today": 0,
+            "new_orders_submitted_today": 0,
             "risk_recomputed_after_partial_fill": True,
         },
         "orders": [
@@ -270,6 +271,20 @@ class RiskPolicyTests(unittest.TestCase):
         plan["orders"].append(copy.deepcopy(plan["orders"][0]))
         errors, _, _ = self.validate(plan)
         self.assertTrue(any("duplicate same-run order" in error for error in errors))
+
+    def test_daily_new_order_cap_fails(self) -> None:
+        plan = base_plan()
+        plan["risk_inputs"]["new_orders_submitted_today"] = 20
+        errors, _, _ = self.validate(plan)
+        self.assertTrue(any("daily new orders 21 exceeds limit 20" in error for error in errors))
+
+    def test_submit_mode_requires_daily_order_count(self) -> None:
+        plan = base_plan()
+        plan["mode"] = "submit"
+        plan["market"]["is_open"] = True
+        del plan["risk_inputs"]["new_orders_submitted_today"]
+        errors, _, _ = self.validate(plan)
+        self.assertTrue(any("new_orders_submitted_today" in error for error in errors))
 
     def test_cli_json_output(self) -> None:
         completed = subprocess.run(

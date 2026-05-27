@@ -108,6 +108,7 @@ For the 2026-05-27 US regular session, apply this user-requested overlay after a
 12. Create a concrete order-plan JSON under `wiki/trade-ledger/orders/`.
    - Include detailed per-order `rationale`.
    - Include source refs, quote timestamp, asset check timestamp, liquidity/spread, confidence score, strategy id/version, policy status, expected excess return, expected adverse move, entry style, sizing basis, and review horizons.
+   - Include `risk_inputs.new_orders_submitted_today` before this run so the risk validator enforces `daily_limits.max_new_orders_per_day`.
    - If all hard gates pass during regular market hours, prefer validation buys for the highest-ranked actionable candidates that pass position/theme/factor/speculative caps.
    - Use up to `paper_validation_execution.validation_order_sizing.max_new_buy_orders_per_run` buy slots. Additional slots should normally be different correlated clusters and must satisfy the cash-ratio floors in `harness/recommendation-policy.yaml`.
    - Size validation buys from `paper_validation_execution.validation_order_sizing.confidence_tiers` rather than defaulting every candidate to 1 share. Use the largest whole-share quantity that fits the candidate tier's `max_notional_pct` and `max_qty`, then run the normal risk validator.
