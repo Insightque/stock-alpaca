@@ -98,6 +98,7 @@ class ResearchMcpPreflightAsyncTests(unittest.IsolatedAsyncioTestCase):
 
         async def fake_call_with_retries(**kwargs):
             calls.append((kwargs["tool_name"], kwargs["arguments"]))
+            self.assertEqual("jsonl", kwargs["protocol"])
             return {"outcome": "pass", "payload": {"ok": True}, "retry_count": 0}
 
         with patch.object(research_preflight, "call_with_retries", new=fake_call_with_retries):
@@ -117,10 +118,59 @@ class ResearchMcpPreflightAsyncTests(unittest.IsolatedAsyncioTestCase):
         )
         self.assertEqual("empty_response", row["per_symbol"]["SMH"]["gap_category"])
 
+    async def test_sec_edgar_fails_fast_on_systemic_timeout(self) -> None:
+        calls: list[str] = []
+
+        async def fake_call_with_retries(**kwargs):
+            calls.append(kwargs["tool_name"])
+            self.assertEqual("jsonl", kwargs["protocol"])
+            return {
+                "outcome": "failed",
+                "gap_category": "timeout",
+                "gap_reason": "MCP stdio call sequence timed out after 75s",
+                "retry_count": 1,
+            }
+
+        with patch.object(research_preflight, "call_with_retries", new=fake_call_with_retries):
+            row = await research_preflight.capture_sec_edgar(
+                {"SEC_EDGAR_USER_AGENT": "present"},
+                ["AMZN", "INTC"],
+                {"AMZN": "0001018724", "INTC": "0000050863"},
+            )
+
+        self.assertEqual("failed", row["outcome"])
+        self.assertEqual("timeout", row["gap_category"])
+        self.assertEqual(["get_company_info"], calls)
+        self.assertNotIn("INTC", row["per_symbol"])
+        self.assertEqual("timeout", row["per_symbol"]["AMZN"]["recent_filings"]["gap_category"])
+
+    async def test_yahoo_finance_fails_fast_on_systemic_timeout(self) -> None:
+        calls: list[str] = []
+
+        async def fake_call_with_retries(**kwargs):
+            calls.append(kwargs["tool_name"])
+            self.assertEqual("jsonl", kwargs["protocol"])
+            return {
+                "outcome": "failed",
+                "gap_category": "timeout",
+                "gap_reason": "MCP stdio call sequence timed out after 75s",
+                "retry_count": 1,
+            }
+
+        with patch.object(research_preflight, "call_with_retries", new=fake_call_with_retries):
+            row = await research_preflight.capture_yahoo_finance({"ALPHA_VANTAGE_API_KEY": "irrelevant"}, ["AMZN", "INTC"])
+
+        self.assertEqual("failed", row["outcome"])
+        self.assertEqual("timeout", row["gap_category"])
+        self.assertEqual(["get_recommendations"], calls)
+        self.assertNotIn("INTC", row["per_symbol"])
+        self.assertEqual("timeout", row["per_symbol"]["AMZN"]["news"]["gap_category"])
+
     async def test_alpha_vantage_sequence_counts_candidate_news(self) -> None:
         captured_calls: list[tuple[str, dict]] = []
 
         async def fake_sequence(**kwargs):
+            self.assertEqual("jsonl", kwargs["protocol"])
             captured_calls.extend(kwargs["calls"])
             return [
                 {"tools": ["PING", "NEWS_SENTIMENT"]},
@@ -143,6 +193,7 @@ class ResearchMcpPreflightAsyncTests(unittest.IsolatedAsyncioTestCase):
 
     async def test_alpha_vantage_empty_candidate_payload_is_gap_not_cancelled(self) -> None:
         async def fake_sequence(**kwargs):
+            self.assertEqual("jsonl", kwargs["protocol"])
             return [
                 {"tools": ["PING", "NEWS_SENTIMENT"]},
                 {"name": "PING"},

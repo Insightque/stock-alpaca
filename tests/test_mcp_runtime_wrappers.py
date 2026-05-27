@@ -102,6 +102,7 @@ class McpRuntimeWrapperTests(unittest.TestCase):
                 "RESEARCH_PREFLIGHT_PATH",
                 "--alpaca-preflight-json",
                 "CODEX_AUTOPILOT_RESEARCH_SYMBOL_LIMIT",
+                "CODEX_AUTOPILOT_RESEARCH_MCP_TIMEOUT_SECONDS",
                 "authoritative scheduled evidence",
                 "mcp_coverage_hint",
                 "Do not run ad hoc local network helper scripts",

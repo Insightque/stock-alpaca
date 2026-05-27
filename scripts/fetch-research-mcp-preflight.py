@@ -22,9 +22,12 @@ from typing import Any
 ROOT_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_FRED_SERIES = ["DGS10", "DGS2", "FEDFUNDS", "CPIAUCSL", "UNRATE", "NFCI"]
 DEFAULT_MAX_SYMBOLS = 12
-MCP_TIMEOUT_SECONDS = 45
+DEFAULT_MCP_TIMEOUT_SECONDS = 75
+MCP_TIMEOUT_SECONDS = DEFAULT_MCP_TIMEOUT_SECONDS
 STDERR_CAPTURE_LIMIT = 4000
+STDIO_READ_LIMIT = 8 * 1024 * 1024
 POSITIVE_OUTCOMES = {"pass", "usable", "ok"}
+SYSTEMIC_GAP_CATEGORIES = {"timeout", "cancelled", "dns", "auth", "wrapper_error"}
 
 
 def now_utc() -> str:
@@ -61,17 +64,28 @@ def classify_error(exc: BaseException) -> str:
     return "unknown"
 
 
-def encode_message(payload: dict[str, Any]) -> bytes:
+def encode_message(payload: dict[str, Any], *, protocol: str) -> bytes:
     body = json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8")
+    if protocol == "jsonl":
+        return body + b"\n"
     return f"Content-Length: {len(body)}\r\n\r\n".encode("ascii") + body
 
 
-async def write_message(writer: asyncio.StreamWriter, payload: dict[str, Any]) -> None:
-    writer.write(encode_message(payload))
+async def write_message(writer: asyncio.StreamWriter, payload: dict[str, Any], *, protocol: str) -> None:
+    writer.write(encode_message(payload, protocol=protocol))
     await writer.drain()
 
 
-async def read_message(reader: asyncio.StreamReader) -> dict[str, Any]:
+async def read_message(reader: asyncio.StreamReader, *, protocol: str) -> dict[str, Any]:
+    if protocol == "jsonl":
+        line = await reader.readline()
+        if not line:
+            raise RuntimeError("MCP server closed stdout before responding.")
+        payload = json.loads(line.decode("utf-8"))
+        if not isinstance(payload, dict):
+            raise RuntimeError("MCP response body was not a JSON object.")
+        return payload
+
     headers: dict[str, str] = {}
     while True:
         line = await reader.readline()
@@ -144,6 +158,7 @@ async def create_stdio_process(command: Path, env: dict[str, str]) -> asyncio.su
         stdin=asyncio.subprocess.PIPE,
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE,
+        limit=STDIO_READ_LIMIT,
     )
 
 
@@ -153,12 +168,14 @@ async def call_stdio_tool(
     env: dict[str, str],
     tool_name: str,
     arguments: dict[str, Any],
+    protocol: str = "headers",
 ) -> dict[str, Any]:
     return (
         await call_stdio_tool_sequence(
             command=command,
             env=env,
             calls=[(tool_name, arguments)],
+            protocol=protocol,
         )
     )[0]
 
@@ -168,6 +185,7 @@ async def call_stdio_tool_sequence(
     command: Path,
     env: dict[str, str],
     calls: list[tuple[str, dict[str, Any]]],
+    protocol: str = "headers",
 ) -> list[dict[str, Any]]:
     proc = await create_stdio_process(command, env)
     if proc.stdin is None or proc.stdout is None:
@@ -189,11 +207,16 @@ async def call_stdio_tool_sequence(
                     "clientInfo": {"name": "stock-alpaca-scheduler-preflight", "version": "0.2.0"},
                 },
             },
+            protocol=protocol,
         )
-        initialized = await read_message(proc.stdout)
+        initialized = await read_message(proc.stdout, protocol=protocol)
         if "error" in initialized:
             raise RuntimeError(f"MCP initialize failed: {initialized['error']}")
-        await write_message(proc.stdin, {"jsonrpc": "2.0", "method": "notifications/initialized", "params": {}})
+        await write_message(
+            proc.stdin,
+            {"jsonrpc": "2.0", "method": "notifications/initialized", "params": {}},
+            protocol=protocol,
+        )
 
         payloads: list[dict[str, Any]] = []
         for index, (tool_name, arguments) in enumerate(calls, start=2):
@@ -205,8 +228,9 @@ async def call_stdio_tool_sequence(
                     "method": "tools/call",
                     "params": {"name": tool_name, "arguments": arguments},
                 },
+                protocol=protocol,
             )
-            response = await read_message(proc.stdout)
+            response = await read_message(proc.stdout, protocol=protocol)
             if "error" in response:
                 raise RuntimeError(f"MCP tools/call failed: {response['error']}")
             payloads.append(parse_tool_payload(response.get("result") or {}))
@@ -240,11 +264,18 @@ async def call_with_retries(
     tool_name: str,
     arguments: dict[str, Any],
     retries: int,
+    protocol: str = "headers",
 ) -> dict[str, Any]:
     last_error: BaseException | None = None
     for attempt in range(retries + 1):
         try:
-            payload = await call_stdio_tool(command=command, env=env, tool_name=tool_name, arguments=arguments)
+            payload = await call_stdio_tool(
+                command=command,
+                env=env,
+                tool_name=tool_name,
+                arguments=arguments,
+                protocol=protocol,
+            )
             return {"outcome": "pass", "payload": payload, "retry_count": attempt}
         except Exception as exc:  # noqa: BLE001 - preflight should classify and continue.
             last_error = exc
@@ -388,6 +419,23 @@ def alpha_news_item_count(payload: dict[str, Any]) -> int:
     return 0
 
 
+def gap_from_failed_call(row: dict[str, Any]) -> tuple[str, str]:
+    return (
+        str(row.get("gap_category") or "provider_error"),
+        str(row.get("gap_reason") or "MCP provider call failed.")[:240],
+    )
+
+
+def skipped_after(row: dict[str, Any], tool_name: str) -> dict[str, Any]:
+    gap_category, gap_reason = gap_from_failed_call(row)
+    return {
+        "outcome": "failed",
+        "gap_category": gap_category,
+        "gap_reason": f"Skipped {tool_name} after prior provider call failed: {gap_reason}"[:240],
+        "retry_count": 0,
+    }
+
+
 async def capture_fred(env: dict[str, str]) -> dict[str, Any]:
     checked_at = now_utc()
     if not env.get("FRED_API_KEY"):
@@ -457,6 +505,8 @@ async def capture_sec_edgar(env: dict[str, str], symbols: list[str], ciks: dict[
     per_symbol: dict[str, Any] = {}
     pass_count = 0
     max_retry = 0
+    first_gap_category = ""
+    first_gap_reason = ""
     for symbol in symbols:
         cik = ciks.get(symbol)
         if not cik:
@@ -472,16 +522,36 @@ async def capture_sec_edgar(env: dict[str, str], symbols: list[str], ciks: dict[
             tool_name="get_company_info",
             arguments={"identifier": cik},
             retries=1,
+            protocol="jsonl",
         )
+        if company["outcome"] != "pass":
+            first_gap_category, first_gap_reason = first_gap_category or gap_from_failed_call(company)[0], (
+                first_gap_reason or gap_from_failed_call(company)[1]
+            )
+            per_symbol[symbol] = {
+                "cik": cik,
+                "outcome": "failed",
+                "company_info": company,
+                "recent_filings": skipped_after(company, "get_recent_filings"),
+            }
+            max_retry = max(max_retry, int(company.get("retry_count", 0)))
+            if company.get("gap_category") in SYSTEMIC_GAP_CATEGORIES:
+                break
+            continue
         filings = await call_with_retries(
             command=command,
             env=env,
             tool_name="get_recent_filings",
             arguments={"identifier": cik, "days": 30, "limit": 5},
             retries=1,
+            protocol="jsonl",
         )
         max_retry = max(max_retry, int(company.get("retry_count", 0)), int(filings.get("retry_count", 0)))
         symbol_outcome = "pass" if company["outcome"] == "pass" and filings["outcome"] == "pass" else "failed"
+        if filings["outcome"] != "pass":
+            first_gap_category, first_gap_reason = first_gap_category or gap_from_failed_call(filings)[0], (
+                first_gap_reason or gap_from_failed_call(filings)[1]
+            )
         if symbol_outcome == "pass":
             pass_count += 1
         per_symbol[symbol] = {
@@ -490,14 +560,16 @@ async def capture_sec_edgar(env: dict[str, str], symbols: list[str], ciks: dict[
             "company_info": company,
             "recent_filings": filings,
         }
+        if symbol_outcome != "pass" and filings.get("gap_category") in SYSTEMIC_GAP_CATEGORIES:
+            break
 
     return provider_row(
         server="sec-edgar",
         queried=True,
         outcome="pass" if pass_count else "failed",
         checked_at=checked_at,
-        gap_category="not_applicable" if pass_count else "provider_error",
-        gap_reason="" if pass_count else "No candidate symbol returned both company info and recent filings.",
+        gap_category="not_applicable" if pass_count else first_gap_category or "provider_error",
+        gap_reason="" if pass_count else first_gap_reason or "No candidate symbol returned both company info and recent filings.",
         retry_count=max_retry,
         tool="get_company_info|get_recent_filings",
         per_symbol=per_symbol,
@@ -521,6 +593,8 @@ async def capture_yahoo_finance(env: dict[str, str], symbols: list[str]) -> dict
     per_symbol: dict[str, Any] = {}
     pass_count = 0
     max_retry = 0
+    first_gap_category = ""
+    first_gap_reason = ""
     for symbol in symbols:
         recommendations = await call_with_retries(
             command=command,
@@ -528,16 +602,34 @@ async def capture_yahoo_finance(env: dict[str, str], symbols: list[str]) -> dict
             tool_name="get_recommendations",
             arguments={"ticker": symbol, "recommendation_type": "recommendations", "months_back": 12},
             retries=1,
+            protocol="jsonl",
         )
+        if recommendations["outcome"] != "pass":
+            first_gap_category, first_gap_reason = first_gap_category or gap_from_failed_call(recommendations)[0], (
+                first_gap_reason or gap_from_failed_call(recommendations)[1]
+            )
+            if recommendations.get("gap_category") in SYSTEMIC_GAP_CATEGORIES:
+                per_symbol[symbol] = {
+                    "outcome": "failed",
+                    "recommendations": recommendations,
+                    "news": skipped_after(recommendations, "get_yahoo_finance_news"),
+                }
+                max_retry = max(max_retry, int(recommendations.get("retry_count", 0)))
+                break
         news = await call_with_retries(
             command=command,
             env=env,
             tool_name="get_yahoo_finance_news",
             arguments={"ticker": symbol},
             retries=1,
+            protocol="jsonl",
         )
         max_retry = max(max_retry, int(recommendations.get("retry_count", 0)), int(news.get("retry_count", 0)))
         symbol_pass = recommendations["outcome"] == "pass" or news["outcome"] == "pass"
+        if news["outcome"] != "pass":
+            first_gap_category, first_gap_reason = first_gap_category or gap_from_failed_call(news)[0], (
+                first_gap_reason or gap_from_failed_call(news)[1]
+            )
         if symbol_pass:
             pass_count += 1
         per_symbol[symbol] = {
@@ -545,14 +637,16 @@ async def capture_yahoo_finance(env: dict[str, str], symbols: list[str]) -> dict
             "recommendations": recommendations,
             "news": news,
         }
+        if not symbol_pass and news.get("gap_category") in SYSTEMIC_GAP_CATEGORIES:
+            break
 
     return provider_row(
         server="yahoo-finance",
         queried=True,
         outcome="pass" if pass_count else "failed",
         checked_at=checked_at,
-        gap_category="not_applicable" if pass_count else "provider_error",
-        gap_reason="" if pass_count else "No Yahoo Finance candidate call returned usable data.",
+        gap_category="not_applicable" if pass_count else first_gap_category or "provider_error",
+        gap_reason="" if pass_count else first_gap_reason or "No Yahoo Finance candidate call returned usable data.",
         retry_count=max_retry,
         tool="get_recommendations|get_yahoo_finance_news",
         per_symbol=per_symbol,
@@ -604,6 +698,7 @@ async def capture_alpha_vantage(env: dict[str, str], symbols: list[str]) -> dict
             command=ROOT_DIR / "scripts" / "mcp-alpha-vantage.sh",
             env=env,
             calls=calls,
+            protocol="jsonl",
         )
     except Exception as exc:
         return provider_row(
@@ -712,15 +807,24 @@ def build_mcp_coverage_hint(providers: list[dict[str, Any]], source_ref: str) ->
 
 
 async def main_async() -> int:
+    global MCP_TIMEOUT_SECONDS
+
     parser = argparse.ArgumentParser(description="Capture scheduler-owned research MCP preflight data.")
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--output-json", type=Path, required=True)
     parser.add_argument("--symbols", default="", help="Comma-separated candidate symbols for research MCP preflight.")
     parser.add_argument("--alpaca-preflight-json", type=Path)
     parser.add_argument("--max-symbols", type=int, default=DEFAULT_MAX_SYMBOLS)
+    parser.add_argument(
+        "--timeout",
+        type=int,
+        default=int(os.environ.get("CODEX_AUTOPILOT_RESEARCH_MCP_TIMEOUT_SECONDS", DEFAULT_MCP_TIMEOUT_SECONDS)),
+        help="Per MCP stdio call sequence timeout in seconds.",
+    )
     parser.add_argument("--sec-cik-map", type=Path, default=ROOT_DIR / "harness" / "sec-ticker-cik-map.json")
     args = parser.parse_args()
 
+    MCP_TIMEOUT_SECONDS = max(5, int(args.timeout))
     env = read_env()
     captured_at = now_utc()
     max_symbols = max(1, int(args.max_symbols))

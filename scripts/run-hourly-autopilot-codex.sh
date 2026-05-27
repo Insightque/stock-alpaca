@@ -75,7 +75,8 @@ if ! PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/scripts/fetch-research-m
   --run-id "${RUN_ID}" \
   --output-json "${RESEARCH_PREFLIGHT_PATH}" \
   --alpaca-preflight-json "${ALPACA_PREFLIGHT_PATH}" \
-  --max-symbols "${CODEX_AUTOPILOT_RESEARCH_SYMBOL_LIMIT:-12}"; then
+  --max-symbols "${CODEX_AUTOPILOT_RESEARCH_SYMBOL_LIMIT:-12}" \
+  --timeout "${CODEX_AUTOPILOT_RESEARCH_MCP_TIMEOUT_SECONDS:-75}"; then
   echo "$(now_iso) research MCP preflight failed; nested workflow will classify provider gaps."
 fi
 

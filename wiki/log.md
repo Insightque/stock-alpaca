@@ -1294,3 +1294,33 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - SEC EDGAR는 local CIK cache와 lightweight company/recent filing check를 우선 사용하고, Alpha Vantage는 PING 후 candidate `NEWS_SENTIMENT` 한 번으로 호출 문제와 데이터 공백을 분리하도록 테스트를 추가했다.
 - 검증: `python3 -m py_compile scripts/fetch-research-mcp-preflight.py` PASS, `bash -n scripts/run-hourly-autopilot-codex.sh` PASS, `python3 -m unittest tests.test_fetch_research_mcp_preflight tests.test_mcp_runtime_wrappers` 14개 PASS, `python3 -m unittest discover -s tests` 77개 PASS.
 - 이번 maintenance에서는 Alpaca 주문 제출/교체/취소/청산 도구를 호출하지 않았고, 실제 주문/포지션 변경도 없었다.
+
+## [2026-05-27 10:49 Asia/Seoul] automation-test | 장외 hourly autopilot wrapper 테스트
+
+- 사용자 요청에 따라 장외 상태에서 `scripts/run-hourly-autopilot-codex.sh`를 수동 실행했다.
+- 기본 sandbox 실행에서는 Alpaca MCP clock 확인이 `TaskGroup` 예외로 실패했고, wrapper는 fail-closed로 `Unable to confirm Alpaca market is open through MCP`를 출력한 뒤 종료했다.
+- 실제 스케줄 환경에 가깝게 샌드박스 밖에서 재실행하자 Alpaca MCP `get_clock`이 정상 응답했다. 결과는 `is_open=false`, timestamp `2026-05-26T21:48:57.362709291-04:00`, next open `2026-05-27T09:30:00-04:00`, next close `2026-05-27T16:00:00-04:00`.
+- 장외 gate가 의도대로 동작해 research preflight, nested Codex, order plan, 주문 제출 단계로 진입하지 않았다.
+- 이번 테스트에서는 Alpaca 주문 제출/교체/취소/청산 도구를 호출하지 않았고, 실제 주문/포지션 변경도 없었다.
+
+## [2026-05-27 11:07 Asia/Seoul] automation-test | research MCP preflight 실제 상태 확인
+
+- 변경된 scheduler-owned research MCP preflight 방식으로 `AMZN`, `INTC` 대상 실제 MCP 상태를 점검했다. 출력 파일은 `/private/tmp/research-mcp-preflight-check.json`로 두어 위키 raw source를 오염시키지 않았다.
+- 최초 sandbox 실행은 MCP/network 제약으로 장시간 멈춰 정리했고, 실제 스케줄 환경에 가까운 샌드박스 밖 실행으로 확인했다.
+- 최초 실제 결과: FRED pass, Firecrawl pass, SEC EDGAR failed, Alpha Vantage timeout, Yahoo Finance failed. 즉 현재 research confirmation은 2개라 buy actionable 기준 3개에는 미달했다.
+- 실패 원인이 모두 timeout인데 SEC/Yahoo 최상위 row가 `provider_error`로 뭉개지는 문제가 보여 `scripts/fetch-research-mcp-preflight.py`를 보강했다. SEC/Yahoo는 systemic timeout/cancelled/dns/auth/wrapper gap이면 fail-fast하고 최상위 `gap_category`를 실제 원인으로 올리도록 수정했다.
+- Scheduler wrapper는 research MCP timeout을 `CODEX_AUTOPILOT_RESEARCH_MCP_TIMEOUT_SECONDS`로 조정 가능하게 하고 기본 75초를 넘기도록 수정했다.
+- 보강 후 `AMZN` 1종목 재점검 결과: FRED pass, Firecrawl pass, SEC EDGAR timeout, Alpha Vantage timeout, Yahoo Finance timeout. 새 분류는 timeout으로 정확히 기록됐다.
+- 검증: `python3 -m py_compile scripts/fetch-research-mcp-preflight.py` PASS, `bash -n scripts/run-hourly-autopilot-codex.sh` PASS, `python3 -m unittest tests.test_fetch_research_mcp_preflight tests.test_mcp_runtime_wrappers` 16개 PASS, `python3 -m unittest discover -s tests` 79개 PASS.
+- 이번 테스트에서는 Alpaca 주문 제출/교체/취소/청산 도구를 호출하지 않았고, 실제 주문/포지션 변경도 없었다.
+
+## [2026-05-27 11:15 Asia/Seoul] automation-maintenance | research MCP timeout 원인 확정 및 수정
+
+- 사용자 질문에 따라 SEC EDGAR, Alpha Vantage, Yahoo Finance timeout 원인이 provider 서버인지, shell wrapper인지, 우리 호출 방식인지 분리 진단했다.
+- 진단 결과 SEC/Yahoo/Alpha 모두 provider tool call 전에 MCP `initialize` 단계에서 timeout됐다. stderr 확인 결과 해당 서버들은 JSON-lines stdio를 기대하는데, 우리 `fetch-research-mcp-preflight.py`가 FRED/Firecrawl 로컬 서버용 `Content-Length` framing으로 호출해 `Content-Length: ...`를 JSON으로 파싱하려다 실패하고 있었다.
+- 결론: 이번 timeout의 1차 원인은 provider 데이터 부재나 서버 본연의 불안정성이 아니라 우리 scheduler preflight의 stdio protocol mismatch였다. Shell wrapper/uvx 자체도 startup overhead는 있지만, 이번 현상의 핵심 원인은 framing 불일치였다.
+- 수정: SEC EDGAR, Alpha Vantage, Yahoo Finance는 JSON-lines protocol로 호출하고, FRED/Firecrawl 로컬 MCP는 기존 Content-Length protocol을 유지하도록 provider별 protocol을 분리했다.
+- 추가 수정: Alpha Vantage 응답이 큰 한 줄 JSON으로 올 때 Python `readline` 기본 limit에 걸려 `Separator is not found, and chunk exceed the limit`가 발생해 stdio read limit을 8 MiB로 늘렸다.
+- 실제 재검증: `/private/tmp/research-mcp-preflight-alpha-buffer-check.json` 기준 `AMZN` 1종목 preflight에서 SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance 5개 모두 pass.
+- 검증: `python3 -m py_compile scripts/fetch-research-mcp-preflight.py` PASS, `python3 -m unittest tests.test_fetch_research_mcp_preflight tests.test_mcp_runtime_wrappers` 16개 PASS, `python3 -m unittest discover -s tests` 79개 PASS.
+- 이번 maintenance에서는 Alpaca 주문 제출/교체/취소/청산 도구를 호출하지 않았고, 실제 주문/포지션 변경도 없었다.
