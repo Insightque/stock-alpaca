@@ -278,3 +278,4 @@
 - [[2026-05-27-0052-hourly-autopilot-sources]] - hourly autopilot의 Alpaca core PASS, SEC/Yahoo/FRED usable, Alpha cancelled, Firecrawl wrapper gap, LLY paper validation 체결 근거.
 - `wiki/evidence-store/run-manifests/2026-05-27-0052-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict PASS, risk-check PASS, LLY order filled.
 - `wiki/evidence-store/run-manifests/2026-05-27-0012-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
+- `wiki/evidence-store/run-manifests/2026-05-28-0231-hourly-autopilot.json` - 02:31 KST scheduled hourly autopilot manifest, universe/MCP/risk strict PASS, daily validation order budget으로 주문 없음.
