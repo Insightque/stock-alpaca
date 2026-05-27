@@ -38,6 +38,22 @@ Run a 20-minute current-market recommendation loop. If and only if every safety,
   - Full policy review: after 20 full trading days or when a position is closed.
   - Portfolio-level review: weekly after Friday close, or next available session.
 
+## Current User Portfolio Directive
+
+For the 2026-05-27 US regular session, apply this user-requested overlay after all normal gates and before final order selection:
+
+- The user asked to run today's autopilot more aggressively, but with better diversification.
+- Current intended exposure target is a staged increase from roughly 58% invested toward 65-70%, not the risk-policy maximum.
+- Do not use the extra aggression to chase already overheated single-name momentum. Treat AMD, NOK, MU, and INTC as recheck/watch candidates unless fresh regular-session evidence, spread, and risk gates clearly justify a small validation order.
+- Avoid new chase buys in RGTI, IONQ, and QBTS.
+- Prefer new buy slots that improve diversification. At least half of any new capital deployed from this directive should go to non-semiconductor or broad diversified exposure when candidates pass the same gates.
+- Priority pairs to evaluate, in order, are:
+  - Aggressive diversified: SMH 1 share plus LLY 1 share.
+  - Existing-winner reinforcement with diversification: LRCX 1 share plus LLY 1 share.
+  - More stable diversification: LLY 1 share plus AAPL 1 share.
+- Do not buy both LRCX and SMH in the same run unless portfolio concentration checks show the AI/semiconductor complex remains comfortably below policy limits after both orders.
+- This overlay may only influence ranking and sizing among candidates that already pass market, universe, MCP, quote, spread, duplicate-order, cash, and risk gates. It must not override hard gates or paper validation sizing limits.
+
 ## Required Inputs
 
 - `AGENTS.md`
