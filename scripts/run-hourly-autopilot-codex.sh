@@ -94,15 +94,21 @@ if ! PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/scripts/fetch-alpaca-cor
   echo "$(now_iso) Alpaca core MCP preflight failed; nested workflow will classify the core gap."
 fi
 
-if ! PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/scripts/fetch-research-mcp-preflight.py" \
-  --run-id "${RUN_ID}" \
-  --output-json "${RESEARCH_PREFLIGHT_PATH}" \
-  --alpaca-preflight-json "${ALPACA_PREFLIGHT_PATH}" \
-  --max-symbols "${CODEX_AUTOPILOT_RESEARCH_SYMBOL_LIMIT:-12}" \
-  --timeout "${CODEX_AUTOPILOT_RESEARCH_MCP_TIMEOUT_SECONDS:-75}" \
-  --cache-dir "${CODEX_AUTOPILOT_RESEARCH_CACHE_DIR:-${ROOT_DIR}/.cache/research-mcp-preflight}" \
-  --circuit-breaker-seconds "${CODEX_AUTOPILOT_RESEARCH_CIRCUIT_SECONDS:-600}" \
-  "${RESEARCH_CACHE_TTL_ARGS[@]}"; then
+RESEARCH_PREFLIGHT_COMMAND=(
+  PATH="/usr/local/bin:${PATH}"
+  python3 "${ROOT_DIR}/scripts/fetch-research-mcp-preflight.py"
+  --run-id "${RUN_ID}"
+  --output-json "${RESEARCH_PREFLIGHT_PATH}"
+  --alpaca-preflight-json "${ALPACA_PREFLIGHT_PATH}"
+  --max-symbols "${CODEX_AUTOPILOT_RESEARCH_SYMBOL_LIMIT:-12}"
+  --timeout "${CODEX_AUTOPILOT_RESEARCH_MCP_TIMEOUT_SECONDS:-75}"
+  --cache-dir "${CODEX_AUTOPILOT_RESEARCH_CACHE_DIR:-${ROOT_DIR}/.cache/research-mcp-preflight}"
+  --circuit-breaker-seconds "${CODEX_AUTOPILOT_RESEARCH_CIRCUIT_SECONDS:-600}"
+)
+if [ "${#RESEARCH_CACHE_TTL_ARGS[@]}" -gt 0 ]; then
+  RESEARCH_PREFLIGHT_COMMAND+=("${RESEARCH_CACHE_TTL_ARGS[@]}")
+fi
+if ! env "${RESEARCH_PREFLIGHT_COMMAND[@]}"; then
   echo "$(now_iso) research MCP preflight failed; nested workflow will classify provider gaps."
 fi
 
