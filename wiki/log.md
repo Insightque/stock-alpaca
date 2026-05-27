@@ -1387,3 +1387,13 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Submitted/skipped orders: V buy 1 submitted open `new`, client_order_id `hourly-20260527-2351-v-buy-1`; no fill at post-trade reconciliation.
 - Manifest: `wiki/evidence-store/run-manifests/2026-05-27-2351-hourly-autopilot.json`. Order plan: `wiki/trade-ledger/orders/2026-05-27-2351-hourly-autopilot.json`. Report: `wiki/current-runs/daily/2026-05-27-2351-hourly-autopilot.md`.
 - Review due markers: V fill pending; mark `회고 대기` after fill.
+
+## [2026-05-28 00:13 Asia/Seoul] hourly-autopilot | 2026-05-28-0011-hourly-autopilot scheduled paper autopilot
+
+- Run id: `2026-05-28-0011-hourly-autopilot`. Market clock open at `2026-05-27T11:11:12.097924695-04:00`, next close `2026-05-27T16:00:00-04:00`.
+- Scheduler stale-order cleanup passed: stale candidates 0, cancel attempts 0, remaining fresh open autopilot order 1 for V.
+- Recommendation shortlist: AMZN and PFE skipped as same-session duplicate buys; V skipped due fresh open buy order. SLB, INTC, PLTR, and QQQ remained research-preflight-covered recheck names but were not order candidates.
+- Validation: universe strict PASS, MCP strict PASS, risk policy PASS for empty order plan. Alpaca core pass; SEC EDGAR/FRED/Firecrawl/Yahoo pass; Alpha Vantage gap `empty_response`.
+- Submitted/skipped orders: no orders submitted. First blocking gate: `risk_daily_new_orders_budget` because 10 scheduled validation buy orders had already been created for the 2026-05-27 ET session.
+- Manifest: `wiki/evidence-store/run-manifests/2026-05-28-0011-hourly-autopilot.json`. Order plan: `wiki/trade-ledger/orders/2026-05-28-0011-hourly-autopilot.json`. Report: `wiki/current-runs/daily/2026-05-28-0011-hourly-autopilot.md`.
+- Review due markers: 신규 체결 없음. Existing filled validation buys remain queued for 1D/5D/20D analyst review.

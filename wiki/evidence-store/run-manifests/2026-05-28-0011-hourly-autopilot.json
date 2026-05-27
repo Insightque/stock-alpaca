@@ -1,0 +1,239 @@
+{
+  "run_id": "2026-05-28-0011-hourly-autopilot",
+  "created_at": "2026-05-27T15:12:20Z",
+  "workflow": "hourly-autopilot",
+  "mode": "submit",
+  "paper": true,
+  "recommendation_policy_sha": "sha256:bdce1db89dc526840059853d7273be6a782f3be109f4ff6231b1f02d1b362502",
+  "market": {
+    "is_open": true,
+    "timestamp": "2026-05-27T11:11:12.097924695-04:00",
+    "next_close": "2026-05-27T16:00:00-04:00"
+  },
+  "recommendation_actionability": "non_actionable_order_budget_reached",
+  "first_blocking_gate": "risk_daily_new_orders_budget",
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + scheduler Alpaca preflight universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_universe_current_quote_spread_intraday_momentum_screen_then_scheduler_research_preflight_symbol_filter_then_workflow_order_budget_filter",
+    "pre_mcp_shortlist": [
+      "NKE",
+      "AMZN",
+      "PFE",
+      "V",
+      "WMT",
+      "BAC",
+      "SLB",
+      "INTC",
+      "PLTR",
+      "QQQ"
+    ],
+    "final_candidates": [
+      "AMZN",
+      "PFE",
+      "V"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "all_research_must_be_attempted": true,
+    "provider_gap_blocks_order": false,
+    "tiered_policy": true
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-27T15:11:40Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-27T15:11:40+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-05-27T15:11:40+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-27T14:51:38+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-27T15:11:40+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-27T15:11:40+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "research_confirmations_used": [
+    "sec-edgar",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "stale_order_cleanup": {
+    "status": "pass",
+    "source_ref": "wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-stale-order-cleanup.json",
+    "stale_candidates": 0,
+    "cancel_attempts": 0,
+    "remaining_open_autopilot_orders": 1,
+    "remaining_stale_autopilot_orders": 0,
+    "gap_category": "not_applicable",
+    "gap_reason": ""
+  },
+  "recommendation_shortlist": [
+    {
+      "symbol": "AMZN",
+      "action": "skip_duplicate",
+      "reason": "positive intraday move and tight spread, but same ET session validation buy already filled"
+    },
+    {
+      "symbol": "PFE",
+      "action": "skip_duplicate",
+      "reason": "positive intraday move and tight spread, but same ET session validation buy already filled"
+    },
+    {
+      "symbol": "V",
+      "action": "skip_open_order",
+      "reason": "fresh open autopilot buy order remains from the 23:51 KST run"
+    }
+  ],
+  "skipped_orders": [
+    {
+      "symbol": "AMZN",
+      "side": "buy",
+      "reason": "same-day duplicate buy and risk_daily_new_orders_budget: 10 scheduled validation buy orders already created for the 2026-05-27 ET session"
+    },
+    {
+      "symbol": "PFE",
+      "side": "buy",
+      "reason": "same-day duplicate buy and risk_daily_new_orders_budget"
+    },
+    {
+      "symbol": "V",
+      "side": "buy",
+      "reason": "fresh open autopilot buy order remains from 23:51 KST run; duplicate/open-order lifecycle blocks another V buy"
+    },
+    {
+      "symbol": "SLB",
+      "side": "buy",
+      "reason": "research-preflight-covered recheck candidate, but negative intraday trend and daily order budget block new validation buy"
+    }
+  ],
+  "submitted_orders": [],
+  "post_trade_reconciliation": {
+    "required": true,
+    "performed_via": "scheduler Alpaca core preflight read-only account/positions/open_orders/recent_fills rows",
+    "open_orders": [
+      {
+        "symbol": "V",
+        "side": "buy",
+        "qty": 1.0,
+        "filled_qty": 0.0,
+        "status": "new",
+        "client_order_id": "hourly-20260527-2351-v-buy-1",
+        "submitted_at": "2026-05-27T15:00:22.244592675Z",
+        "age_minutes": 11.96
+      }
+    ],
+    "same_day_fills_seen": [
+      "NKE",
+      "PFE",
+      "SO",
+      "WMT",
+      "NEE",
+      "AMZN",
+      "BAC",
+      "XOM"
+    ],
+    "source_ref": "wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-alpaca-core-preflight.json"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-stale-order-cleanup.json"
+  ],
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-28-0011-hourly-autopilot.json",
+  "report_path": "wiki/current-runs/daily/2026-05-28-0011-hourly-autopilot.md"
+}

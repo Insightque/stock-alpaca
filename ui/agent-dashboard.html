@@ -350,29 +350,29 @@
   </div>
 
   <script type="application/json" id="dashboard-data">{
-  "generated_at": "2026-05-27T15:02:53Z",
+  "generated_at": "2026-05-27T15:20:34Z",
   "run": {
-    "run_id": "2026-05-27-2351-hourly-autopilot",
+    "run_id": "2026-05-28-0011-hourly-autopilot",
     "mode": "submit",
-    "created_at": "2026-05-27T14:59:22Z",
+    "created_at": "2026-05-27T15:12:20Z",
     "paper": true,
     "risk_status": "UNKNOWN",
     "market": "open",
     "next_open": "2026-05-28T09:30:00-04:00",
-    "orders_planned": 1,
+    "orders_planned": 0,
     "orders_submitted": 0,
     "symbols_loaded": 0,
-    "cash_ratio": 41.0615602031413,
-    "invested_ratio": 58.93622803585392,
-    "action_label": "주문 후보",
-    "action_reason": "1건"
+    "cash_ratio": 41.08059631707703,
+    "invested_ratio": 58.92139031118862,
+    "action_label": "검토",
+    "action_reason": "주문 후보 없음"
   },
   "account": {
-    "portfolio_value": 101082.35,
+    "portfolio_value": 101035.51,
     "cash": 41505.99,
-    "invested": 59574.12429999999,
-    "cash_ratio": 41.0615602031413,
-    "invested_ratio": 58.93622803585392
+    "invested": 59531.527200000004,
+    "cash_ratio": 41.08059631707703,
+    "invested_ratio": 58.92139031118862
   },
   "portfolio": {
     "source_path": "wiki/trade-ledger/positions/current.md",
@@ -433,7 +433,7 @@
       "label": "점수",
       "status": "done",
       "progress": 100,
-      "result": "V / MS / QQQ"
+      "result": "AMZN / PFE / V"
     },
     {
       "id": "ticker_thesis",
@@ -441,7 +441,7 @@
       "label": "티커",
       "status": "done",
       "progress": 100,
-      "result": "V / MS / QQQ"
+      "result": "AMZN / PFE / V"
     },
     {
       "id": "risk",
@@ -478,22 +478,22 @@
   ],
   "picks": [
     {
-      "symbol": "V",
-      "action": "1주 validation buy",
+      "symbol": "AMZN",
+      "action": "skip duplicate",
       "reason": "",
       "score": "",
       "rank": "1",
-      "score_label": "신뢰 55%",
-      "confidence": "auto_eligible_paper",
+      "score_label": "순위 #1",
+      "confidence": "shortlist",
       "return_20d": "",
       "vs_spy_20d": "",
-      "primary_chip": "20D 기대 +1.0%",
-      "secondary_chip": "불리 -4.2%",
+      "primary_chip": "20D -",
+      "secondary_chip": "시장대비 -",
       "risk": ""
     },
     {
-      "symbol": "MS",
-      "action": "recheck",
+      "symbol": "PFE",
+      "action": "skip duplicate",
       "reason": "",
       "score": "",
       "rank": "2",
@@ -506,8 +506,8 @@
       "risk": ""
     },
     {
-      "symbol": "QQQ",
-      "action": "recheck",
+      "symbol": "V",
+      "action": "skip open order",
       "reason": "",
       "score": "",
       "rank": "3",
@@ -522,36 +522,36 @@
   ],
   "recommendations": [
     {
-      "심볼": "V",
-      "조치": "1주 validation buy",
+      "심볼": "AMZN",
+      "조치": "skip duplicate",
       "이유": "",
       "주의": "",
       "순위": "1"
     },
     {
-      "심볼": "MS",
-      "조치": "recheck",
+      "심볼": "PFE",
+      "조치": "skip duplicate",
       "이유": "",
       "주의": "",
       "순위": "2"
     },
     {
-      "심볼": "QQQ",
-      "조치": "recheck",
+      "심볼": "V",
+      "조치": "skip open order",
       "이유": "",
       "주의": "",
       "순위": "3"
     },
     {
-      "심볼": "GOOGL",
-      "조치": "skip canceled stale",
+      "심볼": "NKE/WMT/NEE/BAC/XOM",
+      "조치": "skip duplicate/budget",
       "이유": "",
       "주의": "",
       "순위": "-"
     },
     {
-      "심볼": "NKE/PFE/SO/WMT/NEE/AMZN/BAC/XOM",
-      "조치": "skip duplicate",
+      "심볼": "SLB/INTC/PLTR/QQQ",
+      "조치": "recheck only",
       "이유": "",
       "주의": "",
       "순위": "-"
@@ -561,18 +561,18 @@
   "links": [
     {
       "label": "리포트",
-      "path": "wiki/current-runs/daily/2026-05-27-2351-hourly-autopilot.md",
-      "href": "../wiki/current-runs/daily/2026-05-27-2351-hourly-autopilot.md"
+      "path": "wiki/current-runs/daily/2026-05-28-0011-hourly-autopilot.md",
+      "href": "../wiki/current-runs/daily/2026-05-28-0011-hourly-autopilot.md"
     },
     {
       "label": "주문계획",
-      "path": "wiki/trade-ledger/orders/2026-05-27-2351-hourly-autopilot.json",
-      "href": "../wiki/trade-ledger/orders/2026-05-27-2351-hourly-autopilot.json"
+      "path": "wiki/trade-ledger/orders/2026-05-28-0011-hourly-autopilot.json",
+      "href": "../wiki/trade-ledger/orders/2026-05-28-0011-hourly-autopilot.json"
     },
     {
       "label": "Manifest",
-      "path": "wiki/evidence-store/run-manifests/2026-05-27-2351-hourly-autopilot.json",
-      "href": "../wiki/evidence-store/run-manifests/2026-05-27-2351-hourly-autopilot.json"
+      "path": "wiki/evidence-store/run-manifests/2026-05-28-0011-hourly-autopilot.json",
+      "href": "../wiki/evidence-store/run-manifests/2026-05-28-0011-hourly-autopilot.json"
     },
     {
       "label": "포지션",
@@ -580,32 +580,27 @@
       "href": "../wiki/trade-ledger/positions/current.md"
     },
     {
-      "label": "2026-05-27-2351-hourly-autopilot-sources.md",
-      "path": "wiki/evidence-store/sources/2026-05-27-2351-hourly-autopilot-sources.md",
-      "href": "../wiki/evidence-store/sources/2026-05-27-2351-hourly-autopilot-sources.md"
+      "label": "2026-05-28-0011-hourly-autopilot-alpaca-core-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-alpaca-core-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-alpaca-core-preflight.json"
     },
     {
-      "label": "2026-05-27-2351-hourly-autopilot-alpaca-core-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-27-2351-hourly-autopilot-alpaca-core-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-27-2351-hourly-autopilot-alpaca-core-preflight.json"
+      "label": "2026-05-28-0011-hourly-autopilot-research-mcp-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-research-mcp-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-research-mcp-preflight.json"
     },
     {
-      "label": "2026-05-27-2351-hourly-autopilot-research-mcp-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-27-2351-hourly-autopilot-research-mcp-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-27-2351-hourly-autopilot-research-mcp-preflight.json"
-    },
-    {
-      "label": "2026-05-27-2351-hourly-autopilot-stale-order-cleanup.json",
-      "path": "wiki/evidence-store/sources/2026-05-27-2351-hourly-autopilot-stale-order-cleanup.json",
-      "href": "../wiki/evidence-store/sources/2026-05-27-2351-hourly-autopilot-stale-order-cleanup.json"
-    },
-    {
-      "label": "2026-05-27-2351-hourly-autopilot-post-trade.json",
-      "path": "wiki/evidence-store/sources/2026-05-27-2351-hourly-autopilot-post-trade.json",
-      "href": "../wiki/evidence-store/sources/2026-05-27-2351-hourly-autopilot-post-trade.json"
+      "label": "2026-05-28-0011-hourly-autopilot-stale-order-cleanup.json",
+      "path": "wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-stale-order-cleanup.json",
+      "href": "../wiki/evidence-store/sources/2026-05-28-0011-hourly-autopilot-stale-order-cleanup.json"
     }
   ],
   "timeline": [
+    {
+      "time": "2026-05-28 00:13 Asia/Seoul",
+      "type": "hourly-autopilot",
+      "title": "2026-05-28-0011-hourly-autopilot scheduled paper autopilot"
+    },
     {
       "time": "2026-05-28 00:02 Asia/Seoul",
       "type": "hourly-autopilot",
@@ -615,11 +610,6 @@
       "time": "2026-05-27 23:40 Asia/Seoul",
       "type": "hourly-autopilot",
       "title": "2026-05-27-2331-hourly-autopilot scheduled paper autopilot"
-    },
-    {
-      "time": "2026-05-27 23:20 Asia/Seoul",
-      "type": "hourly-autopilot",
-      "title": "2026-05-27-2311 scheduled paper autopilot"
     }
   ],
   "backtests": [
