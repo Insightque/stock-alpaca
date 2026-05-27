@@ -1,6 +1,7 @@
 import plistlib
 from pathlib import Path
 import subprocess
+import tempfile
 import unittest
 
 
@@ -173,6 +174,46 @@ class McpRuntimeWrapperTests(unittest.TestCase):
         self.assertIn('if [ "${#RESEARCH_CACHE_TTL_ARGS[@]}" -gt 0 ]; then', text)
         self.assertIn('RESEARCH_PREFLIGHT_COMMAND+=("${RESEARCH_CACHE_TTL_ARGS[@]}")', text)
         self.assertNotIn('"${RESEARCH_CACHE_TTL_ARGS[@]}"; then', text)
+
+    def test_hourly_autopilot_runtime_smoke_handles_empty_research_cache_ttl_args(self):
+        source_script = ROOT / "scripts" / "run-hourly-autopilot-codex.sh"
+
+        with tempfile.TemporaryDirectory() as tmp:
+            temp_root = Path(tmp)
+            scripts_dir = temp_root / "scripts"
+            scripts_dir.mkdir()
+            (temp_root / ".env").write_text("ALPACA_PAPER_TRADE=true\n", encoding="utf-8")
+            (scripts_dir / source_script.name).write_text(source_script.read_text(encoding="utf-8"), encoding="utf-8")
+
+            stubs = {
+                "check-alpaca-market-open-mcp.py": "print('stub market open')\n",
+                "cancel-stale-autopilot-orders.py": "import json, sys\njson.dump({'ok': True}, open(sys.argv[sys.argv.index('--output-json') + 1], 'w'))\n",
+                "fetch-alpaca-core-preflight.py": "import json, sys\njson.dump({'hard_gate': 'pass'}, open(sys.argv[sys.argv.index('--output-json') + 1], 'w'))\n",
+                "fetch-research-mcp-preflight.py": (
+                    "import json, pathlib, sys\n"
+                    "path = pathlib.Path(sys.argv[sys.argv.index('--output-json') + 1])\n"
+                    "json.dump({'hard_gate': 'pass', 'argv': sys.argv}, path.open('w'))\n"
+                ),
+            }
+            for name, body in stubs.items():
+                (scripts_dir / name).write_text(body, encoding="utf-8")
+
+            completed = subprocess.run(
+                ["bash", str(scripts_dir / source_script.name)],
+                cwd=temp_root,
+                env={
+                    "HOME": str(temp_root),
+                    "PATH": "/usr/local/bin:/usr/bin:/bin",
+                    "CODEX_AUTOPILOT_RUNTIME_SMOKE_TEST": "1",
+                },
+                text=True,
+                capture_output=True,
+                check=False,
+            )
+
+            self.assertEqual(completed.returncode, 0, completed.stderr + completed.stdout)
+            self.assertIn("runtime smoke test reached research preflight", completed.stdout)
+            self.assertNotIn("RESEARCH_CACHE_TTL_ARGS: unbound variable", completed.stderr + completed.stdout)
 
     def test_scheduled_autopush_tracks_dashboard_artifacts(self):
         text = (ROOT / "scripts/git-autopush-artifacts.sh").read_text(encoding="utf-8")

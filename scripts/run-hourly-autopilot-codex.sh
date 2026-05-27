@@ -111,6 +111,10 @@ fi
 if ! env "${RESEARCH_PREFLIGHT_COMMAND[@]}"; then
   echo "$(now_iso) research MCP preflight failed; nested workflow will classify provider gaps."
 fi
+if [ "${CODEX_AUTOPILOT_RUNTIME_SMOKE_TEST:-}" = "1" ]; then
+  echo "$(now_iso) hourly autopilot runtime smoke test reached research preflight."
+  exit 0
+fi
 
 cat >"${PROMPT_TMP}" <<'PROMPT'
 You are running the stock-alpaca scheduled paper autopilot.
