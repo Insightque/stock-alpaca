@@ -1,0 +1,90 @@
+{
+  "run_id": "2026-05-28-0622-analyst-review-cycle",
+  "created_at": "2026-05-27T21:22:00Z",
+  "mode": "review-only",
+  "paper": true,
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "review_scope": {
+    "paper_trades_reviewed": ["LLY", "FCX", "NOK", "NVDA", "AAPL"],
+    "open_positions_reviewed": ["AAPL", "AMD", "AMZN", "AVGO", "BAC", "ETN", "FCX", "IONQ", "LLY", "LRCX", "NEE", "NKE", "NOK", "NVDA", "PFE", "RGTI", "SO", "TSM", "UNH", "V", "WMT", "XOM"],
+    "skipped_recommendations_reviewed": ["NOK", "SMH", "AAPL", "INTC", "AMZN", "MU", "GOOGL", "SLB", "COP", "PLTR", "QQQ", "SPY"],
+    "review_horizons_due": ["2026-05-26 validation fills 1D"],
+    "review_horizons_pending": ["2026-05-22 stock-only 5D", "2026-05-22 stock-only 20D", "2026-05-27 validation fills 1D/5D/20D", "2026-05-26 validation fills 5D/20D"]
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_review": true,
+      "outcome": "usable",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-28-0622-analyst-review-cycle-sources.md"],
+      "gap_reason": "get_portfolio_history cancelled on initial call and retry; account, clock, orders, fills, positions, snapshots, bars, and news passed.",
+      "gap_category": "cancelled",
+      "retry_count": 1,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_review": true,
+      "outcome": "usable",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-28-0622-analyst-review-cycle-sources.md"],
+      "gap_reason": "LLY and NVDA recent filings passed; other submit-time SEC evidence is referenced from original run manifests.",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_review": false,
+      "outcome": "failed",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-28-0622-analyst-review-cycle-sources.md"],
+      "gap_reason": "TOOL_LIST and TOOL_GET(\"PING\") passed; TOOL_CALL(\"PING\", {}) was cancelled, so candidate data was not called.",
+      "gap_category": "cancelled",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "queried": false,
+      "used_in_review": false,
+      "outcome": "unavailable",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-28-0622-analyst-review-cycle-sources.md"],
+      "gap_reason": "No registered FRED MCP tool exposed in Codex tool catalog; shell/curl/local wrapper probing prohibited.",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": false,
+      "used_in_review": false,
+      "outcome": "unavailable",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-28-0622-analyst-review-cycle-sources.md"],
+      "gap_reason": "No registered Firecrawl MCP tool exposed in Codex tool catalog; shell/curl/local wrapper probing prohibited.",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_review": true,
+      "outcome": "usable",
+      "source_refs": ["wiki/evidence-store/sources/2026-05-28-0622-analyst-review-cycle-sources.md"],
+      "gap_reason": "LLY and NVDA Yahoo Finance news passed.",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "artifacts": {
+    "review": "wiki/trade-ledger/reviews/2026-05-28-portfolio-review.md",
+    "source_note": "wiki/evidence-store/sources/2026-05-28-0622-analyst-review-cycle-sources.md",
+    "portfolio_snapshot": "wiki/trade-ledger/positions/current.md"
+  },
+  "policy_update": {
+    "updated": false,
+    "reason": "Only 1D horizon is complete for the 2026-05-26 validation fills, 2026-05-27 fills are too new, and portfolio history remains unavailable. Evidence threshold for policy-book change is not met."
+  }
+}

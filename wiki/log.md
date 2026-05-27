@@ -1537,3 +1537,14 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Submitted/skipped orders: no orders submitted. First blocking gate: `risk_daily_new_orders_budget` because 10 scheduled validation buy orders had already been created for the 2026-05-27 ET session.
 - Manifest: `wiki/evidence-store/run-manifests/2026-05-28-0451-hourly-autopilot.json`. Order plan: `wiki/trade-ledger/orders/2026-05-28-0451-hourly-autopilot.json`. Report: `wiki/current-runs/daily/2026-05-28-0451-hourly-autopilot.md`.
 - Review due markers: 신규 체결 없음. Existing filled validation buys remain queued for 1D/5D/20D analyst review.
+
+## [2026-05-28 06:22 Asia/Seoul] analyst-review | scheduled analyst review cycle
+
+- Workflow: `harness/workflows/analyst-review-cycle.md`. 주문 제출/교체/취소/청산 없음.
+- Paper mode: `ALPACA_PAPER_TRADE=true`.
+- Alpaca reconciliation: account/clock/positions/open orders/closed orders/fills/bars/snapshots/news pass. Portfolio value 101515.43 USD, cash 41175.98 USD, buying power 136375.98 USD, long market value 60339.45 USD, open orders 0. `get_portfolio_history`는 2회 cancelled로 `gap_category=cancelled`, `retry_count=1`.
+- Due review: 2026-05-26 validation fills LLY/FCX/NOK/NVDA/AAPL 1D interim review 작성. LLY +0.45%, AAPL +0.48%는 SPY/QQQ 대비 양호했고 FCX -0.49%, NVDA -0.54%는 보류, NOK -4.97%는 breakout 직후 추가 진입 리스크가 확인됐다.
+- 2026-05-27 validation fills NKE/PFE/SO/WMT/NEE/AMZN/BAC/XOM/V는 신규 체결로 1D/5D/20D 회고 대기. GOOGL canceled order와 AMZN expired order는 filled_qty 0이라 trade review 대상에서 제외.
+- MCP coverage: SEC EDGAR LLY/NVDA recent filings pass, Yahoo Finance LLY/NVDA news pass. Alpha Vantage `TOOL_LIST` 및 `TOOL_GET("PING")` pass 후 `TOOL_CALL("PING", {})` cancelled. FRED/Firecrawl은 registered tool 미노출로 shell/curl probing 없이 `wrapper_error`.
+- Artifacts: [[2026-05-28-portfolio-review]], [[2026-05-28-0622-analyst-review-cycle-sources]], `wiki/evidence-store/run-manifests/2026-05-28-0622-analyst-review-cycle.json`, [[portfolio-current]].
+- Policy update: 없음. 1D 표본만으로 threshold 미달이며 5D/20D와 portfolio-history gap 해소가 필요하다.

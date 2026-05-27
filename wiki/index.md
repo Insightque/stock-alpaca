@@ -136,6 +136,7 @@
 - `wiki/trade-ledger/positions/` - 실제 paper 포지션과 계좌 상태 스냅샷.
 - `wiki/trade-ledger/reviews/` - 실제 paper 거래의 사후 회고.
 - [[2026-05-27-portfolio-review]] - 2026-05-22 stock-only paper 포트폴리오의 1D interim analyst review. 정책 변경 없음.
+- [[2026-05-28-portfolio-review]] - 2026-05-26 validation fills LLY/FCX/NOK/NVDA/AAPL의 1D interim analyst review. 정책 변경 없음.
 - `wiki/trade-ledger/orders/2026-05-26-1853-hourly-autopilot.json` - 2026-05-26 18:53 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2011-hourly-autopilot.json` - 2026-05-26 20:11 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2124-hourly-autopilot.json` - 2026-05-26 21:24 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
@@ -218,6 +219,7 @@
 - [[2026-05-22-stock-only-alpaca-snapshot]] - ETF 제외 주식 중심 후보군 스냅샷과 뉴스/자산 확인.
 - [[2026-05-22-expanded-stock-review-alpaca]] - 추가 요청 종목 LRCX, TSM, UNH, ETN, AVGO, PLTR, TSLA 포함 확장 검토.
 - [[2026-05-22-paper-order-submission]] - 2026-05-22 주식 중심 paper 주문 제출과 사후 상태.
+- [[2026-05-28-0622-analyst-review-cycle-sources]] - 2026-05-28 06:22 KST analyst review cycle의 Alpaca/SEC/Alpha/Yahoo/FRED/Firecrawl 원천 및 gap 기록.
 - [[2026-05-23-alpaca-fill-status]] - 2026-05-23 KST 오늘 주식 체결현황 Alpaca MCP 재조회.
 - [[2026-05-23-next-session-research]] - 2026-05-26 다음 미국 정규 거래일 후보 분석용 휴장일, 가격, 뉴스 원천 캡처.
 - [[2026-05-23-historical-batch-2026-04-23-to-2026-05-08-alpaca]] - 2026-04-23~2026-05-08 과거 추천 배치용 Alpaca MCP 가격 원천과 데이터 공백 기록.

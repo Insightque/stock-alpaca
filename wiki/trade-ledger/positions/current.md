@@ -1,18 +1,57 @@
 ---
 id: portfolio-current
-updated_at: 2026-05-27T17:51:27Z
-source: scheduler Alpaca MCP core preflight
+updated_at: 2026-05-27T21:22:00Z
+source: analyst review cycle Alpaca MCP reconciliation
+paper: true
 ---
 
-# Portfolio Current
+# 현재 포트폴리오
 
-- Account status: ACTIVE paper account.
-- Portfolio value: 101383.14 USD.
-- Cash: 41175.98 USD.
-- Buying power: 136281.46 USD.
-- Long market value: 60207.16 USD.
-- Open orders: 0.
-- Recent same-session fills: NKE, PFE, SO, WMT, NEE, AMZN, BAC, XOM, V.
-- V fill status: filled at 330.01 USD and present in positions.
+## 계좌
 
-Source: `wiki/evidence-store/sources/2026-05-28-0251-hourly-autopilot-alpaca-core-preflight.json`.
+| 지표 | 값 |
+| --- | ---: |
+| 포트폴리오 가치 | 101515.43 USD |
+| 현금 | 41175.98 USD |
+| Buying power | 136375.98 USD |
+| 투자 노출 | 60339.45 USD |
+| 미체결 주문 | 0 |
+
+## 포지션
+
+| 티커 | 수량 | 시장 가치 | 포트폴리오 비중 | 미실현 손익 |
+| --- | ---: | ---: | ---: | ---: |
+| NVDA | 36 | 7647.29 | 7.53% | -102.63 |
+| AMD | 14 | 6917.84 | 6.81% | +439.62 |
+| LRCX | 20 | 6397.00 | 6.30% | +238.80 |
+| TSM | 15 | 6358.80 | 6.26% | +280.80 |
+| AVGO | 15 | 6333.75 | 6.24% | +172.80 |
+| NOK | 401 | 6315.43 | 6.22% | +282.93 |
+| ETN | 15 | 6127.13 | 6.04% | +308.63 |
+| UNH | 15 | 5763.00 | 5.68% | -35.40 |
+| RGTI | 120 | 2946.00 | 2.90% | -122.35 |
+| IONQ | 45 | 2899.80 | 2.86% | +43.20 |
+| LLY | 1 | 1088.00 | 1.07% | +8.62 |
+| AAPL | 1 | 311.16 | 0.31% | +1.71 |
+| AMZN | 1 | 272.52 | 0.27% | +2.47 |
+| V | 1 | 327.61 | 0.32% | -2.40 |
+| XOM | 1 | 148.03 | 0.15% | +0.96 |
+| WMT | 1 | 118.73 | 0.12% | +0.42 |
+| SO | 1 | 93.74 | 0.09% | -0.54 |
+| NEE | 1 | 87.72 | 0.09% | +0.38 |
+| FCX | 1 | 63.73 | 0.06% | -0.21 |
+| BAC | 1 | 51.15 | 0.05% | -0.91 |
+| NKE | 1 | 46.07 | 0.05% | -0.08 |
+| PFE | 1 | 26.20 | 0.03% | -0.14 |
+
+## 미체결 주문
+
+| 티커 | 방향 | 수량 | 지정가 | 상태 | 제출 시각 |
+| --- | --- | ---: | ---: | --- | --- |
+| - | - | - | - | 없음 | - |
+
+## 메모
+
+- Source: [[2026-05-28-0622-analyst-review-cycle-sources]].
+- 2026-05-26 validation fills는 이번 cycle에서 1D interim review를 작성했다.
+- 2026-05-27 validation fills는 1D/5D/20D 회고 대기 상태다.
