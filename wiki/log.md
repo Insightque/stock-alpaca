@@ -1265,3 +1265,32 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - SEC EDGAR는 scheduled autopilot에서 local CIK fallback 후 lightweight `get_company_info`/`get_recent_filings`를 우선 사용하도록 명시해, 불필요한 heavy financials 호출 cancellation이 SEC usable evidence를 깨지 않게 했다.
 - 검증: stale cleanup live dry-run `manual-stale-cleanup-dry-run-2026-05-27` PASS, stale candidates 0, cancel attempts 0, remaining open orders 0.
 - 검증: `python3 -m unittest discover -s tests` 70개 PASS, wrapper `bash -n` PASS, 관련 Python helper `py_compile` PASS, launchd plist lint PASS.
+
+## [2026-05-27 10:08 Asia/Seoul] analysis | 장마감 전 hourly autopilot gate 원인 설명
+
+- 사용자 요청에 따라 `2026-05-27 02:06 KST` hourly autopilot gate 점검 로그부터 장마감까지 추천/주문 흐름을 재검토했다.
+- 결론: 02:06 run 자체는 Alpaca account/order/position/asset core gate cancellation 때문에 주문이 없었지만, 이후 `NOK`, `NVDA`, `AAPL`은 1주 paper validation buy로 체결됐다.
+- 장 후반에는 research MCP usable/pass 3개 미달, nested paper-mode env 미확인, AMZN open order lifecycle 30분 초과, INTC submit wrapper cancellation이 주문을 막았다.
+- 매도/trim은 ticker cap, cash floor, invested cap, thesis-break, stale-thesis trigger가 없어 제출되지 않았다.
+- 분석 문서: [[2026-05-27-autopilot-close-gate-analysis]].
+- 이번 분석에서는 Alpaca 주문 제출/교체/취소/청산 도구를 호출하지 않았고, 실제 주문/포지션 변경도 없었다.
+
+## [2026-05-27 10:20 Asia/Seoul] analysis | autopilot gate 세부 원인 Q&A 보강
+
+- 사용자 추가 질문에 따라 Alpaca core cancellation, research MCP failure, AMZN 미체결, INTC submit cancellation, 매도 미발생 사유를 세부 원인별로 분리했다.
+- Alpaca/INTC cancellation은 데이터 없음보다 scheduled nested Codex MCP 승인/래퍼 호출 이슈에 가깝고, `.env` export, scheduler-owned Alpaca preflight, MCP approval override로 예방 조치가 이미 들어간 상태임을 기록했다.
+- `03:14 KST` research MCP 실패는 AMZN/INTC 데이터 부재가 아니라 SEC/Alpha 호출 cancellation, Firecrawl tool 노출 문제, Yahoo/FRED만 usable한 상황으로 분류했다.
+- AMZN 미체결은 장마감 41분 전 제출이었지만 7분 전 ask 기준 limit order라 가격 이동/체결 우선순위 문제로 fill되지 않고 day order 만료된 것으로 해석했다.
+- 매도 없음은 확인된 로직 오류가 아니라 보수적 trim 정책 결과이며, 회전매매형 매도는 별도 검증 후 정책 추가가 필요하다고 정리했다.
+- 분석 문서 보강: [[2026-05-27-autopilot-close-gate-analysis]].
+- 이번 보강에서는 Alpaca 주문 제출/교체/취소/청산 도구를 호출하지 않았고, 실제 주문/포지션 변경도 없었다.
+
+## [2026-05-27 10:43 Asia/Seoul] automation-maintenance | research MCP preflight 근본 보강
+
+- 사용자 요청에 따라 03:14 KST 이후 반복된 research MCP usable/pass 3개 미달 문제의 재발 방지 조치를 구현했다.
+- `scripts/fetch-research-mcp-preflight.py`를 FRED 단일 preflight에서 SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance 5개 research MCP preflight로 확장했다.
+- Scheduler wrapper `scripts/run-hourly-autopilot-codex.sh`는 Alpaca core preflight JSON과 `CODEX_AUTOPILOT_RESEARCH_SYMBOL_LIMIT`을 넘겨, nested Codex 시작 전 fresh quote/spread 기반 후보의 research evidence를 먼저 캡처한다.
+- Nested workflow는 research preflight의 `mcp_coverage_hint`를 authoritative scheduled evidence로 사용하고, 실패 provider는 `gap_category`, `gap_reason`, `retry_count`를 그대로 manifest에 반영하도록 문서화했다.
+- SEC EDGAR는 local CIK cache와 lightweight company/recent filing check를 우선 사용하고, Alpha Vantage는 PING 후 candidate `NEWS_SENTIMENT` 한 번으로 호출 문제와 데이터 공백을 분리하도록 테스트를 추가했다.
+- 검증: `python3 -m py_compile scripts/fetch-research-mcp-preflight.py` PASS, `bash -n scripts/run-hourly-autopilot-codex.sh` PASS, `python3 -m unittest tests.test_fetch_research_mcp_preflight tests.test_mcp_runtime_wrappers` 14개 PASS, `python3 -m unittest discover -s tests` 77개 PASS.
+- 이번 maintenance에서는 Alpaca 주문 제출/교체/취소/청산 도구를 호출하지 않았고, 실제 주문/포지션 변경도 없었다.

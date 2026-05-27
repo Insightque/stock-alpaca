@@ -71,6 +71,7 @@
 - [[2026-05-25-request-implementation-review]] - Request.md 개선항목 반영 여부와 1년 시뮬레이션 결과 검토.
 - [[2026-05-25-mcp-usage-and-simulation-impact-review]] - 추천/시뮬레이션 workflow의 MCP 실제 사용 여부, 현재 세션 MCP 연결 재점검, 로컬 FRED/Firecrawl MCP, 1년 시뮬레이션 재현 검토.
 - [[2026-05-25-mcp-simulation-integration-verification]] - MCP-only market data 이전과 research MCP event feature cache 결합이 실제 시뮬레이션 결과에 반영되는지 검증하고 과거 장기/단기 결과와 비교한 분석.
+- [[2026-05-27-autopilot-close-gate-analysis]] - 2026-05-27 02:06 KST 자동운영 gate 점검 이후 장마감까지 추천, 주문, 미체결, 차단 원인을 정리한 분석.
 
 ## Backtest Runs
 
@@ -155,7 +156,7 @@
 - `scripts/build-one-year-hourly-trend-event-cache.py` - Alpaca MCP 과거 뉴스와 전일 시장/섹터 추세로 일별 point-in-time 동향 feature cache를 만드는 헬퍼.
 - `scripts/simulate-one-year-daily-policy.py` - 캡처된 일봉으로 장기 정책을 일별 독립 run으로 검증하는 헬퍼. `--event-features-json`으로 research MCP feature cache 결합 가능.
 - `scripts/simulate-one-year-hourly-buy-sell.py` - 캡처된 1시간봉과 선택적 event feature cache로 일별 virtual buy/sell 결정을 만들고 same-day/1D/5D/20D/60D를 평가하는 헬퍼.
-- `scripts/check-alpaca-market-open-mcp.py` / `scripts/run-hourly-autopilot-codex.sh` / `scheduler/com.insightque.stock-alpaca.hourly-autopilot.plist.example` - legacy 이름은 hourly지만 Alpaca MCP clock이 open인 장중에만 20분 주기로 paper autopilot workflow를 실행한다.
+- `scripts/check-alpaca-market-open-mcp.py` / `scripts/fetch-research-mcp-preflight.py` / `scripts/run-hourly-autopilot-codex.sh` / `scheduler/com.insightque.stock-alpaca.hourly-autopilot.plist.example` - legacy 이름은 hourly지만 Alpaca MCP clock이 open인 장중에만 20분 주기로 paper autopilot workflow를 실행한다. Research MCP preflight는 SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance evidence와 `mcp_coverage_hint`를 scheduler 단계에서 먼저 캡처한다.
 - `scripts/build-agent-dashboard.py` / `ui/agent-dashboard.html` / `ui/backtests/` - 서버 없이 여는 agent run 상태판, Alpaca paper 투자 현황 요약, 백테스트 HTML 뷰어 생성기. Hourly `추천 Shortlist`와 포지션별 미실현 손익을 dashboard 카드로 normalize하며, scheduled hourly/analyst wrapper가 성공 후 재생성하고 autopush artifact에 포함한다.
 
 ## 운영/검증 도구
