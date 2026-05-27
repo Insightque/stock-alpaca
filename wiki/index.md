@@ -63,6 +63,7 @@
 - [[2026-05-27-2351-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 V 1주 paper validation buy 제출, open `new`.
 - [[2026-05-28-0011-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate는 통과했지만 ET 2026-05-27 daily validation order budget 소진과 V open-order lifecycle로 주문 없음.
 - [[2026-05-28-0031-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate는 통과했지만 ET 2026-05-27 daily validation order budget 소진으로 주문 없음. V prior open buy는 scheduler preflight에서 체결 확인.
+- [[2026-05-28-0051-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 ET 2026-05-27 daily validation order budget 소진으로 주문 없음.
 
 ## Research Notes
 
@@ -149,6 +150,7 @@
 - `wiki/trade-ledger/orders/2026-05-27-2351-hourly-autopilot.json` - 2026-05-27 23:51 KST hourly autopilot V 1주 paper validation buy plan, universe/MCP/risk PASS, order open `new`.
 - `wiki/trade-ledger/orders/2026-05-28-0011-hourly-autopilot.json` - 2026-05-28 00:11 KST hourly autopilot empty-order plan, universe/MCP/risk PASS, daily validation order budget 소진으로 주문 없음.
 - `wiki/trade-ledger/orders/2026-05-28-0031-hourly-autopilot.json` - 2026-05-28 00:31 KST hourly autopilot empty-order plan, universe/MCP/risk PASS, daily validation order budget 소진으로 주문 없음.
+- `wiki/trade-ledger/orders/2026-05-28-0051-hourly-autopilot.json` - 2026-05-28 00:51 KST hourly autopilot empty-order plan, universe/MCP/risk PASS, daily validation order budget 소진으로 주문 없음.
 - 2026-05-22 paper 주문 체결분은 다음 회고 대상이다.
 
 ## Policy Book
