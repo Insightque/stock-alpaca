@@ -1,5 +1,6 @@
 import plistlib
 from pathlib import Path
+import subprocess
 import unittest
 
 
@@ -163,6 +164,15 @@ class McpRuntimeWrapperTests(unittest.TestCase):
                 self.assertNotIn("--dangerously-bypass-approvals-and-sandbox", text)
                 for snippet in snippets:
                     self.assertIn(snippet, text)
+
+    def test_hourly_autopilot_shell_handles_empty_research_cache_ttl_args(self):
+        script_path = ROOT / "scripts" / "run-hourly-autopilot-codex.sh"
+        text = script_path.read_text(encoding="utf-8")
+
+        subprocess.run(["bash", "-n", str(script_path)], check=True)
+        self.assertIn('if [ "${#RESEARCH_CACHE_TTL_ARGS[@]}" -gt 0 ]; then', text)
+        self.assertIn('RESEARCH_PREFLIGHT_COMMAND+=("${RESEARCH_CACHE_TTL_ARGS[@]}")', text)
+        self.assertNotIn('"${RESEARCH_CACHE_TTL_ARGS[@]}"; then', text)
 
     def test_scheduled_autopush_tracks_dashboard_artifacts(self):
         text = (ROOT / "scripts/git-autopush-artifacts.sh").read_text(encoding="utf-8")
