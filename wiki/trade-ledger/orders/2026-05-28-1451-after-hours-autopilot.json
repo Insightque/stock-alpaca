@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.2",
+  "run_id": "2026-05-28-1451-after-hours-autopilot",
+  "mode": "submit",
+  "paper": true,
+  "created_at": "2026-05-28T05:53:30Z",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "72498d9093772d61851672f828fbf04188ea00331c9ce8c60a91f83d27d3c9e2",
+  "market": {
+    "is_open": false,
+    "checked_at": "2026-05-28T01:52:58.623272375-04:00",
+    "next_open": "2026-05-28T09:30:00-04:00",
+    "next_close": "2026-05-28T16:00:00-04:00",
+    "session": "after_hours"
+  },
+  "account": {
+    "portfolio_value": 100723.13,
+    "cash": 41043.79,
+    "buying_power": 135467.58,
+    "currency": "USD",
+    "daily_realized_loss": 0
+  },
+  "positions": [],
+  "open_orders": [],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0,
+    "weekly_turnover_ratio": 0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "after_hours_new_orders_submitted_today": 2,
+    "risk_recomputed_after_partial_fill": true
+  },
+  "orders": [],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-28-1451-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-28-1451-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
