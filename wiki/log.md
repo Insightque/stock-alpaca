@@ -2003,3 +2003,12 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Submit/reconcile: no `place_stock_order` call and no submit attempt. Scheduler Alpaca core preflight account/positions/open orders/recent activities rows were used as read-only reconciliation evidence; open orders were empty.
 - Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `check-mcp-coverage.py --strict --json ...` PASS; `check-risk-policy.py --json ...` PASS with `orders is empty` warning.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-0231-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-0231-hourly-autopilot.json`, [[2026-05-29-0231-hourly-autopilot]]. Review due: no new fills; existing validation fills remain `회고 대기`.
+
+## [2026-05-29 02:53 Asia/Seoul] hourly-autopilot | 2026-05-29-0251-hourly-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; regular-session scheduled cadence authorized; Alpaca MCP only for account/market/order operations.
+- Scheduler preflight: stale cleanup `wiki/evidence-store/sources/2026-05-29-0251-hourly-autopilot-stale-order-cleanup.json` status `pass` with no stale candidates and no remaining open orders. Alpaca core hard gate PASS at `2026-05-28T13:51:17.830653788-04:00`; research MCP preflight used for SPY/QQQ/AAPL/AMZN/NEE/NVDA/INTC/BAC/NKE/JNJ/HD/MA with SEC EDGAR/FRED/Firecrawl/Yahoo pass and Alpha Vantage `empty_response`.
+- Gates: universe strict PASS, MCP strict PASS, quote freshness PASS, spread evidence present, open-order lifecycle PASS, risk validator PASS for an empty order plan. First blocking gate for new orders was `risk_daily_new_orders_budget` because same ET-session new order count was already 20/20.
+- Submit/reconcile: no `place_stock_order` call and no submit attempt. Scheduler Alpaca core preflight account/positions/open orders/recent activities rows were used as read-only reconciliation evidence; open orders were empty.
+- Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `check-mcp-coverage.py --strict --json ...` PASS; `check-risk-policy.py --json ...` PASS with `orders is empty` warning.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-0251-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-0251-hourly-autopilot.json`, [[2026-05-29-0251-hourly-autopilot]]. Review due: no new fills; existing validation fills remain `회고 대기`.
