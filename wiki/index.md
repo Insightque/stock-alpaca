@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-28 23:22 KST hourly autopilot post-trade reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-28 23:42 KST hourly autopilot post-trade reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -103,6 +103,10 @@
 - [[2026-05-28-2231-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 PLTR, QQQ, BAC 각 1주 paper validation buy 제출; PLTR/QQQ 체결, BAC open `new`.
 - [[2026-05-28-2251-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 CVX, NEE, NKE 각 1주 paper validation buy 제출; CVX/NKE 체결, NEE open `new`, prior BAC open 유지.
 - [[2026-05-28-2311-hourly-autopilot]] - hourly paper autopilot 실행. Stale BAC는 cleanup 후 open-order 재조정에서 해소, Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 WMT, PFE 각 1주 paper validation buy 제출; PFE 체결, WMT open `new`, prior NEE open 유지.
+- [[2026-05-28-2331-hourly-autopilot]] - hourly paper autopilot 실행. Stale NEE open order cleanup 후 Alpaca MCP open-order 재조정은 open order 없음; universe/MCP/risk/quote/spread gate 통과 후 GOOGL, SO, HOOD 각 1주 validation buy 계획. GOOGL open `new`, SO 체결, HOOD는 runtime cancelled로 실제 주문 없음.
+
+- `wiki/trade-ledger/orders/2026-05-28-2331-hourly-autopilot.json` - 2026-05-28 23:31 KST hourly autopilot GOOGL/SO/HOOD 1주 paper validation buy plan, universe/MCP/risk PASS, GOOGL open, SO filled, HOOD not submitted due runtime cancelled.
+- `wiki/trade-ledger/positions/2026-05-28-2331-hourly-autopilot-post-trade.json` - 2026-05-28 23:42 KST hourly autopilot post-trade snapshot: SO filled, GOOGL open, HOOD not found/not submitted.
 
 ## Research Notes
 

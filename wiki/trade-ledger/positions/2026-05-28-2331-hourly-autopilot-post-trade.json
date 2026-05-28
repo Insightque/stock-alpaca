@@ -1,0 +1,98 @@
+{
+  "run_id": "2026-05-28-2331-hourly-autopilot",
+  "created_at": "2026-05-28T14:42:30Z",
+  "paper": true,
+  "source": "registered Alpaca MCP post-trade reconciliation",
+  "checks": {
+    "get_order_by_client_id_GOOG": {
+      "outcome": "pass",
+      "client_order_id": "hourly-20260528-2331-googl-buy-01",
+      "status": "new",
+      "filled_qty": 0,
+      "order_id": "1c7ad89b-ac85-4a00-a435-61f9da97d85c"
+    },
+    "get_order_by_client_id_SO": {
+      "outcome": "pass",
+      "client_order_id": "hourly-20260528-2331-so-buy-01",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 93.38,
+      "order_id": "efd40e10-959a-4a7e-97fc-6036c7f56f09"
+    },
+    "get_order_by_client_id_HOOD": {
+      "outcome": "gap",
+      "client_order_id": "hourly-20260528-2331-hood-buy-01",
+      "gap_category": "empty_response",
+      "gap_reason": "404 order not found after cancelled submit and cancelled same-id retry"
+    },
+    "get_orders_open": {
+      "outcome": "pass",
+      "open_orders": [
+        {
+          "symbol": "GOOGL",
+          "client_order_id": "hourly-20260528-2331-googl-buy-01",
+          "status": "new",
+          "qty": 1,
+          "filled_qty": 0,
+          "limit_price": 389.0
+        }
+      ]
+    },
+    "get_account_activities_fill": {
+      "outcome": "pass",
+      "fills": [
+        {
+          "symbol": "SO",
+          "side": "buy",
+          "qty": 1,
+          "price": 93.38,
+          "transaction_time": "2026-05-28T14:40:35.640604Z",
+          "order_id": "efd40e10-959a-4a7e-97fc-6036c7f56f09"
+        }
+      ]
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "position_highlights": [
+        {
+          "symbol": "SO",
+          "qty": 2,
+          "avg_entry_price": 93.83,
+          "market_value": 186.8
+        },
+        {
+          "symbol": "WMT",
+          "qty": 2,
+          "avg_entry_price": 118.47,
+          "market_value": 236.65
+        },
+        {
+          "symbol": "PFE",
+          "qty": 2,
+          "avg_entry_price": 26.25,
+          "market_value": 52.4
+        }
+      ]
+    },
+    "get_account_info": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "gap_reason": "runtime cancelled post-submit account refresh twice"
+    }
+  },
+  "review_due": [
+    {
+      "symbol": "SO",
+      "status": "회고 대기",
+      "horizons": [
+        "1D",
+        "5D",
+        "20D"
+      ]
+    },
+    {
+      "symbol": "GOOGL",
+      "status": "open-order lifecycle follow-up required"
+    }
+  ]
+}
