@@ -350,11 +350,11 @@
   </div>
 
   <script type="application/json" id="dashboard-data">{
-  "generated_at": "2026-05-28T16:01:07Z",
+  "generated_at": "2026-05-28T16:20:54Z",
   "run": {
-    "run_id": "2026-05-29-0051-hourly-autopilot",
+    "run_id": "2026-05-29-0111-hourly-autopilot",
     "mode": "submit",
-    "created_at": "2026-05-28T15:58:00Z",
+    "created_at": "2026-05-28T16:15:20Z",
     "paper": true,
     "risk_status": "PASS",
     "market": "closed",
@@ -482,13 +482,13 @@
   "links": [
     {
       "label": "리포트",
-      "path": "wiki/current-runs/daily/2026-05-29-0051-hourly-autopilot.md",
-      "href": "../wiki/current-runs/daily/2026-05-29-0051-hourly-autopilot.md"
+      "path": "wiki/current-runs/daily/2026-05-29-0111-hourly-autopilot.md",
+      "href": "../wiki/current-runs/daily/2026-05-29-0111-hourly-autopilot.md"
     },
     {
       "label": "Manifest",
-      "path": "wiki/evidence-store/run-manifests/2026-05-29-0051-hourly-autopilot.json",
-      "href": "../wiki/evidence-store/run-manifests/2026-05-29-0051-hourly-autopilot.json"
+      "path": "wiki/evidence-store/run-manifests/2026-05-29-0111-hourly-autopilot.json",
+      "href": "../wiki/evidence-store/run-manifests/2026-05-29-0111-hourly-autopilot.json"
     },
     {
       "label": "포지션",
@@ -496,22 +496,27 @@
       "href": "../wiki/trade-ledger/positions/current.md"
     },
     {
-      "label": "2026-05-29-0051-hourly-autopilot-stale-order-cleanup.json",
-      "path": "wiki/evidence-store/sources/2026-05-29-0051-hourly-autopilot-stale-order-cleanup.json",
-      "href": "../wiki/evidence-store/sources/2026-05-29-0051-hourly-autopilot-stale-order-cleanup.json"
+      "label": "2026-05-29-0111-hourly-autopilot-alpaca-core-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-05-29-0111-hourly-autopilot-alpaca-core-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-05-29-0111-hourly-autopilot-alpaca-core-preflight.json"
     },
     {
-      "label": "2026-05-29-0051-hourly-autopilot-alpaca-core-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-29-0051-hourly-autopilot-alpaca-core-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-29-0051-hourly-autopilot-alpaca-core-preflight.json"
+      "label": "2026-05-29-0111-hourly-autopilot-research-mcp-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-05-29-0111-hourly-autopilot-research-mcp-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-05-29-0111-hourly-autopilot-research-mcp-preflight.json"
     },
     {
-      "label": "2026-05-29-0051-hourly-autopilot-research-mcp-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-29-0051-hourly-autopilot-research-mcp-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-29-0051-hourly-autopilot-research-mcp-preflight.json"
+      "label": "2026-05-29-0111-hourly-autopilot-stale-order-cleanup.json",
+      "path": "wiki/evidence-store/sources/2026-05-29-0111-hourly-autopilot-stale-order-cleanup.json",
+      "href": "../wiki/evidence-store/sources/2026-05-29-0111-hourly-autopilot-stale-order-cleanup.json"
     }
   ],
   "timeline": [
+    {
+      "time": "2026-05-29 01:18 Asia/Seoul",
+      "type": "hourly-autopilot",
+      "title": "2026-05-29-0111-hourly-autopilot scheduled paper autopilot"
+    },
     {
       "time": "2026-05-29 00:59 Asia/Seoul",
       "type": "hourly-autopilot",
@@ -521,11 +526,6 @@
       "time": "2026-05-29 00:40 Asia/Seoul",
       "type": "hourly-autopilot",
       "title": "2026-05-29-0031-hourly-autopilot scheduled paper autopilot"
-    },
-    {
-      "time": "2026-05-29 00:27 Asia/Seoul",
-      "type": "incident-retrospective",
-      "title": "regular autopilot false failure notification"
     }
   ],
   "backtests": [
@@ -575,10 +575,7 @@
     }
   ],
   "warnings": [
-    "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
-    "registered Alpaca MCP get_account_info was cancelled by runtime safety monitor; scheduler-owned preflight account row remained passing evidence",
-    "registered Alpaca MCP FILL activity refresh returned user cancelled MCP tool call; recent activities passed in scheduler core preflight",
-    "same-client-id retry cancelled by runtime safety monitor after reconciliation 404/not found"
+    "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols."
   ]
 }</script>
   <script>

@@ -1,0 +1,54 @@
+{
+  "run_id": "2026-05-29-0111-hourly-autopilot",
+  "created_at": "2026-05-28T16:18:10Z",
+  "paper": true,
+  "source": "registered Alpaca MCP post-trade reconciliation",
+  "submitted_orders": [
+    {
+      "symbol": "XOM",
+      "client_order_id": "hourly-20260529-0111-xom-buy-01",
+      "status": "filled",
+      "submitted": true,
+      "filled_qty": 1,
+      "filled_avg_price": 148.37,
+      "order_id": "df6e47d7-fb16-46b7-9993-ee1b880049b5",
+      "submitted_at": "2026-05-28T16:17:20.890176024Z",
+      "filled_at": "2026-05-28T16:17:21.825217253Z",
+      "notes": "Submitted once through Alpaca MCP place_stock_order; client-order-id reconciliation returned filled."
+    }
+  ],
+  "open_orders": [],
+  "positions_refresh": {
+    "status": "pass",
+    "position_symbols": 31,
+    "xom_qty": 2,
+    "xom_avg_entry_price": 147.72,
+    "xom_market_value": 296.66,
+    "xom_current_price": 148.33
+  },
+  "account": {
+    "status": "gap",
+    "gap_category": "cancelled",
+    "blocking": false,
+    "fallback_source_ref": "wiki/evidence-store/sources/2026-05-29-0111-hourly-autopilot-alpaca-core-preflight.json"
+  },
+  "fills_after_submit": [
+    {
+      "symbol": "XOM",
+      "side": "buy",
+      "qty": 1,
+      "price": 148.37,
+      "transaction_time": "2026-05-28T16:17:21.825217Z",
+      "order_id": "df6e47d7-fb16-46b7-9993-ee1b880049b5",
+      "order_status": "filled"
+    }
+  ],
+  "gaps": [
+    {
+      "check": "account_refresh",
+      "gap_category": "cancelled",
+      "blocking": false,
+      "gap_reason": "Registered Alpaca MCP account refresh was cancelled by runtime monitor after submit; client order, open orders, positions, and fill activity reconciled successfully."
+    }
+  ]
+}

@@ -108,6 +108,7 @@
 - [[2026-05-29-0011-hourly-autopilot]] - hourly paper autopilot 실행. Fresh AAPL open order를 회피하고 Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 SPY/BAC/NEE 각 1주 validation buy 제출. SPY/BAC 체결, NEE open `new`.
 - [[2026-05-29-0031-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 NVDA/COP/TSLA 각 1주 validation buy 제출; NVDA/COP 체결, TSLA open `new`.
 - [[2026-05-29-0051-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/open-order lifecycle, Alpaca core, universe, MCP, quote/spread, risk gate 통과 후 AMZN 1주 validation buy 체결. INTC 계획 주문은 runtime cancelled 및 same-client-id reconciliation 404 후 retry cancelled로 실제 주문 없음.
+- [[2026-05-29-0111-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/open-order lifecycle, Alpaca core, universe, MCP, quote/spread, risk gate 통과 후 XOM 1주 validation buy 체결.
 
 - `wiki/trade-ledger/orders/2026-05-28-2331-hourly-autopilot.json` - 2026-05-28 23:31 KST hourly autopilot GOOGL/SO/HOOD 1주 paper validation buy plan, universe/MCP/risk PASS, GOOGL open, SO filled, HOOD not submitted due runtime cancelled.
 - `wiki/trade-ledger/positions/2026-05-28-2331-hourly-autopilot-post-trade.json` - 2026-05-28 23:42 KST hourly autopilot post-trade snapshot: SO filled, GOOGL open, HOOD not found/not submitted.
@@ -117,6 +118,8 @@
 - `wiki/trade-ledger/positions/2026-05-29-0011-hourly-autopilot-post-trade.json` - 2026-05-29 00:20 KST hourly autopilot post-trade snapshot: SPY/BAC filled, NEE and prior AAPL open.
 - `wiki/trade-ledger/orders/2026-05-29-0031-hourly-autopilot.json` - 2026-05-29 00:31 KST hourly autopilot NVDA/COP/TSLA 1주 paper validation buy plan, universe/MCP/risk PASS, NVDA/COP filled, TSLA open.
 - `wiki/trade-ledger/positions/2026-05-29-0031-hourly-autopilot-post-trade.json` - 2026-05-29 00:40 KST hourly autopilot post-trade snapshot: NVDA/COP filled, TSLA open.
+- `wiki/trade-ledger/orders/2026-05-29-0111-hourly-autopilot.json` - 2026-05-29 01:11 KST hourly autopilot XOM 1주 paper validation buy plan, universe/MCP/risk PASS, XOM filled.
+- `wiki/trade-ledger/positions/2026-05-29-0111-hourly-autopilot-post-trade.json` - 2026-05-29 01:18 KST hourly autopilot post-trade snapshot: XOM filled, open orders 없음.
 - `wiki/trade-ledger/orders/2026-05-29-0051-hourly-autopilot.json` - 2026-05-29 00:51 KST hourly autopilot AMZN/INTC 1주 validation buy plan, universe/MCP/risk PASS, AMZN filled, INTC not submitted due runtime cancelled.
 - `wiki/trade-ledger/positions/2026-05-29-0051-hourly-autopilot-post-trade.json` - 2026-05-29 00:59 KST hourly autopilot post-trade snapshot: AMZN filled, INTC not found/not submitted, open orders empty.
 
