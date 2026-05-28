@@ -1875,3 +1875,12 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Risk validation: `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-05-28-2151-after-hours-autopilot.json` PASS for the empty no-submit plan with `orders is empty` warning. `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS. `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS.
 - Submit/reconcile: no `place_stock_order` call, no submit attempt, no new reconciliation required.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-28-2151-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-28-2151-after-hours-autopilot.json`, [[2026-05-28-2151-after-hours-autopilot]].
+
+## [2026-05-28 22:42 Asia/Seoul] hourly-autopilot | 2026-05-28-2231-hourly-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; regular-session scheduled cadence authorized; Alpaca MCP only for account/market/order operations.
+- Scheduler preflight: stale cleanup `pass`, Alpaca core hard gate PASS at `2026-05-28T09:31:17.465151556-04:00`, research MCP preflight used for symbols AAPL/BAC/NOK/HOOD/NEE/QQQ/META/PLTR/PFE/RGTI/NKE/WMT. Alpha Vantage had `empty_response`; SEC EDGAR/FRED/Firecrawl/Yahoo passed.
+- Gates: universe strict PASS, MCP strict PASS, risk validator PASS, quote freshness PASS, spread PASS, open-order lifecycle PASS. Pre-submit order plan: `wiki/trade-ledger/orders/2026-05-28-2231-hourly-autopilot.json`.
+- Submit: PLTR 1주 buy limit 135.41 filled at 134.94; QQQ first submit call `cancelled`, same client_order_id reconciliation returned not found, same-id retry filled 1주 at 728.36; BAC 1주 buy limit 50.89 submitted and remains open/new.
+- Post-trade reconciliation: client-order-id lookup PASS, open orders PASS with BAC open, fill activities PASS for PLTR/QQQ. Fresh account and full positions refresh were `cancelled` by runtime monitor and recorded as `gap_category=cancelled`.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-28-2231-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-28-2231-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-28-2231-hourly-autopilot-post-trade.json`, [[2026-05-28-2231-hourly-autopilot]]. Review due: PLTR/QQQ `회고 대기`; BAC open-order lifecycle follow-up required.

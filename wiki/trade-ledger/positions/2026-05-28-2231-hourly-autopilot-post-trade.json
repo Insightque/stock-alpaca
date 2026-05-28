@@ -1,0 +1,88 @@
+{
+  "run_id": "2026-05-28-2231-hourly-autopilot",
+  "created_at": "2026-05-28T13:41:00Z",
+  "paper": true,
+  "source": "Alpaca MCP post-submit reconciliation",
+  "orders_by_client_id": {
+    "PLTR": {
+      "id": "9deb7a5f-74a6-422a-a8bd-053671ffd6f0",
+      "client_order_id": "hourly-20260528-2231-pltr-buy-01",
+      "status": "filled",
+      "filled_qty": "1",
+      "filled_avg_price": "134.94",
+      "filled_at": "2026-05-28T13:37:25.21654115Z",
+      "limit_price": "135.41"
+    },
+    "QQQ": {
+      "id": "5ba5a3e8-e003-4e09-9d6e-0a726d8db818",
+      "client_order_id": "hourly-20260528-2231-qqq-buy-01",
+      "status": "filled",
+      "filled_qty": "1",
+      "filled_avg_price": "728.36",
+      "filled_at": "2026-05-28T13:38:03.325605184Z",
+      "limit_price": "730.87",
+      "retry_note": "first place_stock_order returned cancelled; get_order_by_client_id returned 404; retried once with same client_order_id and received this order"
+    },
+    "BAC": {
+      "id": "23502ad0-37f0-4705-a110-8fc5b2059d4f",
+      "client_order_id": "hourly-20260528-2231-bac-buy-01",
+      "status": "new",
+      "filled_qty": "0",
+      "filled_avg_price": null,
+      "submitted_at": "2026-05-28T13:38:16.247213084Z",
+      "limit_price": "50.89"
+    }
+  },
+  "open_orders": [
+    {
+      "id": "23502ad0-37f0-4705-a110-8fc5b2059d4f",
+      "client_order_id": "hourly-20260528-2231-bac-buy-01",
+      "status": "new",
+      "filled_qty": "0",
+      "filled_avg_price": null,
+      "submitted_at": "2026-05-28T13:38:16.247213084Z",
+      "limit_price": "50.89"
+    }
+  ],
+  "fills": [
+    {
+      "id": "9deb7a5f-74a6-422a-a8bd-053671ffd6f0",
+      "client_order_id": "hourly-20260528-2231-pltr-buy-01",
+      "status": "filled",
+      "filled_qty": "1",
+      "filled_avg_price": "134.94",
+      "filled_at": "2026-05-28T13:37:25.21654115Z",
+      "limit_price": "135.41"
+    },
+    {
+      "id": "5ba5a3e8-e003-4e09-9d6e-0a726d8db818",
+      "client_order_id": "hourly-20260528-2231-qqq-buy-01",
+      "status": "filled",
+      "filled_qty": "1",
+      "filled_avg_price": "728.36",
+      "filled_at": "2026-05-28T13:38:03.325605184Z",
+      "limit_price": "730.87",
+      "retry_note": "first place_stock_order returned cancelled; get_order_by_client_id returned 404; retried once with same client_order_id and received this order"
+    }
+  ],
+  "mcp_gaps": [
+    {
+      "server": "alpaca",
+      "tool": "get_account_info",
+      "outcome": "cancelled",
+      "gap_category": "cancelled",
+      "gap_reason": "post-submit account refresh cancelled by runtime safety monitor",
+      "retry_count": 0
+    },
+    {
+      "server": "alpaca",
+      "tool": "get_all_positions",
+      "outcome": "cancelled",
+      "gap_category": "cancelled",
+      "gap_reason": "post-submit positions refresh cancelled by runtime safety monitor",
+      "retry_count": 0
+    }
+  ],
+  "account_snapshot_source": "wiki/evidence-store/sources/2026-05-28-2231-hourly-autopilot-alpaca-core-preflight.json",
+  "position_snapshot_note": "current.md includes pre-submit positions plus explicit filled/open order deltas; fresh full positions refresh was cancelled."
+}

@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-28 02:51 KST hourly autopilot preflight 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-28 22:31 KST hourly autopilot post-trade reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -100,6 +100,7 @@
 - [[2026-05-28-2111-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 장외 session 주문 예산 2/2로 주문 없음.
 - [[2026-05-28-2131-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 장외 session 주문 예산 2/2로 주문 없음.
 - [[2026-05-28-2151-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 장외 session 주문 예산 2/2로 주문 없음.
+- [[2026-05-28-2231-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 PLTR, QQQ, BAC 각 1주 paper validation buy 제출; PLTR/QQQ 체결, BAC open `new`.
 
 ## Research Notes
 
@@ -199,6 +200,7 @@
 - `wiki/trade-ledger/orders/2026-05-28-0411-hourly-autopilot.json` - 2026-05-28 04:11 KST hourly autopilot empty-order plan, universe/MCP/risk PASS, daily validation order budget 소진으로 주문 없음.
 - `wiki/trade-ledger/orders/2026-05-28-0431-hourly-autopilot.json` - 2026-05-28 04:31 KST hourly autopilot empty-order plan, universe/MCP/risk PASS, daily validation order budget 소진으로 주문 없음.
 - `wiki/trade-ledger/orders/2026-05-28-0451-hourly-autopilot.json` - 2026-05-28 04:51 KST hourly autopilot empty-order plan, universe/MCP/risk PASS, daily validation order budget 소진으로 주문 없음.
+- `wiki/trade-ledger/orders/2026-05-28-2231-hourly-autopilot.json` - 2026-05-28 22:31 KST hourly autopilot PLTR/QQQ/BAC 1주 paper validation buy plan, universe/MCP/risk PASS, PLTR/QQQ filled, BAC open `new`.
 - `wiki/trade-ledger/orders/2026-05-28-1311-after-hours-autopilot.json` - 2026-05-28 13:11 KST after-hours autopilot INTC 1주 paper validation buy plan, session=after_hours, extended_hours=true, risk PASS, order filled.
 - `wiki/trade-ledger/positions/2026-05-28-1311-after-hours-autopilot-post-trade.json` - 2026-05-28 13:19 KST after-hours INTC 체결 후 post-trade snapshot.
 - `wiki/trade-ledger/orders/2026-05-28-1351-after-hours-autopilot.json` - 2026-05-28 13:51 KST after-hours autopilot NOK 1주 paper validation buy plan, session=after_hours, extended_hours=true, risk PASS, order filled.

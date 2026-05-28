@@ -43,3 +43,9 @@ QQQ는 더 높은 베타를 가진 광범위 시장 후보로 남아 있다. Alp
 - [[2026-05-22-alpaca-market-data]]
 - [[2026-05-22-alpaca-news]]
 - [[2026-05-22-web-market-context]]
+
+## 2026-05-28 22:31 KST hourly autopilot
+
+2026-05-28 22:31 KST hourly autopilot에서 QQQ 1주 regular-session day limit buy가 체결되었다. broad_index 분산 노출을 통해 단일 테마 집중을 낮추는 검증 주문이며, 첫 submit call cancelled 후 같은 client_order_id 조회 404를 확인하고 같은 id로 1회 재시도해 체결했다. 1D/5D/20D 회고 대기다.
+
+출처: [[2026-05-28-2231-hourly-autopilot]], `wiki/trade-ledger/orders/2026-05-28-2231-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-28-2231-hourly-autopilot-post-trade.json`
