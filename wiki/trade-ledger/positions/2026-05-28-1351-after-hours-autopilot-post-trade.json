@@ -1,0 +1,50 @@
+{
+  "run_id": "2026-05-28-1351-after-hours-autopilot",
+  "created_at": "2026-05-28T04:59:00Z",
+  "session": "after_hours",
+  "paper": true,
+  "review_bucket": "after_hours_validation",
+  "reconciled_by_client_order_id": "ah-20260528-1351-nok-buy-01",
+  "submitted_order": {
+    "id": "98b8dbb6-7bcd-4e12-bcd8-d6ebb9853064",
+    "client_order_id": "ah-20260528-1351-nok-buy-01",
+    "symbol": "NOK",
+    "asset_class": "us_equity",
+    "qty": "1",
+    "filled_qty": "1",
+    "filled_avg_price": "15.4",
+    "order_type": "limit",
+    "side": "buy",
+    "time_in_force": "day",
+    "limit_price": "15.4",
+    "status": "filled",
+    "extended_hours": true,
+    "submitted_at": "2026-05-28T04:58:28.719302834Z",
+    "filled_at": "2026-05-28T04:58:28.77732828Z"
+  },
+  "open_orders_after_submit": [],
+  "account_after_submit": {
+    "status": "ACTIVE",
+    "portfolio_value": 100444.17,
+    "cash": 41043.79,
+    "buying_power": 135301.18,
+    "currency": "USD",
+    "long_market_value": 59400.38,
+    "short_market_value": 0.0
+  },
+  "position_check": {
+    "symbol": "NOK",
+    "qty": "402",
+    "qty_available": "402",
+    "avg_entry_price": "15.044527",
+    "market_value": "6186.78",
+    "current_price": "15.39",
+    "side": "long"
+  },
+  "source_refs": [
+    "wiki/trade-ledger/orders/2026-05-28-1351-after-hours-autopilot.json",
+    "wiki/evidence-store/run-manifests/2026-05-28-1351-after-hours-autopilot.json",
+    "wiki/evidence-store/sources/2026-05-28-1351-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-28-1351-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}

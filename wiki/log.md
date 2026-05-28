@@ -1615,3 +1615,23 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Reconciliation: `get_order_by_client_id` returned order id `843838bd-6083-481d-b013-5ec7b0bf47fd`, status filled, filled_qty 1, filled_avg_price 116.79. No retry with a different client order id.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-28-1311-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-28-1311-after-hours-autopilot.json`, [[2026-05-28-1311-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-05-28-1311-after-hours-autopilot-post-trade.json`.
 - Review due markers: INTC after-hours validation fill enters the separate `after_hours_validation` review bucket for next_regular_open, 1D, 5D, and 20D review horizons.
+
+## [2026-05-28 13:33 Asia/Seoul] scheduler | after-hours autopilot messenger updates
+
+- 요청: 장외 autopilot도 메신저에 현황 및 거래내역 업데이트.
+- 구현: `scripts/send-openclaw-autopilot-update.py`를 추가했다. run manifest, order plan, daily report를 읽어 start/skip/failure/completion 상태와 주문 수량, limit, `extended_hours`, client order id, reconcile/fill 결과를 OpenClaw `message send`로 요약 발송한다.
+- Runner 연결: `scripts/run-after-hours-autopilot-codex.sh`가 start, skip, failure, completion 경로에서 notifier를 호출한다. 예기치 않은 non-zero exit도 cleanup trap에서 failure 알림을 보내도록 했다. `OPENCLAW_AUTOPILOT_NOTIFY_TARGET`이 없으면 run 실패 없이 알림만 skip한다.
+- Scheduler: example LaunchAgent에 `OPENCLAW_AUTOPILOT_NOTIFY_CHANNEL=telegram`, `OPENCLAW_AUTOPILOT_NOTIFY_TARGET` placeholder를 추가했고, 설치된 `~/Library/LaunchAgents/com.insightque.stock-alpaca.after-hours-autopilot.plist`에는 현재 Telegram chat id를 반영 후 `launchctl bootstrap/enable`로 재로드했다.
+- Runtime 검증: `CODEX_AFTER_HOURS_AUTOPILOT_RUNTIME_SMOKE_TEST=1 CODEX_AFTER_HOURS_AUTOPILOT_NOTIFY=0 scripts/run-after-hours-autopilot-codex.sh` PASS. Alpaca regular market closed 상태에서 preflight까지 도달 후 smoke flag로 정상 종료.
+- 검증: `python3 -m unittest tests.test_mcp_runtime_wrappers tests.test_strategy_config_schema tests.test_check_risk_policy tests.test_policy_source_of_truth` PASS. `python3 scripts/check-policy-source-of-truth.py` PASS. after-hours plist example 및 설치본 `plutil -lint` PASS.
+
+## [2026-05-28 13:59 Asia/Seoul] after-hours-autopilot | 2026-05-28-1351-after-hours-autopilot scheduled after-hours paper autopilot
+
+- Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session=`after_hours`; artifact tag=`after-hours`; review bucket=`after_hours_validation`.
+- Scheduler preflight: `wiki/evidence-store/sources/2026-05-28-1351-after-hours-autopilot-alpaca-core-preflight.json` and `wiki/evidence-store/sources/2026-05-28-1351-after-hours-autopilot-research-mcp-preflight.json` used. Alpaca core `first_blocking_gate=market_closed` was treated as expected non-blocking for after-hours; account/positions/open orders/assets/quotes rows were usable.
+- Gates: Alpaca regular market closed; universe strict PASS; MCP strict PASS with SEC EDGAR/FRED/Firecrawl/Yahoo pass and Alpha Vantage `empty_response` gap; risk policy PASS with `risk_inputs.after_hours_new_orders_submitted_today=1`; NOK fresh overnight quote/spread gate PASS.
+- Submitted order: NOK 1주 buy limit 15.40, `time_in_force=day`, `extended_hours=true`, `session=after_hours`, client_order_id `ah-20260528-1351-nok-buy-01`. Submitted through Alpaca MCP only after the pre-submit gate summary.
+- Reconciliation: `get_order_by_client_id` returned order id `98b8dbb6-7bcd-4e12-bcd8-d6ebb9853064`, status filled, filled_qty 1, filled_avg_price 15.40. No retry with a different client order id.
+- Post-trade: Alpaca MCP account/positions/open orders check confirmed no open US equity orders and NOK position qty 402.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-28-1351-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-28-1351-after-hours-autopilot.json`, [[2026-05-28-1351-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-05-28-1351-after-hours-autopilot-post-trade.json`.
+- Review due markers: NOK after-hours validation fill enters the separate `after_hours_validation` review bucket for next_regular_open, 1D, 5D, and 20D review horizons.
