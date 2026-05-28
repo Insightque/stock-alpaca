@@ -132,6 +132,7 @@
 - [[2026-05-29-0611-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-29-0631-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-29-0651-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
+- [[2026-05-29-0711-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 
 - `wiki/trade-ledger/orders/2026-05-28-2331-hourly-autopilot.json` - 2026-05-28 23:31 KST hourly autopilot GOOGL/SO/HOOD 1주 paper validation buy plan, universe/MCP/risk PASS, GOOGL open, SO filled, HOOD not submitted due runtime cancelled.
 - `wiki/trade-ledger/positions/2026-05-28-2331-hourly-autopilot-post-trade.json` - 2026-05-28 23:42 KST hourly autopilot post-trade snapshot: SO filled, GOOGL open, HOOD not found/not submitted.
@@ -159,6 +160,7 @@
 - `wiki/trade-ledger/orders/2026-05-29-0611-after-hours-autopilot.json` - 2026-05-29 06:11 KST after-hours autopilot empty order plan, session=after_hours, quote freshness gate 실패로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-0631-after-hours-autopilot.json` - 2026-05-29 06:31 KST after-hours autopilot empty order plan, session=after_hours, quote freshness gate 실패로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-0651-after-hours-autopilot.json` - 2026-05-29 06:51 KST after-hours autopilot empty order plan, session=after_hours, quote freshness gate 실패로 submit 없음.
+- `wiki/trade-ledger/orders/2026-05-29-0711-after-hours-autopilot.json` - 2026-05-29 07:11 KST after-hours autopilot empty order plan, session=after_hours, quote freshness gate 실패로 submit 없음.
 
 ## Research Notes
 
