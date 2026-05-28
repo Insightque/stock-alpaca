@@ -1,0 +1,130 @@
+{
+  "run_id": "2026-05-29-0031-hourly-autopilot",
+  "created_at": "2026-05-28T15:31:13Z",
+  "paper": true,
+  "source": "scheduler Alpaca MCP stale autopilot order cleanup",
+  "alpaca_mcp_only": true,
+  "dry_run": false,
+  "policy": {
+    "max_open_order_age_minutes": 30.0,
+    "cancel_stale_unfilled_orders": true,
+    "client_order_id_prefix": "hourly-"
+  },
+  "clock": {
+    "is_open": true,
+    "timestamp": "2026-05-28T11:31:14.815301142-04:00",
+    "next_open": "2026-05-29T09:30:00-04:00",
+    "next_close": "2026-05-28T16:00:00-04:00"
+  },
+  "initial_open_orders": [
+    {
+      "id": "1f570fd1-2f65-4a9c-a1a1-613aa11930a5",
+      "client_order_id": "hourly-20260528-2351-aapl-buy-01",
+      "created_at": "2026-05-28T15:00:25.236648586Z",
+      "updated_at": "2026-05-28T15:00:25.243983556Z",
+      "submitted_at": "2026-05-28T15:00:25.2428522Z",
+      "filled_at": null,
+      "expired_at": null,
+      "canceled_at": null,
+      "failed_at": null,
+      "replaced_at": null,
+      "replaced_by": null,
+      "replaces": null,
+      "asset_id": "b0b6dd9d-8b9b-48a9-ba46-b9d54906e415",
+      "symbol": "AAPL",
+      "asset_class": "us_equity",
+      "notional": null,
+      "qty": "1",
+      "filled_qty": "0",
+      "filled_avg_price": null,
+      "order_class": "",
+      "order_type": "limit",
+      "type": "limit",
+      "side": "buy",
+      "position_intent": "buy_to_open",
+      "time_in_force": "day",
+      "limit_price": "311.29",
+      "stop_price": null,
+      "status": "new",
+      "extended_hours": false,
+      "legs": null,
+      "trail_percent": null,
+      "trail_price": null,
+      "hwm": null,
+      "subtag": null,
+      "source": null,
+      "expires_at": "2026-05-28T20:00:00Z"
+    }
+  ],
+  "stale_candidates": [
+    {
+      "id": "1f570fd1-2f65-4a9c-a1a1-613aa11930a5",
+      "client_order_id": "hourly-20260528-2351-aapl-buy-01",
+      "symbol": "AAPL",
+      "side": "buy",
+      "status": "new",
+      "submitted_at": "2026-05-28T15:00:25.2428522Z",
+      "age_minutes": 30.83
+    }
+  ],
+  "cancel_attempts": [
+    {
+      "order": {
+        "id": "1f570fd1-2f65-4a9c-a1a1-613aa11930a5",
+        "client_order_id": "hourly-20260528-2351-aapl-buy-01",
+        "symbol": "AAPL",
+        "side": "buy",
+        "status": "new",
+        "submitted_at": "2026-05-28T15:00:25.2428522Z",
+        "age_minutes": 30.83
+      },
+      "outcome": "pass",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "checked_at": "2026-05-28T15:31:15Z"
+    }
+  ],
+  "remaining_open_orders": [
+    {
+      "id": "1f570fd1-2f65-4a9c-a1a1-613aa11930a5",
+      "client_order_id": "hourly-20260528-2351-aapl-buy-01",
+      "created_at": "2026-05-28T15:00:25.236649Z",
+      "updated_at": "2026-05-28T15:00:25.243984Z",
+      "submitted_at": "2026-05-28T15:00:25.242852Z",
+      "filled_at": null,
+      "expired_at": null,
+      "canceled_at": null,
+      "failed_at": null,
+      "replaced_at": null,
+      "replaced_by": null,
+      "replaces": null,
+      "asset_id": "b0b6dd9d-8b9b-48a9-ba46-b9d54906e415",
+      "symbol": "AAPL",
+      "asset_class": "us_equity",
+      "notional": null,
+      "qty": "1",
+      "filled_qty": "0",
+      "filled_avg_price": null,
+      "order_class": "",
+      "order_type": "limit",
+      "type": "limit",
+      "side": "buy",
+      "position_intent": "buy_to_open",
+      "time_in_force": "day",
+      "limit_price": "311.29",
+      "stop_price": null,
+      "status": "new",
+      "extended_hours": false,
+      "legs": null,
+      "trail_percent": null,
+      "trail_price": null,
+      "hwm": null,
+      "subtag": null,
+      "source": "access_key",
+      "expires_at": "2026-05-28T20:00:00Z"
+    }
+  ],
+  "status": "pass",
+  "gap_category": "not_applicable",
+  "gap_reason": ""
+}

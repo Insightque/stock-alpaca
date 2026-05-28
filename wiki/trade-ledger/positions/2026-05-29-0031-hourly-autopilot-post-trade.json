@@ -1,0 +1,89 @@
+{
+  "run_id": "2026-05-29-0031-hourly-autopilot",
+  "created_at": "2026-05-28T15:40:32Z",
+  "paper": true,
+  "source": "registered Alpaca MCP post-trade reconciliation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102513.83,
+    "cash": 38047.93,
+    "buying_power": 133851.12,
+    "long_market_value": 64465.9,
+    "currency": "USD",
+    "checked_at": "2026-05-28T15:40:32Z"
+  },
+  "open_orders": [
+    {
+      "symbol": "TSLA",
+      "client_order_id": "hourly-20260529-0031-tsla-buy-01",
+      "status": "new",
+      "qty": 1,
+      "filled_qty": 0,
+      "limit_price": 441.45,
+      "submitted_at": "2026-05-28T15:39:08.679583Z",
+      "expires_at": "2026-05-28T20:00:00Z"
+    }
+  ],
+  "submitted_orders": [
+    {
+      "symbol": "NVDA",
+      "client_order_id": "hourly-20260529-0031-nvda-buy-01",
+      "status": "filled",
+      "submitted": true,
+      "filled_qty": 1,
+      "filled_avg_price": 212.55,
+      "order_id": "a4c03c8e-b44b-4154-a1b6-4a0412f684ab",
+      "filled_at": "2026-05-28T15:38:46.846290805Z",
+      "notes": "Alpaca MCP accepted and post-trade reconciliation confirmed filled."
+    },
+    {
+      "symbol": "COP",
+      "client_order_id": "hourly-20260529-0031-cop-buy-01",
+      "status": "filled",
+      "submitted": true,
+      "filled_qty": 1,
+      "filled_avg_price": 114.95,
+      "order_id": "17b2b068-f81f-42e9-ba27-a7fe3925da5f",
+      "filled_at": "2026-05-28T15:38:57.072145278Z",
+      "notes": "Alpaca MCP accepted and post-trade reconciliation confirmed filled."
+    },
+    {
+      "symbol": "TSLA",
+      "client_order_id": "hourly-20260529-0031-tsla-buy-01",
+      "status": "new",
+      "submitted": true,
+      "filled_qty": 0,
+      "filled_avg_price": null,
+      "order_id": "ad616811-2348-4c79-876a-a9fab7eafcf9",
+      "filled_at": null,
+      "notes": "Alpaca MCP accepted; reconciliation shows open/new."
+    }
+  ],
+  "fills_after_submit": [
+    {
+      "symbol": "COP",
+      "qty": 1,
+      "price": 114.95,
+      "transaction_time": "2026-05-28T15:38:57.072145Z",
+      "order_id": "17b2b068-f81f-42e9-ba27-a7fe3925da5f"
+    },
+    {
+      "symbol": "NVDA",
+      "qty": 1,
+      "price": 212.55,
+      "transaction_time": "2026-05-28T15:38:46.846291Z",
+      "order_id": "a4c03c8e-b44b-4154-a1b6-4a0412f684ab"
+    }
+  ],
+  "positions_refresh": {
+    "outcome": "pass",
+    "checked_at": "2026-05-28T15:40:32Z",
+    "positions_count": 30,
+    "notable_changes": [
+      "NVDA filled; position now qty=37 avg_entry_price=215.201892",
+      "COP new position present qty=1 avg_entry_price=114.95",
+      "TSLA order not filled at reconciliation and remains open/new"
+    ]
+  },
+  "gaps": []
+}

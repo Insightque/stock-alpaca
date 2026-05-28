@@ -1929,3 +1929,20 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Submit: SPY 1주 buy limit 753.38 filled at 753.38; BAC 1주 buy limit 51.17 filled at 51.14; NEE 1주 buy limit 87.83 accepted and remains open/new.
 - Post-trade reconciliation: client-order-id checks completed for SPY/BAC/NEE, open orders PASS with NEE and prior AAPL, FILL activities show SPY/BAC fills, positions refresh PASS, account refresh PASS.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-0011-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-0011-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-29-0011-hourly-autopilot-post-trade.json`, [[2026-05-29-0011-hourly-autopilot]]. Review due: SPY/BAC `회고 대기`; NEE/AAPL open-order lifecycle follow-up required.
+
+## [2026-05-29 00:27 Asia/Seoul] incident-retrospective | regular autopilot false failure notification
+
+- Incident: `2026-05-29-0011-hourly-autopilot` completed order submission, reconciliation, and validators successfully, but the wrapper emitted `[regular autopilot] 실패` because the final dashboard build crashed.
+- Root cause: `scripts/build-agent-dashboard.py` and the notification formatter assumed `risk_check_result` was always a mapping with `status`. Recent hourly manifests can store `risk_check_result` as the string `"pass"`, so post-run dashboard/notification code raised `AttributeError` after the trading workflow had already succeeded.
+- Why verification missed it: validation covered runner syntax, selected unit tests, and direct dashboard generation after one artifact state, but did not include a regression test for the exact manifest schema variant produced by the latest successful regular-session run, nor an end-to-end post-run completion path check covering dashboard build plus completion notification formatting.
+- Fix: normalize `risk_check_result` in dashboard and messenger notification code so both dict and string schema variants are accepted; reran dashboard build successfully; resent the corrected completion notification for `2026-05-29-0011-hourly-autopilot`; autopushed the recovered artifacts in commit `f5e3363`.
+- Recurrence prevention: added `tests/test_autopilot_notification_schema.py` to lock the string-risk-result case for both dashboard normalization and completion notification rendering. Future scheduled-run changes must validate post-run artifact consumers, not only trading gates, before being marked complete.
+
+## [2026-05-29 00:40 Asia/Seoul] hourly-autopilot | 2026-05-29-0031-hourly-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; regular-session scheduled cadence authorized; Alpaca MCP only for account/market/order operations.
+- Scheduler preflight: stale cleanup `2026-05-29-0031-hourly-autopilot-stale-order-cleanup.json` cancelled stale AAPL order attempt; registered Alpaca MCP open-order reconciliation returned no open orders before risk validation. Alpaca core hard gate PASS at `2026-05-28T11:31:17.193870329-04:00`; research MCP preflight used for SPY/QQQ/AAPL/NVDA/GOOGL/WMT/SLB/BAC/NKE/TSLA/COP/SO with SEC EDGAR/FRED/Firecrawl/Yahoo pass and Alpha Vantage `empty_response`.
+- Gates: universe strict PASS, MCP strict PASS, risk validator PASS, quote freshness PASS, spread PASS, open-order lifecycle PASS. Pre-submit order plan: `wiki/trade-ledger/orders/2026-05-29-0031-hourly-autopilot.json`.
+- Submit: NVDA 1주 buy limit 212.87 filled at 212.55; COP 1주 buy limit 114.98 filled at 114.95; TSLA 1주 buy limit 441.45 accepted and remains open/new.
+- Post-trade reconciliation: client-order-id, open-order, account, positions, and fill activity checks completed. Open order is TSLA only.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-0031-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-0031-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-29-0031-hourly-autopilot-post-trade.json`, [[2026-05-29-0031-hourly-autopilot]]. Review due: NVDA/COP `회고 대기`; TSLA open-order lifecycle follow-up required.
