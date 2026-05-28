@@ -350,29 +350,29 @@
   </div>
 
   <script type="application/json" id="dashboard-data">{
-  "generated_at": "2026-05-28T05:00:34Z",
+  "generated_at": "2026-05-28T05:18:35Z",
   "run": {
-    "run_id": "2026-05-28-1351-after-hours-autopilot",
+    "run_id": "2026-05-28-1411-after-hours-autopilot",
     "mode": "submit",
-    "created_at": "2026-05-28T04:55:43Z",
+    "created_at": "2026-05-28T05:13:15Z",
     "paper": true,
-    "risk_status": "PASS",
+    "risk_status": "FAIL",
     "market": "closed",
     "next_open": "2026-05-28T09:30:00-04:00",
-    "orders_planned": 1,
-    "orders_submitted": 1,
-    "symbols_loaded": 62,
-    "cash_ratio": 40.89072023264152,
-    "invested_ratio": 59.109279767358494,
-    "action_label": "주문 후보",
-    "action_reason": "1건"
+    "orders_planned": 0,
+    "orders_submitted": 0,
+    "symbols_loaded": 0,
+    "cash_ratio": 40.847094899222284,
+    "invested_ratio": 0.0,
+    "action_label": "관망",
+    "action_reason": "장 닫힘 · 현재가 확인 대기"
   },
   "account": {
-    "portfolio_value": 100412.0,
-    "cash": 41059.19,
-    "invested": 59352.81000000001,
-    "cash_ratio": 40.89072023264152,
-    "invested_ratio": 59.109279767358494
+    "portfolio_value": 100481.54,
+    "cash": 41043.79,
+    "invested": 0,
+    "cash_ratio": 40.847094899222284,
+    "invested_ratio": 0.0
   },
   "portfolio": {
     "source_path": "wiki/trade-ledger/positions/current.md",
@@ -506,15 +506,15 @@
       "label": "후보군",
       "status": "done",
       "progress": 100,
-      "result": "62 symbols"
+      "result": "ready"
     },
     {
       "id": "market_data",
       "name": "Market Data",
       "label": "가격",
-      "status": "done",
-      "progress": 100,
-      "result": "alpaca_overnight_quote_and_scheduler_preflight"
+      "status": "waiting",
+      "progress": 20,
+      "result": "data"
     },
     {
       "id": "web_research",
@@ -544,17 +544,17 @@
       "id": "risk",
       "name": "Risk",
       "label": "리스크",
-      "status": "done",
+      "status": "blocked",
       "progress": 100,
-      "result": "PASS"
+      "result": "FAIL"
     },
     {
       "id": "executor",
       "name": "Executor",
       "label": "주문",
-      "status": "done",
+      "status": "skipped",
       "progress": 100,
-      "result": "1 submitted"
+      "result": "0 submitted"
     },
     {
       "id": "post_trade",
@@ -579,18 +579,18 @@
   "links": [
     {
       "label": "리포트",
-      "path": "wiki/current-runs/daily/2026-05-28-1351-after-hours-autopilot.md",
-      "href": "../wiki/current-runs/daily/2026-05-28-1351-after-hours-autopilot.md"
+      "path": "wiki/current-runs/daily/2026-05-28-1411-after-hours-autopilot.md",
+      "href": "../wiki/current-runs/daily/2026-05-28-1411-after-hours-autopilot.md"
     },
     {
       "label": "주문계획",
-      "path": "wiki/trade-ledger/orders/2026-05-28-1351-after-hours-autopilot.json",
-      "href": "../wiki/trade-ledger/orders/2026-05-28-1351-after-hours-autopilot.json"
+      "path": "wiki/trade-ledger/orders/2026-05-28-1411-after-hours-autopilot.json",
+      "href": "../wiki/trade-ledger/orders/2026-05-28-1411-after-hours-autopilot.json"
     },
     {
       "label": "Manifest",
-      "path": "wiki/evidence-store/run-manifests/2026-05-28-1351-after-hours-autopilot.json",
-      "href": "../wiki/evidence-store/run-manifests/2026-05-28-1351-after-hours-autopilot.json"
+      "path": "wiki/evidence-store/run-manifests/2026-05-28-1411-after-hours-autopilot.json",
+      "href": "../wiki/evidence-store/run-manifests/2026-05-28-1411-after-hours-autopilot.json"
     },
     {
       "label": "포지션",
@@ -598,17 +598,22 @@
       "href": "../wiki/trade-ledger/positions/current.md"
     },
     {
-      "label": "2026-05-28-1351-after-hours-autopilot-alpaca-core-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-28-1351-after-hours-autopilot-alpaca-core-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-28-1351-after-hours-autopilot-alpaca-core-preflight.json"
+      "label": "2026-05-28-1411-after-hours-autopilot-alpaca-core-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-05-28-1411-after-hours-autopilot-alpaca-core-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-05-28-1411-after-hours-autopilot-alpaca-core-preflight.json"
     },
     {
-      "label": "2026-05-28-1351-after-hours-autopilot-research-mcp-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-28-1351-after-hours-autopilot-research-mcp-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-28-1351-after-hours-autopilot-research-mcp-preflight.json"
+      "label": "2026-05-28-1411-after-hours-autopilot-research-mcp-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-05-28-1411-after-hours-autopilot-research-mcp-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-05-28-1411-after-hours-autopilot-research-mcp-preflight.json"
     }
   ],
   "timeline": [
+    {
+      "time": "2026-05-28 14:13 Asia/Seoul",
+      "type": "after-hours-autopilot",
+      "title": "2026-05-28-1411-after-hours-autopilot scheduled after-hours paper autopilot"
+    },
     {
       "time": "2026-05-28 13:59 Asia/Seoul",
       "type": "after-hours-autopilot",
@@ -618,11 +623,6 @@
       "time": "2026-05-28 13:33 Asia/Seoul",
       "type": "scheduler",
       "title": "after-hours autopilot messenger updates"
-    },
-    {
-      "time": "2026-05-28 13:20 Asia/Seoul",
-      "type": "after-hours-autopilot",
-      "title": "2026-05-28-1311-after-hours-autopilot scheduled after-hours paper autopilot"
     }
   ],
   "backtests": [

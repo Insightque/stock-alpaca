@@ -1635,3 +1635,13 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Post-trade: Alpaca MCP account/positions/open orders check confirmed no open US equity orders and NOK position qty 402.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-28-1351-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-28-1351-after-hours-autopilot.json`, [[2026-05-28-1351-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-05-28-1351-after-hours-autopilot-post-trade.json`.
 - Review due markers: NOK after-hours validation fill enters the separate `after_hours_validation` review bucket for next_regular_open, 1D, 5D, and 20D review horizons.
+
+## [2026-05-28 14:13 Asia/Seoul] after-hours-autopilot | 2026-05-28-1411-after-hours-autopilot scheduled after-hours paper autopilot
+
+- Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session=`after_hours`; artifact tag=`after-hours`; review bucket=`after_hours_validation`.
+- Scheduler preflight: `wiki/evidence-store/sources/2026-05-28-1411-after-hours-autopilot-alpaca-core-preflight.json` and `wiki/evidence-store/sources/2026-05-28-1411-after-hours-autopilot-research-mcp-preflight.json` used. Alpaca core `first_blocking_gate=market_closed` was treated as expected non-blocking for after-hours; account/positions/open orders/assets/quotes rows were usable.
+- Fresh Alpaca MCP checks: regular market closed at `2026-05-28T01:13:25.825028326-04:00`; account ACTIVE; positions fetched; open US equity orders empty; same-day after-hours validation fills found for `ah-20260528-1311-intc-buy-01` and `ah-20260528-1351-nok-buy-01`.
+- Gates: universe strict PASS; MCP strict PASS with SEC EDGAR/FRED/Firecrawl/Yahoo pass and Alpha Vantage `empty_response` gap. Separate after-hours order budget FAIL because `risk_inputs.after_hours_new_orders_submitted_today=2` and session cap is 2.
+- Risk validation: `python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-05-28-1411-after-hours-autopilot.json` was executed and failed before policy evaluation because current system Python lacks PyYAML. This is treated as a failed risk gate.
+- Submit/reconcile: no `place_stock_order` call, no submit attempt, no reconciliation required.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-28-1411-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-28-1411-after-hours-autopilot.json`, [[2026-05-28-1411-after-hours-autopilot]].
