@@ -1,0 +1,310 @@
+{
+  "run_id": "2026-05-29-0831-after-hours-autopilot",
+  "created_at": "2026-05-29T08:33:33+09:00",
+  "mode": "submit",
+  "paper": true,
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "policy_profile": "after_hours_policy",
+  "recommendation_policy_sha": "1160293a656dd5f8ff601c5058705bf777bb58f9b103382bed1b80593159c9de",
+  "recommendation_actionability": "blocked_no_submit",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-29-0831-after-hours-autopilot.json",
+  "order_plan": {
+    "path": "wiki/trade-ledger/orders/2026-05-29-0831-after-hours-autopilot.json",
+    "orders": []
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "provider_gap_blocks_order": false
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T08:33:33+09:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0831-after-hours-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T22:31:34+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0831-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-05-28T23:31:34+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0831-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T22:31:34+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0831-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T22:31:34+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0831-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T23:11:35+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0831-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "NOK",
+      "SMH",
+      "SPY",
+      "NVDA",
+      "ADBE",
+      "LIN",
+      "XOM"
+    ],
+    "final_candidates": [
+      "QQQ",
+      "NOK",
+      "SPY"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "gates": {
+    "paper_mode": "pass",
+    "regular_market_not_open": "pass",
+    "alpaca_core": "pass",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "separate_after_hours_order_budget": "pass",
+    "quote_freshness": "fail",
+    "spread_within_after_hours_policy": "partial_pass_only_QQQ",
+    "risk_policy": "pass_empty_plan",
+    "first_blocking_gate": "fresh_quote"
+  },
+  "live_alpaca_mcp_checks": {
+    "account_status": "ACTIVE",
+    "open_orders": [],
+    "positions_count": 31,
+    "same_after_hours_session_orders_after_2026_05_28T20_00_00Z": [],
+    "assets_checked": "scheduler_preflight_get_asset_pass_for_62_symbols_live_NOK_pass_QQQ_cancelled_by_runtime",
+    "quotes_feed": "iex_scheduler_preflight_and_overnight_live_snapshot",
+    "latest_quote_call": "cancelled_by_runtime_safety_layer",
+    "quote_rows": {
+      "QQQ": {
+        "bp": 735.93,
+        "ap": 736.02,
+        "t": "2026-05-28T20:44:11.568144727Z"
+      },
+      "NOK": {
+        "bp": 15.37,
+        "ap": 15.47,
+        "t": "2026-05-28T20:59:59.217574313Z"
+      },
+      "SMH": {
+        "bp": 583.51,
+        "ap": 619.45,
+        "t": "2026-05-28T20:00:00.003012715Z"
+      },
+      "SPY": {
+        "bp": 727.74,
+        "ap": 772.8,
+        "t": "2026-05-28T20:00:00.004066085Z"
+      },
+      "NVDA": {
+        "bp": 214.22,
+        "ap": 229.07,
+        "t": "2026-05-28T20:00:01.385857787Z"
+      },
+      "ADBE": {
+        "bp": 232.06,
+        "ap": 252.19,
+        "t": "2026-05-28T20:00:00.000648436Z"
+      },
+      "LIN": {
+        "bp": 481.97,
+        "ap": 523.9,
+        "t": "2026-05-28T20:00:00.013587475Z"
+      },
+      "XOM": {
+        "bp": 142.07,
+        "ap": 154.55,
+        "t": "2026-05-28T20:00:00.003213168Z"
+      }
+    }
+  },
+  "candidate_diagnostics": [
+    {
+      "symbol": "QQQ",
+      "decision": "skip",
+      "reason": "IEX quote timestamp exceeded after_hours_policy.max_quote_age_minutes_submit=5.0 at scheduler clock 2026-05-28T19:31:15.438695754-04:00",
+      "bid": 735.93,
+      "ask": 736.02,
+      "spread_pct": 0.0122,
+      "spread_gate": "pass",
+      "quote_timestamp": "2026-05-28T20:44:11.568144727Z",
+      "quote_freshness_gate": "fail"
+    },
+    {
+      "symbol": "NOK",
+      "decision": "skip",
+      "reason": "IEX quote timestamp exceeded after_hours_policy.max_quote_age_minutes_submit=5.0 at scheduler clock 2026-05-28T19:31:15.438695754-04:00",
+      "bid": 15.37,
+      "ask": 15.47,
+      "spread_pct": 0.6485,
+      "spread_gate": "fail",
+      "quote_timestamp": "2026-05-28T20:59:59.217574313Z",
+      "quote_freshness_gate": "fail"
+    },
+    {
+      "symbol": "SMH",
+      "decision": "skip",
+      "reason": "IEX quote timestamp exceeded after_hours_policy.max_quote_age_minutes_submit=5.0 at scheduler clock 2026-05-28T19:31:15.438695754-04:00",
+      "bid": 583.51,
+      "ask": 619.45,
+      "spread_pct": 5.9753,
+      "spread_gate": "fail",
+      "quote_timestamp": "2026-05-28T20:00:00.003012715Z",
+      "quote_freshness_gate": "fail"
+    },
+    {
+      "symbol": "SPY",
+      "decision": "skip",
+      "reason": "IEX quote timestamp exceeded after_hours_policy.max_quote_age_minutes_submit=5.0 at scheduler clock 2026-05-28T19:31:15.438695754-04:00",
+      "bid": 727.74,
+      "ask": 772.8,
+      "spread_pct": 6.0058,
+      "spread_gate": "fail",
+      "quote_timestamp": "2026-05-28T20:00:00.004066085Z",
+      "quote_freshness_gate": "fail"
+    },
+    {
+      "symbol": "NVDA",
+      "decision": "skip",
+      "reason": "IEX quote timestamp exceeded after_hours_policy.max_quote_age_minutes_submit=5.0 at scheduler clock 2026-05-28T19:31:15.438695754-04:00",
+      "bid": 214.22,
+      "ask": 229.07,
+      "spread_pct": 6.6999,
+      "spread_gate": "fail",
+      "quote_timestamp": "2026-05-28T20:00:01.385857787Z",
+      "quote_freshness_gate": "fail"
+    },
+    {
+      "symbol": "ADBE",
+      "decision": "skip",
+      "reason": "IEX quote timestamp exceeded after_hours_policy.max_quote_age_minutes_submit=5.0 at scheduler clock 2026-05-28T19:31:15.438695754-04:00",
+      "bid": 232.06,
+      "ask": 252.19,
+      "spread_pct": 8.3139,
+      "spread_gate": "fail",
+      "quote_timestamp": "2026-05-28T20:00:00.000648436Z",
+      "quote_freshness_gate": "fail"
+    },
+    {
+      "symbol": "LIN",
+      "decision": "skip",
+      "reason": "IEX quote timestamp exceeded after_hours_policy.max_quote_age_minutes_submit=5.0 at scheduler clock 2026-05-28T19:31:15.438695754-04:00",
+      "bid": 481.97,
+      "ask": 523.9,
+      "spread_pct": 8.3371,
+      "spread_gate": "fail",
+      "quote_timestamp": "2026-05-28T20:00:00.013587475Z",
+      "quote_freshness_gate": "fail"
+    },
+    {
+      "symbol": "XOM",
+      "decision": "skip",
+      "reason": "IEX quote timestamp exceeded after_hours_policy.max_quote_age_minutes_submit=5.0 at scheduler clock 2026-05-28T19:31:15.438695754-04:00",
+      "bid": 142.07,
+      "ask": 154.55,
+      "spread_pct": 8.4148,
+      "spread_gate": "fail",
+      "quote_timestamp": "2026-05-28T20:00:00.003213168Z",
+      "quote_freshness_gate": "fail"
+    }
+  ],
+  "submit": {
+    "attempted": false,
+    "reason": "fresh_quote gate failed before pre-submit eligibility",
+    "client_order_ids": []
+  },
+  "reconcile": {
+    "attempted": false,
+    "reason": "no submit attempt"
+  }
+}
