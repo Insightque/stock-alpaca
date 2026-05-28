@@ -1,0 +1,53 @@
+{
+  "run_id": "2026-05-28-1311-after-hours-autopilot",
+  "session": "after_hours",
+  "paper": true,
+  "checked_at": "2026-05-28T04:19:02Z",
+  "order_reconciliation": {
+    "id": "843838bd-6083-481d-b013-5ec7b0bf47fd",
+    "client_order_id": "ah-20260528-1311-intc-buy-01",
+    "symbol": "INTC",
+    "asset_class": "us_equity",
+    "qty": "1",
+    "filled_qty": "1",
+    "filled_avg_price": "116.79",
+    "order_type": "limit",
+    "side": "buy",
+    "time_in_force": "day",
+    "limit_price": "116.8",
+    "status": "filled",
+    "extended_hours": true,
+    "submitted_at": "2026-05-28T04:18:48.490501477Z",
+    "filled_at": "2026-05-28T04:19:01.732105386Z"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "currency": "USD",
+    "buying_power": 135284.39,
+    "cash": 41059.19,
+    "portfolio_value": 100344.46,
+    "long_market_value": 59285.27,
+    "trading_blocked": false,
+    "account_blocked": false,
+    "trade_suspended_by_user": false
+  },
+  "position_check": {
+    "symbol": "INTC",
+    "qty": 1.0,
+    "qty_available": 1.0,
+    "avg_entry_price": 116.79,
+    "market_value": 116.77,
+    "current_price": 116.77,
+    "unrealized_pl": -0.02,
+    "unrealized_plpc": -0.00017
+  },
+  "open_order_check": {
+    "status": "not_retrieved",
+    "reason": "parallel get_orders MCP call was cancelled; client_order_id reconciliation shows filled order and position check confirms INTC share"
+  },
+  "source_refs": [
+    "Alpaca MCP get_order_by_client_id ah-20260528-1311-intc-buy-01",
+    "Alpaca MCP get_all_positions",
+    "Alpaca MCP get_account_info"
+  ]
+}

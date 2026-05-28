@@ -1,0 +1,36 @@
+strategy_id: intraday-rs-breadth-vwap-v1
+strategy_version: "1.0"
+policy_status: observation_only
+auto_orders_allowed: false
+universe_id: intraday-validation-v1
+benchmarks:
+  - QQQ
+  - SMH
+bar_source: alpaca_iex
+bar_interval: 1m
+asof_alignment: date_key
+train_validation:
+  method: walk_forward
+  train_months: 3
+  validation_months: 1
+  rolling_step_months: 1
+cost_model:
+  slippage_bps: 10
+  spread_bps: 5
+  fee_bps: 0
+  reject_unfilled_limit_orders: true
+filters:
+  base_strategy_id: intraday-rs-breakout-v0
+  signal_time_et: "11:00"
+  vwap_through_time_et: "10:59"
+  require_qqq_vwap_pass: true
+  require_smh_vwap_pass: true
+  require_candidate_vwap_pass: true
+  breadth_symbols: "SMH,NVDA,AMD,AVGO,TSM,LRCX"
+  min_breadth_pass_count: 4
+  breadth_reference: entry_reference_price_above_regular_session_open
+  secondary_track_top_n: 2
+selection:
+  top_n: 3
+  theme_cap: 2
+  score: v0_pass_plus_market_sector_candidate_vwap_and_semi_breadth

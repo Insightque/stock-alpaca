@@ -1,0 +1,268 @@
+{
+  "run_id": "2026-05-28-1311-after-hours-autopilot",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "after_hours_policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "mode": "submit",
+  "paper": true,
+  "created_at": "2026-05-28T04:15:18Z",
+  "git_commit": "b049c5fb927b411896e8ea21bfeaa61e5e1ce7e5",
+  "prompt_file_sha": "87fd409f6a81261289371cb3ee3654886f5cbffbe6efd5ca4059555e4ea5a6cb",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "72498d9093772d61851672f828fbf04188ea00331c9ce8c60a91f83d27d3c9e2",
+  "schema_version": "1.3",
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-05-28T04:11:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-28-1311-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    }
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T04:11:28Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-28-1311-after-hours-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T04:03:59+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-28-1311-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-05-28T04:11:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-28-1311-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T04:03:59+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-28-1311-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T04:03:59+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-28-1311-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T04:03:59+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-28-1311-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "all_research_must_be_attempted": true,
+    "provider_gap_blocks_order": false
+  },
+  "recommendation_actionability": "submit_candidate",
+  "data_cutoff_time": "2026-05-28T04:18:18Z",
+  "market_clock_checked_at": "2026-05-28T00:15:18.805127399-04:00",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-28-1311-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-28-1311-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "NOK",
+      "XOM",
+      "ORCL",
+      "AMD",
+      "ADBE",
+      "INTC",
+      "LLY"
+    ],
+    "final_candidates": [
+      "QQQ",
+      "NOK",
+      "INTC"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "recommendation_shortlist": [
+    {
+      "symbol": "INTC",
+      "rank": 1,
+      "decision": "planned_submit",
+      "spread_pct": 0.197112,
+      "quote_age_minutes": 0.159,
+      "reason": "fresh overnight quote, after-hours spread and notional gates pass"
+    },
+    {
+      "symbol": "QQQ",
+      "rank": 2,
+      "decision": "recheck_only",
+      "reason": "spread passes but 1-share notional exceeds after-hours per-order cap"
+    },
+    {
+      "symbol": "NOK",
+      "rank": 3,
+      "decision": "recheck_only",
+      "reason": "spread passes but existing NOK exposure is already material; keep as recheck"
+    }
+  ],
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-28-1311-after-hours-autopilot.json",
+  "risk_check_result": {
+    "errors": [],
+    "path": "wiki/trade-ledger/orders/2026-05-28-1311-after-hours-autopilot.json",
+    "status": "PASS",
+    "summary": {
+      "buy_notional": 116.8,
+      "max_cluster_value": 45172.629,
+      "max_factor_value": 50191.81,
+      "max_invested": 80306.89600000001,
+      "max_speculative_value": 12046.034399999999,
+      "max_theme_value": 35134.26699999999,
+      "max_ticker_value": 15057.542999999998,
+      "min_cash": 20076.724000000002,
+      "policy_version": "medium-risk-v1.1",
+      "post_cash": 41059.18,
+      "post_invested": 59324.44000000001,
+      "sell_notional": 0.0,
+      "speculative_value": 5600.4
+    },
+    "warnings": []
+  },
+  "data_manifest": {
+    "source_feed": "alpaca_overnight_quote_and_scheduler_preflight",
+    "adjusted_prices": false,
+    "timezone": "America/New_York / Asia/Seoul report",
+    "trading_calendar": "Alpaca US equities; regular market closed, after-hours session active",
+    "symbols_requested": 62,
+    "symbols_loaded": 62,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 0,
+    "corporate_actions_checked": false,
+    "survivorship_bias_controlled": true,
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-05-28-1311-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-05-28-1311-after-hours-autopilot-research-mcp-preflight.json"
+  },
+  "submitted_order_ids": [
+    "843838bd-6083-481d-b013-5ec7b0bf47fd"
+  ],
+  "submitted_orders": [
+    {
+      "id": "843838bd-6083-481d-b013-5ec7b0bf47fd",
+      "client_order_id": "ah-20260528-1311-intc-buy-01",
+      "symbol": "INTC",
+      "asset_class": "us_equity",
+      "qty": "1",
+      "filled_qty": "1",
+      "filled_avg_price": "116.79",
+      "order_type": "limit",
+      "side": "buy",
+      "time_in_force": "day",
+      "limit_price": "116.8",
+      "status": "filled",
+      "extended_hours": true,
+      "submitted_at": "2026-05-28T04:18:48.490501477Z",
+      "filled_at": "2026-05-28T04:19:01.732105386Z"
+    }
+  ],
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-05-28-1311-after-hours-autopilot-post-trade.json",
+  "post_trade_reconciliation": {
+    "status": "filled",
+    "client_order_id": "ah-20260528-1311-intc-buy-01",
+    "order_id": "843838bd-6083-481d-b013-5ec7b0bf47fd",
+    "filled_qty": 1,
+    "filled_avg_price": 116.79,
+    "reconciled_by": "client_order_id",
+    "retried_with_different_client_order_id": false
+  }
+}

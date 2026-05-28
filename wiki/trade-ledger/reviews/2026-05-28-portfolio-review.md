@@ -49,7 +49,7 @@ exit_date:
 | 구간 | 스킵/대기 대상 | 당시 이유 | 회고 |
 | --- | --- | --- | --- |
 | 2026-05-26 validation runs | SMH, MU, INTC, AMZN 등 | cluster concentration, spread fail, confidence/risk 우선순위 | 신규 주문 대신 LLY/FCX/NOK/NVDA/AAPL 1주 검증에 머문 것은 전체 위험 관리 측면에서 타당했다. |
-| 2026-05-27 later runs | GOOGL, SLB, COP, PLTR, QQQ, SPY 등 | same-session validation history와 `risk_daily_new_orders_budget` | 2026-05-27에 이미 10개 validation order가 생성되어 추가 매수 차단은 정책 의도에 맞았다. 성과 비교는 1D horizon 이후 별도 회고한다. |
+| 2026-05-27 later runs | GOOGL, SLB, COP, PLTR, QQQ, SPY 등 | same-session validation history와 `risk_daily_new_orders_budget` | 정정: 당시 회고의 10개 validation budget 판단은 legacy 문서 중복에서 온 오판이었다. Active policy 기준은 `harness/risk-policy.yaml`과 `harness/recommendation-policy.yaml`을 따라야 하며, 해당 run들의 no-submit 판단은 별도 재평가 대상이다. |
 | 2026-05-27 GOOGL | fresh open order 후 stale cleanup cancel | 미체결 stale order lifecycle | filled_qty 0이라 trade review 대상은 아니며, order lifecycle 관찰로만 남긴다. |
 
 ## 잘한 점
@@ -57,7 +57,7 @@ exit_date:
 - 모든 체결은 paper, whole-share, long-only, day limit validation size로 제한됐다.
 - LLY/AAPL처럼 기존 cluster 밖 또는 낮은 추가 위험의 후보는 1D에서 벤치마크를 앞섰다.
 - FCX/NVDA는 손실이 났지만 1주로 제한되어 thesis 검증 비용이 작았다.
-- 2026-05-27 후속 run에서 daily validation order budget이 새 매수를 막아 과도한 같은 세션 주문 누적을 피했다.
+- 정정: 2026-05-27 후속 run의 daily validation order budget 차단 판단은 legacy 10건 기준에 오염됐다. 같은 세션 주문 누적 위험 자체는 관리해야 하지만, 차단 기준은 active YAML 정책으로만 판단해야 한다.
 
 ## 부족했던 점
 
@@ -69,7 +69,7 @@ exit_date:
 
 - 1주 validation이라도 기존 보유가 큰 종목을 52-week high 직후 추가할 때는 `same-symbol existing exposure + breakout chase`를 별도 감점으로 기록하는 편이 낫다.
 - Cluster 분산 목적의 소액 검증은 1D 손익보다 리스크 budget을 얼마나 아꼈는지가 더 중요하다.
-- Daily validation order budget은 2026-05-27처럼 많은 후보가 계속 재등장하는 날에 유효한 과매매 방지 장치로 보인다.
+- 과매매 방지 장치는 필요하지만, daily validation order budget의 실제 기준은 active YAML 정책으로만 판단해야 한다. 2026-05-27 후속 run들은 legacy 10건 기준 오염 때문에 별도 재평가가 필요하다.
 
 ## 정책 업데이트 제안
 

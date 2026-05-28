@@ -1,0 +1,37 @@
+strategy_id: intraday-rs-breakout-v0
+strategy_version: "1.0"
+policy_status: observation_only
+auto_orders_allowed: false
+universe_id: intraday-validation-v0
+benchmarks:
+  - QQQ
+bar_source: alpaca_iex
+bar_interval: 1m
+asof_alignment: date_key
+train_validation:
+  method: walk_forward
+  train_months: 3
+  validation_months: 1
+  rolling_step_months: 1
+cost_model:
+  slippage_bps: 10
+  spread_bps: 5
+  fee_bps: 0
+  reject_unfilled_limit_orders: true
+filters:
+  signal_time_et: "11:00"
+  window_start_et: "10:00"
+  window_end_et: "10:59"
+  earliest_executable_time_et: "11:00"
+  timestamp_correction_required: true
+  min_qqq_window_return_pct: 0.20
+  min_candidate_window_return_pct: 0.90
+  min_relative_strength_pctpt: 0.40
+  breakout_reference_window_start_et: "09:30"
+  breakout_reference_window_end_et: "09:59"
+  near_high_tolerance_pct: 0.50
+  secondary_track_top_n: 2
+selection:
+  top_n: 3
+  theme_cap: 2
+  score: relative_strength_then_candidate_return

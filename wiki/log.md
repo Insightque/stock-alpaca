@@ -1548,3 +1548,70 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - MCP coverage: SEC EDGAR LLY/NVDA recent filings pass, Yahoo Finance LLY/NVDA news pass. Alpha Vantage `TOOL_LIST` 및 `TOOL_GET("PING")` pass 후 `TOOL_CALL("PING", {})` cancelled. FRED/Firecrawl은 registered tool 미노출로 shell/curl probing 없이 `wrapper_error`.
 - Artifacts: [[2026-05-28-portfolio-review]], [[2026-05-28-0622-analyst-review-cycle-sources]], `wiki/evidence-store/run-manifests/2026-05-28-0622-analyst-review-cycle.json`, [[portfolio-current]].
 - Policy update: 없음. 1D 표본만으로 threshold 미달이며 5D/20D와 portfolio-history gap 해소가 필요하다.
+
+## [2026-05-28 06:45 Asia/Seoul] policy | active instruction source-of-truth cleanup
+
+- 문제: active 운영 문서와 workflow가 `harness/risk-policy.yaml`, `harness/recommendation-policy.yaml`의 숫자 정책을 복제해 10건/20건/validation slot 기준 혼선을 만들었다.
+- 조치: `AGENTS.md`, `README.md`, `harness/risk-policy.md`, `harness/agent-tasking-guide.md`, `harness/mcp-source-map.md`, `harness/workflows/daily.md`, `harness/workflows/hourly-autopilot.md`, `harness/workflows/rebalance.md`, `harness/workflows/intraday-paper-dry-run.md`, `scheduler/README.md`에서 active numeric cap/threshold 복제를 제거하고 source YAML key 참조로 변경했다.
+- Source of truth: risk/order/liquidity/lifecycle numeric caps는 `harness/risk-policy.yaml`, recommendation cadence/MCP gate/validation sizing은 `harness/recommendation-policy.yaml`, intraday signal thresholds는 `harness/strategies/intraday-rs-breakout-v0.yaml` 및 `harness/strategies/intraday-rs-breadth-vwap-v1.yaml`.
+- Historical wiki run reports/log entries는 당시 실제 판단 기록이므로 임의 수정하지 않았다. 이후 해석 시 이 항목을 correction note로 사용한다.
+- 검증: active instruction scan에서 hardcoded policy cap 잔재는 source YAML로만 남았다. `python3 -m unittest tests.test_strategy_config_schema tests.test_check_risk_policy` PASS. 전체 `python3 -m unittest discover -s tests`는 기존 dashboard fixture성 실패 1건(`test_dashboard_run_metrics_fall_back_to_portfolio_snapshot`, picks 0개)로 FAIL.
+- 후속 하네스 보강: `scripts/check-policy-source-of-truth.py`와 `tests/test_policy_source_of_truth.py`를 추가해 active Markdown 지침에 정책 숫자 cap/threshold가 다시 들어오면 실패하도록 했다. `harness/workflows/wiki-lint.md`에도 이 check를 blocking source-of-truth drift 항목으로 추가했다.
+- 추가 검증: `python3 scripts/check-policy-source-of-truth.py` PASS. `python3 -m unittest tests.test_policy_source_of_truth tests.test_strategy_config_schema tests.test_check_risk_policy` PASS. 전체 `python3 -m unittest discover -s tests`는 동일한 dashboard fixture성 실패 1건으로 FAIL.
+- Review correction: [[2026-05-28-portfolio-review]] 안의 2026-05-27 후속 run 10건 daily validation budget 평가는 legacy 문서 중복 오염으로 정정했다. 해당 run들의 no-submit 판단은 active YAML 기준으로 별도 재평가 대상이다.
+
+## [2026-05-28 07:00 Asia/Seoul] runtime-probe | Alpaca after-hours paper order probe
+
+- 목적: 장외 시간에도 Alpaca paper `place_stock_order` runtime submit/reconcile/cancel 경로가 실제 동작하는지 확인.
+- 하네스 보강: `scripts/probe-alpaca-after-hours-order.py`를 추가했다. 이 probe는 Alpaca MCP만 사용하며 `ALPACA_PAPER_TRADE=true`를 요구하고, `extended_hours=true` day limit paper buy 주문을 idempotent `client_order_id`로 제출한 뒤 `get_order_by_client_id`로 reconcile하고 즉시 `cancel_order_by_id`로 취소한다.
+- Dry-run: `2026-05-28-0654-after-hours-probe-dry-run` PASS. Market clock `is_open=false`, quote/asset lookup pass, 실제 주문 제출 없음.
+- Execute probe: `2026-05-28-0700-after-hours-probe` PASS. Market clock `is_open=false` at `2026-05-27T17:59:25.985046256-04:00`, SPY 1주 buy limit 525.27, `extended_hours=true`, client_order_id `probe-20260527-215924-spy-eh`. Submit/reconcile/cancel 모두 pass.
+- Evidence: `wiki/evidence-store/sources/2026-05-28-0700-after-hours-probe-alpaca-after-hours-order-probe.json`.
+- 검증: `python3 -m unittest tests.test_mcp_runtime_wrappers tests.test_policy_source_of_truth tests.test_strategy_config_schema tests.test_check_risk_policy` PASS.
+
+## [2026-05-28 12:30 Asia/Seoul] hourly-autopilot | explicit after-hours paper order probe
+
+- 실행 경로: `CODEX_AUTOPILOT_AFTER_HOURS_ORDER_PROBE=1 scripts/run-hourly-autopilot-codex.sh`.
+- 하네스 보강: `run-hourly-autopilot-codex.sh`에 명시적 장외 probe flag를 추가했다. 기본 scheduled autopilot은 market closed 시 기존처럼 research/Codex/order planning 전 종료한다. 이 flag가 있을 때만 closed-market wakeup에서 `scripts/probe-alpaca-after-hours-order.py --execute`를 호출한다.
+- Market clock: `is_open=false`, timestamp `2026-05-27T23:30:28.501422736-04:00`, next open `2026-05-28T09:30:00-04:00`.
+- Probe order: SPY 1주 buy limit 525.27, `time_in_force=day`, `extended_hours=true`, client_order_id `probe-20260528-033027-spy-eh`.
+- Runtime result: `place_stock_order` pass, `get_order_by_client_id` reconcile pass, `cancel_order_by_id` pass. Submit status was `pending_new` before cancellation.
+- Evidence: `wiki/evidence-store/sources/2026-05-28-1230-hourly-autopilot-after-hours-order-probe.json`.
+- 검증: `bash -n scripts/run-hourly-autopilot-codex.sh`, `python3 -m unittest tests.test_mcp_runtime_wrappers`, `python3 scripts/check-policy-source-of-truth.py` PASS.
+
+## [2026-05-28 12:43 Asia/Seoul] policy | after-hours autopilot separation
+
+- 정책 판단: 장외 paper 운영은 정규장 `hourly-autopilot`과 같은 Alpaca MCP/risk validator 하네스를 공유하되, 정책 profile, 주문 예산, artifact tag, review bucket은 분리한다.
+- Source of truth: `harness/recommendation-policy.yaml`에 `after_hours_policy`를 추가했다. 장외 허용 여부, session name, artifact tag, review bucket, client id prefix, extended-hours requirement, separate budget requirement, sizing/spread/quote/lifecycle 기준은 이 YAML만 source of truth로 둔다.
+- Schema/validator: `harness/recommendation-policy.schema.json`과 `harness/order-plan.schema.json`을 확장했고, `scripts/check-risk-policy.py`가 `market.session=after_hours`, per-order `session=after_hours`, `extended_hours=true`, 장외 전용 `review_bucket`, `risk_inputs.after_hours_new_orders_submitted_today`를 검증하도록 했다.
+- Workflow: `harness/workflows/after-hours-autopilot.md`를 추가했다. `harness/workflows/hourly-autopilot.md`, `AGENTS.md`, `harness/simple-commands.md`, `scheduler/README.md`에는 장외가 정규장 validation과 섞이지 않도록 경계 문구를 추가했다.
+- 검증: `python3 -m unittest tests.test_check_risk_policy tests.test_strategy_config_schema tests.test_mcp_runtime_wrappers tests.test_policy_source_of_truth` PASS. `python3 scripts/check-policy-source-of-truth.py` PASS.
+
+## [2026-05-28 12:52 Asia/Seoul] runtime-test | regular vs after-hours autopilot separation
+
+- 정규장 기본 wrapper 검증: `scripts/run-hourly-autopilot-codex.sh`를 장외 시간에 실행했다. Alpaca clock `is_open=false`, timestamp `2026-05-27T23:52:15.251271349-04:00`; wrapper는 `scheduled autopilot exits before research/Codex run`로 종료했다. 주문, 장외 probe, report, manifest, order plan 생성 없음.
+- 장외 explicit wrapper 검증: `CODEX_AUTOPILOT_AFTER_HOURS_ORDER_PROBE=1 scripts/run-hourly-autopilot-codex.sh`를 단독 실행했다. Alpaca clock `is_open=false`, timestamp `2026-05-27T23:52:25.655921526-04:00`; `scripts/probe-alpaca-after-hours-order.py --execute` 경로만 실행했다.
+- 장외 주문 결과: SPY 1주 buy limit 525.27, `time_in_force=day`, `extended_hours=true`, client_order_id `probe-20260528-035224-spy-eh`. `place_stock_order` pass, `get_order_by_client_id` pass, `cancel_order_by_id` pass. Submit 직후 status는 `pending_new`였고 즉시 취소했다.
+- Evidence: `wiki/evidence-store/sources/2026-05-28-1252-hourly-autopilot-after-hours-order-probe.json`.
+- 분리 확인: 정규장 기본 run은 closed-market에서 artifact 없이 종료했고, 장외 run은 explicit flag가 있을 때만 after-hours evidence artifact를 생성했다.
+- 검증: `python3 -m unittest tests.test_check_risk_policy tests.test_strategy_config_schema tests.test_mcp_runtime_wrappers tests.test_policy_source_of_truth` PASS. `python3 scripts/check-policy-source-of-truth.py` PASS.
+
+## [2026-05-28 13:04 Asia/Seoul] scheduler | after-hours autopilot cadence enabled
+
+- 요청: 장외 autopilot도 정규장과 정책 혼선 없이 독립 파라미터로 20분마다 실행.
+- 정책 보강: `harness/recommendation-policy.yaml`의 `after_hours_policy.cadence`에 장외 전용 cadence, launch minutes, KST hour window, overlap behavior, regular-market behavior를 추가했다. 정규장 `cadence_policy`와 별도 key로 유지한다.
+- Runner 보강: `scripts/run-after-hours-autopilot-codex.sh`를 장외 전용 Codex workflow runner로 구현했다. 수동 runtime probe 반복이 아니라 `harness/workflows/after-hours-autopilot.md`를 실행하며, 별도 lock `.locks/after-hours-autopilot.lock`, run label `after-hours-autopilot`, after-hours research cache를 사용한다.
+- 정규장 충돌 방지: 장외 runner는 Alpaca regular market이 open이면 workflow 시작 전 종료한다. 정규장 runner는 market closed에서 기존처럼 종료한다.
+- Scheduler: `scheduler/com.insightque.stock-alpaca.after-hours-autopilot.plist.example`를 추가했고, `~/Library/LaunchAgents/com.insightque.stock-alpaca.after-hours-autopilot.plist`로 설치 후 `launchctl bootstrap/enable` 완료. `launchctl print gui/501/com.insightque.stock-alpaca.after-hours-autopilot`에서 LaunchAgent 등록, program path, stdout/stderr path, calendar triggers 확인.
+- Smoke runtime: `CODEX_AFTER_HOURS_AUTOPILOT_RUNTIME_SMOKE_TEST=1 scripts/run-after-hours-autopilot-codex.sh` PASS. Alpaca regular market closed 상태에서 after-hours runner가 Alpaca/research preflight까지 도달했고, smoke flag에서 Codex submit workflow 전 정상 종료했다.
+- 검증: `python3 -m unittest tests.test_mcp_runtime_wrappers tests.test_strategy_config_schema tests.test_check_risk_policy tests.test_policy_source_of_truth` PASS. `python3 scripts/check-policy-source-of-truth.py` PASS. `plutil -lint` for regular and after-hours plist PASS.
+
+## [2026-05-28 13:20 Asia/Seoul] after-hours-autopilot | 2026-05-28-1311-after-hours-autopilot scheduled after-hours paper autopilot
+
+- Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session=`after_hours`; artifact tag=`after-hours`; review bucket=`after_hours_validation`.
+- Scheduler preflight: `wiki/evidence-store/sources/2026-05-28-1311-after-hours-autopilot-alpaca-core-preflight.json` and `wiki/evidence-store/sources/2026-05-28-1311-after-hours-autopilot-research-mcp-preflight.json` used. Alpaca core `first_blocking_gate=market_closed` was treated as expected non-blocking for after-hours; account/positions/open orders/assets/quotes rows were usable.
+- Gates: Alpaca regular market closed; universe strict PASS; MCP strict PASS with SEC EDGAR/FRED/Firecrawl/Yahoo pass and Alpha Vantage `empty_response` gap; risk policy PASS with `risk_inputs.after_hours_new_orders_submitted_today=0`; INTC overnight quote/spread gate PASS.
+- Submitted order: INTC 1주 buy limit 116.80, `time_in_force=day`, `extended_hours=true`, `session=after_hours`, client_order_id `ah-20260528-1311-intc-buy-01`. Submitted through Alpaca MCP only.
+- Reconciliation: `get_order_by_client_id` returned order id `843838bd-6083-481d-b013-5ec7b0bf47fd`, status filled, filled_qty 1, filled_avg_price 116.79. No retry with a different client order id.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-28-1311-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-28-1311-after-hours-autopilot.json`, [[2026-05-28-1311-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-05-28-1311-after-hours-autopilot-post-trade.json`.
+- Review due markers: INTC after-hours validation fill enters the separate `after_hours_validation` review bucket for next_regular_open, 1D, 5D, and 20D review horizons.

@@ -1,6 +1,6 @@
-policy_id: recommendation-policy-v1.7
-updated_at: "2026-05-27T01:52:00+09:00"
-policy_version: v1.7
+policy_id: recommendation-policy-v1.8
+updated_at: "2026-05-28T12:43:00+09:00"
+policy_version: v1.8
 strategy_status:
   long_term_quality_momentum_v1:
     status: auto_eligible_paper
@@ -309,6 +309,70 @@ paper_validation_execution:
     record_first_blocking_gate: true
     record_next_relaxation_candidate: true
     record_top_recheck_candidates: 5
+after_hours_policy:
+  enabled_for_explicit_autopilot_runs: true
+  enabled_for_regular_hourly_autopilot: false
+  session_name: after_hours
+  artifact_tag: after-hours
+  review_bucket: after_hours_validation
+  order_id_prefix: ah-
+  cadence:
+    scheduled_interval_minutes: 20
+    launchd_minutes:
+      - 11
+      - 31
+      - 51
+    launchd_hour_window_kst:
+      - 6
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 20
+      - 21
+    overlap_behavior: separate_lock_skip
+    regular_market_behavior: exit_before_after_hours_probe
+  separate_from_regular_validation: true
+  require_extended_hours_flag: true
+  require_separate_order_budget: true
+  require_separate_review_bucket: true
+  allowed_sides:
+    - buy
+  max_new_buy_orders_per_run: 1
+  max_new_orders_per_session: 2
+  default_qty: 1
+  max_notional_pct_per_order: 0.005
+  max_spread_pct: 0.25
+  max_quote_age_minutes_submit: 5.0
+  limit_guardrail_ratio: 0.0025
+  cancel_unfilled_after_minutes: 5
+  hard_gates:
+    - alpaca_paper_mode
+    - extended_hours_session
+    - alpaca_core_account_clock_position_order_quote_spread
+    - after_hours_policy_profile
+    - separate_after_hours_order_budget
+    - universe_strict
+    - mcp_tiered_strict
+    - risk_policy
+    - fresh_quote
+    - spread_within_after_hours_policy
+    - whole_share_day_limit_extended_hours_order
+    - immediate_reconcile_and_cancel_or_lifecycle_record
+  review_horizons:
+    - next_regular_open
+    - 1D
+    - 5D
+    - 20D
 universe_policy:
   allow_expanded_universe: true
   default_scope: expanded_metadata_universe
