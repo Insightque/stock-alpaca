@@ -1,0 +1,343 @@
+{
+  "run_id": "2026-05-29-0751-after-hours-autopilot",
+  "created_at": "2026-05-28T22:54:00Z",
+  "mode": "submit",
+  "paper": true,
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "policy_profile": "after_hours_policy",
+  "recommendation_policy_sha": "1160293a656dd5f8ff601c5058705bf777bb58f9b103382bed1b80593159c9de",
+  "recommendation_actionability": "blocked_no_submit",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-29-0751-after-hours-autopilot.json",
+  "order_plan": {
+    "path": "wiki/trade-ledger/orders/2026-05-29-0751-after-hours-autopilot.json",
+    "orders": []
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "provider_gap_blocks_order": false
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T22:54:00Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0751-after-hours-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T22:31:34+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0751-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-05-28T22:51:32+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0751-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T22:31:34+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0751-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T22:31:34+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0751-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T22:31:34+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0751-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "NOK",
+      "SMH",
+      "SPY",
+      "NVDA",
+      "ADBE",
+      "LIN",
+      "XOM"
+    ],
+    "final_candidates": [
+      "QQQ",
+      "NOK",
+      "SPY"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "gates": {
+    "paper_mode": "pass",
+    "regular_market_not_open": "pass",
+    "alpaca_core": "pass",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "separate_after_hours_order_budget": "pass",
+    "quote_freshness": "fail",
+    "spread_within_after_hours_policy": "mixed",
+    "risk_policy": "pass_empty_plan",
+    "first_blocking_gate": "fresh_quote"
+  },
+  "live_alpaca_mcp_checks": {
+    "clock": {
+      "is_open": false,
+      "next_close": "2026-05-29T16:00:00-04:00",
+      "next_open": "2026-05-29T09:30:00-04:00",
+      "timestamp": "2026-05-28T18:52:22.404319217-04:00"
+    },
+    "account_status": "ACTIVE",
+    "open_orders": [],
+    "positions": "scheduler_preflight_used_after_live_positions_call_cancelled_by_runtime",
+    "same_after_hours_session_orders_after_2026_05_28T20_00_00Z": [],
+    "assets_checked": [
+      "QQQ",
+      "NOK",
+      "SMH"
+    ],
+    "quotes_feed": "overnight",
+    "quote_rows": {
+      "QQQ": {
+        "bp": 724.6,
+        "ap": 728.26,
+        "t": "2026-05-28T08:00:00.395114157Z"
+      },
+      "NOK": {
+        "bp": 14.19,
+        "ap": 15.35,
+        "t": "2026-05-28T08:00:00.400591937Z"
+      },
+      "SMH": {
+        "bp": 590.05,
+        "ap": 609.72,
+        "t": "2026-05-28T08:00:00.363332271Z"
+      },
+      "SPY": {
+        "bp": 748.2,
+        "ap": 750.59,
+        "t": "2026-05-28T08:00:00.392695489Z"
+      },
+      "NVDA": {
+        "bp": 199.96,
+        "ap": 211.41,
+        "t": "2026-05-28T08:00:00.398909979Z"
+      },
+      "ADBE": {
+        "bp": 232.16,
+        "ap": 273.73,
+        "t": "2026-05-28T08:00:00.386648870Z"
+      },
+      "LIN": {
+        "bp": 490.52,
+        "ap": 510.07,
+        "t": "2026-05-28T08:00:00.325235053Z"
+      },
+      "XOM": {
+        "bp": 147.7,
+        "ap": 163.54,
+        "t": "2026-05-28T08:00:00.391609286Z"
+      }
+    }
+  },
+  "candidate_diagnostics": [
+    {
+      "symbol": "QQQ",
+      "decision": "skip",
+      "reason": "fresh overnight quote timestamp 2026-05-28T08:00:00.395114157Z exceeded after_hours_policy.max_quote_age_minutes_submit=5.0 at live clock 2026-05-28T18:52:22.404319217-04:00",
+      "bid": 724.6,
+      "ask": 728.26,
+      "spread_pct": 0.5038,
+      "spread_gate": "fail",
+      "quote_timestamp": "2026-05-28T08:00:00.395114157Z",
+      "quote_freshness_gate": "fail"
+    },
+    {
+      "symbol": "NOK",
+      "decision": "skip",
+      "reason": "fresh overnight quote timestamp 2026-05-28T08:00:00.400591937Z exceeded after_hours_policy.max_quote_age_minutes_submit=5.0 at live clock 2026-05-28T18:52:22.404319217-04:00",
+      "bid": 14.19,
+      "ask": 15.35,
+      "spread_pct": 7.8538,
+      "spread_gate": "fail",
+      "quote_timestamp": "2026-05-28T08:00:00.400591937Z",
+      "quote_freshness_gate": "fail"
+    },
+    {
+      "symbol": "SMH",
+      "decision": "skip",
+      "reason": "fresh overnight quote timestamp 2026-05-28T08:00:00.363332271Z exceeded after_hours_policy.max_quote_age_minutes_submit=5.0 at live clock 2026-05-28T18:52:22.404319217-04:00",
+      "bid": 590.05,
+      "ask": 609.72,
+      "spread_pct": 3.279,
+      "spread_gate": "fail",
+      "quote_timestamp": "2026-05-28T08:00:00.363332271Z",
+      "quote_freshness_gate": "fail"
+    },
+    {
+      "symbol": "SPY",
+      "decision": "skip",
+      "reason": "fresh overnight quote timestamp 2026-05-28T08:00:00.392695489Z exceeded after_hours_policy.max_quote_age_minutes_submit=5.0 at live clock 2026-05-28T18:52:22.404319217-04:00",
+      "bid": 748.2,
+      "ask": 750.59,
+      "spread_pct": 0.3189,
+      "spread_gate": "fail",
+      "quote_timestamp": "2026-05-28T08:00:00.392695489Z",
+      "quote_freshness_gate": "fail"
+    },
+    {
+      "symbol": "NVDA",
+      "decision": "skip",
+      "reason": "fresh overnight quote timestamp 2026-05-28T08:00:00.398909979Z exceeded after_hours_policy.max_quote_age_minutes_submit=5.0 at live clock 2026-05-28T18:52:22.404319217-04:00",
+      "bid": 199.96,
+      "ask": 211.41,
+      "spread_pct": 5.5668,
+      "spread_gate": "fail",
+      "quote_timestamp": "2026-05-28T08:00:00.398909979Z",
+      "quote_freshness_gate": "fail"
+    },
+    {
+      "symbol": "ADBE",
+      "decision": "skip",
+      "reason": "fresh overnight quote timestamp 2026-05-28T08:00:00.386648870Z exceeded after_hours_policy.max_quote_age_minutes_submit=5.0 at live clock 2026-05-28T18:52:22.404319217-04:00",
+      "bid": 232.16,
+      "ask": 273.73,
+      "spread_pct": 16.4344,
+      "spread_gate": "fail",
+      "quote_timestamp": "2026-05-28T08:00:00.386648870Z",
+      "quote_freshness_gate": "fail"
+    },
+    {
+      "symbol": "LIN",
+      "decision": "skip",
+      "reason": "fresh overnight quote timestamp 2026-05-28T08:00:00.325235053Z exceeded after_hours_policy.max_quote_age_minutes_submit=5.0 at live clock 2026-05-28T18:52:22.404319217-04:00",
+      "bid": 490.52,
+      "ask": 510.07,
+      "spread_pct": 3.9077,
+      "spread_gate": "fail",
+      "quote_timestamp": "2026-05-28T08:00:00.325235053Z",
+      "quote_freshness_gate": "fail"
+    },
+    {
+      "symbol": "XOM",
+      "decision": "skip",
+      "reason": "fresh overnight quote timestamp 2026-05-28T08:00:00.391609286Z exceeded after_hours_policy.max_quote_age_minutes_submit=5.0 at live clock 2026-05-28T18:52:22.404319217-04:00",
+      "bid": 147.7,
+      "ask": 163.54,
+      "spread_pct": 10.1786,
+      "spread_gate": "fail",
+      "quote_timestamp": "2026-05-28T08:00:00.391609286Z",
+      "quote_freshness_gate": "fail"
+    }
+  ],
+  "submit": {
+    "attempted": false,
+    "reason": "fresh_quote gate failed before any pre-submit gate summary or place_stock_order call",
+    "client_order_ids": []
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-29-0751-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-29-0751-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-05-29-0751-after-hours-autopilot.json"
+  ],
+  "validators": {
+    "universe_coverage": {
+      "command": "python3 scripts/check-universe-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-05-29-0751-after-hours-autopilot.json",
+      "status": "PASS"
+    },
+    "mcp_coverage": {
+      "command": "python3 scripts/check-mcp-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-05-29-0751-after-hours-autopilot.json",
+      "status": "PASS",
+      "positive_research_confirmations": [
+        "firecrawl",
+        "fred",
+        "sec-edgar",
+        "yahoo-finance"
+      ]
+    },
+    "risk_policy": {
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-05-29-0751-after-hours-autopilot.json",
+      "status": "PASS",
+      "warnings": [
+        "orders is empty"
+      ]
+    }
+  }
+}
