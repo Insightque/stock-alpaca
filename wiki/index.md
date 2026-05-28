@@ -321,3 +321,5 @@
 - `wiki/evidence-store/run-manifests/2026-05-27-0052-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict PASS, risk-check PASS, LLY order filled.
 - `wiki/evidence-store/run-manifests/2026-05-27-0012-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
 - `wiki/evidence-store/run-manifests/2026-05-28-0231-hourly-autopilot.json` - 02:31 KST scheduled hourly autopilot manifest, universe/MCP/risk strict PASS, daily validation order budget으로 주문 없음.
+- [[2026-05-28-1731-after-hours-autopilot]] - 17:31 KST scheduled after-hours autopilot report; session=`after_hours`, universe/MCP/risk strict PASS, separate after-hours order budget 소진으로 주문 없음.
+- `wiki/evidence-store/run-manifests/2026-05-28-1731-after-hours-autopilot.json` - after-hours manifest, `review_bucket=after_hours_validation`, `orders_submitted=0`, empty-order risk-check PASS.
