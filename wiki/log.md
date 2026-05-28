@@ -1675,3 +1675,13 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Risk validation: default `python3` lacked PyYAML, then `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-05-28-1511-after-hours-autopilot.json` PASS for the empty no-submit plan with `orders is empty` warning.
 - Submit/reconcile: no `place_stock_order` call, no submit attempt, no reconciliation required.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-28-1511-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-28-1511-after-hours-autopilot.json`, [[2026-05-28-1511-after-hours-autopilot]].
+
+## [2026-05-28 15:34 Asia/Seoul] after-hours-autopilot | 2026-05-28-1531-after-hours-autopilot scheduled after-hours paper autopilot
+
+- Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session=`after_hours`; artifact tag=`after-hours`; review bucket=`after_hours_validation`.
+- Scheduler preflight: `wiki/evidence-store/sources/2026-05-28-1531-after-hours-autopilot-alpaca-core-preflight.json` and `wiki/evidence-store/sources/2026-05-28-1531-after-hours-autopilot-research-mcp-preflight.json` used. Alpaca core `first_blocking_gate=market_closed` was treated as expected non-blocking for after-hours.
+- Fresh Alpaca MCP checks: regular market closed at `2026-05-28T02:32:52.887013085-04:00`; account ACTIVE; positions fetched; open US equity orders empty; same-day after-hours validation fills found for `ah-20260528-1311-intc-buy-01` and `ah-20260528-1351-nok-buy-01`.
+- Gates: universe strict PASS; MCP strict PASS with SEC EDGAR/FRED/Firecrawl/Yahoo pass and Alpha Vantage `empty_response` gap. Separate after-hours order budget FAIL because `risk_inputs.after_hours_new_orders_submitted_today=2` and session cap is 2.
+- Risk validation: `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-05-28-1531-after-hours-autopilot.json` PASS for the empty no-submit plan with `orders is empty` warning. `python3 scripts/check-universe-coverage.py --strict --json ...` PASS. `python3 scripts/check-mcp-coverage.py --strict --json ...` PASS.
+- Submit/reconcile: no `place_stock_order` call, no submit attempt, no reconciliation required.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-28-1531-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-28-1531-after-hours-autopilot.json`, [[2026-05-28-1531-after-hours-autopilot]].
