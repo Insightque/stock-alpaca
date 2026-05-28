@@ -1,36 +1,14 @@
 # portfolio-current
 
-- 기준: `2026-05-28T14:01:00Z` post-submit reconciliation. Fresh full account/positions refresh는 runtime safety monitor에서 `cancelled`; 기존 포지션 가격은 22:51 scheduler Alpaca preflight 기준이며 CVX/NKE fill 및 NEE/BAC open order는 post-trade Alpaca MCP reconciliation 기준이다.
-- Preflight 계좌: portfolio value `$100,994.11`, cash `$40,180.49`, buying power `$134,963.06`.
-- 신규 체결: CVX 1주 @ 184.03, NKE 1주 @ 46.03.
-- 미체결/open order: BAC buy 1주 limit 50.89, NEE buy 1주 limit 88.00.
+- 기준: `2026-05-28T14:22:00Z` 23:11 hourly autopilot post-trade reconciliation.
+- 계좌: status ACTIVE, portfolio value `$101,471.45`, cash `$39,924.27`, buying power `$135,028.44`, long market value `$61,547.18`.
+- 신규 체결: PFE 1주 @ 26.16.
+- 신규 미체결/open order: WMT buy 1주 limit 118.63.
+- 기존 미체결/open order: NEE buy 1주 limit 88.00. BAC stale order는 scheduler cleanup 이후 등록 Alpaca MCP open-order reconciliation에서 더 이상 open이 아닌 것으로 확인.
 
-| Symbol | Qty | Market Value | Current Price | Unrealized P/L % | Today % |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| AAPL | 1 | $311.68 | $311.68 | 0.72% | 0.27% |
-| AMD | 14 | $6,939.10 | $495.65 | 7.11% | 0.02% |
-| AMZN | 1 | $268.13 | $268.13 | -0.71% | -1.37% |
-| AVGO | 15 | $6,273.00 | $418.20 | 1.82% | -0.87% |
-| BAC | 1 | $51.33 | $51.33 | -1.41% | 0.44% |
-| ETN | 15 | $5,880.22 | $392.01 | 1.06% | -3.53% |
-| FCX | 1 | $62.95 | $62.95 | -1.55% | -1.07% |
-| INTC | 1 | $118.00 | $118.00 | 1.04% | -3.10% |
-| IONQ | 45 | $3,018.06 | $67.07 | 5.65% | 2.55% |
-| LLY | 1 | $1,114.07 | $1,114.07 | 3.21% | 2.88% |
-| LRCX | 20 | $6,203.60 | $310.18 | 0.74% | -2.74% |
-| NEE | 1 | $88.03 | $88.03 | 0.79% | 0.43% |
-| NKE | 1 | $46.07 | $46.07 | -0.17% | 0.20% |
-| NOK | 402 | $6,160.65 | $15.32 | 1.86% | -2.26% |
-| NVDA | 36 | $7,639.56 | $212.21 | -1.42% | -0.18% |
-| PFE | 1 | $26.19 | $26.19 | -0.57% | -0.08% |
-| PLTR | 1 | $135.72 | $135.72 | 0.58% | 2.42% |
-| QQQ | 1 | $727.34 | $727.34 | -0.14% | -0.29% |
-| RGTI | 120 | $2,988.60 | $24.91 | -2.60% | 1.16% |
-| SO | 1 | $94.10 | $94.10 | -0.19% | 0.38% |
-| TSM | 15 | $6,237.75 | $415.85 | 2.63% | -1.63% |
-| UNH | 15 | $5,838.15 | $389.21 | 0.69% | 1.35% |
-| V | 1 | $324.13 | $324.13 | -1.78% | -1.06% |
-| WMT | 1 | $119.03 | $119.03 | 0.61% | 0.41% |
-| XOM | 1 | $149.53 | $149.53 | 1.67% | 1.10% |
-| CVX | +1 fill | $184.03 fill basis | $184.03 | n/a | n/a |
-| NKE | +1 fill | $46.03 fill basis | $46.03 | n/a | n/a |
+| Symbol | Qty | 상태 | 비고 |
+| --- | ---: | --- | --- |
+| PFE | 2 | long | 23:11 run에서 1주 추가 체결, avg entry 26.25 |
+| WMT | 1 | long + open buy 1 | 보유 1주, 23:11 run WMT buy 1주 open/new |
+| NEE | 1 | long + open buy 1 | 22:51 run NEE buy 1주 open/new |
+| 주요 기타 | n/a | long | 전체 포지션은 post-trade JSON `wiki/trade-ledger/positions/2026-05-28-2311-hourly-autopilot-post-trade.json`와 Alpaca MCP positions refresh 기준 |

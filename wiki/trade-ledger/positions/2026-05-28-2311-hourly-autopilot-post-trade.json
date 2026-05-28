@@ -1,0 +1,94 @@
+{
+  "run_id": "2026-05-28-2311-hourly-autopilot",
+  "created_at": "2026-05-28T14:22:00Z",
+  "paper": true,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 101471.45,
+    "cash": 39924.27,
+    "buying_power": 135028.44,
+    "long_market_value": 61547.18
+  },
+  "submitted_orders": [
+    {
+      "symbol": "WMT",
+      "client_order_id": "hourly-20260528-2311-wmt-buy-01",
+      "order_id": "9a252c11-8956-4007-ac95-0f8fd35ff145",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 118.63,
+      "status": "new",
+      "filled_qty": 0,
+      "filled_avg_price": null,
+      "submitted_at": "2026-05-28T14:19:38.641224509Z",
+      "filled_at": null,
+      "submit_retry_count": 1,
+      "first_submit_gap_category": "cancelled"
+    },
+    {
+      "symbol": "PFE",
+      "client_order_id": "hourly-20260528-2311-pfe-buy-01",
+      "order_id": "6040c14c-f717-424d-a7ff-fe5a1693c2e5",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 26.18,
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 26.16,
+      "submitted_at": "2026-05-28T14:20:38.96161199Z",
+      "filled_at": "2026-05-28T14:20:40.63898239Z",
+      "submit_retry_count": 1,
+      "first_submit_gap_category": "cancelled"
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "WMT",
+      "client_order_id": "hourly-20260528-2311-wmt-buy-01",
+      "order_id": "9a252c11-8956-4007-ac95-0f8fd35ff145",
+      "side": "buy",
+      "qty": 1,
+      "filled_qty": 0,
+      "limit_price": 118.63,
+      "status": "new",
+      "submitted_at": "2026-05-28T14:19:38.641224509Z"
+    },
+    {
+      "symbol": "NEE",
+      "client_order_id": "hourly-20260528-2251-nee-buy-01",
+      "order_id": "18ee5b26-f832-4ee1-8d68-532d69e8a1e2",
+      "side": "buy",
+      "qty": 1,
+      "filled_qty": 0,
+      "limit_price": 88.0,
+      "status": "new",
+      "submitted_at": "2026-05-28T13:57:48.524882Z"
+    }
+  ],
+  "positions_delta": [
+    {
+      "symbol": "PFE",
+      "qty_after": 2,
+      "avg_entry_price": 26.25,
+      "current_price": 26.1661
+    },
+    {
+      "symbol": "WMT",
+      "qty_after": 1,
+      "open_buy_qty": 1
+    }
+  ],
+  "reconciliation_gaps": [
+    {
+      "check": "get_account_activities_post_submit",
+      "gap_category": "cancelled",
+      "gap_reason": "runtime cancelled fresh fill-activity refresh; PFE fill was confirmed by get_order_by_client_id and positions, WMT open was confirmed by open orders"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-28-2311-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-28-2311-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-05-28-2311-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/trade-ledger/orders/2026-05-28-2311-hourly-autopilot.json"
+  ]
+}
