@@ -92,6 +92,7 @@
 - [[2026-05-28-1831-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 장외 session 주문 예산 2/2로 주문 없음.
 - [[2026-05-28-1851-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 장외 session 주문 예산 2/2로 주문 없음.
 - [[2026-05-28-1911-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 장외 session 주문 예산 2/2로 주문 없음.
+- [[2026-05-28-1931-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP는 통과했지만 장외 session 주문 예산 2/2로 주문 없음.
 
 ## Research Notes
 
