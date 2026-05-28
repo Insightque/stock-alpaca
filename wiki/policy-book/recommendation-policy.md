@@ -1,6 +1,6 @@
 ---
 id: recommendation-policy
-updated_at: 2026-05-25T21:56:00+09:00
+updated_at: 2026-05-29T05:58:00+09:00
 ---
 
 # 추천 정책
@@ -38,6 +38,8 @@ updated_at: 2026-05-25T21:56:00+09:00
 - 최소 research confirmation이 부족하지만 가격/포트폴리오/리스크 조건이 강한 후보는 `actionable_if_provider_recovered`로 남겨 다음 hourly run에서 자동 재확인한다.
 - Paper 검증 운용은 실거래 수익 극대화가 아니라 정책 검증 데이터 수집을 우선한다. 개장 직후 validation window에서는 모든 hard gate가 통과하면 1주 단위의 작은 검증 주문을 선호하되, Alpaca core, 시장 개장, fresh quote, spread, universe, MCP, risk gate 중 하나라도 실패하면 강제 주문하지 않고 첫 차단 gate와 다음 완화 후보를 기록한다.
 - 자동 sell/trim은 thesis-break만이 아니라 speculative cap, correlated cluster cap, theme/factor cap, 과열 후 손익 보호, position sizing 같은 risk trim 사유로도 가능하다. 단 Alpaca core, fresh quote/spread, open-order state, risk gate는 반드시 통과해야 한다.
+- 일일 validation buy budget 소진은 신규 매수 후보만 막는다. 보유 수량 이내의 risk-reducing sell/trim은 매수 budget과 분리해 평가하며, 매도 생략 사유는 `매도 trigger 없음`과 `비-budget gate 실패`를 구분해 기록한다.
+- 신규 매수용 confidence/source-confidence/policy-status gate는 sell/trim에 그대로 적용하지 않는다. 낮은 confidence, `source_confidence=low`, `policy_status=rejected`는 신규 buy 차단 사유이면서 동시에 보유 포지션 trim/exit 사유가 될 수 있다.
 - 확장 universe는 theme cap, factor cap, active/tradable 확인, 최소 가격, 유동성, spread, source confidence, SPY/QQQ 상대강도를 모두 통과할 때만 사용한다.
 - 정책 변경은 `wiki/policy-book/proposals/TEMPLATE-policy-change.md` 구조를 통과해야 하며, 단일 백테스트 평균만으로 `auto_eligible_paper`로 승격하지 않는다.
 - 모든 정책개선형 시뮬레이션은 채택 여부와 무관하게 policy closeout을 남긴다. 결과가 약하면 `reject`, `observation_only`, `needs_out_of_sample` 중 하나로 분류하고 실패에서 배운 레슨도 정책학습 지표에 기록한다.
@@ -72,6 +74,8 @@ updated_at: 2026-05-25T21:56:00+09:00
 | 2026-05-24 | 리뷰 개선사항 반영 후 확장 universe로 재시뮬레이션함. 장타 `lt-dual-benchmark-confirm-v1`과 `lt-drawdown-volatility-guard-v1`은 이전 기준선보다 검증 SPY 초과수익과 평균 불리 이동이 개선됐고, 단타 `intraday-afternoon-followthrough-filter-v1`은 기존 최고 variant보다 낮아 자동 주문 금지를 유지함 | [[2026-05-24-review-hardening-comparison]] | 장타 우선 필터 보강 / 단타 관찰 전용 |
 | 2026-05-25 | Request.md 개선사항을 반영해 recommendation-policy YAML/schema, strategy config, symbol metadata, risk-policy v1.1, order-plan schema v1.2, 유동성/스프레드/클러스터/중복 ID gate, 일별 독립 1년 시뮬레이션 워크플로우를 추가함 | `Request.md`, `harness/recommendation-policy.yaml`, `harness/strategies/long-term-quality-momentum-v1.yaml`, `scripts/simulate-one-year-daily-policy.py` | 적용 / 장타 dry-run 후보 유지 / 단타 observation_only |
 | 2026-05-25 | 1년 1시간봉 virtual buy/sell를 가격-only와 Alpaca 뉴스/전일 동향 보강으로 비교함. 보강 cache는 전체 20D 성과를 개선하지 못했고, virtual sell은 20D 회피 신호로 부적합했다. virtual buy의 20D/60D 양호한 결과는 장기 후보 보조 확인 가설로만 유지한다 | [[2026-05-25-one-year-hourly-buy-sell-simulation]], [[2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation]] | 정책 승격 없음 / 보조 가설 기록 / policy closeout 원칙 적용 |
+| 2026-05-29 | 일일 신규 주문 cap이 side를 구분하지 않아 validation buy budget 20/20 이후 risk-reducing sell/trim까지 막을 수 있음을 확인함. `daily_limits.max_new_orders_per_day_applies_to_sides=[buy]`를 추가하고 risk validator가 buy만 세도록 개정함 | [[2026-05-29-buy-sell-cap-review]], `scripts/check-risk-policy.py`, `tests/test_check_risk_policy.py` | 적용 |
+| 2026-05-29 | 주문 장부상 sell order-plan이 0건이고, buy-quality gate가 sell에도 적용되어 rejected/low-confidence thesis의 exit까지 막을 수 있음을 확인함. Risk validator에서 buy-only 품질 gate를 buy에만 적용하고 sell은 `entry_style=trim|exit`와 보유수량/quote/spread/risk gate 중심으로 검증하도록 개정함 | [[2026-05-29-sell-frequency-policy-review]], `scripts/check-risk-policy.py`, `tests/test_check_risk_policy.py` | 적용 |
 
 ## 검증 중인 가설
 

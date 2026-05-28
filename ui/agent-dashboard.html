@@ -350,29 +350,29 @@
   </div>
 
   <script type="application/json" id="dashboard-data">{
-  "generated_at": "2026-05-28T19:56:46Z",
+  "generated_at": "2026-05-28T21:17:17Z",
   "run": {
-    "run_id": "2026-05-29-0451-hourly-autopilot",
+    "run_id": "2026-05-29-0611-after-hours-autopilot",
     "mode": "submit",
-    "created_at": "2026-05-28T19:53:07Z",
+    "created_at": "2026-05-28T21:14:18Z",
     "paper": true,
-    "risk_status": "PASS",
+    "risk_status": "UNKNOWN",
     "market": "closed",
-    "next_open": "",
+    "next_open": "2026-05-29T09:30:00-04:00",
     "orders_planned": 0,
     "orders_submitted": 0,
     "symbols_loaded": 0,
-    "cash_ratio": null,
-    "invested_ratio": null,
+    "cash_ratio": 36.32654731829552,
+    "invested_ratio": 0.0,
     "action_label": "관망",
     "action_reason": "장 닫힘 · 현재가 확인 대기"
   },
   "account": {
-    "portfolio_value": 0.0,
-    "cash": 0.0,
+    "portfolio_value": 102370.34,
+    "cash": 37187.61,
     "invested": 0,
-    "cash_ratio": null,
-    "invested_ratio": null
+    "cash_ratio": 36.32654731829552,
+    "invested_ratio": 0.0
   },
   "portfolio": {
     "source_path": "wiki/trade-ledger/positions/current.md",
@@ -423,9 +423,9 @@
       "id": "web_research",
       "name": "Research",
       "label": "뉴스",
-      "status": "watch",
-      "progress": 90,
-      "result": "alpaca + sec-edgar + alpha-vantage + fred + firecrawl + yahoo-finance"
+      "status": "done",
+      "progress": 100,
+      "result": "sources"
     },
     {
       "id": "trend",
@@ -447,9 +447,9 @@
       "id": "risk",
       "name": "Risk",
       "label": "리스크",
-      "status": "waiting",
-      "progress": 20,
-      "result": "PASS"
+      "status": "blocked",
+      "progress": 100,
+      "result": "check"
     },
     {
       "id": "executor",
@@ -482,13 +482,18 @@
   "links": [
     {
       "label": "리포트",
-      "path": "wiki/current-runs/daily/2026-05-29-0451-hourly-autopilot.md",
-      "href": "../wiki/current-runs/daily/2026-05-29-0451-hourly-autopilot.md"
+      "path": "wiki/current-runs/daily/2026-05-29-0611-after-hours-autopilot.md",
+      "href": "../wiki/current-runs/daily/2026-05-29-0611-after-hours-autopilot.md"
+    },
+    {
+      "label": "주문계획",
+      "path": "wiki/trade-ledger/orders/2026-05-29-0611-after-hours-autopilot.json",
+      "href": "../wiki/trade-ledger/orders/2026-05-29-0611-after-hours-autopilot.json"
     },
     {
       "label": "Manifest",
-      "path": "wiki/evidence-store/run-manifests/2026-05-29-0451-hourly-autopilot.json",
-      "href": "../wiki/evidence-store/run-manifests/2026-05-29-0451-hourly-autopilot.json"
+      "path": "wiki/evidence-store/run-manifests/2026-05-29-0611-after-hours-autopilot.json",
+      "href": "../wiki/evidence-store/run-manifests/2026-05-29-0611-after-hours-autopilot.json"
     },
     {
       "label": "포지션",
@@ -496,36 +501,31 @@
       "href": "../wiki/trade-ledger/positions/current.md"
     },
     {
-      "label": "2026-05-29-0451-hourly-autopilot-stale-order-cleanup.json",
-      "path": "wiki/evidence-store/sources/2026-05-29-0451-hourly-autopilot-stale-order-cleanup.json",
-      "href": "../wiki/evidence-store/sources/2026-05-29-0451-hourly-autopilot-stale-order-cleanup.json"
+      "label": "2026-05-29-0611-after-hours-autopilot-alpaca-core-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-05-29-0611-after-hours-autopilot-alpaca-core-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-05-29-0611-after-hours-autopilot-alpaca-core-preflight.json"
     },
     {
-      "label": "2026-05-29-0451-hourly-autopilot-alpaca-core-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-29-0451-hourly-autopilot-alpaca-core-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-29-0451-hourly-autopilot-alpaca-core-preflight.json"
-    },
-    {
-      "label": "2026-05-29-0451-hourly-autopilot-research-mcp-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-29-0451-hourly-autopilot-research-mcp-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-29-0451-hourly-autopilot-research-mcp-preflight.json"
+      "label": "2026-05-29-0611-after-hours-autopilot-research-mcp-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-05-29-0611-after-hours-autopilot-research-mcp-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-05-29-0611-after-hours-autopilot-research-mcp-preflight.json"
     }
   ],
   "timeline": [
     {
-      "time": "2026-05-29 04:53 Asia/Seoul",
-      "type": "hourly-autopilot",
-      "title": "2026-05-29-0451-hourly-autopilot scheduled paper autopilot"
+      "time": "2026-05-29 06:15 Asia/Seoul",
+      "type": "after-hours-autopilot",
+      "title": "2026-05-29-0611-after-hours-autopilot scheduled paper autopilot"
     },
     {
-      "time": "2026-05-29 04:33 Asia/Seoul",
-      "type": "hourly-autopilot",
-      "title": "2026-05-29-0431-hourly-autopilot scheduled paper autopilot"
+      "time": "2026-05-29 06:12 Asia/Seoul",
+      "type": "policy-review",
+      "title": "sell frequency and buy-quality gate separation"
     },
     {
-      "time": "2026-05-29 04:13 Asia/Seoul",
-      "type": "hourly-autopilot",
-      "title": "2026-05-29-0411-hourly-autopilot scheduled paper autopilot"
+      "time": "2026-05-29 05:58 Asia/Seoul",
+      "type": "policy-review",
+      "title": "buy/sell cap separation"
     }
   ],
   "backtests": [
@@ -574,10 +574,7 @@
       "href": "backtests/2026-05-24-review-hardening-comparison.html"
     }
   ],
-  "warnings": [
-    "orders is empty",
-    "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols."
-  ]
+  "warnings": []
 }</script>
   <script>
     const data = JSON.parse(document.getElementById('dashboard-data').textContent);

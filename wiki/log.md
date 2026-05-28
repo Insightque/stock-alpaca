@@ -2066,3 +2066,29 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Submit/reconcile: no `place_stock_order` call and no submit attempt. Scheduler Alpaca core preflight account/positions/open orders/recent activities rows were used as read-only reconciliation evidence; open orders were empty.
 - Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `check-mcp-coverage.py --strict --json ...` PASS; `check-risk-policy.py --json ...` PASS with `orders is empty` warning.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-0451-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-0451-hourly-autopilot.json`, [[2026-05-29-0451-hourly-autopilot]]. Review due: no new fills; existing validation fills remain `회고 대기`.
+
+## [2026-05-29 05:58 Asia/Seoul] policy-review | buy/sell cap separation
+
+- 검토 범위: 실제 주문 없이 로컬 `harness/risk-policy.yaml`, `scripts/check-risk-policy.py`, hourly autopilot 보고서/주문 장부를 확인했다. 민감 키와 Alpaca 계좌 mutation은 사용하지 않았다.
+- 결론: 기존 risk validator가 `orders` 길이를 side 구분 없이 일일 신규 주문 cap에 합산해, validation buy budget 20/20 이후 risk-reducing sell/trim까지 막을 수 있었다. 주문 장부 검색상 실제 `side=sell` order-plan은 없었고, 최근 no-submit run은 `risk_daily_new_orders_budget` 반복 차단이었다.
+- 개정: `daily_limits.max_new_orders_per_day_applies_to_sides: [buy]`를 추가하고, `scripts/check-risk-policy.py`가 해당 side만 일일 cap에 합산하도록 수정했다. sell-only plan이 daily buy cap 20/20에서도 통과하는 회귀 테스트를 추가했다.
+- 문서화: `harness/risk-policy.md`, `harness/workflows/hourly-autopilot.md`, [[recommendation-policy]], [[2026-05-29-buy-sell-cap-review]], `wiki/index.md`를 갱신했다.
+- 검증: `PATH=/usr/local/bin:$PATH python3 -m unittest tests.test_check_risk_policy tests.test_risk_policy_liquidity tests.test_order_plan_required_metadata tests.test_policy_source_of_truth` PASS, 31 tests.
+
+## [2026-05-29 06:12 Asia/Seoul] policy-review | sell frequency and buy-quality gate separation
+
+- 검토 범위: 실제 주문 없이 로컬 주문 장부와 policy/validator만 확인했다. `wiki/trade-ledger/orders/*.json`의 order entry는 전체 108개, buy 108개, sell 0개였고 hourly autopilot entry도 buy 40개, sell 0개였다.
+- 결론: 현재 정책은 매도가 의도보다 너무 안 일어나기 쉬웠다. 일일 buy budget 문제 외에도 `confidence_score`, `source_confidence`, `policy_status=auto_eligible_paper` 같은 신규 buy 품질 gate가 sell에도 적용되어 rejected/low-confidence thesis의 exit가 막힐 수 있었다.
+- 개정: `scripts/check-risk-policy.py`에서 buy-only 품질 gate를 `side=buy`에만 적용하고, sell은 `entry_style=trim|exit`를 요구하되 low confidence/rejected status 자체로는 막지 않도록 수정했다. 회귀 테스트 `test_sell_exit_not_blocked_by_buy_quality_gates`와 `test_sell_requires_trim_or_exit_entry_style`를 추가했다.
+- 문서화: [[2026-05-29-sell-frequency-policy-review]], [[2026-05-29-buy-sell-cap-review]], [[recommendation-policy]], `harness/risk-policy.md`, `harness/workflows/hourly-autopilot.md`, `wiki/index.md`를 갱신했다.
+- 검증: `PATH=/usr/local/bin:$PATH python3 -m unittest tests.test_check_risk_policy tests.test_risk_policy_liquidity tests.test_order_plan_required_metadata tests.test_policy_source_of_truth` PASS, 33 tests.
+
+## [2026-05-29 06:15 Asia/Seoul] after-hours-autopilot | 2026-05-29-0611-after-hours-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session `after_hours`; artifact tag `after-hours`; review bucket `after_hours_validation`.
+- Scheduler preflight: Alpaca core preflight `wiki/evidence-store/sources/2026-05-29-0611-after-hours-autopilot-alpaca-core-preflight.json` had `first_blocking_gate=market_closed`, which is expected and nonblocking for after-hours. Account, positions, open orders, assets, quotes, spreads, and recent activities rows were usable. Research preflight `wiki/evidence-store/sources/2026-05-29-0611-after-hours-autopilot-research-mcp-preflight.json` had SEC EDGAR/FRED/Firecrawl/Yahoo pass and Alpha Vantage `empty_response`.
+- Fresh Alpaca MCP spot checks: account `ACTIVE`, open US equity orders `[]`, quote rows for QQQ/NOK/SMH/SPY/NVDA/ADBE/LIN/XOM checked. `get_stock_latest_trade` fresh check was cancelled by runtime, so scheduler preflight trade rows were retained.
+- Gates: universe strict PASS, MCP strict PASS, separate after-hours order budget PASS with `risk_inputs.after_hours_new_orders_submitted_today=0`, risk validator PASS for empty order plan. First blocking gate was `fresh_quote`; shortlist quote timestamps exceeded `after_hours_policy.max_quote_age_minutes_submit=5.0`.
+- Submit/reconcile: no `place_stock_order` call and no submit attempt. No new `client_order_id` was created.
+- Validators: `python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `python3 scripts/check-risk-policy.py --json ...` PASS with `orders is empty` warning.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-0611-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-0611-after-hours-autopilot.json`, [[2026-05-29-0611-after-hours-autopilot]]. Review due: no new after-hours fills.

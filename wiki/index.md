@@ -120,6 +120,7 @@
 - [[2026-05-29-0411-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/open-order lifecycle, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 same ET-session daily new order cap 20/20으로 주문 없음.
 - [[2026-05-29-0431-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/open-order lifecycle, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 same ET-session daily new order cap 20/20으로 주문 없음.
 - [[2026-05-29-0451-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/open-order lifecycle, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 same ET-session daily new order cap 20/20으로 주문 없음.
+- [[2026-05-29-0611-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 
 - `wiki/trade-ledger/orders/2026-05-28-2331-hourly-autopilot.json` - 2026-05-28 23:31 KST hourly autopilot GOOGL/SO/HOOD 1주 paper validation buy plan, universe/MCP/risk PASS, GOOGL open, SO filled, HOOD not submitted due runtime cancelled.
 - `wiki/trade-ledger/positions/2026-05-28-2331-hourly-autopilot-post-trade.json` - 2026-05-28 23:42 KST hourly autopilot post-trade snapshot: SO filled, GOOGL open, HOOD not found/not submitted.
@@ -144,6 +145,7 @@
 - `wiki/trade-ledger/orders/2026-05-29-0411-hourly-autopilot.json` - 2026-05-29 04:11 KST hourly autopilot empty order plan, universe/MCP/risk PASS, daily new order cap 20/20으로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-0431-hourly-autopilot.json` - 2026-05-29 04:31 KST hourly autopilot empty order plan, universe/MCP/risk PASS, daily new order cap 20/20으로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-0451-hourly-autopilot.json` - 2026-05-29 04:51 KST hourly autopilot empty order plan, universe/MCP/risk PASS, daily new order cap 20/20으로 submit 없음.
+- `wiki/trade-ledger/orders/2026-05-29-0611-after-hours-autopilot.json` - 2026-05-29 06:11 KST after-hours autopilot empty order plan, session=after_hours, quote freshness gate 실패로 submit 없음.
 
 ## Research Notes
 
@@ -159,6 +161,8 @@
 - [[2026-05-25-mcp-usage-and-simulation-impact-review]] - 추천/시뮬레이션 workflow의 MCP 실제 사용 여부, 현재 세션 MCP 연결 재점검, 로컬 FRED/Firecrawl MCP, 1년 시뮬레이션 재현 검토.
 - [[2026-05-25-mcp-simulation-integration-verification]] - MCP-only market data 이전과 research MCP event feature cache 결합이 실제 시뮬레이션 결과에 반영되는지 검증하고 과거 장기/단기 결과와 비교한 분석.
 - [[2026-05-27-autopilot-close-gate-analysis]] - 2026-05-27 02:06 KST 자동운영 gate 점검 이후 장마감까지 추천, 주문, 미체결, 차단 원인을 정리한 분석.
+- [[2026-05-29-buy-sell-cap-review]] - validation buy budget과 risk-reducing sell/trim gate가 같은 cap에 묶여 매도가 막힐 수 있던 구현을 확인하고 개정한 분석.
+- [[2026-05-29-sell-frequency-policy-review]] - 현재 정책과 validator가 sell/trim을 과소 발생시키는지 확인하고 buy-quality gate를 sell에서 분리한 분석.
 
 ## Backtest Runs
 
