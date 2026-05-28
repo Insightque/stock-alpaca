@@ -1,0 +1,98 @@
+{
+  "run_id": "2026-05-29-0011-hourly-autopilot",
+  "created_at": "2026-05-28T15:20:30Z",
+  "paper": true,
+  "source": "registered Alpaca MCP post-trade reconciliation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102280.38,
+    "cash": 38463.26,
+    "buying_power": 134107.49,
+    "long_market_value": 63817.12,
+    "currency": "USD",
+    "checked_at": "2026-05-28T15:20:00Z"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "SPY",
+      "client_order_id": "hourly-20260529-0011-spy-buy-01",
+      "status": "filled",
+      "submitted": true,
+      "filled_qty": 1,
+      "filled_avg_price": 753.38,
+      "order_id": "9dd1c5ed-775b-4cc3-adce-6eaa05b3b265",
+      "filled_at": "2026-05-28T15:18:18.974100085Z",
+      "notes": "Alpaca MCP accepted and post-trade reconciliation confirmed filled."
+    },
+    {
+      "symbol": "BAC",
+      "client_order_id": "hourly-20260529-0011-bac-buy-01",
+      "status": "filled",
+      "submitted": true,
+      "filled_qty": 1,
+      "filled_avg_price": 51.14,
+      "order_id": "631f6eaf-266b-4fa4-85c3-2ef0f390b2e6",
+      "filled_at": "2026-05-28T15:18:08.902025016Z",
+      "notes": "Alpaca MCP accepted and post-trade reconciliation confirmed filled."
+    },
+    {
+      "symbol": "NEE",
+      "client_order_id": "hourly-20260529-0011-nee-buy-01",
+      "status": "new",
+      "submitted": true,
+      "filled_qty": 0,
+      "filled_avg_price": null,
+      "order_id": "26841898-f012-4101-9746-fed6f70e4cd7",
+      "filled_at": null,
+      "notes": "Alpaca MCP accepted; reconciliation shows open/new."
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "NEE",
+      "client_order_id": "hourly-20260529-0011-nee-buy-01",
+      "status": "new",
+      "qty": 1,
+      "filled_qty": 0,
+      "limit_price": 87.83,
+      "submitted_at": "2026-05-28T15:18:18.110044462Z",
+      "expires_at": "2026-05-28T20:00:00Z"
+    },
+    {
+      "symbol": "AAPL",
+      "client_order_id": "hourly-20260528-2351-aapl-buy-01",
+      "status": "new",
+      "qty": 1,
+      "filled_qty": 0,
+      "limit_price": 311.29,
+      "submitted_at": "2026-05-28T15:00:25.242852Z",
+      "expires_at": "2026-05-28T20:00:00Z"
+    }
+  ],
+  "fills_after_submit": [
+    {
+      "symbol": "SPY",
+      "qty": 1,
+      "price": 753.38,
+      "transaction_time": "2026-05-28T15:18:18.9741Z",
+      "order_id": "9dd1c5ed-775b-4cc3-adce-6eaa05b3b265"
+    },
+    {
+      "symbol": "BAC",
+      "qty": 1,
+      "price": 51.14,
+      "transaction_time": "2026-05-28T15:18:08.902025Z",
+      "order_id": "631f6eaf-266b-4fa4-85c3-2ef0f390b2e6"
+    }
+  ],
+  "positions_refresh": {
+    "outcome": "pass",
+    "checked_at": "2026-05-28T15:20:00Z",
+    "notable_changes": [
+      "SPY position present qty=1 avg_entry_price=753.38",
+      "BAC position qty=2 avg_entry_price=51.60",
+      "NEE order not filled at reconciliation; position remains qty=1"
+    ]
+  },
+  "gaps": []
+}

@@ -104,9 +104,15 @@
 - [[2026-05-28-2251-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 CVX, NEE, NKE 각 1주 paper validation buy 제출; CVX/NKE 체결, NEE open `new`, prior BAC open 유지.
 - [[2026-05-28-2311-hourly-autopilot]] - hourly paper autopilot 실행. Stale BAC는 cleanup 후 open-order 재조정에서 해소, Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 WMT, PFE 각 1주 paper validation buy 제출; PFE 체결, WMT open `new`, prior NEE open 유지.
 - [[2026-05-28-2331-hourly-autopilot]] - hourly paper autopilot 실행. Stale NEE open order cleanup 후 Alpaca MCP open-order 재조정은 open order 없음; universe/MCP/risk/quote/spread gate 통과 후 GOOGL, SO, HOOD 각 1주 validation buy 계획. GOOGL open `new`, SO 체결, HOOD는 runtime cancelled로 실제 주문 없음.
+- [[2026-05-28-2351-hourly-autopilot]] - hourly paper autopilot 실행. Stale cleanup/open-order lifecycle PASS, Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 SPY/AAPL/SLB 각 1주 validation buy 계획. SPY는 cancelled/timeout 후 reconciliation 404로 실제 주문 없음, AAPL open `new`, SLB 체결.
+- [[2026-05-29-0011-hourly-autopilot]] - hourly paper autopilot 실행. Fresh AAPL open order를 회피하고 Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 SPY/BAC/NEE 각 1주 validation buy 제출. SPY/BAC 체결, NEE open `new`.
 
 - `wiki/trade-ledger/orders/2026-05-28-2331-hourly-autopilot.json` - 2026-05-28 23:31 KST hourly autopilot GOOGL/SO/HOOD 1주 paper validation buy plan, universe/MCP/risk PASS, GOOGL open, SO filled, HOOD not submitted due runtime cancelled.
 - `wiki/trade-ledger/positions/2026-05-28-2331-hourly-autopilot-post-trade.json` - 2026-05-28 23:42 KST hourly autopilot post-trade snapshot: SO filled, GOOGL open, HOOD not found/not submitted.
+- `wiki/trade-ledger/orders/2026-05-28-2351-hourly-autopilot.json` - 2026-05-28 23:51 KST hourly autopilot SPY/AAPL/SLB 1주 paper validation buy plan, universe/MCP/risk PASS, AAPL open, SLB filled, SPY not found/not submitted after cancelled/timeout.
+- `wiki/trade-ledger/positions/2026-05-28-2351-hourly-autopilot-post-trade.json` - 2026-05-29 00:01 KST hourly autopilot post-trade snapshot: SLB filled, AAPL open, SPY not found/not submitted.
+- `wiki/trade-ledger/orders/2026-05-29-0011-hourly-autopilot.json` - 2026-05-29 00:11 KST hourly autopilot SPY/BAC/NEE 1주 paper validation buy plan, universe/MCP/risk PASS, SPY/BAC filled, NEE open.
+- `wiki/trade-ledger/positions/2026-05-29-0011-hourly-autopilot-post-trade.json` - 2026-05-29 00:20 KST hourly autopilot post-trade snapshot: SPY/BAC filled, NEE and prior AAPL open.
 
 ## Research Notes
 

@@ -1,0 +1,26 @@
+{
+  "run_id": "2026-05-28-2351-hourly-autopilot",
+  "created_at": "2026-05-28T14:51:16Z",
+  "paper": true,
+  "source": "scheduler Alpaca MCP stale autopilot order cleanup",
+  "alpaca_mcp_only": true,
+  "dry_run": false,
+  "policy": {
+    "max_open_order_age_minutes": 30.0,
+    "cancel_stale_unfilled_orders": true,
+    "client_order_id_prefix": "hourly-"
+  },
+  "clock": {
+    "is_open": true,
+    "timestamp": "2026-05-28T10:51:17.422449046-04:00",
+    "next_open": "2026-05-29T09:30:00-04:00",
+    "next_close": "2026-05-28T16:00:00-04:00"
+  },
+  "initial_open_orders": [],
+  "stale_candidates": [],
+  "cancel_attempts": [],
+  "remaining_open_orders": [],
+  "status": "pass",
+  "gap_category": "not_applicable",
+  "gap_reason": ""
+}

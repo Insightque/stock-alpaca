@@ -1,11 +1,64 @@
-# portfolio-current
+---
+id: portfolio-current
+updated_at: 2026-05-28T15:20:30Z
+paper: true
+---
 
-2026-05-28 23:42 KST hourly autopilot post-trade reconciliation 후 갱신.
+# 현재 포트폴리오
 
-- Paper account: Alpaca MCP post-submit account refresh는 runtime에서 `cancelled`되어 23:31 scheduler preflight account snapshot을 기준으로 유지한다. Preflight 기준 cash 39,805.64, portfolio value 101,433.68.
-- New submitted orders: SO 1주 buy limit 93.55 filled at 93.38; GOOGL 1주 buy limit 389.00 open/new.
-- Not submitted: HOOD 1주 buy는 first submit cancelled, same-client-id reconciliation 404, same-id retry도 runtime safety monitor cancelled로 실제 주문 없음.
-- Open orders: `hourly-20260528-2331-googl-buy-01` GOOGL 1주 buy limit 389.00 status new.
-- Position check: Alpaca MCP `get_all_positions` PASS. SO position is 2 shares, avg_entry_price 93.83; WMT and PFE previous regular-session fills are reflected at 2 shares each.
+## 계좌
 
-Source refs: `wiki/evidence-store/run-manifests/2026-05-28-2331-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-28-2331-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-28-2331-hourly-autopilot-post-trade.json`.
+| 지표 | 값 |
+| --- | ---: |
+| 포트폴리오 가치 | 102,280.38 |
+| 현금 | 38,463.26 |
+| Buying power | 134,107.49 |
+| 투자 노출 | 63,817.12 |
+
+계좌/포지션 refresh는 2026-05-29-0011-hourly-autopilot post-trade에서 PASS했다. SPY/BAC 체결과 NEE open order를 반영했다.
+
+## 포지션
+
+| 티커 | 수량 | 시장 가치 | 포트폴리오 비중 | 미실현 손익 |
+| --- | ---: | ---: | ---: | ---: |
+| AAPL | 1 | 311.25 | 0.31% |  |
+| AMD | 14 | 7,116.06 | 7.00% |  |
+| AMZN | 1 | 270.25 | 0.27% |  |
+| AVGO | 15 | 6,315.30 | 6.21% |  |
+| BAC | 2 | 102.26 | 0.10% | -0.94 |
+| CVX | 1 | 183.06 | 0.18% |  |
+| ETN | 15 | 5,985.00 | 5.89% |  |
+| FCX | 1 | 64.00 | 0.06% |  |
+| GOOGL | 1 | 389.00 | 0.38% |  |
+| INTC | 1 | 118.51 | 0.12% |  |
+| IONQ | 45 | 3,068.55 | 3.02% |  |
+| LLY | 1 | 1,135.52 | 1.12% |  |
+| LRCX | 20 | 6,321.20 | 6.22% |  |
+| NEE | 1 | 88.07 | 0.09% |  |
+| NKE | 2 | 93.79 | 0.09% |  |
+| NOK | 402 | 6,180.75 | 6.08% |  |
+| NVDA | 36 | 7,627.86 | 7.50% |  |
+| PFE | 2 | 52.37 | 0.05% |  |
+| PLTR | 1 | 137.81 | 0.14% |  |
+| QQQ | 1 | 731.99 | 0.72% |  |
+| RGTI | 120 | 3,080.41 | 3.03% |  |
+| SLB | 1 | 55.43 | 0.05% |  |
+| SO | 2 | 186.34 | 0.18% |  |
+| SPY | 1 | 753.45 | 0.74% | 0.07 |
+| TSM | 15 | 6,321.45 | 6.22% |  |
+| UNH | 15 | 5,806.80 | 5.71% |  |
+| V | 1 | 323.51 | 0.32% |  |
+| WMT | 2 | 236.28 | 0.23% |  |
+| XOM | 1 | 148.41 | 0.15% |  |
+
+## 미체결 주문
+
+| 티커 | 방향 | 수량 | 지정가 | 상태 | 제출 시각 |
+| --- | --- | ---: | ---: | --- | --- |
+| NEE | buy | 1 | 87.83 | new | 2026-05-28T15:18:18.110044462Z |
+| AAPL | buy | 1 | 311.29 | new | 2026-05-28T15:00:25.242852Z |
+
+## 메모
+
+- 2026-05-29-0011-hourly-autopilot post-trade: SPY 1주 filled at 753.38, BAC 1주 filled at 51.14, NEE 1주 open/new.
+- 이전 AAPL 1주 open/new도 남아 있다. 다음 scheduled run에서 NEE/AAPL open-order lifecycle을 재확인해야 한다.

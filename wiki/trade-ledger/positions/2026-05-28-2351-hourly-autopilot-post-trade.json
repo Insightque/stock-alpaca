@@ -1,0 +1,137 @@
+{
+  "run_id": "2026-05-28-2351-hourly-autopilot",
+  "created_at": "2026-05-28T15:01:56Z",
+  "paper": true,
+  "source_refs": [
+    "wiki/trade-ledger/orders/2026-05-28-2351-hourly-autopilot.json",
+    "wiki/evidence-store/run-manifests/2026-05-28-2351-hourly-autopilot.json",
+    "registered Alpaca MCP get_order_by_client_id/get_orders/get_all_positions outputs in this run"
+  ],
+  "submit_results": [
+    {
+      "symbol": "SPY",
+      "client_order_id": "hourly-20260528-2351-spy-buy-01",
+      "status": "not_found_after_cancelled_and_timeout",
+      "submitted": false,
+      "filled_qty": 0,
+      "filled_avg_price": null,
+      "order_id": null,
+      "gap_category": "timeout",
+      "notes": "first place_stock_order cancelled by runtime safety monitor; same-id retry timed out; client_order_id reconciliation returned 404 not found both times"
+    },
+    {
+      "symbol": "AAPL",
+      "client_order_id": "hourly-20260528-2351-aapl-buy-01",
+      "status": "new",
+      "submitted": true,
+      "filled_qty": 0,
+      "filled_avg_price": null,
+      "order_id": "1f570fd1-2f65-4a9c-a1a1-613aa11930a5",
+      "notes": "first submit cancelled by runtime safety monitor; same-id reconciliation 404; same-id retry accepted and remains open/new"
+    },
+    {
+      "symbol": "SLB",
+      "client_order_id": "hourly-20260528-2351-slb-buy-01",
+      "status": "filled",
+      "submitted": true,
+      "filled_qty": 1,
+      "filled_avg_price": 55.48,
+      "order_id": "82d522b3-3f15-487f-b41d-d28b1804c073",
+      "filled_at": "2026-05-28T15:00:42.35569953Z",
+      "notes": "accepted and filled during post-trade reconciliation"
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "AAPL",
+      "side": "buy",
+      "qty": 1,
+      "filled_qty": 0,
+      "status": "new",
+      "client_order_id": "hourly-20260528-2351-aapl-buy-01",
+      "order_id": "1f570fd1-2f65-4a9c-a1a1-613aa11930a5",
+      "submitted_at": "2026-05-28T15:00:25.2428522Z",
+      "limit_price": 311.29
+    }
+  ],
+  "filled_orders": [
+    {
+      "symbol": "SLB",
+      "side": "buy",
+      "qty": 1,
+      "filled_qty": 1,
+      "filled_avg_price": 55.48,
+      "client_order_id": "hourly-20260528-2351-slb-buy-01",
+      "order_id": "82d522b3-3f15-487f-b41d-d28b1804c073",
+      "filled_at": "2026-05-28T15:00:42.35569953Z"
+    }
+  ],
+  "not_found_orders": [
+    {
+      "symbol": "SPY",
+      "client_order_id": "hourly-20260528-2351-spy-buy-01"
+    }
+  ],
+  "reconciliation_checks": [
+    {
+      "check": "order_by_client_id_spy",
+      "outcome": "not_found",
+      "gap_category": "empty_response",
+      "retry_count": 2
+    },
+    {
+      "check": "order_by_client_id_aapl",
+      "outcome": "pass",
+      "gap_category": "not_applicable",
+      "retry_count": 1
+    },
+    {
+      "check": "order_by_client_id_slb",
+      "outcome": "pass",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "check": "open_orders",
+      "outcome": "pass",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "check": "positions",
+      "outcome": "pass",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "check": "account",
+      "outcome": "cancelled",
+      "gap_category": "cancelled",
+      "retry_count": 0
+    },
+    {
+      "check": "fill_activities",
+      "outcome": "cancelled",
+      "gap_category": "cancelled",
+      "retry_count": 0
+    }
+  ],
+  "review_due": [
+    {
+      "symbol": "SLB",
+      "status": "회고 대기",
+      "horizons": [
+        "1D",
+        "5D",
+        "20D"
+      ]
+    },
+    {
+      "symbol": "AAPL",
+      "status": "open-order lifecycle follow-up",
+      "horizons": [
+        "next scheduled run"
+      ]
+    }
+  ]
+}
