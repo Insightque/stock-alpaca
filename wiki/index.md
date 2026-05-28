@@ -111,6 +111,7 @@
 - [[2026-05-29-0111-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/open-order lifecycle, Alpaca core, universe, MCP, quote/spread, risk gate 통과 후 XOM 1주 validation buy 체결.
 - [[2026-05-29-0131-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/open-order lifecycle, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 same ET-session daily new order cap 20/20으로 주문 없음.
 - [[2026-05-29-0151-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/open-order lifecycle, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 same ET-session daily new order cap 20/20으로 주문 없음.
+- [[2026-05-29-0211-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/open-order lifecycle, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 same ET-session daily new order cap 20/20으로 주문 없음.
 
 - `wiki/trade-ledger/orders/2026-05-28-2331-hourly-autopilot.json` - 2026-05-28 23:31 KST hourly autopilot GOOGL/SO/HOOD 1주 paper validation buy plan, universe/MCP/risk PASS, GOOGL open, SO filled, HOOD not submitted due runtime cancelled.
 - `wiki/trade-ledger/positions/2026-05-28-2331-hourly-autopilot-post-trade.json` - 2026-05-28 23:42 KST hourly autopilot post-trade snapshot: SO filled, GOOGL open, HOOD not found/not submitted.
@@ -126,6 +127,7 @@
 - `wiki/trade-ledger/positions/2026-05-29-0051-hourly-autopilot-post-trade.json` - 2026-05-29 00:59 KST hourly autopilot post-trade snapshot: AMZN filled, INTC not found/not submitted, open orders empty.
 - `wiki/trade-ledger/orders/2026-05-29-0131-hourly-autopilot.json` - 2026-05-29 01:31 KST hourly autopilot empty order plan, universe/MCP/risk PASS, daily new order cap 20/20으로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-0151-hourly-autopilot.json` - 2026-05-29 01:51 KST hourly autopilot empty order plan, universe/MCP/risk PASS, daily new order cap 20/20으로 submit 없음.
+- `wiki/trade-ledger/orders/2026-05-29-0211-hourly-autopilot.json` - 2026-05-29 02:11 KST hourly autopilot empty order plan, universe/MCP/risk PASS, daily new order cap 20/20으로 submit 없음.
 
 ## Research Notes
 
