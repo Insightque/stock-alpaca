@@ -86,6 +86,7 @@
 - [[2026-05-28-1611-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 장외 session 주문 예산 2/2로 주문 없음.
 - [[2026-05-28-1631-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 장외 session 주문 예산 2/2로 주문 없음.
 - [[2026-05-28-1651-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 장외 session 주문 예산 2/2로 주문 없음.
+- [[2026-05-28-1711-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP는 통과했지만 장외 session 주문 예산 2/2로 주문 없음.
 
 ## Research Notes
 
@@ -198,6 +199,7 @@
 - `wiki/trade-ledger/orders/2026-05-28-1611-after-hours-autopilot.json` - 2026-05-28 16:11 KST after-hours autopilot empty-order plan, session=after_hours, `after_hours_new_orders_submitted_today=2`, universe/MCP/risk PASS, 주문 예산 gate 실패로 주문 없음.
 - `wiki/trade-ledger/orders/2026-05-28-1631-after-hours-autopilot.json` - 2026-05-28 16:31 KST after-hours autopilot empty-order plan, session=after_hours, `after_hours_new_orders_submitted_today=2`, universe/MCP/risk PASS, 주문 예산 gate 실패로 주문 없음.
 - `wiki/trade-ledger/orders/2026-05-28-1651-after-hours-autopilot.json` - 2026-05-28 16:51 KST after-hours autopilot empty-order plan, session=after_hours, `after_hours_new_orders_submitted_today=2`, universe/MCP/risk PASS, 주문 예산 gate 실패로 주문 없음.
+- `wiki/trade-ledger/orders/2026-05-28-1711-after-hours-autopilot.json` - 2026-05-28 17:11 KST after-hours autopilot empty-order plan, session=after_hours, `after_hours_new_orders_submitted_today=2`, universe/MCP/risk PASS, 주문 예산 gate 실패로 주문 없음.
 - 2026-05-22 paper 주문 체결분은 다음 회고 대상이다.
 
 ## Policy Book
