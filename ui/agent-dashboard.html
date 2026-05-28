@@ -350,29 +350,29 @@
   </div>
 
   <script type="application/json" id="dashboard-data">{
-  "generated_at": "2026-05-28T13:41:36Z",
+  "generated_at": "2026-05-28T14:01:29Z",
   "run": {
-    "run_id": "2026-05-28-2231-hourly-autopilot",
+    "run_id": "2026-05-28-2251-hourly-autopilot",
     "mode": "submit",
-    "created_at": "2026-05-28T13:34:30Z",
+    "created_at": "2026-05-28T13:56:00Z",
     "paper": true,
     "risk_status": "PASS",
-    "market": "open",
-    "next_open": "2026-05-29T09:30:00-04:00",
-    "orders_planned": 3,
-    "orders_submitted": 3,
-    "symbols_loaded": 62,
-    "cash_ratio": 40.39893413357308,
-    "invested_ratio": 59.603499519962455,
-    "action_label": "주문 후보",
-    "action_reason": "3건"
+    "market": "closed",
+    "next_open": "",
+    "orders_planned": 0,
+    "orders_submitted": 0,
+    "symbols_loaded": 0,
+    "cash_ratio": null,
+    "invested_ratio": null,
+    "action_label": "관망",
+    "action_reason": "장 닫힘 · 현재가 확인 대기"
   },
   "account": {
-    "portfolio_value": 101596.22,
-    "cash": 41043.79,
-    "invested": 60554.902500000004,
-    "cash_ratio": 40.39893413357308,
-    "invested_ratio": 59.603499519962455
+    "portfolio_value": 0.0,
+    "cash": 0.0,
+    "invested": 0,
+    "cash_ratio": null,
+    "invested_ratio": null
   },
   "portfolio": {
     "source_path": "wiki/trade-ledger/positions/current.md",
@@ -401,7 +401,7 @@
       "label": "계좌",
       "status": "done",
       "progress": 100,
-      "result": "open"
+      "result": "closed"
     },
     {
       "id": "universe",
@@ -409,15 +409,15 @@
       "label": "후보군",
       "status": "done",
       "progress": 100,
-      "result": "62 symbols"
+      "result": "ready"
     },
     {
       "id": "market_data",
       "name": "Market Data",
       "label": "가격",
-      "status": "done",
-      "progress": 100,
-      "result": "alpaca_iex snapshot/latest_quote/latest_trade"
+      "status": "waiting",
+      "progress": 20,
+      "result": "data"
     },
     {
       "id": "web_research",
@@ -447,17 +447,17 @@
       "id": "risk",
       "name": "Risk",
       "label": "리스크",
-      "status": "done",
-      "progress": 100,
+      "status": "waiting",
+      "progress": 20,
       "result": "PASS"
     },
     {
       "id": "executor",
       "name": "Executor",
       "label": "주문",
-      "status": "done",
+      "status": "skipped",
       "progress": 100,
-      "result": "3 submitted"
+      "result": "0 submitted"
     },
     {
       "id": "post_trade",
@@ -482,18 +482,13 @@
   "links": [
     {
       "label": "리포트",
-      "path": "wiki/current-runs/daily/2026-05-28-2231-hourly-autopilot.md",
-      "href": "../wiki/current-runs/daily/2026-05-28-2231-hourly-autopilot.md"
-    },
-    {
-      "label": "주문계획",
-      "path": "wiki/trade-ledger/orders/2026-05-28-2231-hourly-autopilot.json",
-      "href": "../wiki/trade-ledger/orders/2026-05-28-2231-hourly-autopilot.json"
+      "path": "wiki/current-runs/daily/2026-05-28-2251-hourly-autopilot.md",
+      "href": "../wiki/current-runs/daily/2026-05-28-2251-hourly-autopilot.md"
     },
     {
       "label": "Manifest",
-      "path": "wiki/evidence-store/run-manifests/2026-05-28-2231-hourly-autopilot.json",
-      "href": "../wiki/evidence-store/run-manifests/2026-05-28-2231-hourly-autopilot.json"
+      "path": "wiki/evidence-store/run-manifests/2026-05-28-2251-hourly-autopilot.json",
+      "href": "../wiki/evidence-store/run-manifests/2026-05-28-2251-hourly-autopilot.json"
     },
     {
       "label": "포지션",
@@ -501,22 +496,27 @@
       "href": "../wiki/trade-ledger/positions/current.md"
     },
     {
-      "label": "2026-05-28-2231-hourly-autopilot-alpaca-core-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-28-2231-hourly-autopilot-alpaca-core-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-28-2231-hourly-autopilot-alpaca-core-preflight.json"
+      "label": "2026-05-28-2251-hourly-autopilot-alpaca-core-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-05-28-2251-hourly-autopilot-alpaca-core-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-05-28-2251-hourly-autopilot-alpaca-core-preflight.json"
     },
     {
-      "label": "2026-05-28-2231-hourly-autopilot-research-mcp-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-28-2231-hourly-autopilot-research-mcp-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-28-2231-hourly-autopilot-research-mcp-preflight.json"
+      "label": "2026-05-28-2251-hourly-autopilot-research-mcp-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-05-28-2251-hourly-autopilot-research-mcp-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-05-28-2251-hourly-autopilot-research-mcp-preflight.json"
     },
     {
-      "label": "2026-05-28-2231-hourly-autopilot-stale-order-cleanup.json",
-      "path": "wiki/evidence-store/sources/2026-05-28-2231-hourly-autopilot-stale-order-cleanup.json",
-      "href": "../wiki/evidence-store/sources/2026-05-28-2231-hourly-autopilot-stale-order-cleanup.json"
+      "label": "2026-05-28-2251-hourly-autopilot-stale-order-cleanup.json",
+      "path": "wiki/evidence-store/sources/2026-05-28-2251-hourly-autopilot-stale-order-cleanup.json",
+      "href": "../wiki/evidence-store/sources/2026-05-28-2251-hourly-autopilot-stale-order-cleanup.json"
     }
   ],
   "timeline": [
+    {
+      "time": "2026-05-28 23:01 Asia/Seoul",
+      "type": "hourly-autopilot",
+      "title": "2026-05-28-2251-hourly-autopilot scheduled paper autopilot"
+    },
     {
       "time": "2026-05-28 22:42 Asia/Seoul",
       "type": "hourly-autopilot",
@@ -526,11 +526,6 @@
       "time": "2026-05-28 21:53 Asia/Seoul",
       "type": "after-hours-autopilot",
       "title": "2026-05-28-2151-after-hours-autopilot scheduled after-hours paper autopilot"
-    },
-    {
-      "time": "2026-05-28 21:34 Asia/Seoul",
-      "type": "after-hours-autopilot",
-      "title": "2026-05-28-2131-after-hours-autopilot scheduled after-hours paper autopilot"
     }
   ],
   "backtests": [
@@ -580,7 +575,7 @@
     }
   ],
   "warnings": [
-    ""
+    "empty_response: NEWS_SENTIMENT returned no candidate news items for shortlisted symbols"
   ]
 }</script>
   <script>

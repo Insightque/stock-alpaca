@@ -1884,3 +1884,12 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Submit: PLTR 1주 buy limit 135.41 filled at 134.94; QQQ first submit call `cancelled`, same client_order_id reconciliation returned not found, same-id retry filled 1주 at 728.36; BAC 1주 buy limit 50.89 submitted and remains open/new.
 - Post-trade reconciliation: client-order-id lookup PASS, open orders PASS with BAC open, fill activities PASS for PLTR/QQQ. Fresh account and full positions refresh were `cancelled` by runtime monitor and recorded as `gap_category=cancelled`.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-28-2231-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-28-2231-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-28-2231-hourly-autopilot-post-trade.json`, [[2026-05-28-2231-hourly-autopilot]]. Review due: PLTR/QQQ `회고 대기`; BAC open-order lifecycle follow-up required.
+
+## [2026-05-28 23:01 Asia/Seoul] hourly-autopilot | 2026-05-28-2251-hourly-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; regular-session scheduled cadence authorized; Alpaca MCP only for account/market/order operations.
+- Scheduler preflight: stale cleanup `pass` with prior BAC open order fresh/not stale; Alpaca core hard gate PASS at `2026-05-28T09:51:16.272050313-04:00`; research MCP preflight used for symbols SPY/AAPL/NVDA/BAC/NEE/AMZN/TSLA/PFE/SO/CVX/NKE/FCX. Alpha Vantage had `empty_response`; SEC EDGAR/FRED/Firecrawl/Yahoo passed.
+- Gates: universe strict PASS, MCP strict PASS, risk validator PASS, quote freshness PASS, spread PASS, open-order lifecycle PASS. Pre-submit order plan: `wiki/trade-ledger/orders/2026-05-28-2251-hourly-autopilot.json`.
+- Submit: CVX 1주 buy limit 184.35 filled at 184.03; NEE 1주 buy limit 88.00 submitted and remains open/new; NKE 1주 buy limit 46.03 filled at 46.03.
+- Post-trade reconciliation: client-order/fill/open-order checks completed; open orders are NEE and prior BAC. Fresh account and full positions refresh were `cancelled` by runtime monitor and recorded as `gap_category=cancelled`.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-28-2251-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-28-2251-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-28-2251-hourly-autopilot-post-trade.json`, [[2026-05-28-2251-hourly-autopilot]]. Review due: CVX/NKE `회고 대기`; NEE/BAC open-order lifecycle follow-up required.

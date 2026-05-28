@@ -1,0 +1,109 @@
+{
+  "run_id": "2026-05-28-2251-hourly-autopilot",
+  "created_at": "2026-05-28T14:01:00Z",
+  "paper": true,
+  "source": "post-submit Alpaca MCP reconciliation",
+  "alpaca_mcp_only": true,
+  "submitted_orders": [
+    {
+      "symbol": "CVX",
+      "client_order_id": "hourly-20260528-2251-cvx-buy-01",
+      "order_id": "90231430-9912-4fdd-9a52-7e7e74d9a761",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 184.35,
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 184.03,
+      "submitted_at": "2026-05-28T13:57:35.05798743Z",
+      "filled_at": "2026-05-28T13:57:35.431767492Z"
+    },
+    {
+      "symbol": "NEE",
+      "client_order_id": "hourly-20260528-2251-nee-buy-01",
+      "order_id": "18ee5b26-f832-4ee1-8d68-532d69e8a1e2",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 88.0,
+      "status": "new",
+      "filled_qty": 0,
+      "filled_avg_price": null,
+      "submitted_at": "2026-05-28T13:57:48.524881918Z",
+      "filled_at": null
+    },
+    {
+      "symbol": "NKE",
+      "client_order_id": "hourly-20260528-2251-nke-buy-01",
+      "order_id": "8a86b35d-bbfb-4c37-9b4e-7a6481e9489b",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 46.03,
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 46.03,
+      "submitted_at": "2026-05-28T13:57:58.598675184Z",
+      "filled_at": "2026-05-28T13:59:37.251185Z"
+    }
+  ],
+  "fill_activities": [
+    {
+      "symbol": "CVX",
+      "side": "buy",
+      "qty": 1,
+      "price": 184.03,
+      "transaction_time": "2026-05-28T13:57:35.431767Z",
+      "order_id": "90231430-9912-4fdd-9a52-7e7e74d9a761"
+    },
+    {
+      "symbol": "NKE",
+      "side": "buy",
+      "qty": 1,
+      "price": 46.03,
+      "transaction_time": "2026-05-28T13:59:37.251185Z",
+      "order_id": "8a86b35d-bbfb-4c37-9b4e-7a6481e9489b"
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "NEE",
+      "client_order_id": "hourly-20260528-2251-nee-buy-01",
+      "order_id": "18ee5b26-f832-4ee1-8d68-532d69e8a1e2",
+      "side": "buy",
+      "qty": 1,
+      "filled_qty": 0,
+      "limit_price": 88.0,
+      "status": "new",
+      "submitted_at": "2026-05-28T13:57:48.524881918Z"
+    },
+    {
+      "symbol": "BAC",
+      "client_order_id": "hourly-20260528-2231-bac-buy-01",
+      "order_id": "23502ad0-37f0-4705-a110-8fc5b2059d4f",
+      "side": "buy",
+      "qty": 1,
+      "filled_qty": 0,
+      "limit_price": 50.89,
+      "status": "new",
+      "submitted_at": "2026-05-28T13:38:16.247213Z"
+    }
+  ],
+  "gaps": [
+    {
+      "check": "get_account_info_post_submit",
+      "gap_category": "cancelled",
+      "gap_reason": "runtime safety monitor cancelled fresh account refresh after submission; scheduler preflight account remains source for sizing"
+    },
+    {
+      "check": "get_all_positions_post_submit",
+      "gap_category": "cancelled",
+      "gap_reason": "runtime safety monitor cancelled fresh full positions refresh after submission; fills and open orders were reconciled by Alpaca MCP"
+    }
+  ],
+  "status": "partial_reconcile_pass",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-28-2251-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-28-2251-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-05-28-2251-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/trade-ledger/orders/2026-05-28-2251-hourly-autopilot.json"
+  ]
+}

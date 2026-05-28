@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-28 22:31 KST hourly autopilot post-trade reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-28 22:51 KST hourly autopilot post-trade reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -101,6 +101,7 @@
 - [[2026-05-28-2131-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 장외 session 주문 예산 2/2로 주문 없음.
 - [[2026-05-28-2151-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 장외 session 주문 예산 2/2로 주문 없음.
 - [[2026-05-28-2231-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 PLTR, QQQ, BAC 각 1주 paper validation buy 제출; PLTR/QQQ 체결, BAC open `new`.
+- [[2026-05-28-2251-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 CVX, NEE, NKE 각 1주 paper validation buy 제출; CVX/NKE 체결, NEE open `new`, prior BAC open 유지.
 
 ## Research Notes
 
