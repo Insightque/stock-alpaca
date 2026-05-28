@@ -350,29 +350,29 @@
   </div>
 
   <script type="application/json" id="dashboard-data">{
-  "generated_at": "2026-05-28T21:17:17Z",
+  "generated_at": "2026-05-28T21:29:25Z",
   "run": {
-    "run_id": "2026-05-29-0611-after-hours-autopilot",
-    "mode": "submit",
-    "created_at": "2026-05-28T21:14:18Z",
+    "run_id": "2026-05-29-0625-analyst-review-cycle",
+    "mode": "",
+    "created_at": "2026-05-29T06:25:00+09:00",
     "paper": true,
     "risk_status": "UNKNOWN",
     "market": "closed",
-    "next_open": "2026-05-29T09:30:00-04:00",
+    "next_open": "",
     "orders_planned": 0,
     "orders_submitted": 0,
     "symbols_loaded": 0,
-    "cash_ratio": 36.32654731829552,
-    "invested_ratio": 0.0,
+    "cash_ratio": null,
+    "invested_ratio": null,
     "action_label": "관망",
     "action_reason": "장 닫힘 · 현재가 확인 대기"
   },
   "account": {
-    "portfolio_value": 102370.34,
-    "cash": 37187.61,
+    "portfolio_value": 0.0,
+    "cash": 0.0,
     "invested": 0,
-    "cash_ratio": 36.32654731829552,
-    "invested_ratio": 0.0
+    "cash_ratio": null,
+    "invested_ratio": null
   },
   "portfolio": {
     "source_path": "wiki/trade-ledger/positions/current.md",
@@ -407,8 +407,8 @@
       "id": "universe",
       "name": "Universe",
       "label": "후보군",
-      "status": "done",
-      "progress": 100,
+      "status": "waiting",
+      "progress": 20,
       "result": "ready"
     },
     {
@@ -447,8 +447,8 @@
       "id": "risk",
       "name": "Risk",
       "label": "리스크",
-      "status": "blocked",
-      "progress": 100,
+      "status": "waiting",
+      "progress": 20,
       "result": "check"
     },
     {
@@ -486,14 +486,9 @@
       "href": "../wiki/current-runs/daily/2026-05-29-0611-after-hours-autopilot.md"
     },
     {
-      "label": "주문계획",
-      "path": "wiki/trade-ledger/orders/2026-05-29-0611-after-hours-autopilot.json",
-      "href": "../wiki/trade-ledger/orders/2026-05-29-0611-after-hours-autopilot.json"
-    },
-    {
       "label": "Manifest",
-      "path": "wiki/evidence-store/run-manifests/2026-05-29-0611-after-hours-autopilot.json",
-      "href": "../wiki/evidence-store/run-manifests/2026-05-29-0611-after-hours-autopilot.json"
+      "path": "wiki/evidence-store/run-manifests/2026-05-29-0625-analyst-review-cycle.json",
+      "href": "../wiki/evidence-store/run-manifests/2026-05-29-0625-analyst-review-cycle.json"
     },
     {
       "label": "포지션",
@@ -501,31 +496,26 @@
       "href": "../wiki/trade-ledger/positions/current.md"
     },
     {
-      "label": "2026-05-29-0611-after-hours-autopilot-alpaca-core-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-29-0611-after-hours-autopilot-alpaca-core-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-29-0611-after-hours-autopilot-alpaca-core-preflight.json"
-    },
-    {
-      "label": "2026-05-29-0611-after-hours-autopilot-research-mcp-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-29-0611-after-hours-autopilot-research-mcp-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-29-0611-after-hours-autopilot-research-mcp-preflight.json"
+      "label": "2026-05-29-0625-analyst-review-cycle-sources.md",
+      "path": "wiki/evidence-store/sources/2026-05-29-0625-analyst-review-cycle-sources.md",
+      "href": "../wiki/evidence-store/sources/2026-05-29-0625-analyst-review-cycle-sources.md"
     }
   ],
   "timeline": [
     {
+      "time": "2026-05-29 06:25 Asia/Seoul",
+      "type": "analyst-review-cycle",
+      "title": "2026-05-27 validation fills 1D review"
+    },
+    {
+      "time": "2026-05-29 06:23 Asia/Seoul",
+      "type": "policy-review",
+      "title": "autopilot exit policy learning review"
+    },
+    {
       "time": "2026-05-29 06:15 Asia/Seoul",
       "type": "after-hours-autopilot",
       "title": "2026-05-29-0611-after-hours-autopilot scheduled paper autopilot"
-    },
-    {
-      "time": "2026-05-29 06:12 Asia/Seoul",
-      "type": "policy-review",
-      "title": "sell frequency and buy-quality gate separation"
-    },
-    {
-      "time": "2026-05-29 05:58 Asia/Seoul",
-      "type": "policy-review",
-      "title": "buy/sell cap separation"
     }
   ],
   "backtests": [

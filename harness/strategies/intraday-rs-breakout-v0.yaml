@@ -31,6 +31,11 @@ filters:
   breakout_reference_window_end_et: "09:59"
   near_high_tolerance_pct: 0.50
   secondary_track_top_n: 2
+exit_rules:
+  take_profit_pct: 2.0
+  stop_loss_pct: 1.0
+  fallback_exit: eod
+  fallback_exit_time_et: "15:59"
 selection:
   top_n: 3
   theme_cap: 2

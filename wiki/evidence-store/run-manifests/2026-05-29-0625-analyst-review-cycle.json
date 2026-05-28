@@ -1,0 +1,132 @@
+{
+  "schema_version": "review-manifest-v1",
+  "run_id": "2026-05-29-0625-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-05-29T06:25:00+09:00",
+  "paper": true,
+  "non_submission_workflow": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "review_artifacts": [
+    "wiki/trade-ledger/reviews/2026-05-29-portfolio-review.md"
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-29-0625-analyst-review-cycle-sources.md"
+  ],
+  "review_candidates": {
+    "reviewed_1d": [
+      "NKE",
+      "PFE",
+      "SO",
+      "WMT",
+      "NEE",
+      "AMZN",
+      "BAC",
+      "XOM",
+      "V"
+    ],
+    "new_or_waiting": [
+      "INTC",
+      "NOK",
+      "PLTR",
+      "QQQ",
+      "CVX",
+      "NKE",
+      "PFE",
+      "WMT",
+      "GOOGL",
+      "SO",
+      "SLB",
+      "SPY",
+      "BAC",
+      "NEE",
+      "NVDA",
+      "COP",
+      "TSLA",
+      "AMZN",
+      "XOM"
+    ],
+    "skipped_recommendations_reviewed": [
+      "2026-05-29-0131-hourly-autopilot",
+      "2026-05-29-0611-after-hours-autopilot"
+    ]
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_review": true,
+      "outcome": "usable",
+      "gap_category": "cancelled",
+      "retry_count": 2,
+      "gap_reason": "portfolio_history cancelled on initial call plus two retries; account, positions, orders, activities, bars, clock, and news passed",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0625-analyst-review-cycle-sources.md"
+      ]
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_review": true,
+      "outcome": "usable",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0625-analyst-review-cycle-sources.md"
+      ]
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_review": false,
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 0,
+      "gap_reason": "PING passed; first non-PING TOOL_CALL was cancelled, so Alpha retries stopped per workflow",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0625-analyst-review-cycle-sources.md"
+      ]
+    },
+    {
+      "server": "fred",
+      "queried": false,
+      "used_in_review": false,
+      "outcome": "gap",
+      "gap_category": "wrapper_error",
+      "retry_count": 0,
+      "gap_reason": "registered FRED MCP tools were unexpectedly not exposed by tool discovery; no shell or curl probe attempted",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0625-analyst-review-cycle-sources.md"
+      ]
+    },
+    {
+      "server": "firecrawl",
+      "queried": false,
+      "used_in_review": false,
+      "outcome": "gap",
+      "gap_category": "wrapper_error",
+      "retry_count": 0,
+      "gap_reason": "registered Firecrawl MCP tools were unexpectedly not exposed by tool discovery; no shell or curl probe attempted",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0625-analyst-review-cycle-sources.md"
+      ]
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_review": true,
+      "outcome": "usable",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0625-analyst-review-cycle-sources.md"
+      ]
+    }
+  ],
+  "policy_update": {
+    "updated": false,
+    "reason": "1D evidence only and portfolio-history MCP incomplete"
+  }
+}

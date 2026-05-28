@@ -208,6 +208,9 @@ risk_trim_policy:
   allow_core_only_risk_trim: true
   requires_alpaca_position_quote_order_state: true
   research_mcp_full_pass_required: false
+  evaluation_order: before_new_buys
+  decouple_from_buy_entry_window: true
+  decouple_from_buy_budget: true
   allowed_reasons:
     - thesis_break
     - risk_limit

@@ -2092,3 +2092,21 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Submit/reconcile: no `place_stock_order` call and no submit attempt. No new `client_order_id` was created.
 - Validators: `python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `python3 scripts/check-risk-policy.py --json ...` PASS with `orders is empty` warning.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-0611-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-0611-after-hours-autopilot.json`, [[2026-05-29-0611-after-hours-autopilot]]. Review due: no new after-hours fills.
+
+## [2026-05-29 06:23 Asia/Seoul] policy-review | autopilot exit policy learning review
+
+- 검토 범위: 실제 주문 없이 로컬 workflow, recommendation policy, strategy config, intraday dry-run helper, 기존 단타 검증 위키를 확인했다.
+- 결론: sell/trim 선평가와 buy entry window/budget 독립성은 정책학습 누락을 막기 위해 필요했다. Force-exit window와 80분 time-stop은 현 repo의 검증 근거가 없으므로 자동 채택하지 않았다.
+- 개정: `risk_trim_policy.evaluation_order=before_new_buys`, `decouple_from_buy_entry_window=true`, `decouple_from_buy_budget=true`를 추가했다. 정규장 autopilot workflow와 scheduled prompt에도 sell/trim/exit 진단을 신규 buy보다 먼저 수행하도록 명시했다.
+- 단타: v0/v1 strategy config에 기존 검증 기준의 `exit_rules`를 추가했고, `scripts/evaluate-intraday-dry-run.py`가 `--strategy-config`를 읽어 take/stop/time-stop/fallback exit를 적용하도록 바꿨다. 현재 v0/v1에는 time-stop을 켜지 않았다.
+- 문서화: [[2026-05-29-autopilot-exit-policy-learning-review]], [[recommendation-policy]], `harness/workflows/hourly-autopilot.md`, `harness/workflows/intraday-paper-dry-run.md`, `wiki/index.md`를 갱신했다.
+- 검증: `PATH=/usr/local/bin:$PATH python3 -m unittest tests.test_strategy_config_schema tests.test_evaluate_intraday_dry_run tests.test_check_risk_policy tests.test_policy_source_of_truth tests.test_mcp_runtime_wrappers tests.test_risk_policy_liquidity tests.test_order_plan_required_metadata` PASS, 56 tests.
+
+## [2026-05-29 06:25 Asia/Seoul] analyst-review-cycle | 2026-05-27 validation fills 1D review
+
+- Workflow: `harness/workflows/analyst-review-cycle.md`. Paper mode `ALPACA_PAPER_TRADE=true`; no order submit/replace/cancel/close tools were called.
+- Alpaca reconciliation: account `ACTIVE`, portfolio_value 102374.13, cash 37187.61, buying_power 133318.68, open US equity orders `[]`, positions 31 symbols. `get_orders` and `get_account_activities` reconciled fills/canceled/expired orders since 2026-05-22.
+- Data gaps: Alpaca `get_portfolio_history` cancelled on 3 attempts, classified `gap_category=cancelled`, `retry_count=2`. Alpha Vantage PING passed, first non-PING `EARNINGS_CALENDAR` call cancelled and Alpha retries stopped. FRED and Firecrawl registered MCP tools were unexpectedly not exposed, classified `gap_category=wrapper_error`; no shell/curl probes were run.
+- Review written: [[2026-05-29-portfolio-review]] for 2026-05-27 fills NKE/PFE/SO/WMT/NEE/AMZN/BAC/XOM/V. AMZN/NKE were 1D positive versus SPY/QQQ; BAC/SO/V/PFE underperformed; WMT/NEE/XOM were neutral. 2026-05-28 fills remain `회고 대기`.
+- Policy: no update. Evidence is a 1D sample and portfolio-history MCP is incomplete. Next due: 2026-05-27 fills 5D/20D; 2026-05-28 fills 1D/5D/20D; 2026-05-22 and 2026-05-26 cohorts remain pending 5D/20D.
+- Artifacts: [[2026-05-29-0625-analyst-review-cycle-sources]], `wiki/evidence-store/run-manifests/2026-05-29-0625-analyst-review-cycle.json`, updated [[portfolio-current]] and ticker review markers for NKE/PFE/SO/WMT/NEE/AMZN/BAC/XOM/V.

@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-29 00:59 KST hourly autopilot post-trade reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-29 06:25 KST analyst review cycle read-only reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -31,6 +31,15 @@
 - [[LFS]] - 투기적 고모멘텀 mover, 2026-05-22 업데이트.
 - [[QTEX]] - 투기적 1달러 미만 mover, 2026-05-22 업데이트.
 - [[BIYA]] - 투기적 저가 mover, 2026-05-22 업데이트.
+- [[NKE]] - 2026-05-27 validation buy 1D 회고 양호, 5D/20D 대기.
+- [[PFE]] - 2026-05-27 validation buy 1D 회고 약함, 5D/20D 대기.
+- [[SO]] - 2026-05-27 validation buy 1D 회고 약함, 5D/20D 대기.
+- [[WMT]] - 2026-05-27 validation buy 1D 회고 중립, 5D/20D 대기.
+- [[NEE]] - 2026-05-27 validation buy 1D 회고 중립, 5D/20D 대기.
+- [[AMZN]] - 2026-05-27 validation buy 1D 회고 양호, 5D/20D 대기.
+- [[BAC]] - 2026-05-27 validation buy 1D 회고 약함, 5D/20D 대기.
+- [[XOM]] - 2026-05-27 validation buy 1D 회고 중립, 5D/20D 대기.
+- [[V]] - 2026-05-27 validation buy 1D 회고 약함, 5D/20D 대기.
 
 ## Current Runs
 
@@ -163,6 +172,7 @@
 - [[2026-05-27-autopilot-close-gate-analysis]] - 2026-05-27 02:06 KST 자동운영 gate 점검 이후 장마감까지 추천, 주문, 미체결, 차단 원인을 정리한 분석.
 - [[2026-05-29-buy-sell-cap-review]] - validation buy budget과 risk-reducing sell/trim gate가 같은 cap에 묶여 매도가 막힐 수 있던 구현을 확인하고 개정한 분석.
 - [[2026-05-29-sell-frequency-policy-review]] - 현재 정책과 validator가 sell/trim을 과소 발생시키는지 확인하고 buy-quality gate를 sell에서 분리한 분석.
+- [[2026-05-29-autopilot-exit-policy-learning-review]] - 다른 분기의 sell/exit/time-stop 수정사항을 현재 정책학습 기준으로 재검토하고 필요한 부분만 적용한 분석.
 
 ## Backtest Runs
 
@@ -210,6 +220,8 @@
 - `wiki/trade-ledger/reviews/` - 실제 paper 거래의 사후 회고.
 - [[2026-05-27-portfolio-review]] - 2026-05-22 stock-only paper 포트폴리오의 1D interim analyst review. 정책 변경 없음.
 - [[2026-05-28-portfolio-review]] - 2026-05-26 validation fills LLY/FCX/NOK/NVDA/AAPL의 1D interim analyst review. 정책 변경 없음.
+- [[2026-05-29-portfolio-review]] - 2026-05-27 validation fills NKE/PFE/SO/WMT/NEE/AMZN/BAC/XOM/V의 1D interim analyst review. 정책 변경 없음.
+- `wiki/evidence-store/run-manifests/2026-05-29-0625-analyst-review-cycle.json` - 2026-05-29 analyst review cycle MCP coverage와 due-review manifest.
 - `wiki/trade-ledger/orders/2026-05-26-1853-hourly-autopilot.json` - 2026-05-26 18:53 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2011-hourly-autopilot.json` - 2026-05-26 20:11 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2124-hourly-autopilot.json` - 2026-05-26 21:24 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
@@ -278,6 +290,7 @@
 - [[recommendation-policy]] - 거래 회고에서 나온 교훈을 반영하는 living policy.
 - `harness/recommendation-policy.yaml` / `harness/recommendation-policy.schema.json` - agent-readable 추천 정책 상태, 승격 기준, 20분 paper validation cadence, active trim trigger, 시뮬레이션 policy closeout 기준.
 - `harness/strategies/long-term-quality-momentum-v1.yaml` - 장기 quality momentum paper 자동 validation 가능 전략 config.
+- `harness/strategies/intraday-rs-breakout-v0.yaml` / `harness/strategies/intraday-rs-breadth-vwap-v1.yaml` - 단타 observation-only v0/v1 전략 config와 명시적 exit rules.
 - `harness/strategies/intraday-afternoon-followthrough-v1.yaml` - 단타 observation-only 전략 config.
 - `harness/workflows/intraday-paper-dry-run.md` - `intraday-rs-breakout-v0`/`intraday-rs-breadth-vwap-v1` 실시간 주문 없는 paper dry-run 운영안.
 - `harness/workflows/one-year-daily-simulation.md` - 과거 1년 일별 독립 정책 시뮬레이션과 policy closeout workflow.
