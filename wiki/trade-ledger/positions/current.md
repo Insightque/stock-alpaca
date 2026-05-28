@@ -1,64 +1,8 @@
----
-id: portfolio-current
-updated_at: 2026-05-28T15:40:32Z
-paper: true
----
+# portfolio-current
 
-# 현재 포트폴리오
-
-## 계좌
-
-| 지표 | 값 |
-| --- | ---: |
-| 포트폴리오 가치 | 102,513.83 |
-| 현금 | 38,047.93 |
-| Buying power | 133,851.12 |
-| 투자 노출 | 64,465.90 |
-
-계좌/포지션 refresh는 2026-05-29-0031-hourly-autopilot post-trade에서 PASS했다. NVDA/COP 체결과 TSLA open order를 반영했다.
-
-## 포지션
-
-| 티커 | 수량 | 시장 가치 | 포트폴리오 비중 | 미실현 손익 |
-| --- | ---: | ---: | ---: | ---: |
-| AAPL | 1 | 311.22 | 0.30% | 1.77 |
-| AMD | 14 | 7,332.64 | 7.15% | 854.42 |
-| AMZN | 1 | 269.88 | 0.26% | -0.17 |
-| AVGO | 15 | 6,360.00 | 6.20% | 199.05 |
-| BAC | 2 | 102.05 | 0.10% | -1.15 |
-| COP | 1 | 115.00 | 0.11% | 0.04 |
-| CVX | 1 | 183.34 | 0.18% | -0.69 |
-| ETN | 15 | 6,053.85 | 5.91% | 235.35 |
-| FCX | 1 | 64.63 | 0.06% | 0.69 |
-| GOOGL | 1 | 390.44 | 0.38% | 1.45 |
-| INTC | 1 | 121.45 | 0.12% | 4.66 |
-| IONQ | 45 | 3,168.66 | 3.09% | 312.06 |
-| LLY | 1 | 1,129.98 | 1.10% | 50.60 |
-| LRCX | 20 | 6,424.60 | 6.27% | 266.40 |
-| NEE | 2 | 175.78 | 0.17% | 0.61 |
-| NKE | 2 | 94.60 | 0.09% | 2.42 |
-| NOK | 402 | 6,271.16 | 6.12% | 223.26 |
-| NVDA | 37 | 7,871.38 | 7.68% | -91.09 |
-| PFE | 2 | 52.45 | 0.05% | -0.05 |
-| PLTR | 1 | 139.42 | 0.14% | 4.48 |
-| QQQ | 1 | 734.95 | 0.72% | 6.58 |
-| RGTI | 120 | 3,237.00 | 3.16% | 168.65 |
-| SLB | 1 | 55.73 | 0.05% | 0.26 |
-| SO | 2 | 186.12 | 0.18% | -1.54 |
-| SPY | 1 | 754.09 | 0.74% | 0.71 |
-| TSM | 15 | 6,373.05 | 6.22% | 295.05 |
-| UNH | 15 | 5,783.70 | 5.64% | -14.70 |
-| V | 1 | 322.26 | 0.31% | -7.75 |
-| WMT | 2 | 235.18 | 0.23% | -1.76 |
-| XOM | 1 | 148.30 | 0.14% | 1.23 |
-
-## 미체결 주문
-
-| 티커 | 방향 | 수량 | 지정가 | 상태 | 제출 시각 |
-| --- | --- | ---: | ---: | --- | --- |
-| TSLA | buy | 1 | 441.45 | new | 2026-05-28T15:39:08.679583Z |
-
-## 메모
-
-- 2026-05-29-0031-hourly-autopilot: NVDA 1주 filled at 212.55, COP 1주 filled at 114.95, TSLA 1주 open/new.
-- 다음 scheduled run에서 TSLA open-order lifecycle을 재확인해야 한다.
+- 갱신: 2026-05-29 00:59 KST (`2026-05-29-0051-hourly-autopilot` post-trade reconciliation)
+- Paper account only. 최신 account refresh는 runtime `cancelled` gap이므로 직전 성공 account snapshot과 이번 positions/open-order reconciliation을 함께 사용한다.
+- Open US equity orders: 없음.
+- 이번 실행 결과: AMZN 1주 buy limit 270.55 체결. INTC 1주 계획은 submit cancelled 및 same-client-id reconciliation 404 후 retry cancelled로 실제 주문 없음.
+- Positions refresh: registered Alpaca MCP `get_all_positions` PASS, AMZN qty=2 avg_entry_price=270.30, INTC qty=1 유지, 총 position symbols 30개.
+- Source refs: [[2026-05-29-0051-hourly-autopilot]], `wiki/trade-ledger/positions/2026-05-29-0051-hourly-autopilot-post-trade.json`.

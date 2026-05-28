@@ -1,0 +1,63 @@
+{
+  "run_id": "2026-05-29-0051-hourly-autopilot",
+  "created_at": "2026-05-28T15:59:10Z",
+  "paper": true,
+  "source": "registered Alpaca MCP post-trade reconciliation",
+  "account": {
+    "outcome": "gap",
+    "gap_category": "cancelled",
+    "gap_reason": "registered Alpaca MCP get_account_info cancelled by runtime safety monitor; latest successful account snapshot remains 2026-05-29-0031 post-trade"
+  },
+  "open_orders": [],
+  "submitted_orders": [
+    {
+      "symbol": "AMZN",
+      "client_order_id": "hourly-20260529-0051-amzn-buy-01",
+      "status": "filled",
+      "submitted": true,
+      "filled_qty": 1,
+      "filled_avg_price": 270.55,
+      "order_id": "641c93d8-9136-42d5-8292-7bd72ef259d7",
+      "filled_at": "2026-05-28T15:58:27.37623491Z",
+      "notes": "First submit cancelled by runtime; same client id reconciled 404/not found; same-id retry accepted and filled."
+    },
+    {
+      "symbol": "INTC",
+      "client_order_id": "hourly-20260529-0051-intc-buy-01",
+      "status": "not_found_not_submitted",
+      "submitted": false,
+      "filled_qty": 0,
+      "filled_avg_price": null,
+      "order_id": null,
+      "filled_at": null,
+      "notes": "Initial submit cancelled; same client id reconciliation 404/not found; same-id retry cancelled by runtime. No further retry."
+    }
+  ],
+  "fills_after_submit": {
+    "outcome": "gap",
+    "gap_category": "cancelled",
+    "gap_reason": "registered Alpaca MCP FILL activity call returned user cancelled MCP tool call; AMZN fill confirmed by get_order_by_client_id"
+  },
+  "positions_refresh": {
+    "outcome": "pass",
+    "checked_at": "2026-05-28T15:59:10Z",
+    "positions_count": 30,
+    "notable_changes": [
+      "AMZN filled; position now qty=2 avg_entry_price=270.3",
+      "INTC unchanged at qty=1; planned 00:51 order was not created",
+      "Open US equity orders empty after reconciliation"
+    ]
+  },
+  "gaps": [
+    {
+      "check": "account_refresh",
+      "gap_category": "cancelled",
+      "blocking": false
+    },
+    {
+      "check": "fill_activity_refresh",
+      "gap_category": "cancelled",
+      "blocking": false
+    }
+  ]
+}
