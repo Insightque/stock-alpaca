@@ -3005,3 +3005,18 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Orders: no `place_stock_order` call; no `client_order_id`; reconcile not applicable because there was no submit attempt. Order plan kept `market.session=after_hours` and no order entries.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-30-0751-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-30-0751-after-hours-autopilot.json`, `wiki/evidence-store/sources/2026-05-30-0751-after-hours-autopilot-runtime-alpaca-spot-check.json`, [[2026-05-30-0751-after-hours-autopilot]].
 - Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
+
+## [2026-05-30 08:03 Asia/Seoul] analysis | current investment method literature review
+
+- 최신 LLM/RAG, XBRL, ML return prediction, forecast uncertainty, robust portfolio optimization 문헌을 검토해 현 하네스의 정보활용/분석방법/정책 개선 필요사항을 점검했다.
+- 결론: 현 정책은 LLM 직접 주문 결정을 피하고 source/risk/paper validation gate를 분리해 최신 문헌의 주요 실패를 상당 부분 피한다. 다만 source signal row dataset, XBRL fundamental feature pipeline, forecast uncertainty, portfolio utility layer, LLM leakage control이 부족하다.
+- 정책 변경은 즉시 적용하지 않고 P0/P1 개선 후보로 분류했다. 주문 제출/교체/취소/청산은 수행하지 않았다.
+- 산출물: [[2026-05-30-current-investment-method-literature-review]].
+
+## [2026-05-30 08:05 Asia/Seoul] implementation | stock-alpaca skill runtime validation
+
+- `skill-creator` 기준으로 `stock-alpaca-*` 운영 스킬 12개를 점검하고, 중복 가능성이 있는 경계면에 `Boundary` 섹션을 추가했다. 주요 경계: command router는 라우팅만, paper safety는 state mutation 허용 여부만, risk-order-plan은 주문계획/validator만, autopilot-runtime은 scheduler lifecycle만, stock-train-alerts는 알림 렌더링만 담당한다.
+- repo의 `skills/stock-alpaca-*`와 Codex 자동 발견 위치 `/Users/insightque/.codex/skills/stock-alpaca-*`를 동일 내용으로 동기화했다.
+- 검증: repo 스킬 12개와 설치 스킬 12개 모두 `quick_validate.py` PASS. repo/설치본 `SKILL.md` 및 `agents/openai.yaml` diff 없음. `TODO`/분기명 `stock-agent-` 잔존 없음.
+- 런타임 검증: `PATH=/usr/local/bin:$PATH python3 -m unittest tests.test_fetch_research_mcp_preflight tests.test_autopilot_notification_schema tests.test_mcp_runtime_wrappers tests.test_policy_source_of_truth` PASS, 42 tests. 전체 `PATH=/usr/local/bin:$PATH python3 -m unittest discover -s tests` PASS, 124 tests.
+- 주문 제출/교체/취소/청산은 수행하지 않았다.

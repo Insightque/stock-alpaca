@@ -270,6 +270,7 @@
 - [[2026-05-30-review-policy-learning-architecture-proposal]] - 회고를 더 빠른 정책 업데이트로 연결하기 위한 review row dataset, due index, scorecard, policy signal registry 구조 제안.
 - [[2026-05-30-daily-policy-update-health-check]] - 일별 자동운영/회고가 정책 업데이트로 잘 연결되는지 점검한 건강도 분석.
 - [[2026-05-30-professional-analyst-policy-review]] - 전문 애널리스트 관점에서 현재 추천/리스크/매도/정책학습 구조의 강점과 개선항목을 평가한 분석.
+- [[2026-05-30-current-investment-method-literature-review]] - 최신 LLM/RAG, XBRL, ML return prediction, portfolio optimization 문헌 기준으로 현 투자 정책의 정보활용/분석방법/정책 개선 필요사항을 점검한 분석.
 - [[2026-05-29-wiki-lint]] - index 누락/중복과 22:31 preflight orphan 상태를 점검한 targeted wiki lint.
 
 ## Backtest Runs
