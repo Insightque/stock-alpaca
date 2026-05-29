@@ -1,0 +1,188 @@
+{
+  "run_id": "2026-05-29-1931-after-hours-autopilot",
+  "created_at": "2026-05-29T19:34:30+09:00",
+  "paper": true,
+  "session": "after_hours",
+  "source": "fresh Alpaca MCP spot checks during Codex after-hours workflow",
+  "read_only": true,
+  "clock": {
+    "is_open": false,
+    "timestamp": "2026-05-29T06:33:56.240227344-04:00",
+    "next_open": "2026-05-29T09:30:00-04:00",
+    "next_close": "2026-05-29T16:00:00-04:00",
+    "regular_market_not_open_gate": "PASS"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "currency": "USD",
+    "portfolio_value": 102469.54,
+    "cash": 36945.25,
+    "buying_power": 133284.29,
+    "trading_blocked": false,
+    "account_blocked": false
+  },
+  "positions_summary": {
+    "status": "PASS",
+    "position_count": 32
+  },
+  "open_orders": {
+    "status": "PASS",
+    "asset_class": "us_equity",
+    "orders": []
+  },
+  "same_session_after_hours_fills": {
+    "status": "PASS",
+    "after": "2026-05-29T00:00:00Z",
+    "fills": [
+      {
+        "symbol": "ADBE",
+        "side": "buy",
+        "qty": "1",
+        "price": "242.36",
+        "transaction_time": "2026-05-29T00:16:54.397547Z"
+      }
+    ],
+    "after_hours_new_orders_submitted_today": 1
+  },
+  "assets": {
+    "NOK": {
+      "status": "active",
+      "tradable": true,
+      "asset_class": "us_equity",
+      "overnight_tradable": true
+    },
+    "NVDA": {
+      "status": "active",
+      "tradable": true,
+      "asset_class": "us_equity",
+      "overnight_tradable": true
+    },
+    "ADBE": {
+      "status": "active",
+      "tradable": true,
+      "asset_class": "us_equity",
+      "overnight_tradable": true
+    },
+    "LIN": {
+      "status": "active",
+      "tradable": true,
+      "asset_class": "us_equity",
+      "overnight_tradable": true
+    },
+    "XOM": {
+      "status": "active",
+      "tradable": true,
+      "asset_class": "us_equity",
+      "overnight_tradable": true
+    },
+    "QQQ": {
+      "status": "active",
+      "tradable": true,
+      "asset_class": "us_equity",
+      "overnight_tradable": true
+    },
+    "SPY": {
+      "status": "active",
+      "tradable": true,
+      "asset_class": "us_equity",
+      "overnight_tradable": true
+    },
+    "SMH": {
+      "status": "active",
+      "tradable": true,
+      "asset_class": "us_equity",
+      "overnight_tradable": true
+    }
+  },
+  "quotes": {
+    "feed": "overnight",
+    "captured_at": "2026-05-29T06:33:56.240227344-04:00",
+    "max_quote_age_minutes_submit": 5.0,
+    "rows": [
+      {
+        "symbol": "NOK",
+        "bid": 14.81,
+        "ask": 15.79,
+        "timestamp": "2026-05-29T08:00:00.412618229Z",
+        "quote_age_minutes": 153.93,
+        "spread_pct": 6.4052,
+        "fresh_pass": false,
+        "spread_pass": false
+      },
+      {
+        "symbol": "NVDA",
+        "bid": 215.27,
+        "ask": 215.43,
+        "timestamp": "2026-05-29T08:00:00.413977496Z",
+        "quote_age_minutes": 153.93,
+        "spread_pct": 0.0743,
+        "fresh_pass": false,
+        "spread_pass": true
+      },
+      {
+        "symbol": "XOM",
+        "bid": 145.51,
+        "ask": 151.95,
+        "timestamp": "2026-05-29T08:00:00.400618942Z",
+        "quote_age_minutes": 153.93,
+        "spread_pct": 4.33,
+        "fresh_pass": false,
+        "spread_pass": false
+      },
+      {
+        "symbol": "ADBE",
+        "bid": 242.8,
+        "ask": 268.18,
+        "timestamp": "2026-05-29T08:00:00.406086772Z",
+        "quote_age_minutes": 153.93,
+        "spread_pct": 9.9339,
+        "fresh_pass": false,
+        "spread_pass": false
+      },
+      {
+        "symbol": "LIN",
+        "bid": 495.03,
+        "ask": 502.05,
+        "timestamp": "2026-05-29T08:00:00.313942005Z",
+        "quote_age_minutes": 153.93,
+        "spread_pct": 1.4081,
+        "fresh_pass": false,
+        "spread_pass": false
+      },
+      {
+        "symbol": "QQQ",
+        "bid": 735.21,
+        "ask": 736.7,
+        "timestamp": "2026-05-29T08:00:00.386377592Z",
+        "quote_age_minutes": 153.93,
+        "spread_pct": 0.2025,
+        "fresh_pass": false,
+        "spread_pass": true
+      },
+      {
+        "symbol": "SPY",
+        "bid": 754.93,
+        "ask": 758.7,
+        "timestamp": "2026-05-29T08:00:00.403389828Z",
+        "quote_age_minutes": 153.93,
+        "spread_pct": 0.4981,
+        "fresh_pass": false,
+        "spread_pass": false
+      },
+      {
+        "symbol": "SMH",
+        "bid": 593.88,
+        "ask": 618.91,
+        "timestamp": "2026-05-29T08:00:00.397462213Z",
+        "quote_age_minutes": 153.93,
+        "spread_pct": 4.1277,
+        "fresh_pass": false,
+        "spread_pass": false
+      }
+    ]
+  },
+  "submit": {
+    "attempted": false,
+    "reason": "quote freshness failed for every shortlisted symbol; no place_stock_order call was made"
+  }
+}
