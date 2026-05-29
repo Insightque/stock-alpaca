@@ -1,0 +1,154 @@
+{
+  "run_id": "2026-05-29-2131-after-hours-autopilot",
+  "created_at": "2026-05-29T21:33:20+09:00",
+  "source": "runtime Alpaca MCP read-only spot checks",
+  "paper": true,
+  "orders_submitted": 0,
+  "session": "after_hours",
+  "checks": {
+    "clock": {
+      "outcome": "pass",
+      "is_open": false,
+      "timestamp": "2026-05-29T08:32:48.622387269-04:00",
+      "next_open": "2026-05-29T09:30:00-04:00",
+      "next_close": "2026-05-29T16:00:00-04:00"
+    },
+    "account": {
+      "outcome": "pass",
+      "status": "ACTIVE",
+      "currency": "USD",
+      "buying_power": 133233.2,
+      "cash": 36945.25,
+      "portfolio_value": 102386.29,
+      "trading_blocked": false,
+      "account_blocked": false
+    },
+    "open_orders": {
+      "outcome": "pass",
+      "asset_class": "us_equity",
+      "open_order_count": 0,
+      "orders": []
+    },
+    "positions": {
+      "outcome": "pass",
+      "position_count": 32,
+      "symbols": [
+        "AAPL",
+        "ADBE",
+        "AMD",
+        "AMZN",
+        "AVGO",
+        "BAC",
+        "COP",
+        "CVX",
+        "ETN",
+        "FCX",
+        "GOOGL",
+        "INTC",
+        "IONQ",
+        "LLY",
+        "LRCX",
+        "NEE",
+        "NKE",
+        "NOK",
+        "NVDA",
+        "PFE",
+        "PLTR",
+        "QQQ",
+        "RGTI",
+        "SLB",
+        "SO",
+        "SPY",
+        "TSLA",
+        "TSM",
+        "UNH",
+        "V",
+        "WMT",
+        "XOM"
+      ]
+    },
+    "same_session_after_hours_fills": {
+      "outcome": "pass",
+      "query_after": "2026-05-28T20:00:00Z",
+      "count": 1,
+      "fills": [
+        {
+          "symbol": "ADBE",
+          "side": "buy",
+          "qty": 1,
+          "price": 242.36,
+          "transaction_time": "2026-05-29T00:16:54.397547Z"
+        }
+      ]
+    },
+    "quotes": {
+      "outcome": "pass",
+      "feed": "overnight",
+      "symbols": {
+        "NOK": {
+          "bid": 14.81,
+          "ask": 15.79,
+          "quote_time": "2026-05-29T08:00:00.412618229Z",
+          "spread_pct": 6.4052,
+          "quote_age_minutes_at_runtime_clock": 272.8
+        },
+        "QQQ": {
+          "bid": 735.21,
+          "ask": 736.7,
+          "quote_time": "2026-05-29T08:00:00.386377592Z",
+          "spread_pct": 0.2025,
+          "quote_age_minutes_at_runtime_clock": 272.8
+        },
+        "XOM": {
+          "bid": 145.51,
+          "ask": 151.95,
+          "quote_time": "2026-05-29T08:00:00.400618942Z",
+          "spread_pct": 4.33,
+          "quote_age_minutes_at_runtime_clock": 272.8
+        },
+        "LIN": {
+          "bid": 495.03,
+          "ask": 502.05,
+          "quote_time": "2026-05-29T08:00:00.313942005Z",
+          "spread_pct": 1.4077,
+          "quote_age_minutes_at_runtime_clock": 272.8
+        },
+        "ADBE": {
+          "bid": 242.8,
+          "ask": 268.18,
+          "quote_time": "2026-05-29T08:00:00.406086772Z",
+          "spread_pct": 9.9339,
+          "quote_age_minutes_at_runtime_clock": 272.8
+        },
+        "NVDA": {
+          "bid": 215.27,
+          "ask": 215.43,
+          "quote_time": "2026-05-29T08:00:00.413977496Z",
+          "spread_pct": 0.0743,
+          "quote_age_minutes_at_runtime_clock": 272.8
+        },
+        "SPY": {
+          "bid": 754.93,
+          "ask": 758.7,
+          "quote_time": "2026-05-29T08:00:00.403389828Z",
+          "spread_pct": 0.4981,
+          "quote_age_minutes_at_runtime_clock": 272.8
+        },
+        "SMH": {
+          "bid": 593.88,
+          "ask": 618.91,
+          "quote_time": "2026-05-29T08:00:00.397462213Z",
+          "spread_pct": 4.1277,
+          "quote_age_minutes_at_runtime_clock": 272.8
+        }
+      }
+    }
+  },
+  "gate_effect": {
+    "regular_market_not_open": "PASS",
+    "quote_freshness": "FAIL",
+    "spread": "MIXED",
+    "submit_eligible": false,
+    "reason": "overnight quote timestamps were more than 5 minutes old under after_hours_policy.max_quote_age_minutes_submit"
+  }
+}

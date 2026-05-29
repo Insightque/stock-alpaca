@@ -1,0 +1,263 @@
+{
+  "schema_version": "1.0",
+  "run_id": "2026-05-29-2131-after-hours-autopilot",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "after_hours_policy_profile": "after_hours_policy",
+  "policy_profile": "after_hours_policy",
+  "created_at": "2026-05-29T21:33:20+09:00",
+  "data_cutoff_time": "2026-05-29T12:32:48Z",
+  "market_clock_checked_at": "2026-05-29T08:32:48.622387269-04:00",
+  "git_commit": "ae91e790c109cf30662b0422afbd4a2d058060fb",
+  "recommendation_policy_sha": "sha256:1160293a656dd5f8ff601c5058705bf777bb58f9b103382bed1b80593159c9de",
+  "risk_policy_version": "medium-risk-v1.1",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-29-2131-after-hours-autopilot.json",
+  "report_path": "wiki/current-runs/daily/2026-05-29-2131-after-hours-autopilot.md",
+  "post_trade_check_path": null,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-29-2131-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-29-2131-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-05-29-2131-after-hours-autopilot-runtime-alpaca-spot-check.json"
+  ],
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_gate_policy": {
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_submit": 3,
+    "provider_gap_blocks_order": false,
+    "core_gate_blocks_order": true
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T12:32:48Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2131-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-05-29-2131-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ],
+      "gap_reason": "Scheduler Alpaca core preflight first_blocking_gate=market_closed was expected and nonblocking for after-hours. It supplied passing account, positions, open orders, asset, quote, spread, and activity evidence; runtime MCP confirmed clock closed, account ACTIVE, positions, open orders [], one same-session ADBE fill, and overnight quotes/snapshots. Quote freshness failed for submit because overnight quote timestamps were older than after_hours_policy.max_quote_age_minutes_submit.",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T12:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2131-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-29T12:31:29+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2131-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Circuit breaker open until 2026-05-29T13:51:29+00:00 after recent provider_error failure: Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T10:51:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2131-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T12:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2131-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T12:31:29+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2131-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "gap_category": "provider_error",
+      "gap_reason": "Circuit breaker open until 2026-05-29T13:51:29+00:00 after recent provider_error failure: Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable.",
+      "retry_count": 0
+    }
+  ],
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "NOK",
+      "SMH",
+      "SPY",
+      "NVDA",
+      "ADBE",
+      "LIN",
+      "XOM"
+    ],
+    "final_candidates": [
+      "NOK",
+      "NVDA",
+      "XOM",
+      "ADBE",
+      "LIN"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "recommendation_shortlist": [
+    {
+      "symbol": "NOK",
+      "action": "skip",
+      "reason": "quote freshness and spread failed; thesis blocks new chase/add after prior weak add and overheat guard"
+    },
+    {
+      "symbol": "NVDA",
+      "action": "skip",
+      "reason": "quote freshness failed; AI semiconductor concentration remains too high for an after-hours validation add"
+    },
+    {
+      "symbol": "XOM",
+      "action": "skip",
+      "reason": "quote freshness and spread failed; no fresh additional-buy thesis for adding energy exposure after-hours"
+    },
+    {
+      "symbol": "ADBE",
+      "action": "skip",
+      "reason": "quote freshness and spread failed; same after-hours session already has an ADBE validation fill"
+    },
+    {
+      "symbol": "LIN",
+      "action": "skip",
+      "reason": "quote freshness and spread failed; LIN ticker thesis page is missing"
+    }
+  ],
+  "recommendation_actionability": "not_actionable",
+  "gate_results": {
+    "paper_mode": "PASS",
+    "regular_market_not_open": "PASS",
+    "alpaca_core": "PASS",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "separate_after_hours_order_budget": "PASS",
+    "quote_freshness": "FAIL",
+    "spread_within_after_hours_policy": "MIXED",
+    "risk_policy": "PASS"
+  },
+  "risk_check_result": {
+    "status": "PASS",
+    "errors": [],
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": {
+      "buy_notional": 0.0,
+      "sell_notional": 0.0,
+      "post_cash": 36945.25,
+      "post_invested": 65577.02009999998,
+      "policy_version": "medium-risk-v1.1"
+    }
+  },
+  "first_blocking_gate": "fresh_quote",
+  "block_reason": "overnight quote timestamps around 2026-05-29T08:00:00Z were about 272.8 minutes old at the runtime Alpaca MCP clock, exceeding the after-hours 5 minute submit cap",
+  "submitted_orders": [],
+  "submitted_order_ids": [],
+  "post_trade_reconciliation": {
+    "required": false,
+    "reason": "no submit attempt because fresh quote gate failed before pre-submit"
+  },
+  "data_manifest": {
+    "alpaca_clock": "regular market closed at 2026-05-29T08:32:48.622387269-04:00",
+    "account_status": "ACTIVE",
+    "open_us_equity_orders": 0,
+    "same_session_after_hours_validation_fills": [
+      "ADBE buy 1 share at 2026-05-29T00:16:54.397547Z"
+    ],
+    "after_hours_new_orders_submitted_today": 1,
+    "runtime_positions_count": 32
+  },
+  "validation_results": {
+    "risk_policy": {
+      "status": "PASS",
+      "warnings": [
+        "orders is empty"
+      ]
+    },
+    "universe_coverage": {
+      "status": "PASS",
+      "symbols_considered": 62,
+      "symbols_loaded": 62,
+      "pre_mcp_shortlist_count": 8,
+      "final_candidate_count": 5
+    },
+    "mcp_coverage": {
+      "status": "PASS",
+      "positive_research_confirmations": [
+        "firecrawl",
+        "fred",
+        "sec-edgar",
+        "yahoo-finance"
+      ]
+    }
+  },
+  "orders_submitted": 0
+}
