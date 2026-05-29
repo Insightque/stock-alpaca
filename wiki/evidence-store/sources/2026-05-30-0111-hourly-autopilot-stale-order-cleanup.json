@@ -1,0 +1,130 @@
+{
+  "run_id": "2026-05-30-0111-hourly-autopilot",
+  "created_at": "2026-05-29T16:11:07Z",
+  "paper": true,
+  "source": "scheduler Alpaca MCP stale autopilot order cleanup",
+  "alpaca_mcp_only": true,
+  "dry_run": false,
+  "policy": {
+    "max_open_order_age_minutes": 30.0,
+    "cancel_stale_unfilled_orders": true,
+    "client_order_id_prefix": "hourly-"
+  },
+  "clock": {
+    "is_open": true,
+    "timestamp": "2026-05-29T12:11:08.7309533-04:00",
+    "next_open": "2026-06-01T09:30:00-04:00",
+    "next_close": "2026-05-29T16:00:00-04:00"
+  },
+  "initial_open_orders": [
+    {
+      "id": "fa63eb83-042a-4982-8dd5-e0491cc18276",
+      "client_order_id": "hourly-20260530-0031-buy-mrk",
+      "created_at": "2026-05-29T15:37:16.746115996Z",
+      "updated_at": "2026-05-29T15:37:16.784495565Z",
+      "submitted_at": "2026-05-29T15:37:16.780680422Z",
+      "filled_at": null,
+      "expired_at": null,
+      "canceled_at": null,
+      "failed_at": null,
+      "replaced_at": null,
+      "replaced_by": null,
+      "replaces": null,
+      "asset_id": "0d56791f-7395-40fa-853b-7b852bd9a7bf",
+      "symbol": "MRK",
+      "asset_class": "us_equity",
+      "notional": null,
+      "qty": "1",
+      "filled_qty": "0",
+      "filled_avg_price": null,
+      "order_class": "",
+      "order_type": "limit",
+      "type": "limit",
+      "side": "buy",
+      "position_intent": "buy_to_open",
+      "time_in_force": "day",
+      "limit_price": "118.35",
+      "stop_price": null,
+      "status": "new",
+      "extended_hours": false,
+      "legs": null,
+      "trail_percent": null,
+      "trail_price": null,
+      "hwm": null,
+      "subtag": null,
+      "source": null,
+      "expires_at": "2026-05-29T20:00:00Z"
+    }
+  ],
+  "stale_candidates": [
+    {
+      "id": "fa63eb83-042a-4982-8dd5-e0491cc18276",
+      "client_order_id": "hourly-20260530-0031-buy-mrk",
+      "symbol": "MRK",
+      "side": "buy",
+      "status": "new",
+      "submitted_at": "2026-05-29T15:37:16.780680422Z",
+      "age_minutes": 33.87
+    }
+  ],
+  "cancel_attempts": [
+    {
+      "order": {
+        "id": "fa63eb83-042a-4982-8dd5-e0491cc18276",
+        "client_order_id": "hourly-20260530-0031-buy-mrk",
+        "symbol": "MRK",
+        "side": "buy",
+        "status": "new",
+        "submitted_at": "2026-05-29T15:37:16.780680422Z",
+        "age_minutes": 33.87
+      },
+      "outcome": "pass",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "checked_at": "2026-05-29T16:11:09Z"
+    }
+  ],
+  "remaining_open_orders": [
+    {
+      "id": "fa63eb83-042a-4982-8dd5-e0491cc18276",
+      "client_order_id": "hourly-20260530-0031-buy-mrk",
+      "created_at": "2026-05-29T15:37:16.746116Z",
+      "updated_at": "2026-05-29T16:11:09.306186Z",
+      "submitted_at": "2026-05-29T15:37:16.78068Z",
+      "filled_at": null,
+      "expired_at": null,
+      "canceled_at": null,
+      "failed_at": null,
+      "replaced_at": null,
+      "replaced_by": null,
+      "replaces": null,
+      "asset_id": "0d56791f-7395-40fa-853b-7b852bd9a7bf",
+      "symbol": "MRK",
+      "asset_class": "us_equity",
+      "notional": null,
+      "qty": "1",
+      "filled_qty": "0",
+      "filled_avg_price": null,
+      "order_class": "",
+      "order_type": "limit",
+      "type": "limit",
+      "side": "buy",
+      "position_intent": "buy_to_open",
+      "time_in_force": "day",
+      "limit_price": "118.35",
+      "stop_price": null,
+      "status": "pending_cancel",
+      "extended_hours": false,
+      "legs": null,
+      "trail_percent": null,
+      "trail_price": null,
+      "hwm": null,
+      "subtag": null,
+      "source": "access_key",
+      "expires_at": "2026-05-29T20:00:00Z"
+    }
+  ],
+  "status": "pass",
+  "gap_category": "not_applicable",
+  "gap_reason": ""
+}

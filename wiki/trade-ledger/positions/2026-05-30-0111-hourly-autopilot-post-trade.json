@@ -1,0 +1,506 @@
+{
+  "run_id": "2026-05-30-0111-hourly-autopilot",
+  "created_at": "2026-05-30T01:14:30+09:00",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-stale-order-cleanup.json",
+    "registered Alpaca MCP get_orders/get_all_positions/get_account_info 2026-05-29T16:13-16:14Z"
+  ],
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 101914.51,
+    "cash": 34800.26,
+    "buying_power": 130660.89,
+    "long_market_value": 67114.12,
+    "currency": "USD",
+    "source": "scheduler_core_preflight_plus_registered_alpaca_mcp_spot_check"
+  },
+  "open_orders": [],
+  "positions": [
+    {
+      "symbol": "AAPL",
+      "qty": 1.0,
+      "market_value": 311.19,
+      "avg_entry_price": 309.45,
+      "current_price": 311.19,
+      "unrealized_pl": 1.74,
+      "unrealized_plpc": 0.00562,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "ADBE",
+      "qty": 1.0,
+      "market_value": 255.41,
+      "avg_entry_price": 242.36,
+      "current_price": 255.41,
+      "unrealized_pl": 13.05,
+      "unrealized_plpc": 0.05385,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "AMD",
+      "qty": 14.0,
+      "market_value": 7182.56,
+      "avg_entry_price": 462.73,
+      "current_price": 513.04,
+      "unrealized_pl": 704.34,
+      "unrealized_plpc": 0.10872,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "AMZN",
+      "qty": 3.0,
+      "market_value": 818.22,
+      "avg_entry_price": 271.12,
+      "current_price": 272.74,
+      "unrealized_pl": 4.86,
+      "unrealized_plpc": 0.00598,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "AVGO",
+      "qty": 15.0,
+      "market_value": 6605.7,
+      "avg_entry_price": 410.73,
+      "current_price": 440.38,
+      "unrealized_pl": 444.75,
+      "unrealized_plpc": 0.07219,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "BAC",
+      "qty": 2.0,
+      "market_value": 102.57,
+      "avg_entry_price": 51.6,
+      "current_price": 51.285,
+      "unrealized_pl": -0.63,
+      "unrealized_plpc": -0.0061,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "COP",
+      "qty": 1.0,
+      "market_value": 113.8,
+      "avg_entry_price": 114.95,
+      "current_price": 113.8,
+      "unrealized_pl": -1.15,
+      "unrealized_plpc": -0.01,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "CVX",
+      "qty": 1.0,
+      "market_value": 182.01,
+      "avg_entry_price": 184.03,
+      "current_price": 182.01,
+      "unrealized_pl": -2.02,
+      "unrealized_plpc": -0.01098,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "ETN",
+      "qty": 15.0,
+      "market_value": 5998.95,
+      "avg_entry_price": 387.9,
+      "current_price": 399.93,
+      "unrealized_pl": 180.45,
+      "unrealized_plpc": 0.03101,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "FCX",
+      "qty": 1.0,
+      "market_value": 65.725,
+      "avg_entry_price": 63.94,
+      "current_price": 65.725,
+      "unrealized_pl": 1.785,
+      "unrealized_plpc": 0.02792,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "GOOGL",
+      "qty": 2.0,
+      "market_value": 766.06,
+      "avg_entry_price": 386.065,
+      "current_price": 383.03,
+      "unrealized_pl": -6.07,
+      "unrealized_plpc": -0.00786,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "INTC",
+      "qty": 1.0,
+      "market_value": 118.44,
+      "avg_entry_price": 116.79,
+      "current_price": 118.44,
+      "unrealized_pl": 1.65,
+      "unrealized_plpc": 0.01413,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "IONQ",
+      "qty": 45.0,
+      "market_value": 3146.4,
+      "avg_entry_price": 63.48,
+      "current_price": 69.92,
+      "unrealized_pl": 289.8,
+      "unrealized_plpc": 0.10145,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "LLY",
+      "qty": 1.0,
+      "market_value": 1096.01,
+      "avg_entry_price": 1079.38,
+      "current_price": 1096.01,
+      "unrealized_pl": 16.63,
+      "unrealized_plpc": 0.01541,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "LRCX",
+      "qty": 20.0,
+      "market_value": 6386.2,
+      "avg_entry_price": 307.91,
+      "current_price": 319.31,
+      "unrealized_pl": 228.0,
+      "unrealized_plpc": 0.03702,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "NEE",
+      "qty": 3.0,
+      "market_value": 258.84,
+      "avg_entry_price": 87.21,
+      "current_price": 86.28,
+      "unrealized_pl": -2.79,
+      "unrealized_plpc": -0.01066,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "NKE",
+      "qty": 3.0,
+      "market_value": 140.013,
+      "avg_entry_price": 46.256667,
+      "current_price": 46.671,
+      "unrealized_pl": 1.242999,
+      "unrealized_plpc": 0.00896,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "NOK",
+      "qty": 402.0,
+      "market_value": 5935.53,
+      "avg_entry_price": 15.044527,
+      "current_price": 14.765,
+      "unrealized_pl": -112.369854,
+      "unrealized_plpc": -0.01858,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "NVDA",
+      "qty": 37.0,
+      "market_value": 7993.48,
+      "avg_entry_price": 215.201892,
+      "current_price": 216.04,
+      "unrealized_pl": 31.009996,
+      "unrealized_plpc": 0.00389,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "qty": 3.0,
+      "market_value": 78.18,
+      "avg_entry_price": 26.196667,
+      "current_price": 26.06,
+      "unrealized_pl": -0.410001,
+      "unrealized_plpc": -0.00522,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "PLTR",
+      "qty": 1.0,
+      "market_value": 156.46,
+      "avg_entry_price": 134.94,
+      "current_price": 156.46,
+      "unrealized_pl": 21.52,
+      "unrealized_plpc": 0.15948,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "QQQ",
+      "qty": 2.0,
+      "market_value": 1478.86,
+      "avg_entry_price": 732.99,
+      "current_price": 739.43,
+      "unrealized_pl": 12.88,
+      "unrealized_plpc": 0.00879,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "qty": 120.0,
+      "market_value": 3087.636,
+      "avg_entry_price": 25.569583,
+      "current_price": 25.7303,
+      "unrealized_pl": 19.28604,
+      "unrealized_plpc": 0.00629,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "SLB",
+      "qty": 2.0,
+      "market_value": 110.15,
+      "avg_entry_price": 55.135,
+      "current_price": 55.075,
+      "unrealized_pl": -0.12,
+      "unrealized_plpc": -0.00109,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "qty": 3.0,
+      "market_value": 275.94,
+      "avg_entry_price": 93.07,
+      "current_price": 91.98,
+      "unrealized_pl": -3.27,
+      "unrealized_plpc": -0.01171,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "SPY",
+      "qty": 1.0,
+      "market_value": 757.36,
+      "avg_entry_price": 753.38,
+      "current_price": 757.36,
+      "unrealized_pl": 3.98,
+      "unrealized_plpc": 0.00528,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "TSLA",
+      "qty": 1.0,
+      "market_value": 437.66,
+      "avg_entry_price": 441.4,
+      "current_price": 437.66,
+      "unrealized_pl": -3.74,
+      "unrealized_plpc": -0.00847,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "TSM",
+      "qty": 15.0,
+      "market_value": 6289.5,
+      "avg_entry_price": 405.2,
+      "current_price": 419.3,
+      "unrealized_pl": 211.5,
+      "unrealized_plpc": 0.0348,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "UNH",
+      "qty": 15.0,
+      "market_value": 5667.0,
+      "avg_entry_price": 386.56,
+      "current_price": 377.8,
+      "unrealized_pl": -131.4,
+      "unrealized_plpc": -0.02266,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "V",
+      "qty": 2.0,
+      "market_value": 661.93,
+      "avg_entry_price": 330.505,
+      "current_price": 330.965,
+      "unrealized_pl": 0.92,
+      "unrealized_plpc": 0.00139,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "WMT",
+      "qty": 3.0,
+      "market_value": 344.715,
+      "avg_entry_price": 117.313333,
+      "current_price": 114.905,
+      "unrealized_pl": -7.224999,
+      "unrealized_plpc": -0.02053,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    },
+    {
+      "symbol": "XOM",
+      "qty": 2.0,
+      "market_value": 291.62,
+      "avg_entry_price": 147.72,
+      "current_price": 145.81,
+      "unrealized_pl": -3.82,
+      "unrealized_plpc": -0.01293,
+      "side": "long",
+      "asset_class": "us_equity",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "registered Alpaca MCP get_all_positions 2026-05-29T16:13Z"
+      ]
+    }
+  ],
+  "reconciliation": {
+    "submitted_orders": [],
+    "registered_get_orders_open_result": [],
+    "notes": "No submit attempt. Scheduler cleanup artifact still showed MRK pending_cancel, but registered Alpaca MCP get_orders returned no open US-equity orders at decision time."
+  }
+}

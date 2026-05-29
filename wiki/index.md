@@ -47,6 +47,7 @@
 - [[2026-05-30-0011-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 GOOGL, WMT, NEE 각 1주 paper validation buy 체결.
 - [[2026-05-30-0031-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 MRK 1주 paper validation buy 제출, reconciliation 기준 open `new`.
 - [[2026-05-30-0051-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 MRK fresh open order, same-session duplicate, thesis/lifecycle/target-band candidate gate로 신규 주문 없음.
+- [[2026-05-30-0111-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale MRK cleanup 이후 registered open-order reconciliation은 open 0건, universe/MCP/risk는 통과했지만 후보별 lifecycle/thesis/target-band 제약으로 주문 없음.
 - `wiki/current-runs/daily/` - 현재 계좌와 현재 시장을 대상으로 실행한 일일 trading workflow 결과.
 - [[2026-05-22]] - 현재 시장 분석과 이후 주식 중심 paper 매수 실행 업데이트.
 - [[2026-05-24]] - 현재 기준 no-submit 종목 추천, dry-run 주문 후보, risk-check 결과.
