@@ -43,3 +43,11 @@ ADBE는 after-hours validation bucket에서 소액으로만 확인할 수 있는
 - [[2026-05-29-0911-after-hours-autopilot]]
 - `wiki/evidence-store/sources/2026-05-29-0911-after-hours-autopilot-alpaca-core-preflight.json`
 - `wiki/evidence-store/sources/2026-05-29-0911-after-hours-autopilot-research-mcp-preflight.json`
+
+## 회고 기록
+
+### 2026-05-30 analyst review cycle
+
+2026-05-29 after-hours validation buy 1주는 242.36 USD 진입 대비 2026-05-29 close/current 259.50 USD로 +7.07%, SPY 대비 +6.88%p였다. Yahoo 뉴스는 Firefly/AI agent 기대와 stock-photo cannibalization 우려가 같이 있음을 보여줬지만, 1D 가격 결과는 software/AI 재평가 쪽이 우세했다. 판단은 `강함`이나 1D 단일 표본이므로 정책 승격 근거로 쓰지 않는다.
+
+출처: [[2026-05-30-portfolio-review]], [[2026-05-30-0625-analyst-review-cycle-sources]]

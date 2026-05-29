@@ -18,3 +18,9 @@ asset_type: stock
 2026-05-27 validation buy 1주는 2026-05-28 close 기준 -2.38%로 SPY/QQQ 대비 부진했다. SEC EDGAR에서 2026-05-28 다수 424B2 filing이 확인됐지만 단기 매수 촉매로 보기는 약해 financials 분산 thesis는 5D/20D 확인 전 보류한다.
 
 출처: [[2026-05-29-portfolio-review]], [[2026-05-29-0625-analyst-review-cycle-sources]]
+
+### 2026-05-30 analyst review cycle
+
+2026-05-28 validation buy 1주는 51.14 USD 진입 대비 2026-05-29 close/current 51.55 USD로 +0.80%, SPY 대비 +0.60%p였다. 2026-05-27 fill 1D 부진과 달리 이번 financials 분산 표본은 양호했다. 단일 1D 반전이라 정책 변경은 없다.
+
+출처: [[2026-05-30-portfolio-review]], [[2026-05-30-0625-analyst-review-cycle-sources]]

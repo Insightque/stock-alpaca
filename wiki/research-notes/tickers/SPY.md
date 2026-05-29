@@ -43,3 +43,11 @@ SPY는 현재 포지션이 없는 paper 계좌에서 가장 깔끔한 광범위 
 - [[2026-05-22-alpaca-market-data]]
 - [[2026-05-22-alpaca-news]]
 - [[2026-05-22-web-market-context]]
+
+## 회고 기록
+
+### 2026-05-30 analyst review cycle
+
+2026-05-28 validation buy 1주는 753.38 USD 진입 대비 2026-05-29 close/current 756.09 USD로 +0.36%였다. QQQ와 함께 이번 validation cohort의 벤치마크 기준점으로 사용했다.
+
+출처: [[2026-05-30-portfolio-review]], [[2026-05-30-0625-analyst-review-cycle-sources]]

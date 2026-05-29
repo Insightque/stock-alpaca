@@ -67,3 +67,4 @@ Alpaca/Benzinga에서는 CPU 시장 기대와 post-earnings pullback/support nar
 
 - 2026-05-27: [[2026-05-27-portfolio-review]]에서 2026-05-22 stock-only 매수와 2026-05-26 validation buy를 분리해 확인했다. 전체 NVDA 포지션은 평균 215.275556 USD 대비 Alpaca 현재가 214.51 USD, 미실현 -0.36%로 1D follow-through가 약했다. 핵심 AI thesis는 유지하되 단기 상대강도 회복은 아직 확인되지 않았다.
 - 2026-05-28: [[2026-05-28-portfolio-review]]에서 2026-05-26 validation add 1D interim review를 작성했다. 추가 1주는 213.72 USD 진입 대비 2026-05-27 close 212.575 USD로 -0.54%, SPY 대비 -0.55%p였다. AI semiconductor thesis는 유지하되 기존 cluster 집중 때문에 추가 진입은 계속 validation size로 제한한다.
+- 2026-05-30: [[2026-05-30-portfolio-review]]에서 2026-05-28 validation add 1D interim review를 작성했다. 추가 1주는 212.55 USD 진입 대비 2026-05-29 close/current 212.55 USD로 보합, SPY 대비 -0.20%p였다. AI market headline은 강했지만 NVDA 자체 follow-through는 이번 1D에는 중립이었다.

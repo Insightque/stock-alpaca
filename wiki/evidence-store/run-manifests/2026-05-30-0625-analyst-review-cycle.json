@@ -1,0 +1,46 @@
+{
+  "id": "2026-05-30-0625-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-05-29T21:25:00Z",
+  "timezone": "Asia/Seoul",
+  "paper": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "alpaca_reconciliation": {
+    "clock_open": false,
+    "account_status": "ACTIVE",
+    "portfolio_value": 102008.32,
+    "cash": 34800.26,
+    "buying_power": 130798.68,
+    "open_us_equity_orders": 0,
+    "position_count": 32,
+    "portfolio_history": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 2
+    }
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-05-30-portfolio-review.md",
+    "reviewed_horizon": "1D",
+    "reviewed_fill_dates": [
+      "2026-05-28",
+      "2026-05-29T00:16:54Z after-hours fill"
+    ],
+    "symbols": ["INTC", "NOK", "PLTR", "QQQ", "CVX", "NKE", "PFE", "WMT", "GOOGL", "SO", "SLB", "SPY", "BAC", "NEE", "NVDA", "COP", "TSLA", "AMZN", "XOM", "ADBE"]
+  },
+  "mcp_coverage": [
+    {"server": "alpaca", "queried": true, "used_in_score": true, "outcome": "usable", "source_refs": ["wiki/evidence-store/sources/2026-05-30-0625-analyst-review-cycle-sources.md"], "gap_reason": "portfolio_history_cancelled_only", "gap_category": "cancelled", "retry_count": 2},
+    {"server": "sec-edgar", "queried": true, "used_in_score": true, "outcome": "usable", "source_refs": ["wiki/evidence-store/sources/2026-05-30-0625-analyst-review-cycle-sources.md"], "gap_reason": "", "gap_category": "not_applicable", "retry_count": 0},
+    {"server": "alpha-vantage", "queried": true, "used_in_score": false, "outcome": "gap", "source_refs": ["wiki/evidence-store/sources/2026-05-30-0625-analyst-review-cycle-sources.md"], "gap_reason": "first_non_ping_tool_call_cancelled_after_successful_ping", "gap_category": "cancelled", "retry_count": 0},
+    {"server": "fred", "queried": false, "used_in_score": false, "outcome": "gap", "source_refs": ["wiki/evidence-store/sources/2026-05-30-0625-analyst-review-cycle-sources.md"], "gap_reason": "registered_tool_namespace_not_exposed", "gap_category": "wrapper_error", "retry_count": 0},
+    {"server": "firecrawl", "queried": false, "used_in_score": false, "outcome": "gap", "source_refs": ["wiki/evidence-store/sources/2026-05-30-0625-analyst-review-cycle-sources.md"], "gap_reason": "registered_tool_namespace_not_exposed", "gap_category": "wrapper_error", "retry_count": 0},
+    {"server": "yahoo-finance", "queried": true, "used_in_score": true, "outcome": "usable", "source_refs": ["wiki/evidence-store/sources/2026-05-30-0625-analyst-review-cycle-sources.md"], "gap_reason": "", "gap_category": "not_applicable", "retry_count": 0}
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "single_1d_cohort_and_incomplete_portfolio_history_do_not_meet_evidence_threshold"
+  }
+}

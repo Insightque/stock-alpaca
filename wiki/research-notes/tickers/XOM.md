@@ -12,3 +12,9 @@ asset_type: stock
 2026-05-27 validation buy 1주는 2026-05-28 close 기준 -0.05%였다. 장중 MFE는 있었지만 종가 기준 우위는 없고, Iran ceasefire/nuclear-talk headline은 energy hedge thesis의 단기 변동 요인으로 기록한다.
 
 출처: [[2026-05-29-portfolio-review]], [[2026-05-29-0625-analyst-review-cycle-sources]]
+
+### 2026-05-30 analyst review cycle
+
+2026-05-28 validation buy 1주는 148.37 USD 진입 대비 2026-05-29 close/current 145.38 USD로 -2.02%, SPY 대비 -2.21%p였다. 에너지/인플레이션 헤지 thesis는 1D에서 약했고, Iran/Hormuz headline에 따른 risk premium 변화가 주요 불확실성으로 남았다.
+
+출처: [[2026-05-30-portfolio-review]], [[2026-05-30-0625-analyst-review-cycle-sources]]
