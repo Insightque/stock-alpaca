@@ -2623,3 +2623,71 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Submit/reconcile: no `place_stock_order` call and no submit attempt. No new `client_order_id` was created; prior same-session ADBE fill was preserved through `risk_inputs.after_hours_new_orders_submitted_today=1`.
 - Validators: `python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS with `orders is empty` warning.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-2151-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-2151-after-hours-autopilot.json`, `wiki/evidence-store/sources/2026-05-29-2151-after-hours-autopilot-runtime-alpaca-spot-check.json`, [[2026-05-29-2151-after-hours-autopilot]]. Review due: no new after-hours fills.
+
+## [2026-05-29 22:06 Asia/Seoul] implementation | STOCK-TRAIN Alerts diagnosis and cleanup
+
+- 최근 `[STOCK-TRAIN]` Alerts 원인을 확인했다. `alpha-vantage:provider_error`는 Alpha Vantage rate-limit circuit breaker가 6시간 기본값으로 열려 있었기 때문이고, `당일손익 데이터 없음`은 주문계획 account snapshot에 `last_equity`가 없어 알림 계산이 Alpaca core preflight의 account payload를 보지 못했기 때문이었다.
+- 개정: Alpha Vantage circuit breaker를 API key scope별로 분리하고, rate-limit circuit 기본값을 1시간 호출 제한 정책과 맞췄다. 이전 키/전역 circuit이 새 키의 다음 시도를 막지 않도록 했다.
+- 개정: `scripts/send-openclaw-autopilot-update.py`가 `*-alpaca-core-preflight.json`의 `get_account_info.payload.last_equity`를 fallback으로 읽어 당일손익을 계산하도록 했다. 보유종목수도 최신 order-plan positions 기준을 우선한다.
+- 검증: 최신 `2026-05-29-2151-after-hours-autopilot` 메시지 재생성 시 `당일손익: $90 (+0.1%)`, `보유종목: 32개`로 표시되고 `당일손익 데이터 없음` Alert는 제거됐다. 남은 Alert는 기존 manifest의 Alpha provider gap뿐이며 다음 run부터 scoped 1시간 circuit 정책이 적용된다.
+- 테스트: `PATH=/usr/local/bin:$PATH python3 -m unittest tests.test_fetch_research_mcp_preflight tests.test_autopilot_notification_schema tests.test_mcp_runtime_wrappers tests.test_policy_source_of_truth` PASS, 42 tests. 민감 값 잔존 검사 0건.
+
+## [2026-05-29 22:13 Asia/Seoul] analysis | harness skill boundary assessment
+
+- 현재 하네스에서 Codex skill로 분리할 반복 운영 영역을 구조적으로 점검했다.
+- 우선 후보는 안전 게이트, 민감정보 위생, MCP preflight/coverage, 주문계획/risk 검증, autopilot 운영, `[STOCK-TRAIN]` 알림, wiki curate, 거래 회고/policy learning이다.
+- 정책 숫자와 소스오브트루스는 기존 YAML/schema/wiki에 남기고, skill은 트리거 조건, 필수 참조 파일, 순서, 금지사항, 검증 명령을 담는 운영 레이어로 관리하는 방향이 적합하다.
+
+## [2026-05-29 22:13 Asia/Seoul] analysis | final stock-alpaca skill set draft
+
+- 분기 레포의 skill 제안을 현재 `stock-alpaca` 하네스 구조와 비교했다.
+- 기존 7개 축(command router, paper safety, autopilot runtime, MCP research gate, risk order plan, wiki ledger, review/policy learning)은 대부분 유지하되, 최근 운영 이슈를 반영해 `[STOCK-TRAIN]` 알림/Alerts와 secret hygiene을 별도 반복 절차로 승격하는 최종안을 정리했다.
+- 스킬 본문에는 기존 스크립트/YAML/schema를 복제하지 않고, repo source-of-truth를 언제 읽고 어떤 validator를 실행할지 적는 방식이 적합하다고 판단했다.
+
+## [2026-05-29 22:29 Asia/Seoul] implementation | stock-alpaca Codex skills and runtime verification
+
+- `skills/` 아래 12개 stock-alpaca skill source를 추가하고 동일 내용을 `/Users/insightque/.codex/skills/`에 설치했다: command router, paper trading safety, secret hygiene, autopilot runtime, MCP research gate, risk order plan, STOCK-TRAIN alerts, wiki ledger, review/policy learning, research thesis, simulation lab, local MCP runtime.
+- 각 skill은 기존 스크립트/YAML/schema를 복제하지 않고 `AGENTS.md`, `harness/`, `scripts/`, `scheduler/README.md`, `wiki/` source-of-truth를 언제 읽고 어떤 validator를 실행할지 안내하는 방식으로 작성했다.
+- Skill validation: `python3 /Users/insightque/.codex/skills/.system/skill-creator/scripts/quick_validate.py /Users/insightque/.codex/skills/stock-alpaca-*` 12개 모두 PASS.
+- Runtime validation 중 dashboard tests가 최신 `current.md` bullet 형식과 after-hours manifest shortlist 형식을 반영하지 못해 실패했다. `scripts/build-agent-dashboard.py`가 최신 manifest order-plan snapshot과 `recommendation_shortlist`를 fallback으로 읽도록 보강하고, stale cash-ratio 가정 테스트를 현재 artifact 기준으로 조정했다.
+- 검증: `PATH=/usr/local/bin:$PATH python3 -m unittest discover tests` PASS, 120 tests. 주문 제출/취소/계좌 변경은 수행하지 않았다.
+
+## [2026-05-29 22:32 Asia/Seoul] review | stock-alpaca skill overlap and conflict check
+
+- 새로 만든 12개 stock-alpaca skill의 trigger description, boundary, handoff, source-of-truth 지시를 재검토했다.
+- 확인된 실제 위험은 repo `skills/`와 설치 위치 `/Users/insightque/.codex/skills/`의 drift였다. repo source를 기준으로 설치본을 다시 동기화했다.
+- 과도한 trigger overlap을 줄이기 위해 `stock-alpaca-autopilot-runtime`은 OpenClaw 메시지 내용이 아니라 final notification timing/scheduler lifecycle만 맡도록 표현을 좁혔다. `stock-alpaca-stock-train-alerts`는 메시지 렌더링과 Alerts 설명을 계속 담당한다.
+- `stock-alpaca-mcp-research-gate`는 일반 Alerts가 아니라 provider-gap alert/coverage 판단으로, `stock-alpaca-secret-hygiene`은 모든 로그가 아니라 credential 가능성이 있는 provider/account artifact/log로 scope를 좁혔다.
+- Skill validation: repo source 12개 PASS, installed skill 12개 PASS, repo/installed SKILL.md 동기화 확인 PASS. Runtime validation: `PATH=/usr/local/bin:$PATH python3 -m unittest discover tests` PASS, 120 tests. 주문 제출/취소/계좌 변경은 수행하지 않았다.
+
+## [2026-05-29 22:44 Asia/Seoul] hourly-autopilot | 2026-05-29-2231-hourly-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; regular session submit mode.
+- Scheduler evidence: stale cleanup PASS with no stale/open hourly orders. Alpaca core preflight hard gate PASS for clock/account/positions/open orders/recent activities/watchlists/assets/quotes/snapshots/trades. Research preflight had SEC EDGAR/FRED/Firecrawl/Yahoo PASS and Alpha Vantage `provider_error` rate-limit gap, nonblocking with 4 usable research confirmations.
+- Gates: universe strict PASS, MCP strict PASS, risk validator PASS. Sell/trim evaluated first and recorded `sell_trigger_none`; no thesis-break, risk-limit, stale-thesis underperformance, speculative loss-control, or concentration trim trigger was active from scheduler evidence.
+- Submitted through Alpaca MCP only: SPY, AMZN, PFE, BAC 1-share day limit paper buy orders accepted. PFE filled at $26.09; SPY/AMZN/BAC remained `new` at reconciliation. NKE submit was cancelled, same-client-id reconciliation returned 404, retry with the same client id was cancelled, and no alternate client id was used.
+- Post-trade reconciliation: `get_order_by_client_id`, `get_orders`, `get_all_positions`, and `get_account_info` completed. `get_account_activities` was cancelled by the tool monitor; PFE fill was confirmed through order and position reconciliation.
+- Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-2231-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-2231-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-29-2231-hourly-autopilot-post-trade.json`, [[2026-05-29-2231-hourly-autopilot]], [[portfolio-current]]. Review due: PFE filled; SPY/AMZN/BAC open orders require lifecycle follow-up.
+
+## [2026-05-29 22:35 Asia/Seoul] analysis | wiki lint need assessment
+
+- `harness/workflows/wiki-lint.md` 기준으로 full lint 필요성을 가볍게 점검했다.
+- `python3 scripts/check-policy-source-of-truth.py` PASS로 정책 source-of-truth drift는 발견되지 않았다.
+- `wiki/current-runs/daily/` report 137개 중 `wiki/index.md`에 wiki-link 형태로 없는 report 3건(`2026-05-26`, `2026-05-26-expanded-universe`, `2026-05-28-0231-hourly-autopilot`)과 duplicate index line 1건(`2026-05-27-0012-hourly-autopilot` manifest)을 확인했다.
+- 2026-05-29 22:31 hourly-autopilot preflight source artifact 3개가 생성되어 있지만 대응 manifest/report/order plan은 아직 보이지 않는다. full lint보다는 index/orphan-artifact 중심의 targeted wiki lint가 적절하다고 판단했다.
+
+## [2026-05-29 22:38 Asia/Seoul] wiki-lint | targeted index and orphan artifact cleanup
+
+- `harness/workflows/wiki-lint.md`의 full lint 대신 최근 확인된 index/orphan artifact 항목만 targeted lint로 처리했다.
+- `wiki/index.md` Current Runs 섹션에 누락된 report 3건을 추가했다: [[2026-05-26]], [[2026-05-26-expanded-universe]], [[2026-05-28-0231-hourly-autopilot]].
+- `wiki/index.md` Evidence Store 섹션의 duplicate `2026-05-27-0012-hourly-autopilot` manifest line 1건을 제거했다.
+- `wiki/research-notes/analyses/2026-05-29-wiki-lint.md`를 작성하고 index Research Notes 섹션에 연결했다. 2026-05-29 22:31 KST hourly-autopilot preflight source artifact 3개는 대응 manifest/report/order plan이 아직 없어 completed run처럼 index에 올리지 않고 follow-up 대상으로 기록했다.
+- 검증: `python3 scripts/check-policy-source-of-truth.py` PASS; `wiki/current-runs/daily/` report의 index 누락 0건; `wiki/index.md` duplicate bullet line 0건. 주문 제출/취소/계좌 변경은 수행하지 않았다.
+
+## [2026-05-29 22:45 Asia/Seoul] implementation | project-local skill routing in AGENTS
+
+- `AGENTS.md`에 `Project-Local Skills` 섹션을 추가했다. 이 repo에서 작업할 때 상황별로 `skills/stock-alpaca-*/SKILL.md`를 먼저 읽도록 라우팅한다.
+- 섹션은 local skill이 `AGENTS.md`, YAML/schema source-of-truth, workflow contracts, validators, wiki source-of-truth를 대체하지 않는다고 명시했다. 충돌 시 source-of-truth를 따르고 mismatch를 `wiki/log.md`에 기록하도록 했다.
+- Skill path check: 섹션에 언급한 12개 `skills/stock-alpaca-*/SKILL.md` 파일 존재 확인 PASS.
+- 검증: `python3 scripts/check-policy-source-of-truth.py` PASS. 주문 제출/취소/계좌 변경은 수행하지 않았다.

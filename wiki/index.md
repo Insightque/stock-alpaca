@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-29 06:25 KST analyst review cycle read-only reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-29 22:44 KST hourly autopilot post-trade reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -48,6 +48,8 @@
 - [[2026-05-22]] - 현재 시장 분석과 이후 주식 중심 paper 매수 실행 업데이트.
 - [[2026-05-24]] - 현재 기준 no-submit 종목 추천, dry-run 주문 후보, risk-check 결과.
 - [[2026-05-25]] - 미국 휴장 전 2026-05-22 종가 기준 현재 no-submit 종목 추천과 22:06 KST 재점검, empty-order risk-check 결과.
+- [[2026-05-26]] - all-MCP no-submit 현재 종목 추천. LRCX/UNH/AMD staged 후보, stale quote로 주문 없음.
+- [[2026-05-26-expanded-universe]] - 62개 확장 universe 기반 no-submit 추천. LRCX/LLY/ASML 후보, Firecrawl gap으로 actionability 차단.
 - [[2026-05-26-1853-hourly-autopilot]] - hourly paper autopilot 실행. universe/risk gate는 통과했지만 MCP/quote/spread/account-order gate 실패로 주문 없음.
 - [[2026-05-26-2011-hourly-autopilot]] - hourly paper autopilot 실행. universe/risk gate는 통과했지만 Alpaca core/MCP/quote/spread/account-order gate 실패로 주문 없음.
 - [[2026-05-26-2124-hourly-autopilot]] - hourly paper autopilot 실행. universe/risk gate는 통과했지만 Alpaca core/MCP/quote/spread/account-order gate 실패로 주문 없음.
@@ -78,6 +80,7 @@
 - [[2026-05-28-0131-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 ET 2026-05-27 daily validation order budget 소진으로 주문 없음.
 - [[2026-05-28-0151-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 ET 2026-05-27 daily validation order budget 소진으로 주문 없음.
 - [[2026-05-28-0211-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 ET 2026-05-27 daily validation order budget 소진으로 주문 없음.
+- [[2026-05-28-0231-hourly-autopilot]] - hourly paper autopilot 실행. universe/MCP/risk strict PASS, daily validation order budget 소진으로 주문 없음.
 - [[2026-05-28-0251-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 ET 2026-05-27 daily validation order budget 소진으로 주문 없음.
 - [[2026-05-28-0311-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 ET 2026-05-27 daily validation order budget 소진으로 주문 없음.
 - [[2026-05-28-0331-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup, Alpaca core, universe, MCP, quote/spread, risk validator는 통과했지만 ET 2026-05-27 daily validation order budget 소진으로 주문 없음.
@@ -236,6 +239,7 @@
 - [[2026-05-29-buy-sell-cap-review]] - validation buy budget과 risk-reducing sell/trim gate가 같은 cap에 묶여 매도가 막힐 수 있던 구현을 확인하고 개정한 분석.
 - [[2026-05-29-sell-frequency-policy-review]] - 현재 정책과 validator가 sell/trim을 과소 발생시키는지 확인하고 buy-quality gate를 sell에서 분리한 분석.
 - [[2026-05-29-autopilot-exit-policy-learning-review]] - 다른 분기의 sell/exit/time-stop 수정사항을 현재 정책학습 기준으로 재검토하고 필요한 부분만 적용한 분석.
+- [[2026-05-29-wiki-lint]] - index 누락/중복과 22:31 preflight orphan 상태를 점검한 targeted wiki lint.
 
 ## Backtest Runs
 
@@ -466,7 +470,6 @@
 - `wiki/evidence-store/run-manifests/2026-05-27-0032-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
 - [[2026-05-27-0052-hourly-autopilot-sources]] - hourly autopilot의 Alpaca core PASS, SEC/Yahoo/FRED usable, Alpha cancelled, Firecrawl wrapper gap, LLY paper validation 체결 근거.
 - `wiki/evidence-store/run-manifests/2026-05-27-0052-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict PASS, risk-check PASS, LLY order filled.
-- `wiki/evidence-store/run-manifests/2026-05-27-0012-hourly-autopilot.json` - hourly autopilot manifest, universe strict PASS, MCP strict FAIL, empty-order risk-check PASS.
 - `wiki/evidence-store/run-manifests/2026-05-28-0231-hourly-autopilot.json` - 02:31 KST scheduled hourly autopilot manifest, universe/MCP/risk strict PASS, daily validation order budget으로 주문 없음.
 - [[2026-05-28-1731-after-hours-autopilot]] - 17:31 KST scheduled after-hours autopilot report; session=`after_hours`, universe/MCP/risk strict PASS, separate after-hours order budget 소진으로 주문 없음.
 - `wiki/evidence-store/run-manifests/2026-05-28-1731-after-hours-autopilot.json` - after-hours manifest, `review_bucket=after_hours_validation`, `orders_submitted=0`, empty-order risk-check PASS.
@@ -510,3 +513,7 @@
 - `wiki/trade-ledger/orders/2026-05-29-2111-after-hours-autopilot.json` - 2026-05-29 21:11 KST after-hours autopilot empty order plan, session=after_hours, quote freshness 및 후보별 spread/thesis/concentration/duplicate-session/notional 제약으로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-2131-after-hours-autopilot.json` - 2026-05-29 21:31 KST after-hours autopilot empty order plan, session=after_hours, quote freshness 및 후보별 spread/thesis/concentration/duplicate-session/notional 제약으로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-2151-after-hours-autopilot.json` - 2026-05-29 21:51 KST after-hours autopilot empty order plan, session=after_hours, quote freshness 및 후보별 spread/thesis/concentration/duplicate-session/notional 제약으로 submit 없음.
+- [[2026-05-29-2231-hourly-autopilot]] - regular-session hourly paper autopilot 실행. universe/MCP/risk strict PASS 후 SPY/AMZN/PFE/BAC 1주 paper limit buy 제출, PFE 체결, SPY/AMZN/BAC open `new`, NKE는 cancelled retry 후 not submitted.
+- `wiki/evidence-store/run-manifests/2026-05-29-2231-hourly-autopilot.json` - hourly autopilot manifest, Alpha Vantage provider_error nonblocking gap, 4 usable research confirmations, post-trade reconciliation 기록.
+- `wiki/trade-ledger/orders/2026-05-29-2231-hourly-autopilot.json` - 2026-05-29 22:31 KST hourly autopilot validation buy order plan, risk PASS, SPY/AMZN/NKE/PFE/BAC planned.
+- `wiki/trade-ledger/positions/2026-05-29-2231-hourly-autopilot-post-trade.json` - 2026-05-29 22:44 KST post-trade snapshot: PFE filled, SPY/AMZN/BAC open, NKE not found/not submitted.

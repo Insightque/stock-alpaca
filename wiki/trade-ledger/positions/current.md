@@ -1,11 +1,20 @@
 # portfolio-current
 
-- 갱신: 2026-05-29 06:25 KST (`2026-05-29-0625-analyst-review-cycle` read-only reconciliation)
-- Paper account only. `ALPACA_PAPER_TRADE=true` 확인. 이 workflow는 주문 제출/교체/취소/청산을 하지 않았다.
-- Account: `ACTIVE`, portfolio_value 102374.13, cash 37187.61, buying_power 133318.68, long_market_value 65186.52.
-- Market clock: 2026-05-28 17:21:29 ET 기준 closed, next open 2026-05-29 09:30 ET.
-- Open US equity orders: 없음.
-- Positions refresh: registered Alpaca MCP `get_all_positions` PASS, 총 position symbols 31개.
-- Recent fills/orders: registered Alpaca MCP `get_orders`와 `get_account_activities`로 2026-05-22 이후 fills/canceled/expired orders를 reconciliation했다.
-- Portfolio history: `get_portfolio_history` 3회 cancelled, `gap_category=cancelled`, `retry_count=2`.
-- Source refs: [[2026-05-29-portfolio-review]], [[2026-05-29-0625-analyst-review-cycle-sources]].
+_Last updated: 2026-05-29 22:44 KST_
+
+## 계좌 요약
+
+- Alpaca paper account status: ACTIVE
+- Portfolio value: $102,133.91
+- Cash: $36,919.16
+- Buying power: $131,941.62
+- Long market value: $65,214.75
+
+## 최신 autopilot reconciliation
+
+- Run: [[2026-05-29-2231-hourly-autopilot]]
+- Filled: PFE 1주 at $26.09
+- Open/new: SPY 1주 limit $755.90, AMZN 1주 limit $272.82, BAC 1주 limit $50.72
+- Not submitted: NKE 1주 계획은 submit cancelled 및 동일 client-id reconciliation 404 후 retry cancelled로 최종 주문 없음
+- Position count observed by Alpaca MCP: 32
+- Source snapshot: `wiki/trade-ledger/positions/2026-05-29-2231-hourly-autopilot-post-trade.json`
