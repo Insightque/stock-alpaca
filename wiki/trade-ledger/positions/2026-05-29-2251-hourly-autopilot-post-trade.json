@@ -1,0 +1,135 @@
+{
+  "run_id": "2026-05-29-2251-hourly-autopilot",
+  "created_at": "2026-05-29T14:00:25Z",
+  "paper": true,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102412.04,
+    "cash": 36726.23,
+    "buying_power": 131992.69,
+    "equity": 102412.04,
+    "last_equity": 102266.98,
+    "long_market_value": 65685.81
+  },
+  "orders": [
+    {
+      "symbol": "NKE",
+      "client_order_id": "hourly-20260529-2251-buy-nke",
+      "id": "72f71d4c-89ef-4ea2-a53b-b6b17b456a0f",
+      "status": "filled",
+      "submitted_at": "2026-05-29T13:57:30.180010787Z",
+      "filled_at": "2026-05-29T13:57:30.352039894Z",
+      "filled_qty": "1",
+      "filled_avg_price": "46.59",
+      "limit_price": "46.88"
+    },
+    {
+      "symbol": "SO",
+      "client_order_id": "hourly-20260529-2251-buy-so",
+      "id": "cc988999-8d85-4db2-8ef3-f146101e3b1a",
+      "status": "filled",
+      "submitted_at": "2026-05-29T13:57:42.114038225Z",
+      "filled_at": "2026-05-29T13:57:42.952137553Z",
+      "filled_qty": "1",
+      "filled_avg_price": "91.55",
+      "limit_price": "91.69"
+    },
+    {
+      "symbol": "SLB",
+      "client_order_id": "hourly-20260529-2251-buy-slb",
+      "id": "ab2c37a3-7615-432f-8ba8-c32e05909582",
+      "status": "filled",
+      "submitted_at": "2026-05-29T13:57:54.819678476Z",
+      "filled_at": "2026-05-29T13:57:56.058205105Z",
+      "filled_qty": "1",
+      "filled_avg_price": "54.79",
+      "limit_price": "54.95"
+    }
+  ],
+  "prior_open_orders": [
+    {
+      "symbol": "BAC",
+      "client_order_id": "hourly-20260529-2231-buy-bac",
+      "id": "71d29236-810c-4a3e-af0d-f79e7521534e",
+      "status": "new",
+      "submitted_at": "2026-05-29T13:42:11.080483041Z",
+      "filled_qty": "0",
+      "filled_avg_price": null,
+      "limit_price": "50.72"
+    },
+    {
+      "symbol": "AMZN",
+      "client_order_id": "hourly-20260529-2231-buy-amzn",
+      "id": "7a871e73-4dc1-4f99-8cd5-fe8ff3be3208",
+      "status": "new",
+      "submitted_at": "2026-05-29T13:40:40.701583Z",
+      "filled_qty": "0",
+      "filled_avg_price": null,
+      "limit_price": "272.82"
+    },
+    {
+      "symbol": "SPY",
+      "client_order_id": "hourly-20260529-2231-buy-spy",
+      "id": "9bd742a2-2b33-4833-b810-8c8284d1d10c",
+      "status": "new",
+      "submitted_at": "2026-05-29T13:40:29.738676Z",
+      "filled_qty": "0",
+      "filled_avg_price": null,
+      "limit_price": "755.9"
+    }
+  ],
+  "positions_observed": {
+    "count": 32,
+    "nke_qty": "3",
+    "nke_avg_entry_price": "46.256667",
+    "so_qty": "3",
+    "so_avg_entry_price": "93.07",
+    "slb_qty": "2",
+    "slb_avg_entry_price": "55.135",
+    "pfe_qty": "3",
+    "spy_qty": "1",
+    "amzn_qty": "2",
+    "bac_qty": "2"
+  },
+  "same_session_fills": [
+    {
+      "symbol": "SLB",
+      "qty": "1",
+      "price": "54.79",
+      "transaction_time": "2026-05-29T13:57:56.058205Z"
+    },
+    {
+      "symbol": "SO",
+      "qty": "1",
+      "price": "91.55",
+      "transaction_time": "2026-05-29T13:57:42.952138Z"
+    },
+    {
+      "symbol": "NKE",
+      "qty": "1",
+      "price": "46.59",
+      "transaction_time": "2026-05-29T13:57:30.35204Z"
+    },
+    {
+      "symbol": "PFE",
+      "qty": "1",
+      "price": "26.09",
+      "transaction_time": "2026-05-29T13:41:55.199393Z"
+    }
+  ],
+  "reconciliation": {
+    "get_order_by_client_id": "completed for NKE/SO/SLB; all three filled",
+    "get_orders": "completed; prior SPY/AMZN/BAC remain open new",
+    "get_all_positions": "completed; 32 symbols observed",
+    "get_account_info": "completed",
+    "get_account_activities": "completed for FILL after 2026-05-29T13:30:00Z"
+  },
+  "source_refs": [
+    "alpaca_mcp:get_order_by_client_id",
+    "alpaca_mcp:get_orders",
+    "alpaca_mcp:get_all_positions",
+    "alpaca_mcp:get_account_info",
+    "alpaca_mcp:get_account_activities",
+    "wiki/trade-ledger/orders/2026-05-29-2251-hourly-autopilot.json"
+  ]
+}

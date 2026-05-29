@@ -2691,3 +2691,22 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 섹션은 local skill이 `AGENTS.md`, YAML/schema source-of-truth, workflow contracts, validators, wiki source-of-truth를 대체하지 않는다고 명시했다. 충돌 시 source-of-truth를 따르고 mismatch를 `wiki/log.md`에 기록하도록 했다.
 - Skill path check: 섹션에 언급한 12개 `skills/stock-alpaca-*/SKILL.md` 파일 존재 확인 PASS.
 - 검증: `python3 scripts/check-policy-source-of-truth.py` PASS. 주문 제출/취소/계좌 변경은 수행하지 않았다.
+
+## [2026-05-29 22:51 Asia/Seoul] runtime-check | scheduled runtime error verification
+
+- 최신 regular hourly run `2026-05-29-2231-hourly-autopilot` 기준으로 scheduler log, run manifest, report, order plan, post-trade artifact를 점검했다. 치명적 런타임 중단은 발견하지 못했다.
+- Strict validators: universe coverage PASS, MCP coverage PASS, risk policy PASS.
+- Runtime tests: targeted runtime/notification/preflight/dashboard/source-of-truth tests 44개 PASS; full unittest discover 120개 PASS.
+- 남은 비차단 이슈: NKE 주문 제출 및 same-client-id retry가 tool monitor에서 cancelled 후 최종 reconciliation 404로 미제출 기록됨. Alpha Vantage는 daily rate-limit `provider_error`가 남았지만 SEC EDGAR/FRED/Firecrawl/Yahoo 확인으로 MCP strict gate는 통과했다.
+- 추가 관찰: post-trade `get_account_activities`가 cancelled 되었으나 주문/포지션/계좌 reconciliation으로 PFE 체결 확인은 완료됐다. OpenClaw web-search plugin config warning은 있었지만 `[STOCK-TRAIN]` 알림 전송은 성공했다.
+- 주문 제출/취소/계좌 변경은 수행하지 않았다.
+
+## [2026-05-29 23:00 Asia/Seoul] hourly-autopilot | 2026-05-29-2251-hourly-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; regular session submit mode.
+- Scheduler evidence: stale cleanup PASS with no stale candidates; prior SPY/AMZN/BAC hourly buy orders remained fresh open orders, so they blocked same symbol/cluster buy duplicates but did not block distinct-cluster candidates. Alpaca core preflight hard gate PASS for clock/account/positions/open orders/recent activities/watchlists/assets/quotes/snapshots/trades. Research preflight had SEC EDGAR/FRED/Firecrawl/Yahoo PASS and Alpha Vantage `provider_error` circuit-breaker gap, nonblocking with 4 usable research confirmations.
+- Gates: universe strict PASS, MCP strict PASS, risk validator PASS. Sell/trim evaluated first and recorded `sell_trigger_none`; no thesis-break, risk-limit, stale-thesis underperformance, speculative loss-control, theme/factor/cluster warning, or concentration trim trigger was active from scheduler evidence.
+- Submitted through Alpaca MCP only: NKE, SO, SLB 1-share day limit paper buy orders. NKE initial submit was safety-monitor cancelled; same-client-id reconciliation returned 404; one same-client-id retry was accepted and filled. Fills: NKE $46.59, SO $91.55, SLB $54.79.
+- Post-trade reconciliation: `get_order_by_client_id`, `get_orders`, `get_all_positions`, `get_account_info`, and `get_account_activities` completed. Prior SPY/AMZN/BAC orders remain open `new`.
+- Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-2251-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-2251-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-29-2251-hourly-autopilot-post-trade.json`, [[2026-05-29-2251-hourly-autopilot]], [[portfolio-current]]. Review due: NKE/SO/SLB filled; SPY/AMZN/BAC open orders require lifecycle follow-up.

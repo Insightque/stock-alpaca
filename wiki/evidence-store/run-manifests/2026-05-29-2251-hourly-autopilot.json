@@ -1,0 +1,496 @@
+{
+  "run_id": "2026-05-29-2251-hourly-autopilot",
+  "schema_version": "run-manifest-v1",
+  "created_at": "2026-05-29T13:56:00Z",
+  "data_cutoff_time": "2026-05-29T13:51:31Z",
+  "mode": "submit",
+  "paper": true,
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:1160293a656dd5f8ff601c5058705bf777bb58f9b103382bed1b80593159c9de",
+  "prompt_file_sha": "sha256:ab426103b92b11c432a29fe2f4c47158519b49c73e6c6218325aa3e61e3c5f90",
+  "market_clock_checked_at": "2026-05-29T13:51:11Z",
+  "recommendation_actionability": "actionable",
+  "first_blocking_gate": "",
+  "decision_summary": {
+    "market_open": true,
+    "paper_mode": true,
+    "orders_planned": 3,
+    "orders_submitted": 3,
+    "sell_trim_diagnostics": "sell_trigger_none: no thesis-break, risk-limit, stale-thesis underperformance, speculative loss-control, theme/factor/cluster warning, or concentration trim trigger found in scheduler evidence",
+    "next_relaxation_candidate": "none before submit; gates passed for selected distinct-cluster candidates",
+    "top_recheck_candidates": [
+      "NKE",
+      "SO",
+      "SLB",
+      "PLTR",
+      "NOK"
+    ],
+    "orders_filled": 3,
+    "orders_open": 3,
+    "orders_not_submitted": 0,
+    "submit_gap": "NKE initial place_stock_order was cancelled by safety monitor; same-client-id reconciliation returned 404; one idempotent same-client-id retry was accepted and filled. SO and SLB were accepted and filled."
+  },
+  "open_order_lifecycle": {
+    "status": "pass",
+    "source_ref": "wiki/evidence-store/sources/2026-05-29-2251-hourly-autopilot-stale-order-cleanup.json",
+    "stale_candidates": [],
+    "remaining_open_orders": [
+      {
+        "id": "71d29236-810c-4a3e-af0d-f79e7521534e",
+        "client_order_id": "hourly-20260529-2231-buy-bac",
+        "created_at": "2026-05-29T13:42:10.110402543Z",
+        "updated_at": "2026-05-29T13:42:11.081571112Z",
+        "submitted_at": "2026-05-29T13:42:11.080483041Z",
+        "filled_at": null,
+        "expired_at": null,
+        "canceled_at": null,
+        "failed_at": null,
+        "replaced_at": null,
+        "replaced_by": null,
+        "replaces": null,
+        "asset_id": "061588a3-d70b-4b9c-a3f6-636aaa16acc4",
+        "symbol": "BAC",
+        "asset_class": "us_equity",
+        "notional": null,
+        "qty": "1",
+        "filled_qty": "0",
+        "filled_avg_price": null,
+        "order_class": "",
+        "order_type": "limit",
+        "type": "limit",
+        "side": "buy",
+        "position_intent": "buy_to_open",
+        "time_in_force": "day",
+        "limit_price": "50.72",
+        "stop_price": null,
+        "status": "new",
+        "extended_hours": false,
+        "legs": null,
+        "trail_percent": null,
+        "trail_price": null,
+        "hwm": null,
+        "subtag": null,
+        "source": null,
+        "expires_at": "2026-05-29T20:00:00Z"
+      },
+      {
+        "id": "7a871e73-4dc1-4f99-8cd5-fe8ff3be3208",
+        "client_order_id": "hourly-20260529-2231-buy-amzn",
+        "created_at": "2026-05-29T13:40:32.088346Z",
+        "updated_at": "2026-05-29T13:40:40.702589Z",
+        "submitted_at": "2026-05-29T13:40:40.701583Z",
+        "filled_at": null,
+        "expired_at": null,
+        "canceled_at": null,
+        "failed_at": null,
+        "replaced_at": null,
+        "replaced_by": null,
+        "replaces": null,
+        "asset_id": "f801f835-bfe6-4a9d-a6b1-ccbb84bfd75f",
+        "symbol": "AMZN",
+        "asset_class": "us_equity",
+        "notional": null,
+        "qty": "1",
+        "filled_qty": "0",
+        "filled_avg_price": null,
+        "order_class": "",
+        "order_type": "limit",
+        "type": "limit",
+        "side": "buy",
+        "position_intent": "buy_to_open",
+        "time_in_force": "day",
+        "limit_price": "272.82",
+        "stop_price": null,
+        "status": "new",
+        "extended_hours": false,
+        "legs": null,
+        "trail_percent": null,
+        "trail_price": null,
+        "hwm": null,
+        "subtag": null,
+        "source": "access_key",
+        "expires_at": "2026-05-29T20:00:00Z"
+      },
+      {
+        "id": "9bd742a2-2b33-4833-b810-8c8284d1d10c",
+        "client_order_id": "hourly-20260529-2231-buy-spy",
+        "created_at": "2026-05-29T13:40:19.765325Z",
+        "updated_at": "2026-05-29T13:40:29.739931Z",
+        "submitted_at": "2026-05-29T13:40:29.738676Z",
+        "filled_at": null,
+        "expired_at": null,
+        "canceled_at": null,
+        "failed_at": null,
+        "replaced_at": null,
+        "replaced_by": null,
+        "replaces": null,
+        "asset_id": "b28f4066-5c6d-479b-a2af-85dc1a8f16fb",
+        "symbol": "SPY",
+        "asset_class": "us_equity",
+        "notional": null,
+        "qty": "1",
+        "filled_qty": "0",
+        "filled_avg_price": null,
+        "order_class": "",
+        "order_type": "limit",
+        "type": "limit",
+        "side": "buy",
+        "position_intent": "buy_to_open",
+        "time_in_force": "day",
+        "limit_price": "755.9",
+        "stop_price": null,
+        "status": "new",
+        "extended_hours": false,
+        "legs": null,
+        "trail_percent": null,
+        "trail_price": null,
+        "hwm": null,
+        "subtag": null,
+        "source": "access_key",
+        "expires_at": "2026-05-29T20:00:00Z"
+      }
+    ]
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "all_research_must_be_attempted": true,
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_actionable": 3,
+    "min_research_confirmations_for_submit": 3
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T13:51:31Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2251-hourly-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T13:51:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2251-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-29T13:51:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2251-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Circuit breaker open until 2026-05-29T14:31:31+00:00 after recent provider_error failure: Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T13:31:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2251-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T13:51:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2251-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T13:51:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2251-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-29T13:51:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2251-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Circuit breaker open until 2026-05-29T14:31:31+00:00 after recent provider_error failure: Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    }
+  ],
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + scheduler Alpaca preflight universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_universe_current_quote_spread_diversification_screen_then_scheduler_research_preflight_validation_then_risk_trim_first_validation_buy_selection",
+    "pre_mcp_shortlist": [
+      "SPY",
+      "GOOGL",
+      "AAPL",
+      "NVDA",
+      "PFE",
+      "BAC",
+      "NKE",
+      "QQQ",
+      "SO",
+      "SLB"
+    ],
+    "final_candidates": [
+      "NKE",
+      "SO",
+      "SLB"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "recommendation_shortlist": [
+    {
+      "symbol": "NKE",
+      "action": "buy",
+      "confidence_score": 0.62,
+      "policy_status": "auto_eligible_paper",
+      "rationale": "NKE 1주 validation buy. consumer discretionary diversification after prior NKE submit did not create an order; Alpaca quote fresh, spread 0.0427% below 0.50%, active/tradable US equity/ETF, 4 usable research MCP confirmations, source confidence high, and current cash/exposure caps have room. Sell/trim review ran first and found no active risk-reducing trigger; fresh open orders block only duplicate/same-cluster buys, not this distinct-cluster candidate.",
+      "quote_age_minutes": 4.525,
+      "spread_pct": 0.0427
+    },
+    {
+      "symbol": "SO",
+      "action": "buy",
+      "confidence_score": 0.6,
+      "policy_status": "auto_eligible_paper",
+      "rationale": "SO 1주 validation buy. defensive utilities exposure with low volatility and no open-order conflict; Alpaca quote fresh, spread 0.0545% below 0.50%, active/tradable US equity/ETF, 4 usable research MCP confirmations, source confidence high, and current cash/exposure caps have room. Sell/trim review ran first and found no active risk-reducing trigger; fresh open orders block only duplicate/same-cluster buys, not this distinct-cluster candidate.",
+      "quote_age_minutes": 4.528,
+      "spread_pct": 0.0545
+    },
+    {
+      "symbol": "SLB",
+      "action": "buy",
+      "confidence_score": 0.59,
+      "policy_status": "auto_eligible_paper",
+      "rationale": "SLB 1주 validation buy. energy-services diversification in a different cluster from fresh open orders; Alpaca quote fresh, spread 0.0546% below 0.50%, active/tradable US equity/ETF, 4 usable research MCP confirmations, source confidence high, and current cash/exposure caps have room. Sell/trim review ran first and found no active risk-reducing trigger; fresh open orders block only duplicate/same-cluster buys, not this distinct-cluster candidate.",
+      "quote_age_minutes": 4.51,
+      "spread_pct": 0.0546
+    }
+  ],
+  "order_plan": {
+    "path": "wiki/trade-ledger/orders/2026-05-29-2251-hourly-autopilot.json",
+    "orders": [
+      {
+        "symbol": "NKE",
+        "side": "buy",
+        "qty": 1,
+        "limit_price": 46.88,
+        "client_order_id": "hourly-20260529-2251-buy-nke"
+      },
+      {
+        "symbol": "SO",
+        "side": "buy",
+        "qty": 1,
+        "limit_price": 91.69,
+        "client_order_id": "hourly-20260529-2251-buy-so"
+      },
+      {
+        "symbol": "SLB",
+        "side": "buy",
+        "qty": 1,
+        "limit_price": 54.95,
+        "client_order_id": "hourly-20260529-2251-buy-slb"
+      }
+    ]
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-29-2251-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-05-29-2251-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-29-2251-hourly-autopilot-research-mcp-preflight.json",
+    "harness/risk-policy.yaml",
+    "harness/recommendation-policy.yaml"
+  ],
+  "risk_check_result": {
+    "errors": [],
+    "path": "wiki/trade-ledger/orders/2026-05-29-2251-hourly-autopilot.json",
+    "status": "PASS",
+    "summary": {
+      "buy_notional": 193.51999999999998,
+      "max_cluster_value": 46091.1645,
+      "max_factor_value": 51212.405,
+      "max_invested": 81939.848,
+      "max_speculative_value": 12290.9772,
+      "max_theme_value": 35848.6835,
+      "max_ticker_value": 15363.7215,
+      "min_cash": 20484.962,
+      "policy_version": "medium-risk-v1.1",
+      "post_cash": 36725.64000000001,
+      "post_invested": 65701.7072,
+      "sell_notional": 0.0,
+      "speculative_value": 6710.969999999999
+    },
+    "warnings": []
+  },
+  "validator_results": {
+    "universe_strict": {
+      "status": "PASS",
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-05-29-2251-hourly-autopilot.json"
+    },
+    "mcp_strict": {
+      "status": "PASS",
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-05-29-2251-hourly-autopilot.json"
+    },
+    "risk_policy": {
+      "status": "PASS",
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-05-29-2251-hourly-autopilot.json",
+      "summary": {
+        "buy_notional": 193.51999999999998,
+        "max_cluster_value": 46091.1645,
+        "max_factor_value": 51212.405,
+        "max_invested": 81939.848,
+        "max_speculative_value": 12290.9772,
+        "max_theme_value": 35848.6835,
+        "max_ticker_value": 15363.7215,
+        "min_cash": 20484.962,
+        "policy_version": "medium-risk-v1.1",
+        "post_cash": 36725.64000000001,
+        "post_invested": 65701.7072,
+        "sell_notional": 0.0,
+        "speculative_value": 6710.969999999999
+      }
+    }
+  },
+  "execution_outcome": {
+    "submitted_orders": [
+      {
+        "symbol": "NKE",
+        "client_order_id": "hourly-20260529-2251-buy-nke",
+        "id": "72f71d4c-89ef-4ea2-a53b-b6b17b456a0f",
+        "status": "filled",
+        "submitted_at": "2026-05-29T13:57:30.180010787Z",
+        "filled_at": "2026-05-29T13:57:30.352039894Z",
+        "filled_qty": "1",
+        "filled_avg_price": "46.59",
+        "limit_price": "46.88"
+      },
+      {
+        "symbol": "SO",
+        "client_order_id": "hourly-20260529-2251-buy-so",
+        "id": "cc988999-8d85-4db2-8ef3-f146101e3b1a",
+        "status": "filled",
+        "submitted_at": "2026-05-29T13:57:42.114038225Z",
+        "filled_at": "2026-05-29T13:57:42.952137553Z",
+        "filled_qty": "1",
+        "filled_avg_price": "91.55",
+        "limit_price": "91.69"
+      },
+      {
+        "symbol": "SLB",
+        "client_order_id": "hourly-20260529-2251-buy-slb",
+        "id": "ab2c37a3-7615-432f-8ba8-c32e05909582",
+        "status": "filled",
+        "submitted_at": "2026-05-29T13:57:54.819678476Z",
+        "filled_at": "2026-05-29T13:57:56.058205105Z",
+        "filled_qty": "1",
+        "filled_avg_price": "54.79",
+        "limit_price": "54.95"
+      }
+    ],
+    "not_submitted": [],
+    "prior_open_orders": [
+      {
+        "symbol": "BAC",
+        "client_order_id": "hourly-20260529-2231-buy-bac",
+        "id": "71d29236-810c-4a3e-af0d-f79e7521534e",
+        "status": "new",
+        "submitted_at": "2026-05-29T13:42:11.080483041Z",
+        "filled_qty": "0",
+        "filled_avg_price": null,
+        "limit_price": "50.72"
+      },
+      {
+        "symbol": "AMZN",
+        "client_order_id": "hourly-20260529-2231-buy-amzn",
+        "id": "7a871e73-4dc1-4f99-8cd5-fe8ff3be3208",
+        "status": "new",
+        "submitted_at": "2026-05-29T13:40:40.701583Z",
+        "filled_qty": "0",
+        "filled_avg_price": null,
+        "limit_price": "272.82"
+      },
+      {
+        "symbol": "SPY",
+        "client_order_id": "hourly-20260529-2231-buy-spy",
+        "id": "9bd742a2-2b33-4833-b810-8c8284d1d10c",
+        "status": "new",
+        "submitted_at": "2026-05-29T13:40:29.738676Z",
+        "filled_qty": "0",
+        "filled_avg_price": null,
+        "limit_price": "755.9"
+      }
+    ],
+    "post_trade_snapshot": "wiki/trade-ledger/positions/2026-05-29-2251-hourly-autopilot-post-trade.json",
+    "post_trade_reconciliation": "completed"
+  }
+}

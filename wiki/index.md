@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-29 22:44 KST hourly autopilot post-trade reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-29 22:59 KST hourly autopilot post-trade reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -517,3 +517,7 @@
 - `wiki/evidence-store/run-manifests/2026-05-29-2231-hourly-autopilot.json` - hourly autopilot manifest, Alpha Vantage provider_error nonblocking gap, 4 usable research confirmations, post-trade reconciliation 기록.
 - `wiki/trade-ledger/orders/2026-05-29-2231-hourly-autopilot.json` - 2026-05-29 22:31 KST hourly autopilot validation buy order plan, risk PASS, SPY/AMZN/NKE/PFE/BAC planned.
 - `wiki/trade-ledger/positions/2026-05-29-2231-hourly-autopilot-post-trade.json` - 2026-05-29 22:44 KST post-trade snapshot: PFE filled, SPY/AMZN/BAC open, NKE not found/not submitted.
+- [[2026-05-29-2251-hourly-autopilot]] - regular-session hourly paper autopilot 실행. universe/MCP/risk strict PASS 후 NKE/SO/SLB 1주 paper limit buy 체결, prior SPY/AMZN/BAC open `new` 유지.
+- `wiki/evidence-store/run-manifests/2026-05-29-2251-hourly-autopilot.json` - hourly autopilot manifest, Alpha Vantage provider_error circuit-breaker nonblocking gap, 4 usable research confirmations, post-trade reconciliation 기록.
+- `wiki/trade-ledger/orders/2026-05-29-2251-hourly-autopilot.json` - 2026-05-29 22:51 KST hourly autopilot validation buy order plan, risk PASS, NKE/SO/SLB planned and filled.
+- `wiki/trade-ledger/positions/2026-05-29-2251-hourly-autopilot-post-trade.json` - 2026-05-29 22:59 KST post-trade snapshot: NKE/SO/SLB filled, SPY/AMZN/BAC open.
