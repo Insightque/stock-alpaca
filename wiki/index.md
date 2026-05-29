@@ -44,6 +44,7 @@
 
 ## Current Runs
 
+- [[2026-05-30-0351-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell trigger 없음 및 lifecycle/same-session/thesis/portfolio-fit/target-band 제약으로 주문 없음.
 - [[2026-05-30-0331-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell trigger 없음 및 lifecycle/same-session/spread/thesis/target-band 제약으로 주문 없음.
 - [[2026-05-30-0311-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell trigger 없음 및 lifecycle/same-session/spread/thesis/target-band 제약으로 주문 없음.
 - [[2026-05-30-0251-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 lifecycle/same-session/thesis/spread/target-band 제약으로 주문 없음.
