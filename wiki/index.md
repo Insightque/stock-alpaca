@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-05-30-0631-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-30-0611-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-30-0451-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell trigger 없음 및 lifecycle/same-session/thesis/portfolio-fit/target-band 제약으로 주문 없음.
 - [[2026-05-30-0431-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell trigger 없음 및 lifecycle/same-session/thesis/portfolio-fit/target-band 제약으로 주문 없음.
