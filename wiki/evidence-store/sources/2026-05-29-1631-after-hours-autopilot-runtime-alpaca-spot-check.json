@@ -1,0 +1,116 @@
+{
+  "run_id": "2026-05-29-1631-after-hours-autopilot",
+  "created_at": "2026-05-29T16:35:00+09:00",
+  "paper": true,
+  "source": "Codex runtime Alpaca MCP spot checks",
+  "read_only": true,
+  "tools": {
+    "get_clock": {
+      "outcome": "pass",
+      "payload": {
+        "is_open": false,
+        "timestamp": "2026-05-29T03:32:29.393189573-04:00",
+        "next_open": "2026-05-29T09:30:00-04:00",
+        "next_close": "2026-05-29T16:00:00-04:00"
+      }
+    },
+    "get_account_info": {
+      "outcome": "pass",
+      "payload": {
+        "status": "ACTIVE",
+        "cash": "36945.25",
+        "buying_power": "133330.1",
+        "portfolio_value": "102487.21",
+        "long_market_value": "65541.96"
+      }
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "positions_count": 32
+    },
+    "get_orders": {
+      "outcome": "cancelled_by_runtime_safety_wrapper",
+      "fallback": "scheduler preflight get_orders_open outcome=pass payload.result=[]"
+    },
+    "get_stock_latest_quote": {
+      "outcome": "pass",
+      "feed": "overnight",
+      "symbols": [
+        "NVDA",
+        "SPY",
+        "SMH",
+        "NOK",
+        "QQQ",
+        "XOM",
+        "LIN",
+        "ADBE"
+      ],
+      "quotes": {
+        "NVDA": {
+          "bid": 215.23,
+          "ask": 215.34,
+          "t": "2026-05-29T07:33:01.869671585Z",
+          "spread_pct": 0.0511,
+          "mid": 215.285
+        },
+        "SPY": {
+          "bid": 755.27,
+          "ask": 755.32,
+          "t": "2026-05-29T07:33:02.304577695Z",
+          "spread_pct": 0.0066,
+          "mid": 755.295
+        },
+        "SMH": {
+          "bid": 601.67,
+          "ask": 603.32,
+          "t": "2026-05-29T07:33:02.324848383Z",
+          "spread_pct": 0.2739,
+          "mid": 602.495
+        },
+        "NOK": {
+          "bid": 15.17,
+          "ask": 15.19,
+          "t": "2026-05-29T07:33:02.299193617Z",
+          "spread_pct": 0.1318,
+          "mid": 15.18
+        },
+        "QQQ": {
+          "bid": 735.16,
+          "ask": 736.18,
+          "t": "2026-05-29T07:33:02.319731100Z",
+          "spread_pct": 0.1386,
+          "mid": 735.67
+        },
+        "XOM": {
+          "bid": 146.43,
+          "ask": 146.7,
+          "t": "2026-05-29T07:26:00.468044526Z",
+          "spread_pct": 0.1842,
+          "mid": 146.565
+        },
+        "LIN": {
+          "bid": 501.1,
+          "ask": 502.22,
+          "t": "2026-05-29T07:32:56.095358016Z",
+          "spread_pct": 0.2233,
+          "mid": 501.66
+        },
+        "ADBE": {
+          "bid": 242.8,
+          "ask": 243.65,
+          "t": "2026-05-29T07:31:45.058811992Z",
+          "spread_pct": 0.3495,
+          "mid": 243.225
+        }
+      }
+    },
+    "get_asset_spot_checks": {
+      "outcome": "pass",
+      "symbols": [
+        "NOK",
+        "NVDA"
+      ],
+      "notes": "Both active/tradable through Alpaca MCP; scheduler preflight asset rows passed for the full 62-symbol universe."
+    }
+  }
+}
