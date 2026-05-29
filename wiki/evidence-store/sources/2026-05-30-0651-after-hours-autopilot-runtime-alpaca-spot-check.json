@@ -1,0 +1,166 @@
+{
+  "run_id": "2026-05-30-0651-after-hours-autopilot",
+  "created_at": "2026-05-30T06:53:04+09:00",
+  "paper": true,
+  "source": "alpaca_mcp_runtime_spot_check",
+  "session": "after_hours",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "sanitized": true,
+  "tool_results": {
+    "get_clock": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T21:53:04.898679039Z",
+      "is_open": false,
+      "next_open": "2026-06-01T09:30:00-04:00",
+      "next_close": "2026-06-01T16:00:00-04:00"
+    },
+    "get_account_info": {
+      "outcome": "pass",
+      "status": "ACTIVE",
+      "trading_blocked": false,
+      "account_blocked": false,
+      "portfolio_value": 101983.47,
+      "cash": 34800.26,
+      "buying_power": 130781.87,
+      "currency": "USD"
+    },
+    "get_orders_open_us_equity": {
+      "outcome": "pass",
+      "orders": []
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "position_count": 32,
+      "symbols": [
+        "AAPL",
+        "ADBE",
+        "AMD",
+        "AMZN",
+        "AVGO",
+        "BAC",
+        "COP",
+        "CVX",
+        "ETN",
+        "FCX",
+        "GOOGL",
+        "INTC",
+        "IONQ",
+        "LLY",
+        "LRCX",
+        "NEE",
+        "NKE",
+        "NOK",
+        "NVDA",
+        "PFE",
+        "PLTR",
+        "QQQ",
+        "RGTI",
+        "SLB",
+        "SO",
+        "SPY",
+        "TSLA",
+        "TSM",
+        "UNH",
+        "V",
+        "WMT",
+        "XOM"
+      ]
+    },
+    "get_stock_latest_quote_overnight": {
+      "outcome": "pass",
+      "feed": "overnight",
+      "checked_at": "2026-05-29T21:53:04.898679039Z",
+      "symbols": [
+        "QQQ",
+        "NOK",
+        "AVGO",
+        "NVDA",
+        "COST",
+        "FCX",
+        "UNH",
+        "SBUX"
+      ],
+      "quotes": {
+        "QQQ": {
+          "bid": 735.21,
+          "ask": 736.7,
+          "timestamp": "2026-05-29T08:00:00.386377592Z",
+          "quote_age_minutes": 833.08,
+          "spread_pct": 0.2025,
+          "fresh_for_submit": false
+        },
+        "NOK": {
+          "bid": 14.81,
+          "ask": 15.79,
+          "timestamp": "2026-05-29T08:00:00.412618229Z",
+          "quote_age_minutes": 833.07,
+          "spread_pct": 6.4052,
+          "fresh_for_submit": false
+        },
+        "AVGO": {
+          "bid": 419.81,
+          "ask": 433.84,
+          "timestamp": "2026-05-29T08:00:00.407946155Z",
+          "quote_age_minutes": 833.07,
+          "spread_pct": 3.2871,
+          "fresh_for_submit": false
+        },
+        "NVDA": {
+          "bid": 215.27,
+          "ask": 215.43,
+          "timestamp": "2026-05-29T08:00:00.413977496Z",
+          "quote_age_minutes": 833.07,
+          "spread_pct": 0.0743,
+          "fresh_for_submit": false
+        },
+        "COST": {
+          "bid": 859.42,
+          "ask": 1099.28,
+          "timestamp": "2026-05-29T08:00:00.406470090Z",
+          "quote_age_minutes": 833.07,
+          "spread_pct": 24.4918,
+          "fresh_for_submit": false
+        },
+        "FCX": {
+          "bid": 63.31,
+          "ask": 68.01,
+          "timestamp": "2026-05-29T08:00:00.405230523Z",
+          "quote_age_minutes": 833.07,
+          "spread_pct": 7.1581,
+          "fresh_for_submit": false
+        },
+        "UNH": {
+          "bid": 376.69,
+          "ask": 381.75,
+          "timestamp": "2026-05-29T08:00:00.401798049Z",
+          "quote_age_minutes": 833.07,
+          "spread_pct": 1.3343,
+          "fresh_for_submit": false
+        },
+        "SBUX": {
+          "bid": 100.47,
+          "ask": 114.89,
+          "timestamp": "2026-05-29T08:00:00.383415333Z",
+          "quote_age_minutes": 833.08,
+          "spread_pct": 13.3915,
+          "fresh_for_submit": false
+        }
+      }
+    },
+    "get_stock_latest_quote_boats": {
+      "outcome": "failed",
+      "feed": "boats",
+      "checked_at": "2026-05-29T21:53:04.898679039Z",
+      "gap_category": "auth",
+      "gap_reason": "subscription does not permit querying BOATS data"
+    }
+  },
+  "gate_summary": {
+    "regular_market_not_open": "pass",
+    "account_positions_orders_readable": "pass",
+    "quote_freshness": "fail",
+    "quote_spread": "mixed",
+    "submit_allowed": false,
+    "submit_block_reason": "fresh_quote gate failed before order creation"
+  }
+}
