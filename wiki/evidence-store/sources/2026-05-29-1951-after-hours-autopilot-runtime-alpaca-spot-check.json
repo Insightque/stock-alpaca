@@ -1,0 +1,171 @@
+{
+  "run_id": "2026-05-29-1951-after-hours-autopilot",
+  "created_at": "2026-05-29T19:54:30+09:00",
+  "paper": true,
+  "source": "Codex Alpaca MCP runtime spot checks",
+  "read_only": true,
+  "orders_submitted": 0,
+  "mcp_calls": {
+    "get_clock": {
+      "outcome": "pass",
+      "payload": {
+        "is_open": false,
+        "timestamp": "2026-05-29T06:52:21.287919929-04:00",
+        "next_open": "2026-05-29T09:30:00-04:00",
+        "next_close": "2026-05-29T16:00:00-04:00"
+      }
+    },
+    "get_account_info": {
+      "outcome": "pass",
+      "payload_summary": {
+        "portfolio_value": 102538.23,
+        "cash": 36945.25,
+        "buying_power": 133320.82,
+        "currency": "USD",
+        "daily_realized_loss": 0,
+        "account_status": "ACTIVE"
+      }
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "payload_summary": {
+        "position_count": 32,
+        "long_only": true
+      }
+    },
+    "get_orders": {
+      "outcome": "pass",
+      "arguments": {
+        "status": "open",
+        "asset_class": [
+          "us_equity"
+        ]
+      },
+      "payload": {
+        "result": []
+      }
+    },
+    "get_stock_latest_quote": {
+      "outcome": "pass",
+      "arguments": {
+        "symbols": "QQQ,NOK,SMH,SPY,NVDA,ADBE,LIN,XOM",
+        "feed": "overnight"
+      },
+      "quote_timestamp_basis": "2026-05-29T08:00:00Z"
+    },
+    "get_stock_snapshot": {
+      "outcome": "pass",
+      "arguments": {
+        "symbols": "QQQ,NOK,SMH,SPY,NVDA,ADBE,LIN,XOM",
+        "feed": "overnight"
+      },
+      "quote_timestamp_basis": "2026-05-29T08:00:00Z"
+    },
+    "get_account_activities": {
+      "outcome": "cancelled",
+      "gap_category": "cancelled",
+      "gap_reason": "Runtime activity lookup was cancelled by wrapper; scheduler Alpaca core preflight recent_activities row and prior same-session ADBE fill evidence were used for separate after-hours order count."
+    }
+  },
+  "clock": {
+    "is_open": false,
+    "timestamp": "2026-05-29T06:52:21.287919929-04:00",
+    "next_open": "2026-05-29T09:30:00-04:00",
+    "next_close": "2026-05-29T16:00:00-04:00"
+  },
+  "account_summary": {
+    "portfolio_value": 102538.23,
+    "cash": 36945.25,
+    "buying_power": 133320.82,
+    "currency": "USD",
+    "daily_realized_loss": 0
+  },
+  "open_orders": [],
+  "after_hours_new_orders_submitted_today": 1,
+  "quote_checks": [
+    {
+      "symbol": "NOK",
+      "ask": 15.79,
+      "bid": 14.81,
+      "spread_pct": 6.4052,
+      "spread_pass": false,
+      "quote_captured_at": "2026-05-29T08:00:00Z",
+      "quote_age_minutes": 172.35,
+      "quote_fresh": false
+    },
+    {
+      "symbol": "NVDA",
+      "ask": 215.43,
+      "bid": 215.27,
+      "spread_pct": 0.0743,
+      "spread_pass": true,
+      "quote_captured_at": "2026-05-29T08:00:00Z",
+      "quote_age_minutes": 172.35,
+      "quote_fresh": false
+    },
+    {
+      "symbol": "XOM",
+      "ask": 151.95,
+      "bid": 145.51,
+      "spread_pct": 4.33,
+      "spread_pass": false,
+      "quote_captured_at": "2026-05-29T08:00:00Z",
+      "quote_age_minutes": 172.35,
+      "quote_fresh": false
+    },
+    {
+      "symbol": "ADBE",
+      "ask": 268.18,
+      "bid": 242.8,
+      "spread_pct": 9.9339,
+      "spread_pass": false,
+      "quote_captured_at": "2026-05-29T08:00:00Z",
+      "quote_age_minutes": 172.35,
+      "quote_fresh": false
+    },
+    {
+      "symbol": "LIN",
+      "ask": 502.05,
+      "bid": 495.03,
+      "spread_pct": 1.4081,
+      "spread_pass": false,
+      "quote_captured_at": "2026-05-29T08:00:00Z",
+      "quote_age_minutes": 172.35,
+      "quote_fresh": false
+    },
+    {
+      "symbol": "QQQ",
+      "ask": 736.7,
+      "bid": 735.21,
+      "spread_pct": 0.2025,
+      "spread_pass": true,
+      "quote_captured_at": "2026-05-29T08:00:00Z",
+      "quote_age_minutes": 172.35,
+      "quote_fresh": false
+    },
+    {
+      "symbol": "SPY",
+      "ask": 758.7,
+      "bid": 754.93,
+      "spread_pct": 0.4981,
+      "spread_pass": false,
+      "quote_captured_at": "2026-05-29T08:00:00Z",
+      "quote_age_minutes": 172.35,
+      "quote_fresh": false
+    },
+    {
+      "symbol": "SMH",
+      "ask": 618.91,
+      "bid": 593.88,
+      "spread_pct": 4.1277,
+      "spread_pass": false,
+      "quote_captured_at": "2026-05-29T08:00:00Z",
+      "quote_age_minutes": 172.35,
+      "quote_fresh": false
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-29-1951-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-29-1951-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
