@@ -1,6 +1,6 @@
-policy_id: recommendation-policy-v1.9
-updated_at: "2026-05-29T23:09:00+09:00"
-policy_version: v1.9
+policy_id: recommendation-policy-v1.10
+updated_at: "2026-05-30T07:43:00+09:00"
+policy_version: v1.10
 strategy_status:
   long_term_quality_momentum_v1:
     status: auto_eligible_paper
@@ -204,6 +204,25 @@ mcp_gate_policy:
   provider_gap_blocks_order: false_when_core_and_min_research_pass
   provider_gap_creates_recheck_candidate: true
   recheck_label: actionable_if_provider_recovered
+  critical_source_rules:
+    earnings_signal:
+      require_any:
+        - sec-edgar
+        - alpha-vantage
+        - firecrawl_company_ir
+      missing_behavior: downgrade_to_watch
+    macro_rate_sensitive_signal:
+      require_any:
+        - fred
+        - explicit_macro_source
+      missing_behavior: downgrade_to_watch
+    filing_risk_signal:
+      require_any:
+        - sec-edgar_acceptance_time
+      missing_behavior: block_new_buy
+    analyst_only_signal:
+      allowed_use: thesis_confirmation_only
+      missing_behavior: no_positive_score_delta
 risk_trim_policy:
   allow_core_only_risk_trim: true
   requires_alpaca_position_quote_order_state: true
@@ -244,12 +263,24 @@ risk_trim_policy:
     stale_thesis_age_days: 5
     stale_thesis_underperform_spy_20d_pct: -5
     speculative_loss_pct: -8
+    validation_review_underperform_spy_pct: -2
     require_no_same_day_buy_for_trim: true
   sell_candidate_diagnostics:
     enabled: true
     top_n: 3
     include_no_trigger_candidates: true
     include_blocked_by_gate_candidates: true
+    metric_policy:
+      require_metric_or_gap_reason: true
+      allow_zero_only_when_status_is_zero_valid: true
+      gap_reason_field: metric_gap_reason
+      expected_excess_fallback_order:
+        - strategy_expected_excess
+        - ret20_spy_qqq_excess
+        - latest_validation_review_excess
+        - explicit_metric_gap_reason
+      decision_grade_required_for_trim: true
+      blocked_sell_recheck_label: blocked_sell_candidate
     rank_by:
       - active_trigger
       - target_band_warning
@@ -264,10 +295,14 @@ risk_trim_policy:
       - trigger_status
       - primary_reason
       - skipped_gate
+      - metric_status
       - expected_excess_return_20d_pct
       - relative_to_spy_20d_pct
+      - metric_gap_reason
       - replacement_symbol
+      - replacement_expected_excess_margin_pct
       - recommendation
+      - blocked_sell_recheck
       - source_refs
   validation_lifecycle:
     enabled: true
@@ -286,6 +321,9 @@ risk_trim_policy:
     block_add_when_review_due: true
     open_position_conclusions_are_interim: true
     record_missing_review_as_sell_candidate_diagnostic: true
+    review_due_index_path: wiki/trade-ledger/reviews/review-due-index.json
+    underperform_spy_pct_to_block_add: -2
+    underperform_spy_pct_to_trim_watch: -2
   rotation_trim:
     enabled: true
     reason: relative_opportunity_cost
@@ -297,6 +335,7 @@ risk_trim_policy:
     require_held_position_passes_sell_gates: true
     require_distinct_or_lower_correlation_replacement: true
     do_not_rotate_same_day_validation_buy: true
+    watch_label: rotation_trim_watch
   portfolio_target_bands:
     themes:
       ai_semiconductor:
@@ -365,6 +404,18 @@ paper_validation_execution:
       max_new_exposure_pct_per_run_normal: 0.03
       max_new_exposure_pct_per_run_high_conviction: 0.05
       prefer_rebalance_over_new_buy_above_ratio: 0.75
+      prefer_rebalance_over_new_buy_behavior: evaluate_trim_rotation_before_new_buy
+    review_backlog_throttle:
+      enabled: true
+      pending_1d_count_field: review_backlog_pending_1d_count
+      pending_5d_count_field: review_backlog_pending_5d_count
+      pending_20d_count_field: review_backlog_pending_20d_count
+      reduce_new_buy_slots_at_pending_1d: 8
+      max_new_buy_slots_when_reduced: 1
+      stop_new_buys_at_pending_1d: 12
+      exclude_sides:
+        - sell
+      required_for_submit_buys: true
     open_order_policy:
       block_same_symbol_side_new_buy: true
       block_same_correlated_cluster_new_buy_when_open_order_exists: true
@@ -458,6 +509,16 @@ after_hours_policy:
     - 1D
     - 5D
     - 20D
+  risk_diagnostic_queue:
+    enabled: true
+    evaluate_holdings_without_after_hours_sell_submit: true
+    queue_for_next_regular_session: true
+    allowed_order_sides_unchanged: true
+    required_fields:
+      - symbol
+      - risk_reason
+      - next_regular_session_recheck
+      - source_refs
 universe_policy:
   allow_expanded_universe: true
   default_scope: expanded_metadata_universe
@@ -513,5 +574,45 @@ execution_portfolio_layer:
   - staged_entry
   - open_orders
   - existing_position_correlation
+  - active_risk_contribution
+  - replacement_rank
+portfolio_construction_policy:
+  enabled: true
+  target_model: active_validation_portfolio
+  required_position_fields:
+    - current_weight_pct
+    - expected_excess_return_20d_pct
+    - expected_adverse_move_20d_pct
+    - portfolio_contribution_pct
+    - replacement_rank
+    - thesis_status
+  prefer_rebalance_when_invested_ratio_source: paper_validation_execution.validation_order_sizing.target_exposure_path.prefer_rebalance_over_new_buy_above_ratio
+  new_buy_requires_portfolio_fit_above_rebalance_threshold: true
+  rank_new_buys_against_existing_holdings: true
+policy_learning_pipeline:
+  review_due_index:
+    enabled: true
+    path: wiki/trade-ledger/reviews/review-due-index.json
+  review_row_dataset:
+    enabled: true
+    path_pattern: wiki/evidence-store/review-datasets/YYYY-MM-DD-review-rows.jsonl
+    row_types:
+      - filled_trade
+      - not_filled_order
+      - skipped_candidate
+      - sell_diagnostic
+  review_scorecard:
+    enabled: true
+    output_pattern: wiki/research-notes/analyses/YYYY-MM-DD-review-scorecard.md
+    metrics:
+      - spy_qqq_excess_by_horizon
+      - signal_hit_rate
+      - avg_excess_return
+      - mfe_mae_or_gap_reason
+      - skipped_candidate_opportunity_cost
+      - not_filled_order_opportunity_cost
+  policy_signal_registry:
+    enabled: true
+    path: wiki/policy-book/policy-signals.yaml
 retired_filters:
   - volume_confirmed_momentum_intraday

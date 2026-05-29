@@ -268,6 +268,7 @@
 - [[2026-05-29-policy-architecture-review]] - sell diagnostics/lifecycle trim 정책 반영 이후 정책 학습, runtime, manifest schema, risk blocker 분류를 전면 점검한 분석.
 - [[2026-05-30-review-policy-learning-architecture-proposal]] - 회고를 더 빠른 정책 업데이트로 연결하기 위한 review row dataset, due index, scorecard, policy signal registry 구조 제안.
 - [[2026-05-30-daily-policy-update-health-check]] - 일별 자동운영/회고가 정책 업데이트로 잘 연결되는지 점검한 건강도 분석.
+- [[2026-05-30-professional-analyst-policy-review]] - 전문 애널리스트 관점에서 현재 추천/리스크/매도/정책학습 구조의 강점과 개선항목을 평가한 분석.
 - [[2026-05-29-wiki-lint]] - index 누락/중복과 22:31 preflight orphan 상태를 점검한 targeted wiki lint.
 
 ## Backtest Runs
@@ -386,7 +387,8 @@
 ## Policy Book
 
 - [[recommendation-policy]] - 거래 회고에서 나온 교훈을 반영하는 living policy.
-- `harness/recommendation-policy.yaml` / `harness/recommendation-policy.schema.json` - agent-readable 추천 정책 상태, 승격 기준, 20분 paper validation cadence, active trim trigger, sell 후보 진단, validation lifecycle, 시뮬레이션 policy closeout 기준.
+- `harness/recommendation-policy.yaml` / `harness/recommendation-policy.schema.json` - agent-readable 추천 정책 상태, 승격 기준, paper validation cadence, review backlog throttle, active trim trigger, sell 후보 진단 metric policy, validation lifecycle, source-critical gate, portfolio construction, 시뮬레이션 policy closeout 기준.
+- [[2026-05-30-recommendation-policy-v1.10-analyst-improvements]] - recommendation policy v1.10 analyst/risk-control 개선 proposal.
 - `harness/strategies/long-term-quality-momentum-v1.yaml` - 장기 quality momentum paper 자동 validation 가능 전략 config.
 - `harness/strategies/intraday-rs-breakout-v0.yaml` / `harness/strategies/intraday-rs-breadth-vwap-v1.yaml` - 단타 observation-only v0/v1 전략 config와 명시적 exit rules.
 - `harness/strategies/intraday-afternoon-followthrough-v1.yaml` - 단타 observation-only 전략 config.

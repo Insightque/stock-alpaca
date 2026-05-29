@@ -912,6 +912,54 @@ def order_plan_picks(order_plan: dict[str, Any], limit: int = 3) -> list[dict[st
     return picks
 
 
+def portfolio_position_picks(
+    portfolio: dict[str, Any],
+    existing_symbols: set[str] | None = None,
+    limit: int = 3,
+) -> list[dict[str, str]]:
+    positions = portfolio.get("positions", []) if isinstance(portfolio.get("positions"), list) else []
+    existing = {symbol for symbol in (existing_symbols or set()) if symbol}
+    picks: list[dict[str, str]] = []
+    for position in positions:
+        if len(picks) >= limit:
+            break
+        if not isinstance(position, dict):
+            continue
+        symbol = str(position.get("symbol") or "").strip()
+        if not symbol or symbol in existing:
+            continue
+        weight = str(position.get("weight") or "").strip()
+        return_pct = str(position.get("return_pct") or "").strip()
+        unrealized_pl = str(position.get("unrealized_pl") or "").strip()
+        market_value = str(position.get("market_value") or "").strip()
+        primary_chip = f"비중 {weight}" if weight else f"평가 {market_value}" if market_value else "보유"
+        secondary_chip = (
+            f"수익률 {return_pct}"
+            if return_pct and return_pct != "-"
+            else f"손익 {unrealized_pl}"
+            if unrealized_pl and unrealized_pl != "-"
+            else "portfolio"
+        )
+        picks.append(
+            {
+                "symbol": symbol,
+                "action": "hold",
+                "reason": "portfolio snapshot holding",
+                "score": "",
+                "rank": "",
+                "score_label": f"비중 {weight}" if weight else "portfolio",
+                "confidence": "portfolio snapshot",
+                "return_20d": "",
+                "vs_spy_20d": "",
+                "primary_chip": primary_chip,
+                "secondary_chip": secondary_chip,
+                "risk": "",
+            }
+        )
+        existing.add(symbol)
+    return picks
+
+
 def compact_agent_result(agent_id: str, manifest: dict[str, Any], report_text: str, order_plan: dict[str, Any]) -> str:
     risk = normalize_risk_check_result(manifest)
     data_manifest = manifest.get("data_manifest", {})
@@ -1113,6 +1161,9 @@ def build_dashboard_data() -> dict[str, Any]:
         fallback_order_path = latest_nonempty_order_plan_snapshot_path(order_plan_path)
         fallback_order_plan = load_json(fallback_order_path) if fallback_order_path else {}
         picks = order_plan_picks(fallback_order_plan)
+    if len(picks) < 3:
+        existing_symbols = {pick.get("symbol", "") for pick in picks}
+        picks.extend(portfolio_position_picks(portfolio, existing_symbols, 3 - len(picks)))
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),

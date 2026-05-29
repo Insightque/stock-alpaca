@@ -20,6 +20,7 @@ The machine-readable source of truth is `harness/recommendation-policy.yaml` und
 - After-hours order counts must use `risk_inputs.after_hours_new_orders_submitted_today`; do not reuse the regular validation count as the after-hours session budget.
 - Reviews must be recorded in the after-hours review bucket and must not be merged into regular-session validation conclusions unless a later policy review explicitly compares the buckets.
 - Do not import regular-session sell/trim or force-exit behavior into this workflow unless `after_hours_policy.allowed_sides` explicitly permits that side. If a regular-session risk-trim concern is noticed here, record it as a diagnostic for the next regular-session review rather than silently submitting outside the allowed side set.
+- If `after_hours_policy.risk_diagnostic_queue` is enabled, inspect holdings for risk-trim concerns without creating sell orders unless the allowed side set permits them. Queue those diagnostics for the next regular-session autopilot run.
 
 ## Gates
 
@@ -42,7 +43,7 @@ The regular-session `market.is_open=true` gate does not apply to this workflow. 
 2. Read `harness/risk-policy.yaml` and `harness/recommendation-policy.yaml`.
 3. Capture Alpaca MCP clock/account/position/open-order/asset/quote evidence.
 4. Build a run manifest with `session=after_hours`, MCP coverage, universe coverage, source refs, and the after-hours policy profile id.
-5. Create an order plan under `wiki/trade-ledger/orders/` with `market.session=after_hours`.
+5. Create an order plan under `wiki/trade-ledger/orders/` with `market.session=after_hours`. Include review backlog count fields from `review_backlog_throttle` when planning after-hours validation buys.
 6. Validate universe coverage, MCP coverage, and risk policy before any submit.
 7. Submit only through Alpaca MCP `place_stock_order`.
 8. Reconcile by `client_order_id` immediately.

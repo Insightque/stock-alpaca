@@ -23,6 +23,7 @@ This workflow is regular-session only. After-hours automation must use `harness/
   - Default exploratory validation size and confidence/notional sizing tiers come from `harness/recommendation-policy.yaml`; subject all quantities to whole-share rounding and `harness/risk-policy.yaml` caps.
   - Use `paper_validation_execution.validation_order_sizing.max_new_buy_orders_per_run` for normal per-run buy slots and the validation notional caps in `harness/recommendation-policy.yaml`; do not hardcode those values in this workflow.
   - Treat the invested-ratio path in `paper_validation_execution.validation_order_sizing.target_exposure_path` as a staged policy target, not a one-shot order target: below the acceleration threshold, allow normal acceleration; between selective and max target thresholds, require stronger candidate quality and diversification benefit; above the rebalance threshold, prefer trim/rebalance and only add high-conviction candidates.
+  - Apply `paper_validation_execution.validation_order_sizing.review_backlog_throttle` before creating new buy orders. This throttle applies only to validation buys; risk-reducing sell/trim remains evaluated separately.
   - Use additional buy slots only for different correlated clusters, or for a clearly higher-confidence candidate that still passes ticker, theme, factor, speculative, cash, turnover, duplicate-order, and spread gates.
   - Fresh open orders block new buys for the same symbol/side and normally for the same correlated cluster, but they do not automatically block different-cluster candidates when the open-order lifecycle gate passes.
   - Medium source confidence handling follows `harness/recommendation-policy.yaml`; candidates still need positive expected excess return, no thesis-break, and tiered MCP validation.
@@ -88,7 +89,7 @@ For the 2026-05-27 US regular session, apply this user-requested overlay after a
    - Provider checks run concurrently across providers. SEC EDGAR and Yahoo Finance must reuse one MCP stdio session per provider for the shortlisted symbols instead of starting a new MCP process per symbol/tool call.
    - Positive provider rows may be reused from the short-lived `.cache/research-mcp-preflight` cache. Treat `cache_hit=true` rows as scheduler-owned MCP evidence and keep their original `source_ref`/provider classification.
    - If a provider recently failed with a systemic `timeout`, `cancelled`, `dns`, `auth`, or `wrapper_error`, the preflight may emit a `circuit_breaker_open` row for the configured cool-down period. Preserve that row as a provider gap instead of spending the cycle retrying a known-bad provider.
-   - Treat this preflight as the authoritative scheduled evidence for the symbols listed in its `symbols` field. Count rows with `outcome=pass|usable|ok` and `used_in_score=true` toward the 3-provider buy gate.
+   - Treat this preflight as the authoritative scheduled evidence for the symbols listed in its `symbols` field. Count rows with `outcome=pass|usable|ok` and `used_in_score=true` toward the YAML-defined buy gate.
    - If a provider row is `gap`, `failed`, or `unavailable`, preserve its `gap_category`, `gap_reason`, and `retry_count` in the manifest. Do not call shell/curl/local network helpers from nested Codex to "make up" a failed provider.
    - SEC EDGAR preflight must use `harness/sec-ticker-cik-map.json` first and lightweight `get_company_info`/`get_recent_filings` before any heavier SEC tool. Missing ETF/non-company CIKs are `empty_response` lookup gaps, not provider outages.
    - When all five research provider rows are present in the preflight, the shell wrapper may omit research MCP registrations from nested Codex to avoid a second cold start. Nested Codex must not treat that intentional omission as a provider failure.
@@ -106,17 +107,20 @@ For the 2026-05-27 US regular session, apply this user-requested overlay after a
    - For DNS/network failures, run a read-only connectivity probe when practical and record whether the provider endpoint itself was reachable.
    - Classify failed/gap coverage rows with `gap_category`: `timeout`, `cancelled`, `dns`, `auth`, `empty_response`, `provider_error`, `wrapper_error`, `not_applicable`, or `unknown`.
    - Never mark a failed provider as usable because of a retry. Retries only prevent false negatives from transient failures.
-   - Record `mcp_gate_policy` in the run manifest with `core_servers=["alpaca"]`, the five research servers, `min_research_confirmations=3`, and `all_research_must_be_attempted=true`.
-   - If fewer than 3 research MCPs are usable/pass, set `recommendation_actionability=actionable_if_provider_recovered` for otherwise strong candidates and submit nothing.
+   - Record `mcp_gate_policy` in the run manifest from `harness/recommendation-policy.yaml`, including critical source rules when a candidate thesis depends on earnings, macro/rates, filing risk, or analyst-only support.
+   - If the YAML-defined research confirmation gate or a signal-specific critical source rule fails, set `recommendation_actionability=actionable_if_provider_recovered` or the configured downgrade/block label for otherwise strong candidates and submit nothing.
 11. Create a detailed current recommendation report under `wiki/current-runs/daily/` or a scheduled-run subreport if multiple runs happen on the same date.
 12. Create a concrete order-plan JSON under `wiki/trade-ledger/orders/`.
    - Include current positions from Alpaca core evidence even when `orders` is empty or the run is blocked. Do not leave `positions` empty when the account snapshot shows invested exposure.
    - Include detailed per-order `rationale`.
    - Include source refs, quote timestamp, asset check timestamp, liquidity/spread, confidence score, strategy id/version, policy status, expected excess return, expected adverse move, entry style, sizing basis, and review horizons.
    - Include `risk_inputs.new_orders_submitted_today` before this run so the risk validator enforces `daily_limits.max_new_orders_per_day` for the sides listed in `daily_limits.max_new_orders_per_day_applies_to_sides`; do not impose any separate validation-order budget outside the active policy YAML.
+   - Include the review backlog count fields named by `paper_validation_execution.validation_order_sizing.review_backlog_throttle` whenever buy orders are planned in submit mode.
    - First evaluate held positions for sell/trim/exit using `risk_trim_policy`. Record `sell_trigger_none` when no active trigger exists, or `sell_skip_gate` when a trigger exists but a non-budget gate blocks it.
-   - Write `sell_candidate_diagnostics` into the order plan and manifest on every completed run. Use `risk_trim_policy.sell_candidate_diagnostics` for ranking and fields, and include the top unexecuted sell/trim candidates even when the final recommendation is hold/watch.
+   - Write `sell_candidate_diagnostics` into the order plan and manifest on every completed run. Use `risk_trim_policy.sell_candidate_diagnostics` for ranking, metric policy, and fields, and include the top unexecuted sell/trim candidates even when the final recommendation is hold/watch.
+   - Sell diagnostics must fill decision-grade expected-excess and relative-performance fields, or explicitly mark a metric gap reason from the YAML metric policy. A zero value is acceptable only when the metric status says it is a valid calculated zero.
    - Treat the daily validation-buy cap as a buy-side throttle. It must not by itself suppress a risk-reducing sell/trim candidate that passes held-quantity, quote, spread, open-order, and risk checks.
+   - Apply `portfolio_construction_policy`: rank new buys against existing holdings, include portfolio contribution/replacement rank when available, and prefer trim/rebalance once the YAML invested-ratio path says new exposure should be selective.
    - If all hard gates pass during regular market hours, prefer validation buys for the highest-ranked actionable candidates that pass position/theme/factor/speculative caps.
    - Use up to `paper_validation_execution.validation_order_sizing.max_new_buy_orders_per_run` buy slots under normal conditions. Additional slots should normally be different correlated clusters and must satisfy the cash-ratio floors in `harness/recommendation-policy.yaml`.
    - Size validation buys from `paper_validation_execution.validation_order_sizing.confidence_tiers`. Use the largest whole-share quantity that fits the candidate tier's `max_notional_pct` and `max_qty`, then run the normal risk validator.
@@ -131,6 +135,7 @@ For the 2026-05-27 US regular session, apply this user-requested overlay after a
    - Evaluate active trim triggers every run using `risk_trim_policy.active_trim_triggers`: position overweight, theme/factor/cluster cap warning, overheat reversal, stale thesis underperformance, and speculative loss control should produce a trim candidate when quote/spread/open-order/risk gates pass.
    - Apply `risk_trim_policy.rotation_trim`: do not sell merely because a new candidate ranks higher, but if a held position falls below the YAML expected-return floor and a replacement passes the YAML quality margin plus all buy/sell gates, create a limited trim candidate rather than silently holding.
    - Apply `risk_trim_policy.validation_lifecycle`: every filled validation buy must receive due-horizon hold/add/trim/close review decisions. If a due review is missing, record it in diagnostics and block additional buys for that symbol until the review is written.
+   - Apply the review backlog throttle from YAML after lifecycle checks and before final buy count selection. If the throttle reduces or stops validation buys, record the pending review counts and first blocking gate.
    - When buy slots or validation-buy notional budgets are exhausted, continue evaluating trim triggers separately and record whether there were zero sell triggers or whether a sell was skipped by a non-budget gate.
    - Do not sell solely because a new buy candidate ranks higher.
 13. Validate:
@@ -146,6 +151,7 @@ python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YOUR-RUN.js
     - `ALPACA_PAPER_TRADE=true`.
     - Universe strict gate passes.
     - MCP strict gate passes under the tiered policy in `harness/recommendation-policy.yaml`.
+    - Signal-specific critical source rules pass for the candidate's thesis type.
     - Risk gate passes.
     - Quote age is within policy.
     - Spread is present and within policy.
@@ -153,6 +159,7 @@ python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YOUR-RUN.js
     - Order shape is whole-share day limit stock/ETF.
     - No same-day duplicate symbol/side conflict.
     - For validation buys, the order respects the `paper_validation_execution.validation_order_sizing` limits in `harness/recommendation-policy.yaml`.
+    - For validation buys, the review backlog throttle in `harness/recommendation-policy.yaml` permits the planned buy count.
 15. Submit only through Alpaca MCP order tools. Do not call Alpaca trading REST endpoints directly.
 16. Run post-trade reconciliation immediately after any submit attempt.
 17. Append `wiki/log.md` with:

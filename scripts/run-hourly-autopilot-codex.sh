@@ -170,9 +170,12 @@ Hard requirements:
 - Submit paper orders only if the market is open and universe, MCP, quote, spread, and risk gates all pass.
 - If any gate fails, submit nothing and still write the report, manifest, order plan, and log entry.
 - Evaluate risk-reducing sell/trim/exit candidates before new buys on every run. The buy entry window, validation-buy slots, and validation-buy budget gate new buy exposure only; do not use them to suppress sell diagnostics or eligible risk-reducing sell/trim entries.
-- On every completed run, write `sell_candidate_diagnostics` into the order plan and manifest using `risk_trim_policy.sell_candidate_diagnostics`, including the top unexecuted sell/trim candidates even when the final recommendation is hold/watch.
+- On every completed run, write `sell_candidate_diagnostics` into the order plan and manifest using `risk_trim_policy.sell_candidate_diagnostics`, including decision-grade metric fields or explicit metric gap reasons for the top unexecuted sell/trim candidates even when the final recommendation is hold/watch.
 - Apply `risk_trim_policy.validation_lifecycle`: due filled validation buys must get hold/add/trim/close decisions, and missing due reviews should block additional buys for that symbol until reviewed.
 - Apply `risk_trim_policy.rotation_trim` and `risk_trim_policy.portfolio_target_bands`: target-band warnings and relative opportunity cost can create limited trim diagnostics/orders only when the YAML conditions and normal sell gates pass.
+- Apply `paper_validation_execution.validation_order_sizing.review_backlog_throttle`: include the configured pending-review count fields in submit-mode order plans and let it reduce or block new validation buys while leaving risk-reducing sells independent.
+- Apply `portfolio_construction_policy`: compare new buys against existing holdings, replacement rank, and portfolio contribution before adding exposure.
+- Apply `mcp_gate_policy.critical_source_rules`: candidate theses that depend on earnings, macro/rates, filing risk, or analyst-only support must pass the corresponding YAML source rule or be downgraded/blocked.
 - The order plan must include current Alpaca positions even when `orders` is empty or the run is blocked; do not leave `positions` empty when account value minus cash implies invested exposure.
 - Classify every MCP gap as one of: timeout, cancelled, dns, auth, empty_response, provider_error, wrapper_error, unknown.
 - For Alpaca core, make short independent attempts for clock, account, orders, positions, and quotes. Record which exact core check was the first blocking gate.

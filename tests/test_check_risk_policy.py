@@ -44,6 +44,9 @@ def base_plan() -> dict:
             "stop_triggered_orders_today": 0,
             "new_orders_submitted_today": 0,
             "risk_recomputed_after_partial_fill": True,
+            "review_backlog_pending_1d_count": 0,
+            "review_backlog_pending_5d_count": 0,
+            "review_backlog_pending_20d_count": 0,
         },
         "orders": [
             {
@@ -332,6 +335,42 @@ class RiskPolicyTests(unittest.TestCase):
     def test_sell_not_blocked_by_daily_new_buy_order_cap(self) -> None:
         plan = base_plan()
         plan["risk_inputs"]["new_orders_submitted_today"] = 20
+        plan["positions"] = [position("SPY", 5000.0, qty=10)]
+        plan["orders"][0]["side"] = "sell"
+        plan["orders"][0]["entry_style"] = "trim"
+        errors, _, summary = self.validate(plan)
+        self.assertEqual([], errors)
+        self.assertEqual(0.0, summary["buy_notional"])
+        self.assertEqual(5000.0, summary["sell_notional"])
+
+    def test_review_backlog_throttle_reduces_buy_slots(self) -> None:
+        plan = base_plan()
+        plan["mode"] = "submit"
+        plan["market"]["is_open"] = True
+        plan["risk_inputs"]["review_backlog_pending_1d_count"] = 8
+        plan["orders"][0]["policy_status"] = "auto_eligible_paper"
+        second_order = copy.deepcopy(plan["orders"][0])
+        second_order["symbol"] = "QQQ"
+        second_order["client_order_id"] = "test-run-qqq-buy"
+        second_order["decision_id"] = "test-run-qqq-decision"
+        plan["orders"].append(second_order)
+        errors, _, _ = self.validate(plan)
+        self.assertTrue(any("review backlog throttle permits 1 new buy orders" in error for error in errors))
+
+    def test_review_backlog_throttle_can_stop_new_buys(self) -> None:
+        plan = base_plan()
+        plan["mode"] = "submit"
+        plan["market"]["is_open"] = True
+        plan["risk_inputs"]["review_backlog_pending_1d_count"] = 12
+        plan["orders"][0]["policy_status"] = "auto_eligible_paper"
+        errors, _, _ = self.validate(plan)
+        self.assertTrue(any("review backlog throttle permits 0 new buy orders" in error for error in errors))
+
+    def test_review_backlog_throttle_does_not_block_sells(self) -> None:
+        plan = base_plan()
+        plan["mode"] = "submit"
+        plan["market"]["is_open"] = True
+        plan["risk_inputs"]["review_backlog_pending_1d_count"] = 12
         plan["positions"] = [position("SPY", 5000.0, qty=10)]
         plan["orders"][0]["side"] = "sell"
         plan["orders"][0]["entry_style"] = "trim"

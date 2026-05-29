@@ -2965,6 +2965,14 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 산출물: [[2026-05-30-daily-policy-update-health-check]].
 - 주문 제출/교체/취소/청산은 수행하지 않았다.
 
+## [2026-05-30 07:43 Asia/Seoul] analysis | professional analyst policy review
+
+- 전문 애널리스트 관점에서 현재 recommendation/risk/paper validation/sell-trim/policy-learning 구조를 점검했다.
+- 결론: 현재 정책은 공격적 수익 극대화 전략이 아니라 controlled paper validation 전략으로는 양호하다. 다만 sell diagnostic 정량화, review backlog throttle, live review row dataset, portfolio target allocation이 다음 개선 우선순위다.
+- 발견: YAML v1.9는 장타 paper validation 자동주문을 허용하지만 Markdown 일부 설명은 아직 dry-run/자동주문 금지 표현이 남아 있어 정리가 필요하다.
+- 산출물: [[2026-05-30-professional-analyst-policy-review]].
+- 주문 제출/교체/취소/청산은 수행하지 않았다.
+
 ## [2026-05-30 07:36 Asia/Seoul] after-hours-autopilot | 2026-05-30-0731-after-hours-autopilot scheduled paper autopilot
 
 - Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session `after_hours`; policy profile `after_hours_policy`; review bucket `after_hours_validation`.
@@ -2973,3 +2981,18 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Orders: no `place_stock_order` call; no `client_order_id`; reconcile not applicable because there was no submit attempt. Order plan kept `market.session=after_hours` and no order entries.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-30-0731-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-30-0731-after-hours-autopilot.json`, `wiki/evidence-store/sources/2026-05-30-0731-after-hours-autopilot-runtime-alpaca-spot-check.json`, [[2026-05-30-0731-after-hours-autopilot]].
 - Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
+
+## [2026-05-30 07:45 Asia/Seoul] policy-update | recommendation policy v1.10 analyst improvements
+
+- 전문 애널리스트 정책 리뷰의 P0/P1 제안을 반영해 `harness/recommendation-policy.yaml`을 v1.10으로 갱신했다.
+- 추가 정책: review backlog throttle, sell diagnostic metric policy, signal-specific critical source rules, portfolio construction policy, after-hours risk diagnostic queue, policy-learning pipeline.
+- `scripts/check-risk-policy.py`는 submit-mode buy plan에서 review backlog throttle을 검증하도록 보강했다. Sell/trim은 이 throttle에서 제외된다.
+- `harness/recommendation-policy.schema.json`, `harness/order-plan.schema.json`, `harness/workflows/hourly-autopilot.md`, `harness/workflows/after-hours-autopilot.md`, `scripts/run-hourly-autopilot-codex.sh`, `tests/test_check_risk_policy.py`, `tests/test_strategy_config_schema.py`, [[recommendation-policy]]를 함께 갱신했다.
+- 주문 제출/교체/취소/청산은 수행하지 않았다.
+
+## [2026-05-30 07:48 Asia/Seoul] policy-proposal | recommendation policy v1.10 analyst improvements
+
+- 정책서의 proposal 절차에 맞춰 v1.10 analyst/risk-control 개선 proposal을 작성했다.
+- 이 proposal은 새 alpha 승격이 아니라 review backlog, sell diagnostic metric completeness, source-critical gate, portfolio construction, after-hours diagnostic queue를 적용한 운영 리스크 통제 변경으로 분류했다.
+- 산출물: [[2026-05-30-recommendation-policy-v1.10-analyst-improvements]].
+- 주문 제출/교체/취소/청산은 수행하지 않았다.

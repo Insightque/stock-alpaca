@@ -204,6 +204,13 @@
         },
         "recheck_label": {
           "type": "string"
+        },
+        "critical_source_rules": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": true
+          }
         }
       }
     },
@@ -280,6 +287,10 @@
             "include_blocked_by_gate_candidates": {
               "type": "boolean"
             },
+            "metric_policy": {
+              "type": "object",
+              "additionalProperties": true
+            },
             "rank_by": {
               "type": "array",
               "items": {
@@ -338,6 +349,15 @@
             },
             "record_missing_review_as_sell_candidate_diagnostic": {
               "type": "boolean"
+            },
+            "review_due_index_path": {
+              "type": "string"
+            },
+            "underperform_spy_pct_to_block_add": {
+              "type": "number"
+            },
+            "underperform_spy_pct_to_trim_watch": {
+              "type": "number"
             }
           }
         },
@@ -390,6 +410,9 @@
             },
             "do_not_rotate_same_day_validation_buy": {
               "type": "boolean"
+            },
+            "watch_label": {
+              "type": "string"
             }
           }
         },
@@ -580,6 +603,58 @@
                   "type": "number",
                   "minimum": 0,
                   "maximum": 1
+                },
+                "prefer_rebalance_over_new_buy_behavior": {
+                  "type": "string"
+                }
+              }
+            },
+            "review_backlog_throttle": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "enabled",
+                "pending_1d_count_field",
+                "reduce_new_buy_slots_at_pending_1d",
+                "max_new_buy_slots_when_reduced",
+                "stop_new_buys_at_pending_1d",
+                "exclude_sides",
+                "required_for_submit_buys"
+              ],
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "pending_1d_count_field": {
+                  "type": "string"
+                },
+                "pending_5d_count_field": {
+                  "type": "string"
+                },
+                "pending_20d_count_field": {
+                  "type": "string"
+                },
+                "reduce_new_buy_slots_at_pending_1d": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "max_new_buy_slots_when_reduced": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "stop_new_buys_at_pending_1d": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "exclude_sides": {
+                  "type": "array",
+                  "items": {
+                    "type": "string",
+                    "enum": ["buy", "sell"]
+                  }
+                },
+                "required_for_submit_buys": {
+                  "type": "boolean"
                 }
               }
             },
@@ -846,6 +921,10 @@
           "items": {
             "type": "string"
           }
+        },
+        "risk_diagnostic_queue": {
+          "type": "object",
+          "additionalProperties": true
         }
       }
     },
@@ -864,6 +943,14 @@
       "items": {
         "type": "string"
       }
+    },
+    "portfolio_construction_policy": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "policy_learning_pipeline": {
+      "type": "object",
+      "additionalProperties": true
     },
     "retired_filters": {
       "type": "array",

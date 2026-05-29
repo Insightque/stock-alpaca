@@ -1,6 +1,6 @@
 ---
 id: recommendation-policy
-updated_at: 2026-05-29T23:09:00+09:00
+updated_at: 2026-05-30T07:43:00+09:00
 ---
 
 # 추천 정책
@@ -30,7 +30,7 @@ updated_at: 2026-05-29T23:09:00+09:00
 - 단타는 11:00 ET 신호만으로 자동 주문하지 않고, 11:05~11:15 후속 유지와 실제 bid/ask/fill 가능성을 확인하기 전까지 관찰 전용으로 둔다.
 - 분석 결과 문서에 계산 지표나 정책학습 지표가 포함되면, 문서 하단에 `지표 설명` 섹션을 추가해 각 지표의 의미와 해석 방법을 쉬운 한국어로 설명한다.
 - 운영 정책의 machine-readable source는 `harness/recommendation-policy.yaml`로 둔다. 이 Markdown 문서는 사람이 읽는 설명과 회고 로그이며, 전략 상태와 승격 기준은 YAML과 schema로 검증한다.
-- 장기 `long-term-quality-momentum-v1`은 `active_dry_run_candidate`로 승격하되 자동 주문은 아직 금지한다. 핵심 필터는 SPY/QQQ dual benchmark, drawdown/volatility guard, theme/factor cap, overheat guard, source confidence, liquidity check다.
+- 장기 `long-term-quality-momentum-v1`은 `auto_eligible_paper` 상태이며 Alpaca paper validation 자동주문만 허용한다. live/production 거래는 계속 금지한다. 핵심 필터는 SPY/QQQ dual benchmark, drawdown/volatility guard, theme/factor cap, overheat guard, source confidence, liquidity check다.
 - 단타 `intraday-afternoon-followthrough-v1`과 기존 intraday variants는 모두 `observation_only`다. 결과는 수익률 후보가 아니라 `signal_log`, `skip_reason`, `spread_fill_observation`을 쌓는 체결 품질 학습 자료로만 사용한다.
 - 알파 점수와 주문 결정을 분리한다. 가격/상대강도/이벤트 품질은 후보 점수이고, 실제 주문 크기는 보유 비중, cash reserve, theme/factor/speculative/cluster cap, spread/liquidity, expected adverse move, open orders, staged entry를 통과한 뒤 별도로 결정한다.
 - `confidence_score < 0.50`, `source_confidence=low`, Alpaca core gap, stale quote, missing spread, missing metadata가 있으면 신규 order plan entry를 만들지 않는다.
@@ -49,6 +49,10 @@ updated_at: 2026-05-29T23:09:00+09:00
 - 모든 정책개선형 시뮬레이션은 채택 여부와 무관하게 policy closeout을 남긴다. 결과가 약하면 `reject`, `observation_only`, `needs_out_of_sample` 중 하나로 분류하고 실패에서 배운 레슨도 정책학습 지표에 기록한다.
 - 새 feature cache나 동향 보강은 절대수익이 아니라 가격-only 기준선 대비 비용 차감 incremental lift를 먼저 확인한다. lift가 없으면 점수 feature로 채택하지 않고 원인 분석 대상으로 둔다.
 - 1시간봉 virtual buy/sell 결과는 action별로 분리한다. `virtual_buy`는 장기 후보 보조 확인 신호가 될 수 있지만, `virtual_sell`은 short나 자동 청산 신호가 아니라 long 회피/축소 가설로만 검증한다.
+- 신규 validation buy는 review backlog throttle을 통과해야 한다. 1D/5D/20D 회고가 밀리면 신규 buy slot을 줄이거나 중단하고, risk-reducing sell/trim은 이 throttle에서 제외한다.
+- Sell/trim 진단은 `expected_excess_return_20d_pct`, `relative_to_spy_20d_pct`, replacement margin을 계산하거나 명시적 metric gap reason을 남겨야 한다. 0 값은 유효한 계산 결과인지 공백인지 구분한다.
+- 후보 thesis가 실적, macro/rate, filing risk, analyst-only 신호에 의존하면 provider 수만 세지 않고 signal-specific critical source rule을 통과해야 한다.
+- 투자비중이 목표 경로의 rebalance 선에 가까워지면 신규 매수보다 기존 포지션의 expected excess, adverse move, portfolio contribution, replacement rank를 비교한 trim/rebalance 판단을 우선한다.
 
 ## 회고에서 나온 정책 변경
 
@@ -82,6 +86,7 @@ updated_at: 2026-05-29T23:09:00+09:00
 | 2026-05-29 | 주문 장부상 sell order-plan이 0건이고, buy-quality gate가 sell에도 적용되어 rejected/low-confidence thesis의 exit까지 막을 수 있음을 확인함. Risk validator에서 buy-only 품질 gate를 buy에만 적용하고 sell은 `entry_style=trim|exit`와 보유수량/quote/spread/risk gate 중심으로 검증하도록 개정함 | [[2026-05-29-sell-frequency-policy-review]], `scripts/check-risk-policy.py`, `tests/test_check_risk_policy.py` | 적용 |
 | 2026-05-29 | 다른 분기의 exit 관련 수정사항을 현 정책학습 관점에서 재검토함. Sell/trim 선평가와 buy window/budget 독립성은 학습 누락 방지를 위해 적용했고, force-exit window 및 80분 time-stop은 현 repo의 검증 근거가 없어 자동 채택하지 않음. 대신 단타 exit 규칙을 strategy config에 명시하고 dry-run helper가 설정을 읽도록 바꿈 | [[2026-05-29-autopilot-exit-policy-learning-review]], `harness/recommendation-policy.yaml`, `harness/strategies/intraday-rs-breakout-v0.yaml`, `scripts/evaluate-intraday-dry-run.py` | 부분 적용 / 무근거 규칙 이식 보류 |
 | 2026-05-29 | 전문 투자자 관점에서 buy-only drift 위험을 재점검함. 즉시 강제 매도 대신 sell 후보 진단, validation lifecycle 판단, relative opportunity-cost rotation trim, target/warning band를 recommendation policy v1.9에 추가함 | 사용자 점검 요청, `harness/recommendation-policy.yaml`, `harness/workflows/hourly-autopilot.md` | 적용 |
+| 2026-05-30 | 전문 애널리스트 관점에서 현재 정책을 재검토하고 v1.10으로 정리함. Review backlog throttle, sell diagnostic metric policy, signal-critical source rule, portfolio construction policy, after-hours risk diagnostic queue, policy-learning pipeline을 추가함 | [[2026-05-30-professional-analyst-policy-review]], [[2026-05-30-daily-policy-update-health-check]], `harness/recommendation-policy.yaml`, `scripts/check-risk-policy.py` | 적용 |
 
 ## 검증 중인 가설
 
@@ -261,6 +266,10 @@ updated_at: 2026-05-29T23:09:00+09:00
 | hourly-virtual-sell-false-negative | 1시간봉 `virtual_sell`은 long 청산/회피 신호로 채택하지 않는다 | 210 as-of days / 1050 virtual sells | 20D directional 53.2% | 20D directional -2.14%p | sell로 분류한 종목이 20D에는 오히려 SPY를 앞섰고 opportunity cost가 컸다 | rejected as sell/avoid rule | [[2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation]] |
 | event-cache-incremental-lift-required | Alpaca 뉴스와 전일 시장/섹터 동향 cache는 기준선 대비 lift가 있을 때만 점수 feature로 채택한다 | 2100 rows / 100% matched | 20D 53.2% | trend-enhanced +0.57%p vs price-only +0.85%p | coverage가 높아도 성과 개선이 없으면 정보량이 아니라 잡음일 수 있다 | applied principle | [[2026-05-25-one-year-hourly-buy-sell-simulation]], [[2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation]] |
 | policy-closeout-required | 정책개선형 시뮬레이션은 채택 실패도 레슨으로 남긴다 | all future policy simulations |  |  | 결과 문서, scorecard, policy book/YAML 중 최소 한 곳에 decision label과 next evidence를 남긴다 | 적용 원칙 | `harness/recommendation-policy.yaml` |
+| review-backlog-throttle | 회고 대기열이 커지면 신규 validation buy를 줄이거나 중단하고 회고를 우선한다 | 1 live cohort / 10 fills |  | pending | 2026-05-29 밤 validation fills가 1D review 전 누적됨 | applied risk-control | [[2026-05-30-overnight-trade-review]], [[2026-05-30-professional-analyst-policy-review]] |
+| sell-diagnostic-metric-completeness | sell/trim 진단은 expected excess, SPY 상대성과, replacement margin 또는 gap reason을 남겨야 한다 | 3 diagnostics observed |  | pending | AMD/PLTR/RGTI diagnostics가 정성 중심이고 expected/relative metric이 0으로 남음 | applied diagnostic rule | [[2026-05-30-professional-analyst-policy-review]] |
+| signal-critical-source-rule | thesis 유형별 critical source가 빠지면 단순 provider pass 개수만으로 신규 buy를 허용하지 않는다 | policy architecture review |  | pending | 실적, macro/rate, filing risk, analyst-only 신호는 provider 중요도가 다름 | applied source rule | [[2026-05-30-professional-analyst-policy-review]] |
+| portfolio-construction-before-new-buy | 목표 투자비중 상단에 가까워지면 신규 buy보다 existing holding contribution과 replacement rank를 먼저 본다 | policy architecture review |  | pending | 후보 선별은 강하지만 active risk/portfolio contribution 기준이 약함 | applied construction rule | [[2026-05-30-professional-analyst-policy-review]] |
 
 ## 폐기하거나 완화한 규칙
 

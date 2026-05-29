@@ -251,6 +251,18 @@
         "after_hours_new_orders_submitted_today": {
           "type": "integer",
           "minimum": 0
+        },
+        "review_backlog_pending_1d_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "review_backlog_pending_5d_count": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "review_backlog_pending_20d_count": {
+          "type": "integer",
+          "minimum": 0
         }
       }
     },
@@ -529,11 +541,18 @@
           "skipped_gate": {
             "type": "string"
           },
+          "metric_status": {
+            "type": "string",
+            "enum": ["calculated", "fallback", "gap", "zero_valid"]
+          },
           "expected_excess_return_20d_pct": {
             "type": ["number", "null"]
           },
           "relative_to_spy_20d_pct": {
             "type": ["number", "null"]
+          },
+          "metric_gap_reason": {
+            "type": "string"
           },
           "replacement_symbol": {
             "type": "string",
@@ -544,9 +563,15 @@
             "minimum": 0,
             "maximum": 1
           },
+          "replacement_expected_excess_margin_pct": {
+            "type": ["number", "null"]
+          },
           "recommendation": {
             "type": "string",
             "enum": ["hold", "add", "trim", "close", "watch", "hold_watch"]
+          },
+          "blocked_sell_recheck": {
+            "type": "string"
           },
           "source_refs": {
             "type": "array",

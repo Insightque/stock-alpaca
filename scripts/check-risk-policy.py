@@ -79,6 +79,23 @@ def as_float(value: Any, name: str, errors: list[str]) -> float:
     return number
 
 
+def as_optional_int(value: Any, name: str, errors: list[str]) -> int | None:
+    if value is None:
+        return None
+    if isinstance(value, bool):
+        errors.append(f"{name} must be an integer")
+        return None
+    try:
+        number = int(value)
+    except (TypeError, ValueError):
+        errors.append(f"{name} must be an integer")
+        return None
+    if number < 0:
+        errors.append(f"{name} must be non-negative")
+        return None
+    return number
+
+
 def parse_datetime(value: Any, name: str, errors: list[str]) -> datetime | None:
     if not isinstance(value, str) or not value.strip():
         errors.append(f"{name} must be an ISO datetime string")
@@ -146,6 +163,15 @@ def validate(
     after_hours_policy = recommendation_policy.get("after_hours_policy", {})
     if not isinstance(after_hours_policy, dict):
         after_hours_policy = {}
+    paper_validation_execution = recommendation_policy.get("paper_validation_execution", {})
+    if not isinstance(paper_validation_execution, dict):
+        paper_validation_execution = {}
+    validation_order_sizing = paper_validation_execution.get("validation_order_sizing", {})
+    if not isinstance(validation_order_sizing, dict):
+        validation_order_sizing = {}
+    review_backlog_throttle = validation_order_sizing.get("review_backlog_throttle", {})
+    if not isinstance(review_backlog_throttle, dict):
+        review_backlog_throttle = {}
     portfolio_limits = policy.get("portfolio_limits", {})
     exposure_limits = policy.get("exposure_limits", {})
     liquidity_limits = policy.get("liquidity_limits", {})
@@ -315,6 +341,7 @@ def validate(
     raw_after_hours_new_orders_today = risk_inputs.get("after_hours_new_orders_submitted_today")
     new_orders_submitted_today = 0
     after_hours_new_orders_submitted_today = 0
+    review_backlog_pending_1d_count: int | None = None
     if raw_new_orders_today is not None:
         if isinstance(raw_new_orders_today, bool):
             errors.append("risk_inputs.new_orders_submitted_today must be an integer")
@@ -337,6 +364,13 @@ def validate(
                 after_hours_new_orders_submitted_today = 0
             if after_hours_new_orders_submitted_today < 0:
                 errors.append("risk_inputs.after_hours_new_orders_submitted_today must be non-negative")
+    if review_backlog_throttle.get("enabled") is True:
+        pending_1d_field = str(
+            review_backlog_throttle.get("pending_1d_count_field") or "review_backlog_pending_1d_count"
+        )
+        review_backlog_pending_1d_count = as_optional_int(
+            risk_inputs.get(pending_1d_field), f"risk_inputs.{pending_1d_field}", errors
+        )
     if turnover > max_policy_turnover:
         errors.append(f"policy turnover {turnover:.2%} exceeds daily limit {max_policy_turnover:.2%}")
     if weekly_turnover > max_weekly_turnover:
@@ -462,6 +496,9 @@ def validate(
         for order in orders
         if isinstance(order, dict) and normalize_label(order.get("side")) in daily_order_cap_sides
     )
+    planned_buy_orders = sum(
+        1 for order in orders if isinstance(order, dict) and normalize_label(order.get("side")) == "buy"
+    )
     if mode == "submit" and planned_daily_cap_orders and raw_new_orders_today is None:
         errors.append("submit mode requires risk_inputs.new_orders_submitted_today for daily order cap validation")
     if mode == "submit" and market_session == "after_hours" and raw_after_hours_new_orders_today is None:
@@ -488,6 +525,28 @@ def validate(
                 "after-hours new orders "
                 f"{after_hours_new_orders_submitted_today + planned_after_hours_orders} exceeds session limit "
                 f"{max_after_hours_orders}"
+            )
+    if review_backlog_throttle.get("enabled") is True and planned_buy_orders:
+        pending_1d_field = str(
+            review_backlog_throttle.get("pending_1d_count_field") or "review_backlog_pending_1d_count"
+        )
+        required_for_submit_buys = bool(review_backlog_throttle.get("required_for_submit_buys", False))
+        if mode == "submit" and required_for_submit_buys and review_backlog_pending_1d_count is None:
+            errors.append(f"submit mode buy requires risk_inputs.{pending_1d_field} for review backlog throttle")
+        pending_1d = review_backlog_pending_1d_count or 0
+        reduce_at = int(review_backlog_throttle.get("reduce_new_buy_slots_at_pending_1d", 10**9) or 10**9)
+        stop_at = int(review_backlog_throttle.get("stop_new_buys_at_pending_1d", 10**9) or 10**9)
+        reduced_slots = int(review_backlog_throttle.get("max_new_buy_slots_when_reduced", 0) or 0)
+        allowed_buy_orders: int | None = None
+        if pending_1d >= stop_at:
+            allowed_buy_orders = 0
+        elif pending_1d >= reduce_at:
+            allowed_buy_orders = reduced_slots
+        if allowed_buy_orders is not None and planned_buy_orders > allowed_buy_orders:
+            errors.append(
+                "review backlog throttle permits "
+                f"{allowed_buy_orders} new buy orders at pending 1D reviews {pending_1d}; "
+                f"planned {planned_buy_orders}"
             )
 
     buy_notional = 0.0
@@ -812,6 +871,9 @@ def validate(
         "max_speculative_value": max_speculative_value,
         "max_cluster_value": max_cluster_value,
         "speculative_value": speculative_value,
+        "review_backlog_pending_1d_count": (
+            "" if review_backlog_pending_1d_count is None else review_backlog_pending_1d_count
+        ),
     }
     return errors, warnings, summary
 

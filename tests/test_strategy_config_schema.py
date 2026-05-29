@@ -67,6 +67,7 @@ class StrategyConfigSchemaTests(unittest.TestCase):
         self.assertTrue(risk_trim["decouple_from_buy_budget"])
         self.assertTrue(risk_trim["sell_candidate_diagnostics"]["enabled"])
         self.assertEqual(3, risk_trim["sell_candidate_diagnostics"]["top_n"])
+        self.assertTrue(risk_trim["sell_candidate_diagnostics"]["metric_policy"]["require_metric_or_gap_reason"])
         self.assertTrue(risk_trim["validation_lifecycle"]["enabled"])
         self.assertEqual(["hold", "add", "trim", "close"], risk_trim["validation_lifecycle"]["required_decisions"])
         self.assertTrue(risk_trim["rotation_trim"]["enabled"])
@@ -74,6 +75,15 @@ class StrategyConfigSchemaTests(unittest.TestCase):
         ai_theme = risk_trim["portfolio_target_bands"]["themes"]["ai_semiconductor"]
         self.assertEqual(0.25, ai_theme["target_ratio"])
         self.assertEqual(0.30, ai_theme["warning_ratio"])
+
+        backlog = sizing["review_backlog_throttle"]
+        self.assertTrue(backlog["enabled"])
+        self.assertEqual(8, backlog["reduce_new_buy_slots_at_pending_1d"])
+        self.assertEqual(1, backlog["max_new_buy_slots_when_reduced"])
+        self.assertEqual(12, backlog["stop_new_buys_at_pending_1d"])
+
+        critical = policy["mcp_gate_policy"]["critical_source_rules"]
+        self.assertEqual("block_new_buy", critical["filing_risk_signal"]["missing_behavior"])
 
         after_hours = policy["after_hours_policy"]
         self.assertTrue(after_hours["enabled_for_explicit_autopilot_runs"])
@@ -87,6 +97,10 @@ class StrategyConfigSchemaTests(unittest.TestCase):
         self.assertTrue(after_hours["separate_from_regular_validation"])
         self.assertTrue(after_hours["require_extended_hours_flag"])
         self.assertTrue(after_hours["require_separate_order_budget"])
+        self.assertTrue(after_hours["risk_diagnostic_queue"]["queue_for_next_regular_session"])
+
+        self.assertTrue(policy["portfolio_construction_policy"]["enabled"])
+        self.assertTrue(policy["policy_learning_pipeline"]["review_row_dataset"]["enabled"])
 
     def test_order_caps_match_strategic_allocation_policy(self) -> None:
         risk_policy = yaml.safe_load((ROOT / "harness" / "risk-policy.yaml").read_text(encoding="utf-8"))

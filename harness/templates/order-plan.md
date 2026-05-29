@@ -25,7 +25,10 @@
     "policy_turnover_ratio": 0.05,
     "weekly_turnover_ratio": 0.10,
     "stop_triggered_orders_today": 0,
-    "risk_recomputed_after_partial_fill": true
+    "risk_recomputed_after_partial_fill": true,
+    "review_backlog_pending_1d_count": 0,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 0
   },
   "orders": [
     {
