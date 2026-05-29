@@ -3020,3 +3020,12 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 검증: repo 스킬 12개와 설치 스킬 12개 모두 `quick_validate.py` PASS. repo/설치본 `SKILL.md` 및 `agents/openai.yaml` diff 없음. `TODO`/분기명 `stock-agent-` 잔존 없음.
 - 런타임 검증: `PATH=/usr/local/bin:$PATH python3 -m unittest tests.test_fetch_research_mcp_preflight tests.test_autopilot_notification_schema tests.test_mcp_runtime_wrappers tests.test_policy_source_of_truth` PASS, 42 tests. 전체 `PATH=/usr/local/bin:$PATH python3 -m unittest discover -s tests` PASS, 124 tests.
 - 주문 제출/교체/취소/청산은 수행하지 않았다.
+
+## [2026-05-30 08:15 Asia/Seoul] after-hours-autopilot | 2026-05-30-0811-after-hours-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session `after_hours`; policy profile `after_hours_policy`; review bucket `after_hours_validation`.
+- Scheduler evidence: used `wiki/evidence-store/sources/2026-05-30-0811-after-hours-autopilot-alpaca-core-preflight.json` and `wiki/evidence-store/sources/2026-05-30-0811-after-hours-autopilot-research-mcp-preflight.json`. Alpaca `first_blocking_gate=market_closed` was expected and nonblocking for after-hours; runtime Alpaca MCP confirmed regular market closed, account/positions readable, open US-equity orders `[]`, and overnight quote evidence.
+- Gates: universe strict PASS, MCP strict PASS, risk validator PASS with expected `orders is empty` warning. Submit gate failed before any order because candidate overnight quotes were stale (`2026-05-29T08:00:00Z`, about 913.5 minutes old versus the 5-minute after-hours cap). `risk_inputs.after_hours_new_orders_submitted_today=0`; regular validation order count was not reused.
+- Orders: no `place_stock_order` call; no `client_order_id`; reconcile not applicable because there was no submit attempt. Order plan kept `market.session=after_hours` and no order entries.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-30-0811-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-30-0811-after-hours-autopilot.json`, `wiki/evidence-store/sources/2026-05-30-0811-after-hours-autopilot-runtime-alpaca-spot-check.json`, [[2026-05-30-0811-after-hours-autopilot]].
+- Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
