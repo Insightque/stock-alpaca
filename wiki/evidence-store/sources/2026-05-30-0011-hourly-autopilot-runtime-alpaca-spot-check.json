@@ -1,0 +1,109 @@
+{
+  "run_id": "2026-05-30-0011-hourly-autopilot",
+  "created_at": "2026-05-29T15:15:10Z",
+  "paper": true,
+  "source": "registered Alpaca MCP spot checks from nested Codex",
+  "read_only": true,
+  "orders_submitted": 0,
+  "checks": {
+    "get_clock": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T15:14:17Z",
+      "payload": {
+        "is_open": true,
+        "next_close": "2026-05-29T16:00:00-04:00",
+        "next_open": "2026-06-01T09:30:00-04:00",
+        "timestamp": "2026-05-29T11:14:17.876346122-04:00"
+      }
+    },
+    "get_account_info": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T15:14:26Z",
+      "payload": {
+        "status": "ACTIVE",
+        "currency": "USD",
+        "cash": 35384.85,
+        "portfolio_value": 101872.42,
+        "buying_power": 131341.84,
+        "long_market_value": 66487.57,
+        "last_equity": 102266.98
+      }
+    },
+    "get_orders_open": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T15:14:27Z",
+      "payload": {
+        "result": []
+      }
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T15:14:38Z",
+      "position_count": 32,
+      "symbols": [
+        "AAPL",
+        "ADBE",
+        "AMD",
+        "AMZN",
+        "AVGO",
+        "BAC",
+        "COP",
+        "CVX",
+        "ETN",
+        "FCX",
+        "GOOGL",
+        "INTC",
+        "IONQ",
+        "LLY",
+        "LRCX",
+        "NEE",
+        "NKE",
+        "NOK",
+        "NVDA",
+        "PFE",
+        "PLTR",
+        "QQQ",
+        "RGTI",
+        "SLB",
+        "SO",
+        "SPY",
+        "TSLA",
+        "TSM",
+        "UNH",
+        "V",
+        "WMT",
+        "XOM"
+      ]
+    },
+    "get_stock_latest_quote": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T15:14:58Z",
+      "feed": "iex",
+      "symbols": [
+        "GOOGL",
+        "WMT",
+        "NEE"
+      ],
+      "quotes": {
+        "GOOGL": {
+          "bid": 383.22,
+          "ask": 383.33,
+          "t": "2026-05-29T15:14:58.077923512Z"
+        },
+        "WMT": {
+          "bid": 114.5,
+          "ask": 115.01,
+          "t": "2026-05-29T15:14:58.169723515Z"
+        },
+        "NEE": {
+          "bid": 86.45,
+          "ask": 86.48,
+          "t": "2026-05-29T15:14:57.013489615Z"
+        }
+      }
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-30-0011-hourly-autopilot-alpaca-core-preflight.json"
+  ]
+}
