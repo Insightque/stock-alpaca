@@ -1,0 +1,145 @@
+{
+  "run_id": "2026-05-29-1651-after-hours-autopilot",
+  "created_at": "2026-05-29T16:56:00+09:00",
+  "paper": true,
+  "source": "Codex runtime Alpaca MCP spot checks",
+  "read_only": true,
+  "tools": {
+    "get_clock": {
+      "outcome": "pass",
+      "payload": {
+        "is_open": false,
+        "timestamp": "2026-05-29T03:52:48.88600769-04:00",
+        "next_open": "2026-05-29T09:30:00-04:00",
+        "next_close": "2026-05-29T16:00:00-04:00"
+      }
+    },
+    "get_account_info": {
+      "outcome": "pass",
+      "payload": {
+        "status": "ACTIVE",
+        "cash": "36945.25",
+        "buying_power": "133312.04",
+        "portfolio_value": "102473.17",
+        "long_market_value": "65527.92"
+      }
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "positions_count": 32
+    },
+    "get_orders": {
+      "outcome": "pass",
+      "payload": {
+        "result": []
+      }
+    },
+    "get_account_activities": {
+      "outcome": "pass",
+      "after": "2026-05-29T00:00:00Z",
+      "same_after_hours_session_fills": [
+        {
+          "symbol": "ADBE",
+          "side": "buy",
+          "qty": "1",
+          "price": "242.36",
+          "transaction_time": "2026-05-29T00:16:54.397547Z"
+        }
+      ]
+    },
+    "get_stock_latest_quote": {
+      "outcome": "pass",
+      "feed": "overnight",
+      "symbols": [
+        "QQQ",
+        "NOK",
+        "SMH",
+        "SPY",
+        "NVDA",
+        "ADBE",
+        "LIN",
+        "XOM"
+      ],
+      "quotes": {
+        "LIN": {
+          "bid": 501.32,
+          "ask": 517.72,
+          "t": "2026-05-29T07:53:28.345525095Z",
+          "mid": 509.52,
+          "spread_pct": 3.2187
+        },
+        "ADBE": {
+          "bid": 242.26,
+          "ask": 242.84,
+          "t": "2026-05-29T07:53:44.453985719Z",
+          "mid": 242.55,
+          "spread_pct": 0.2391
+        },
+        "NVDA": {
+          "bid": 215.21,
+          "ask": 215.27,
+          "t": "2026-05-29T07:53:42.035676191Z",
+          "mid": 215.24,
+          "spread_pct": 0.0279
+        },
+        "SPY": {
+          "bid": 755.31,
+          "ask": 755.38,
+          "t": "2026-05-29T07:53:43.607985039Z",
+          "mid": 755.345,
+          "spread_pct": 0.0093
+        },
+        "SMH": {
+          "bid": 602.67,
+          "ask": 602.94,
+          "t": "2026-05-29T07:53:42.732360553Z",
+          "mid": 602.805,
+          "spread_pct": 0.0448
+        },
+        "NOK": {
+          "bid": 15.18,
+          "ask": 15.21,
+          "t": "2026-05-29T07:53:46.362158482Z",
+          "mid": 15.195,
+          "spread_pct": 0.1974
+        },
+        "QQQ": {
+          "bid": 735.22,
+          "ask": 736.36,
+          "t": "2026-05-29T07:53:46.381758712Z",
+          "mid": 735.79,
+          "spread_pct": 0.1549
+        },
+        "XOM": {
+          "bid": 146.49,
+          "ask": 146.76,
+          "t": "2026-05-29T07:53:40.458381072Z",
+          "mid": 146.625,
+          "spread_pct": 0.1841
+        }
+      }
+    },
+    "get_stock_snapshot": {
+      "outcome": "pass",
+      "feed": "overnight",
+      "symbols": [
+        "QQQ",
+        "NOK",
+        "SMH",
+        "SPY",
+        "NVDA",
+        "ADBE",
+        "LIN",
+        "XOM"
+      ],
+      "notes": "Snapshots returned overnight latestQuote/latestTrade/minuteBar/dailyBar for all shortlist symbols."
+    },
+    "get_asset_spot_checks": {
+      "outcome": "partial_runtime_cancelled",
+      "symbols": [
+        "XOM"
+      ],
+      "notes": "XOM active/tradable through Alpaca MCP. Some runtime asset spot checks were cancelled by the wrapper, so scheduler preflight passing asset rows were used for the full 62-symbol universe."
+    }
+  }
+}
