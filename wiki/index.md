@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-30 04:11 KST hourly autopilot preflight/post-trade snapshot 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-30 04:54 KST hourly autopilot preflight/post-trade snapshot 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -44,6 +44,8 @@
 
 ## Current Runs
 
+- [[2026-05-30-0451-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell trigger 없음 및 lifecycle/same-session/thesis/portfolio-fit/target-band 제약으로 주문 없음.
+- [[2026-05-30-0431-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell trigger 없음 및 lifecycle/same-session/thesis/portfolio-fit/target-band 제약으로 주문 없음.
 - [[2026-05-30-0411-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell trigger 없음 및 lifecycle/same-session/thesis/portfolio-fit/target-band 제약으로 주문 없음.
 - [[2026-05-30-0351-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell trigger 없음 및 lifecycle/same-session/thesis/portfolio-fit/target-band 제약으로 주문 없음.
 - [[2026-05-30-0331-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell trigger 없음 및 lifecycle/same-session/spread/thesis/target-band 제약으로 주문 없음.
