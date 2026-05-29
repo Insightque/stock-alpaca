@@ -2111,6 +2111,14 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Policy: no update. Evidence is a 1D sample and portfolio-history MCP is incomplete. Next due: 2026-05-27 fills 5D/20D; 2026-05-28 fills 1D/5D/20D; 2026-05-22 and 2026-05-26 cohorts remain pending 5D/20D.
 - Artifacts: [[2026-05-29-0625-analyst-review-cycle-sources]], `wiki/evidence-store/run-manifests/2026-05-29-0625-analyst-review-cycle.json`, updated [[portfolio-current]] and ticker review markers for NKE/PFE/SO/WMT/NEE/AMZN/BAC/XOM/V.
 
+## [2026-05-29 09:58 Asia/Seoul] implementation | messenger notification format update
+
+- 사용자 요청에 따라 `scripts/send-openclaw-autopilot-update.py`의 OpenClaw 메신저 알림을 `[STOCK-TRAIN]` 운영형 요약으로 개정했다.
+- 새 알림은 20줄 이내에서 실행 시각, 포트폴리오, top holdings, exposure, buy/sell 내역 또는 미거래 사유, 1줄 summary, alerts, next action을 표시한다.
+- 데이터 갭은 `Alerts`에 표시한다. 당일손익을 계산할 수 없으면 `당일손익 데이터 없음`을 명시한다.
+- 문서화: `scheduler/README.md`에 regular/after-hours wrapper가 같은 `[STOCK-TRAIN]` 요약을 쓴다고 기록했다.
+- 검증: `PATH=/usr/local/bin:$PATH python3 -m unittest tests.test_autopilot_notification_schema tests.test_mcp_runtime_wrappers` PASS, 17 tests. 샘플 `2026-05-29-0611-after-hours-autopilot`, `2026-05-29-0111-hourly-autopilot` 메시지 생성 확인.
+
 ## [2026-05-29 06:34 Asia/Seoul] after-hours-autopilot | 2026-05-29-0631-after-hours-autopilot scheduled paper autopilot
 
 - Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session `after_hours`; artifact tag `after-hours`; review bucket `after_hours_validation`.
@@ -2221,3 +2229,19 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Submit/reconcile: no `place_stock_order` call and no submit attempt. No new `client_order_id` was created; prior same-session ADBE order was reconciled through Alpaca MCP order query.
 - Validators: `python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS with `orders is empty` warning.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-0951-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-0951-after-hours-autopilot.json`, [[2026-05-29-0951-after-hours-autopilot]]. Review due: no new after-hours fills.
+
+## [2026-05-29 09:58 Asia/Seoul] implementation | messenger notification format update verified
+
+- `scripts/send-openclaw-autopilot-update.py`를 `[STOCK-TRAIN]` 운영형 알림으로 개정했다. 포트폴리오, top holdings, exposure, buy/sell 내역 또는 미거래 사유, summary, alerts, next action을 20줄 이내로 출력한다.
+- 샘플 `2026-05-29-0611-after-hours-autopilot`은 buy 0, sell 0, `fresh_quote` 차단, Alpha/FRED gap 및 당일손익 데이터 공백을 표시했다. 샘플 `2026-05-29-0111-hourly-autopilot`은 XOM 검증 매수와 sell trigger 없음, Alpha gap을 표시했다.
+- `scheduler/README.md`와 알림 테스트를 갱신했다. 검증: `PATH=/usr/local/bin:$PATH python3 -m unittest tests.test_autopilot_notification_schema tests.test_mcp_runtime_wrappers tests.test_policy_source_of_truth` PASS, 19 tests.
+
+## [2026-05-29 10:14 Asia/Seoul] after-hours-autopilot | 2026-05-29-1011-after-hours-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session `after_hours`; artifact tag `after-hours`; review bucket `after_hours_validation`.
+- Scheduler preflight: Alpaca core preflight `wiki/evidence-store/sources/2026-05-29-1011-after-hours-autopilot-alpaca-core-preflight.json` had `first_blocking_gate=market_closed`, expected and nonblocking for after-hours. Account, positions, open orders, assets, quotes, spreads, and recent activities rows were usable. Research preflight `wiki/evidence-store/sources/2026-05-29-1011-after-hours-autopilot-research-mcp-preflight.json` had SEC EDGAR/Firecrawl/Yahoo pass, Alpha Vantage `empty_response`, and FRED 504 `provider_error`.
+- Fresh Alpaca MCP spot checks: market clock closed at `2026-05-28T21:13:05.971396472-04:00`, account `ACTIVE`, open US equity orders `[]`, same after-hours session order query after `2026-05-28T20:00:00Z` returned the prior ADBE fill, positions returned 32 symbols, QQQ/NOK/ADBE assets active/tradable, and overnight quotes for QQQ/NOK/SMH/SPY/NVDA/ADBE/LIN/XOM were checked.
+- Gates: universe strict PASS, MCP strict PASS, separate after-hours order budget PASS with `risk_inputs.after_hours_new_orders_submitted_today=1`, risk validator PASS for empty order plan. Quote/spread was mixed: NOK/NVDA passed, but NOK thesis blocks new chase and NVDA concentration was avoided; ADBE/LIN/XOM failed spread or duplicate-session constraints; QQQ/SPY/SMH exceeded after-hours one-share notional cap.
+- Submit/reconcile: no `place_stock_order` call and no submit attempt. No new `client_order_id` was created; prior same-session ADBE order was reconciled through Alpaca MCP order query.
+- Validators: `python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS with `orders is empty` warning.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-1011-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-1011-after-hours-autopilot.json`, [[2026-05-29-1011-after-hours-autopilot]]. Review due: no new after-hours fills.

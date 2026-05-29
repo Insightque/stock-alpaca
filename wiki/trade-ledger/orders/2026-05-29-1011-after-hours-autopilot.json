@@ -1,0 +1,43 @@
+{
+  "run_id": "2026-05-29-1011-after-hours-autopilot",
+  "schema_version": "1.2",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "8e954abd7f8ccddc0369863ee5a11914ba7de415",
+  "created_at": "2026-05-29T10:14:40+09:00",
+  "mode": "submit",
+  "paper": true,
+  "market": {
+    "is_open": false,
+    "checked_at": "2026-05-29T01:13:05.971396472Z",
+    "next_open": "2026-05-29T09:30:00-04:00",
+    "next_close": "2026-05-29T16:00:00-04:00",
+    "session": "after_hours"
+  },
+  "account": {
+    "cash": 36945.25,
+    "buying_power": 133034.65,
+    "portfolio_value": 102280.2,
+    "currency": "USD",
+    "daily_realized_loss": 0
+  },
+  "positions": [],
+  "open_orders": [],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0,
+    "weekly_turnover_ratio": 0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "after_hours_new_orders_submitted_today": 1,
+    "risk_recomputed_after_partial_fill": true
+  },
+  "orders": [],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-29-1011-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-29-1011-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-05-29-0911-after-hours-autopilot.json",
+    "wiki/research-notes/tickers/NOK.md",
+    "wiki/research-notes/tickers/NVDA.md",
+    "wiki/research-notes/tickers/XOM.md"
+  ],
+  "manifest_path": "wiki/evidence-store/run-manifests/2026-05-29-1011-after-hours-autopilot.json"
+}
