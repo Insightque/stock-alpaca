@@ -1,0 +1,141 @@
+{
+  "run_id": "2026-05-29-1811-after-hours-autopilot",
+  "created_at": "2026-05-29T18:15:08+09:00",
+  "paper": true,
+  "source": "runtime Alpaca MCP spot check during after-hours autopilot",
+  "read_only": true,
+  "orders_submitted": 0,
+  "tool_results": {
+    "get_clock": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T09:12:44.238743241Z",
+      "payload": {
+        "is_open": false,
+        "timestamp": "2026-05-29T05:12:44.238743241-04:00",
+        "next_open": "2026-05-29T09:30:00-04:00",
+        "next_close": "2026-05-29T16:00:00-04:00"
+      }
+    },
+    "get_account_info": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T09:12:44.238743241Z",
+      "payload": {
+        "status": "ACTIVE",
+        "currency": "USD",
+        "buying_power": "133387.77",
+        "cash": "36945.25",
+        "portfolio_value": "102587.09",
+        "trading_blocked": false,
+        "transfers_blocked": false,
+        "account_blocked": false,
+        "paper": true
+      }
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T09:12:44.238743241Z",
+      "payload_summary": {
+        "position_count": 32,
+        "symbols": [
+          "AAPL",
+          "ADBE",
+          "AMD",
+          "AMZN",
+          "AVGO",
+          "BAC",
+          "COP",
+          "CVX",
+          "ETN",
+          "FCX",
+          "GOOGL",
+          "INTC",
+          "IONQ",
+          "LLY",
+          "LRCX",
+          "NEE",
+          "NKE",
+          "NOK",
+          "NVDA",
+          "PFE",
+          "PLTR",
+          "QQQ",
+          "RGTI",
+          "SLB",
+          "SO",
+          "SPY",
+          "TSLA",
+          "TSM",
+          "UNH",
+          "V",
+          "WMT",
+          "XOM"
+        ]
+      }
+    },
+    "get_orders_open": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T09:12:44.238743241Z",
+      "arguments": {
+        "status": "open",
+        "asset_class": [
+          "us_equity"
+        ],
+        "limit": 100
+      },
+      "payload": {
+        "result": []
+      }
+    },
+    "get_account_activities": {
+      "outcome": "gap",
+      "checked_at": "2026-05-29T09:12:44.238743241Z",
+      "arguments": {
+        "activity_type": "FILL",
+        "after": "2026-05-29T00:00:00Z",
+        "page_size": 50
+      },
+      "gap_category": "runtime_cancelled",
+      "gap_reason": "Runtime Alpaca MCP activity call was cancelled; scheduler-owned Alpaca core preflight recent_activities row was usable and same-session after-hours order budget was preserved from prior validated artifacts."
+    },
+    "get_asset_spot_checks": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T09:12:44.238743241Z",
+      "payload_by_symbol": {
+        "QQQ": {"class": "us_equity", "status": "active", "tradable": true, "attributes": ["fractional_eh_enabled", "has_options", "options_late_close", "overnight_tradable"]},
+        "NOK": {"class": "us_equity", "status": "active", "tradable": true, "attributes": ["fractional_eh_enabled", "has_options", "overnight_tradable"]},
+        "SMH": {"class": "us_equity", "status": "active", "tradable": true, "attributes": ["fractional_eh_enabled", "has_options", "options_late_close", "overnight_tradable"]},
+        "SPY": {"class": "us_equity", "status": "active", "tradable": true, "attributes": ["fractional_eh_enabled", "has_options", "options_late_close", "overnight_tradable"]},
+        "NVDA": {"class": "us_equity", "status": "active", "tradable": true, "attributes": ["fractional_eh_enabled", "has_options", "overnight_tradable"]},
+        "ADBE": {"class": "us_equity", "status": "active", "tradable": true, "attributes": ["fractional_eh_enabled", "has_options", "overnight_tradable"]},
+        "LIN": {"class": "us_equity", "status": "active", "tradable": true, "attributes": ["fractional_eh_enabled", "has_options", "overnight_tradable"]},
+        "XOM": {"class": "us_equity", "status": "active", "tradable": true, "attributes": ["fractional_eh_enabled", "has_options", "overnight_tradable"]}
+      }
+    },
+    "get_stock_latest_quote_overnight": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T09:12:44.238743241Z",
+      "feed": "overnight",
+      "symbols": ["QQQ", "NOK", "SMH", "SPY", "NVDA", "ADBE", "LIN", "XOM"],
+      "quote_timestamp": "2026-05-29T08:00:00Z",
+      "quote_age_minutes": 72.73,
+      "spread_pct_by_symbol": {
+        "NOK": 6.4052,
+        "NVDA": 0.0743,
+        "XOM": 4.33,
+        "ADBE": 9.9339,
+        "LIN": 1.4081,
+        "QQQ": 0.2025,
+        "SPY": 0.4981,
+        "SMH": 4.1277
+      }
+    }
+  },
+  "gate_interpretation": {
+    "regular_market_not_open": "PASS",
+    "alpaca_core_runtime_spot_check": "PASS",
+    "quote_freshness": "FAIL",
+    "quote_spread": "MIXED",
+    "submit_blocked": true,
+    "reason": "Overnight quote timestamps were about 72.73 minutes old at runtime, exceeding after_hours_policy.max_quote_age_minutes_submit=5.0."
+  }
+}
