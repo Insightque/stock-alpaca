@@ -44,6 +44,7 @@
 
 ## Current Runs
 
+- [[2026-05-30-0151-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 후보별 lifecycle/thesis/spread/target-band 제약으로 주문 없음.
 - [[2026-05-30-0131-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 후보별 lifecycle/thesis/target-band/same-session 제약으로 주문 없음.
 - [[2026-05-30-0011-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 GOOGL, WMT, NEE 각 1주 paper validation buy 체결.
 - [[2026-05-30-0031-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 MRK 1주 paper validation buy 제출, reconciliation 기준 open `new`.

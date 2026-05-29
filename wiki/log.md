@@ -2804,3 +2804,13 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Source-of-truth mismatch recorded: workflow/user instruction asks new order plans to include top-level `quote_captured_at` and `asset_checked_at`, but current `harness/order-plan.schema.json` rejects those fields. The run followed the schema/validator source of truth; quote and asset timestamps remain in the Alpaca core preflight source refs.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-30-0131-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-30-0131-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-30-0131-hourly-autopilot-post-trade.json`, [[2026-05-30-0131-hourly-autopilot]].
 - Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
+
+## [2026-05-30 01:58 Asia/Seoul] hourly-autopilot | 2026-05-30-0151-hourly-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; regular session submit mode.
+- Scheduler evidence: stale cleanup PASS with no stale/open hourly orders. Alpaca core preflight hard gate PASS and market open. Registered Alpaca MCP spot checks passed for account, open orders, positions, and quotes; the extra nested clock spot check was cancelled and recorded as non-scoring `gap_category=cancelled`, while scheduler clock remained authoritative.
+- Research preflight: SEC EDGAR/FRED/Firecrawl/Yahoo PASS and Alpha Vantage `provider_error` rate-limit gap; 4 usable research confirmations, so tiered MCP gate passed.
+- Gates: universe strict PASS, MCP strict PASS, risk validator PASS with expected `orders is empty` warning. No paper orders were submitted because MRK was not force-replaced after same-session cleanup, SPY/QQQ had same-session validation exposure, MCD lacked maintained thesis evidence and failed spread gate, AAPL/COP/NOK adds were blocked by due validation lifecycle reviews, and NVDA/SMH were blocked by AI semiconductor target-band controls.
+- Sell/trim evaluated first and `sell_candidate_diagnostics` recorded AMD, PLTR, and RGTI watch diagnostics. No eligible sell/trim trigger passed normal sell gates.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-30-0151-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-30-0151-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-30-0151-hourly-autopilot-post-trade.json`, [[2026-05-30-0151-hourly-autopilot]].
+- Validators: universe PASS; MCP PASS; risk PASS.
