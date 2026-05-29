@@ -1,0 +1,246 @@
+{
+  "run_id": "2026-05-29-2111-after-hours-autopilot",
+  "created_at": "2026-05-29T21:11:00+09:00",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "policy_profile": "after_hours_policy",
+  "recommendation_policy_sha": "sha256:1160293a656dd5f8ff601c5058705bf777bb58f9b103382bed1b80593159c9de",
+  "mode": "submit",
+  "paper": true,
+  "orders_submitted": 0,
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-29-2111-after-hours-autopilot.json",
+  "report_path": "wiki/current-runs/daily/2026-05-29-2111-after-hours-autopilot.md",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-29-2111-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-29-2111-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-05-29-2111-after-hours-autopilot-runtime-alpaca-spot-check.json"
+  ],
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "NOK",
+      "SMH",
+      "SPY",
+      "NVDA",
+      "ADBE",
+      "LIN",
+      "XOM"
+    ],
+    "final_candidates": [
+      "NOK",
+      "NVDA",
+      "XOM",
+      "ADBE",
+      "LIN"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T12:12:55Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2111-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-05-29-2111-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ],
+      "gap_reason": "Scheduler Alpaca core preflight first_blocking_gate=market_closed was expected and nonblocking for after-hours. It supplied passing account, positions, open orders, asset, quote, spread, and activity evidence; runtime MCP confirmed clock closed, account ACTIVE, positions, open orders [], same-session ADBE fill count 1, candidate assets, overnight quotes, and snapshots. Quote freshness failed for submit because overnight quote timestamps were older than after_hours_policy.max_quote_age_minutes_submit.",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T10:51:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2111-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-29T12:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2111-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Circuit breaker open until 2026-05-29T13:51:29+00:00 after recent provider_error failure: Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T10:51:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2111-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T10:51:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2111-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T11:51:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2111-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "gate_results": {
+    "paper_mode": {
+      "status": "PASS",
+      "evidence": "ALPACA_PAPER_TRADE=true"
+    },
+    "regular_market_not_open": {
+      "status": "PASS",
+      "evidence": "2026-05-29T08:12:54.711420968-04:00"
+    },
+    "alpaca_core": {
+      "status": "PASS",
+      "evidence": "scheduler preflight market_closed expected/nonblocking; runtime MCP rows usable"
+    },
+    "universe_strict": {
+      "status": "PASS",
+      "evidence": "62 symbols, SPY/QQQ included"
+    },
+    "mcp_strict": {
+      "status": "PASS",
+      "evidence": "Alpaca core plus SEC/FRED/Firecrawl/Yahoo usable; Alpha Vantage provider_error gap"
+    },
+    "separate_after_hours_budget": {
+      "status": "PASS",
+      "evidence": "after_hours_new_orders_submitted_today=1, session cap=2"
+    },
+    "quote_freshness": {
+      "status": "FAIL",
+      "evidence": "overnight quote timestamps around 2026-05-29T08:00:00Z; age about 252.91 minutes at fresh clock check, cap=5"
+    },
+    "spread": {
+      "status": "MIXED",
+      "evidence": "NVDA and QQQ under 0.25%; remaining shortlist over cap"
+    },
+    "risk_policy": {
+      "status": "PASS",
+      "evidence": "scripts/check-risk-policy.py --json PASS; warning orders is empty"
+    }
+  },
+  "candidate_diagnostics": {
+    "NOK": {
+      "quote_age_minutes": 252.91,
+      "spread_pct": 6.4052
+    },
+    "NVDA": {
+      "quote_age_minutes": 252.91,
+      "spread_pct": 0.0743
+    },
+    "XOM": {
+      "quote_age_minutes": 252.91,
+      "spread_pct": 4.33
+    },
+    "ADBE": {
+      "quote_age_minutes": 252.91,
+      "spread_pct": 9.9339
+    },
+    "LIN": {
+      "quote_age_minutes": 252.91,
+      "spread_pct": 1.4081
+    },
+    "QQQ": {
+      "quote_age_minutes": 252.91,
+      "spread_pct": 0.2025
+    },
+    "SPY": {
+      "quote_age_minutes": 252.91,
+      "spread_pct": 0.4981
+    },
+    "SMH": {
+      "quote_age_minutes": 252.91,
+      "spread_pct": 4.1277
+    }
+  },
+  "submit_summary": {
+    "submitted": false,
+    "place_stock_order_called": false,
+    "client_order_ids": [],
+    "reason": "fresh_quote gate failed before pre-submit"
+  },
+  "risk_check_result": {
+    "status": "PASS",
+    "errors": [],
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": {
+      "buy_notional": 0.0,
+      "sell_notional": 0.0,
+      "post_cash": 36945.25,
+      "post_invested": 65577.02009999998,
+      "policy_version": "medium-risk-v1.1"
+    }
+  }
+}

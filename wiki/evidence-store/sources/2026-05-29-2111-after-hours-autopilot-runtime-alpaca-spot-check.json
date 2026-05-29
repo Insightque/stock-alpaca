@@ -1,0 +1,165 @@
+{
+  "run_id": "2026-05-29-2111-after-hours-autopilot",
+  "created_at": "2026-05-29T21:13:00+09:00",
+  "session": "after_hours",
+  "paper": true,
+  "source": "runtime Alpaca MCP spot checks",
+  "read_only": true,
+  "orders_submitted": 0,
+  "tool_results": {
+    "get_clock": {
+      "outcome": "pass",
+      "payload": {
+        "is_open": false,
+        "timestamp": "2026-05-29T08:12:54.711420968-04:00",
+        "next_open": "2026-05-29T09:30:00-04:00",
+        "next_close": "2026-05-29T16:00:00-04:00"
+      }
+    },
+    "get_account_info": {
+      "outcome": "pass",
+      "payload_summary": {
+        "status": "ACTIVE",
+        "currency": "USD",
+        "portfolio_value": 102363.63,
+        "cash": 36945.25,
+        "buying_power": 133206.52,
+        "trading_blocked": false,
+        "account_blocked": false
+      }
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "payload_summary": {
+        "position_count": 32,
+        "symbols": [
+          "AAPL",
+          "ADBE",
+          "AMD",
+          "AMZN",
+          "AVGO",
+          "BAC",
+          "COP",
+          "CVX",
+          "ETN",
+          "FCX",
+          "GOOGL",
+          "INTC",
+          "IONQ",
+          "LLY",
+          "LRCX",
+          "NEE",
+          "NKE",
+          "NOK",
+          "NVDA",
+          "PFE",
+          "PLTR",
+          "QQQ",
+          "RGTI",
+          "SLB",
+          "SO",
+          "SPY",
+          "TSLA",
+          "TSM",
+          "UNH",
+          "V",
+          "WMT",
+          "XOM"
+        ]
+      }
+    },
+    "get_orders": {
+      "outcome": "pass",
+      "arguments": {
+        "status": "open",
+        "asset_class": [
+          "us_equity"
+        ],
+        "limit": 100
+      },
+      "payload": {
+        "result": []
+      }
+    },
+    "get_account_activities": {
+      "outcome": "pass",
+      "arguments": {
+        "activity_types": [
+          "FILL"
+        ],
+        "after": "2026-05-29T00:00:00Z",
+        "page_size": 100
+      },
+      "payload_summary": {
+        "same_session_after_hours_new_buy_fills": 1,
+        "same_session_after_hours_symbols": [
+          "ADBE"
+        ],
+        "latest_same_session_fill": {
+          "transaction_time": "2026-05-29T00:16:54.397547Z",
+          "symbol": "ADBE",
+          "side": "buy",
+          "qty": "1",
+          "price": "242.36",
+          "order_status": "filled"
+        }
+      }
+    },
+    "get_asset": {
+      "outcome": "pass",
+      "symbols_checked": [
+        "QQQ",
+        "NOK",
+        "SMH",
+        "SPY",
+        "NVDA",
+        "ADBE",
+        "LIN",
+        "XOM"
+      ],
+      "summary": "All checked symbols returned active, tradable us_equity assets with overnight_tradable/fractional_eh_enabled attributes."
+    },
+    "get_stock_latest_quote": {
+      "outcome": "pass",
+      "arguments": {
+        "symbols": "QQQ,NOK,SMH,SPY,NVDA,ADBE,LIN,XOM",
+        "feed": "overnight"
+      },
+      "quote_timestamps": {
+        "QQQ": "2026-05-29T08:00:00.386377592Z",
+        "NOK": "2026-05-29T08:00:00.412618229Z",
+        "SMH": "2026-05-29T08:00:00.397462213Z",
+        "SPY": "2026-05-29T08:00:00.403389828Z",
+        "NVDA": "2026-05-29T08:00:00.413977496Z",
+        "ADBE": "2026-05-29T08:00:00.406086772Z",
+        "LIN": "2026-05-29T08:00:00.313942005Z",
+        "XOM": "2026-05-29T08:00:00.400618942Z"
+      },
+      "spread_pct": {
+        "QQQ": 0.2025,
+        "NOK": 6.4052,
+        "SMH": 4.1277,
+        "SPY": 0.4981,
+        "NVDA": 0.0743,
+        "ADBE": 9.9339,
+        "LIN": 1.4077,
+        "XOM": 4.33
+      },
+      "quote_age_minutes_at_clock": 252.91
+    },
+    "get_stock_snapshot": {
+      "outcome": "pass",
+      "arguments": {
+        "symbols": "QQQ,NOK,SMH,SPY,NVDA,ADBE,LIN,XOM",
+        "feed": "overnight"
+      },
+      "summary": "Snapshots returned latest quote, latest trade, minute bar, daily bar, and previous daily bar for all checked symbols."
+    }
+  },
+  "decision": {
+    "submit": false,
+    "place_stock_order_called": false,
+    "blocking_gate": "fresh_quote",
+    "reason": "All overnight quote timestamps were around 2026-05-29T08:00:00Z, about 252.91 minutes old at the runtime Alpaca clock check, exceeding after_hours_policy.max_quote_age_minutes_submit=5.0."
+  }
+}
