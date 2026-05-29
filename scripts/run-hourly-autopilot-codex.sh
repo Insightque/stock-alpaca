@@ -170,6 +170,10 @@ Hard requirements:
 - Submit paper orders only if the market is open and universe, MCP, quote, spread, and risk gates all pass.
 - If any gate fails, submit nothing and still write the report, manifest, order plan, and log entry.
 - Evaluate risk-reducing sell/trim/exit candidates before new buys on every run. The buy entry window, validation-buy slots, and validation-buy budget gate new buy exposure only; do not use them to suppress sell diagnostics or eligible risk-reducing sell/trim entries.
+- On every completed run, write `sell_candidate_diagnostics` into the order plan and manifest using `risk_trim_policy.sell_candidate_diagnostics`, including the top unexecuted sell/trim candidates even when the final recommendation is hold/watch.
+- Apply `risk_trim_policy.validation_lifecycle`: due filled validation buys must get hold/add/trim/close decisions, and missing due reviews should block additional buys for that symbol until reviewed.
+- Apply `risk_trim_policy.rotation_trim` and `risk_trim_policy.portfolio_target_bands`: target-band warnings and relative opportunity cost can create limited trim diagnostics/orders only when the YAML conditions and normal sell gates pass.
+- The order plan must include current Alpaca positions even when `orders` is empty or the run is blocked; do not leave `positions` empty when account value minus cash implies invested exposure.
 - Classify every MCP gap as one of: timeout, cancelled, dns, auth, empty_response, provider_error, wrapper_error, unknown.
 - For Alpaca core, make short independent attempts for clock, account, orders, positions, and quotes. Record which exact core check was the first blocking gate.
 - For SEC EDGAR, use the local `harness/sec-ticker-cik-map.json` mapping as a ticker-to-CIK fallback before marking a ticker lookup gap. In scheduled autopilot, prefer `get_company_info` and `get_recent_filings`; do not escalate to heavier SEC financials calls unless those tools are explicitly exposed and the lighter filing evidence is insufficient.

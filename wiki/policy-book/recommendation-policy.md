@@ -1,6 +1,6 @@
 ---
 id: recommendation-policy
-updated_at: 2026-05-29T05:58:00+09:00
+updated_at: 2026-05-29T23:09:00+09:00
 ---
 
 # 추천 정책
@@ -40,6 +40,10 @@ updated_at: 2026-05-29T05:58:00+09:00
 - 자동 sell/trim은 thesis-break만이 아니라 speculative cap, correlated cluster cap, theme/factor cap, 과열 후 손익 보호, position sizing 같은 risk trim 사유로도 가능하다. 단 Alpaca core, fresh quote/spread, open-order state, risk gate는 반드시 통과해야 한다.
 - 일일 validation buy budget 소진과 buy entry window는 신규 매수 후보만 막는다. 보유 수량 이내의 risk-reducing sell/trim은 매수 판단보다 먼저, 매수 budget/window와 분리해 평가하며, 매도 생략 사유는 `매도 trigger 없음`과 `비-budget gate 실패`를 구분해 기록한다.
 - 신규 매수용 confidence/source-confidence/policy-status gate는 sell/trim에 그대로 적용하지 않는다. 낮은 confidence, `source_confidence=low`, `policy_status=rejected`는 신규 buy 차단 사유이면서 동시에 보유 포지션 trim/exit 사유가 될 수 있다.
+- 매도 주문이 없어도 매 run마다 실행하지 않은 sell/trim 후보 진단을 남긴다. 이 진단은 실제 매도 명령이 아니라 보유 포지션의 상대매력, lifecycle review, target band 접근도, 비-budget gate 실패를 학습하기 위한 자료다.
+- Validation buy는 체결 후 1D/5D/20D horizon마다 `hold/add/trim/close` 중 하나로 판단한다. due review가 빠진 종목은 추가 매수보다 회고를 우선한다.
+- Risk cap은 hard stop이고, target/warning band는 운용 목표다. 특정 theme/factor/cluster가 warning band를 넘으면 신규 같은 방향 매수는 더 엄격하게 제한하고, thesis 악화나 상대매력 하락이 함께 있으면 trim 후보로 올린다.
+- Rotation trim은 “새 후보가 더 좋아 보인다”는 단독 사유로 실행하지 않는다. 다만 보유 종목의 기대 초과수익이 정책 바닥 아래이고, 대체 후보가 충분한 quality margin과 모든 buy/sell gate를 통과하면 제한적 trim 후보로 기록한다.
 - 확장 universe는 theme cap, factor cap, active/tradable 확인, 최소 가격, 유동성, spread, source confidence, SPY/QQQ 상대강도를 모두 통과할 때만 사용한다.
 - 정책 변경은 `wiki/policy-book/proposals/TEMPLATE-policy-change.md` 구조를 통과해야 하며, 단일 백테스트 평균만으로 `auto_eligible_paper`로 승격하지 않는다.
 - 모든 정책개선형 시뮬레이션은 채택 여부와 무관하게 policy closeout을 남긴다. 결과가 약하면 `reject`, `observation_only`, `needs_out_of_sample` 중 하나로 분류하고 실패에서 배운 레슨도 정책학습 지표에 기록한다.
@@ -77,6 +81,7 @@ updated_at: 2026-05-29T05:58:00+09:00
 | 2026-05-29 | 일일 신규 주문 cap이 side를 구분하지 않아 validation buy budget 20/20 이후 risk-reducing sell/trim까지 막을 수 있음을 확인함. `daily_limits.max_new_orders_per_day_applies_to_sides=[buy]`를 추가하고 risk validator가 buy만 세도록 개정함 | [[2026-05-29-buy-sell-cap-review]], `scripts/check-risk-policy.py`, `tests/test_check_risk_policy.py` | 적용 |
 | 2026-05-29 | 주문 장부상 sell order-plan이 0건이고, buy-quality gate가 sell에도 적용되어 rejected/low-confidence thesis의 exit까지 막을 수 있음을 확인함. Risk validator에서 buy-only 품질 gate를 buy에만 적용하고 sell은 `entry_style=trim|exit`와 보유수량/quote/spread/risk gate 중심으로 검증하도록 개정함 | [[2026-05-29-sell-frequency-policy-review]], `scripts/check-risk-policy.py`, `tests/test_check_risk_policy.py` | 적용 |
 | 2026-05-29 | 다른 분기의 exit 관련 수정사항을 현 정책학습 관점에서 재검토함. Sell/trim 선평가와 buy window/budget 독립성은 학습 누락 방지를 위해 적용했고, force-exit window 및 80분 time-stop은 현 repo의 검증 근거가 없어 자동 채택하지 않음. 대신 단타 exit 규칙을 strategy config에 명시하고 dry-run helper가 설정을 읽도록 바꿈 | [[2026-05-29-autopilot-exit-policy-learning-review]], `harness/recommendation-policy.yaml`, `harness/strategies/intraday-rs-breakout-v0.yaml`, `scripts/evaluate-intraday-dry-run.py` | 부분 적용 / 무근거 규칙 이식 보류 |
+| 2026-05-29 | 전문 투자자 관점에서 buy-only drift 위험을 재점검함. 즉시 강제 매도 대신 sell 후보 진단, validation lifecycle 판단, relative opportunity-cost rotation trim, target/warning band를 recommendation policy v1.9에 추가함 | 사용자 점검 요청, `harness/recommendation-policy.yaml`, `harness/workflows/hourly-autopilot.md` | 적용 |
 
 ## 검증 중인 가설
 

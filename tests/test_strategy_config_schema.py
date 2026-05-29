@@ -65,6 +65,15 @@ class StrategyConfigSchemaTests(unittest.TestCase):
         self.assertEqual("before_new_buys", risk_trim["evaluation_order"])
         self.assertTrue(risk_trim["decouple_from_buy_entry_window"])
         self.assertTrue(risk_trim["decouple_from_buy_budget"])
+        self.assertTrue(risk_trim["sell_candidate_diagnostics"]["enabled"])
+        self.assertEqual(3, risk_trim["sell_candidate_diagnostics"]["top_n"])
+        self.assertTrue(risk_trim["validation_lifecycle"]["enabled"])
+        self.assertEqual(["hold", "add", "trim", "close"], risk_trim["validation_lifecycle"]["required_decisions"])
+        self.assertTrue(risk_trim["rotation_trim"]["enabled"])
+        self.assertEqual("relative_opportunity_cost", risk_trim["rotation_trim"]["reason"])
+        ai_theme = risk_trim["portfolio_target_bands"]["themes"]["ai_semiconductor"]
+        self.assertEqual(0.25, ai_theme["target_ratio"])
+        self.assertEqual(0.30, ai_theme["warning_ratio"])
 
         after_hours = policy["after_hours_policy"]
         self.assertTrue(after_hours["enabled_for_explicit_autopilot_runs"])

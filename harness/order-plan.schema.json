@@ -173,7 +173,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["symbol", "side", "qty", "status", "submitted_at", "age_minutes"],
+        "required": ["symbol", "side", "qty", "status", "submitted_at"],
         "properties": {
           "symbol": {
             "type": "string",
@@ -186,6 +186,10 @@
           "qty": {
             "type": "number",
             "minimum": 0
+          },
+          "limit_price": {
+            "type": "number",
+            "exclusiveMinimum": 0
           },
           "filled_qty": {
             "type": "number",
@@ -208,6 +212,15 @@
           "age_minutes": {
             "type": "number",
             "minimum": 0
+          },
+          "stale_cleanup_attempted": {
+            "type": "boolean"
+          },
+          "source_refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       }
@@ -476,6 +489,146 @@
           "rationale": {
             "type": "string",
             "minLength": 1
+          }
+        }
+      }
+    },
+    "sell_candidate_diagnostics": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "symbol",
+          "held_qty",
+          "trigger_status",
+          "primary_reason",
+          "recommendation",
+          "source_refs"
+        ],
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9.-]{0,9}$"
+          },
+          "held_qty": {
+            "type": "number",
+            "minimum": 0
+          },
+          "current_weight_pct": {
+            "type": "number",
+            "minimum": 0
+          },
+          "trigger_status": {
+            "type": "string",
+            "enum": ["active", "no_trigger", "sell_trigger_none", "blocked_by_gate", "review_due"]
+          },
+          "primary_reason": {
+            "type": "string"
+          },
+          "skipped_gate": {
+            "type": "string"
+          },
+          "expected_excess_return_20d_pct": {
+            "type": ["number", "null"]
+          },
+          "relative_to_spy_20d_pct": {
+            "type": ["number", "null"]
+          },
+          "replacement_symbol": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9.-]{0,9}$"
+          },
+          "replacement_confidence_score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "recommendation": {
+            "type": "string",
+            "enum": ["hold", "add", "trim", "close", "watch", "hold_watch"]
+          },
+          "source_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "validation_lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "due_reviews": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["symbol", "horizon", "decision_due"],
+            "properties": {
+              "symbol": {
+                "type": "string",
+                "pattern": "^[A-Z][A-Z0-9.-]{0,9}$"
+              },
+              "horizon": {
+                "type": "string",
+                "enum": ["1D", "5D", "20D"]
+              },
+              "decision_due": {
+                "type": "boolean"
+              },
+              "current_decision": {
+                "type": "string",
+                "enum": ["hold", "add", "trim", "close", "pending"]
+              },
+              "source_refs": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "blocked_add_symbols": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9.-]{0,9}$"
+          }
+        },
+        "due_reviews_blocking_adds": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9.-]{0,9}$"
+          }
+        },
+        "reviewed_recent_validation_symbols": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9.-]{0,9}$"
+          }
+        },
+        "new_same_day_fills_not_due_yet": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Z][A-Z0-9.-]{0,9}$"
+          }
+        },
+        "source_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
           }
         }
       }

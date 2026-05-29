@@ -619,6 +619,19 @@ def latest_order_plan_snapshot_path() -> Path | None:
     return candidates[-1] if candidates else None
 
 
+def latest_nonempty_order_plan_snapshot_path(exclude: Path | None = None) -> Path | None:
+    exclude_resolved = exclude.resolve() if exclude else None
+    candidates = sorted((ROOT / "wiki" / "trade-ledger" / "orders").glob("*.json"), reverse=True)
+    for path in candidates:
+        if exclude_resolved and path.resolve() == exclude_resolved:
+            continue
+        plan = load_json(path)
+        orders = plan.get("orders", []) if isinstance(plan.get("orders"), list) else []
+        if orders:
+            return path
+    return None
+
+
 def portfolio_snapshot() -> dict[str, Any]:
     position_path = ROOT / "wiki" / "trade-ledger" / "positions" / "current.md"
     text = read_text(position_path)
@@ -1096,6 +1109,10 @@ def build_dashboard_data() -> dict[str, Any]:
         picks = manifest_shortlist_picks(manifest, order_plan)
     if not picks:
         picks = order_plan_picks(order_plan)
+    if not picks:
+        fallback_order_path = latest_nonempty_order_plan_snapshot_path(order_plan_path)
+        fallback_order_plan = load_json(fallback_order_path) if fallback_order_path else {}
+        picks = order_plan_picks(fallback_order_plan)
 
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),

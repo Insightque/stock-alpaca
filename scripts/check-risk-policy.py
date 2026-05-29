@@ -509,7 +509,14 @@ def validate(
             continue
         symbol = normalize_symbol(open_order.get("symbol"))
         side = str(open_order.get("side", "")).strip().lower()
-        age = as_float(open_order.get("age_minutes"), f"open_orders[{index}].age_minutes", errors)
+        raw_age = open_order.get("age_minutes")
+        if raw_age is None and market_checked_at is not None:
+            submitted_at = parse_datetime(
+                open_order.get("submitted_at"), f"open_orders[{index}].submitted_at", errors
+            )
+            age = max((market_checked_at - submitted_at).total_seconds() / 60.0, 0.0) if submitted_at else 0.0
+        else:
+            age = as_float(raw_age, f"open_orders[{index}].age_minutes", errors)
         status = normalize_label(open_order.get("status"))
         if age > max_open_age:
             errors.append(f"{symbol}: open order age {age:.1f} minutes exceeds lifecycle limit {max_open_age:.1f}")

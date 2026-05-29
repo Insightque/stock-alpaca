@@ -1,6 +1,6 @@
-policy_id: recommendation-policy-v1.8
-updated_at: "2026-05-28T12:43:00+09:00"
-policy_version: v1.8
+policy_id: recommendation-policy-v1.9
+updated_at: "2026-05-29T23:09:00+09:00"
+policy_version: v1.9
 strategy_status:
   long_term_quality_momentum_v1:
     status: auto_eligible_paper
@@ -217,6 +217,9 @@ risk_trim_policy:
     - stale_thesis
     - position_sizing
     - portfolio_fit
+    - relative_opportunity_cost
+    - validation_lifecycle_review
+    - target_band_de_risking
     - speculative_cap_exceeded
     - correlated_cluster_cap_exceeded
     - theme_factor_cap_exceeded
@@ -242,6 +245,83 @@ risk_trim_policy:
     stale_thesis_underperform_spy_20d_pct: -5
     speculative_loss_pct: -8
     require_no_same_day_buy_for_trim: true
+  sell_candidate_diagnostics:
+    enabled: true
+    top_n: 3
+    include_no_trigger_candidates: true
+    include_blocked_by_gate_candidates: true
+    rank_by:
+      - active_trigger
+      - target_band_warning
+      - negative_expected_excess_return
+      - replacement_quality_margin
+      - stale_or_due_review
+      - drawdown_or_reversal
+    required_fields:
+      - symbol
+      - held_qty
+      - current_weight_pct
+      - trigger_status
+      - primary_reason
+      - skipped_gate
+      - expected_excess_return_20d_pct
+      - relative_to_spy_20d_pct
+      - replacement_symbol
+      - recommendation
+      - source_refs
+  validation_lifecycle:
+    enabled: true
+    applies_to:
+      - filled_validation_buy
+      - still_held_validation_position
+    review_horizons:
+      - 1D
+      - 5D
+      - 20D
+    required_decisions:
+      - hold
+      - add
+      - trim
+      - close
+    block_add_when_review_due: true
+    open_position_conclusions_are_interim: true
+    record_missing_review_as_sell_candidate_diagnostic: true
+  rotation_trim:
+    enabled: true
+    reason: relative_opportunity_cost
+    default_trim_fraction_pct: 25
+    held_expected_excess_return_floor_pct: 0
+    replacement_min_confidence_score: 0.60
+    replacement_expected_excess_margin_pct: 3
+    require_replacement_passes_buy_gates: true
+    require_held_position_passes_sell_gates: true
+    require_distinct_or_lower_correlation_replacement: true
+    do_not_rotate_same_day_validation_buy: true
+  portfolio_target_bands:
+    themes:
+      ai_semiconductor:
+        target_ratio: 0.25
+        warning_ratio: 0.30
+        hard_cap_source: risk_policy.exposure_limits.max_theme_ratio
+        above_warning_behavior:
+          block_new_buy_same_theme_unless_high_conviction: true
+          deterioration_can_create_trim_candidate: true
+    factors:
+      ai_semiconductor:
+        target_ratio: 0.40
+        warning_ratio: 0.45
+        hard_cap_source: risk_policy.exposure_limits.max_factor_ratio
+        above_warning_behavior:
+          block_new_buy_same_factor_unless_high_conviction: true
+          deterioration_can_create_trim_candidate: true
+    correlated_clusters:
+      ai_semiconductor_complex:
+        target_ratio: 0.35
+        warning_ratio: 0.40
+        hard_cap_source: risk_policy.correlated_cluster_limits.clusters.ai_semiconductor_complex.max_ratio
+        above_warning_behavior:
+          block_new_buy_same_cluster_unless_high_conviction: true
+          deterioration_can_create_trim_candidate: true
 paper_validation_execution:
   purpose: strategy_learning_and_capital_allocation
   enabled_for_hourly_autopilot: true
@@ -312,6 +392,8 @@ paper_validation_execution:
     record_first_blocking_gate: true
     record_next_relaxation_candidate: true
     record_top_recheck_candidates: 5
+    record_top_sell_candidates: true
+    record_validation_lifecycle_due: true
 after_hours_policy:
   enabled_for_explicit_autopilot_runs: true
   enabled_for_regular_hourly_autopilot: false

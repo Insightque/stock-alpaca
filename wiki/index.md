@@ -355,7 +355,7 @@
 ## Policy Book
 
 - [[recommendation-policy]] - 거래 회고에서 나온 교훈을 반영하는 living policy.
-- `harness/recommendation-policy.yaml` / `harness/recommendation-policy.schema.json` - agent-readable 추천 정책 상태, 승격 기준, 20분 paper validation cadence, active trim trigger, 시뮬레이션 policy closeout 기준.
+- `harness/recommendation-policy.yaml` / `harness/recommendation-policy.schema.json` - agent-readable 추천 정책 상태, 승격 기준, 20분 paper validation cadence, active trim trigger, sell 후보 진단, validation lifecycle, 시뮬레이션 policy closeout 기준.
 - `harness/strategies/long-term-quality-momentum-v1.yaml` - 장기 quality momentum paper 자동 validation 가능 전략 config.
 - `harness/strategies/intraday-rs-breakout-v0.yaml` / `harness/strategies/intraday-rs-breadth-vwap-v1.yaml` - 단타 observation-only v0/v1 전략 config와 명시적 exit rules.
 - `harness/strategies/intraday-afternoon-followthrough-v1.yaml` - 단타 observation-only 전략 config.

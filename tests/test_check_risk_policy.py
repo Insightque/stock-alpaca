@@ -122,6 +122,40 @@ class RiskPolicyTests(unittest.TestCase):
         self.assertEqual("medium-risk-v1.1", summary["policy_version"])
         self.assertEqual([], warnings)
 
+    def test_sell_diagnostics_and_lifecycle_metadata_are_schema_allowed(self) -> None:
+        plan = base_plan()
+        plan["sell_candidate_diagnostics"] = [
+            {
+                "symbol": "SPY",
+                "held_qty": 1,
+                "current_weight_pct": 0.5,
+                "trigger_status": "no_trigger",
+                "primary_reason": "risk trim trigger not active",
+                "skipped_gate": "",
+                "expected_excess_return_20d_pct": 1.0,
+                "relative_to_spy_20d_pct": 0.0,
+                "replacement_symbol": "QQQ",
+                "replacement_confidence_score": 0.6,
+                "recommendation": "hold",
+                "source_refs": ["wiki/evidence-store/sources/test-market.md"],
+            }
+        ]
+        plan["validation_lifecycle"] = {
+            "due_reviews": [
+                {
+                    "symbol": "SPY",
+                    "horizon": "1D",
+                    "decision_due": True,
+                    "current_decision": "pending",
+                    "source_refs": ["wiki/trade-ledger/orders/test-run.json"],
+                }
+            ],
+            "blocked_add_symbols": ["SPY"],
+        }
+        errors, warnings, _ = self.validate(plan)
+        self.assertEqual([], errors)
+        self.assertEqual([], warnings)
+
     def test_invested_and_cash_boundary_passes(self) -> None:
         plan = base_plan()
         plan["account"]["cash"] = 35000.0

@@ -2710,3 +2710,12 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Post-trade reconciliation: `get_order_by_client_id`, `get_orders`, `get_all_positions`, `get_account_info`, and `get_account_activities` completed. Prior SPY/AMZN/BAC orders remain open `new`.
 - Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-2251-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-2251-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-29-2251-hourly-autopilot-post-trade.json`, [[2026-05-29-2251-hourly-autopilot]], [[portfolio-current]]. Review due: NKE/SO/SLB filled; SPY/AMZN/BAC open orders require lifecycle follow-up.
+
+## [2026-05-29 23:13 Asia/Seoul] policy-update | sell diagnostics and lifecycle trim hardening
+
+- 전문 투자자 관점의 buy-only drift 우려를 반영해 `harness/recommendation-policy.yaml`을 v1.9로 올렸다.
+- 추가 정책: 매 run `sell_candidate_diagnostics` 기록, validation buy 1D/5D/20D `hold/add/trim/close` lifecycle 판단, relative opportunity-cost 기반 제한적 rotation trim, AI semiconductor theme/factor/cluster target/warning band.
+- `harness/workflows/hourly-autopilot.md`와 `scripts/run-hourly-autopilot-codex.sh`에 sell 후보 진단, lifecycle review, rotation trim, target band 적용 지시를 추가했다.
+- `harness/recommendation-policy.schema.json`, `harness/order-plan.schema.json`, `harness/run-manifest.schema.json`을 확장하고 관련 unittest를 추가했다.
+- 검증: `PATH=/usr/local/bin:$PATH python3 -m unittest discover tests` PASS, 121 tests. `scripts/check-policy-source-of-truth.py` PASS. 최신 `2026-05-29-2251-hourly-autopilot` order plan risk validator PASS.
+- 주문 제출/취소/계좌 변경은 수행하지 않았다.

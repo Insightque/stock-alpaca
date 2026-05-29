@@ -254,6 +254,168 @@
           "additionalProperties": {
             "type": ["number", "integer", "boolean", "string"]
           }
+        },
+        "sell_candidate_diagnostics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "top_n",
+            "include_no_trigger_candidates",
+            "include_blocked_by_gate_candidates",
+            "rank_by",
+            "required_fields"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "top_n": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "include_no_trigger_candidates": {
+              "type": "boolean"
+            },
+            "include_blocked_by_gate_candidates": {
+              "type": "boolean"
+            },
+            "rank_by": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "required_fields": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "validation_lifecycle": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "applies_to",
+            "review_horizons",
+            "required_decisions",
+            "block_add_when_review_due",
+            "open_position_conclusions_are_interim",
+            "record_missing_review_as_sell_candidate_diagnostic"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "applies_to": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "review_horizons": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["1D", "5D", "20D"]
+              }
+            },
+            "required_decisions": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["hold", "add", "trim", "close"]
+              }
+            },
+            "block_add_when_review_due": {
+              "type": "boolean"
+            },
+            "open_position_conclusions_are_interim": {
+              "type": "boolean"
+            },
+            "record_missing_review_as_sell_candidate_diagnostic": {
+              "type": "boolean"
+            }
+          }
+        },
+        "rotation_trim": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "reason",
+            "default_trim_fraction_pct",
+            "held_expected_excess_return_floor_pct",
+            "replacement_min_confidence_score",
+            "replacement_expected_excess_margin_pct",
+            "require_replacement_passes_buy_gates",
+            "require_held_position_passes_sell_gates",
+            "require_distinct_or_lower_correlation_replacement",
+            "do_not_rotate_same_day_validation_buy"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "reason": {
+              "type": "string"
+            },
+            "default_trim_fraction_pct": {
+              "type": "number",
+              "minimum": 0
+            },
+            "held_expected_excess_return_floor_pct": {
+              "type": "number"
+            },
+            "replacement_min_confidence_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "replacement_expected_excess_margin_pct": {
+              "type": "number",
+              "minimum": 0
+            },
+            "require_replacement_passes_buy_gates": {
+              "type": "boolean"
+            },
+            "require_held_position_passes_sell_gates": {
+              "type": "boolean"
+            },
+            "require_distinct_or_lower_correlation_replacement": {
+              "type": "boolean"
+            },
+            "do_not_rotate_same_day_validation_buy": {
+              "type": "boolean"
+            }
+          }
+        },
+        "portfolio_target_bands": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "themes": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/target_band"
+              }
+            },
+            "factors": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/target_band"
+              }
+            },
+            "correlated_clusters": {
+              "type": "object",
+              "additionalProperties": {
+                "$ref": "#/$defs/target_band"
+              }
+            }
+          }
         }
       }
     },
@@ -517,6 +679,12 @@
             "record_top_recheck_candidates": {
               "type": "integer",
               "minimum": 0
+            },
+            "record_top_sell_candidates": {
+              "type": "boolean"
+            },
+            "record_validation_lifecycle_due": {
+              "type": "boolean"
             }
           }
         }
@@ -701,6 +869,39 @@
       "type": "array",
       "items": {
         "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "target_band": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "target_ratio",
+        "warning_ratio",
+        "hard_cap_source",
+        "above_warning_behavior"
+      ],
+      "properties": {
+        "target_ratio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "warning_ratio": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "hard_cap_source": {
+          "type": "string"
+        },
+        "above_warning_behavior": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "boolean"
+          }
+        }
       }
     }
   }
