@@ -1,0 +1,209 @@
+{
+  "run_id": "2026-05-29-1851-after-hours-autopilot",
+  "created_at": "2026-05-29T09:53:49Z",
+  "paper": true,
+  "source": "runtime Alpaca MCP spot checks from scheduled after-hours autopilot",
+  "read_only": true,
+  "session": "after_hours",
+  "tool_results": {
+    "get_clock": {
+      "outcome": "cancelled_by_wrapper",
+      "checked_at": "2026-05-29T09:52:00Z",
+      "gap_category": "runtime_wrapper_cancelled",
+      "gap_reason": "Live get_clock spot-check was cancelled; scheduler-owned Alpaca core preflight clock row was used. first_blocking_gate=market_closed is expected and nonblocking for after-hours."
+    },
+    "get_account_info": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T09:52:20Z",
+      "payload": {
+        "status": "ACTIVE",
+        "portfolio_value": 102597.65,
+        "cash": 36945.25,
+        "buying_power": 133424.67,
+        "currency": "USD",
+        "trading_blocked": false,
+        "account_blocked": false
+      }
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T09:52:35Z",
+      "payload_summary": {
+        "position_count": 32,
+        "symbols": [
+          "AAPL",
+          "ADBE",
+          "AMD",
+          "AMZN",
+          "AVGO",
+          "BAC",
+          "COP",
+          "CVX",
+          "ETN",
+          "FCX",
+          "GOOGL",
+          "INTC",
+          "IONQ",
+          "LLY",
+          "LRCX",
+          "NEE",
+          "NKE",
+          "NOK",
+          "NVDA",
+          "PFE",
+          "PLTR",
+          "QQQ",
+          "RGTI",
+          "SLB",
+          "SO",
+          "SPY",
+          "TSLA",
+          "TSM",
+          "UNH",
+          "V",
+          "WMT",
+          "XOM"
+        ]
+      }
+    },
+    "get_orders_open": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T09:52:50Z",
+      "payload": {
+        "result": [
+
+        ]
+      }
+    },
+    "get_orders_all_after_2026_05_29": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T09:53:25Z",
+      "payload_summary": {
+        "after_hours_validation_orders": [
+          {
+            "client_order_id": "ah-20260529-0911-adbe-buy-01",
+            "symbol": "ADBE",
+            "qty": "1",
+            "side": "buy",
+            "type": "limit",
+            "time_in_force": "day",
+            "extended_hours": true,
+            "status": "filled",
+            "filled_at": "2026-05-29T00:16:54.397547Z"
+          }
+        ]
+      }
+    },
+    "get_stock_latest_quote_overnight": {
+      "outcome": "pass",
+      "checked_at": "2026-05-29T09:53:40Z",
+      "symbols": [
+        "ADBE",
+        "NVDA",
+        "SPY",
+        "SMH",
+        "NOK",
+        "QQQ",
+        "XOM",
+        "LIN"
+      ],
+      "payload": {
+        "quotes": {
+          "ADBE": {
+            "ap": 268.18,
+            "as": 4,
+            "bp": 242.8,
+            "bs": 11,
+            "t": "2026-05-29T08:00:00.406086772Z",
+            "spread_pct": 9.9339,
+            "quote_age_minutes": 113.66,
+            "fresh": false,
+            "spread_pass": false
+          },
+          "NVDA": {
+            "ap": 215.43,
+            "as": 2,
+            "bp": 215.27,
+            "bs": 200,
+            "t": "2026-05-29T08:00:00.413977496Z",
+            "spread_pct": 0.0743,
+            "quote_age_minutes": 113.66,
+            "fresh": false,
+            "spread_pass": true
+          },
+          "SPY": {
+            "ap": 758.7,
+            "as": 6,
+            "bp": 754.93,
+            "bs": 2,
+            "t": "2026-05-29T08:00:00.403389828Z",
+            "spread_pct": 0.4981,
+            "quote_age_minutes": 113.66,
+            "fresh": false,
+            "spread_pass": false
+          },
+          "SMH": {
+            "ap": 618.91,
+            "as": 2,
+            "bp": 593.88,
+            "bs": 40,
+            "t": "2026-05-29T08:00:00.397462213Z",
+            "spread_pct": 4.1277,
+            "quote_age_minutes": 113.66,
+            "fresh": false,
+            "spread_pass": false
+          },
+          "NOK": {
+            "ap": 15.79,
+            "as": 1750,
+            "bp": 14.81,
+            "bs": 110,
+            "t": "2026-05-29T08:00:00.412618229Z",
+            "spread_pct": 6.4052,
+            "quote_age_minutes": 113.66,
+            "fresh": false,
+            "spread_pass": false
+          },
+          "QQQ": {
+            "ap": 736.7,
+            "as": 10,
+            "bp": 735.21,
+            "bs": 395,
+            "t": "2026-05-29T08:00:00.386377592Z",
+            "spread_pct": 0.2025,
+            "quote_age_minutes": 113.66,
+            "fresh": false,
+            "spread_pass": true
+          },
+          "XOM": {
+            "ap": 151.95,
+            "as": 197,
+            "bp": 145.51,
+            "bs": 10,
+            "t": "2026-05-29T08:00:00.400618942Z",
+            "spread_pct": 4.33,
+            "quote_age_minutes": 113.66,
+            "fresh": false,
+            "spread_pass": false
+          },
+          "LIN": {
+            "ap": 502.05,
+            "as": 1,
+            "bp": 495.03,
+            "bs": 5,
+            "t": "2026-05-29T08:00:00.313942005Z",
+            "spread_pct": 1.4081,
+            "quote_age_minutes": 113.66,
+            "fresh": false,
+            "spread_pass": false
+          }
+        }
+      }
+    }
+  },
+  "orders_submitted": 0,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-29-1851-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-29-1851-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
