@@ -1,0 +1,126 @@
+{
+  "run_id": "2026-05-29-1831-after-hours-autopilot",
+  "created_at": "2026-05-29T18:33:12+09:00",
+  "session": "after_hours",
+  "paper": true,
+  "source": "alpaca_mcp_runtime_spot_check",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "checks": {
+    "clock": {
+      "tool": "mcp__alpaca__.get_clock",
+      "outcome": "pass",
+      "payload": {
+        "is_open": false,
+        "next_close": "2026-05-29T16:00:00-04:00",
+        "next_open": "2026-05-29T09:30:00-04:00",
+        "timestamp": "2026-05-29T05:32:19.733953309-04:00"
+      }
+    },
+    "account": {
+      "tool": "mcp__alpaca__.get_account_info",
+      "outcome": "pass",
+      "summary": {
+        "status": "ACTIVE",
+        "currency": "USD",
+        "cash": 36945.25,
+        "buying_power": 133457.5,
+        "portfolio_value": 102662.85,
+        "long_market_value": 65717.6,
+        "trading_blocked": false,
+        "account_blocked": false
+      }
+    },
+    "positions": {
+      "tool": "mcp__alpaca__.get_all_positions",
+      "outcome": "pass",
+      "position_count": 32,
+      "symbols": [
+        "AAPL",
+        "ADBE",
+        "AMD",
+        "AMZN",
+        "AVGO",
+        "BAC",
+        "COP",
+        "CVX",
+        "ETN",
+        "FCX",
+        "GOOGL",
+        "INTC",
+        "IONQ",
+        "LLY",
+        "LRCX",
+        "NEE",
+        "NKE",
+        "NOK",
+        "NVDA",
+        "PFE",
+        "PLTR",
+        "QQQ",
+        "RGTI",
+        "SLB",
+        "SO",
+        "SPY",
+        "TSLA",
+        "TSM",
+        "UNH",
+        "V",
+        "WMT",
+        "XOM"
+      ]
+    },
+    "open_orders": {
+      "tool": "mcp__alpaca__.get_orders",
+      "outcome": "cancelled_by_runtime_safety_wrapper",
+      "fallback_source": "wiki/evidence-store/sources/2026-05-29-1831-after-hours-autopilot-alpaca-core-preflight.json",
+      "fallback_outcome": "pass",
+      "fallback_payload": []
+    },
+    "overnight_quotes": {
+      "tool": "mcp__alpaca__.get_stock_latest_quote",
+      "feed": "overnight",
+      "outcome": "pass",
+      "symbols": [
+        "QQQ",
+        "NOK",
+        "SMH",
+        "SPY",
+        "NVDA",
+        "ADBE",
+        "LIN",
+        "XOM"
+      ],
+      "quote_checked_at": "2026-05-29T09:32:19.733953309Z",
+      "rows": [
+        {"symbol": "NOK", "bid": 14.81, "ask": 15.79, "timestamp": "2026-05-29T08:00:00.412618229Z", "quote_age_minutes": 92.32, "spread_pct": 6.4052, "fresh_pass": false, "spread_pass": false},
+        {"symbol": "NVDA", "bid": 215.27, "ask": 215.43, "timestamp": "2026-05-29T08:00:00.413977496Z", "quote_age_minutes": 92.32, "spread_pct": 0.0743, "fresh_pass": false, "spread_pass": true},
+        {"symbol": "XOM", "bid": 145.51, "ask": 151.95, "timestamp": "2026-05-29T08:00:00.400618942Z", "quote_age_minutes": 92.32, "spread_pct": 4.3300, "fresh_pass": false, "spread_pass": false},
+        {"symbol": "ADBE", "bid": 242.8, "ask": 268.18, "timestamp": "2026-05-29T08:00:00.406086772Z", "quote_age_minutes": 92.32, "spread_pct": 9.9339, "fresh_pass": false, "spread_pass": false},
+        {"symbol": "LIN", "bid": 495.03, "ask": 502.05, "timestamp": "2026-05-29T08:00:00.313942005Z", "quote_age_minutes": 92.32, "spread_pct": 1.4081, "fresh_pass": false, "spread_pass": false},
+        {"symbol": "QQQ", "bid": 735.21, "ask": 736.7, "timestamp": "2026-05-29T08:00:00.386377592Z", "quote_age_minutes": 92.32, "spread_pct": 0.2025, "fresh_pass": false, "spread_pass": true},
+        {"symbol": "SPY", "bid": 754.93, "ask": 758.7, "timestamp": "2026-05-29T08:00:00.403389828Z", "quote_age_minutes": 92.32, "spread_pct": 0.4981, "fresh_pass": false, "spread_pass": false},
+        {"symbol": "SMH", "bid": 593.88, "ask": 618.91, "timestamp": "2026-05-29T08:00:00.397462213Z", "quote_age_minutes": 92.32, "spread_pct": 4.1277, "fresh_pass": false, "spread_pass": false}
+      ]
+    },
+    "overnight_snapshots": {
+      "tool": "mcp__alpaca__.get_stock_snapshot",
+      "feed": "overnight",
+      "outcome": "pass",
+      "symbols": [
+        "QQQ",
+        "NOK",
+        "SMH",
+        "SPY",
+        "NVDA",
+        "ADBE",
+        "LIN",
+        "XOM"
+      ]
+    }
+  },
+  "submit_gate_summary": {
+    "status": "blocked_before_submit",
+    "first_blocking_gate": "quote_freshness",
+    "reason": "All overnight latest quote timestamps were around 2026-05-29T08:00:00Z, exceeding after_hours_policy.max_quote_age_minutes_submit=5.0 at the runtime Alpaca clock check."
+  }
+}
