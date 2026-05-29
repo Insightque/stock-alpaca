@@ -1,0 +1,124 @@
+{
+  "run_id": "2026-05-29-2031-after-hours-autopilot",
+  "created_at": "2026-05-29T20:34:09+09:00",
+  "session": "after_hours",
+  "paper": true,
+  "alpaca_mcp_runtime_checks": {
+    "clock": {
+      "outcome": "pass",
+      "is_open": false,
+      "checked_at": "2026-05-29T07:32:19.40946315-04:00",
+      "next_open": "2026-05-29T09:30:00-04:00",
+      "next_close": "2026-05-29T16:00:00-04:00",
+      "session": "after_hours"
+    },
+    "account": {
+      "outcome": "pass",
+      "status": "ACTIVE",
+      "portfolio_value": 102465.47,
+      "cash": 36945.25,
+      "buying_power": 133280.74,
+      "account_number": "[redacted]"
+    },
+    "positions": {
+      "outcome": "pass",
+      "count": 32,
+      "long_only": true
+    },
+    "open_orders": {
+      "outcome": "pass",
+      "asset_class": "us_equity",
+      "orders": []
+    },
+    "assets": {
+      "outcome": "pass",
+      "symbols": [
+        "NOK",
+        "NVDA",
+        "XOM",
+        "ADBE",
+        "LIN"
+      ],
+      "all_active_tradable": true,
+      "asset_class": "us_equity"
+    },
+    "quotes": {
+      "outcome": "pass",
+      "feed": "overnight",
+      "quote_captured_at": "2026-05-29T08:00:00Z",
+      "symbols": {
+        "NOK": {
+          "bid": 14.81,
+          "ask": 15.79,
+          "spread_pct": 6.4052
+        },
+        "NVDA": {
+          "bid": 215.27,
+          "ask": 215.43,
+          "spread_pct": 0.0743
+        },
+        "XOM": {
+          "bid": 145.51,
+          "ask": 151.95,
+          "spread_pct": 4.33
+        },
+        "ADBE": {
+          "bid": 242.8,
+          "ask": 268.18,
+          "spread_pct": 9.9339
+        },
+        "LIN": {
+          "bid": 495.03,
+          "ask": 502.05,
+          "spread_pct": 1.4081
+        },
+        "QQQ": {
+          "bid": 735.21,
+          "ask": 736.7,
+          "spread_pct": 0.2025
+        },
+        "SPY": {
+          "bid": 754.93,
+          "ask": 758.7,
+          "spread_pct": 0.4981
+        },
+        "SMH": {
+          "bid": 593.88,
+          "ask": 618.91,
+          "spread_pct": 4.1277
+        }
+      }
+    },
+    "snapshots": {
+      "outcome": "pass",
+      "feed": "overnight",
+      "symbols": [
+        "QQQ",
+        "NOK",
+        "SMH",
+        "SPY",
+        "NVDA",
+        "ADBE",
+        "LIN",
+        "XOM"
+      ]
+    },
+    "recent_activities": {
+      "outcome": "scheduler_preflight_used",
+      "reason": "runtime activity lookup cancelled; scheduler preflight recent_activities row passed and shows same-session ADBE after-hours fill."
+    }
+  },
+  "derived_gates": {
+    "regular_market_not_open": "PASS",
+    "alpaca_core": "PASS",
+    "quote_freshness": "FAIL",
+    "quote_age_minutes": 212.32,
+    "max_quote_age_minutes_submit": 5.0,
+    "quote_spread": "MIXED",
+    "after_hours_new_orders_submitted_today": 1
+  },
+  "submission": {
+    "attempted": false,
+    "reason": "quote freshness gate failed before pre-submit stage; no client_order_id created."
+  }
+}
