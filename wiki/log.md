@@ -2868,3 +2868,12 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Sell/trim evaluated before buys and `sell_candidate_diagnostics` recorded AMD, PLTR, and RGTI watch diagnostics. Validation lifecycle kept AAPL/COP/NOK add-blocked until due 1D reviews are written.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-30-0351-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-30-0351-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-30-0351-hourly-autopilot-post-trade.json`, [[2026-05-30-0351-hourly-autopilot]], [[portfolio-current]].
 - Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
+
+## [2026-05-30 04:14 Asia/Seoul] hourly-autopilot | 2026-05-30-0411-hourly-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; regular session submit mode.
+- Scheduler evidence: stale cleanup PASS with no stale/open hourly orders. Alpaca core preflight hard gate PASS and market open with fresh quotes. Research preflight had SEC EDGAR/FRED/Firecrawl/Yahoo PASS and Alpha Vantage `provider_error` throttle gap, nonblocking with 4 usable research confirmations.
+- Gates: universe strict PASS, MCP strict PASS, risk validator PASS with expected `orders is empty` warning. No paper orders were submitted because sell/trim diagnostics had no active sell trigger and final buy candidates were blocked by lifecycle review, same-session validation exposure, thesis/portfolio-fit, or target-band controls.
+- Sell/trim evaluated before buys and `sell_candidate_diagnostics` recorded AMD, PLTR, and RGTI watch diagnostics. Validation lifecycle kept AAPL/COP/NOK add-blocked until due 1D reviews are written.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-30-0411-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-30-0411-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-30-0411-hourly-autopilot-post-trade.json`, [[2026-05-30-0411-hourly-autopilot]], [[portfolio-current]].
+- Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
