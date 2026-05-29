@@ -2261,6 +2261,12 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - 문서화: `scheduler/README.md`에 Alpha Vantage preflight가 시간당 1회 실제 API 호출로 throttle된다고 기록했다.
 - 검증: `PATH=/usr/local/bin:$PATH python3 -m unittest tests.test_fetch_research_mcp_preflight tests.test_autopilot_notification_schema tests.test_mcp_runtime_wrappers tests.test_policy_source_of_truth` PASS, 38 tests. 민감 값 잔존 검사 0건.
 
+## [2026-05-29 11:18 Asia/Seoul] implementation | Alpha Vantage key-scoped throttle
+
+- 사용자가 `ALPHA_VANTAGE_API_KEY`를 교체했다고 알려와, 이전 키의 1시간 throttle/cache가 새 키 사용을 막지 않도록 보완했다.
+- 개정: Alpha Vantage preflight cache key와 `last-attempt` throttle state를 API 키의 비가역 SHA-256 지문별로 분리했다. 실제 키 값은 저장하거나 출력하지 않는다.
+- 검증: `PATH=/usr/local/bin:$PATH python3 -m unittest tests.test_fetch_research_mcp_preflight tests.test_autopilot_notification_schema tests.test_mcp_runtime_wrappers tests.test_policy_source_of_truth` PASS, 40 tests. 민감 값 잔존 검사 0건.
+
 ## [2026-05-29 10:36 Asia/Seoul] after-hours-autopilot | 2026-05-29-1031-after-hours-autopilot scheduled paper autopilot
 
 - Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session `after_hours`; artifact tag `after-hours`; review bucket `after_hours_validation`.
@@ -2290,3 +2296,13 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Submit/reconcile: no `place_stock_order` call and no submit attempt. No new `client_order_id` was created; prior same-session ADBE fill was reconciled through Alpaca MCP order/activity queries.
 - Validators: `python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS with `orders is empty` warning.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-1111-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-1111-after-hours-autopilot.json`, [[2026-05-29-1111-after-hours-autopilot]]. Review due: no new after-hours fills.
+
+## [2026-05-29 11:36 Asia/Seoul] after-hours-autopilot | 2026-05-29-1131-after-hours-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session `after_hours`; artifact tag `after-hours`; review bucket `after_hours_validation`.
+- Scheduler preflight: Alpaca core preflight `wiki/evidence-store/sources/2026-05-29-1131-after-hours-autopilot-alpaca-core-preflight.json` had `first_blocking_gate=market_closed`, expected and nonblocking for after-hours. Account, positions, open orders, assets, quotes, spreads, and recent activities rows were usable. Research preflight `wiki/evidence-store/sources/2026-05-29-1131-after-hours-autopilot-research-mcp-preflight.json` had SEC EDGAR/FRED/Firecrawl/Yahoo pass and Alpha Vantage circuit-breaker `provider_error`.
+- Fresh Alpaca MCP spot checks: market clock closed at `2026-05-28T22:33:02.831987678-04:00`, account `ACTIVE`, open US equity orders `[]`, same after-hours session order query showed prior ADBE fill only, positions returned 32 symbols, ADBE/XOM live assets plus preflight asset rows were active/tradable, and overnight quotes for QQQ/NOK/SMH/SPY/NVDA/ADBE/LIN/XOM were checked.
+- Gates: universe strict PASS, MCP strict PASS, separate after-hours order budget PASS with `risk_inputs.after_hours_new_orders_submitted_today=1`, risk validator PASS for empty order plan. Quote/spread was mixed: NOK/NVDA/XOM/ADBE/QQQ/SPY passed, but NOK thesis blocks new chase, NVDA concentration was avoided, XOM lacked fresh additional-buy thesis after weak interim validation review, and ADBE duplicate-session was blocked. QQQ/SPY exceeded the after-hours one-share notional cap; SMH exceeded spread and notional caps; LIN was stale/wide.
+- Submit/reconcile: no `place_stock_order` call and no submit attempt. No new `client_order_id` was created; prior same-session ADBE fill was reconciled through Alpaca MCP order query.
+- Validators: `python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS with `orders is empty` warning.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-1131-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-1131-after-hours-autopilot.json`, [[2026-05-29-1131-after-hours-autopilot]]. Review due: no new after-hours fills.

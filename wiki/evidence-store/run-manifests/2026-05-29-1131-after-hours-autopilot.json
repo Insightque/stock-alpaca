@@ -1,0 +1,268 @@
+{
+  "run_id": "2026-05-29-1131-after-hours-autopilot",
+  "created_at": "2026-05-29T11:34:22+09:00",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "policy_profile": "after_hours_policy",
+  "recommendation_policy_sha": "1160293a656dd5f8ff601c5058705bf777bb58f9b103382bed1b80593159c9de",
+  "market": {
+    "is_open": false,
+    "checked_at": "2026-05-29T02:33:02.831987678Z",
+    "next_open": "2026-05-29T09:30:00-04:00",
+    "next_close": "2026-05-29T16:00:00-04:00",
+    "session": "after_hours"
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "all_research_must_be_attempted": true,
+    "min_research_confirmations": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T02:31:33Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1131-after-hours-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T02:11:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1131-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-29T02:31:34+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1131-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Circuit breaker open until 2026-05-29T07:31:35+00:00 after recent provider_error failure: Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T22:31:34+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1131-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T02:11:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1131-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T02:31:34+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1131-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "NOK",
+      "SMH",
+      "SPY",
+      "NVDA",
+      "ADBE",
+      "LIN",
+      "XOM"
+    ],
+    "final_candidates": [
+      "NOK",
+      "NVDA",
+      "XOM"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0,
+    "weekly_turnover_ratio": 0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "after_hours_new_orders_submitted_today": 1,
+    "risk_recomputed_after_partial_fill": true
+  },
+  "gate_status": {
+    "paper_mode": "PASS",
+    "regular_market_not_open": "PASS",
+    "alpaca_core": "PASS",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "separate_after_hours_order_budget": "PASS",
+    "risk_policy": "PASS",
+    "quote_spread": "MIXED",
+    "order_shape": "NOT_APPLICABLE_EMPTY_PLAN",
+    "ticker_thesis": "BLOCK"
+  },
+  "candidate_decisions": [
+    {
+      "symbol": "NOK",
+      "quote_fresh": true,
+      "spread_pct": 0.1303,
+      "decision": "skip",
+      "reason": "ticker thesis continues to block new chase after prior overheat signal; retain only"
+    },
+    {
+      "symbol": "NVDA",
+      "quote_fresh": true,
+      "spread_pct": 0.014,
+      "decision": "skip",
+      "reason": "avoid adding to existing AI semiconductor concentration during after-hours validation"
+    },
+    {
+      "symbol": "XOM",
+      "quote_fresh": true,
+      "spread_pct": 0.1362,
+      "decision": "skip",
+      "reason": "fresh quote and spread passed, but no fresh additional-buy thesis after weak interim validation review"
+    },
+    {
+      "symbol": "ADBE",
+      "quote_fresh": true,
+      "spread_pct": 0.1481,
+      "decision": "skip",
+      "reason": "already filled once in this after-hours session; duplicate same-session buy blocked"
+    },
+    {
+      "symbol": "QQQ",
+      "quote_fresh": true,
+      "spread_pct": 0.0136,
+      "decision": "skip",
+      "reason": "one-share notional exceeded after_hours_policy.max_notional_pct_per_order"
+    },
+    {
+      "symbol": "SPY",
+      "quote_fresh": true,
+      "spread_pct": 0.0093,
+      "decision": "skip",
+      "reason": "one-share notional exceeded after_hours_policy.max_notional_pct_per_order"
+    },
+    {
+      "symbol": "SMH",
+      "quote_fresh": true,
+      "spread_pct": 0.2863,
+      "decision": "skip",
+      "reason": "spread exceeded after_hours_policy.max_spread_pct and one-share notional exceeded after-hours per-order cap"
+    },
+    {
+      "symbol": "LIN",
+      "quote_fresh": false,
+      "spread_pct": 1.5915,
+      "decision": "skip",
+      "reason": "quote stale relative to max_quote_age_minutes_submit and spread exceeded after_hours_policy.max_spread_pct"
+    }
+  ],
+  "order_plan": {
+    "path": "wiki/trade-ledger/orders/2026-05-29-1131-after-hours-autopilot.json",
+    "orders": []
+  },
+  "risk_check_result": {
+    "errors": [],
+    "path": "wiki/trade-ledger/orders/2026-05-29-1131-after-hours-autopilot.json",
+    "status": "PASS",
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 46034.694,
+      "max_factor_value": 51149.66,
+      "max_invested": 81839.456,
+      "max_speculative_value": 12275.9184,
+      "max_theme_value": 35804.762,
+      "max_ticker_value": 15344.898000000001,
+      "min_cash": 20459.864,
+      "policy_version": "medium-risk-v1.1",
+      "post_cash": 36945.25,
+      "post_invested": 0.0,
+      "sell_notional": 0.0,
+      "speculative_value": 0.0
+    },
+    "warnings": [
+      "orders is empty"
+    ]
+  },
+  "submit": {
+    "attempted": false,
+    "orders_submitted": 0,
+    "client_order_ids": [],
+    "reconciled_by_client_order_id": false,
+    "reason": "no candidate passed after-hours thesis, concentration, duplicate-session, notional, quote/spread gates"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-29-1131-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-29-1131-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-05-29-1131-after-hours-autopilot.json"
+  ]
+}
