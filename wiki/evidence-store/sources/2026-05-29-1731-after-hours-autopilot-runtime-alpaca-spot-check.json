@@ -1,0 +1,172 @@
+{
+  "run_id": "2026-05-29-1731-after-hours-autopilot",
+  "created_at": "2026-05-29T17:34:30+09:00",
+  "paper": true,
+  "source": "runtime Alpaca MCP spot checks by Codex",
+  "read_only": true,
+  "orders_submitted": 0,
+  "clock": {
+    "is_open": false,
+    "timestamp": "2026-05-29T04:32:41.176431605-04:00",
+    "next_open": "2026-05-29T09:30:00-04:00",
+    "next_close": "2026-05-29T16:00:00-04:00"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102464.62,
+    "cash": 36945.25,
+    "buying_power": 133299.47,
+    "trading_blocked": false,
+    "account_blocked": false
+  },
+  "positions": {
+    "outcome": "pass",
+    "position_count": 32,
+    "symbols_sample": [
+      "AAPL",
+      "ADBE",
+      "AMD",
+      "AMZN",
+      "AVGO",
+      "BAC",
+      "COP",
+      "CVX",
+      "ETN",
+      "FCX",
+      "GOOGL",
+      "INTC",
+      "IONQ",
+      "LLY",
+      "LRCX",
+      "NEE",
+      "NKE",
+      "NOK",
+      "NVDA",
+      "PFE",
+      "PLTR",
+      "QQQ",
+      "RGTI",
+      "SLB",
+      "SO",
+      "SPY",
+      "TSLA",
+      "TSM",
+      "UNH",
+      "V",
+      "WMT",
+      "XOM"
+    ]
+  },
+  "open_orders": {
+    "outcome": "pass",
+    "asset_class": "us_equity",
+    "orders": []
+  },
+  "same_session_fills": {
+    "outcome": "pass",
+    "activity_query_after": "2026-05-29T04:00:00Z",
+    "runtime_result_count": 0,
+    "scheduler_session_count_used_for_budget": 1,
+    "note": "Scheduler and prior run records preserve one same-session ADBE after-hours validation fill; runtime activity query returned no rows for this created_at filter."
+  },
+  "assets": {
+    "live_checked_pass": [
+      "NOK",
+      "ADBE",
+      "XOM",
+      "SPY"
+    ],
+    "scheduler_preflight_used_for_remaining": [
+      "NVDA",
+      "QQQ",
+      "SMH",
+      "LIN"
+    ],
+    "note": "Some live asset spot checks were cancelled by the safety wrapper; scheduler-owned Alpaca core preflight had passing asset rows and is accepted by the after-hours instructions."
+  },
+  "quotes": {
+    "NOK": {
+      "bid": 14.81,
+      "ask": 15.79,
+      "timestamp": "2026-05-29T08:00:00.412618229Z",
+      "spread_pct": 6.4052,
+      "spread_pass": false,
+      "quote_age_minutes_at_clock": 32.68,
+      "fresh_pass": false
+    },
+    "NVDA": {
+      "bid": 215.27,
+      "ask": 215.43,
+      "timestamp": "2026-05-29T08:00:00.413977496Z",
+      "spread_pct": 0.0743,
+      "spread_pass": true,
+      "quote_age_minutes_at_clock": 32.68,
+      "fresh_pass": false
+    },
+    "XOM": {
+      "bid": 145.51,
+      "ask": 151.95,
+      "timestamp": "2026-05-29T08:00:00.400618942Z",
+      "spread_pct": 4.33,
+      "spread_pass": false,
+      "quote_age_minutes_at_clock": 32.68,
+      "fresh_pass": false
+    },
+    "ADBE": {
+      "bid": 242.8,
+      "ask": 268.18,
+      "timestamp": "2026-05-29T08:00:00.406086772Z",
+      "spread_pct": 9.9339,
+      "spread_pass": false,
+      "quote_age_minutes_at_clock": 32.68,
+      "fresh_pass": false
+    },
+    "LIN": {
+      "bid": 495.03,
+      "ask": 502.05,
+      "timestamp": "2026-05-29T08:00:00.313942005Z",
+      "spread_pct": 1.4081,
+      "spread_pass": false,
+      "quote_age_minutes_at_clock": 32.68,
+      "fresh_pass": false
+    },
+    "QQQ": {
+      "bid": 735.21,
+      "ask": 736.7,
+      "timestamp": "2026-05-29T08:00:00.386377592Z",
+      "spread_pct": 0.2025,
+      "spread_pass": true,
+      "quote_age_minutes_at_clock": 32.68,
+      "fresh_pass": false
+    },
+    "SPY": {
+      "bid": 754.93,
+      "ask": 758.7,
+      "timestamp": "2026-05-29T08:00:00.403389828Z",
+      "spread_pct": 0.4981,
+      "spread_pass": false,
+      "quote_age_minutes_at_clock": 32.68,
+      "fresh_pass": false
+    },
+    "SMH": {
+      "bid": 593.88,
+      "ask": 618.91,
+      "timestamp": "2026-05-29T08:00:00.397462213Z",
+      "spread_pct": 4.1277,
+      "spread_pass": false,
+      "quote_age_minutes_at_clock": 32.68,
+      "fresh_pass": false
+    }
+  },
+  "submit_gate_summary": {
+    "paper_mode": "PASS",
+    "regular_market_not_open": "PASS",
+    "alpaca_core": "PASS",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "separate_after_hours_order_budget": "PASS",
+    "quote_freshness": "FAIL",
+    "risk_policy": "PASS_AFTER_VALIDATION",
+    "decision": "NO_SUBMIT_BEFORE_PLACE_STOCK_ORDER"
+  }
+}

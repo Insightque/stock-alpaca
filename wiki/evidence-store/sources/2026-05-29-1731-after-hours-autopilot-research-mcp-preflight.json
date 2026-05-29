@@ -1,0 +1,705 @@
+{
+  "run_id": "2026-05-29-1731-after-hours-autopilot",
+  "created_at": "2026-05-29T08:31:27+00:00",
+  "paper": true,
+  "source": "scheduler local MCP stdio preflight",
+  "symbols": [
+    "QQQ",
+    "NOK",
+    "SMH",
+    "SPY",
+    "NVDA",
+    "ADBE",
+    "LIN",
+    "XOM"
+  ],
+  "symbol_source": "alpaca_core_preflight",
+  "cache_dir": "/Users/insightque/stock-alpaca/.cache/after-hours-research-mcp-preflight",
+  "cache_enabled": true,
+  "circuit_breaker_seconds": 600,
+  "providers": [
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T08:31:27+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_company_info|get_recent_filings",
+      "per_symbol": {
+        "SMH": {
+          "outcome": "gap",
+          "gap_category": "empty_response",
+          "gap_reason": "symbol missing from local SEC ticker-CIK cache; likely ETF/non-company lookup gap"
+        },
+        "QQQ": {
+          "cik": "0001067839",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "NOK": {
+          "cik": "0000924613",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "SPY": {
+          "cik": "0000884394",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "NVDA": {
+          "cik": "0001045810",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "ADBE": {
+          "cik": "0000796343",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "LIN": {
+          "cik": "0001707925",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "XOM": {
+          "cik": "0000034088",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1731-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "outcome": "failed",
+      "checked_at": "2026-05-29T07:51:28+00:00",
+      "gap_category": "provider_error",
+      "gap_reason": "Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable.",
+      "retry_count": 0,
+      "tool": "TOOL_LIST|TOOL_GET|TOOL_CALL(NEWS_SENTIMENT)",
+      "payload": {
+        "item_count": 0,
+        "provider_issue": "rate_limit"
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-05-29T07:51:29+00:00",
+      "cache_reused_at": "2026-05-29T08:31:27+00:00",
+      "cache_ttl_seconds": 3600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1731-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T04:51:27+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_macro_snapshot",
+      "payload": {
+        "observation_end": null,
+        "series": [
+          {
+            "series_id": "DGS10",
+            "latest": {
+              "realtime_start": "2026-05-28",
+              "realtime_end": "2026-05-28",
+              "date": "2026-05-27",
+              "value": "4.48"
+            }
+          },
+          {
+            "series_id": "DGS2",
+            "latest": {
+              "realtime_start": "2026-05-28",
+              "realtime_end": "2026-05-28",
+              "date": "2026-05-27",
+              "value": "4.0"
+            }
+          },
+          {
+            "series_id": "FEDFUNDS",
+            "latest": {
+              "realtime_start": "2026-05-02",
+              "realtime_end": "2026-05-02",
+              "date": "2026-04-01",
+              "value": "3.64"
+            }
+          },
+          {
+            "series_id": "CPIAUCSL",
+            "latest": {
+              "realtime_start": "2026-05-12",
+              "realtime_end": "2026-05-12",
+              "date": "2026-04-01",
+              "value": "332.407"
+            }
+          },
+          {
+            "series_id": "UNRATE",
+            "latest": {
+              "realtime_start": "2026-05-08",
+              "realtime_end": "2026-05-08",
+              "date": "2026-04-01",
+              "value": "4.3"
+            }
+          },
+          {
+            "series_id": "NFCI",
+            "latest": {
+              "realtime_start": "2026-05-28",
+              "realtime_end": "2026-05-28",
+              "date": "2026-05-22",
+              "value": "-0.51000"
+            }
+          }
+        ]
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-05-29T04:51:29+00:00",
+      "cache_reused_at": "2026-05-29T08:31:27+00:00",
+      "cache_ttl_seconds": 21600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1731-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T08:31:27+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "firecrawl_scrape",
+      "payload": {
+        "symbol": "QQQ",
+        "url": "https://www.sec.gov/edgar/browse/?CIK=0001067839",
+        "result": {
+          "success": true,
+          "data": {
+            "markdown": "![Hidden document icon](https://www.sec.gov/edgar/browse/images/small-doc.png)\n\n[Home](https://www.sec.gov/index.htm) »\n[Company\\\\\nSearch](https://www.sec.gov/edgar/searchedgar/companysearch.html)\n\n### INVESCO QQQ TRUST, SERIES 1QQQ on Nasdaq\n\n##### This company's Exchange Act registration has been  revoked\n\n##### This company's Exchange Act  registration as a Municipal Advisor has been revoked\n\n##### This company's Exchange  Act  registration as a Municipal Advisor has been cancelled\n\nInvestor toolkit:\n\n\n[On](https://www.sec.gov/edgar/browse/?CIK=0001067839#)\n\n##### [\\[+\\]](https://www.sec.gov/edgar/browse/?CIK=0001067839\\#) Company Information\n\n**CIK:**\n\n0001067839\n\n**EIN:**\n\n75-3098642\n\n**LEI:**\n\n**SIC:**\n\n(CF Office: )\n\n\n**State location:**\n\n[IL](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&State=IL)\n\n**State of**\n**incorporation:**\n\n**Fiscal year end:**\n\nSeptember 30\n\n**Business address:**\n\n3500 LACEY ROAD, SUITE 700, DOWNERS GROVE, IL, 60515\n\n_Phone:_ 800-983-0903\n\n**Mailing address:**\n\n3500 LACEY ROAD, SUITE 700, DOWNERS GROVE, IL, 60515\n\n**Category:**\n\n**Former names:**\n\n- POWERSHARES QQQ TRUST, SERIES 1 - filings through 2018-09-04\n- NASDAQ 100 TRUST SERIES 1 - filings through 2009-01-26\n- NASDAQ GOLD SM TRUST SER 1 - filings through 1998-10-19\n- INVESTMENT PRODUCT SERVICES INC - filings through 1998-08-07\n\n**Filings:**\n\n249 EDGAR filings since August 7, 1998\n\nGet insider transactions\nfor this **issuer**\n\nGet insider transactions\nfor this **reporting owner**\n\n[List all funds and\\\\\nclasses/contracts for INVESCO QQQ TRUST, SERIES 1](https://www.sec.gov/cgi-bin/browse-edgar?scd=series&CIK=0001067839&action=getcompany&start=0)\n\n##### Latest Filings (excluding insider transactions)\n\n- [April 30, 2026 - 497K: Summary Prospectus for certain open-end management investment companies filed pursuant to Securities Act Rule 497(K) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465926052973/tm2612890d3_497k.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465926052973/0001104659-26-052973-index.htm \"\") Click to Open filing\n- [April 30, 2026 - 497: Definitive materials Open document](https://www.sec.gov/ix?doc=/Archives/edgar/data/0001067839/000110465926052905/tm2612890d3_497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465926052905/0001104659-26-052905-index.htm \"\") Click to Open filing\n- [March 3, 2026 - N-CEN: Annual Report for Registered Investment Companies Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000106783926000018/xslFormN-CEN_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000106783926000018/0001067839-26-000018-index.htm \"\") Click to Open filing\n- [February 27, 2026 - NPORT-P: Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000106783926000016/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000106783926000016/0001067839-26-000016-index.htm \"\") Click to Open filing\n- [January 30, 2026 - 40-17G: Fidelity Bond \\[Rule 17G-1(g)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312526030715/d95429d4017g.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312526030715/0001193125-26-030715-index.htm \"\") Click to Open filing\n\nView\nfilingsHide filings\n\n##### Selected Filings\n\n##### [\\[+\\]](https://www.sec.gov/edgar/browse/?CIK=0001067839\\#) 8-K  (current reports)\n\nNo 8-K filing data for this company in last 110 days\n\nView all\n8-KsHow to read an 8-K\n\n##### [\\[+\\]](https://www.sec.gov/edgar/browse/?CIK=0001067839\\#) 10-K  (annual reports) and  10-Q (quarterly reports)\n\nNo 10-K/10-Q filings for this company in last 365\ndays\n\nView all 10-Ks and 10-QsHow to read a 10-K/10-Q\n\n##### [\\[+\\]](https://www.sec.gov/edgar/browse/?CIK=0001067839\\#) Proxy  (annual meeting) and  information statements\n\n- [August 18, 2025 - DEF 14A: Other definitive proxy statements Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000168035925000633/definitiveproxy.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000168035925000633/0001680359-25-000633-index.htm \"\") Click to Open filing\n- [July 17, 2025 - PRE 14A: Other preliminary proxy statements Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000206159025000113/preliminaryproxy.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000206159025000113/0002061590-25-000113-index.htm \"\") Click to Open filing\n\nView all\nproxy and information statementsLearn about proxy statements\n\n##### [\\[+\\]](https://www.sec.gov/edgar/browse/?CIK=0001067839\\#)  Ownership disclosures\n\n- Insider transactions\n\nNo insider transaction filings for this\ncompany in last 365\ndays\n\n\nView\nall insider transactionsLearn about insider transactions\n\n- Beneficial ownership (Schedule 13D and 13G)\n\nNo beneficial ownership filings for this\ncompany in last 365\ndays\n\n\nView\nall beneficial ownershipLearn about Schedules 13D/G\n\n##### Filings\n\nAll\n\n[All](https://www.sec.gov/edgar/browse/?CIK=0001067839#) [Exclude\\\\\ninsider transactions](https://www.sec.gov/edgar/browse/?CIK=0001067839#) [Current\\\\\nreports](https://www.sec.gov/edgar/browse/?CIK=0001067839#) [Annual &\\\\\nquarterly reports](https://www.sec.gov/edgar/browse/?CIK=0001067839#) [Proxy\\\\\nstatements](https://www.sec.gov/edgar/browse/?CIK=0001067839#) [Insider\\\\\ntransactions](https://www.sec.gov/edgar/browse/?CIK=0001067839#) [Beneficial\\\\\nownership](https://www.sec.gov/edgar/browse/?CIK=0001067839#) [Proxy voting\\\\\nrecords](https://www.sec.gov/edgar/browse/?CIK=0001067839#) [Shareholder\\\\\nreports](https://www.sec.gov/edgar/browse/?CIK=0001067839#) [Statutory\\\\\nprospectuses](https://www.sec.gov/edgar/browse/?CIK=0001067839#) [Summary\\\\\nprospectuses](https://www.sec.gov/edgar/browse/?CIK=0001067839#)\n\nSearch\ntableSearch tableFrom Date\n(yyyy-mm-dd)From Date (yyyy-mm-dd)To Date\n(yyyy-mm-dd)To Date (yyyy-mm-dd)ClearEducation\n\nClear\n\nKeywords:Search text in\ndocuments\n\nShow columns:\n\nForm typeClick to toggle column\nvisibility\n\nForm descriptionClick to toggle column\nvisibility\n\nFiling\ndateClick to toggle column\nvisibility\n\nReporting dateClick to toggle column\nvisibility\n\nActClick to toggle column\nvisibility\n\nFilm numberClick to toggle column\nvisibility\n\nFile numberClick to toggle column\nvisibility\n\nAccession numberClick to toggle column\nvisibility\n\nSizeClick to toggle column visibility\n\n...Grid Refreshed\n\n\nCopy to clipboardCSVExcelPrint![RSS Feed Images](https://www.sec.gov/edgar/browse/images/rss-feed-icon-14x14.png) RSS feed\n\nSearch:\n\n| Form <br>type | Form <br>description | Filing <br>date | Reporting <br>date |\n| --- | --- | --- | --- |\n\n| Form <br>type | Form <br>description | Filing <br>date | Reporting <br>date |\n| --- | --- | --- | --- |\n| 497K | [Summary Prospectus for certain open-end management investment companies filed pursuant to Securities Act Rule 497(K) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465926052973/tm2612890d3_497k.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465926052973/0001104659-26-052973-index.htm \"\") Click to Open filing | 2026-04-30 |  |\n| 497 | [Definitive materials Open document](https://www.sec.gov/ix?doc=/Archives/edgar/data/0001067839/000110465926052905/tm2612890d3_497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465926052905/0001104659-26-052905-index.htm \"\") Click to Open filing | 2026-04-30 |  |\n| N-CEN | [Annual Report for Registered Investment Companies Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000106783926000018/xslFormN-CEN_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000106783926000018/0001067839-26-000018-index.htm \"\") Click to Open filing | 2026-03-03 | [2025-12-19View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000106783926000016/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000106783926000016/0001067839-26-000016-index.htm \"\") Click to Open filing | 2026-02-27 | [2025-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 40-17G | [Fidelity Bond \\[Rule 17G-1(g)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312526030715/d95429d4017g.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312526030715/0001193125-26-030715-index.htm \"\") Click to Open filing | 2026-01-30 |  |\n| 497J | [Certification of no change in definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465925124031/tm2529177d8_497j.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465925124031/0001104659-25-124031-index.htm \"\") Click to Open filing | 2025-12-23 |  |\n| 497K | [Summary Prospectus for certain open-end management investment companies filed pursuant to Securities Act Rule 497(K) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465925123275/tm2529177d5_497k.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465925123275/0001104659-25-123275-index.htm \"\") Click to Open filing | 2025-12-19 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/ix?doc=/Archives/edgar/data/0001067839/000110465925123273/tm2529177d1_485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465925123273/0001104659-25-123273-index.htm \"\") Click to Open filing | 2025-12-19 |  |\n| N-8A/A | [Notification of registration \\[Section 8(a)\\] - _amendment_ Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465925123271/tm2529177d6_n8aa.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465925123271/0001104659-25-123271-index.htm \"\") Click to Open filing | 2025-12-19 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525326661/d67222ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525326661/0001193125-25-326661-index.htm \"\") Click to Open filing | 2025-12-19 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525317441/d31047ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525317441/0001193125-25-317441-index.htm \"\") Click to Open filing | 2025-12-12 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525316186/d592973ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525316186/0001193125-25-316186-index.htm \"\") Click to Open filing | 2025-12-11 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525309987/d32363ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525309987/0001193125-25-309987-index.htm \"\") Click to Open filing | 2025-12-08 |  |\n| 485BXT | [New effective date for post-effective amendment \\[Rule 485(b)(1)(iii)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465925118879/tm2529177d9_485bxt.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465925118879/0001104659-25-118879-index.htm \"\") Click to Open filing | 2025-12-05 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525308978/d72856ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525308978/0001193125-25-308978-index.htm \"\") Click to Open filing | 2025-12-05 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525308243/d12783ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525308243/0001193125-25-308243-index.htm \"\") Click to Open filing | 2025-12-04 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525306073/d50886ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525306073/0001193125-25-306073-index.htm \"\") Click to Open filing | 2025-12-03 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525304121/d138173ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525304121/0001193125-25-304121-index.htm \"\") Click to Open filing | 2025-12-02 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525300808/d833999ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525300808/0001193125-25-300808-index.htm \"\") Click to Open filing | 2025-11-26 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525297507/d82096ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525297507/0001193125-25-297507-index.htm \"\") Click to Open filing | 2025-11-25 |  |\n| 485APOS | [Post-effective amendment \\[Rule 485(a)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465925115202/tm2529177d2_485apos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465925115202/0001104659-25-115202-index.htm \"\") Click to Open filing | 2025-11-24 |  |\n| 485BXT | [New effective date for post-effective amendment \\[Rule 485(b)(1)(iii)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465925114988/tm2529177d7_485bxt.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465925114988/0001104659-25-114988-index.htm \"\") Click to Open filing | 2025-11-21 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525288070/d23975ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525288070/0001193125-25-288070-index.htm \"\") Click to Open filing | 2025-11-19 |  |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000106783925000007/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000106783925000007/0001067839-25-000007-index.htm \"\") Click to Open filing | 2025-11-19 | [2025-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525286066/d105743ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525286066/0001193125-25-286066-index.htm \"\") Click to Open filing | 2025-11-18 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525280553/d46859ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525280553/0001193125-25-280553-index.htm \"\") Click to Open filing | 2025-11-14 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525273758/d77142ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525273758/0001193125-25-273758-index.htm \"\") Click to Open filing | 2025-11-10 |  |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000094040025005782/xsl24F-2NT/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000094040025005782/0000940400-25-005782-index.htm \"\") Click to Open filing | 2025-11-07 | [2025-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525270469/d57137ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525270469/0001193125-25-270469-index.htm \"\") Click to Open filing | 2025-11-07 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525270091/d33001ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525270091/0001193125-25-270091-index.htm \"\") Click to Open filing | 2025-11-06 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525263066/d16103ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525263066/0001193125-25-263066-index.htm \"\") Click to Open filing | 2025-11-04 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525258793/d11785ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525258793/0001193125-25-258793-index.htm \"\") Click to Open filing | 2025-10-30 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525255488/d22028ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525255488/0001193125-25-255488-index.htm \"\") Click to Open filing | 2025-10-29 |  |\n| 485BXT | [New effective date for post-effective amendment \\[Rule 485(b)(1)(iii)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465925102134/tm2529177d4_485bxt.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465925102134/0001104659-25-102134-index.htm \"\") Click to Open filing | 2025-10-24 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525249847/d926642ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525249847/0001193125-25-249847-index.htm \"\") Click to Open filing | 2025-10-24 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525249775/d77839ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525249775/0001193125-25-249775-index.htm \"\") Click to Open filing | 2025-10-24 |  |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525249697/d29525dn30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525249697/0001193125-25-249697-index.htm \"\") Click to Open filing | 2025-10-24 | [2025-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525245386/d946507ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525245386/0001193125-25-245386-index.htm \"\") Click to Open filing | 2025-10-21 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525235701/d29626ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525235701/0001193125-25-235701-index.htm \"\") Click to Open filing | 2025-10-09 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525233328/d948029ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525233328/0001193125-25-233328-index.htm \"\") Click to Open filing | 2025-10-07 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525231977/d21514ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525231977/0001193125-25-231977-index.htm \"\") Click to Open filing | 2025-10-06 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525227142/d33270ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525227142/0001193125-25-227142-index.htm \"\") Click to Open filing | 2025-10-02 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525225003/d25168ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525225003/0001193125-25-225003-index.htm \"\") Click to Open filing | 2025-09-30 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525220717/d911736ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525220717/0001193125-25-220717-index.htm \"\") Click to Open filing | 2025-09-26 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525211222/d22583ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525211222/0001193125-25-211222-index.htm \"\") Click to Open filing | 2025-09-22 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525198441/d50352ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525198441/0001193125-25-198441-index.htm \"\") Click to Open filing | 2025-09-08 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525195077/d12230ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525195077/0001193125-25-195077-index.htm \"\") Click to Open filing | 2025-09-03 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525194159/d890180ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525194159/0001193125-25-194159-index.htm \"\") Click to Open filing | 2025-09-02 |  |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272425211318/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272425211318/0001752724-25-211318-index.htm \"\") Click to Open filing | 2025-08-28 | [2025-06-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 485APOS | [Post-effective amendment \\[Rule 485(a)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000168035925000676/invescoqqq1485apos8262025.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000168035925000676/0001680359-25-000676-index.htm \"\") Click to Open filing | 2025-08-26 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525186098/d891943ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525186098/0001193125-25-186098-index.htm \"\") Click to Open filing | 2025-08-22 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525185087/d44938ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525185087/0001193125-25-185087-index.htm \"\") Click to Open filing | 2025-08-21 |  |\n| DEFA14A | [Additional definitive proxy soliciting materials and Rule 14(a)(12) material Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525184158/d26825ddefa14a.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525184158/0001193125-25-184158-index.htm \"\") Click to Open filing | 2025-08-20 |  |\n| DEF 14A | [Other definitive proxy statements Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000168035925000633/definitiveproxy.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000168035925000633/0001680359-25-000633-index.htm \"\") Click to Open filing | 2025-08-18 | [2025-10-24View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000206159025000114/497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000206159025000114/0002061590-25-000114-index.htm \"\") Click to Open filing | 2025-07-17 |  |\n| PRE 14A | [Other preliminary proxy statements Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000206159025000113/preliminaryproxy.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000206159025000113/0002061590-25-000113-index.htm \"\") Click to Open filing | 2025-07-17 | [2025-07-15View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272425127952/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272425127952/0001752724-25-127952-index.htm \"\") Click to Open filing | 2025-05-29 | [2025-03-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| N-CEN | [Annual Report for Registered Investment Companies Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272425056406/xslFormN-CEN_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272425056406/0001752724-25-056406-index.htm \"\") Click to Open filing | 2025-03-14 | [2024-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272425039757/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272425039757/0001752724-25-039757-index.htm \"\") Click to Open filing | 2025-02-26 | [2024-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497J | [Certification of no change in definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525016879/d879906d497j.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525016879/0001193125-25-016879-index.htm \"\") Click to Open filing | 2025-01-30 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525013448/d902673d485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312525013448/0001193125-25-013448-index.htm \"\") Click to Open filing | 2025-01-27 |  |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312524285734/d876223dn30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312524285734/0001193125-24-285734-index.htm \"\") Click to Open filing | 2024-12-27 | [2024-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000094040024000511/xsl24F-2NT/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000094040024000511/0000940400-24-000511-index.htm \"\") Click to Open filing | 2024-12-27 | [2024-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272424274837/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272424274837/0001752724-24-274837-index.htm \"\") Click to Open filing | 2024-11-27 | [2024-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272424196011/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272424196011/0001752724-24-196011-index.htm \"\") Click to Open filing | 2024-08-28 | [2024-06-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312524187704/d733468d497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312524187704/0001193125-24-187704-index.htm \"\") Click to Open filing | 2024-07-29 |  |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312524151108/d817473d497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312524151108/0001193125-24-151108-index.htm \"\") Click to Open filing | 2024-05-31 |  |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272424126831/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272424126831/0001752724-24-126831-index.htm \"\") Click to Open filing | 2024-05-29 | [2024-03-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312524147019/d824278d497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312524147019/0001193125-24-147019-index.htm \"\") Click to Open filing | 2024-05-24 |  |\n| N-CEN | [Annual Report for Registered Investment Companies Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272424053329/xslFormN-CEN_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272424053329/0001752724-24-053329-index.htm \"\") Click to Open filing | 2024-03-13 | [2023-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272424049569/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272424049569/0001752724-24-049569-index.htm \"\") Click to Open filing | 2024-02-29 | [2023-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497J | [Certification of no change in definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312524019306/d559767d497j.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312524019306/0001193125-24-019306-index.htm \"\") Click to Open filing | 2024-01-30 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312524016662/d881880d485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312524016662/0001193125-24-016662-index.htm \"\") Click to Open filing | 2024-01-26 |  |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312523304771/d538532dn30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312523304771/0001193125-23-304771-index.htm \"\") Click to Open filing | 2023-12-28 | [2023-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000094040023000455/xsl24F-2NT/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000094040023000455/0000940400-23-000455-index.htm \"\") Click to Open filing | 2023-12-22 | [2023-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272423269960/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272423269960/0001752724-23-269960-index.htm \"\") Click to Open filing | 2023-11-28 | [2023-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272423198395/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272423198395/0001752724-23-198395-index.htm \"\") Click to Open filing | 2023-08-29 | [2023-06-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272423124038/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272423124038/0001752724-23-124038-index.htm \"\") Click to Open filing | 2023-05-30 | [2023-03-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| N-CEN | [Annual Report for Registered Investment Companies Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272423056890/xslFormN-CEN_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272423056890/0001752724-23-056890-index.htm \"\") Click to Open filing | 2023-03-15 | [2022-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272423047901/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272423047901/0001752724-23-047901-index.htm \"\") Click to Open filing | 2023-02-28 | [2022-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497J | [Certification of no change in definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312523018866/d426467d497j.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312523018866/0001193125-23-018866-index.htm \"\") Click to Open filing | 2023-01-30 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312523017732/d365144d485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312523017732/0001193125-23-017732-index.htm \"\") Click to Open filing | 2023-01-27 |  |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312522313828/d385116dn30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312522313828/0001193125-22-313828-index.htm \"\") Click to Open filing | 2022-12-29 | [2022-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000094040022000438/xsl24F-2NT/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000094040022000438/0000940400-22-000438-index.htm \"\") Click to Open filing | 2022-12-28 | [2022-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272422266948/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272422266948/0001752724-22-266948-index.htm \"\") Click to Open filing | 2022-11-25 | [2022-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272422184608/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272422184608/0001752724-22-184608-index.htm \"\") Click to Open filing | 2022-08-22 | [2022-06-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272422116978/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272422116978/0001752724-22-116978-index.htm \"\") Click to Open filing | 2022-05-24 | [2022-03-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312522111268/d353307d497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312522111268/0001193125-22-111268-index.htm \"\") Click to Open filing | 2022-04-20 |  |\n| N-CEN | [Annual Report for Registered Investment Companies Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272422062387/xslFormN-CEN_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272422062387/0001752724-22-062387-index.htm \"\") Click to Open filing | 2022-03-15 | [2021-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272422046874/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272422046874/0001752724-22-046874-index.htm \"\") Click to Open filing | 2022-02-25 | [2021-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497J | [Certification of no change in definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312522021328/d219578d497j.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312522021328/0001193125-22-021328-index.htm \"\") Click to Open filing | 2022-01-28 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312522019964/d241860d485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312522019964/0001193125-22-019964-index.htm \"\") Click to Open filing | 2022-01-27 |  |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312521368691/d211991dn30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312521368691/0001193125-21-368691-index.htm \"\") Click to Open filing | 2021-12-29 | [2021-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000094040021000359/InvescoQQQ0930.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000094040021000359/0000940400-21-000359-index.htm \"\") Click to Open filing | 2021-12-23 | [2021-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272421250330/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272421250330/0001752724-21-250330-index.htm \"\") Click to Open filing | 2021-11-23 | [2021-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272421190995/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272421190995/0001752724-21-190995-index.htm \"\") Click to Open filing | 2021-08-27 | [2021-06-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272421113764/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272421113764/0001752724-21-113764-index.htm \"\") Click to Open filing | 2021-05-27 | [2021-03-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| N-CEN | [Annual Report for Registered Investment Companies Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272421053873/xslFormN-CEN_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272421053873/0001752724-21-053873-index.htm \"\") Click to Open filing | 2021-03-16 | [2020-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272421043706/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272421043706/0001752724-21-043706-index.htm \"\") Click to Open filing | 2021-02-26 | [2020-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497J | [Certification of no change in definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312521022398/d62890d497j.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312521022398/0001193125-21-022398-index.htm \"\") Click to Open filing | 2021-01-29 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312521019335/d78829d485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312521019335/0001193125-21-019335-index.htm \"\") Click to Open filing | 2021-01-27 |  |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312520326183/d75380dn30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312520326183/0001193125-20-326183-index.htm \"\") Click to Open filing | 2020-12-23 | [2020-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000094040020000332/InvescoQQQ0930.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000094040020000332/0000940400-20-000332-index.htm \"\") Click to Open filing | 2020-12-22 | [2020-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312520315008/d29764d497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312520315008/0001193125-20-315008-index.htm \"\") Click to Open filing | 2020-12-10 |  |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272420251748/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272420251748/0001752724-20-251748-index.htm \"\") Click to Open filing | 2020-11-30 | [2020-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312520269895/d49761d497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312520269895/0001193125-20-269895-index.htm \"\") Click to Open filing | 2020-10-15 |  |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272420174500/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272420174500/0001752724-20-174500-index.htm \"\") Click to Open filing | 2020-08-26 | [2020-06-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312520217722/d59684d497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312520217722/0001193125-20-217722-index.htm \"\") Click to Open filing | 2020-08-12 |  |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272420112621/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272420112621/0001752724-20-112621-index.htm \"\") Click to Open filing | 2020-06-01 | [2020-03-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000168386320010362/f5883d1.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000168386320010362/0001683863-20-010362-index.htm \"\") Click to Open filing | 2020-05-29 |  |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312520079245/d896333d497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312520079245/0001193125-20-079245-index.htm \"\") Click to Open filing | 2020-03-19 |  |\n| N-CEN | [Annual Report for Registered Investment Companies Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272420050421/xslFormN-CEN_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272420050421/0001752724-20-050421-index.htm \"\") Click to Open filing | 2020-03-16 | [2019-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272420043463/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272420043463/0001752724-20-043463-index.htm \"\") Click to Open filing | 2020-02-28 | [2019-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497J | [Certification of no change in definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312520019929/d874633d497j.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312520019929/0001193125-20-019929-index.htm \"\") Click to Open filing | 2020-01-31 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312520018563/d835635d485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312520018563/0001193125-20-018563-index.htm \"\") Click to Open filing | 2020-01-29 |  |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312519320290/d813945dn30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312519320290/0001193125-19-320290-index.htm \"\") Click to Open filing | 2019-12-20 | [2019-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312519320258/d850921d24f2nt.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312519320258/0001193125-19-320258-index.htm \"\") Click to Open filing | 2019-12-20 | [2019-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-P | [Monthly Portfolio Investments Report on Form N-PORT (Public) Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272419184787/xslFormNPORT-P_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272419184787/0001752724-19-184787-index.htm \"\") Click to Open filing | 2019-11-29 | [2019-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NPORT-EX | [Portfolio Holdings Exhibit to Form N-PORT Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272419112872/IVZ_QQQ.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272419112872/0001752724-19-112872-index.htm \"\") Click to Open filing | 2019-08-28 | [2019-06-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| N-CEN | [Annual Report for Registered Investment Companies Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000175272419011004/xslFormN-CEN_X01/primary_doc.xml \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000175272419011004/0001752724-19-011004-index.htm \"\") Click to Open filing | 2019-03-14 | [2018-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312519022499/d677442d497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312519022499/0001193125-19-022499-index.htm \"\") Click to Open filing | 2019-01-30 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312519021082/d677442d485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312519021082/0001193125-19-021082-index.htm \"\") Click to Open filing | 2019-01-29 |  |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518358088/d670049d24f2nt.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518358088/0001193125-18-358088-index.htm \"\") Click to Open filing | 2018-12-26 | [2018-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518355790/d638310dn30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518355790/0001193125-18-355790-index.htm \"\") Click to Open filing | 2018-12-21 | [2018-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518266263/d618677d497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518266263/0001193125-18-266263-index.htm \"\") Click to Open filing | 2018-09-04 |  |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518179684/d593862d497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518179684/0001193125-18-179684-index.htm \"\") Click to Open filing | 2018-05-31 |  |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518137674/d578219d497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518137674/0001193125-18-137674-index.htm \"\") Click to Open filing | 2018-04-27 |  |\n| 497J | [Certification of no change in definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518030680/d423471d497j.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518030680/0001193125-18-030680-index.htm \"\") Click to Open filing | 2018-02-02 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518023862/d423471d485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518023862/0001193125-18-023862-index.htm \"\") Click to Open filing | 2018-01-29 |  |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518018085/d358832dnsaru.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518018085/0001193125-18-018085-index.htm \"\") Click to Open filing | 2018-01-24 | [2017-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518001208/d432220dn30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312518001208/0001193125-18-001208-index.htm \"\") Click to Open filing | 2018-01-03 | [2017-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312517378705/d501798d24f2nt.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312517378705/0001193125-17-378705-index.htm \"\") Click to Open filing | 2017-12-26 | [2017-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312517259974/d437837d497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312517259974/0001193125-17-259974-index.htm \"\") Click to Open filing | 2017-08-16 |  |\n| 497J | [Certification of no change in definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312517030134/d284522d497j.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312517030134/0001193125-17-030134-index.htm \"\") Click to Open filing | 2017-02-03 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312517021968/d284522d485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312517021968/0001193125-17-021968-index.htm \"\") Click to Open filing | 2017-01-27 |  |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312517016051/d334642dnsaru.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312517016051/0001193125-17-016051-index.htm \"\") Click to Open filing | 2017-01-24 | [2016-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312516806695/d272217dn30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312516806695/0001193125-16-806695-index.htm \"\") Click to Open filing | 2016-12-29 | [2016-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312516805084/d263794d24f2nt.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312516805084/0001193125-16-805084-index.htm \"\") Click to Open filing | 2016-12-28 | [2016-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312516517136/d121382d497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312516517136/0001193125-16-517136-index.htm \"\") Click to Open filing | 2016-03-25 |  |\n| 497J | [Certification of no change in definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312516451775/d106822d497j.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312516451775/0001193125-16-451775-index.htm \"\") Click to Open filing | 2016-02-05 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312516441831/d106822d485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312516441831/0001193125-16-441831-index.htm \"\") Click to Open filing | 2016-01-28 |  |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312516433468/d114020dnsaru.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312516433468/0001193125-16-433468-index.htm \"\") Click to Open filing | 2016-01-20 | [2015-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000119312516422287/d95463dn30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000119312516422287/0001193125-16-422287-index.htm \"\") Click to Open filing | 2016-01-06 | [2015-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465915087078/a15-24342_224f2nt.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465915087078/0001104659-15-087078-index.htm \"\") Click to Open filing | 2015-12-29 | [2015-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465915074780/a15-22182_2497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465915074780/0001104659-15-074780-index.htm \"\") Click to Open filing | 2015-11-02 |  |\n| 497J | [Certification of no change in definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465915006188/a15-1379_1497j.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465915006188/0001104659-15-006188-index.htm \"\") Click to Open filing | 2015-02-03 |  |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465915005325/a15-1217_1nsaru.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465915005325/0001104659-15-005325-index.htm \"\") Click to Open filing | 2015-01-29 | [2014-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465915004817/a15-1379_1485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465915004817/0001104659-15-004817-index.htm \"\") Click to Open filing | 2015-01-28 |  |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465915002429/a14-24967_1n30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465915002429/0001104659-15-002429-index.htm \"\") Click to Open filing | 2015-01-15 | [2014-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465914089088/a14-23372_224f2nt.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465914089088/0001104659-14-089088-index.htm \"\") Click to Open filing | 2014-12-29 | [2014-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465914072287/a14-22546_1497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465914072287/0001104659-14-072287-index.htm \"\") Click to Open filing | 2014-10-17 |  |\n| 8-K | [Current report Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465914065254/a14-20543_28k.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465914065254/0001104659-14-065254-index.htm \"\") Click to Open filing<br>- **4.01** \\- Changes in Registrant's Certifying Accountant | 2014-09-08 | [2014-09-03View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465914014609/a14-4741_1nsaru.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465914014609/0001104659-14-014609-index.htm \"\") Click to Open filing | 2014-02-28 | [2013-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 8-K | [Current report Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465914007543/a14-5267_28k.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465914007543/0001104659-14-007543-index.htm \"\") Click to Open filing<br>- **4.01** \\- Changes in Registrant's Certifying Accountant<br>- **9.01** \\- Financial Statements and Exhibits | 2014-02-07 | [2014-02-04View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497J | [Certification of no change in definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465914006244/a14-1316_1497j.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465914006244/0001104659-14-006244-index.htm \"\") Click to Open filing | 2014-02-04 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465914005312/a14-1316_1485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465914005312/0001104659-14-005312-index.htm \"\") Click to Open filing | 2014-01-30 |  |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465914003107/a13-21957_1n30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465914003107/0001104659-14-003107-index.htm \"\") Click to Open filing | 2014-01-17 | [2013-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465913092559/a13-25723_224f2nt.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465913092559/0001104659-13-092559-index.htm \"\") Click to Open filing | 2013-12-27 | [2013-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465913014965/a13-2148_1nsaru.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465913014965/0001104659-13-014965-index.htm \"\") Click to Open filing | 2013-02-27 | [2012-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465913007507/a12-28280_1497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465913007507/0001104659-13-007507-index.htm \"\") Click to Open filing | 2013-02-05 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465913006545/a12-28280_1485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465913006545/0001104659-13-006545-index.htm \"\") Click to Open filing | 2013-01-31 |  |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465913005075/a12-24340_1n30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465913005075/0001104659-13-005075-index.htm \"\") Click to Open filing | 2013-01-28 | [2012-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465912086900/a12-28052_224f2nt.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465912086900/0001104659-12-086900-index.htm \"\") Click to Open filing | 2012-12-31 | [2012-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465912078569/a12-27371_2497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465912078569/0001104659-12-078569-index.htm \"\") Click to Open filing | 2012-11-16 |  |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465912006108/a11-30095_1497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465912006108/0001104659-12-006108-index.htm \"\") Click to Open filing | 2012-02-02 |  |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465912005848/a12-2628_1nsaru.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465912005848/0001104659-12-005848-index.htm \"\") Click to Open filing | 2012-02-01 | [2011-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465912005092/a11-30095_1485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465912005092/0001104659-12-005092-index.htm \"\") Click to Open filing | 2012-01-30 |  |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465912003105/a11-28102_1n30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465912003105/0001104659-12-003105-index.htm \"\") Click to Open filing | 2012-01-20 | [2011-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465911071450/a11-30624_224f2nt.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465911071450/0001104659-11-071450-index.htm \"\") Click to Open filing | 2011-12-28 | [2011-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 485APOS | [Post-effective amendment \\[Rule 485(a)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465911066963/a11-30095_1485apos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465911066963/0001104659-11-066963-index.htm \"\") Click to Open filing | 2011-11-30 |  |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465911015699/a11-3083_6497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465911015699/0001104659-11-015699-index.htm \"\") Click to Open filing | 2011-03-22 |  |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465911005599/a11-4438_1nsaru.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465911005599/0001104659-11-005599-index.htm \"\") Click to Open filing | 2011-02-08 | [2010-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465911003685/a10-18718_1485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465911003685/0001104659-11-003685-index.htm \"\") Click to Open filing | 2011-01-28 |  |\n| SC 13G/A | [Statement of acquisition of beneficial ownership by individuals - _amendment_ Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000093472911000007/powersharesqqq12-10.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000093472911000007/0000934729-11-000007-index.htm \"\") Click to Open filing | 2011-01-13 |  |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465910064790/a10-18275_1n30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465910064790/0001104659-10-064790-index.htm \"\") Click to Open filing | 2010-12-30 | [2010-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465910064135/a10-20484_224f2nt.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465910064135/0001104659-10-064135-index.htm \"\") Click to Open filing | 2010-12-23 | [2010-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465910005652/a10-2000_1nsaru.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465910005652/0001104659-10-005652-index.htm \"\") Click to Open filing | 2010-02-09 | [2009-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465910002985/a09-28465_1485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465910002985/0001104659-10-002985-index.htm \"\") Click to Open filing | 2010-01-26 |  |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465910001821/a09-31668_2n30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465910001821/0001104659-10-001821-index.htm \"\") Click to Open filing | 2010-01-15 | [2009-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| SC 13G | [Statement of acquisition of beneficial ownership by individuals Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000093472910000006/powersharesqqq12-09.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000093472910000006/0000934729-10-000006-index.htm \"\") Click to Open filing | 2010-01-13 |  |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465909071236/a09-33006_224f2nt.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465909071236/0001104659-09-071236-index.htm \"\") Click to Open filing | 2009-12-23 | [2009-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NSAR-U/A | [Annual report for unit investment trusts - _amendment_ Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465909012110/a09-4607_2nsarua.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465909012110/0001104659-09-012110-index.htm \"\") Click to Open filing | 2009-02-25 | [2008-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465909005352/a08-28674_2n30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465909005352/0001104659-09-005352-index.htm \"\") Click to Open filing | 2009-01-30 | [2008-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677409000129/powershares_485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677409000129/0001206774-09-000129-index.htm \"\") Click to Open filing | 2009-01-30 |  |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465909004115/a09-3800_2nsaru.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465909004115/0001104659-09-004115-index.htm \"\") Click to Open filing [Amendments](https://www.sec.gov/edgar/browse/?CIK=0001067839#) | 2009-01-26 | [2008-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465908078573/a08-31130_224f2nt.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465908078573/0001104659-08-078573-index.htm \"\") Click to Open filing | 2008-12-29 | [2008-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677408000812/nasdaq.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677408000812/0001206774-08-000812-index.htm \"\") Click to Open filing | 2008-04-17 |  |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465908012819/a08-6528_3nsaru.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465908012819/0001104659-08-012819-index.htm \"\") Click to Open filing | 2008-02-26 | [2007-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465908012645/a08-3893_3n30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465908012645/0001104659-08-012645-index.htm \"\") Click to Open filing | 2008-02-25 | [2007-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677408000229/powershares_485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677408000229/0001206774-08-000229-index.htm \"\") Click to Open filing | 2008-02-01 |  |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000093041308000009/c51771_24f-2nt.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000093041308000009/0000930413-08-000009-index.htm \"\") Click to Open filing | 2008-01-02 | [2007-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677407001154/nasdaq_497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677407001154/0001206774-07-001154-index.htm \"\") Click to Open filing | 2007-04-26 |  |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677407000760/nasdaq_485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677407000760/0001206774-07-000760-index.htm \"\") Click to Open filing | 2007-03-23 |  |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677407000733/nasdaq_497.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677407000733/0001206774-07-000733-index.htm \"\") Click to Open filing | 2007-03-21 |  |\n| 40-6C/A | [Application for exemption and other relief \\[Section 6(c)\\] - _amendment_ Open document](https://www.sec.gov/Archives/edgar/data/0001067839/999999999707012024/9999999997-07-012024.paper \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/999999999707012024/9999999997-07-012024-index.htm \"\") Click to Open filing | 2007-03-15 |  |\n| 40-6C/A | [Application for exemption and other relief \\[Section 6(c)\\] - _amendment_ Open document](https://www.sec.gov/Archives/edgar/data/0001067839/999999999707011197/9999999997-07-011197.paper \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/999999999707011197/9999999997-07-011197-index.htm \"\") Click to Open filing | 2007-03-12 |  |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465907014693/a07-6561_2nsaru.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465907014693/0001104659-07-014693-index.htm \"\") Click to Open filing | 2007-02-28 | [2006-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677407000279/nasdaq_485bpos.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677407000279/0001206774-07-000279-index.htm \"\") Click to Open filing | 2007-01-31 |  |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000110465907003177/a06-24326_3n30b2.htm \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000110465907003177/0001104659-07-003177-index.htm \"\") Click to Open filing | 2007-01-18 | [2006-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000093041306008954/c45935_24f-2nt.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000093041306008954/0000930413-06-008954-index.htm \"\") Click to Open filing | 2006-12-29 | [2006-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 40-6C | [Application for exemption and other relief \\[Section 6(c)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/999999999706046875/9999999997-06-046875.paper \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/999999999706046875/9999999997-06-046875-index.htm \"\") Click to Open filing | 2006-11-20 |  |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000104746906005571/a2167148zn-30b_2.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000104746906005571/0001047469-06-005571-index.htm \"\") Click to Open filing | 2006-04-25 | [2005-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000104746906002522/a2167855znsar-u.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000104746906002522/0001047469-06-002522-index.htm \"\") Click to Open filing | 2006-02-27 | [2005-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000114544306000286/d18531-497.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000114544306000286/0001145443-06-000286-index.htm \"\") Click to Open filing | 2006-02-06 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677406000136/d18436-485bpos.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677406000136/0001206774-06-000136-index.htm \"\") Click to Open filing | 2006-01-31 |  |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000093041305008587/c40342_24f-2nt.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000093041305008587/0000930413-05-008587-index.htm \"\") Click to Open filing | 2005-12-29 | [2005-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| N-30B-2 | [Periodic and interim reports mailed to shareholders Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000093041305003631/c36210.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000093041305003631/0000930413-05-003631-index.htm \"\") Click to Open filing | 2005-05-16 | [2004-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000104746905004825/a2152598znsar-u.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000104746905004825/0001047469-05-004825-index.htm \"\") Click to Open filing | 2005-02-25 | [2004-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677405000098/d16211.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677405000098/0001206774-05-000098-index.htm \"\") Click to Open filing | 2005-02-04 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677405000077/d16120_s-6.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677405000077/0001206774-05-000077-index.htm \"\") Click to Open filing | 2005-01-31 |  |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000093041304006015/c34946_24f2nt.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000093041304006015/0000930413-04-006015-index.htm \"\") Click to Open filing | 2004-12-30 | [2004-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 40-6C/A | [Application for exemption and other relief \\[Section 6(c)\\] - _amendment_ Open document](https://www.sec.gov/Archives/edgar/data/0001067839/999999999704045432/9999999997-04-045432.paper \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/999999999704045432/9999999997-04-045432-index.htm \"\") Click to Open filing | 2004-12-01 |  |\n| 8-A12G | [Registration of securities \\[Section 12(g)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677404001690/d15808.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677404001690/0001206774-04-001690-index.htm \"\") Click to Open filing | 2004-11-30 |  |\n| 40-6C/A | [Application for exemption and other relief \\[Section 6(c)\\] - _amendment_ Open document](https://www.sec.gov/Archives/edgar/data/0001067839/999999999704008126/9999999997-04-008126.paper \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/999999999704008126/9999999997-04-008126-index.htm \"\") Click to Open filing | 2004-03-04 |  |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000104746904005187/a2129193znsar-u.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000104746904005187/0001047469-04-005187-index.htm \"\") Click to Open filing | 2004-02-23 | [2003-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| N-8B-2/A | [Registration statement for unit investment trusts - _amendment_ Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677404000030/d13923.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677404000030/0001206774-04-000030-index.htm \"\") Click to Open filing | 2004-02-05 |  |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677404000024/d13920.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677404000024/0001206774-04-000024-index.htm \"\") Click to Open filing | 2004-02-04 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677404000023/d13831.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677404000023/0001206774-04-000023-index.htm \"\") Click to Open filing | 2004-01-30 |  |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000093041303003779/c30223_24f-2nt.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000093041303003779/0000930413-03-003779-index.htm \"\") Click to Open filing | 2003-12-24 | [2003-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 40-6C | [Application for exemption and other relief \\[Section 6(c)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/999999999703035689/9999999997-03-035689.paper \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/999999999703035689/9999999997-03-035689-index.htm \"\") Click to Open filing | 2003-09-11 |  |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677403000655/d13171.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677403000655/0001206774-03-000655-index.htm \"\") Click to Open filing | 2003-08-26 |  |\n| 497 | [Definitive materials Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677403000650/d13171.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677403000650/0001206774-03-000650-index.htm \"\") Click to Open filing | 2003-08-22 |  |\n| 485APOS | [Post-effective amendment \\[Rule 485(a)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677403000628/d12904.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677403000628/0001206774-03-000628-index.htm \"\") Click to Open filing | 2003-08-14 |  |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000104746903006660/a2104158znsar-u.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000104746903006660/0001047469-03-006660-index.htm \"\") Click to Open filing | 2003-02-25 | [2002-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677403000033/d11781.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677403000033/0001206774-03-000033-index.htm \"\") Click to Open filing | 2003-01-31 |  |\n| S-6/A | [Registration statement for unit investment trusts - _amendment_ Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000120677403000008/d11660.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000120677403000008/0001206774-03-000008-index.htm \"\") Click to Open filing | 2003-01-08 |  |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000104746902008038/a2096954z24f-2nt.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000104746902008038/0001047469-02-008038-index.htm \"\") Click to Open filing | 2002-12-23 | [2002-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NSAR-U/A | [Annual report for unit investment trusts - _amendment_ Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000100547702001127/d02-36434.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000100547702001127/0001005477-02-001127-index.htm \"\") Click to Open filing | 2002-03-06 | [2001-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000100547702001114/d02-36424.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000100547702001114/0001005477-02-001114-index.htm \"\") Click to Open filing [Amendments](https://www.sec.gov/edgar/browse/?CIK=0001067839#) | 2002-03-04 | [2001-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000091205702003740/a2068197z485bpos.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000091205702003740/0000912057-02-003740-index.htm \"\") Click to Open filing | 2002-02-01 |  |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000091205702003384/a2068197z485bpos.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000091205702003384/0000912057-02-003384-index.htm \"\") Click to Open filing | 2002-01-30 |  |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000091205701544154/a2066568z24f-2nt.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000091205701544154/0000912057-01-544154-index.htm \"\") Click to Open filing | 2001-12-20 | [2001-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000091205701534103/a2059883z485bpos.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000091205701534103/0000912057-01-534103-index.htm \"\") Click to Open filing | 2001-10-01 |  |\n| NSAR-U | [Annual report for unit investment trusts Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000100547701001349/0001005477-01-001349-0001.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000100547701001349/0001005477-01-001349-index.htm \"\") Click to Open filing | 2001-02-21 | [2000-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000091205701003392/a2036273z485bpos.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000091205701003392/0000912057-01-003392-index.htm \"\") Click to Open filing | 2001-01-30 |  |\n| 24F-2NT | [Rule 24f-2 notice Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000091205700050898/a2031651z24f-2nt.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000091205700050898/0000912057-00-050898-index.htm \"\") Click to Open filing | 2000-11-20 | [2000-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 485BPOS | [Post-effective amendment \\[Rule 485(b)\\] Open document](https://www.sec.gov/Archives/edgar/data/0001067839/000091205700030669/a485bpos.txt \"\") Click to Open document [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000091205700030669/0000912057-00-030669-index.htm \"\") Click to Open filing | 2000-06-30 |  |\n| S-6/A | [Registration statement for unit investment trusts - _amendment_ Open filing](https://www.sec.gov/Archives/edgar/data/0001067839/000091205700011057/0000912057-00-011057-index.htm \"\") Click to Open filing [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000091205700011057/0000912057-00-011057-index.htm \"\") Click to Open filing | 2000-03-10 |  |\n| NSAR-U | [Annual report for unit investment trusts Open filing](https://www.sec.gov/Archives/edgar/data/0001067839/000100547700001850/0001005477-00-001850-index.htm \"\") Click to Open filing [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000100547700001850/0001005477-00-001850-index.htm \"\") Click to Open filing | 2000-02-29 | [1999-12-31View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| 24F-2NT | [Rule 24f-2 notice Open filing](https://www.sec.gov/Archives/edgar/data/0001067839/000091205799010091/0000912057-99-010091-index.htm \"\") Click to Open filing [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000091205799010091/0000912057-99-010091-index.htm \"\") Click to Open filing | 1999-12-21 | [1999-09-30View all with same reporting date](https://www.sec.gov/edgar/browse/?CIK=0001067839# \"\") |\n| SC 13G/A | [Statement of acquisition of beneficial ownership by individuals - _amendment_ Open filing](https://www.sec.gov/Archives/edgar/data/0001067839/000089542199000248/0000895421-99-000248-index.htm \"\") Click to Open filing [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000089542199000248/0000895421-99-000248-index.htm \"\") Click to Open filing | 1999-08-10 |  |\n| S-6/A | [Registration statement for unit investment trusts - _amendment_ Open filing](https://www.sec.gov/Archives/edgar/data/0001067839/000104746999008995/0001047469-99-008995-index.htm \"\") Click to Open filing [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000104746999008995/0001047469-99-008995-index.htm \"\") Click to Open filing | 1999-03-09 |  |\n| N-8B-2 | [Registration statement for unit investment trusts Open filing](https://www.sec.gov/Archives/edgar/data/0001067839/000104746999008994/0001047469-99-008994-index.htm \"\") Click to Open filing [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000104746999008994/0001047469-99-008994-index.htm \"\") Click to Open filing | 1999-03-09 |  |\n| 8-A12B | [Registration of securities \\[Section 12(b)\\] Open filing](https://www.sec.gov/Archives/edgar/data/0001067839/000104746999007839/0001047469-99-007839-index.htm \"\") Click to Open filing [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000104746999007839/0001047469-99-007839-index.htm \"\") Click to Open filing | 1999-03-01 |  |\n| S-6/A | [Registration statement for unit investment trusts - _amendment_ Open filing](https://www.sec.gov/Archives/edgar/data/0001067839/000104746999002457/0001047469-99-002457-index.htm \"\") Click to Open filing [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000104746999002457/0001047469-99-002457-index.htm \"\") Click to Open filing | 1999-01-28 |  |\n| S-6/A | [Registration statement for unit investment trusts - _amendment_ Open filing](https://www.sec.gov/Archives/edgar/data/0001067839/000095013398003538/0000950133-98-003538-index.htm \"\") Click to Open filing [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000095013398003538/0000950133-98-003538-index.htm \"\") Click to Open filing | 1998-10-19 |  |\n| N-8A | [Notification of registration \\[Section 8(a)\\] Open filing](https://www.sec.gov/Archives/edgar/data/0001067839/000095013398002930/0000950133-98-002930-index.htm \"\") Click to Open filing [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000095013398002930/0000950133-98-002930-index.htm \"\") Click to Open filing | 1998-08-11 |  |\n| S-6 | [Registration statement for unit investment trusts Open filing](https://www.sec.gov/Archives/edgar/data/0001067839/000095013398002887/0000950133-98-002887-index.htm \"\") Click to Open filing [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000095013398002887/0000950133-98-002887-index.htm \"\") Click to Open filing | 1998-08-07 |  |\n| N-8B-2 | [Registration statement for unit investment trusts Open filing](https://www.sec.gov/Archives/edgar/data/0001067839/000095013398002886/0000950133-98-002886-index.htm \"\") Click to Open filing [FilingOpen filing](https://www.sec.gov/Archives/edgar/data/0001067839/000095013398002886/0000950133-98-002886-index.htm \"\") Click to Open filing | 1998-08-07 |  |\n\n0\n\nShowing 1 to 50 of 249 entries\n\n- [Previous](https://www.sec.gov/edgar/browse/?CIK=0001067839#)\n- [1](https://www.sec.gov/edgar/browse/?CIK=0001067839#)\n- [Next](https://www.sec.gov/edgar/browse/?CIK=0001067839#)\n\nData source: [CIK0001067839.json](https://data.sec.gov/submissions/CIK0001067839.json)\n\nThere is no filings data for\nthis organization\n\n\n##### Investor Resources\n\n##### [How to Use EDGAR](https://www.investor.gov/introduction-investing/getting-started/researching-investments/using-edgar-research-investments)\n\nLearn how to use EDGAR to research public filings by public companies, mutual funds, ETFs, some annuities, and more.\n\n##### [Before you Invest, Investor.gov](https://www.investor.gov/)\n\nGet answers to your investing questions from the SEC's website dedicated to retail investors\n\n![fetching data](https://www.sec.gov/edgar/browse/images/loading.gif)\n\nPlease use the [Company or Person Lookup](https://www.sec.gov/edgar/searchedgar/companysearch.html) to find a valid\nCentral Index Key (CIK).",
+            "metadata": {
+              "title": "EDGAR Entity Landing Page",
+              "viewport": "width=device-width, initial-scale=1, shrink-to-fit=no",
+              "language": "en",
+              "scrapeId": "019e72dc-26f6-739d-a9df-9602f3b858b9",
+              "sourceURL": "https://www.sec.gov/edgar/browse/?CIK=0001067839",
+              "url": "https://www.sec.gov/edgar/browse/?CIK=0001067839",
+              "statusCode": 200,
+              "contentType": "text/html",
+              "proxyUsed": "basic",
+              "cacheState": "hit",
+              "cachedAt": "2026-05-27T14:11:38.403Z",
+              "creditsUsed": 1,
+              "concurrencyLimited": false
+            }
+          }
+        }
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1731-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T08:31:27+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_recommendations|get_yahoo_finance_news",
+      "per_symbol": {
+        "QQQ": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: S&P 500, Nasdaq Futures Pull Back After Trump Wants 'Couple Days To Think' About Iran Ceasefire Deal: ASTS, DELL, BB, SMCI In Focus\nSummary: According to a report from Axios, the U.S. and Iran have reached a tentative deal to extend the ceasefire between the two nations by 60 days and are on track to discuss Tehran’s nuclear program.\nDescription: \nURL: https://stocktwits.com/news-articles/markets/equity/sp500-nasdaq-futures-pull-back-after-trump-wants-couple-days-to-think-about-iran-cease"
+            },
+            "retry_count": 0
+          }
+        },
+        "NOK": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 4,
+                  "buy": 4,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 4,
+                  "buy": 4,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 4,
+                  "buy": 2,
+                  "hold": 4,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 3,
+                  "buy": 2,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 1
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Assessing Nokia (HLSE:NOKIA) Valuation As AI Networking Push Draws Fresh Market Attention\nSummary: Nokia Oyj (HLSE:NOKIA) has moved further into AI infrastructure with the launch of its AI Networking Innovation Lab in Sunnyvale, California. The lab focuses on next generation data center networking for artificial intelligence workloads. See our latest analysis for Nokia Oyj. The recent AI-focused announcements come against a backdrop of very strong momentum, with a 30 day share price retur"
+            },
+            "retry_count": 0
+          }
+        },
+        "SMH": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: The Most-Compared ETFs Right Now — And What They Reveal\nSummary: <p>ETF.com's Comparison Tool logged nearly 97,000 user sessions over the past 28 days, revealing four dominant investor themes: semiconductor ETFs (led by the SMH vs. SOXX matchup with 2,478 users), large-cap growth ETF selection (SCHG, VUG, QQQM, and QQQ), nuclear and uranium energy, and momentum factor investing via SPMO. T-bill ETFs and core portfolio fundamentals round out the most-searched comparisons, painting a pictur"
+            },
+            "retry_count": 0
+          }
+        },
+        "SPY": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: S&P 500, Nasdaq Futures Pull Back After Trump Wants 'Couple Days To Think' About Iran Ceasefire Deal: ASTS, DELL, BB, SMCI In Focus\nSummary: According to a report from Axios, the U.S. and Iran have reached a tentative deal to extend the ceasefire between the two nations by 60 days and are on track to discuss Tehran’s nuclear program.\nDescription: \nURL: https://stocktwits.com/news-articles/markets/equity/sp500-nasdaq-futures-pull-back-after-trump-wants-couple-days-to-think-about-iran-cease"
+            },
+            "retry_count": 0
+          }
+        },
+        "NVDA": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 10,
+                  "buy": 48,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 10,
+                  "buy": 48,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 10,
+                  "buy": 48,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 12,
+                  "buy": 48,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Stock market today: Dow, S&P 500, Nasdaq futures edge up as Wall Street braces for US-Iran update\nSummary: US stock futures edged up as Wall Street cheered Dell's earnings and awaited an official update on US negotiations with Iran.\nDescription: \nURL: https://finance.yahoo.com/news/live/stock-market-today-friday-may-29-222720064.html\n\nTitle: Micron's AI boom is unprecedented for the memory trade: Chart of the Day\nSummary: Micron's rally has blown past every major memory stock boom of the "
+            },
+            "retry_count": 0
+          }
+        },
+        "ADBE": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 3,
+                  "buy": 12,
+                  "hold": 20,
+                  "sell": 4,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 3,
+                  "buy": 13,
+                  "hold": 19,
+                  "sell": 4,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 3,
+                  "buy": 14,
+                  "hold": 18,
+                  "sell": 4,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 3,
+                  "buy": 17,
+                  "hold": 15,
+                  "sell": 4,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Michael Burry Calls Adobe A ‘Fat Pitch’ In Latest Saas Analysis – Backs Firefly And AI Tie-Ups With OpenAI, Google\nSummary: “The Big Short” argued that Adobe’s forward outlook remains stronger than the market assumes, despite fears that AI could disrupt its core creative software business.\nDescription: \nURL: https://stocktwits.com/news-articles/markets/equity/michael-burry-calls-adobe-a-fat-pitch-in-latest-saas-analysis-backs-firefly-and-ai-tie-ups-with-open-ai-google/cZgSWDzRet8\n\nTitle: "
+            },
+            "retry_count": 0
+          }
+        },
+        "LIN": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 4,
+                  "buy": 17,
+                  "hold": 5,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 4,
+                  "buy": 17,
+                  "hold": 4,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 4,
+                  "buy": 17,
+                  "hold": 4,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 3,
+                  "buy": 18,
+                  "hold": 5,
+                  "sell": 1,
+                  "strongSell": 1
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: The Zacks Analyst Blog Highlights Texas Instruments, Linde, BHP Group, Landmark Bancorp and Global Self Storage\nSummary: TXN, LIN and BHP lead Zacks research picks as strong demand, project backlogs and commodity exposure support growth prospects.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/zacks-analyst-blog-highlights-texas-082800281.html\n\nTitle: Linde’s New €1.6 Billion Eurobond Raise Might Change The Case For Investing In Linde (LIN)\nSummary: In May 2026, Lind"
+            },
+            "retry_count": 0
+          }
+        },
+        "XOM": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 4,
+                  "buy": 7,
+                  "hold": 13,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 4,
+                  "buy": 7,
+                  "hold": 13,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 5,
+                  "buy": 8,
+                  "hold": 10,
+                  "sell": 1,
+                  "strongSell": 2
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 5,
+                  "buy": 8,
+                  "hold": 11,
+                  "sell": 1,
+                  "strongSell": 1
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: NextEra Energy, Inc. (NEE) Sets Sights on Growing Data Center Opportunity on Dominion Energy Acquisition\nSummary: NextEra Energy, Inc. (NYSE:NEE) is one of the best 52-week high stocks to invest in, according to short sellers. On May 18, NextEra Energy Inc. (NYSE:NEE) reached an agreement for a $66.8 billion, 100% stock-for-stock merger with Dominion Energy. The transaction is poised to close within 12 to 18 months, subject to antitrust review. The […]\nDescription: \nURL: https://finance.y"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1731-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    }
+  ],
+  "mcp_coverage_hint": [
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T08:31:27+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1731-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-29T07:51:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1731-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T04:51:27+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1731-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T08:31:27+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1731-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T08:31:27+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1731-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ]
+}
