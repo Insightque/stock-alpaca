@@ -1,0 +1,98 @@
+{
+  "run_id": "2026-05-30-0831-after-hours-autopilot",
+  "created_at": "2026-05-30T08:35:04+09:00",
+  "paper": true,
+  "source": "runtime Alpaca MCP spot check, sanitized summary",
+  "read_only": true,
+  "orders_submitted": 0,
+  "clock": {
+    "is_open": false,
+    "timestamp": "2026-05-29T19:33:18.920205629-04:00",
+    "next_open": "2026-06-01T09:30:00-04:00",
+    "next_close": "2026-06-01T16:00:00-04:00"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "trading_blocked": false,
+    "transfers_blocked": false,
+    "account_blocked": false,
+    "currency": "USD",
+    "portfolio_value": 101962.57,
+    "cash": 34800.26,
+    "buying_power": 130756.95,
+    "long_market_value": 67162.31
+  },
+  "positions_count": 32,
+  "open_orders": {
+    "result": []
+  },
+  "latest_quote": {
+    "feed": "overnight",
+    "symbols": [
+      "QQQ",
+      "NOK",
+      "AVGO",
+      "NVDA",
+      "COST",
+      "FCX",
+      "UNH",
+      "SBUX"
+    ],
+    "quotes": {
+      "QQQ": {
+        "bid": 735.21,
+        "ask": 736.7,
+        "timestamp": "2026-05-29T08:00:00.386377592Z",
+        "reason": "quote freshness failed; 1-share notional exceeds after-hours per-order validation cap."
+      },
+      "NOK": {
+        "bid": 14.81,
+        "ask": 15.79,
+        "timestamp": "2026-05-29T08:00:00.412618229Z",
+        "reason": "quote freshness and spread failed; prior large NOK exposure plus weak recent add/lifecycle review blocks another after-hours add."
+      },
+      "AVGO": {
+        "bid": 419.81,
+        "ask": 433.84,
+        "timestamp": "2026-05-29T08:00:00.407946155Z",
+        "reason": "quote freshness and spread failed; AI semiconductor concentration is already near policy pressure, so no after-hours add."
+      },
+      "NVDA": {
+        "bid": 215.27,
+        "ask": 215.43,
+        "timestamp": "2026-05-29T08:00:00.413977496Z",
+        "reason": "quote freshness failed; AI semiconductor concentration remains too high for an after-hours validation add."
+      },
+      "COST": {
+        "bid": 859.42,
+        "ask": 1099.28,
+        "timestamp": "2026-05-29T08:00:00.406470090Z",
+        "reason": "quote freshness and spread failed; 1-share notional exceeds after-hours per-order validation cap."
+      },
+      "FCX": {
+        "bid": 63.31,
+        "ask": 68.01,
+        "timestamp": "2026-05-29T08:00:00.405230523Z",
+        "reason": "quote freshness and spread failed; existing FCX validation exposure means no duplicate after-hours add."
+      },
+      "UNH": {
+        "bid": 376.69,
+        "ask": 381.75,
+        "timestamp": "2026-05-29T08:00:00.401798049Z",
+        "reason": "quote freshness and spread failed; existing healthcare exposure and stale quote block submit."
+      },
+      "SBUX": {
+        "bid": 100.47,
+        "ask": 114.89,
+        "timestamp": "2026-05-29T08:00:00.383415333Z",
+        "reason": "quote freshness and spread failed; maintained ticker thesis evidence is not current enough for after-hours validation submit."
+      }
+    }
+  },
+  "summary": {
+    "regular_market_open": false,
+    "open_us_equity_orders": 0,
+    "quote_freshness_gate": "fail",
+    "max_quote_age_minutes_submit": 5.0
+  }
+}
