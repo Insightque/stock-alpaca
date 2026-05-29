@@ -44,6 +44,7 @@
 
 ## Current Runs
 
+- [[2026-05-30-0611-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-30-0451-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell trigger 없음 및 lifecycle/same-session/thesis/portfolio-fit/target-band 제약으로 주문 없음.
 - [[2026-05-30-0431-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell trigger 없음 및 lifecycle/same-session/thesis/portfolio-fit/target-band 제약으로 주문 없음.
 - [[2026-05-30-0411-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell trigger 없음 및 lifecycle/same-session/thesis/portfolio-fit/target-band 제약으로 주문 없음.
@@ -231,6 +232,7 @@
 - `wiki/trade-ledger/orders/2026-05-29-1731-after-hours-autopilot.json` - 2026-05-29 17:31 KST after-hours autopilot empty order plan, session=after_hours, quote freshness 및 후보별 spread/thesis/concentration/duplicate-session/notional 제약으로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-1751-after-hours-autopilot.json` - 2026-05-29 17:51 KST after-hours autopilot empty order plan, session=after_hours, quote freshness 및 후보별 spread/thesis/concentration/duplicate-session/notional 제약으로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-1811-after-hours-autopilot.json` - 2026-05-29 18:11 KST after-hours autopilot empty order plan, session=after_hours, quote freshness 및 후보별 spread/thesis/concentration/duplicate-session/notional 제약으로 submit 없음.
+- `wiki/trade-ledger/orders/2026-05-30-0611-after-hours-autopilot.json` - 2026-05-30 06:11 KST after-hours autopilot empty order plan, session=after_hours, quote freshness gate 실패로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-1831-after-hours-autopilot.json` - 2026-05-29 18:31 KST after-hours autopilot empty order plan, session=after_hours, quote freshness 및 후보별 spread/thesis/concentration/duplicate-session/notional 제약으로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-1851-after-hours-autopilot.json` - 2026-05-29 18:51 KST after-hours autopilot empty order plan, session=after_hours, quote freshness 및 후보별 spread/thesis/concentration/duplicate-session/notional 제약으로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-1911-after-hours-autopilot.json` - 2026-05-29 19:11 KST after-hours autopilot empty order plan, session=after_hours, quote freshness 및 후보별 spread/thesis/concentration/duplicate-session/notional 제약으로 submit 없음.

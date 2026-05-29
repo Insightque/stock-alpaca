@@ -1,0 +1,270 @@
+{
+  "run_id": "2026-05-30-0611-after-hours-autopilot",
+  "created_at": "2026-05-29T21:14:40Z",
+  "paper": true,
+  "source": "registered Alpaca MCP runtime spot check",
+  "read_only": true,
+  "orders_submitted": 0,
+  "sanitized": true,
+  "clock": {
+    "is_open": false,
+    "timestamp": "2026-05-29T17:13:28.992640614-04:00",
+    "next_open": "2026-06-01T09:30:00-04:00",
+    "next_close": "2026-06-01T16:00:00-04:00"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "trading_blocked": false,
+    "transfers_blocked": false,
+    "account_blocked": false,
+    "portfolio_value": 101969.09,
+    "cash": 34800.26,
+    "buying_power": 130763.43,
+    "currency": "USD"
+  },
+  "positions": {
+    "count": 32,
+    "symbols": [
+      "AAPL",
+      "ADBE",
+      "AMD",
+      "AMZN",
+      "AVGO",
+      "BAC",
+      "COP",
+      "CVX",
+      "ETN",
+      "FCX",
+      "GOOGL",
+      "INTC",
+      "IONQ",
+      "LLY",
+      "LRCX",
+      "NEE",
+      "NKE",
+      "NOK",
+      "NVDA",
+      "PFE",
+      "PLTR",
+      "QQQ",
+      "RGTI",
+      "SLB",
+      "SO",
+      "SPY",
+      "TSLA",
+      "TSM",
+      "UNH",
+      "V",
+      "WMT",
+      "XOM"
+    ]
+  },
+  "open_orders": {
+    "asset_class": "us_equity",
+    "status": "open",
+    "count": 0,
+    "orders": []
+  },
+  "assets": {
+    "QQQ": {
+      "status": "active",
+      "tradable": true,
+      "class": "us_equity",
+      "overnight_tradable": true
+    },
+    "NOK": {
+      "status": "active",
+      "tradable": true,
+      "class": "us_equity",
+      "overnight_tradable": true
+    },
+    "AVGO": {
+      "status": "active",
+      "tradable": true,
+      "class": "us_equity",
+      "overnight_tradable": true
+    },
+    "NVDA": {
+      "status": "active",
+      "tradable": true,
+      "class": "us_equity",
+      "overnight_tradable": true
+    },
+    "COST": {
+      "status": "active",
+      "tradable": true,
+      "class": "us_equity",
+      "overnight_tradable": true
+    },
+    "FCX": {
+      "status": "active",
+      "tradable": true,
+      "class": "us_equity",
+      "overnight_tradable": true
+    },
+    "UNH": {
+      "status": "active",
+      "tradable": true,
+      "class": "us_equity",
+      "overnight_tradable": true
+    },
+    "SBUX": {
+      "status": "active",
+      "tradable": true,
+      "class": "us_equity",
+      "overnight_tradable": true
+    }
+  },
+  "quotes": {
+    "feed": "overnight",
+    "symbols": {
+      "UNH": {
+        "ap": 381.75,
+        "as": 1,
+        "ax": "B",
+        "bp": 376.69,
+        "bs": 2,
+        "bx": "B",
+        "t": "2026-05-29T08:00:00.401798049Z"
+      },
+      "FCX": {
+        "ap": 68.01,
+        "as": 12,
+        "ax": "B",
+        "bp": 63.31,
+        "bs": 5,
+        "bx": "B",
+        "t": "2026-05-29T08:00:00.405230523Z"
+      },
+      "COST": {
+        "ap": 1099.28,
+        "as": 1,
+        "ax": "B",
+        "bp": 859.42,
+        "bs": 10,
+        "bx": "B",
+        "t": "2026-05-29T08:00:00.406470090Z"
+      },
+      "NVDA": {
+        "ap": 215.43,
+        "as": 2,
+        "ax": "B",
+        "bp": 215.27,
+        "bs": 200,
+        "bx": "B",
+        "t": "2026-05-29T08:00:00.413977496Z"
+      },
+      "AVGO": {
+        "ap": 433.84,
+        "as": 1000,
+        "ax": "B",
+        "bp": 419.81,
+        "bs": 25,
+        "bx": "B",
+        "t": "2026-05-29T08:00:00.407946155Z"
+      },
+      "NOK": {
+        "ap": 15.79,
+        "as": 1750,
+        "ax": "B",
+        "bp": 14.81,
+        "bs": 110,
+        "bx": "B",
+        "t": "2026-05-29T08:00:00.412618229Z"
+      },
+      "QQQ": {
+        "ap": 736.7,
+        "as": 10,
+        "ax": "B",
+        "bp": 735.21,
+        "bs": 395,
+        "bx": "B",
+        "t": "2026-05-29T08:00:00.386377592Z"
+      },
+      "SBUX": {
+        "ap": 114.89,
+        "as": 8,
+        "ax": "B",
+        "bp": 100.47,
+        "bs": 20,
+        "bx": "B",
+        "t": "2026-05-29T08:00:00.383415333Z"
+      }
+    }
+  },
+  "quote_checks": [
+    {
+      "symbol": "QQQ",
+      "quote_fresh": false,
+      "quote_age_minutes": 793.48,
+      "spread_pct": 0.2025,
+      "spread_pass": true,
+      "decision": "skip",
+      "reason": "quote freshness failed; 1-share notional exceeds after-hours per-order validation cap."
+    },
+    {
+      "symbol": "NOK",
+      "quote_fresh": false,
+      "quote_age_minutes": 793.48,
+      "spread_pct": 6.4052,
+      "spread_pass": false,
+      "decision": "skip",
+      "reason": "quote freshness and spread failed; prior large NOK exposure plus weak recent add/lifecycle review blocks another after-hours add."
+    },
+    {
+      "symbol": "AVGO",
+      "quote_fresh": false,
+      "quote_age_minutes": 793.48,
+      "spread_pct": 3.2871,
+      "spread_pass": false,
+      "decision": "skip",
+      "reason": "quote freshness and spread failed; AI semiconductor concentration is already near policy pressure, so no after-hours add."
+    },
+    {
+      "symbol": "NVDA",
+      "quote_fresh": false,
+      "quote_age_minutes": 793.48,
+      "spread_pct": 0.0743,
+      "spread_pass": true,
+      "decision": "skip",
+      "reason": "quote freshness failed; AI semiconductor concentration remains too high for an after-hours validation add."
+    },
+    {
+      "symbol": "COST",
+      "quote_fresh": false,
+      "quote_age_minutes": 793.48,
+      "spread_pct": 24.4918,
+      "spread_pass": false,
+      "decision": "skip",
+      "reason": "quote freshness and spread failed; 1-share notional exceeds after-hours per-order validation cap."
+    },
+    {
+      "symbol": "FCX",
+      "quote_fresh": false,
+      "quote_age_minutes": 793.48,
+      "spread_pct": 7.1581,
+      "spread_pass": false,
+      "decision": "skip",
+      "reason": "quote freshness and spread failed; existing FCX validation exposure means no duplicate after-hours add."
+    },
+    {
+      "symbol": "UNH",
+      "quote_fresh": false,
+      "quote_age_minutes": 793.48,
+      "spread_pct": 1.3343,
+      "spread_pass": false,
+      "decision": "skip",
+      "reason": "quote freshness and spread failed; existing healthcare exposure and stale quote block submit."
+    },
+    {
+      "symbol": "SBUX",
+      "quote_fresh": false,
+      "quote_age_minutes": 793.48,
+      "spread_pct": 13.3915,
+      "spread_pass": false,
+      "decision": "skip",
+      "reason": "quote freshness and spread failed; maintained ticker thesis evidence is not current enough for after-hours validation submit."
+    }
+  ],
+  "gate_interpretation": "Regular market is closed; Alpaca core account/position/order/asset/quote evidence is present. Quote freshness fails for all candidate symbols, so no submit is allowed."
+}
