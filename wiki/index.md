@@ -146,6 +146,7 @@
 - [[2026-05-29-1031-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 thesis/concentration/notional/spread 제약으로 주문 없음.
 - [[2026-05-29-1051-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 thesis/concentration/notional/spread 제약으로 주문 없음.
 - [[2026-05-29-1411-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 thesis/concentration/notional/spread 제약으로 주문 없음.
+- [[2026-05-29-1431-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 thesis/concentration/notional/spread 제약으로 주문 없음.
 
 - `wiki/trade-ledger/orders/2026-05-28-2331-hourly-autopilot.json` - 2026-05-28 23:31 KST hourly autopilot GOOGL/SO/HOOD 1주 paper validation buy plan, universe/MCP/risk PASS, GOOGL open, SO filled, HOOD not submitted due runtime cancelled.
 - `wiki/trade-ledger/positions/2026-05-28-2331-hourly-autopilot-post-trade.json` - 2026-05-28 23:42 KST hourly autopilot post-trade snapshot: SO filled, GOOGL open, HOOD not found/not submitted.
@@ -186,6 +187,7 @@
 - `wiki/trade-ledger/orders/2026-05-29-1031-after-hours-autopilot.json` - 2026-05-29 10:31 KST after-hours autopilot empty order plan, session=after_hours, 후보별 thesis/concentration/notional/spread 제약으로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-1051-after-hours-autopilot.json` - 2026-05-29 10:51 KST after-hours autopilot empty order plan, session=after_hours, 후보별 thesis/concentration/notional/spread 제약으로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-1411-after-hours-autopilot.json` - 2026-05-29 14:11 KST after-hours autopilot empty order plan, session=after_hours, 후보별 thesis/concentration/notional/spread 제약으로 submit 없음.
+- `wiki/trade-ledger/orders/2026-05-29-1431-after-hours-autopilot.json` - 2026-05-29 14:31 KST after-hours autopilot empty order plan, session=after_hours, 후보별 thesis/concentration/notional/spread 제약으로 submit 없음.
 
 ## Research Notes
 
@@ -458,3 +460,5 @@
 - `wiki/evidence-store/run-manifests/2026-05-29-1351-after-hours-autopilot.json` - after-hours manifest, `review_bucket=after_hours_validation`, `orders_submitted=0`, empty-order risk-check PASS.
 - [[2026-05-29-1411-after-hours-autopilot]] - 14:11 KST scheduled after-hours autopilot report; session=`after_hours`, universe/MCP/risk strict PASS, thesis/concentration/duplicate/notional/quote-spread gates로 주문 없음.
 - `wiki/evidence-store/run-manifests/2026-05-29-1411-after-hours-autopilot.json` - after-hours manifest, `review_bucket=after_hours_validation`, `orders_submitted=0`, empty-order risk-check PASS.
+- [[2026-05-29-1431-after-hours-autopilot]] - 14:31 KST scheduled after-hours autopilot report; session=`after_hours`, universe/MCP/risk strict PASS, thesis/concentration/duplicate/notional/quote-spread gates로 주문 없음.
+- `wiki/evidence-store/run-manifests/2026-05-29-1431-after-hours-autopilot.json` - after-hours manifest, `review_bucket=after_hours_validation`, `orders_submitted=0`, empty-order risk-check PASS.
