@@ -20,6 +20,7 @@
 - [[IONQ]] - 양자컴퓨팅 소액 분산 후보, 2026-05-22 업데이트.
 - [[QBTS]] - 양자컴퓨팅 watchlist 후보, 2026-05-22 업데이트.
 - [[PLTR]] - AI 소프트웨어 watchlist 후보, 이번 주문 제외, 2026-05-22 업데이트.
+- [[ADBE]] - software/growth_quality after-hours validation 신규 표본, 2026-05-29 업데이트.
 - [[TSLA]] - EV/AI 이벤트성 watchlist 후보, 이번 주문 제외, 2026-05-22 업데이트.
 - [[SPY]] - 광범위 시장 ETF 벤치마크, 2026-05-22 업데이트.
 - [[QQQ]] - 성장/기술주 ETF 벤치마크, 2026-05-22 업데이트.
@@ -138,6 +139,7 @@
 - [[2026-05-29-0811-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness 및 after-hours spread gate 실패로 주문 없음.
 - [[2026-05-29-0831-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-29-0851-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness 및 after-hours spread gate 실패로 주문 없음.
+- [[2026-05-29-0911-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, Alpaca core/universe/MCP/risk/quote-spread gate 통과 후 ADBE 1주 extended-hours day limit buy 체결.
 
 - `wiki/trade-ledger/orders/2026-05-28-2331-hourly-autopilot.json` - 2026-05-28 23:31 KST hourly autopilot GOOGL/SO/HOOD 1주 paper validation buy plan, universe/MCP/risk PASS, GOOGL open, SO filled, HOOD not submitted due runtime cancelled.
 - `wiki/trade-ledger/positions/2026-05-28-2331-hourly-autopilot-post-trade.json` - 2026-05-28 23:42 KST hourly autopilot post-trade snapshot: SO filled, GOOGL open, HOOD not found/not submitted.
@@ -171,6 +173,8 @@
 - `wiki/trade-ledger/orders/2026-05-29-0811-after-hours-autopilot.json` - 2026-05-29 08:11 KST after-hours autopilot empty order plan, session=after_hours, quote freshness 및 after-hours spread gate 실패로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-0831-after-hours-autopilot.json` - 2026-05-29 08:31 KST after-hours autopilot empty order plan, session=after_hours, quote freshness gate 실패로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-0851-after-hours-autopilot.json` - 2026-05-29 08:51 KST after-hours autopilot empty order plan, session=after_hours, quote freshness 및 after-hours spread gate 실패로 submit 없음.
+- `wiki/trade-ledger/orders/2026-05-29-0911-after-hours-autopilot.json` - 2026-05-29 09:11 KST after-hours autopilot ADBE 1주 extended-hours validation buy plan, universe/MCP/risk PASS, ADBE filled.
+- `wiki/trade-ledger/positions/2026-05-29-0911-after-hours-autopilot-post-trade.json` - 2026-05-29 09:17 KST after-hours autopilot post-trade snapshot: ADBE filled, open orders 없음.
 
 ## Research Notes
 

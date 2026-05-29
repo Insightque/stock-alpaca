@@ -1,0 +1,45 @@
+{
+  "run_id": "2026-05-29-0911-after-hours-autopilot",
+  "created_at": "2026-05-29T09:17:30+09:00",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "submitted_orders": [
+    {
+      "symbol": "ADBE",
+      "side": "buy",
+      "qty": 1,
+      "type": "limit",
+      "time_in_force": "day",
+      "extended_hours": true,
+      "limit_price": 242.58,
+      "client_order_id": "ah-20260529-0911-adbe-buy-01",
+      "alpaca_order_id": "5f9f7aeb-3aa5-4752-87fc-1286dfee9dde",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 242.36,
+      "submitted_at": "2026-05-29T00:16:54.33152262Z",
+      "filled_at": "2026-05-29T00:16:54.397547025Z"
+    }
+  ],
+  "reconciliation": {
+    "method": "get_order_by_client_id",
+    "client_order_id": "ah-20260529-0911-adbe-buy-01",
+    "status": "filled"
+  },
+  "open_orders": [],
+  "positions_checked": {
+    "ADBE": {
+      "qty": 1,
+      "qty_available": 1,
+      "avg_entry_price": 242.36,
+      "market_value": 241.04,
+      "current_price": 241.04,
+      "unrealized_pl": -1.32
+    }
+  },
+  "source_refs": [
+    "wiki/trade-ledger/orders/2026-05-29-0911-after-hours-autopilot.json",
+    "wiki/evidence-store/run-manifests/2026-05-29-0911-after-hours-autopilot.json"
+  ]
+}

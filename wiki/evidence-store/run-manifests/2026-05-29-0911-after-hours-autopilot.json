@@ -1,0 +1,281 @@
+{
+  "run_id": "2026-05-29-0911-after-hours-autopilot",
+  "created_at": "2026-05-29T09:15:20+09:00",
+  "mode": "submit",
+  "paper": true,
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "policy_profile": "after_hours_policy",
+  "recommendation_policy_sha": "1160293a656dd5f8ff601c5058705bf777bb58f9b103382bed1b80593159c9de",
+  "recommendation_actionability": "submitted_filled",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-05-29-0911-after-hours-autopilot.json",
+  "order_plan": {
+    "path": "wiki/trade-ledger/orders/2026-05-29-0911-after-hours-autopilot.json",
+    "orders": [
+      {
+        "symbol": "ADBE",
+        "side": "buy",
+        "qty": 1,
+        "client_order_id": "ah-20260529-0911-adbe-buy-01"
+      }
+    ]
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "provider_gap_blocks_order": false
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T09:15:20+09:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0911-after-hours-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T23:51:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0911-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-05-29T00:11:34+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0911-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-29T00:11:34+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0911-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "FRED API request failed: curl: (56) The requested URL returned error: 504",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T23:51:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0911-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-28T23:51:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-0911-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "NOK",
+      "SMH",
+      "SPY",
+      "NVDA",
+      "ADBE",
+      "LIN",
+      "XOM"
+    ],
+    "final_candidates": [
+      "ADBE",
+      "NVDA",
+      "QQQ"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "gates": {
+    "paper_mode": "pass",
+    "regular_market_not_open": "pass",
+    "alpaca_core": "pass",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "separate_after_hours_order_budget": "pass",
+    "quote_freshness": "pass",
+    "spread_within_after_hours_policy": "pass_for_ADBE_NVDA_QQQ_SPY",
+    "risk_policy": "pass",
+    "first_blocking_gate": null
+  },
+  "live_alpaca_mcp_checks": {
+    "clock": {
+      "is_open": false,
+      "timestamp": "2026-05-28T20:14:38.733695249-04:00",
+      "next_open": "2026-05-29T09:30:00-04:00",
+      "next_close": "2026-05-29T16:00:00-04:00"
+    },
+    "account_status": "ACTIVE",
+    "positions_count": 31,
+    "open_orders": [],
+    "assets_checked": [
+      "QQQ",
+      "XOM",
+      "ADBE"
+    ],
+    "quotes_feed": "overnight",
+    "quote_rows": {
+      "ADBE": {
+        "bp": 242.37,
+        "ap": 242.58,
+        "t": "2026-05-29T00:14:21.048966429Z",
+        "spread_pct": 0.0866
+      },
+      "NVDA": {
+        "bp": 213.95,
+        "ap": 214.15,
+        "t": "2026-05-29T00:14:20.297274269Z",
+        "spread_pct": 0.0935
+      },
+      "QQQ": {
+        "bp": 735.43,
+        "ap": 735.57,
+        "t": "2026-05-29T00:14:22.432667608Z",
+        "spread_pct": 0.019
+      },
+      "SPY": {
+        "bp": 755.59,
+        "ap": 755.65,
+        "t": "2026-05-29T00:14:22.442754782Z",
+        "spread_pct": 0.0079
+      },
+      "XOM": {
+        "bp": 146.01,
+        "ap": 146.67,
+        "t": "2026-05-29T00:14:04.723611134Z",
+        "spread_pct": 0.4509
+      }
+    }
+  },
+  "candidate_diagnostics": [
+    {
+      "symbol": "ADBE",
+      "decision": "planned_submit_candidate",
+      "reason": "fresh quote, spread 0.0866%, notional under after-hours cap, no existing position, software diversification"
+    },
+    {
+      "symbol": "NVDA",
+      "decision": "skip",
+      "reason": "fresh quote and spread pass, but existing AI semiconductor exposure is already large"
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "skip",
+      "reason": "fresh quote/spread pass but 1-share notional exceeds after-hours 0.5% per-order cap"
+    },
+    {
+      "symbol": "SPY",
+      "decision": "skip",
+      "reason": "fresh quote/spread pass but 1-share notional exceeds after-hours 0.5% per-order cap"
+    },
+    {
+      "symbol": "XOM",
+      "decision": "skip",
+      "reason": "fresh quote but spread 0.4509% exceeds after-hours 0.25% cap"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-29-0911-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-29-0911-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-05-29-0911-after-hours-autopilot.json",
+    "wiki/research-notes/tickers/ADBE.md"
+  ],
+  "risk_check_result": {
+    "status": "PASS",
+    "errors": [],
+    "warnings": [],
+    "summary": {
+      "buy_notional": 242.58,
+      "post_cash": 36945.03,
+      "post_invested": 65443.28,
+      "policy_version": "medium-risk-v1.1"
+    }
+  },
+  "execution": {
+    "submitted": true,
+    "submit_tool": "alpaca.place_stock_order",
+    "client_order_id": "ah-20260529-0911-adbe-buy-01",
+    "alpaca_order_id": "5f9f7aeb-3aa5-4752-87fc-1286dfee9dde",
+    "submitted_at": "2026-05-29T00:16:54.33152262Z",
+    "reconciled_by_client_order_id": true,
+    "status": "filled",
+    "filled_qty": 1,
+    "filled_avg_price": 242.36,
+    "filled_at": "2026-05-29T00:16:54.397547025Z",
+    "extended_hours": true,
+    "post_trade_open_orders": [],
+    "post_trade_position": {
+      "symbol": "ADBE",
+      "qty": 1,
+      "avg_entry_price": 242.36,
+      "market_value": 241.04,
+      "current_price": 241.04
+    }
+  }
+}

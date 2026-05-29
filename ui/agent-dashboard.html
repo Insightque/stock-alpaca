@@ -350,29 +350,29 @@
   </div>
 
   <script type="application/json" id="dashboard-data">{
-  "generated_at": "2026-05-28T23:57:00Z",
+  "generated_at": "2026-05-29T00:18:49Z",
   "run": {
-    "run_id": "2026-05-29-0851-after-hours-autopilot",
+    "run_id": "2026-05-29-0911-after-hours-autopilot",
     "mode": "submit",
-    "created_at": "2026-05-29T08:53:56+09:00",
+    "created_at": "2026-05-29T09:15:20+09:00",
     "paper": true,
-    "risk_status": "UNKNOWN",
+    "risk_status": "PASS",
     "market": "closed",
     "next_open": "2026-05-29T09:30:00-04:00",
-    "orders_planned": 0,
+    "orders_planned": 1,
     "orders_submitted": 0,
     "symbols_loaded": 0,
-    "cash_ratio": 36.309398216282595,
-    "invested_ratio": 0.0,
-    "action_label": "관망",
-    "action_reason": "장 닫힘 · 현재가 확인 대기"
+    "cash_ratio": 36.316202715833576,
+    "invested_ratio": 63.672869496433094,
+    "action_label": "주문 후보",
+    "action_reason": "1건"
   },
   "account": {
-    "portfolio_value": 102418.69,
+    "portfolio_value": 102399.5,
     "cash": 37187.61,
-    "invested": 0,
-    "cash_ratio": 36.309398216282595,
-    "invested_ratio": 0.0
+    "invested": 65200.700000000004,
+    "cash_ratio": 36.316202715833576,
+    "invested_ratio": 63.672869496433094
   },
   "portfolio": {
     "source_path": "wiki/trade-ledger/positions/current.md",
@@ -447,9 +447,9 @@
       "id": "risk",
       "name": "Risk",
       "label": "리스크",
-      "status": "blocked",
+      "status": "done",
       "progress": 100,
-      "result": "check"
+      "result": "PASS"
     },
     {
       "id": "executor",
@@ -482,18 +482,18 @@
   "links": [
     {
       "label": "리포트",
-      "path": "wiki/current-runs/daily/2026-05-29-0851-after-hours-autopilot.md",
-      "href": "../wiki/current-runs/daily/2026-05-29-0851-after-hours-autopilot.md"
+      "path": "wiki/research-notes/tickers/ADBE.md",
+      "href": "../wiki/research-notes/tickers/ADBE.md"
     },
     {
       "label": "주문계획",
-      "path": "wiki/trade-ledger/orders/2026-05-29-0851-after-hours-autopilot.json",
-      "href": "../wiki/trade-ledger/orders/2026-05-29-0851-after-hours-autopilot.json"
+      "path": "wiki/trade-ledger/orders/2026-05-29-0911-after-hours-autopilot.json",
+      "href": "../wiki/trade-ledger/orders/2026-05-29-0911-after-hours-autopilot.json"
     },
     {
       "label": "Manifest",
-      "path": "wiki/evidence-store/run-manifests/2026-05-29-0851-after-hours-autopilot.json",
-      "href": "../wiki/evidence-store/run-manifests/2026-05-29-0851-after-hours-autopilot.json"
+      "path": "wiki/evidence-store/run-manifests/2026-05-29-0911-after-hours-autopilot.json",
+      "href": "../wiki/evidence-store/run-manifests/2026-05-29-0911-after-hours-autopilot.json"
     },
     {
       "label": "포지션",
@@ -501,17 +501,22 @@
       "href": "../wiki/trade-ledger/positions/current.md"
     },
     {
-      "label": "2026-05-29-0851-after-hours-autopilot-alpaca-core-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-29-0851-after-hours-autopilot-alpaca-core-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-29-0851-after-hours-autopilot-alpaca-core-preflight.json"
+      "label": "2026-05-29-0911-after-hours-autopilot-alpaca-core-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-05-29-0911-after-hours-autopilot-alpaca-core-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-05-29-0911-after-hours-autopilot-alpaca-core-preflight.json"
     },
     {
-      "label": "2026-05-29-0851-after-hours-autopilot-research-mcp-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-05-29-0851-after-hours-autopilot-research-mcp-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-05-29-0851-after-hours-autopilot-research-mcp-preflight.json"
+      "label": "2026-05-29-0911-after-hours-autopilot-research-mcp-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-05-29-0911-after-hours-autopilot-research-mcp-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-05-29-0911-after-hours-autopilot-research-mcp-preflight.json"
     }
   ],
   "timeline": [
+    {
+      "time": "2026-05-29 09:18 Asia/Seoul",
+      "type": "after-hours-autopilot",
+      "title": "2026-05-29-0911-after-hours-autopilot scheduled paper autopilot"
+    },
     {
       "time": "2026-05-29 08:54 Asia/Seoul",
       "type": "after-hours-autopilot",
@@ -521,11 +526,6 @@
       "time": "2026-05-29 08:36 Asia/Seoul",
       "type": "after-hours-autopilot",
       "title": "2026-05-29-0831-after-hours-autopilot scheduled paper autopilot"
-    },
-    {
-      "time": "2026-05-29 08:14 Asia/Seoul",
-      "type": "after-hours-autopilot",
-      "title": "2026-05-29-0811-after-hours-autopilot scheduled paper autopilot"
     }
   ],
   "backtests": [
