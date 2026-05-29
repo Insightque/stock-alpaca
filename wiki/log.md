@@ -2719,3 +2719,31 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - `harness/recommendation-policy.schema.json`, `harness/order-plan.schema.json`, `harness/run-manifest.schema.json`을 확장하고 관련 unittest를 추가했다.
 - 검증: `PATH=/usr/local/bin:$PATH python3 -m unittest discover tests` PASS, 121 tests. `scripts/check-policy-source-of-truth.py` PASS. 최신 `2026-05-29-2251-hourly-autopilot` order plan risk validator PASS.
 - 주문 제출/취소/계좌 변경은 수행하지 않았다.
+
+## [2026-05-29 23:17 Asia/Seoul] hourly-autopilot | 2026-05-29-2311-hourly-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; regular session submit mode.
+- Scheduler evidence: Alpaca core preflight hard gate PASS and market open. Research preflight had SEC EDGAR/FRED/Firecrawl/Yahoo PASS and Alpha Vantage `provider_error` circuit-breaker gap, nonblocking with 4 usable research confirmations.
+- Stale cleanup: `wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-stale-order-cleanup.json` recorded a PASS cancel attempt for stale `hourly-20260529-2231-buy-spy`, but the same artifact and Alpaca core preflight still showed SPY open `new`; BAC also exceeded the 30-minute lifecycle age by decision time.
+- Gates: universe strict PASS, MCP strict PASS, risk validator FAIL on BAC/SPY open-order age. First blocking gate: `risk_open_order_lifecycle`. No paper orders were submitted.
+- Sell/trim was evaluated before buys and `sell_candidate_diagnostics` was written to the manifest/order plan for PLTR, RGTI, and AMD as no-trigger watch diagnostics. Validation lifecycle had no due-review add blockers.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-2311-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-2311-hourly-autopilot.json`, [[2026-05-29-2311-hourly-autopilot]], [[portfolio-current]].
+- Validators: universe PASS; MCP PASS; risk FAIL as expected for open-order lifecycle blocker.
+
+## [2026-05-29 23:28 Asia/Seoul] review | policy learning and architecture full review
+
+- 정책 학습, order-plan/risk gate, scheduler runtime, MCP coverage, wiki ledger 관점에서 최근 sell diagnostics/lifecycle trim hardening 이후 구조를 전면 점검했다.
+- 결론: buy-only drift를 줄이기 위한 v1.9 정책 방향은 타당하며 23:11 run에서 sell/trim 진단이 실제로 먼저 기록됐다.
+- 주요 문제: risk blocker가 runtime failure 알림으로 표시됨, run manifest schema drift가 validator에서 잡히지 않음, hourly submit 산출물의 sell diagnostics/validation lifecycle 필수화가 아직 약함, sell 후보 정량 feature가 부족함.
+- 산출물: [[2026-05-29-policy-architecture-review]].
+- 검증: `PATH=/usr/local/bin:$PATH python3 -m unittest discover tests` PASS, 121 tests. `scripts/check-policy-source-of-truth.py` PASS. 23:11 universe/MCP strict PASS, risk validator는 BAC/SPY open-order lifecycle 때문에 의도된 FAIL.
+- 주문 제출/취소/계좌 변경은 수행하지 않았다.
+
+## [2026-05-29 23:34 Asia/Seoul] hourly-autopilot | 2026-05-29-2331-hourly-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; regular session submit mode.
+- Scheduler evidence: stale cleanup attempted stale `hourly-20260529-2231-buy-bac` cancellation and reported `pass`, but the same cleanup artifact still listed BAC as open `new`. Alpaca core preflight hard gate PASS and market open. Research preflight had SEC EDGAR/FRED/Firecrawl/Yahoo PASS and Alpha Vantage `provider_error` rate-limit gap, nonblocking with 4 usable research confirmations.
+- Gates: universe strict PASS, MCP strict PASS, risk validator FAIL on BAC open-order age 51.8 minutes versus 30-minute lifecycle limit. First blocking gate: `risk_open_order_lifecycle`. No paper orders were submitted.
+- Sell/trim was evaluated before buys. `sell_candidate_diagnostics` was written to the manifest/order plan for AMD target-band warning blocked by lifecycle, plus PLTR and RGTI watch diagnostics. Validation lifecycle had no missing due-review add blockers.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-2331-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-2331-hourly-autopilot.json`, [[2026-05-29-2331-hourly-autopilot]].
+- Validators: universe PASS; MCP PASS; risk FAIL as expected for open-order lifecycle blocker.

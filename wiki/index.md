@@ -239,6 +239,7 @@
 - [[2026-05-29-buy-sell-cap-review]] - validation buy budget과 risk-reducing sell/trim gate가 같은 cap에 묶여 매도가 막힐 수 있던 구현을 확인하고 개정한 분석.
 - [[2026-05-29-sell-frequency-policy-review]] - 현재 정책과 validator가 sell/trim을 과소 발생시키는지 확인하고 buy-quality gate를 sell에서 분리한 분석.
 - [[2026-05-29-autopilot-exit-policy-learning-review]] - 다른 분기의 sell/exit/time-stop 수정사항을 현재 정책학습 기준으로 재검토하고 필요한 부분만 적용한 분석.
+- [[2026-05-29-policy-architecture-review]] - sell diagnostics/lifecycle trim 정책 반영 이후 정책 학습, runtime, manifest schema, risk blocker 분류를 전면 점검한 분석.
 - [[2026-05-29-wiki-lint]] - index 누락/중복과 22:31 preflight orphan 상태를 점검한 targeted wiki lint.
 
 ## Backtest Runs
@@ -521,3 +522,9 @@
 - `wiki/evidence-store/run-manifests/2026-05-29-2251-hourly-autopilot.json` - hourly autopilot manifest, Alpha Vantage provider_error circuit-breaker nonblocking gap, 4 usable research confirmations, post-trade reconciliation 기록.
 - `wiki/trade-ledger/orders/2026-05-29-2251-hourly-autopilot.json` - 2026-05-29 22:51 KST hourly autopilot validation buy order plan, risk PASS, NKE/SO/SLB planned and filled.
 - `wiki/trade-ledger/positions/2026-05-29-2251-hourly-autopilot-post-trade.json` - 2026-05-29 22:59 KST post-trade snapshot: NKE/SO/SLB filled, SPY/AMZN/BAC open.
+- [[2026-05-29-2311-hourly-autopilot]] - regular-session hourly paper autopilot 실행. universe/MCP strict PASS였지만 stale SPY/BAC open-order lifecycle risk FAIL로 신규 주문 없음.
+- `wiki/evidence-store/run-manifests/2026-05-29-2311-hourly-autopilot.json` - hourly autopilot manifest, first_blocking_gate=`risk_open_order_lifecycle`, Alpha Vantage provider_error nonblocking gap, sell diagnostics 기록.
+- `wiki/trade-ledger/orders/2026-05-29-2311-hourly-autopilot.json` - 2026-05-29 23:11 KST hourly autopilot empty order plan, BAC/SPY open order age 초과로 risk validator FAIL.
+- [[2026-05-29-2331-hourly-autopilot]] - regular-session hourly paper autopilot 실행. universe/MCP strict PASS였지만 stale BAC open-order lifecycle risk FAIL로 신규 주문 없음.
+- `wiki/evidence-store/run-manifests/2026-05-29-2331-hourly-autopilot.json` - hourly autopilot manifest, first_blocking_gate=`risk_open_order_lifecycle`, Alpha Vantage provider_error nonblocking gap, sell diagnostics와 validation lifecycle 기록.
+- `wiki/trade-ledger/orders/2026-05-29-2331-hourly-autopilot.json` - 2026-05-29 23:31 KST hourly autopilot empty order plan, current Alpaca positions 포함, BAC open order age 초과로 risk validator FAIL.

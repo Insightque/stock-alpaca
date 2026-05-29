@@ -1,0 +1,404 @@
+{
+  "schema_version": "1.0",
+  "run_id": "2026-05-29-2311-hourly-autopilot",
+  "created_at": "2026-05-29T14:17:00Z",
+  "mode": "submit",
+  "paper": true,
+  "recommendation_actionability": "blocked",
+  "first_blocking_gate": "risk_open_order_lifecycle",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:97a365472b239ee56432211ba526719ac4769ec4edef27cb3b0856b9fb9e5c16",
+  "prompt_file_sha": "sha256:cb74b1822b192a6958b20ea0c3c82600f0a55bff4d15ca98de50d9ffd320b8c0",
+  "market_clock_checked_at": "2026-05-29T14:11:10Z",
+  "data_cutoff_time": "2026-05-29T14:11:31Z",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-research-mcp-preflight.json",
+    "harness/workflows/hourly-autopilot.md",
+    "harness/risk-policy.yaml",
+    "harness/recommendation-policy.yaml",
+    "harness/symbol-metadata.yaml"
+  ],
+  "data_manifest": {
+    "report_path": "wiki/current-runs/daily/2026-05-29-2311-hourly-autopilot.md",
+    "order_plan_path": "wiki/trade-ledger/orders/2026-05-29-2311-hourly-autopilot.json",
+    "manifest_path": "wiki/evidence-store/run-manifests/2026-05-29-2311-hourly-autopilot.json",
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-stale-order-cleanup.json",
+      "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-research-mcp-preflight.json"
+    ]
+  },
+  "order_plan": "wiki/trade-ledger/orders/2026-05-29-2311-hourly-autopilot.json",
+  "decision_summary": {
+    "market_open": true,
+    "paper_mode": true,
+    "orders_planned": 0,
+    "orders_submitted": 0,
+    "orders_filled": 0,
+    "orders_open": 2,
+    "orders_not_submitted": 0,
+    "sell_trim_diagnostics": "sell_trigger_none for the top held watch candidates; sell diagnostics were evaluated before new buys and recorded in this manifest and order plan.",
+    "next_relaxation_candidate": "none; open-order lifecycle must reconcile stale SPY before any new order",
+    "top_recheck_candidates": [
+      "MSFT",
+      "WMT",
+      "QQQ",
+      "GOOGL",
+      "AAPL"
+    ],
+    "submit_gap": "Scheduler stale cleanup attempted to cancel stale hourly-20260529-2231-buy-spy and reported a pass attempt, but the same cleanup artifact and Alpaca core preflight still listed that SPY order as open new. New submissions were blocked with risk_open_order_lifecycle.",
+    "risk_validator_status": "FAIL"
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + scheduler Alpaca preflight universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_universe_current_quote_spread_diversification_screen_then_scheduler_research_preflight_validation_then_open_order_lifecycle_filter",
+    "pre_mcp_shortlist": [
+      "MSFT",
+      "WMT",
+      "QQQ",
+      "GOOGL",
+      "AAPL",
+      "AMZN",
+      "BAC",
+      "SPY",
+      "SO",
+      "NEE"
+    ],
+    "final_candidates": [
+      "MSFT",
+      "WMT",
+      "QQQ"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_actionable": 3,
+    "min_research_confirmations_for_submit": 3,
+    "all_research_must_be_attempted": true,
+    "provider_gap_blocks_order": false
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T14:11:31Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T14:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-29T14:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Circuit breaker open until 2026-05-29T14:31:31+00:00 after recent provider_error failure: Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T13:31:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T14:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T14:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "check": "NEWS_SENTIMENT",
+      "gap_category": "provider_error",
+      "gap_reason": "Circuit breaker open after Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable.",
+      "retry_count": 0,
+      "blocking": false,
+      "source_ref": "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-research-mcp-preflight.json"
+    }
+  ],
+  "open_order_lifecycle": {
+    "status": "blocked",
+    "cleanup_source_ref": "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-stale-order-cleanup.json",
+    "cleanup_status": "pass",
+    "cancelled_stale_orders": [
+      "hourly-20260529-2231-buy-spy"
+    ],
+    "remaining_open_orders_after_cleanup": [
+      "hourly-20260529-2231-buy-bac",
+      "hourly-20260529-2231-buy-spy"
+    ],
+    "registered_mcp_open_orders": [
+      "hourly-20260529-2231-buy-bac",
+      "hourly-20260529-2231-buy-spy"
+    ],
+    "gap_category": "unknown",
+    "gap_reason": "stale cleanup reported a pass cancel attempt for SPY, but cleanup remaining_open_orders and Alpaca core preflight still listed SPY open new"
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "PLTR",
+      "held_qty": 1,
+      "current_weight_pct": 0.151,
+      "trigger_status": "no_trigger",
+      "primary_reason": "overheat watch only; no policy-confirmed reversal trigger",
+      "skipped_gate": "not_applicable",
+      "expected_excess_return_20d_pct": 0,
+      "relative_to_spy_20d_pct": 0,
+      "replacement_symbol": "MSFT",
+      "recommendation": "watch",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-alpaca-core-preflight.json"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "held_qty": 120,
+      "current_weight_pct": 2.929,
+      "trigger_status": "no_trigger",
+      "primary_reason": "speculative drawdown watch; configured speculative-loss trigger not met",
+      "skipped_gate": "not_applicable",
+      "expected_excess_return_20d_pct": 0,
+      "relative_to_spy_20d_pct": 0,
+      "replacement_symbol": "WMT",
+      "recommendation": "watch",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-alpaca-core-preflight.json"
+      ]
+    },
+    {
+      "symbol": "AMD",
+      "held_qty": 14,
+      "current_weight_pct": 7.085,
+      "trigger_status": "no_trigger",
+      "primary_reason": "AI semiconductor exposure material but below warning conditions",
+      "skipped_gate": "not_applicable",
+      "expected_excess_return_20d_pct": 0,
+      "relative_to_spy_20d_pct": 0,
+      "replacement_symbol": "QQQ",
+      "recommendation": "watch",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-alpaca-core-preflight.json"
+      ]
+    }
+  ],
+  "validation_lifecycle": {
+    "status": "pass",
+    "due_reviews": [],
+    "blocked_add_symbols": [],
+    "new_same_day_fills_not_due_yet": [
+      "PFE",
+      "NKE",
+      "SO",
+      "SLB",
+      "AMZN"
+    ],
+    "source_refs": [
+      "wiki/index.md",
+      "wiki/evidence-store/sources/2026-05-29-2311-hourly-autopilot-alpaca-core-preflight.json"
+    ]
+  },
+  "risk_check_result": {
+    "errors": [
+      "BAC: open order age 34.8 minutes exceeds lifecycle limit 30.0",
+      "SPY: open order age 36.5 minutes exceeds lifecycle limit 30.0"
+    ],
+    "path": "wiki/trade-ledger/orders/2026-05-29-2311-hourly-autopilot.json",
+    "status": "FAIL",
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 45937.3545,
+      "max_factor_value": 51041.505,
+      "max_invested": 81666.408,
+      "max_speculative_value": 12249.9612,
+      "max_theme_value": 35729.053499999995,
+      "max_ticker_value": 15312.4515,
+      "min_cash": 20416.602,
+      "policy_version": "medium-risk-v1.1",
+      "post_cash": 36453.47,
+      "post_invested": 65630.6702,
+      "sell_notional": 0.0,
+      "speculative_value": 6658.3335
+    },
+    "warnings": [
+      "orders is empty"
+    ]
+  },
+  "validator_results": {
+    "universe": {
+      "status": "PASS",
+      "errors": [],
+      "warnings": [],
+      "summary": {
+        "strict_required": true,
+        "actionable": true,
+        "minimum_required_symbols": 50,
+        "symbols_considered": 62,
+        "symbols_loaded": 62,
+        "benchmarks": [
+          "QQQ",
+          "SPY"
+        ],
+        "pre_mcp_shortlist_count": 10,
+        "final_candidate_count": 3,
+        "scope_limited_by_user": false
+      }
+    },
+    "mcp": {
+      "status": "PASS",
+      "errors": [],
+      "warnings": [],
+      "summary": {
+        "required_servers": [
+          "alpaca",
+          "sec-edgar",
+          "alpha-vantage",
+          "fred",
+          "firecrawl",
+          "yahoo-finance"
+        ],
+        "core_servers": [
+          "alpaca"
+        ],
+        "research_servers": [
+          "sec-edgar",
+          "alpha-vantage",
+          "fred",
+          "firecrawl",
+          "yahoo-finance"
+        ],
+        "covered_servers": [
+          "alpaca",
+          "alpha-vantage",
+          "firecrawl",
+          "fred",
+          "sec-edgar",
+          "yahoo-finance"
+        ],
+        "strict_required": true,
+        "actionable": true,
+        "min_research_confirmations": 3,
+        "positive_research_confirmations": [
+          "firecrawl",
+          "fred",
+          "sec-edgar",
+          "yahoo-finance"
+        ]
+      }
+    },
+    "risk": {
+      "errors": [
+        "BAC: open order age 34.8 minutes exceeds lifecycle limit 30.0",
+        "SPY: open order age 36.5 minutes exceeds lifecycle limit 30.0"
+      ],
+      "path": "wiki/trade-ledger/orders/2026-05-29-2311-hourly-autopilot.json",
+      "status": "FAIL",
+      "summary": {
+        "buy_notional": 0.0,
+        "max_cluster_value": 45937.3545,
+        "max_factor_value": 51041.505,
+        "max_invested": 81666.408,
+        "max_speculative_value": 12249.9612,
+        "max_theme_value": 35729.053499999995,
+        "max_ticker_value": 15312.4515,
+        "min_cash": 20416.602,
+        "policy_version": "medium-risk-v1.1",
+        "post_cash": 36453.47,
+        "post_invested": 65630.6702,
+        "sell_notional": 0.0,
+        "speculative_value": 6658.3335
+      },
+      "warnings": [
+        "orders is empty"
+      ]
+    }
+  }
+}
