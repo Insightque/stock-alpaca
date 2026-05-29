@@ -2814,3 +2814,12 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Sell/trim evaluated first and `sell_candidate_diagnostics` recorded AMD, PLTR, and RGTI watch diagnostics. No eligible sell/trim trigger passed normal sell gates.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-30-0151-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-30-0151-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-30-0151-hourly-autopilot-post-trade.json`, [[2026-05-30-0151-hourly-autopilot]].
 - Validators: universe PASS; MCP PASS; risk PASS.
+
+## [2026-05-30 02:14 Asia/Seoul] hourly-autopilot | 2026-05-30-0211-hourly-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; regular session submit mode.
+- Scheduler evidence: stale cleanup PASS with no stale/open hourly orders. Alpaca core preflight hard gate PASS and market open with fresh quotes. Research preflight had SEC EDGAR/FRED/Firecrawl/Yahoo PASS and Alpha Vantage `provider_error` circuit-breaker gap, nonblocking with 4 usable research confirmations.
+- Gates: universe strict PASS, MCP strict PASS, risk validator PASS with expected `orders is empty` warning. No paper orders were submitted because final candidates were blocked by lifecycle review, same-session validation exposure, maintained-thesis evidence, spread, or AI semiconductor target-band constraints.
+- Sell/trim evaluated before buys and `sell_candidate_diagnostics` recorded AMD, PLTR, and RGTI watch diagnostics. No eligible sell/trim trigger passed normal sell gates.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-30-0211-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-30-0211-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-30-0211-hourly-autopilot-post-trade.json`, [[2026-05-30-0211-hourly-autopilot]], [[portfolio-current]].
+- Validators: universe PASS; MCP PASS; risk PASS.
