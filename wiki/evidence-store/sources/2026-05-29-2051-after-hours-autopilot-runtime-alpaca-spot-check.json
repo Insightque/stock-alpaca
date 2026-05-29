@@ -1,0 +1,173 @@
+{
+  "run_id": "2026-05-29-2051-after-hours-autopilot",
+  "created_at": "2026-05-29T20:55:00+09:00",
+  "paper": true,
+  "session": "after_hours",
+  "source": "Codex runtime Alpaca MCP read-only spot checks",
+  "read_only": true,
+  "orders_submitted": 0,
+  "tool_results": {
+    "get_clock": {
+      "outcome": "cancelled",
+      "gap_category": "cancelled",
+      "gap_reason": "Codex MCP call returned user cancelled; scheduler core preflight clock row used."
+    },
+    "get_account_info": {
+      "outcome": "failed",
+      "gap_category": "timeout",
+      "gap_reason": "Codex MCP call timed out; scheduler core preflight account row used."
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "position_count": 32,
+      "symbols": [
+        "AAPL",
+        "ADBE",
+        "AMD",
+        "AMZN",
+        "AVGO",
+        "BAC",
+        "COP",
+        "CVX",
+        "ETN",
+        "FCX",
+        "GOOGL",
+        "INTC",
+        "IONQ",
+        "LLY",
+        "LRCX",
+        "NEE",
+        "NKE",
+        "NOK",
+        "NVDA",
+        "PFE",
+        "PLTR",
+        "QQQ",
+        "RGTI",
+        "SLB",
+        "SO",
+        "SPY",
+        "TSLA",
+        "TSM",
+        "UNH",
+        "V",
+        "WMT",
+        "XOM"
+      ]
+    },
+    "get_orders_open": {
+      "outcome": "pass",
+      "payload": []
+    },
+    "get_stock_latest_quote": {
+      "outcome": "pass",
+      "feed": "overnight",
+      "symbols": [
+        "ADBE",
+        "NVDA",
+        "SPY",
+        "SMH",
+        "NOK",
+        "QQQ",
+        "XOM",
+        "LIN"
+      ],
+      "quotes": {
+        "ADBE": {
+          "bid": 242.8,
+          "ask": 268.18,
+          "t": "2026-05-29T08:00:00.406086772Z",
+          "latest_trade_t": "2026-05-29T07:56:35.36609261Z",
+          "latest_trade_price": 242.8,
+          "spread_pct": 9.9339,
+          "quote_age_minutes_at_preflight_clock": 231.19
+        },
+        "NVDA": {
+          "bid": 215.27,
+          "ask": 215.43,
+          "t": "2026-05-29T08:00:00.413977496Z",
+          "latest_trade_t": "2026-05-29T07:59:37.658841498Z",
+          "latest_trade_price": 215.3,
+          "spread_pct": 0.0743,
+          "quote_age_minutes_at_preflight_clock": 231.19
+        },
+        "SPY": {
+          "bid": 754.93,
+          "ask": 758.7,
+          "t": "2026-05-29T08:00:00.403389828Z",
+          "latest_trade_t": "2026-05-29T07:59:41.719851443Z",
+          "latest_trade_price": 755.49,
+          "spread_pct": 0.4981,
+          "quote_age_minutes_at_preflight_clock": 231.19
+        },
+        "SMH": {
+          "bid": 593.88,
+          "ask": 618.91,
+          "t": "2026-05-29T08:00:00.397462213Z",
+          "latest_trade_t": "2026-05-29T07:49:18.385216798Z",
+          "latest_trade_price": 602.29,
+          "spread_pct": 4.1277,
+          "quote_age_minutes_at_preflight_clock": 231.19
+        },
+        "NOK": {
+          "bid": 14.81,
+          "ask": 15.79,
+          "t": "2026-05-29T08:00:00.412618229Z",
+          "latest_trade_t": "2026-05-29T07:59:55.932477575Z",
+          "latest_trade_price": 15.16,
+          "spread_pct": 6.4052,
+          "quote_age_minutes_at_preflight_clock": 231.19
+        },
+        "QQQ": {
+          "bid": 735.21,
+          "ask": 736.7,
+          "t": "2026-05-29T08:00:00.386377592Z",
+          "latest_trade_t": "2026-05-29T07:59:14.99126611Z",
+          "latest_trade_price": 735.9,
+          "spread_pct": 0.2025,
+          "quote_age_minutes_at_preflight_clock": 231.19
+        },
+        "XOM": {
+          "bid": 145.51,
+          "ask": 151.95,
+          "t": "2026-05-29T08:00:00.400618942Z",
+          "latest_trade_t": "2026-05-29T07:53:16.499529327Z",
+          "latest_trade_price": 146.62,
+          "spread_pct": 4.33,
+          "quote_age_minutes_at_preflight_clock": 231.19
+        },
+        "LIN": {
+          "bid": 495.03,
+          "ask": 502.05,
+          "t": "2026-05-29T08:00:00.313942005Z",
+          "latest_trade_t": "2026-05-28T07:08:46.098054065Z",
+          "latest_trade_price": 508.73,
+          "spread_pct": 1.4081,
+          "quote_age_minutes_at_preflight_clock": 231.19
+        }
+      }
+    },
+    "get_stock_snapshot": {
+      "outcome": "pass",
+      "feed": "overnight",
+      "symbols": [
+        "ADBE",
+        "NVDA",
+        "SPY",
+        "SMH",
+        "NOK",
+        "QQQ",
+        "XOM",
+        "LIN"
+      ],
+      "note": "snapshot confirmed latest trades/minute bars but quote timestamps remained around 2026-05-29T08:00:00Z."
+    }
+  },
+  "gate_interpretation": {
+    "regular_market_not_open": true,
+    "quote_freshness_pass": false,
+    "first_submit_blocking_gate": "fresh_quote",
+    "submit_attempted": false,
+    "place_stock_order_called": false
+  }
+}
