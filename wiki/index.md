@@ -140,6 +140,7 @@
 - [[2026-05-29-0831-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-29-0851-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness 및 after-hours spread gate 실패로 주문 없음.
 - [[2026-05-29-0911-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, Alpaca core/universe/MCP/risk/quote-spread gate 통과 후 ADBE 1주 extended-hours day limit buy 체결.
+- [[2026-05-29-0931-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 후보별 thesis/concentration/notional/spread 제약으로 주문 없음.
 
 - `wiki/trade-ledger/orders/2026-05-28-2331-hourly-autopilot.json` - 2026-05-28 23:31 KST hourly autopilot GOOGL/SO/HOOD 1주 paper validation buy plan, universe/MCP/risk PASS, GOOGL open, SO filled, HOOD not submitted due runtime cancelled.
 - `wiki/trade-ledger/positions/2026-05-28-2331-hourly-autopilot-post-trade.json` - 2026-05-28 23:42 KST hourly autopilot post-trade snapshot: SO filled, GOOGL open, HOOD not found/not submitted.
@@ -175,6 +176,7 @@
 - `wiki/trade-ledger/orders/2026-05-29-0851-after-hours-autopilot.json` - 2026-05-29 08:51 KST after-hours autopilot empty order plan, session=after_hours, quote freshness 및 after-hours spread gate 실패로 submit 없음.
 - `wiki/trade-ledger/orders/2026-05-29-0911-after-hours-autopilot.json` - 2026-05-29 09:11 KST after-hours autopilot ADBE 1주 extended-hours validation buy plan, universe/MCP/risk PASS, ADBE filled.
 - `wiki/trade-ledger/positions/2026-05-29-0911-after-hours-autopilot-post-trade.json` - 2026-05-29 09:17 KST after-hours autopilot post-trade snapshot: ADBE filled, open orders 없음.
+- `wiki/trade-ledger/orders/2026-05-29-0931-after-hours-autopilot.json` - 2026-05-29 09:31 KST after-hours autopilot empty order plan, session=after_hours, 후보별 thesis/concentration/notional/spread 제약으로 submit 없음.
 
 ## Research Notes
 
