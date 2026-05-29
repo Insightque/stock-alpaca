@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.insightque.stock-alpaca.after-hours-autopilot</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/Users/insightque/stock-alpaca/scripts/run-after-hours-autopilot-codex.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Users/insightque/stock-alpaca</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/Library/Frameworks/Python.framework/Versions/3.11/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+    <key>HOME</key>
+    <string>/Users/insightque</string>
+    <key>LANG</key>
+    <string>en_US.UTF-8</string>
+    <key>LC_ALL</key>
+    <string>en_US.UTF-8</string>
+    <key>NO_PROXY</key>
+    <string>127.0.0.1,localhost</string>
+    <key>CODEX_SCHEDULED_CODEX_HOME</key>
+    <string>/Users/insightque/.codex</string>
+    <key>OPENCLAW_AUTOPILOT_NOTIFY_CHANNEL</key>
+    <string>telegram</string>
+    <key>OPENCLAW_AUTOPILOT_NOTIFY_TARGET</key>
+    <string>REPLACE_WITH_TELEGRAM_CHAT_ID</string>
+  </dict>
+
+  <key>StartCalendarInterval</key>
+  <array>
+    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>11</integer></dict>
+    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>31</integer></dict>
+    <dict><key>Hour</key><integer>6</integer><key>Minute</key><integer>51</integer></dict>
+    <dict><key>Hour</key><integer>7</integer><key>Minute</key><integer>11</integer></dict>
+    <dict><key>Hour</key><integer>7</integer><key>Minute</key><integer>31</integer></dict>
+    <dict><key>Hour</key><integer>7</integer><key>Minute</key><integer>51</integer></dict>
+    <dict><key>Hour</key><integer>8</integer><key>Minute</key><integer>11</integer></dict>
+    <dict><key>Hour</key><integer>8</integer><key>Minute</key><integer>31</integer></dict>
+    <dict><key>Hour</key><integer>8</integer><key>Minute</key><integer>51</integer></dict>
+    <dict><key>Hour</key><integer>9</integer><key>Minute</key><integer>11</integer></dict>
+    <dict><key>Hour</key><integer>9</integer><key>Minute</key><integer>31</integer></dict>
+    <dict><key>Hour</key><integer>9</integer><key>Minute</key><integer>51</integer></dict>
+    <dict><key>Hour</key><integer>10</integer><key>Minute</key><integer>11</integer></dict>
+    <dict><key>Hour</key><integer>10</integer><key>Minute</key><integer>31</integer></dict>
+    <dict><key>Hour</key><integer>10</integer><key>Minute</key><integer>51</integer></dict>
+    <dict><key>Hour</key><integer>11</integer><key>Minute</key><integer>11</integer></dict>
+    <dict><key>Hour</key><integer>11</integer><key>Minute</key><integer>31</integer></dict>
+    <dict><key>Hour</key><integer>11</integer><key>Minute</key><integer>51</integer></dict>
+    <dict><key>Hour</key><integer>12</integer><key>Minute</key><integer>11</integer></dict>
+    <dict><key>Hour</key><integer>12</integer><key>Minute</key><integer>31</integer></dict>
+    <dict><key>Hour</key><integer>12</integer><key>Minute</key><integer>51</integer></dict>
+    <dict><key>Hour</key><integer>13</integer><key>Minute</key><integer>11</integer></dict>
+    <dict><key>Hour</key><integer>13</integer><key>Minute</key><integer>31</integer></dict>
+    <dict><key>Hour</key><integer>13</integer><key>Minute</key><integer>51</integer></dict>
+    <dict><key>Hour</key><integer>14</integer><key>Minute</key><integer>11</integer></dict>
+    <dict><key>Hour</key><integer>14</integer><key>Minute</key><integer>31</integer></dict>
+    <dict><key>Hour</key><integer>14</integer><key>Minute</key><integer>51</integer></dict>
+    <dict><key>Hour</key><integer>15</integer><key>Minute</key><integer>11</integer></dict>
+    <dict><key>Hour</key><integer>15</integer><key>Minute</key><integer>31</integer></dict>
+    <dict><key>Hour</key><integer>15</integer><key>Minute</key><integer>51</integer></dict>
+    <dict><key>Hour</key><integer>16</integer><key>Minute</key><integer>11</integer></dict>
+    <dict><key>Hour</key><integer>16</integer><key>Minute</key><integer>31</integer></dict>
+    <dict><key>Hour</key><integer>16</integer><key>Minute</key><integer>51</integer></dict>
+    <dict><key>Hour</key><integer>17</integer><key>Minute</key><integer>11</integer></dict>
+    <dict><key>Hour</key><integer>17</integer><key>Minute</key><integer>31</integer></dict>
+    <dict><key>Hour</key><integer>17</integer><key>Minute</key><integer>51</integer></dict>
+    <dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>11</integer></dict>
+    <dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>31</integer></dict>
+    <dict><key>Hour</key><integer>18</integer><key>Minute</key><integer>51</integer></dict>
+    <dict><key>Hour</key><integer>19</integer><key>Minute</key><integer>11</integer></dict>
+    <dict><key>Hour</key><integer>19</integer><key>Minute</key><integer>31</integer></dict>
+    <dict><key>Hour</key><integer>19</integer><key>Minute</key><integer>51</integer></dict>
+    <dict><key>Hour</key><integer>20</integer><key>Minute</key><integer>11</integer></dict>
+    <dict><key>Hour</key><integer>20</integer><key>Minute</key><integer>31</integer></dict>
+    <dict><key>Hour</key><integer>20</integer><key>Minute</key><integer>51</integer></dict>
+    <dict><key>Hour</key><integer>21</integer><key>Minute</key><integer>11</integer></dict>
+    <dict><key>Hour</key><integer>21</integer><key>Minute</key><integer>31</integer></dict>
+    <dict><key>Hour</key><integer>21</integer><key>Minute</key><integer>51</integer></dict>
+  </array>
+
+  <key>RunAtLoad</key>
+  <false/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/insightque/stock-alpaca/logs/after-hours-autopilot.out.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/Users/insightque/stock-alpaca/logs/after-hours-autopilot.err.log</string>
+</dict>
+</plist>

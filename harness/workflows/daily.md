@@ -66,7 +66,7 @@ python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-mani
      - `firecrawl` for company IR pages, press releases, and earnings presentation capture when the API key is present.
      - `yahoo-finance` for analyst recommendations, Yahoo news, holders, insider, and supplemental actions.
    - Apply all research MCPs to the top 5 scored candidates from the broad first-pass screen and every ticker with a proposed order entry. Record MCP coverage for all six decision MCPs: Alpaca, SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance.
-   - Treat Alpaca as the core MCP gate. Treat SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance as research MCPs that must all be attempted; at least 3 must be usable/pass before buy candidates can be actionable.
+   - Read the core/research MCP lists and confirmation threshold from `harness/recommendation-policy.yaml`.
    - A ticker can receive a positive catalyst, source-confidence upgrade, or actionable allocation only from MCP rows with `queried=true`, `outcome=pass|usable|ok`, and at least one `source_ref`.
    - If a research MCP fails, is unavailable, or returns no usable data, record `gap_reason`, set `used_in_score=false` for that MCP, cap affected ticker confidence at `medium`, and continue only if the core gate and minimum research confirmations pass.
    - If a candidate is otherwise strong but minimum research confirmations fail, mark it `actionable_if_provider_recovered`, write the recheck reason, and do not submit.
@@ -97,13 +97,12 @@ python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-mani
 
 7. Portfolio/Risk Agent
    - Propose target allocations using the medium risk policy in `harness/risk-policy.yaml` and `harness/risk-policy.md`.
-   - Keep at least 20% cash reserve and at most 80% invested.
-   - Keep each ticker at or below 15% of portfolio value.
+   - Read cash reserve, invested exposure, and ticker caps from `harness/risk-policy.yaml`; do not duplicate numeric caps in this workflow.
    - Create a concrete JSON order plan in `wiki/trade-ledger/orders/YYYY-MM-DD-daily.json`.
    - Include `schema_version`, `risk_policy_version`, `recommendation_policy_sha`, `created_at`, root `source_refs`, and per-order `quote_captured_at`, `asset_checked_at`, `source_refs`.
    - Validate it with `python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YYYY-MM-DD-daily.json`.
    - Create a run manifest in `wiki/evidence-store/run-manifests/YYYY-MM-DD-HHMM-run-id.json` using `harness/templates/run-manifest.json`.
-   - Fill `mcp_coverage` for all decision MCPs and `mcp_gate_policy` for the tiered gate. For actionable buy candidates or submit mode, Alpaca core must pass and at least 3 research MCPs must have `queried=true` and `outcome=pass|usable|ok`.
+   - Fill `mcp_coverage` for all decision MCPs and `mcp_gate_policy` for the tiered gate from `harness/recommendation-policy.yaml`.
    - Validate universe breadth and MCP coverage before treating the recommendation as actionable:
 
 ```bash
@@ -117,7 +116,7 @@ python3 scripts/check-mcp-coverage.py --strict wiki/evidence-store/run-manifests
    - If the order plan fails validation, submit nothing.
    - If the run is no-submit mode, submit nothing and mark orders as planned/skipped.
    - If the market is closed, submit nothing and mark orders as planned/skipped.
-   - If quote data is older than 20 minutes in submit mode, submit nothing for that ticker.
+   - If quote data is older than the freshness limit in `harness/risk-policy.yaml` in submit mode, submit nothing for that ticker.
    - If validation passes and the market is open, submit paper orders through Alpaca MCP only.
    - Use stock/ETF day limit orders only; do not use custom REST calls.
 

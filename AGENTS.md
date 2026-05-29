@@ -6,6 +6,27 @@ The persistent knowledge layer follows the llm-wiki pattern: raw sources are imm
 
 Additional research MCPs may be available for SEC filings, earnings calendars, company IR capture, analyst context, and macro data. Read `harness/mcp-source-map.md` before current-market research, historical simulations, or policy-learning work that depends on news/events beyond Alpaca.
 
+## Project-Local Skills
+
+This repo has project-local Codex skill instructions under `skills/stock-alpaca-*/SKILL.md`. When a task matches one of the situations below, read the relevant local skill file before running workflow steps, editing files, or making recommendations. These skills are procedural routers and checklists; they do not replace this `AGENTS.md`, `harness/*.yaml`, schemas, workflow files, validators, or wiki source-of-truth.
+
+Use the smallest set of matching skills:
+
+- Korean command routing or workflow selection: `skills/stock-alpaca-command-router/SKILL.md`.
+- Any order, submit-mode workflow, stale-order cancellation, after-hours probe, or account/order/position mutation risk: `skills/stock-alpaca-paper-trading-safety/SKILL.md`.
+- Order-plan JSON, buy/sell budgets, sell/trim exceptions, session throttles, or risk validator failures: `skills/stock-alpaca-risk-order-plan/SKILL.md`.
+- Hourly, after-hours, or analyst scheduler runtime, LaunchAgent, lock, timeout, final notification timing, or runtime recovery: `skills/stock-alpaca-autopilot-runtime/SKILL.md`.
+- Alpaca/research MCP preflight, `mcp_coverage`, `gap_category`, provider cache/backoff, or provider-gap alerts: `skills/stock-alpaca-mcp-research-gate/SKILL.md`.
+- Local MCP wrapper/server failures, subprocess/runtime issues, or sandbox/network MCP diagnosis: `skills/stock-alpaca-local-mcp-runtime/SKILL.md`.
+- `.env`, provider credentials, provider/account artifacts, cache files, logs, or any output that may contain secrets: `skills/stock-alpaca-secret-hygiene/SKILL.md`.
+- `[STOCK-TRAIN]`, OpenClaw/Telegram output, duplicate notifications, message formatting, or Alerts explanation: `skills/stock-alpaca-stock-train-alerts/SKILL.md`.
+- Wiki reports, raw sources, run manifests, order plans, reviews, `wiki/index.md`, or `wiki/log.md`: `skills/stock-alpaca-wiki-ledger/SKILL.md`.
+- Ticker research, thesis pages, catalysts, risks, stale claims, or source-backed current company context: `skills/stock-alpaca-research-thesis/SKILL.md`.
+- Trade reviews, analyst review cycle, 1D/5D/20D reviews, or evidence-backed policy learning: `skills/stock-alpaca-review-policy-learning/SKILL.md`.
+- Historical simulations, historical reviews, intraday dry-runs, strategy experiments, or leakage checks: `skills/stock-alpaca-simulation-lab/SKILL.md`.
+
+If multiple skills apply, read the cross-cutting safety/ledger skill plus the narrow operational skill. If a local skill conflicts with `AGENTS.md`, the machine-readable YAML/schema source of truth, or a workflow contract, follow the source of truth and record the mismatch in `wiki/log.md`.
+
 ## Non-Negotiables
 
 - Paper trading only. Abort any trading workflow if `ALPACA_PAPER_TRADE` is missing or not `true`.
@@ -15,7 +36,7 @@ Additional research MCPs may be available for SEC filings, earnings calendars, c
 - Automatic paper orders are allowed only after the risk gate passes.
 - If Alpaca MCP is unavailable, continue with research and wiki updates, but do not submit orders.
 - Current market/news claims must cite Alpaca MCP output, a dedicated research MCP output, a captured web source, or an explicit source URL in a raw wiki note.
-- Accuracy takes priority over quick recommendations. Current recommendation runs must record `mcp_coverage` for Alpaca, SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance. Alpaca is the core MCP gate; SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance are research MCPs that must all be attempted, with at least 3 usable/pass for actionable buy candidates. Actionable recommendations and submit-mode runs must pass `python3 scripts/check-mcp-coverage.py --strict <run-manifest>`.
+- Accuracy takes priority over quick recommendations. Current recommendation runs must record `mcp_coverage` for the core and research MCPs defined in `harness/recommendation-policy.yaml`. Actionable recommendations and submit-mode runs must pass `python3 scripts/check-mcp-coverage.py --strict <run-manifest>`.
 - Scheduled runs must classify MCP failures with `gap_category` and `retry_count`. Alpaca core failures must identify the first failed hard gate. SEC EDGAR ticker lookup must use `harness/sec-ticker-cik-map.json` before treating a ticker lookup miss as a provider failure.
 - Unless the user explicitly asks for a limited ticker set, current recommendation runs must first screen the broad metadata universe in `harness/symbol-metadata.yaml`, include `SPY` and `QQQ`, record `universe_coverage`, and pass `python3 scripts/check-universe-coverage.py --strict <run-manifest>` before any recommendation can be actionable.
 - Never print, summarize, or commit third-party API keys such as Alpha Vantage, FRED, Firecrawl, Octagon, or similar research-provider keys.
@@ -31,6 +52,7 @@ Read `harness/simple-commands.md` before interpreting user-facing trading comman
 - `리밸런싱 계획 짜줘`: use `harness/workflows/rebalance.md` in no-submit mode.
 - `paper 주문까지 실행해줘`: use the latest validated order plan or `harness/workflows/rebalance.md` in submit mode, then run post-trade check.
 - `시간 단위로 자동 운영해줘`, `자동으로 매입/매도해줘`: use `harness/workflows/hourly-autopilot.md` through `scripts/run-hourly-autopilot-codex.sh`. This is Alpaca paper-only automation; submit only when market, universe, MCP, quote, spread, and risk gates all pass.
+- `장외 자동 운영해줘`, `장외 주문 테스트해줘`: use `harness/workflows/after-hours-autopilot.md` or the explicit after-hours probe flag on `scripts/run-hourly-autopilot-codex.sh`. Keep its policy profile, order budget, artifact tag, and review bucket separate from regular-session autopilot.
 - `거래 후 점검해줘`: use `harness/workflows/post-trade.md`.
 - `거래 회고해줘`: use `harness/workflows/trade-review.md`.
 - Scheduled analyst reviews use `harness/workflows/analyst-review-cycle.md` through `scripts/run-analyst-review-codex.sh`; this workflow never submits orders.
@@ -62,15 +84,12 @@ Use actual sub-agents when the runtime and user instruction allow parallel agent
 
 The default policy is medium risk. The machine-readable source of truth is `harness/risk-policy.yaml`; `harness/risk-policy.md` explains the same values for humans.
 
-- Maximum invested after new orders: 80% of account portfolio value.
-- Minimum cash reserve after new buy orders: 20% of account portfolio value.
-- Maximum target exposure per ticker: 15% of account portfolio value.
-- Maximum new orders per run: 10.
+- Portfolio, cash, ticker, exposure, run-order, and daily-order limits are defined only in `harness/risk-policy.yaml`.
 - Allowed assets: active tradable US stocks and ETFs only.
 - Allowed order shape: long-only, whole-share, day limit orders.
-- Quote freshness: for submit-mode runs, use quote/snapshot data captured within 20 minutes.
-- Limit guardrail: buy/sell limit prices must be within 0.5% of the recorded reference price.
+- Quote freshness and limit guardrail values are defined only in `harness/risk-policy.yaml`.
 - Do not rely on same-run sell proceeds to fund buy orders.
+- After-hours paper orders must use the separate `after_hours_policy` profile in `harness/recommendation-policy.yaml`; never mix its budget, artifacts, or trade reviews with regular-session validation.
 
 Always create or update an order-plan JSON before submitting orders, then run:
 
@@ -153,6 +172,6 @@ If any step is uncertain, skip submission and record the uncertainty.
 - Hourly paper autopilot is allowed only through `harness/workflows/hourly-autopilot.md`.
 - The hourly autopilot must create a detailed recommendation report, run manifest, and order plan on every run, even when it submits nothing.
 - The hourly autopilot may submit Alpaca paper buy/sell orders only if all strict gates pass and the market is open.
-- The hourly autopilot should run on a fixed minute-31 calendar schedule. The 22:31 KST run is also the US regular market-open validation run. It may prefer a tiny 1-share validation order only when every hard gate passes; it must not force orders through missing Alpaca core, stale quote, spread, MCP, universe, or risk evidence.
+- The hourly autopilot schedule, market-open validation run, and validation sizing defaults are defined in `harness/recommendation-policy.yaml`. It may place validation orders only when every hard gate passes; it must not force orders through missing Alpaca core, stale quote, spread, MCP, universe, or risk evidence.
 - The analyst review cycle runs through `harness/workflows/analyst-review-cycle.md` and never mutates account/order/position state.
 - Buy/sell rationale must be detailed enough for later 1D/5D/20D analyst review and policy-learning updates.

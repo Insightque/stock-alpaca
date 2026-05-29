@@ -29,9 +29,7 @@ Default simple-command modes:
 3. Refresh market snapshots and quotes for held tickers and candidate watchlist tickers.
 4. Re-score held and candidate tickers with the daily scoring model and the current recommendation policy lessons.
 5. Propose target allocations:
-   - Cash reserve at least 20%.
-   - Invested exposure at most 80%.
-   - Ticker exposure at most 15%.
+   - Read cash reserve, invested exposure, and ticker caps from `harness/risk-policy.yaml`.
    - Sells must not create short positions.
 6. Create `wiki/trade-ledger/orders/YYYY-MM-DD-rebalance.json` with schema/provenance fields and per-order `quote_captured_at`, `asset_checked_at`, and `source_refs`.
 7. Run `python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YYYY-MM-DD-rebalance.json`.

@@ -20,14 +20,18 @@ if [ -n "${SSL_CERT_FILE:-}" ]; then
 fi
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-LOCK_DIR="${ROOT_DIR}/.locks/hourly-autopilot.lock"
+RUN_LABEL="${CODEX_AUTOPILOT_RUN_LABEL:-hourly-autopilot}"
+LOCK_DIR="${ROOT_DIR}/.locks/${RUN_LABEL}.lock"
 LOG_DIR="${ROOT_DIR}/logs"
 PROMPT_FILE="${ROOT_DIR}/harness/workflows/hourly-autopilot.md"
 PROMPT_TMP=""
-RUN_ID="$(date '+%Y-%m-%d-%H%M')-hourly-autopilot"
+RUN_ID="$(date '+%Y-%m-%d-%H%M')-${RUN_LABEL}"
 STALE_ORDER_CLEANUP_PATH="${ROOT_DIR}/wiki/evidence-store/sources/${RUN_ID}-stale-order-cleanup.json"
 ALPACA_PREFLIGHT_PATH="${ROOT_DIR}/wiki/evidence-store/sources/${RUN_ID}-alpaca-core-preflight.json"
 RESEARCH_PREFLIGHT_PATH="${ROOT_DIR}/wiki/evidence-store/sources/${RUN_ID}-research-mcp-preflight.json"
+AFTER_HOURS_ORDER_PROBE_PATH="${ROOT_DIR}/wiki/evidence-store/sources/${RUN_ID}-after-hours-order-probe.json"
+NOTIFY_SCRIPT="${ROOT_DIR}/scripts/send-openclaw-autopilot-update.py"
+TERMINAL_NOTIFY_SENT=0
 RESEARCH_CACHE_TTL_ARGS=()
 if [ -n "${CODEX_AUTOPILOT_RESEARCH_CACHE_TTL_SECONDS:-}" ]; then
   RESEARCH_CACHE_TTL_ARGS=(--cache-ttl-seconds "${CODEX_AUTOPILOT_RESEARCH_CACHE_TTL_SECONDS}")
@@ -39,12 +43,34 @@ now_iso() {
   date '+%Y-%m-%dT%H:%M:%S%z'
 }
 
+notify_autopilot() {
+  local notify_status="$1"
+  local notify_reason="${2:-}"
+  TERMINAL_NOTIFY_SENT=1
+  if [ "${CODEX_AUTOPILOT_NOTIFY:-1}" != "1" ]; then
+    return 0
+  fi
+  if [ ! -x "${NOTIFY_SCRIPT}" ]; then
+    return 0
+  fi
+  PATH="/usr/local/bin:${PATH}" python3 "${NOTIFY_SCRIPT}" \
+    --run-id "${RUN_ID}" \
+    --session "regular" \
+    --status "${notify_status}" \
+    --reason "${notify_reason}" || true
+}
+
 if ! mkdir "${LOCK_DIR}" 2>/dev/null; then
-  echo "$(now_iso) hourly autopilot already running; exiting."
+  echo "$(now_iso) ${RUN_LABEL} already running; exiting."
+  notify_autopilot "skipped" "${RUN_LABEL} already running"
   exit 0
 fi
 
 cleanup() {
+  local exit_code=$?
+  if [ "${exit_code}" -ne 0 ] && [ "${TERMINAL_NOTIFY_SENT}" -eq 0 ]; then
+    notify_autopilot "failed" "regular runner exited unexpectedly with ${exit_code}"
+  fi
   if [ -n "${PROMPT_TMP}" ]; then
     rm -f "${PROMPT_TMP}" 2>/dev/null || true
   fi
@@ -72,11 +98,26 @@ MARKET_CLOCK_STATUS="$(PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/script
 MARKET_CLOCK_EXIT=$?
 set -e
 if [ "${MARKET_CLOCK_EXIT}" -eq 75 ]; then
+  if [ "${CODEX_AUTOPILOT_AFTER_HOURS_ORDER_PROBE:-}" = "1" ]; then
+    echo "$(now_iso) Alpaca market is closed; running explicit after-hours paper order probe. ${MARKET_CLOCK_STATUS}"
+    PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/scripts/probe-alpaca-after-hours-order.py" \
+      --run-id "${RUN_ID}" \
+      --output-json "${AFTER_HOURS_ORDER_PROBE_PATH}" \
+      --execute
+    exit $?
+  fi
   echo "$(now_iso) Alpaca market is closed; scheduled autopilot exits before research/Codex run. ${MARKET_CLOCK_STATUS}"
+  notify_autopilot "skipped" "Alpaca regular market is closed"
   exit 0
 fi
 if [ "${MARKET_CLOCK_EXIT}" -ne 0 ]; then
   echo "$(now_iso) Unable to confirm Alpaca market is open through MCP; scheduled autopilot exits closed. ${MARKET_CLOCK_STATUS}"
+  notify_autopilot "skipped" "unable to confirm regular market clock state through MCP"
+  exit 0
+fi
+if [ "${CODEX_AUTOPILOT_AFTER_HOURS_ORDER_PROBE:-}" = "1" ]; then
+  echo "$(now_iso) Alpaca market is open; explicit after-hours paper order probe exits before regular-session workflow. ${MARKET_CLOCK_STATUS}"
+  notify_autopilot "skipped" "after-hours probe requested while regular market is open"
   exit 0
 fi
 echo "$(now_iso) Alpaca market open confirmed. ${MARKET_CLOCK_STATUS}"
@@ -113,6 +154,7 @@ if ! env "${RESEARCH_PREFLIGHT_COMMAND[@]}"; then
 fi
 if [ "${CODEX_AUTOPILOT_RUNTIME_SMOKE_TEST:-}" = "1" ]; then
   echo "$(now_iso) hourly autopilot runtime smoke test reached research preflight."
+  notify_autopilot "completed" "runtime smoke test reached research preflight"
   exit 0
 fi
 
@@ -127,6 +169,7 @@ Hard requirements:
 - Do not call Alpaca trading REST endpoints directly.
 - Submit paper orders only if the market is open and universe, MCP, quote, spread, and risk gates all pass.
 - If any gate fails, submit nothing and still write the report, manifest, order plan, and log entry.
+- Evaluate risk-reducing sell/trim/exit candidates before new buys on every run. The buy entry window, validation-buy slots, and validation-buy budget gate new buy exposure only; do not use them to suppress sell diagnostics or eligible risk-reducing sell/trim entries.
 - Classify every MCP gap as one of: timeout, cancelled, dns, auth, empty_response, provider_error, wrapper_error, unknown.
 - For Alpaca core, make short independent attempts for clock, account, orders, positions, and quotes. Record which exact core check was the first blocking gate.
 - For SEC EDGAR, use the local `harness/sec-ticker-cik-map.json` mapping as a ticker-to-CIK fallback before marking a ticker lookup gap. In scheduled autopilot, prefer `get_company_info` and `get_recent_filings`; do not escalate to heavier SEC financials calls unless those tools are explicitly exposed and the lighter filing evidence is insufficient.
@@ -166,6 +209,7 @@ prompt_path.write_text(
 )
 PY
 
+set +e
 python3 - "${ROOT_DIR}" "${PROMPT_TMP}" "${RESEARCH_PREFLIGHT_PATH}" <<'PY'
 from __future__ import annotations
 
@@ -291,6 +335,13 @@ except subprocess.TimeoutExpired:
 
 raise SystemExit(completed.returncode)
 PY
+CODEX_EXIT=$?
+set -e
+if [ "${CODEX_EXIT}" -ne 0 ]; then
+  notify_autopilot "failed" "nested regular Codex exited ${CODEX_EXIT}"
+  exit "${CODEX_EXIT}"
+fi
 
 PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/scripts/build-agent-dashboard.py"
 "${ROOT_DIR}/scripts/git-autopush-artifacts.sh" "hourly-autopilot"
+notify_autopilot "completed" "regular workflow completed"

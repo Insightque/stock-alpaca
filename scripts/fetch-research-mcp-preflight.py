@@ -27,10 +27,11 @@ DEFAULT_MAX_SYMBOLS = 12
 DEFAULT_MCP_TIMEOUT_SECONDS = 75
 DEFAULT_CACHE_DIR = ROOT_DIR / ".cache" / "research-mcp-preflight"
 DEFAULT_CIRCUIT_BREAKER_SECONDS = 600
+ALPHA_VANTAGE_MIN_CALL_INTERVAL_SECONDS = 3600
 PROVIDER_CACHE_TTL_SECONDS = {
     "sec-edgar": 3600,
-    "alpha-vantage": 900,
-    "fred": 3600,
+    "alpha-vantage": ALPHA_VANTAGE_MIN_CALL_INTERVAL_SECONDS,
+    "fred": 21600,
     "firecrawl": 3600,
     "yahoo-finance": 1800,
 }
@@ -477,6 +478,26 @@ def alpha_news_item_count(payload: dict[str, Any]) -> int:
     return 0
 
 
+def alpha_provider_issue(payload: dict[str, Any]) -> str:
+    for key in ("Information", "Note", "Error Message"):
+        value = payload.get(key)
+        if not isinstance(value, str):
+            continue
+        text = value.lower()
+        if "rate limit" in text:
+            return "rate_limit"
+        if "invalid api call" in text or "error" in text:
+            return "provider_error"
+    return ""
+
+
+def safe_alpha_payload(candidate_payload: dict[str, Any], item_count: int) -> dict[str, Any]:
+    issue = alpha_provider_issue(candidate_payload)
+    if issue:
+        return {"item_count": item_count, "provider_issue": issue}
+    return {"item_count": item_count, "candidate_payload": candidate_payload}
+
+
 def gap_from_failed_call(row: dict[str, Any]) -> tuple[str, str]:
     return (
         str(row.get("gap_category") or "provider_error"),
@@ -494,8 +515,10 @@ def skipped_after(row: dict[str, Any], tool_name: str) -> dict[str, Any]:
     }
 
 
-def provider_cache_key(server: str, symbols: list[str]) -> str:
+def provider_cache_key(server: str, symbols: list[str], *, cache_scope: str = "") -> str:
     payload = {"version": 2, "server": server, "symbols": sorted(symbols)}
+    if cache_scope:
+        payload["cache_scope"] = cache_scope
     body = json.dumps(payload, sort_keys=True, separators=(",", ":"))
     return hashlib.sha256(body.encode("utf-8")).hexdigest()
 
@@ -508,6 +531,26 @@ def provider_cache_ttl(server: str, override_seconds: int | None) -> int:
     if override_seconds is not None:
         return max(0, override_seconds)
     return PROVIDER_CACHE_TTL_SECONDS.get(server, 0)
+
+
+def alpha_min_call_interval_seconds() -> int:
+    try:
+        value = int(
+            os.environ.get(
+                "CODEX_AUTOPILOT_ALPHA_MIN_CALL_INTERVAL_SECONDS",
+                str(ALPHA_VANTAGE_MIN_CALL_INTERVAL_SECONDS),
+            )
+        )
+    except (TypeError, ValueError):
+        value = ALPHA_VANTAGE_MIN_CALL_INTERVAL_SECONDS
+    return max(0, value)
+
+
+def alpha_vantage_cache_scope(env: dict[str, str]) -> str:
+    api_key = str(env.get("ALPHA_VANTAGE_API_KEY") or "").strip()
+    if not api_key:
+        return "key-missing"
+    return "key-" + hashlib.sha256(api_key.encode("utf-8")).hexdigest()[:12]
 
 
 def load_cached_provider(cache_dir: Path, server: str, cache_key: str, *, ttl_seconds: int) -> dict[str, Any] | None:
@@ -534,8 +577,14 @@ def load_cached_provider(cache_dir: Path, server: str, cache_key: str, *, ttl_se
     return cached
 
 
+def provider_row_cacheable(server: str, row: dict[str, Any]) -> bool:
+    if str(row.get("outcome", "")).lower() in POSITIVE_OUTCOMES:
+        return True
+    return server == "alpha-vantage"
+
+
 def save_cached_provider(cache_dir: Path, server: str, cache_key: str, row: dict[str, Any], *, ttl_seconds: int) -> None:
-    if ttl_seconds <= 0 or str(row.get("outcome", "")).lower() not in POSITIVE_OUTCOMES:
+    if ttl_seconds <= 0 or not provider_row_cacheable(server, row):
         return
     path = provider_cache_path(cache_dir, server, cache_key)
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -545,6 +594,67 @@ def save_cached_provider(cache_dir: Path, server: str, cache_key: str, row: dict
         "provider": row,
     }
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def provider_attempt_path(cache_dir: Path, server: str, *, cache_scope: str = "") -> Path:
+    if cache_scope:
+        return cache_dir / "providers" / server / f"last-attempt-{cache_scope}.json"
+    return cache_dir / "providers" / server / "last-attempt.json"
+
+
+def save_provider_attempt(cache_dir: Path, server: str, symbols: list[str], *, cache_scope: str = "") -> None:
+    path = provider_attempt_path(cache_dir, server, cache_scope=cache_scope)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {"stored_at": now_utc(), "symbols": symbols}
+    if cache_scope:
+        payload["cache_scope"] = cache_scope
+    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+
+def recent_alpha_attempt_row(
+    cache_dir: Path,
+    symbols: list[str],
+    *,
+    min_interval_seconds: int,
+    cache_scope: str = "",
+) -> dict[str, Any] | None:
+    if min_interval_seconds <= 0:
+        return None
+    path = provider_attempt_path(cache_dir, "alpha-vantage", cache_scope=cache_scope)
+    if not path.exists():
+        return None
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError):
+        return None
+    stored_at = parse_utc(payload.get("stored_at"))
+    if stored_at is None:
+        return None
+    elapsed = (datetime.now(timezone.utc) - stored_at).total_seconds()
+    if elapsed >= min_interval_seconds:
+        return None
+    previous_symbols = [str(symbol).upper() for symbol in payload.get("symbols", []) if str(symbol).strip()]
+    remaining = max(1, int(min_interval_seconds - elapsed))
+    return provider_row(
+        server="alpha-vantage",
+        queried=True,
+        outcome="failed",
+        checked_at=now_utc(),
+        gap_category="provider_error",
+        gap_reason=(
+            "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; "
+            f"previous attempt at {stored_at.isoformat(timespec='seconds')}, retry after ~{remaining}s."
+        )[:240],
+        retry_count=0,
+        payload={
+            "throttled": True,
+            "last_attempt_at": stored_at.isoformat(timespec="seconds"),
+            "min_interval_seconds": min_interval_seconds,
+            "requested_symbols": symbols,
+            "previous_symbols": previous_symbols,
+            "cache_scope": cache_scope,
+        },
+    )
 
 
 def circuit_state_path(cache_dir: Path) -> Path:
@@ -568,8 +678,14 @@ def save_circuit_state(cache_dir: Path, state: dict[str, Any]) -> None:
     path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
-def circuit_open_row(server: str, state: dict[str, Any]) -> dict[str, Any] | None:
-    row = state.get(server)
+def circuit_state_key(server: str, cache_scope: str = "") -> str:
+    if server == "alpha-vantage" and cache_scope:
+        return f"{server}:{cache_scope}"
+    return server
+
+
+def circuit_open_row(server: str, state: dict[str, Any], *, cache_scope: str = "") -> dict[str, Any] | None:
+    row = state.get(circuit_state_key(server, cache_scope))
     if not isinstance(row, dict):
         return None
     opened_until = parse_utc(row.get("opened_until"))
@@ -599,22 +715,44 @@ def update_circuit_state(
     row: dict[str, Any],
     *,
     circuit_seconds: int,
+    cache_scope: str = "",
 ) -> None:
+    state_key = circuit_state_key(server, cache_scope)
     outcome = str(row.get("outcome", "")).lower()
     if outcome in POSITIVE_OUTCOMES:
-        if server in state:
-            state.pop(server, None)
+        stale_keys = [state_key]
+        if server == "alpha-vantage":
+            stale_keys.append(server)
+        changed = False
+        for key in stale_keys:
+            if key in state:
+                state.pop(key, None)
+                changed = True
+        if changed:
             save_circuit_state(cache_dir, state)
         return
     gap_category = str(row.get("gap_category") or "")
     if circuit_seconds <= 0 or gap_category not in SYSTEMIC_GAP_CATEGORIES:
-        return
+        payload = row.get("payload")
+        provider_issue = payload.get("provider_issue") if isinstance(payload, dict) else ""
+        if not (server == "alpha-vantage" and gap_category == "provider_error" and provider_issue == "rate_limit"):
+            return
+        circuit_seconds = max(
+            circuit_seconds,
+            int(
+                os.environ.get(
+                    "CODEX_AUTOPILOT_ALPHA_RATE_LIMIT_CIRCUIT_SECONDS",
+                    str(ALPHA_VANTAGE_MIN_CALL_INTERVAL_SECONDS),
+                )
+            ),
+        )
     opened_until = datetime.now(timezone.utc) + timedelta(seconds=circuit_seconds)
-    state[server] = {
+    state[state_key] = {
         "opened_at": now_utc(),
         "opened_until": opened_until.isoformat(timespec="seconds"),
         "gap_category": gap_category,
         "gap_reason": str(row.get("gap_reason") or "")[:240],
+        "cache_scope": cache_scope,
     }
     save_circuit_state(cache_dir, state)
 
@@ -629,20 +767,32 @@ async def cached_or_capture_provider(
     circuit_state: dict[str, Any],
     circuit_seconds: int,
     capture,
+    cache_scope: str = "",
 ) -> dict[str, Any]:
-    cache_key = provider_cache_key(server, symbols)
+    cache_key = provider_cache_key(server, symbols, cache_scope=cache_scope)
     ttl_seconds = provider_cache_ttl(server, cache_ttl_override)
     if not no_cache:
         cached = load_cached_provider(cache_dir, server, cache_key, ttl_seconds=ttl_seconds)
         if cached is not None:
             return cached
-    open_row = circuit_open_row(server, circuit_state)
+    open_row = circuit_open_row(server, circuit_state, cache_scope=cache_scope)
     if open_row is not None:
         return open_row
+    if server == "alpha-vantage":
+        throttled = recent_alpha_attempt_row(
+            cache_dir,
+            symbols,
+            min_interval_seconds=alpha_min_call_interval_seconds(),
+            cache_scope=cache_scope,
+        )
+        if throttled is not None:
+            return throttled
     row = await capture()
     if not no_cache:
         save_cached_provider(cache_dir, server, cache_key, row, ttl_seconds=ttl_seconds)
-    update_circuit_state(cache_dir, circuit_state, server, row, circuit_seconds=circuit_seconds)
+    if server == "alpha-vantage":
+        save_provider_attempt(cache_dir, server, symbols, cache_scope=cache_scope)
+    update_circuit_state(cache_dir, circuit_state, server, row, circuit_seconds=circuit_seconds, cache_scope=cache_scope)
     return row
 
 
@@ -959,7 +1109,34 @@ async def capture_alpha_vantage(env: dict[str, str], symbols: list[str]) -> dict
         )
 
     candidate_payload = payloads[-1] if payloads else {}
+    if not isinstance(candidate_payload, dict):
+        candidate_payload = {}
     item_count = alpha_news_item_count(candidate_payload)
+    provider_issue = alpha_provider_issue(candidate_payload)
+    if provider_issue == "rate_limit":
+        return provider_row(
+            server="alpha-vantage",
+            queried=True,
+            outcome="failed",
+            checked_at=checked_at,
+            gap_category="provider_error",
+            gap_reason="Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable.",
+            retry_count=0,
+            tool="TOOL_LIST|TOOL_GET|TOOL_CALL(NEWS_SENTIMENT)",
+            payload=safe_alpha_payload(candidate_payload, item_count),
+        )
+    if provider_issue:
+        return provider_row(
+            server="alpha-vantage",
+            queried=True,
+            outcome="failed",
+            checked_at=checked_at,
+            gap_category="provider_error",
+            gap_reason="Alpha Vantage provider returned an error message for NEWS_SENTIMENT.",
+            retry_count=0,
+            tool="TOOL_LIST|TOOL_GET|TOOL_CALL(NEWS_SENTIMENT)",
+            payload=safe_alpha_payload(candidate_payload, item_count),
+        )
     return provider_row(
         server="alpha-vantage",
         queried=True,
@@ -969,7 +1146,7 @@ async def capture_alpha_vantage(env: dict[str, str], symbols: list[str]) -> dict
         gap_reason="" if item_count else "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
         retry_count=0,
         tool="TOOL_LIST|TOOL_GET|TOOL_CALL(NEWS_SENTIMENT)",
-        payload={"item_count": item_count, "candidate_payload": candidate_payload},
+        payload=safe_alpha_payload(candidate_payload, item_count),
     )
 
 
@@ -1122,6 +1299,7 @@ async def main_async() -> int:
             circuit_state=circuit_state,
             circuit_seconds=max(0, int(args.circuit_breaker_seconds)),
             capture=lambda: capture_alpha_vantage(env, symbols),
+            cache_scope=alpha_vantage_cache_scope(env),
         ),
         cached_or_capture_provider(
             server="fred",

@@ -26,6 +26,15 @@ class StrategyConfigSchemaTests(unittest.TestCase):
         errors = sorted(Draft202012Validator(schema).iter_errors(policy), key=lambda error: list(error.absolute_path))
         self.assertEqual([], [error.message for error in errors])
 
+    def test_intraday_exit_rules_are_explicit(self) -> None:
+        for name in ("intraday-rs-breakout-v0.yaml", "intraday-rs-breadth-vwap-v1.yaml"):
+            config = yaml.safe_load((ROOT / "harness" / "strategies" / name).read_text(encoding="utf-8"))
+            self.assertEqual(2.0, config["exit_rules"]["take_profit_pct"])
+            self.assertEqual(1.0, config["exit_rules"]["stop_loss_pct"])
+            self.assertEqual("eod", config["exit_rules"]["fallback_exit"])
+            self.assertEqual("15:59", config["exit_rules"]["fallback_exit_time_et"])
+            self.assertNotIn("time_stop_minutes", config["exit_rules"])
+
     def test_recommendation_policy_active_paper_validation_settings(self) -> None:
         policy = yaml.safe_load((ROOT / "harness" / "recommendation-policy.yaml").read_text(encoding="utf-8"))
 
@@ -51,6 +60,24 @@ class StrategyConfigSchemaTests(unittest.TestCase):
         self.assertEqual(0.75, sizing["target_exposure_path"]["prefer_rebalance_over_new_buy_above_ratio"])
         self.assertTrue(sizing["open_order_policy"]["allow_different_cluster_new_buy_when_open_orders_are_fresh"])
         self.assertEqual(6, sizing["confidence_tiers"][-1]["max_qty"])
+
+        risk_trim = policy["risk_trim_policy"]
+        self.assertEqual("before_new_buys", risk_trim["evaluation_order"])
+        self.assertTrue(risk_trim["decouple_from_buy_entry_window"])
+        self.assertTrue(risk_trim["decouple_from_buy_budget"])
+
+        after_hours = policy["after_hours_policy"]
+        self.assertTrue(after_hours["enabled_for_explicit_autopilot_runs"])
+        self.assertFalse(after_hours["enabled_for_regular_hourly_autopilot"])
+        self.assertEqual("after_hours", after_hours["session_name"])
+        self.assertEqual("after_hours_validation", after_hours["review_bucket"])
+        self.assertEqual(20, after_hours["cadence"]["scheduled_interval_minutes"])
+        self.assertEqual([11, 31, 51], after_hours["cadence"]["launchd_minutes"])
+        self.assertEqual(list(range(6, 22)), after_hours["cadence"]["launchd_hour_window_kst"])
+        self.assertEqual("separate_lock_skip", after_hours["cadence"]["overlap_behavior"])
+        self.assertTrue(after_hours["separate_from_regular_validation"])
+        self.assertTrue(after_hours["require_extended_hours_flag"])
+        self.assertTrue(after_hours["require_separate_order_budget"])
 
     def test_order_caps_match_strategic_allocation_policy(self) -> None:
         risk_policy = yaml.safe_load((ROOT / "harness" / "risk-policy.yaml").read_text(encoding="utf-8"))

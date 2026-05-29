@@ -30,7 +30,7 @@
 - Historical Review Agent는 미래 가격과 이벤트를 회고 문서에서만 사용한다. 원래 추천 문서는 수정하지 않는다.
 - Portfolio/Risk Agent와 Executor Agent는 외부 리서치 MCP를 주문 제출 근거 보강에만 사용하고, 실제 주문은 Alpaca MCP와 risk gate만 통과한 뒤 수행한다.
 - `wiki/evidence-store/run-manifests/`의 각 recommendation manifest는 `mcp_coverage`와 가능하면 `mcp_gate_policy`를 포함해야 한다. Actionable dry-run 또는 submit-mode에서는 `scripts/check-mcp-coverage.py --strict <manifest>`가 PASS하기 전까지 주문 후보를 만들거나 제출하지 않는다.
-- MCP gate는 2단계다. Alpaca는 core MCP로 계좌, 시계, 주문, 포지션, quote/spread 확인에 필수다. SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance는 research MCP로 모두 시도하되, 최소 3개 이상 usable/pass면 외부 provider 일부 장애만으로 주문을 전면 차단하지 않는다.
+- MCP gate 구조, core/research MCP 목록, confirmation 기준은 `harness/recommendation-policy.yaml`의 `mcp_gate_policy`가 source of truth다.
 - MCP가 실패하거나 0건을 반환하면 긍정 근거로 사용하지 않는다. `gap_reason`을 남기고 관련 ticker의 source confidence를 낮춘다. Core gate 또는 최소 research confirmation이 부족하면 `non_actionable_research` 또는 `actionable_if_provider_recovered`로 유지한다.
 
 ## 키 관리
@@ -72,7 +72,7 @@
 - `retry_count`: transient 실패를 줄이기 위해 시도한 재시도 횟수.
 - `first_blocking_gate`: Alpaca core처럼 주문을 막은 첫 hard gate.
 
-Actionable buy 추천은 Alpaca core MCP가 `queried=true`, `outcome=pass|usable|ok`, source ref 1개 이상이어야 하며, research MCP 5개는 모두 시도하고 그중 최소 3개가 `outcome=pass|usable|ok`여야 한다. Submit mode에서는 core MCP와 최소 3개 positive research MCP가 `used_in_score=true`여야 한다. Risk trim sell은 Alpaca core MCP, fresh quote/spread, open-order state, risk gate가 핵심이며 full research MCP pass를 요구하지 않는다.
+Actionable buy와 submit-mode MCP confirmation 기준은 `harness/recommendation-policy.yaml`의 `mcp_gate_policy`에서 읽는다. Risk trim sell은 Alpaca core MCP, fresh quote/spread, open-order state, risk gate가 핵심이며 full research MCP pass를 요구하지 않는다.
 
 ## 우선순위
 

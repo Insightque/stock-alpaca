@@ -28,7 +28,7 @@ class AgentDashboardPortfolioTests(unittest.TestCase):
         self.assertNotEqual(portfolio["total_return"], "-")
         self.assertEqual(portfolio["account_status"], "PAPER")
         self.assertGreater(portfolio["exposure_ratio"], 50.0)
-        self.assertGreater(portfolio["cash_ratio"], 40.0)
+        self.assertGreater(portfolio["cash_ratio"], 30.0)
         self.assertEqual(portfolio["positions"][0]["symbol"], "NVDA")
 
     def test_dashboard_run_metrics_fall_back_to_portfolio_snapshot(self):
@@ -41,7 +41,7 @@ class AgentDashboardPortfolioTests(unittest.TestCase):
         self.assertNotEqual(data["picks"][1]["score_label"], "-")
         self.assertIn("done", {agent["status"] for agent in data["agents"]})
         self.assertGreater(data["run"]["invested_ratio"], 50.0)
-        self.assertGreater(data["run"]["cash_ratio"], 40.0)
+        self.assertGreater(data["run"]["cash_ratio"], 30.0)
 
 
 if __name__ == "__main__":

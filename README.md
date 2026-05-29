@@ -52,13 +52,12 @@ Codex는 `AGENTS.md`를 따르고, `harness/simple-commands.md`에서 명령을 
 - Paper trading만 허용합니다.
 - 미국 주식/ETF만 허용합니다.
 - Long-only, whole-share, day limit order만 허용합니다.
-- 포트폴리오 투자 비중은 최대 80%, 현금 보유는 최소 20%, 단일 티커 비중은 최대 15%입니다.
+- 포트폴리오, 현금, 티커, exposure, run별 주문, 일일 주문 한도는 `harness/risk-policy.yaml`만 source of truth로 사용합니다.
 - `medium-risk-v1.1` 정책으로 theme, factor, speculative, correlated-cluster, liquidity, spread, source-confidence 검사를 강제합니다.
-- 한 번의 run에서 신규 주문은 최대 10개입니다.
 - 주문 계획은 반드시 `scripts/check-risk-policy.py`를 통과해야 합니다. CI나 agent-readable 출력이 필요하면 `--json`을 사용합니다.
 - 신규 주문 계획은 `harness/order-plan.schema.json`을 따라야 하며 account, market, quote, asset 확인 원천을 인용해야 합니다.
-- 종목 추천은 빠른 판단보다 정확한 판단을 우선합니다. 사용자가 특정 종목만 보라고 명시하지 않는 한 `harness/symbol-metadata.yaml`의 확장 universe를 먼저 스크리닝하고 `universe_coverage`를 run manifest에 기록해야 합니다. Actionable 추천이나 주문 후보를 만들기 전에는 universe gate, Alpaca core MCP, 그리고 SEC EDGAR, Alpha Vantage, FRED, Firecrawl, Yahoo Finance 중 최소 3개 usable/pass research MCP gate를 통과해야 합니다.
-- Paper 검증 운용에서는 모든 hard gate가 통과할 때 1주 단위의 작은 검증 주문을 선호할 수 있습니다. 단 Alpaca core, 시장 개장, fresh quote, spread, universe, MCP, risk gate 중 하나라도 실패하면 강제 주문하지 않고 첫 차단 gate와 재점검 후보를 기록합니다.
+- 종목 추천은 빠른 판단보다 정확한 판단을 우선합니다. 사용자가 특정 종목만 보라고 명시하지 않는 한 `harness/symbol-metadata.yaml`의 확장 universe를 먼저 스크리닝하고 `universe_coverage`를 run manifest에 기록해야 합니다. MCP gate 구성과 confirmation 기준은 `harness/recommendation-policy.yaml`만 source of truth로 사용합니다.
+- Paper 검증 운용의 sizing 기본값은 `harness/recommendation-policy.yaml`만 source of truth로 사용합니다. 단 Alpaca core, 시장 개장, fresh quote, spread, universe, MCP, risk gate 중 하나라도 실패하면 강제 주문하지 않고 첫 차단 gate와 재점검 후보를 기록합니다.
 - 주문 제출은 Alpaca MCP를 통해서만 가능합니다. Alpaca trading REST endpoint를 직접 호출하는 custom trading 코드는 금지합니다.
 - 과거 1년 정책 검증은 `harness/workflows/one-year-daily-simulation.md`를 사용하며, 각 기준일을 독립적으로 시뮬레이션합니다.
 
@@ -93,7 +92,7 @@ python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-mani
 
 기본 운용 방식은 Codex 수동 실행입니다. 선택형 macOS launchd 파일은 `scheduler/`에 있습니다.
 
-자동 paper 운용은 `harness/workflows/hourly-autopilot.md`와 `scripts/run-hourly-autopilot-codex.sh`를 사용합니다. legacy 이름은 hourly지만 launchd 작업은 미국 정규장과 겹칠 수 있는 KST 시간대에 20분마다 깨우고, wrapper가 Alpaca MCP `get_clock`으로 장중임을 확인한 경우에만 추천/주문 workflow를 실행합니다. 장중이며 universe/MCP/risk/quote/spread gate가 모두 통과할 때만 Alpaca MCP로 paper day limit 주문을 제출합니다. 회고와 정책학습은 `harness/workflows/analyst-review-cycle.md`와 `scripts/run-analyst-review-codex.sh`가 장 마감 후 반복 수행합니다.
+자동 paper 운용은 `harness/workflows/hourly-autopilot.md`와 `scripts/run-hourly-autopilot-codex.sh`를 사용합니다. cadence와 launchd window는 `harness/recommendation-policy.yaml`을 source of truth로 사용하고, wrapper가 Alpaca MCP `get_clock`으로 장중임을 확인한 경우에만 추천/주문 workflow를 실행합니다. 장중이며 universe/MCP/risk/quote/spread gate가 모두 통과할 때만 Alpaca MCP로 paper day limit 주문을 제출합니다. 회고와 정책학습은 `harness/workflows/analyst-review-cycle.md`와 `scripts/run-analyst-review-codex.sh`가 장 마감 후 반복 수행합니다.
 
 ### Agent Run Board
 
@@ -159,13 +158,12 @@ See `harness/agent-tasking-guide.md` for examples of assigning work to agents.
 - Paper trading only.
 - US stocks/ETFs only.
 - Long-only, whole-share, day limit orders only.
-- Maximum 80% invested, minimum 20% cash reserve, maximum 15% per ticker.
+- Portfolio, cash, ticker, exposure, per-run order, and daily order limits are defined only in `harness/risk-policy.yaml`.
 - Theme, factor, speculative, correlated-cluster, liquidity, spread, and source-confidence checks are enforced by `medium-risk-v1.1`.
-- Maximum 10 new orders per run.
 - Orders must pass `scripts/check-risk-policy.py`; use `--json` for CI and agent-readable results.
 - New order plans must conform to `harness/order-plan.schema.json` and cite source refs for account, market, quote, and asset checks.
-- Stock recommendations prioritize accuracy over speed. Unless the user explicitly limits the ticker set, the run must first screen the expanded universe in `harness/symbol-metadata.yaml` and record `universe_coverage` in the run manifest. Before an actionable recommendation or order candidate is created, the universe gate must pass, Alpaca core MCP must pass, and at least 3 of the 5 research MCPs must be usable/pass after all research MCPs are attempted.
-- Paper validation operation may prefer a tiny 1-share validation order when every hard gate passes. It must not force an order when Alpaca core, market-open, fresh quote, spread, universe, MCP, or risk evidence is missing; no-action runs must record the first blocking gate and recheck candidates.
+- Stock recommendations prioritize accuracy over speed. Unless the user explicitly limits the ticker set, the run must first screen the expanded universe in `harness/symbol-metadata.yaml` and record `universe_coverage` in the run manifest. MCP gate structure and confirmation thresholds are defined only in `harness/recommendation-policy.yaml`.
+- Paper validation operation uses sizing defaults from `harness/recommendation-policy.yaml` when every hard gate passes. It must not force an order when Alpaca core, market-open, fresh quote, spread, universe, MCP, or risk evidence is missing; no-action runs must record the first blocking gate and recheck candidates.
 - Orders must be submitted through Alpaca MCP only. Custom code must never call Alpaca trading REST endpoints directly.
 - Historical one-year policy checks use `harness/workflows/one-year-daily-simulation.md` and run each as-of day independently.
 
@@ -200,7 +198,7 @@ python3 scripts/check-universe-coverage.py --strict wiki/evidence-store/run-mani
 
 The default operating mode is manual execution through Codex. Optional macOS launchd files are available under `scheduler/`.
 
-Automated paper operation uses `harness/workflows/hourly-autopilot.md` and `scripts/run-hourly-autopilot-codex.sh`. The legacy name remains hourly, but the launchd job wakes every 20 minutes only during KST windows that can overlap US regular market hours. The wrapper confirms Alpaca MCP `get_clock.is_open=true` before it runs recommendations or order planning, and may submit Alpaca MCP paper day limit orders only after the universe, MCP, risk, quote, and spread gates all pass. The 22:31 KST run remains the market-open validation run for US regular sessions. Analyst review and policy learning are handled by `harness/workflows/analyst-review-cycle.md` and `scripts/run-analyst-review-codex.sh` after the market close.
+Automated paper operation uses `harness/workflows/hourly-autopilot.md` and `scripts/run-hourly-autopilot-codex.sh`. The cadence, KST launch window, and market-open validation run are defined only in `harness/recommendation-policy.yaml`. The wrapper confirms Alpaca MCP `get_clock.is_open=true` before it runs recommendations or order planning, and may submit Alpaca MCP paper day limit orders only after the universe, MCP, risk, quote, and spread gates all pass. Analyst review and policy learning are handled by `harness/workflows/analyst-review-cycle.md` and `scripts/run-analyst-review-codex.sh` after the market close.
 
 ### Agent Run Board
 

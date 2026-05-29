@@ -59,32 +59,13 @@ For v1 breadth, always include:
 
 Policy id: `intraday-rs-breakout-v0`
 
-Use data known by 11:00 ET.
-
-- QQQ 10:00-10:59 ET return is at least `+0.20%`.
-- Candidate 10:00-10:59 ET return is at least `+0.90%`.
-- Candidate return minus QQQ return is at least `+0.40%p`.
-- Candidate 10:59 ET close is near or above the previous intraday bar high. Default near-high tolerance is `0.50%` below the 09:30-09:59 ET high.
-- Rank candidates by relative strength, then candidate return.
-- Track top3, and also top2 for comparison.
-
-The 1-hour timestamp correction is mandatory: any signal based on the 10:00 hour bar can only be treated as executable after 11:00 ET.
+Read the signal window, thresholds, ranking fields, tracked sets, timestamp-correction rule, and `exit_rules` from `harness/strategies/intraday-rs-breakout-v0.yaml`.
 
 ## v1 Signal Definition
 
 Policy id: `intraday-rs-breadth-vwap-v1`
 
-Start from v0 pass symbols, then require:
-
-- QQQ entry/reference price is above regular-session VWAP measured through 10:59 ET.
-- SMH entry/reference price is above regular-session VWAP measured through 10:59 ET.
-- Candidate entry/reference price is above its own regular-session VWAP measured through 10:59 ET.
-- Semiconductor breadth is at least 4 of 6. Breadth symbols are `SMH`, `NVDA`, `AMD`, `AVGO`, `TSM`, `LRCX`; count a symbol when its 11:00 ET reference price is above its regular-session open.
-
-Track both:
-
-- `v1_top3`: maximum expected opportunity set.
-- `v1_top2`: stability-first set from the latest backtest.
+Start from v0 pass symbols, then read VWAP checks, breadth symbols, breadth pass count, and tracked sets from `harness/strategies/intraday-rs-breadth-vwap-v1.yaml`.
 
 ## Required Signal Record
 
@@ -115,11 +96,12 @@ Recommended table columns:
 | `spread_pct` | `(ask - bid) / mid * 100`, if available. |
 | `fill_feasibility` | `likely`, `uncertain`, `poor`, or `unknown`. |
 | `fill_notes` | Spread, quote freshness, slippage, or missing quote notes. |
-| `take_price` | Theoretical `entry * 1.02`. |
-| `stop_price` | Theoretical `entry * 0.99`. |
-| `eod_reference_price` | 15:59 ET close or latest available EOD proxy. |
-| `theoretical_outcome` | `take`, `stop`, `eod_gain`, `eod_loss`, `open`, or `unknown`. |
-| `theoretical_pl_pct` | Theoretical percent return, after stop/take/EOD logic. |
+| `take_price` | Theoretical take level from strategy `exit_rules`. |
+| `stop_price` | Theoretical stop level from strategy `exit_rules`. |
+| `exit_reference_price` | Theoretical price used for the configured outcome. |
+| `eod_reference_price` | Strategy fallback exit close or latest available fallback proxy. |
+| `theoretical_outcome` | `take`, `stop`, `time_stop_gain`, `time_stop_loss`, `eod_gain`, `eod_loss`, `open`, or `unknown`. |
+| `theoretical_pl_pct` | Theoretical percent return, after configured stop/take/time-stop/fallback logic. |
 | `signal_log` | Machine-readable signal state for later fill-quality learning. |
 | `skip_reason` | Why a symbol did not become an observation candidate. Use explicit values such as `spread_missing`, `fill_probability_unknown`, `stale_quote`, `minute_ordering_unknown`, or `policy_blocked`. |
 | `spread_fill_observation` | Bid/ask spread, quote freshness, partial-fill likelihood, and any queue/slippage note. |
@@ -136,6 +118,7 @@ If 1Min bars are already captured to local JSON, run:
 python3 scripts/evaluate-intraday-dry-run.py \
   --bars-json path/to/captured-1min-bars.json \
   --date YYYY-MM-DD \
+  --strategy-config harness/strategies/intraday-rs-breakout-v0.yaml \
   --output-md wiki/research-notes/analyses/YYYY-MM-DD-intraday-paper-dry-run.md \
   --output-json wiki/research-notes/analyses/YYYY-MM-DD-intraday-paper-dry-run.json
 ```

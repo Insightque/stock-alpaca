@@ -11,7 +11,7 @@ from __future__ import annotations
 import argparse
 import json
 from dataclasses import dataclass
-from datetime import date, datetime, time
+from datetime import date, datetime, time, timedelta
 from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
@@ -86,6 +86,29 @@ def pct_return(open_price: float, close_price: float) -> float:
     return (close_price / open_price - 1.0) * 100.0
 
 
+def parse_hhmm(value: str) -> time:
+    return datetime.strptime(value, "%H:%M").time()
+
+
+def apply_strategy_exit_rules(args: argparse.Namespace) -> None:
+    if not args.strategy_config:
+        return
+    try:
+        import yaml
+    except ImportError as exc:  # pragma: no cover - exercised only in minimal local envs
+        raise SystemExit("--strategy-config requires PyYAML") from exc
+    config = yaml.safe_load(Path(args.strategy_config).read_text(encoding="utf-8")) or {}
+    exit_rules = config.get("exit_rules") or {}
+    if "take_profit_pct" in exit_rules:
+        args.take_profit_pct = float(exit_rules["take_profit_pct"])
+    if "stop_loss_pct" in exit_rules:
+        args.stop_loss_pct = float(exit_rules["stop_loss_pct"])
+    if "time_stop_minutes" in exit_rules:
+        args.time_stop_minutes = int(exit_rules["time_stop_minutes"])
+    if "fallback_exit_time_et" in exit_rules:
+        args.fallback_exit_time_et = str(exit_rules["fallback_exit_time_et"])
+
+
 def vwap(bars: list[Bar]) -> float | None:
     total_volume = sum(max(bar.volume, 0.0) for bar in bars)
     if total_volume <= 0:
@@ -115,20 +138,31 @@ def quote_metrics(symbol: str, quotes: dict[str, dict[str, Any]]) -> tuple[Any, 
     return bid_f, ask_f, spread_pct, feasibility, f"spread_pct={spread_pct:.3f}" if spread_pct is not None else "spread 계산 불가"
 
 
-def theoretical_outcome(day_bars: list[Bar], entry: Bar) -> tuple[str, float | None, float | None]:
+def theoretical_outcome(
+    day_bars: list[Bar],
+    entry: Bar,
+    *,
+    take_profit_pct: float = 2.0,
+    stop_loss_pct: float = 1.0,
+    time_stop_minutes: int | None = None,
+) -> tuple[str, float | None, float | None]:
     entry_price = entry.open
-    take = entry_price * 1.02
-    stop = entry_price * 0.99
+    take = entry_price * (1.0 + take_profit_pct / 100.0)
+    stop = entry_price * (1.0 - stop_loss_pct / 100.0)
+    time_stop_at = entry.ts + timedelta(minutes=time_stop_minutes) if time_stop_minutes else None
     later = [bar for bar in day_bars if bar.ts >= entry.ts]
     for bar in later:
         stop_hit = bar.low <= stop
         take_hit = bar.high >= take
         if stop_hit and take_hit:
-            return "ambiguous_stop_first", -1.0, stop
+            return "ambiguous_stop_first", -stop_loss_pct, stop
         if stop_hit:
-            return "stop", -1.0, stop
+            return "stop", -stop_loss_pct, stop
         if take_hit:
-            return "take", 2.0, take
+            return "take", take_profit_pct, take
+        if time_stop_at and bar.ts >= time_stop_at:
+            pl_pct = pct_return(entry_price, bar.close)
+            return ("time_stop_gain" if pl_pct >= 0 else "time_stop_loss"), pl_pct, bar.close
     eod = max(later, key=lambda item: item.ts, default=None)
     if eod is None:
         return "unknown", None, None
@@ -139,6 +173,7 @@ def theoretical_outcome(day_bars: list[Bar], entry: Bar) -> tuple[str, float | N
 def evaluate(args: argparse.Namespace) -> dict[str, Any]:
     bars_by_symbol, quotes = load_capture(Path(args.bars_json))
     market_day = date.fromisoformat(args.date)
+    fallback_exit_time = parse_hhmm(args.fallback_exit_time_et)
     candidates = [item.strip().upper() for item in args.candidates.split(",") if item.strip()]
     qqq = bars_by_symbol.get("QQQ", [])
     smh = bars_by_symbol.get("SMH", [])
@@ -185,8 +220,11 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
         v1_pass = v0_pass and qqq_vwap_pass and smh_vwap_pass and symbol_vwap_pass and breadth_count >= args.breadth_threshold
         bid, ask, spread_pct, fill_feasibility, fill_notes = quote_metrics(symbol, quotes)
         outcome, pl_pct, exit_reference_price = theoretical_outcome(
-            bars_between(symbol_bars, market_day, time(9, 30), time(15, 59)),
+            bars_between(symbol_bars, market_day, time(9, 30), fallback_exit_time),
             entry,
+            take_profit_pct=args.take_profit_pct,
+            stop_loss_pct=args.stop_loss_pct,
+            time_stop_minutes=args.time_stop_minutes,
         )
         base_candidates.append(
             {
@@ -207,8 +245,13 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
                 "spread_pct": spread_pct,
                 "fill_feasibility": fill_feasibility,
                 "fill_notes": fill_notes,
-                "take_price": entry.open * 1.02,
-                "stop_price": entry.open * 0.99,
+                "take_profit_pct": args.take_profit_pct,
+                "stop_loss_pct": args.stop_loss_pct,
+                "time_stop_minutes": args.time_stop_minutes,
+                "fallback_exit_time_et": args.fallback_exit_time_et,
+                "take_price": entry.open * (1.0 + args.take_profit_pct / 100.0),
+                "stop_price": entry.open * (1.0 - args.stop_loss_pct / 100.0),
+                "exit_reference_price": exit_reference_price,
                 "eod_reference_price": exit_reference_price,
                 "theoretical_outcome": outcome,
                 "theoretical_pl_pct": pl_pct,
@@ -236,6 +279,12 @@ def evaluate(args: argparse.Namespace) -> dict[str, Any]:
         "orders_submitted": 0,
         "qqq_10h_return_pct": qqq_return,
         "semi_breadth_count": breadth_count,
+        "exit_rules": {
+            "take_profit_pct": args.take_profit_pct,
+            "stop_loss_pct": args.stop_loss_pct,
+            "time_stop_minutes": args.time_stop_minutes,
+            "fallback_exit_time_et": args.fallback_exit_time_et,
+        },
         "rows": rows,
     }
 
@@ -271,12 +320,13 @@ def write_markdown(path: Path, result: dict[str, Any]) -> None:
         f"- captured_at_et: `{result['captured_at_et']}`",
         f"- QQQ 10:00-10:59 ET return: `{result['qqq_10h_return_pct']:.4f}%`",
         f"- semi_breadth_count: `{result['semi_breadth_count']}`",
+        f"- exit_rules: `{result['exit_rules']}`",
         f"- orders_submitted: `0`",
         "",
         "## 신호 기록",
         "",
-        "| policy | rank | symbol | qqq_10h_return_pct | symbol_10h_return_pct | relative_strength_pctpt | breakout_pass | qqq_vwap_pass | smh_vwap_pass | symbol_vwap_pass | semi_breadth_count | entry_reference_time_et | entry_reference_price | bid | ask | spread_pct | fill_feasibility | take_price | stop_price | theoretical_outcome | theoretical_pl_pct |",
-        "| --- | ---: | --- | ---: | ---: | ---: | --- | --- | --- | --- | ---: | --- | ---: | ---: | ---: | ---: | --- | ---: | ---: | --- | ---: |",
+        "| policy | rank | symbol | qqq_10h_return_pct | symbol_10h_return_pct | relative_strength_pctpt | breakout_pass | qqq_vwap_pass | smh_vwap_pass | symbol_vwap_pass | semi_breadth_count | entry_reference_time_et | entry_reference_price | bid | ask | spread_pct | fill_feasibility | take_profit_pct | stop_loss_pct | time_stop_minutes | fallback_exit_time_et | take_price | stop_price | theoretical_outcome | theoretical_pl_pct |",
+        "| --- | ---: | --- | ---: | ---: | ---: | --- | --- | --- | --- | ---: | --- | ---: | ---: | ---: | ---: | --- | ---: | ---: | ---: | --- | ---: | ---: | --- | ---: |",
     ]
     for row in result["rows"]:
         lines.append(
@@ -301,6 +351,10 @@ def write_markdown(path: Path, result: dict[str, Any]) -> None:
                     "ask",
                     "spread_pct",
                     "fill_feasibility",
+                    "take_profit_pct",
+                    "stop_loss_pct",
+                    "time_stop_minutes",
+                    "fallback_exit_time_et",
                     "take_price",
                     "stop_price",
                     "theoretical_outcome",
@@ -333,12 +387,18 @@ def main() -> int:
     parser.add_argument("--candidates", default=",".join(DEFAULT_CANDIDATES), help="Comma-separated candidate symbols")
     parser.add_argument("--output-json", help="Optional JSON output path")
     parser.add_argument("--output-md", help="Optional Markdown output path")
+    parser.add_argument("--strategy-config", help="Optional strategy YAML whose exit_rules override CLI defaults")
     parser.add_argument("--qqq-return-threshold", type=float, default=0.20)
     parser.add_argument("--symbol-return-threshold", type=float, default=0.90)
     parser.add_argument("--relative-strength-threshold", type=float, default=0.40)
     parser.add_argument("--near-high-tolerance-bps", type=float, default=50.0)
     parser.add_argument("--breadth-threshold", type=int, default=4)
+    parser.add_argument("--take-profit-pct", type=float, default=2.0)
+    parser.add_argument("--stop-loss-pct", type=float, default=1.0)
+    parser.add_argument("--time-stop-minutes", type=int)
+    parser.add_argument("--fallback-exit-time-et", default="15:59")
     args = parser.parse_args()
+    apply_strategy_exit_rules(args)
 
     result = evaluate(args)
     if args.output_json:
@@ -352,4 +412,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

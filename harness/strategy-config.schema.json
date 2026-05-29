@@ -133,6 +133,32 @@
         }
       }
     },
+    "exit_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "take_profit_pct": {
+          "type": "number",
+          "minimum": 0
+        },
+        "stop_loss_pct": {
+          "type": "number",
+          "minimum": 0
+        },
+        "time_stop_minutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "fallback_exit": {
+          "type": "string",
+          "enum": ["eod", "latest_available_bar"]
+        },
+        "fallback_exit_time_et": {
+          "type": "string",
+          "pattern": "^\\d{2}:\\d{2}$"
+        }
+      }
+    },
     "promotion_required": {
       "type": "boolean"
     }

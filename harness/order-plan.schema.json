@@ -67,6 +67,10 @@
         "next_close": {
           "type": "string",
           "format": "date-time"
+        },
+        "session": {
+          "type": "string",
+          "enum": ["regular", "after_hours"]
         }
       }
     },
@@ -230,6 +234,10 @@
         },
         "risk_recomputed_after_partial_fill": {
           "type": "boolean"
+        },
+        "after_hours_new_orders_submitted_today": {
+          "type": "integer",
+          "minimum": 0
         }
       }
     },
@@ -302,6 +310,17 @@
           "time_in_force": {
             "type": "string",
             "const": "day"
+          },
+          "extended_hours": {
+            "type": "boolean"
+          },
+          "session": {
+            "type": "string",
+            "enum": ["regular", "after_hours"]
+          },
+          "review_bucket": {
+            "type": "string",
+            "minLength": 1
           },
           "qty": {
             "type": "integer",

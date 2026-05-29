@@ -139,6 +139,23 @@ class RiskPolicyTests(unittest.TestCase):
         self.assertEqual(20000.0, summary["post_cash"])
         self.assertEqual(80000.0, summary["post_invested"])
 
+    def test_account_implied_invested_exposure_requires_positions(self) -> None:
+        plan = base_plan()
+        plan["account"]["cash"] = 35000.0
+        plan["account"]["buying_power"] = 35000.0
+        plan["orders"] = []
+        errors, _, _ = self.validate(plan)
+        self.assertTrue(any("positions cannot be empty" in error for error in errors))
+
+    def test_positions_must_reconcile_with_account_implied_invested_exposure(self) -> None:
+        plan = base_plan()
+        plan["account"]["cash"] = 35000.0
+        plan["account"]["buying_power"] = 35000.0
+        plan["positions"] = [position("AAPL", 10000.0)]
+        plan["orders"] = []
+        errors, _, _ = self.validate(plan)
+        self.assertTrue(any("does not reconcile with account-implied invested exposure" in error for error in errors))
+
     def test_cash_reserve_violation_fails(self) -> None:
         plan = base_plan()
         plan["orders"][0]["qty"] = 161
@@ -276,7 +293,40 @@ class RiskPolicyTests(unittest.TestCase):
         plan = base_plan()
         plan["risk_inputs"]["new_orders_submitted_today"] = 20
         errors, _, _ = self.validate(plan)
-        self.assertTrue(any("daily new orders 21 exceeds limit 20" in error for error in errors))
+        self.assertTrue(any("daily capped new orders 21 exceeds limit 20" in error for error in errors))
+
+    def test_sell_not_blocked_by_daily_new_buy_order_cap(self) -> None:
+        plan = base_plan()
+        plan["risk_inputs"]["new_orders_submitted_today"] = 20
+        plan["positions"] = [position("SPY", 5000.0, qty=10)]
+        plan["orders"][0]["side"] = "sell"
+        plan["orders"][0]["entry_style"] = "trim"
+        errors, _, summary = self.validate(plan)
+        self.assertEqual([], errors)
+        self.assertEqual(0.0, summary["buy_notional"])
+        self.assertEqual(5000.0, summary["sell_notional"])
+
+    def test_sell_exit_not_blocked_by_buy_quality_gates(self) -> None:
+        plan = base_plan()
+        plan["mode"] = "submit"
+        plan["market"]["is_open"] = True
+        plan["positions"] = [position("SPY", 5000.0, qty=10)]
+        plan["orders"][0]["side"] = "sell"
+        plan["orders"][0]["entry_style"] = "exit"
+        plan["orders"][0]["policy_status"] = "rejected"
+        plan["orders"][0]["source_confidence"] = "low"
+        plan["orders"][0]["confidence_score"] = 0.1
+        errors, _, summary = self.validate(plan)
+        self.assertEqual([], errors)
+        self.assertEqual(0.0, summary["buy_notional"])
+        self.assertEqual(5000.0, summary["sell_notional"])
+
+    def test_sell_requires_trim_or_exit_entry_style(self) -> None:
+        plan = base_plan()
+        plan["positions"] = [position("SPY", 5000.0, qty=10)]
+        plan["orders"][0]["side"] = "sell"
+        errors, _, _ = self.validate(plan)
+        self.assertTrue(any("sell orders require entry_style=trim or exit" in error for error in errors))
 
     def test_submit_mode_requires_daily_order_count(self) -> None:
         plan = base_plan()
@@ -285,6 +335,48 @@ class RiskPolicyTests(unittest.TestCase):
         del plan["risk_inputs"]["new_orders_submitted_today"]
         errors, _, _ = self.validate(plan)
         self.assertTrue(any("new_orders_submitted_today" in error for error in errors))
+
+    def test_after_hours_submit_requires_separate_profile_and_extended_hours(self) -> None:
+        plan = base_plan()
+        plan["mode"] = "submit"
+        plan["market"]["is_open"] = False
+        plan["market"]["session"] = "after_hours"
+        plan["risk_inputs"]["after_hours_new_orders_submitted_today"] = 0
+        plan["orders"][0]["qty"] = 1
+        plan["orders"][0]["policy_status"] = "auto_eligible_paper"
+        plan["orders"][0]["session"] = "after_hours"
+        plan["orders"][0]["extended_hours"] = True
+        plan["orders"][0]["review_bucket"] = "after_hours_validation"
+        plan["orders"][0]["quote_age_minutes"] = 1
+        plan["orders"][0]["quote_captured_at"] = "2026-05-22T12:29:00Z"
+        errors, _, _ = self.validate(plan)
+        self.assertEqual([], errors)
+
+    def test_after_hours_submit_rejects_regular_review_bucket_mixing(self) -> None:
+        plan = base_plan()
+        plan["mode"] = "submit"
+        plan["market"]["session"] = "after_hours"
+        plan["risk_inputs"]["after_hours_new_orders_submitted_today"] = 0
+        plan["orders"][0]["policy_status"] = "auto_eligible_paper"
+        plan["orders"][0]["session"] = "regular"
+        plan["orders"][0]["extended_hours"] = False
+        plan["orders"][0]["review_bucket"] = "regular_validation"
+        errors, _, _ = self.validate(plan)
+        self.assertTrue(any("order session must match market.session=after_hours" in error for error in errors))
+        self.assertTrue(any("after-hours orders require extended_hours=true" in error for error in errors))
+        self.assertTrue(any("review_bucket must be after_hours_validation" in error for error in errors))
+
+    def test_after_hours_submit_uses_separate_session_order_cap(self) -> None:
+        plan = base_plan()
+        plan["mode"] = "submit"
+        plan["market"]["session"] = "after_hours"
+        plan["risk_inputs"]["after_hours_new_orders_submitted_today"] = 2
+        plan["orders"][0]["policy_status"] = "auto_eligible_paper"
+        plan["orders"][0]["session"] = "after_hours"
+        plan["orders"][0]["extended_hours"] = True
+        plan["orders"][0]["review_bucket"] = "after_hours_validation"
+        errors, _, _ = self.validate(plan)
+        self.assertTrue(any("after-hours new orders 3 exceeds session limit 2" in error for error in errors))
 
     def test_cli_json_output(self) -> None:
         completed = subprocess.run(

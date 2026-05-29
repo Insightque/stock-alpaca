@@ -24,11 +24,13 @@ Health-check the llm-wiki for stale, missing, contradictory, orphaned, or uncite
 - Contradictions are listed as contested claims with source references.
 - Orphan pages are either linked from index or marked archived.
 - New historical simulation artifacts pass `scripts/check-leakage.py` or have a logged reason for not running it.
+- Active instruction docs must pass `python3 scripts/check-policy-source-of-truth.py`; numeric policy caps and thresholds belong in YAML source-of-truth files, not copied into Markdown workflows.
 
 ## Procedure
 
 1. Read `AGENTS.md`, `wiki/index.md`, and `wiki/log.md`.
 2. Search the wiki for ticker symbols, report references, order-plan paths, and source links.
-3. Produce a lint report with findings grouped as: blocking, stale, missing source, contradiction, orphan, and cleanup.
-4. Fix only safe mechanical issues in the same run.
-5. Do not trade, create order plans, or alter raw source meaning.
+3. Run `python3 scripts/check-policy-source-of-truth.py`.
+4. Produce a lint report with findings grouped as: blocking, stale, missing source, contradiction, orphan, source-of-truth drift, and cleanup.
+5. Fix only safe mechanical issues in the same run.
+6. Do not trade, create order plans, or alter raw source meaning.

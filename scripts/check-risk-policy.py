@@ -19,6 +19,7 @@ from typing import Any
 
 ROOT_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_POLICY_PATH = ROOT_DIR / "harness" / "risk-policy.yaml"
+DEFAULT_RECOMMENDATION_POLICY_PATH = ROOT_DIR / "harness" / "recommendation-policy.yaml"
 DEFAULT_SCHEMA_PATH = ROOT_DIR / "harness" / "order-plan.schema.json"
 DEFAULT_METADATA_PATH = ROOT_DIR / "harness" / "symbol-metadata.yaml"
 
@@ -37,6 +38,10 @@ def _load_yaml(path: Path) -> dict[str, Any]:
 
 
 def load_policy(path: Path = DEFAULT_POLICY_PATH) -> dict[str, Any]:
+    return _load_yaml(path)
+
+
+def load_recommendation_policy(path: Path = DEFAULT_RECOMMENDATION_POLICY_PATH) -> dict[str, Any]:
     return _load_yaml(path)
 
 
@@ -129,6 +134,7 @@ def validate_schema(plan: dict[str, Any], schema_path: Path = DEFAULT_SCHEMA_PAT
 def validate(
     plan: dict[str, Any],
     policy: dict[str, Any] | None = None,
+    recommendation_policy: dict[str, Any] | None = None,
     *,
     check_schema: bool = True,
 ) -> tuple[list[str], list[str], dict[str, float | str]]:
@@ -136,6 +142,10 @@ def validate(
     warnings: list[str] = []
 
     policy = policy or load_policy()
+    recommendation_policy = recommendation_policy or load_recommendation_policy()
+    after_hours_policy = recommendation_policy.get("after_hours_policy", {})
+    if not isinstance(after_hours_policy, dict):
+        after_hours_policy = {}
     portfolio_limits = policy.get("portfolio_limits", {})
     exposure_limits = policy.get("exposure_limits", {})
     liquidity_limits = policy.get("liquidity_limits", {})
@@ -224,6 +234,19 @@ def validate(
     )
     max_stop_count = int(daily_limits.get("max_stop_triggered_orders_per_day", 999999))
     max_new_orders_per_day = int(daily_limits.get("max_new_orders_per_day", 999999))
+    raw_daily_order_cap_sides = daily_limits.get(
+        "max_new_orders_per_day_applies_to_sides", order_limits.get("allowed_sides", [])
+    )
+    if not isinstance(raw_daily_order_cap_sides, list):
+        errors.append("risk_policy.daily_limits.max_new_orders_per_day_applies_to_sides must be an array")
+        raw_daily_order_cap_sides = []
+    daily_order_cap_sides = {normalize_label(item) for item in raw_daily_order_cap_sides if normalize_label(item)}
+    invalid_daily_order_cap_sides = daily_order_cap_sides - allowed_sides
+    if invalid_daily_order_cap_sides:
+        errors.append(
+            "risk_policy.daily_limits.max_new_orders_per_day_applies_to_sides contains invalid sides "
+            f"{sorted(invalid_daily_order_cap_sides)}"
+        )
     max_open_age = as_float(
         order_lifecycle.get("max_open_order_age_minutes", 999999),
         "risk_policy.order_lifecycle.max_open_order_age_minutes",
@@ -246,8 +269,17 @@ def validate(
         errors.append("market must be an object")
         market = {}
 
-    if mode == "submit" and market.get("is_open") is not True:
+    market_session = normalize_label(market.get("session") or "regular")
+    if market_session not in {"regular", "after_hours"}:
+        errors.append("market.session must be regular or after_hours")
+        market_session = "regular"
+
+    if mode == "submit" and market_session == "regular" and market.get("is_open") is not True:
         errors.append("submit mode requires market.is_open=true")
+    if mode == "submit" and market_session == "after_hours" and market.get("is_open") is True:
+        errors.append("after_hours submit mode requires market.is_open=false")
+    if market_session == "after_hours" and after_hours_policy.get("enabled_for_explicit_autopilot_runs") is not True:
+        errors.append("after-hours orders require after_hours_policy.enabled_for_explicit_autopilot_runs=true")
 
     market_checked_at = parse_datetime(market.get("checked_at"), "market.checked_at", errors)
 
@@ -280,7 +312,9 @@ def validate(
     weekly_turnover = as_float(risk_inputs.get("weekly_turnover_ratio", 0.0), "risk_inputs.weekly_turnover_ratio", errors)
     stop_count = int(risk_inputs.get("stop_triggered_orders_today", 0) or 0)
     raw_new_orders_today = risk_inputs.get("new_orders_submitted_today")
+    raw_after_hours_new_orders_today = risk_inputs.get("after_hours_new_orders_submitted_today")
     new_orders_submitted_today = 0
+    after_hours_new_orders_submitted_today = 0
     if raw_new_orders_today is not None:
         if isinstance(raw_new_orders_today, bool):
             errors.append("risk_inputs.new_orders_submitted_today must be an integer")
@@ -292,6 +326,17 @@ def validate(
                 new_orders_submitted_today = 0
             if new_orders_submitted_today < 0:
                 errors.append("risk_inputs.new_orders_submitted_today must be non-negative")
+    if raw_after_hours_new_orders_today is not None:
+        if isinstance(raw_after_hours_new_orders_today, bool):
+            errors.append("risk_inputs.after_hours_new_orders_submitted_today must be an integer")
+        else:
+            try:
+                after_hours_new_orders_submitted_today = int(raw_after_hours_new_orders_today)
+            except (TypeError, ValueError):
+                errors.append("risk_inputs.after_hours_new_orders_submitted_today must be an integer")
+                after_hours_new_orders_submitted_today = 0
+            if after_hours_new_orders_submitted_today < 0:
+                errors.append("risk_inputs.after_hours_new_orders_submitted_today must be non-negative")
     if turnover > max_policy_turnover:
         errors.append(f"policy turnover {turnover:.2%} exceeds daily limit {max_policy_turnover:.2%}")
     if weekly_turnover > max_weekly_turnover:
@@ -303,6 +348,14 @@ def validate(
     if not isinstance(raw_positions, list):
         errors.append("positions must be an array")
         raw_positions = []
+
+    estimated_invested_from_account = max(portfolio_value - cash, 0.0)
+    position_reconciliation_tolerance = max(portfolio_value * 0.02, 500.0)
+    if estimated_invested_from_account > position_reconciliation_tolerance and not raw_positions:
+        errors.append(
+            "positions cannot be empty when account portfolio_value minus cash implies "
+            f"{estimated_invested_from_account:.2f} of invested exposure"
+        )
 
     position_qty: dict[str, float] = {}
     ticker_values: dict[str, float] = {}
@@ -385,6 +438,16 @@ def validate(
         apply_exposure(max(market_value, 0.0), metadata_for(symbol, position, f"positions[{index}]"))
         current_invested += max(market_value, 0.0)
 
+    if (
+        estimated_invested_from_account > position_reconciliation_tolerance
+        and abs(current_invested - estimated_invested_from_account) > position_reconciliation_tolerance
+    ):
+        errors.append(
+            f"positions market_value total {current_invested:.2f} does not reconcile with "
+            f"account-implied invested exposure {estimated_invested_from_account:.2f} "
+            f"within tolerance {position_reconciliation_tolerance:.2f}"
+        )
+
     orders = plan.get("orders", [])
     if not isinstance(orders, list):
         errors.append("orders must be an array")
@@ -394,13 +457,38 @@ def validate(
         errors.append(f"orders has {len(orders)} entries; maximum is {max_orders}")
     if not orders:
         warnings.append("orders is empty")
-    if mode == "submit" and orders and raw_new_orders_today is None:
+    planned_daily_cap_orders = sum(
+        1
+        for order in orders
+        if isinstance(order, dict) and normalize_label(order.get("side")) in daily_order_cap_sides
+    )
+    if mode == "submit" and planned_daily_cap_orders and raw_new_orders_today is None:
         errors.append("submit mode requires risk_inputs.new_orders_submitted_today for daily order cap validation")
-    planned_new_orders = len(orders)
-    if new_orders_submitted_today + planned_new_orders > max_new_orders_per_day:
+    if mode == "submit" and market_session == "after_hours" and raw_after_hours_new_orders_today is None:
         errors.append(
-            f"daily new orders {new_orders_submitted_today + planned_new_orders} exceeds limit {max_new_orders_per_day}"
+            "after_hours submit mode requires risk_inputs.after_hours_new_orders_submitted_today "
+            "for separate session order cap validation"
         )
+    if new_orders_submitted_today + planned_daily_cap_orders > max_new_orders_per_day:
+        errors.append(
+            "daily capped new orders "
+            f"{new_orders_submitted_today + planned_daily_cap_orders} exceeds limit {max_new_orders_per_day}"
+        )
+    if market_session == "after_hours":
+        planned_after_hours_orders = sum(
+            1
+            for order in orders
+            if isinstance(order, dict)
+            and normalize_label(order.get("side"))
+            in {normalize_label(item) for item in after_hours_policy.get("allowed_sides", [])}
+        )
+        max_after_hours_orders = int(after_hours_policy.get("max_new_orders_per_session", 0) or 0)
+        if after_hours_new_orders_submitted_today + planned_after_hours_orders > max_after_hours_orders:
+            errors.append(
+                "after-hours new orders "
+                f"{after_hours_new_orders_submitted_today + planned_after_hours_orders} exceeds session limit "
+                f"{max_after_hours_orders}"
+            )
 
     buy_notional = 0.0
     sell_notional = 0.0
@@ -451,6 +539,8 @@ def validate(
         side = str(order.get("side", "")).strip().lower()
         order_type = str(order.get("order_type", "")).strip().lower()
         time_in_force = str(order.get("time_in_force", "")).strip().lower()
+        order_session = normalize_label(order.get("session") or market_session)
+        extended_hours = order.get("extended_hours", False)
         qty_raw = order.get("qty")
         qty = as_float(qty_raw, f"{symbol}.qty", errors)
         limit_price = as_float(order.get("limit_price"), f"{symbol}.limit_price", errors)
@@ -463,6 +553,7 @@ def validate(
         policy_status = normalize_label(order.get("policy_status"))
         confidence_score = as_float(order.get("confidence_score"), f"{symbol}.confidence_score", errors)
         source_confidence = normalize_label(order.get("source_confidence"))
+        review_bucket = str(order.get("review_bucket", "")).strip()
         liquidity = order.get("liquidity", {})
 
         asset_status = str(order.get("asset_status", "")).strip().lower()
@@ -479,6 +570,25 @@ def validate(
             errors.append(f"{symbol}: order_type must be {required_order_type}")
         if time_in_force != required_time_in_force:
             errors.append(f"{symbol}: time_in_force must be {required_time_in_force}")
+        if order_session != market_session:
+            errors.append(f"{symbol}: order session must match market.session={market_session}")
+        if market_session == "regular" and extended_hours is True:
+            errors.append(f"{symbol}: regular-session orders must not set extended_hours=true")
+        if market_session == "after_hours":
+            if extended_hours is not True:
+                errors.append(f"{symbol}: after-hours orders require extended_hours=true")
+            if order_session != "after_hours":
+                errors.append(f"{symbol}: after-hours orders require session=after_hours")
+            expected_review_bucket = str(after_hours_policy.get("review_bucket", "")).strip()
+            if not review_bucket:
+                errors.append(f"{symbol}: after-hours orders require review_bucket")
+            elif expected_review_bucket and review_bucket != expected_review_bucket:
+                errors.append(f"{symbol}: review_bucket must be {expected_review_bucket}")
+            allowed_after_hours_sides = {
+                str(item).lower() for item in after_hours_policy.get("allowed_sides", []) if str(item).strip()
+            }
+            if allowed_after_hours_sides and side not in allowed_after_hours_sides:
+                errors.append(f"{symbol}: side must be one of {sorted(allowed_after_hours_sides)} in after-hours")
         if not isinstance(qty_raw, int) or isinstance(qty_raw, bool) or qty < 1:
             errors.append(f"{symbol}: qty must be a whole-share integer >= 1")
         elif side in allowed_sides:
@@ -504,14 +614,17 @@ def validate(
             seen_decision_ids.add(decision_id)
         else:
             errors.append(f"{symbol}: decision_id is required")
-        if policy_status in {"observation_only", "comparison_only", "rejected"}:
-            errors.append(f"{symbol}: policy_status {policy_status} cannot create an order plan entry")
-        if mode == "submit" and policy_status != "auto_eligible_paper":
-            errors.append(f"{symbol}: submit mode requires policy_status=auto_eligible_paper")
-        if confidence_score < 0.5:
-            errors.append(f"{symbol}: confidence_score {confidence_score:.2f} is below 0.50 minimum")
-        if source_confidence == "low":
-            errors.append(f"{symbol}: source_confidence=low blocks new order generation")
+        if side == "buy":
+            if policy_status in {"observation_only", "comparison_only", "rejected"}:
+                errors.append(f"{symbol}: policy_status {policy_status} cannot create a buy order plan entry")
+            if mode == "submit" and policy_status != "auto_eligible_paper":
+                errors.append(f"{symbol}: submit mode buy requires policy_status=auto_eligible_paper")
+            if confidence_score < 0.5:
+                errors.append(f"{symbol}: confidence_score {confidence_score:.2f} is below 0.50 minimum for buy")
+            if source_confidence == "low":
+                errors.append(f"{symbol}: source_confidence=low blocks new buy order generation")
+        elif side == "sell" and str(order.get("entry_style", "")).strip().lower() not in {"trim", "exit"}:
+            errors.append(f"{symbol}: sell orders require entry_style=trim or exit")
         if limit_price <= 0:
             errors.append(f"{symbol}: limit_price must be greater than 0")
         if reference_price <= 0:
@@ -567,6 +680,53 @@ def validate(
             errors.append(
                 f"{symbol}: avg daily dollar volume {avg_dollar_volume:.2f} is below minimum {min_adv:.2f}"
             )
+
+        if market_session == "after_hours":
+            max_after_hours_quote_age = as_float(
+                after_hours_policy.get("max_quote_age_minutes_submit", max_quote_age_minutes),
+                "recommendation_policy.after_hours_policy.max_quote_age_minutes_submit",
+                errors,
+            )
+            after_hours_limit_guardrail = as_float(
+                after_hours_policy.get("limit_guardrail_ratio", limit_guardrail_ratio),
+                "recommendation_policy.after_hours_policy.limit_guardrail_ratio",
+                errors,
+            )
+            max_after_hours_spread = as_float(
+                after_hours_policy.get("max_spread_pct", max_spread_pct),
+                "recommendation_policy.after_hours_policy.max_spread_pct",
+                errors,
+            )
+            max_after_hours_notional_pct = as_float(
+                after_hours_policy.get("max_notional_pct_per_order", 0.0),
+                "recommendation_policy.after_hours_policy.max_notional_pct_per_order",
+                errors,
+            )
+            if mode == "submit" and quote_age > max_after_hours_quote_age:
+                errors.append(
+                    f"{symbol}: after-hours quote data is {quote_age:.1f} minutes old; "
+                    f"maximum is {max_after_hours_quote_age:.1f}"
+                )
+            if limit_price > 0 and reference_price > 0:
+                after_hours_deviation = abs(limit_price - reference_price) / reference_price
+                if after_hours_deviation > after_hours_limit_guardrail:
+                    errors.append(
+                        f"{symbol}: after-hours limit price deviates {after_hours_deviation:.2%}; "
+                        f"maximum is {after_hours_limit_guardrail:.2%}"
+                    )
+            if spread_pct > max_after_hours_spread:
+                errors.append(
+                    f"{symbol}: after-hours spread_pct {spread_pct:.2f}% exceeds maximum "
+                    f"{max_after_hours_spread:.2f}%"
+                )
+            if portfolio_value > 0 and qty > 0 and limit_price > 0:
+                after_hours_notional = qty * limit_price
+                max_after_hours_notional = portfolio_value * max_after_hours_notional_pct
+                if after_hours_notional > max_after_hours_notional:
+                    errors.append(
+                        f"{symbol}: after-hours notional {after_hours_notional:.2f} exceeds "
+                        f"per-order limit {max_after_hours_notional:.2f}"
+                    )
 
         notional = max(qty, 0.0) * max(limit_price, 0.0)
         if side == "buy":

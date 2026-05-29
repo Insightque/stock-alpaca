@@ -36,6 +36,8 @@ order_limits:
   disallow_buy_reliance_on_same_run_sell_proceeds: true
 daily_limits:
   max_new_orders_per_day: 20
+  max_new_orders_per_day_applies_to_sides:
+    - buy
   max_policy_turnover_ratio: 0.20
   max_weekly_turnover_ratio: 0.40
   max_daily_realized_loss_ratio: 0.02

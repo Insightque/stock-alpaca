@@ -155,6 +155,47 @@ class ResearchMcpPreflightTests(unittest.TestCase):
 
         self.assertIsNone(cached)
 
+    def test_fred_positive_cache_ttl_covers_multi_hour_autopilot_cadence(self) -> None:
+        self.assertEqual(21600, research_preflight.provider_cache_ttl("fred", None))
+
+    def test_alpha_vantage_cache_ttl_enforces_hourly_cadence(self) -> None:
+        self.assertEqual(3600, research_preflight.provider_cache_ttl("alpha-vantage", None))
+
+    def test_alpha_vantage_cache_scope_changes_when_key_changes(self) -> None:
+        old_scope = research_preflight.alpha_vantage_cache_scope({"ALPHA_VANTAGE_API_KEY": "old-key"})
+        new_scope = research_preflight.alpha_vantage_cache_scope({"ALPHA_VANTAGE_API_KEY": "new-key"})
+
+        self.assertNotEqual(old_scope, new_scope)
+        self.assertTrue(old_scope.startswith("key-"))
+        self.assertNotIn("old-key", old_scope)
+
+    def test_alpha_vantage_gap_rows_are_cached_for_hourly_throttle(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            cache_dir = Path(directory)
+            cache_key = research_preflight.provider_cache_key("alpha-vantage", ["INTC"])
+            row = research_preflight.provider_row(
+                server="alpha-vantage",
+                queried=True,
+                outcome="gap",
+                checked_at="2026-05-27T01:00:00+00:00",
+                gap_category="empty_response",
+                gap_reason="NEWS_SENTIMENT returned no candidate news items.",
+                retry_count=0,
+            )
+
+            research_preflight.save_cached_provider(cache_dir, "alpha-vantage", cache_key, row, ttl_seconds=3600)
+            cached = research_preflight.load_cached_provider(
+                cache_dir,
+                "alpha-vantage",
+                cache_key,
+                ttl_seconds=3600,
+            )
+
+        self.assertIsNotNone(cached)
+        assert cached is not None
+        self.assertEqual("gap", cached["outcome"])
+        self.assertTrue(cached["cache_hit"])
+
 
 class ResearchMcpPreflightAsyncTests(unittest.IsolatedAsyncioTestCase):
     async def test_sec_edgar_uses_local_cik_cache_and_lightweight_tools(self) -> None:
@@ -294,6 +335,30 @@ class ResearchMcpPreflightAsyncTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual("gap", row["outcome"])
         self.assertEqual("empty_response", row["gap_category"])
 
+    async def test_alpha_vantage_rate_limit_is_provider_error_and_sanitized(self) -> None:
+        async def fake_sequence(**kwargs):
+            self.assertEqual("jsonl", kwargs["protocol"])
+            return [
+                {"tools": ["PING", "NEWS_SENTIMENT"]},
+                {"name": "PING"},
+                {"text": "pong"},
+                {"name": "NEWS_SENTIMENT"},
+                {
+                    "Information": (
+                        "We have detected your API key as SHOULD_NOT_BE_STORED and our standard "
+                        "API rate limit is 25 requests per day."
+                    )
+                },
+            ]
+
+        with patch.object(research_preflight, "call_stdio_tool_sequence", new=fake_sequence):
+            row = await research_preflight.capture_alpha_vantage({"ALPHA_VANTAGE_API_KEY": "present"}, ["INTC"])
+
+        self.assertEqual("failed", row["outcome"])
+        self.assertEqual("provider_error", row["gap_category"])
+        self.assertEqual("rate_limit", row["payload"]["provider_issue"])
+        self.assertNotIn("SHOULD_NOT_BE_STORED", json.dumps(row, ensure_ascii=False))
+
     async def test_cached_or_capture_provider_uses_cache_before_capture(self) -> None:
         async def capture_should_not_run():
             raise AssertionError("cache hit should avoid provider capture")
@@ -352,6 +417,140 @@ class ResearchMcpPreflightAsyncTests(unittest.IsolatedAsyncioTestCase):
         self.assertEqual("failed", row["outcome"])
         self.assertEqual("timeout", row["gap_category"])
         self.assertTrue(row["payload"]["circuit_breaker_open"])
+
+    async def test_alpha_vantage_global_throttle_skips_second_symbol_set_within_hour(self) -> None:
+        async def capture_should_not_run():
+            raise AssertionError("Alpha Vantage should be globally throttled for one hour")
+
+        with tempfile.TemporaryDirectory() as directory:
+            cache_dir = Path(directory)
+            research_preflight.save_provider_attempt(cache_dir, "alpha-vantage", ["OLD"])
+
+            row = await research_preflight.cached_or_capture_provider(
+                server="alpha-vantage",
+                symbols=["NEW"],
+                cache_dir=cache_dir,
+                cache_ttl_override=0,
+                no_cache=False,
+                circuit_state={},
+                circuit_seconds=600,
+                capture=capture_should_not_run,
+            )
+
+        self.assertEqual("failed", row["outcome"])
+        self.assertEqual("provider_error", row["gap_category"])
+        self.assertTrue(row["payload"]["throttled"])
+        self.assertEqual(["OLD"], row["payload"]["previous_symbols"])
+        self.assertEqual(["NEW"], row["payload"]["requested_symbols"])
+
+    async def test_alpha_vantage_new_key_scope_bypasses_prior_hourly_throttle(self) -> None:
+        calls = 0
+
+        async def capture_runs_for_new_key_scope():
+            nonlocal calls
+            calls += 1
+            return research_preflight.provider_row(
+                server="alpha-vantage",
+                queried=True,
+                outcome="gap",
+                checked_at="2026-05-27T01:00:00+00:00",
+                gap_category="empty_response",
+                gap_reason="NEWS_SENTIMENT returned no candidate news items.",
+                retry_count=0,
+            )
+
+        with tempfile.TemporaryDirectory() as directory:
+            cache_dir = Path(directory)
+            research_preflight.save_provider_attempt(
+                cache_dir,
+                "alpha-vantage",
+                ["OLD"],
+                cache_scope="key-old",
+            )
+
+            row = await research_preflight.cached_or_capture_provider(
+                server="alpha-vantage",
+                symbols=["NEW"],
+                cache_dir=cache_dir,
+                cache_ttl_override=0,
+                no_cache=False,
+                circuit_state={},
+                circuit_seconds=600,
+                capture=capture_runs_for_new_key_scope,
+                cache_scope="key-new",
+            )
+
+        self.assertEqual(1, calls)
+        self.assertEqual("gap", row["outcome"])
+        self.assertEqual("empty_response", row["gap_category"])
+
+    async def test_alpha_vantage_circuit_is_key_scoped(self) -> None:
+        calls = 0
+
+        async def capture_runs_for_new_key_scope():
+            nonlocal calls
+            calls += 1
+            return research_preflight.provider_row(
+                server="alpha-vantage",
+                queried=True,
+                outcome="gap",
+                checked_at="2026-05-27T01:00:00+00:00",
+                gap_category="empty_response",
+                gap_reason="NEWS_SENTIMENT returned no candidate news items.",
+                retry_count=0,
+            )
+
+        state = {
+            "alpha-vantage:key-old": {
+                "opened_until": (datetime.now(timezone.utc) + timedelta(seconds=60)).isoformat(),
+                "gap_category": "provider_error",
+                "gap_reason": "old key rate limit",
+            }
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            row = await research_preflight.cached_or_capture_provider(
+                server="alpha-vantage",
+                symbols=["NEW"],
+                cache_dir=Path(directory),
+                cache_ttl_override=0,
+                no_cache=False,
+                circuit_state=state,
+                circuit_seconds=600,
+                capture=capture_runs_for_new_key_scope,
+                cache_scope="key-new",
+            )
+
+        self.assertEqual(1, calls)
+        self.assertEqual("gap", row["outcome"])
+
+    def test_alpha_vantage_rate_limit_circuit_defaults_to_one_hour(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            cache_dir = Path(directory)
+            state: dict[str, dict] = {}
+            row = research_preflight.provider_row(
+                server="alpha-vantage",
+                queried=True,
+                outcome="failed",
+                checked_at="2026-05-27T01:00:00+00:00",
+                gap_category="provider_error",
+                gap_reason="Alpha Vantage daily API rate limit reached.",
+                retry_count=0,
+                payload={"provider_issue": "rate_limit"},
+            )
+
+            research_preflight.update_circuit_state(
+                cache_dir,
+                state,
+                "alpha-vantage",
+                row,
+                circuit_seconds=600,
+                cache_scope="key-test",
+            )
+
+        opened_until = research_preflight.parse_utc(state["alpha-vantage:key-test"]["opened_until"])
+        opened_at = research_preflight.parse_utc(state["alpha-vantage:key-test"]["opened_at"])
+        assert opened_until is not None and opened_at is not None
+        self.assertLessEqual((opened_until - opened_at).total_seconds(), 3660)
 
 
 if __name__ == "__main__":

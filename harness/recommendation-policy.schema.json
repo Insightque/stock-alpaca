@@ -12,6 +12,7 @@
     "cadence_policy",
     "promotion_criteria",
     "source_confidence",
+    "after_hours_policy",
     "universe_policy"
   ],
   "properties": {
@@ -224,6 +225,16 @@
           "type": "boolean"
         },
         "research_mcp_full_pass_required": {
+          "type": "boolean"
+        },
+        "evaluation_order": {
+          "type": "string",
+          "enum": ["before_new_buys", "after_new_buys"]
+        },
+        "decouple_from_buy_entry_window": {
+          "type": "boolean"
+        },
+        "decouple_from_buy_budget": {
           "type": "boolean"
         },
         "allowed_reasons": {
@@ -507,6 +518,165 @@
               "type": "integer",
               "minimum": 0
             }
+          }
+        }
+      }
+    },
+    "after_hours_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "enabled_for_explicit_autopilot_runs",
+        "enabled_for_regular_hourly_autopilot",
+        "session_name",
+        "artifact_tag",
+        "review_bucket",
+        "order_id_prefix",
+        "cadence",
+        "separate_from_regular_validation",
+        "require_extended_hours_flag",
+        "require_separate_order_budget",
+        "require_separate_review_bucket",
+        "allowed_sides",
+        "max_new_buy_orders_per_run",
+        "max_new_orders_per_session",
+        "default_qty",
+        "max_notional_pct_per_order",
+        "max_spread_pct",
+        "max_quote_age_minutes_submit",
+        "limit_guardrail_ratio",
+        "cancel_unfilled_after_minutes",
+        "hard_gates",
+        "review_horizons"
+      ],
+      "properties": {
+        "enabled_for_explicit_autopilot_runs": {
+          "type": "boolean"
+        },
+        "enabled_for_regular_hourly_autopilot": {
+          "type": "boolean"
+        },
+        "session_name": {
+          "type": "string",
+          "const": "after_hours"
+        },
+        "artifact_tag": {
+          "type": "string",
+          "minLength": 1
+        },
+        "review_bucket": {
+          "type": "string",
+          "minLength": 1
+        },
+        "order_id_prefix": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cadence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "scheduled_interval_minutes",
+            "launchd_minutes",
+            "launchd_hour_window_kst",
+            "overlap_behavior",
+            "regular_market_behavior"
+          ],
+          "properties": {
+            "scheduled_interval_minutes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "launchd_minutes": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 59
+              }
+            },
+            "launchd_hour_window_kst": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 23
+              }
+            },
+            "overlap_behavior": {
+              "type": "string"
+            },
+            "regular_market_behavior": {
+              "type": "string"
+            }
+          }
+        },
+        "separate_from_regular_validation": {
+          "type": "boolean"
+        },
+        "require_extended_hours_flag": {
+          "type": "boolean"
+        },
+        "require_separate_order_budget": {
+          "type": "boolean"
+        },
+        "require_separate_review_bucket": {
+          "type": "boolean"
+        },
+        "allowed_sides": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": ["buy", "sell"]
+          }
+        },
+        "max_new_buy_orders_per_run": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "max_new_orders_per_session": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "default_qty": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_notional_pct_per_order": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_spread_pct": {
+          "type": "number",
+          "minimum": 0
+        },
+        "max_quote_age_minutes_submit": {
+          "type": "number",
+          "minimum": 0
+        },
+        "limit_guardrail_ratio": {
+          "type": "number",
+          "minimum": 0
+        },
+        "cancel_unfilled_after_minutes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hard_gates": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        },
+        "review_horizons": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
           }
         }
       }

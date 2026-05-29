@@ -1,10 +1,12 @@
 # Workflow: Hourly Paper Autopilot
 
-Use this when the user explicitly asks for scheduled stock recommendations and Alpaca paper buy/sell operation. The legacy workflow name remains `hourly-autopilot`, but the scheduled cadence is every 20 minutes.
+Use this when the user explicitly asks for scheduled stock recommendations and Alpaca paper buy/sell operation. The legacy workflow name remains `hourly-autopilot`, but the scheduled cadence is defined in `harness/recommendation-policy.yaml`.
 
 ## Goal
 
-Run a 20-minute current-market recommendation loop. If and only if every safety, universe, core MCP, quote, spread, and risk gate passes while the US equity market is open, submit Alpaca paper day limit stock/ETF orders through Alpaca MCP. Record detailed decision evidence for later analyst-style reviews and policy improvement.
+Run the current-market recommendation loop on the cadence defined in `harness/recommendation-policy.yaml`. If and only if every safety, universe, core MCP, quote, spread, and risk gate passes while the US equity market is open, submit Alpaca paper day limit stock/ETF orders through Alpaca MCP. Record detailed decision evidence for later analyst-style reviews and policy improvement.
+
+This workflow is regular-session only. After-hours automation must use `harness/workflows/after-hours-autopilot.md` and the `after_hours_policy` profile in `harness/recommendation-policy.yaml`; do not mix after-hours order budgets, artifact tags, or review buckets into this workflow.
 
 ## Authorization
 
@@ -14,25 +16,27 @@ Run a 20-minute current-market recommendation loop. If and only if every safety,
 - Never bypass `scripts/check-risk-policy.py`, `scripts/check-universe-coverage.py --strict`, or `scripts/check-mcp-coverage.py --strict`.
 - MCP gating is tiered for paper automation:
   - Core MCP gate: Alpaca account, clock, positions, open orders, recent activities, tradability, fresh quote, and spread must pass.
-  - Research MCP gate: SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance must all be attempted; at least 3 must be usable/pass for actionable buy candidates.
+  - Research MCP gate: use the research MCP list and confirmation threshold from `harness/recommendation-policy.yaml`.
   - A failed non-core research provider no longer blocks paper action by itself when core and minimum research confirmations pass.
 - Paper validation execution is intentionally less passive than production trading, but it must not bypass hard gates:
   - During regular market hours, prefer active paper validation orders when all hard gates pass.
-  - Default exploratory validation size is 1 share, but strategic allocation uses confidence/notional sizing: validation-floor candidates remain 1 share, standard candidates may scale up to 1% of portfolio value, and high-conviction candidates may scale up to 2% of portfolio value, subject to whole-share rounding and risk caps.
-  - Use at most 3 new buy orders per run, 2% of portfolio value per validation order, and 10% of portfolio value per day.
-  - Treat the 80% invested ratio as a staged policy target, not a one-shot order target: below 70% invested, allow normal acceleration; from 70% to 75%, require stronger candidate quality and diversification benefit; above 75%, prefer trim/rebalance and only add high-conviction candidates.
+  - Default exploratory validation size and confidence/notional sizing tiers come from `harness/recommendation-policy.yaml`; subject all quantities to whole-share rounding and `harness/risk-policy.yaml` caps.
+  - Use `paper_validation_execution.validation_order_sizing.max_new_buy_orders_per_run` for normal per-run buy slots and the validation notional caps in `harness/recommendation-policy.yaml`; do not hardcode those values in this workflow.
+  - Treat the invested-ratio path in `paper_validation_execution.validation_order_sizing.target_exposure_path` as a staged policy target, not a one-shot order target: below the acceleration threshold, allow normal acceleration; between selective and max target thresholds, require stronger candidate quality and diversification benefit; above the rebalance threshold, prefer trim/rebalance and only add high-conviction candidates.
   - Use additional buy slots only for different correlated clusters, or for a clearly higher-confidence candidate that still passes ticker, theme, factor, speculative, cash, turnover, duplicate-order, and spread gates.
   - Fresh open orders block new buys for the same symbol/side and normally for the same correlated cluster, but they do not automatically block different-cluster candidates when the open-order lifecycle gate passes.
-  - Medium source confidence is allowed only when confidence score is at least 0.50, expected excess return is positive, no thesis-break is present, and tiered MCP validation passes.
+  - Medium source confidence handling follows `harness/recommendation-policy.yaml`; candidates still need positive expected excess return, no thesis-break, and tiered MCP validation.
+  - Evaluate risk-reducing sell/trim candidates before new buys on every run. The buy entry window and validation-buy budget gate new buy exposure only; they must not suppress sell/trim diagnostics or order-plan entries that pass the sell gates.
   - If no order is submitted, record the first blocking gate, the next relaxation candidate, and the top recheck candidates. Do not submit a forced order.
 
 ## Required Cadence
 
-- Scheduled runner: fixed 20-minute calendar schedule at minutes 11, 31, and 51.
+- Scheduled runner cadence and launch minutes come from `harness/recommendation-policy.yaml`.
 - The shell wrapper must confirm Alpaca MCP `get_clock.is_open=true` before research preflight or nested Codex execution. If the market is closed, exit with no report/manifest/order plan for that skipped wakeup.
-- The 22:31 KST run is also the market-open validation run for US regular sessions.
-- Recommendation cadence: every scheduled 20-minute run.
+- The market-open validation run comes from `harness/recommendation-policy.yaml`.
+- Recommendation cadence follows the scheduled runner cadence.
 - Submit cadence: only during regular US equity market hours, after fresh quote validation.
+- After-hours submit cadence belongs to `harness/workflows/after-hours-autopilot.md`.
 - Post-trade reconciliation: every run after any submit attempt, and on any run with open orders or same-day fills.
 - Analyst review cadence:
   - New fills: mark `회고 대기` immediately.
@@ -46,7 +50,7 @@ Run a 20-minute current-market recommendation loop. If and only if every safety,
 For the 2026-05-27 US regular session, apply this user-requested overlay after all normal gates and before final order selection:
 
 - The user asked to run today's autopilot more aggressively, but with better diversification.
-- Current intended exposure target is a staged increase from roughly 58% invested up to the risk-policy maximum invested ratio of 80%.
+- Current intended exposure target follows the staged target path in `harness/recommendation-policy.yaml` and the maximum invested ratio in `harness/risk-policy.yaml`.
 - Candidate ranking, buy/hold/trim decisions, and diversification tradeoffs should be determined by the workflow's own policy, current portfolio state, and current MCP/market evidence rather than by hard-coded preferred ticker pairs or manual exclusions.
 - This overlay may only influence the maximum allowed aggressiveness among candidates that already pass market, universe, MCP, quote, spread, duplicate-order, cash, and risk gates. It must not override hard gates, concentration limits, or paper validation sizing limits.
 
@@ -77,7 +81,7 @@ For the 2026-05-27 US regular session, apply this user-requested overlay after a
    - This helper talks to the Alpaca MCP stdio server only. It never submits, replaces, cancels, closes, or REST-calls orders.
    - If the preflight JSON exists and its `hard_gate_summary.status` is `pass`, use its `mcp_coverage_hint` and passing tool rows as Alpaca MCP evidence for clock, account, positions, open orders, recent fills, watchlists, tradability checks, latest quotes, snapshots, and latest trades.
    - The preflight exists to prevent non-interactive scheduled runs from turning read-only Alpaca core calls into false `cancelled` gaps. If a row is missing, stale, or failed, retry only that missing read-only Alpaca MCP tool through the registered Codex MCP tool, then classify any remaining gap.
-   - Do not submit on a quote row that would be older than 20 minutes at submit time; refresh through Alpaca MCP or skip the order.
+   - Do not submit on a quote row that would be older than the freshness limit in `harness/risk-policy.yaml`; refresh through Alpaca MCP or skip the order.
 6. In the shell wrapper, capture scheduler-owned research evidence through `scripts/fetch-research-mcp-preflight.py`.
    - Pass the Alpaca core preflight JSON path and `CODEX_AUTOPILOT_RESEARCH_SYMBOL_LIMIT` so the helper can choose liquid shortlist symbols from fresh Alpaca quotes before nested Codex starts.
    - This helper attempts SEC EDGAR, Alpha Vantage, FRED, Firecrawl, and Yahoo Finance through their local MCP stdio wrappers, writes one provider row per research MCP, and emits `mcp_coverage_hint` rows for direct manifest use.
@@ -108,17 +112,21 @@ For the 2026-05-27 US regular session, apply this user-requested overlay after a
 12. Create a concrete order-plan JSON under `wiki/trade-ledger/orders/`.
    - Include detailed per-order `rationale`.
    - Include source refs, quote timestamp, asset check timestamp, liquidity/spread, confidence score, strategy id/version, policy status, expected excess return, expected adverse move, entry style, sizing basis, and review horizons.
-   - Include `risk_inputs.new_orders_submitted_today` before this run so the risk validator enforces `daily_limits.max_new_orders_per_day`.
+   - Include `risk_inputs.new_orders_submitted_today` before this run so the risk validator enforces `daily_limits.max_new_orders_per_day` for the sides listed in `daily_limits.max_new_orders_per_day_applies_to_sides`; do not impose any separate validation-order budget outside the active policy YAML.
+   - First evaluate held positions for sell/trim/exit using `risk_trim_policy`. Record `sell_trigger_none` when no active trigger exists, or `sell_skip_gate` when a trigger exists but a non-budget gate blocks it.
+   - Treat the daily validation-buy cap as a buy-side throttle. It must not by itself suppress a risk-reducing sell/trim candidate that passes held-quantity, quote, spread, open-order, and risk checks.
    - If all hard gates pass during regular market hours, prefer validation buys for the highest-ranked actionable candidates that pass position/theme/factor/speculative caps.
-   - Use up to `paper_validation_execution.validation_order_sizing.max_new_buy_orders_per_run` buy slots. Additional slots should normally be different correlated clusters and must satisfy the cash-ratio floors in `harness/recommendation-policy.yaml`.
-   - Size validation buys from `paper_validation_execution.validation_order_sizing.confidence_tiers` rather than defaulting every candidate to 1 share. Use the largest whole-share quantity that fits the candidate tier's `max_notional_pct` and `max_qty`, then run the normal risk validator.
+   - Use up to `paper_validation_execution.validation_order_sizing.max_new_buy_orders_per_run` buy slots under normal conditions. Additional slots should normally be different correlated clusters and must satisfy the cash-ratio floors in `harness/recommendation-policy.yaml`.
+   - Size validation buys from `paper_validation_execution.validation_order_sizing.confidence_tiers`. Use the largest whole-share quantity that fits the candidate tier's `max_notional_pct` and `max_qty`, then run the normal risk validator.
    - Apply `target_exposure_path`: below the acceleration threshold, a strong diversified run may use up to the normal per-run exposure budget; high-conviction runs may use the high-conviction budget. Between the selective threshold and the max policy target, submit only candidates that improve portfolio quality or diversify risk. Above the rebalance threshold, evaluate trim/rebalance before new buys.
    - Apply `open_order_policy`: same symbol/side open orders block duplicates; same correlated-cluster open orders normally block additional buys in that cluster; fresh open orders in other clusters do not by themselves block a new candidate if the lifecycle and risk gates pass.
    - If the highest-ranked candidate is already held, add only when the ticker cap and cluster caps still pass.
-   - Buy orders require core MCP pass, at least 3 usable/pass research MCPs, universe pass, fresh quote, spread, and risk pass.
+   - Buy orders require core MCP pass, the research MCP confirmation threshold from `harness/recommendation-policy.yaml`, universe pass, fresh quote, spread, and risk pass.
    - Sell/trim orders require core MCP pass, fresh quote, spread, open-order check, and risk pass. Full research MCP pass is not required for risk trim.
    - Valid sell/trim rationales: thesis-break, risk-limit, stale-thesis, position-sizing, portfolio-fit, speculative cap exceeded, correlated cluster cap exceeded, theme/factor cap exceeded, or overheat profit protection.
+   - Do not apply new-buy confidence/source-confidence/policy-status gates to risk-reducing sells. A rejected or low-confidence thesis can be the reason for `entry_style=trim` or `entry_style=exit`; the risk validator still enforces held quantity and order-shape gates.
    - Evaluate active trim triggers every run using `risk_trim_policy.active_trim_triggers`: position overweight, theme/factor/cluster cap warning, overheat reversal, stale thesis underperformance, and speculative loss control should produce a trim candidate when quote/spread/open-order/risk gates pass.
+   - When buy slots or validation-buy notional budgets are exhausted, continue evaluating trim triggers separately and record whether there were zero sell triggers or whether a sell was skipped by a non-budget gate.
    - Do not sell solely because a new buy candidate ranks higher.
 13. Validate:
 
@@ -132,7 +140,7 @@ python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YOUR-RUN.js
     - Market is open.
     - `ALPACA_PAPER_TRADE=true`.
     - Universe strict gate passes.
-    - MCP strict gate passes under the tiered policy: Alpaca core pass and at least 3 usable/pass research MCPs for buys; Alpaca core pass for risk trim sells.
+    - MCP strict gate passes under the tiered policy in `harness/recommendation-policy.yaml`.
     - Risk gate passes.
     - Quote age is within policy.
     - Spread is present and within policy.

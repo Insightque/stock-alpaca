@@ -587,6 +587,38 @@ def latest_current_order_plan_path() -> Path | None:
     return paths[-1] if paths else None
 
 
+def order_plan_path_from_manifest(manifest: dict[str, Any]) -> Path | None:
+    order_plan_ref = manifest.get("order_plan_path", "")
+    if not order_plan_ref and isinstance(manifest.get("order_plan"), dict):
+        order_plan_ref = manifest["order_plan"].get("path", "")
+    if isinstance(order_plan_ref, str) and order_plan_ref:
+        order_plan_path = path_from_ref(order_plan_ref)
+        if order_plan_path.exists():
+            return order_plan_path
+
+    run_id = str(manifest.get("run_id", "")).strip()
+    if run_id:
+        inferred_path = ROOT / "wiki" / "trade-ledger" / "orders" / f"{run_id}.json"
+        if inferred_path.exists():
+            return inferred_path
+    return None
+
+
+def latest_order_plan_snapshot_path() -> Path | None:
+    manifest_path = latest_manifest_path()
+    manifest = load_json(manifest_path) if manifest_path else {}
+    manifest_order_path = order_plan_path_from_manifest(manifest)
+    if manifest_order_path:
+        return manifest_order_path
+
+    current_path = latest_current_order_plan_path()
+    if current_path:
+        return current_path
+
+    candidates = sorted((ROOT / "wiki" / "trade-ledger" / "orders").glob("*.json"))
+    return candidates[-1] if candidates else None
+
+
 def portfolio_snapshot() -> dict[str, Any]:
     position_path = ROOT / "wiki" / "trade-ledger" / "positions" / "current.md"
     text = read_text(position_path)
@@ -610,44 +642,45 @@ def portfolio_snapshot() -> dict[str, Any]:
             for row in position_rows
             if row.get("티커")
         ]
-        positions.sort(key=lambda item: item["weight_value"], reverse=True)
-        portfolio_value_num = numeric_value(metrics.get("포트폴리오 가치"))
-        cash_num = numeric_value(metrics.get("현금"))
-        cash_ratio = cash_num / portfolio_value_num * 100 if portfolio_value_num and cash_num is not None else None
-        exposure_ratio = numeric_value(metrics.get("투자 노출"))
-        total_pl_num = sum(position["pl_value"] for position in positions)
-        cost_basis = sum(
-            (numeric_value(position["market_value"]) or 0.0) - position["pl_value"]
-            for position in positions
-        )
-        total_return_num = total_pl_num / cost_basis * 100 if cost_basis else None
-        account_status_match = re.search(r"Alpaca account status:\s*(.+)$", text, flags=re.MULTILINE)
-        market_clock_match = re.search(r"Market clock at capture:\s*(.+)$", text, flags=re.MULTILINE)
-        next_open_match = re.search(r"Next regular open:\s*`?([^`\n]+)`?", text, flags=re.MULTILINE)
-        open_orders_section = extract_section(text, "미체결 주문")
-        open_orders = "없음" if "없음" in open_orders_section else "확인 필요"
-        return {
-            "source_path": repo_path(position_path),
-            "href": href_for(repo_path(position_path)),
-            "updated_at": frontmatter_value(text, "updated_at"),
-            "account_status": account_status_match.group(1).strip() if account_status_match else "PAPER",
-            "market_clock": market_clock_match.group(1).strip() if market_clock_match else "",
-            "next_open": next_open_match.group(1).strip() if next_open_match else "",
-            "portfolio_value": metrics.get("포트폴리오 가치", "-"),
-            "cash": metrics.get("현금", "-"),
-            "buying_power": metrics.get("Buying power", "-"),
-            "long_market_value": metrics.get("Long market value", "-"),
-            "total_pl": metrics.get("총 수익") or format_usd(total_pl_num),
-            "total_return": metrics.get("총 수익률") or format_pct(total_return_num),
-            "exposure": metrics.get("투자 노출", "-"),
-            "cash_ratio": cash_ratio,
-            "exposure_ratio": exposure_ratio,
-            "positions_count": len(positions),
-            "open_orders": open_orders,
-            "positions": positions[:8],
-        }
+        if positions:
+            positions.sort(key=lambda item: item["weight_value"], reverse=True)
+            portfolio_value_num = numeric_value(metrics.get("포트폴리오 가치"))
+            cash_num = numeric_value(metrics.get("현금"))
+            cash_ratio = cash_num / portfolio_value_num * 100 if portfolio_value_num and cash_num is not None else None
+            exposure_ratio = numeric_value(metrics.get("투자 노출"))
+            total_pl_num = sum(position["pl_value"] for position in positions)
+            cost_basis = sum(
+                (numeric_value(position["market_value"]) or 0.0) - position["pl_value"]
+                for position in positions
+            )
+            total_return_num = total_pl_num / cost_basis * 100 if cost_basis else None
+            account_status_match = re.search(r"Alpaca account status:\s*(.+)$", text, flags=re.MULTILINE)
+            market_clock_match = re.search(r"Market clock at capture:\s*(.+)$", text, flags=re.MULTILINE)
+            next_open_match = re.search(r"Next regular open:\s*`?([^`\n]+)`?", text, flags=re.MULTILINE)
+            open_orders_section = extract_section(text, "미체결 주문")
+            open_orders = "없음" if "없음" in open_orders_section else "확인 필요"
+            return {
+                "source_path": repo_path(position_path),
+                "href": href_for(repo_path(position_path)),
+                "updated_at": frontmatter_value(text, "updated_at"),
+                "account_status": account_status_match.group(1).strip() if account_status_match else "PAPER",
+                "market_clock": market_clock_match.group(1).strip() if market_clock_match else "",
+                "next_open": next_open_match.group(1).strip() if next_open_match else "",
+                "portfolio_value": metrics.get("포트폴리오 가치", "-"),
+                "cash": metrics.get("현금", "-"),
+                "buying_power": metrics.get("Buying power", "-"),
+                "long_market_value": metrics.get("Long market value", "-"),
+                "total_pl": metrics.get("총 수익") or format_usd(total_pl_num),
+                "total_return": metrics.get("총 수익률") or format_pct(total_return_num),
+                "exposure": metrics.get("투자 노출", "-"),
+                "cash_ratio": cash_ratio,
+                "exposure_ratio": exposure_ratio,
+                "positions_count": len(positions),
+                "open_orders": open_orders,
+                "positions": positions[:8],
+            }
 
-    order_path = latest_current_order_plan_path()
+    order_path = latest_order_plan_snapshot_path()
     order_plan = load_json(order_path) if order_path else {}
     if not order_plan:
         return {"positions": [], "positions_count": 0}
@@ -659,6 +692,11 @@ def portfolio_snapshot() -> dict[str, Any]:
             continue
         market_value = to_float(row.get("market_value")) or 0.0
         weight = market_value / account["portfolio_value"] * 100 if account["portfolio_value"] else 0.0
+        qty = to_float(row.get("qty")) or 0.0
+        avg_entry = to_float(row.get("avg_entry_price"))
+        cost_basis = avg_entry * qty if avg_entry is not None and qty else None
+        pl_value = market_value - cost_basis if cost_basis else None
+        return_pct = pl_value / cost_basis * 100 if pl_value is not None and cost_basis else None
         normalized_positions.append(
             {
                 "symbol": row.get("symbol", ""),
@@ -667,26 +705,30 @@ def portfolio_snapshot() -> dict[str, Any]:
                 "current_price": row.get("current_price", ""),
                 "market_value": f"{market_value:.2f}",
                 "weight": f"{weight:.2f}%",
-                "unrealized_pl": "-",
-                "return_pct": "-",
+                "unrealized_pl": format_usd(pl_value),
+                "return_pct": format_pct(return_pct),
                 "weight_value": weight,
-                "pl_value": 0.0,
+                "pl_value": pl_value or 0.0,
+                "cost_basis": cost_basis or 0.0,
             }
         )
     normalized_positions.sort(key=lambda item: item["weight_value"], reverse=True)
+    total_pl_num = sum(position["pl_value"] for position in normalized_positions)
+    total_cost_basis = sum(position["cost_basis"] for position in normalized_positions)
+    total_return_num = total_pl_num / total_cost_basis * 100 if total_cost_basis else None
     return {
         "source_path": repo_path(order_path) if order_path else "",
         "href": href_for(repo_path(order_path)) if order_path else "",
         "updated_at": str(order_plan.get("created_at", "")),
-        "account_status": "ACTIVE" if order_plan else "",
+        "account_status": "PAPER" if order_plan.get("paper") else "ACTIVE" if order_plan else "",
         "market_clock": "order plan snapshot",
         "next_open": order_plan.get("market", {}).get("next_open", "") if isinstance(order_plan.get("market"), dict) else "",
         "portfolio_value": f"{account['portfolio_value']:.2f} USD",
         "cash": f"{account['cash']:.2f} USD",
         "buying_power": str(order_plan.get("account", {}).get("buying_power", "-")),
         "long_market_value": f"{account['invested']:.2f} USD",
-        "total_pl": "-",
-        "total_return": "-",
+        "total_pl": format_usd(total_pl_num),
+        "total_return": format_pct(total_return_num),
         "exposure": pct_text(account.get("invested_ratio")),
         "cash_ratio": account.get("cash_ratio"),
         "exposure_ratio": account.get("invested_ratio"),
@@ -781,8 +823,84 @@ def enriched_picks(report_text: str, order_plan: dict[str, Any] | None = None) -
     return picks
 
 
+def manifest_shortlist_picks(manifest: dict[str, Any], order_plan: dict[str, Any] | None = None) -> list[dict[str, str]]:
+    rows = manifest.get("recommendation_shortlist", [])
+    if not isinstance(rows, list):
+        return []
+    orders = order_by_symbol(order_plan or {})
+    picks: list[dict[str, str]] = []
+    for row in rows[:3]:
+        if not isinstance(row, dict):
+            continue
+        symbol = str(row.get("symbol") or row.get("심볼") or "").strip()
+        if not symbol:
+            continue
+        order = orders.get(symbol, {})
+        action = str(row.get("action") or row.get("조치") or "").strip()
+        reason = str(row.get("reason") or row.get("근거") or row.get("이유") or "").strip()
+        score = row.get("score") or row.get("composite_score") or row.get("rank")
+        score_label = f"점수 {score}" if score not in (None, "") else "shortlist"
+        if order:
+            primary_chip = f"20D 기대 {format_signed_pct_value(order.get('expected_excess_return_20d_pct'))}"
+            secondary_chip = f"불리 {format_signed_pct_value(order.get('expected_adverse_move_20d_pct'))}"
+        else:
+            primary_chip = action or "candidate"
+            secondary_chip = str(row.get("gate") or row.get("block_reason") or manifest.get("first_blocking_gate") or "")
+        picks.append(
+            {
+                "symbol": symbol,
+                "action": action,
+                "reason": reason,
+                "score": str(score or ""),
+                "rank": str(row.get("rank") or ""),
+                "score_label": score_label,
+                "confidence": str(row.get("confidence") or row.get("policy_status") or "manifest"),
+                "return_20d": "",
+                "vs_spy_20d": "",
+                "primary_chip": primary_chip,
+                "secondary_chip": secondary_chip,
+                "risk": str(row.get("risk") or ""),
+            }
+        )
+    return picks
+
+
+def order_plan_picks(order_plan: dict[str, Any], limit: int = 3) -> list[dict[str, str]]:
+    orders = order_plan.get("orders", []) if isinstance(order_plan.get("orders"), list) else []
+    picks: list[dict[str, str]] = []
+    for order in orders[:limit]:
+        if not isinstance(order, dict):
+            continue
+        symbol = str(order.get("symbol") or "").strip()
+        if not symbol:
+            continue
+        rationale = str(order.get("rationale") or order.get("reason") or "").strip()
+        first_reason = rationale.split(". ", 1)[0].strip() if rationale else ""
+        picks.append(
+            {
+                "symbol": symbol,
+                "action": str(order.get("side") or ""),
+                "reason": first_reason or rationale or "order plan candidate",
+                "score": str(order.get("confidence_score") or ""),
+                "rank": "",
+                "score_label": (
+                    f"신뢰 {to_float(order.get('confidence_score')) * 100:.0f}%"
+                    if to_float(order.get("confidence_score")) is not None
+                    else "order plan"
+                ),
+                "confidence": str(order.get("policy_status") or "order plan"),
+                "return_20d": "",
+                "vs_spy_20d": "",
+                "primary_chip": f"20D 기대 {format_signed_pct_value(order.get('expected_excess_return_20d_pct'))}",
+                "secondary_chip": f"불리 {format_signed_pct_value(order.get('expected_adverse_move_20d_pct'))}",
+                "risk": str(order.get("risk") or ""),
+            }
+        )
+    return picks
+
+
 def compact_agent_result(agent_id: str, manifest: dict[str, Any], report_text: str, order_plan: dict[str, Any]) -> str:
-    risk = manifest.get("risk_check_result", {})
+    risk = normalize_risk_check_result(manifest)
     data_manifest = manifest.get("data_manifest", {})
     orders = order_plan.get("orders", []) if isinstance(order_plan.get("orders"), list) else []
     submitted = manifest.get("submitted_order_ids", [])
@@ -821,12 +939,35 @@ def compact_agent_result(agent_id: str, manifest: dict[str, Any], report_text: s
     return "ready"
 
 
+def normalize_risk_check_result(manifest: dict[str, Any]) -> dict[str, Any]:
+    risk = manifest.get("risk_check_result", {})
+    if isinstance(risk, dict):
+        return risk
+    if isinstance(risk, str):
+        return {"status": risk.upper(), "warnings": []}
+    return {"status": "UNKNOWN", "warnings": []}
+
+
+def mcp_failure_reasons(manifest: dict[str, Any]) -> list[str]:
+    reasons: list[str] = []
+    failures = manifest.get("mcp_failures", [])
+    if not isinstance(failures, list):
+        return reasons
+    for item in failures:
+        if not isinstance(item, dict):
+            continue
+        reason = item.get("reason") or item.get("gap_reason") or item.get("gap_category") or ""
+        if reason:
+            reasons.append(str(reason))
+    return reasons
+
+
 def agent_cards(manifest: dict[str, Any], report_text: str, order_plan: dict[str, Any]) -> list[dict[str, Any]]:
     mcp_failures = manifest.get("mcp_failures", [])
     mcp_coverage = manifest.get("mcp_coverage", [])
     report_has_run = bool(report_text)
     order_plan_exists = bool(order_plan)
-    risk_status = str(manifest.get("risk_check_result", {}).get("status", "")).upper()
+    risk_status = str(normalize_risk_check_result(manifest).get("status", "")).upper()
     submitted = manifest.get("submitted_order_ids", [])
     universe_passed = bool(manifest.get("universe_coverage", {}).get("passed"))
     data_manifest = manifest.get("data_manifest", {})
@@ -900,13 +1041,12 @@ def build_dashboard_data() -> dict[str, Any]:
     report_path = find_report_path(manifest) if manifest else None
     report_text = read_text(report_path) if report_path else ""
 
-    order_plan_path_raw = manifest.get("order_plan_path", "")
-    order_plan_path = path_from_ref(order_plan_path_raw) if order_plan_path_raw else None
+    order_plan_path = order_plan_path_from_manifest(manifest)
     order_plan = load_json(order_plan_path) if order_plan_path else {}
 
     recommendation_rows = recommendation_table(report_text)
     trend_rows = parse_table(report_text, "Trend Agent")
-    risk = manifest.get("risk_check_result", {})
+    risk = normalize_risk_check_result(manifest)
     market = order_plan.get("market", {}) if isinstance(order_plan.get("market"), dict) else {}
     data_manifest = manifest.get("data_manifest", {})
     orders = order_plan.get("orders", []) if isinstance(order_plan.get("orders"), list) else []
@@ -919,7 +1059,10 @@ def build_dashboard_data() -> dict[str, Any]:
         cash_ratio = portfolio.get("cash_ratio")
     if invested_ratio is None:
         invested_ratio = portfolio.get("exposure_ratio")
-    warnings = risk.get("warnings", []) + [item.get("reason", "") for item in manifest.get("mcp_failures", [])]
+    risk_warnings = risk.get("warnings", [])
+    if not isinstance(risk_warnings, list):
+        risk_warnings = [str(risk_warnings)]
+    warnings = risk_warnings + mcp_failure_reasons(manifest)
     market_closed = not bool(market.get("is_open"))
     no_orders = len(orders) == 0 and len(submitted) == 0
     if market_closed and no_orders:
@@ -948,6 +1091,12 @@ def build_dashboard_data() -> dict[str, Any]:
             if path.exists():
                 links.append(link_item(path.name, repo_path(path)))
 
+    picks = enriched_picks(report_text, order_plan)
+    if not picks:
+        picks = manifest_shortlist_picks(manifest, order_plan)
+    if not picks:
+        picks = order_plan_picks(order_plan)
+
     return {
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z"),
         "run": {
@@ -969,7 +1118,7 @@ def build_dashboard_data() -> dict[str, Any]:
         "account": account,
         "portfolio": portfolio,
         "agents": agent_cards(manifest, report_text, order_plan),
-        "picks": enriched_picks(report_text, order_plan),
+        "picks": picks,
         "recommendations": recommendation_rows,
         "scores": trend_rows,
         "links": links,
