@@ -2245,3 +2245,28 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Submit/reconcile: no `place_stock_order` call and no submit attempt. No new `client_order_id` was created; prior same-session ADBE order was reconciled through Alpaca MCP order query.
 - Validators: `python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS with `orders is empty` warning.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-1011-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-1011-after-hours-autopilot.json`, [[2026-05-29-1011-after-hours-autopilot]]. Review due: no new after-hours fills.
+
+## [2026-05-29 10:19 Asia/Seoul] implementation | research MCP alert diagnosis and preflight cleanup
+
+- 최근 `[STOCK-TRAIN]` 알림의 Alpha/FRED 경고 원인을 확인했다. Alpha Vantage `empty_response`는 실제 후보 뉴스 0건이 아니라 provider의 무료 일일 호출 한도 응답이 `empty_response`로 오분류된 것이었다.
+- FRED `timeout`/504는 20분 after-hours cadence 중 1시간 FRED positive cache가 만료된 뒤 fresh `get_macro_snapshot` 요청이 `curl max-time=25` 안에 응답하지 못해 발생했다.
+- 개정: `scripts/fetch-research-mcp-preflight.py`가 Alpha Vantage rate-limit 응답을 `provider_error`로 분류하고, 민감한 provider 응답 payload는 요약만 저장하도록 바꿨다. FRED macro snapshot positive cache TTL은 6시간으로 늘렸다.
+- 기존 research preflight JSON과 cache에서 노출될 수 있는 provider/API 키 문자열을 마스킹했고, 작업 후 wiki/harness/scripts/tests/scheduler 범위에서 민감 값 잔존 여부를 검사해 0건을 확인했다.
+- 검증: `PATH=/usr/local/bin:$PATH python3 -m unittest tests.test_fetch_research_mcp_preflight tests.test_autopilot_notification_schema tests.test_mcp_runtime_wrappers tests.test_policy_source_of_truth` PASS, 35 tests.
+
+## [2026-05-29 10:24 Asia/Seoul] implementation | Alpha Vantage hourly throttle
+
+- 사용자 요청에 따라 Alpha Vantage scheduler preflight를 실제 API 호출 기준 1시간 1회로 제한했다.
+- 개정: `alpha-vantage` cache TTL을 3600초로 늘리고, pass뿐 아니라 gap/failed row도 1시간 캐시하도록 바꿨다. 후보군이 바뀌어 cache key가 달라도 `last-attempt` throttle state가 있으면 실제 Alpha MCP 호출을 건너뛰고 `provider_error` gap row를 남긴다.
+- 문서화: `scheduler/README.md`에 Alpha Vantage preflight가 시간당 1회 실제 API 호출로 throttle된다고 기록했다.
+- 검증: `PATH=/usr/local/bin:$PATH python3 -m unittest tests.test_fetch_research_mcp_preflight tests.test_autopilot_notification_schema tests.test_mcp_runtime_wrappers tests.test_policy_source_of_truth` PASS, 38 tests. 민감 값 잔존 검사 0건.
+
+## [2026-05-29 10:36 Asia/Seoul] after-hours-autopilot | 2026-05-29-1031-after-hours-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session `after_hours`; artifact tag `after-hours`; review bucket `after_hours_validation`.
+- Scheduler preflight: Alpaca core preflight `wiki/evidence-store/sources/2026-05-29-1031-after-hours-autopilot-alpaca-core-preflight.json` had `first_blocking_gate=market_closed`, expected and nonblocking for after-hours. Account, positions, open orders, assets, quotes, spreads, and recent activities rows were usable. Research preflight `wiki/evidence-store/sources/2026-05-29-1031-after-hours-autopilot-research-mcp-preflight.json` had SEC EDGAR/FRED/Firecrawl/Yahoo pass and Alpha Vantage daily rate-limit `provider_error`.
+- Fresh Alpaca MCP spot checks: market clock closed at `2026-05-28T21:33:17.262453622-04:00`, account `ACTIVE`, positions returned 32 symbols, same after-hours session fill activity showed prior ADBE buy, NOK/NVDA assets active/tradable, and overnight quotes for QQQ/NOK/SMH/SPY/NVDA/ADBE/LIN/XOM were checked.
+- Gates: universe strict PASS, MCP strict PASS, separate after-hours order budget PASS with `risk_inputs.after_hours_new_orders_submitted_today=1`, risk validator PASS for empty order plan. Quote/spread was mixed: NOK/NVDA passed, but NOK thesis blocks new chase and NVDA concentration was avoided; ADBE duplicate-session and spread failed, XOM spread was just over cap, LIN was stale/wide, and QQQ/SPY/SMH exceeded the after-hours one-share notional cap.
+- Submit/reconcile: no `place_stock_order` call and no submit attempt. No new `client_order_id` was created; prior same-session ADBE fill was reconciled through Alpaca MCP account activity.
+- Validators: `python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS with `orders is empty` warning.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-1031-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-1031-after-hours-autopilot.json`, [[2026-05-29-1031-after-hours-autopilot]]. Review due: no new after-hours fills.
