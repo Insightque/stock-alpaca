@@ -1,0 +1,163 @@
+{
+  "schema_version": "1.0",
+  "run_id": "2026-05-29-2151-after-hours-autopilot",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "created_at": "2026-05-29T21:54:30+09:00",
+  "paper": true,
+  "session": "after_hours",
+  "artifact_tag": "after-hours",
+  "source": "runtime_alpaca_mcp_spot_check",
+  "scheduler_preflight_refs": [
+    "wiki/evidence-store/sources/2026-05-29-2151-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-29-2151-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "clock": {
+    "is_open": false,
+    "timestamp": "2026-05-29T08:52:49.483922314-04:00",
+    "next_open": "2026-05-29T09:30:00-04:00",
+    "next_close": "2026-05-29T16:00:00-04:00"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102356.62,
+    "cash": 36945.25,
+    "buying_power": 133187.45,
+    "currency": "USD"
+  },
+  "positions": {
+    "count": 32
+  },
+  "open_orders": {
+    "us_equity_open_count": 0,
+    "result": []
+  },
+  "same_session_after_hours_validation_fills": [
+    {
+      "symbol": "ADBE",
+      "side": "buy",
+      "qty": 1,
+      "price": 242.36,
+      "transaction_time": "2026-05-29T00:16:54.397547Z",
+      "order_id": "5f9f7aeb-3aa5-4752-87fc-1286dfee9dde"
+    }
+  ],
+  "after_hours_new_orders_submitted_today": 1,
+  "asset_checks": {
+    "NOK": {
+      "status": "active",
+      "tradable": true,
+      "class": "us_equity",
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "overnight_tradable"
+      ]
+    },
+    "NVDA": {
+      "status": "active",
+      "tradable": true,
+      "class": "us_equity",
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "overnight_tradable"
+      ]
+    },
+    "XOM": {
+      "status": "active",
+      "tradable": true,
+      "class": "us_equity",
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "overnight_tradable"
+      ]
+    },
+    "ADBE": {
+      "status": "active",
+      "tradable": true,
+      "class": "us_equity",
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "overnight_tradable"
+      ]
+    },
+    "LIN": {
+      "status": "active",
+      "tradable": true,
+      "class": "us_equity",
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "overnight_tradable"
+      ]
+    }
+  },
+  "quote_feed": "overnight",
+  "quote_checked_at": "2026-05-29T08:52:49.483922314-04:00",
+  "quotes": {
+    "QQQ": {
+      "bid": 735.21,
+      "ask": 736.7,
+      "t": "2026-05-29T08:00:00.386377592Z",
+      "spread_pct": 0.2025,
+      "quote_age_minutes": 292.82
+    },
+    "NOK": {
+      "bid": 14.81,
+      "ask": 15.79,
+      "t": "2026-05-29T08:00:00.412618229Z",
+      "spread_pct": 6.4052,
+      "quote_age_minutes": 292.82
+    },
+    "SMH": {
+      "bid": 593.88,
+      "ask": 618.91,
+      "t": "2026-05-29T08:00:00.397462213Z",
+      "spread_pct": 4.1277,
+      "quote_age_minutes": 292.82
+    },
+    "SPY": {
+      "bid": 754.93,
+      "ask": 758.7,
+      "t": "2026-05-29T08:00:00.403389828Z",
+      "spread_pct": 0.4981,
+      "quote_age_minutes": 292.82
+    },
+    "NVDA": {
+      "bid": 215.27,
+      "ask": 215.43,
+      "t": "2026-05-29T08:00:00.413977496Z",
+      "spread_pct": 0.0743,
+      "quote_age_minutes": 292.82
+    },
+    "ADBE": {
+      "bid": 242.8,
+      "ask": 268.18,
+      "t": "2026-05-29T08:00:00.406086772Z",
+      "spread_pct": 9.9339,
+      "quote_age_minutes": 292.82
+    },
+    "LIN": {
+      "bid": 495.03,
+      "ask": 502.05,
+      "t": "2026-05-29T08:00:00.313942005Z",
+      "spread_pct": 1.4077,
+      "quote_age_minutes": 292.82
+    },
+    "XOM": {
+      "bid": 145.51,
+      "ask": 151.95,
+      "t": "2026-05-29T08:00:00.400618942Z",
+      "spread_pct": 4.3300,
+      "quote_age_minutes": 292.82
+    }
+  },
+  "gate_notes": {
+    "regular_market_not_open": "PASS",
+    "alpaca_core": "PASS using scheduler preflight plus runtime MCP spot checks",
+    "quote_freshness": "FAIL: overnight quote timestamps around 2026-05-29T08:00:00Z exceed after_hours_policy.max_quote_age_minutes_submit=5.0",
+    "submit_attempted": false
+  }
+}
