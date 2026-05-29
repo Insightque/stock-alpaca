@@ -1,0 +1,77 @@
+{
+  "run_id": "2026-05-29-2351-hourly-autopilot",
+  "created_at": "2026-05-29T14:57:20Z",
+  "paper": true,
+  "read_only": true,
+  "source": "registered Codex Alpaca MCP spot checks after scheduler preflight",
+  "checks": [
+    {
+      "tool": "get_clock",
+      "outcome": "pass",
+      "checked_at": "2026-05-29T14:57:16Z",
+      "payload": {
+        "is_open": true,
+        "timestamp": "2026-05-29T10:57:16.658478066-04:00",
+        "next_close": "2026-05-29T16:00:00-04:00",
+        "next_open": "2026-06-01T09:30:00-04:00"
+      }
+    },
+    {
+      "tool": "get_account_info",
+      "outcome": "pass",
+      "checked_at": "2026-05-29T14:56:35Z",
+      "payload_summary": {
+        "status": "ACTIVE",
+        "currency": "USD",
+        "portfolio_value": 101823.53,
+        "cash": 36453.47,
+        "buying_power": 132345.49,
+        "long_market_value": 65370.06,
+        "last_equity": 102266.98
+      }
+    },
+    {
+      "tool": "get_all_positions",
+      "outcome": "pass",
+      "checked_at": "2026-05-29T14:56:43Z",
+      "payload_summary": {
+        "position_count": 32,
+        "all_long": true
+      }
+    },
+    {
+      "tool": "get_orders",
+      "outcome": "pass",
+      "checked_at": "2026-05-29T14:56:51Z",
+      "payload_summary": {
+        "open_us_equity_orders": 0,
+        "result": []
+      }
+    },
+    {
+      "tool": "get_stock_latest_quote",
+      "outcome": "pass",
+      "checked_at": "2026-05-29T14:57:04Z",
+      "symbols": [
+        "QQQ",
+        "V"
+      ],
+      "payload": {
+        "quotes": {
+          "QQQ": {
+            "bp": 738.05,
+            "ap": 738.29,
+            "t": "2026-05-29T14:57:03.136148704Z"
+          },
+          "V": {
+            "bp": 330.46,
+            "ap": 331.0,
+            "t": "2026-05-29T14:56:56.940046914Z"
+          }
+        }
+      }
+    }
+  ],
+  "gap_category": "not_applicable",
+  "gap_reason": ""
+}

@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-29 22:59 KST hourly autopilot post-trade reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-30 00:03 KST hourly autopilot post-trade reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -528,3 +528,7 @@
 - [[2026-05-29-2331-hourly-autopilot]] - regular-session hourly paper autopilot 실행. universe/MCP strict PASS였지만 stale BAC open-order lifecycle risk FAIL로 신규 주문 없음.
 - `wiki/evidence-store/run-manifests/2026-05-29-2331-hourly-autopilot.json` - hourly autopilot manifest, first_blocking_gate=`risk_open_order_lifecycle`, Alpha Vantage provider_error nonblocking gap, sell diagnostics와 validation lifecycle 기록.
 - `wiki/trade-ledger/orders/2026-05-29-2331-hourly-autopilot.json` - 2026-05-29 23:31 KST hourly autopilot empty order plan, current Alpaca positions 포함, BAC open order age 초과로 risk validator FAIL.
+
+- [[2026-05-29-2351-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/open-order lifecycle, Alpaca core, universe, MCP, quote/spread, risk gate 통과 후 QQQ/V 각 1주 validation buy 체결.
+- `wiki/trade-ledger/orders/2026-05-29-2351-hourly-autopilot.json` - 2026-05-29 23:51 KST hourly autopilot QQQ/V 1주 validation buy plan, universe/MCP/risk PASS, 둘 다 filled.
+- `wiki/trade-ledger/positions/2026-05-29-2351-hourly-autopilot-post-trade.json` - 2026-05-30 00:03 KST hourly autopilot post-trade snapshot: QQQ/V filled, open orders 없음.

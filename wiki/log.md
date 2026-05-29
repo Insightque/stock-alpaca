@@ -2747,3 +2747,13 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Sell/trim was evaluated before buys. `sell_candidate_diagnostics` was written to the manifest/order plan for AMD target-band warning blocked by lifecycle, plus PLTR and RGTI watch diagnostics. Validation lifecycle had no missing due-review add blockers.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-2331-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-2331-hourly-autopilot.json`, [[2026-05-29-2331-hourly-autopilot]].
 - Validators: universe PASS; MCP PASS; risk FAIL as expected for open-order lifecycle blocker.
+
+## [2026-05-30 00:03 Asia/Seoul] hourly-autopilot | 2026-05-29-2351-hourly-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; regular session submit mode.
+- Scheduler evidence: stale cleanup PASS with no remaining open orders. Alpaca core preflight hard gate PASS; registered Alpaca MCP spot checks confirmed market open, account ACTIVE, 32 positions, open orders `[]`, and fresh QQQ/V quotes. Research preflight had SEC EDGAR/FRED/Firecrawl/Yahoo PASS and Alpha Vantage `provider_error` circuit-breaker gap, nonblocking with 4 usable research confirmations.
+- Gates: universe strict PASS, MCP strict PASS, risk validator PASS. Sell/trim evaluated first and `sell_candidate_diagnostics` recorded AMD/PLTR/RGTI watch diagnostics; no eligible trim/exit order. Validation lifecycle blocked additional AAPL/COP/NOK buys until due reviews are written.
+- Submitted through Alpaca MCP only: QQQ and V 1-share day limit paper buy orders. Both filled: QQQ $737.62, V $331.00.
+- Post-trade reconciliation: client-id order lookup, open orders, positions, account, and fill activities completed; open US-equity orders `[]`.
+- Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-29-2351-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-05-29-2351-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-05-29-2351-hourly-autopilot-post-trade.json`, [[2026-05-29-2351-hourly-autopilot]], [[portfolio-current]]. Review due: QQQ/V new fills marked for future 1D/5D/20D review.
