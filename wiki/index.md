@@ -495,4 +495,6 @@
 - [[2026-05-29-1611-after-hours-autopilot]] - 16:11 KST scheduled after-hours autopilot report; session=`after_hours`, universe/MCP/risk strict PASS, thesis/concentration/duplicate/notional/quote-spread gates로 주문 없음.
 - `wiki/evidence-store/run-manifests/2026-05-29-1611-after-hours-autopilot.json` - after-hours manifest, `review_bucket=after_hours_validation`, `orders_submitted=0`, empty-order risk-check PASS.
 - [[2026-05-29-1631-after-hours-autopilot]] - 16:31 KST scheduled after-hours autopilot report; session=`after_hours`, universe/MCP/risk strict PASS, thesis/concentration/duplicate/notional/quote-spread gates로 주문 없음.
+- [[2026-05-29-2011-after-hours-autopilot]] - 20:11 KST scheduled after-hours autopilot report; session=`after_hours`, universe/MCP/risk strict PASS, stale overnight quote gate로 주문 없음.
+- `wiki/evidence-store/run-manifests/2026-05-29-2011-after-hours-autopilot.json` - after-hours manifest, `review_bucket=after_hours_validation`, `orders_submitted=0`, empty-order risk-check PASS.
 - `wiki/evidence-store/run-manifests/2026-05-29-1631-after-hours-autopilot.json` - after-hours manifest, `review_bucket=after_hours_validation`, `orders_submitted=0`, empty-order risk-check PASS.
