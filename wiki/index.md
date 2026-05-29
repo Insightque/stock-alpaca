@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-30 00:20 KST hourly autopilot post-trade reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-30 00:55 KST hourly autopilot open-order reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -46,6 +46,7 @@
 
 - [[2026-05-30-0011-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 GOOGL, WMT, NEE 각 1주 paper validation buy 체결.
 - [[2026-05-30-0031-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk/quote/spread gate 통과 후 MRK 1주 paper validation buy 제출, reconciliation 기준 open `new`.
+- [[2026-05-30-0051-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 MRK fresh open order, same-session duplicate, thesis/lifecycle/target-band candidate gate로 신규 주문 없음.
 - `wiki/current-runs/daily/` - 현재 계좌와 현재 시장을 대상으로 실행한 일일 trading workflow 결과.
 - [[2026-05-22]] - 현재 시장 분석과 이후 주식 중심 paper 매수 실행 업데이트.
 - [[2026-05-24]] - 현재 기준 no-submit 종목 추천, dry-run 주문 후보, risk-check 결과.
@@ -540,3 +541,6 @@
 
 - `wiki/trade-ledger/orders/2026-05-30-0031-hourly-autopilot.json` - 2026-05-30 00:31 KST hourly autopilot MRK 1주 paper validation buy plan, universe/MCP/risk PASS, order open `new`.
 - `wiki/trade-ledger/positions/2026-05-30-0031-hourly-autopilot-post-trade.json` - 2026-05-30 00:38 KST hourly autopilot post-trade snapshot: MRK open `new`, no MRK fill.
+- `wiki/evidence-store/run-manifests/2026-05-30-0051-hourly-autopilot.json` - 2026-05-30 00:51 KST hourly autopilot manifest, universe/MCP/risk PASS, Alpha Vantage provider_error nonblocking, no submitted orders.
+- `wiki/trade-ledger/orders/2026-05-30-0051-hourly-autopilot.json` - 2026-05-30 00:51 KST hourly autopilot empty order plan, current Alpaca positions and MRK fresh open order included, sell diagnostics recorded.
+- `wiki/trade-ledger/positions/2026-05-30-0051-hourly-autopilot-post-trade.json` - 2026-05-30 00:55 KST hourly autopilot open-order snapshot: MRK remains open `new`, no submit attempt this run.
