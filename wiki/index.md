@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-05-30-0731-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-30-0711-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-30-0651-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-30-0631-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
@@ -265,6 +266,8 @@
 - [[2026-05-29-sell-frequency-policy-review]] - 현재 정책과 validator가 sell/trim을 과소 발생시키는지 확인하고 buy-quality gate를 sell에서 분리한 분석.
 - [[2026-05-29-autopilot-exit-policy-learning-review]] - 다른 분기의 sell/exit/time-stop 수정사항을 현재 정책학습 기준으로 재검토하고 필요한 부분만 적용한 분석.
 - [[2026-05-29-policy-architecture-review]] - sell diagnostics/lifecycle trim 정책 반영 이후 정책 학습, runtime, manifest schema, risk blocker 분류를 전면 점검한 분석.
+- [[2026-05-30-review-policy-learning-architecture-proposal]] - 회고를 더 빠른 정책 업데이트로 연결하기 위한 review row dataset, due index, scorecard, policy signal registry 구조 제안.
+- [[2026-05-30-daily-policy-update-health-check]] - 일별 자동운영/회고가 정책 업데이트로 잘 연결되는지 점검한 건강도 분석.
 - [[2026-05-29-wiki-lint]] - index 누락/중복과 22:31 preflight orphan 상태를 점검한 targeted wiki lint.
 
 ## Backtest Runs
@@ -315,6 +318,7 @@
 - [[2026-05-28-portfolio-review]] - 2026-05-26 validation fills LLY/FCX/NOK/NVDA/AAPL의 1D interim analyst review. 정책 변경 없음.
 - [[2026-05-29-portfolio-review]] - 2026-05-27 validation fills NKE/PFE/SO/WMT/NEE/AMZN/BAC/XOM/V의 1D interim analyst review. 정책 변경 없음.
 - [[2026-05-30-portfolio-review]] - 2026-05-28 validation fills와 ADBE after-hours fill의 1D interim analyst review. 정책 변경 없음.
+- [[2026-05-30-overnight-trade-review]] - 2026-05-29 밤~2026-05-30 새벽 자동운영 체결 10건과 MRK 미체결 취소를 회고 대기 상태로 점검. 정책 변경 없음.
 - `wiki/evidence-store/run-manifests/2026-05-29-0625-analyst-review-cycle.json` - 2026-05-29 analyst review cycle MCP coverage와 due-review manifest.
 - `wiki/trade-ledger/orders/2026-05-26-1853-hourly-autopilot.json` - 2026-05-26 18:53 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2011-hourly-autopilot.json` - 2026-05-26 20:11 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
@@ -460,6 +464,7 @@
 - [[2026-05-25-one-year-hourly-buy-sell-trend-enhanced-simulation-sources]] - 동향 feature cache를 결합한 1년 1시간봉 virtual buy/sell 시뮬레이션 원천.
 - [[2026-05-27-0624-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/SEC/Alpha/Yahoo reconciliation, FRED/Firecrawl catalog gap, 1D 회고 원천.
 - [[2026-05-30-0625-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/SEC/Alpha/Yahoo reconciliation, FRED/Firecrawl wrapper gap, 2026-05-28 fill 1D 회고 원천.
+- [[2026-05-30-overnight-trade-review-alpaca-readonly]] - 지난 밤 거래 회고용 Alpaca MCP read-only 계좌, FILL 10건, MRK 미체결 취소 확인.
 - `wiki/evidence-store/sources/2026-05-25-one-year-hourly-bars.json` - 62개 심볼 2025-05-23~2026-05-22 adjusted IEX 1시간봉 원자료.
 - `wiki/evidence-store/sources/2026-05-25-one-year-hourly-alpaca-news.json` - 1년 1시간봉 보강용 Alpaca MCP 뉴스 원자료.
 - `wiki/evidence-store/sources/2026-05-25-one-year-hourly-trend-event-feature-cache.json` - 일별 point-in-time 동향 feature cache.

@@ -2932,6 +2932,22 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-30-0651-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-30-0651-after-hours-autopilot.json`, `wiki/evidence-store/sources/2026-05-30-0651-after-hours-autopilot-runtime-alpaca-spot-check.json`, [[2026-05-30-0651-after-hours-autopilot]].
 - Validators: `python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
 
+## [2026-05-30 07:25 Asia/Seoul] trade-review | overnight autopilot fills review waiting
+
+- 사용자의 지난 밤 거래 회고 요청에 따라 2026-05-29 22:31 KST부터 2026-05-30 06:51 KST까지 자동운영 주문을 점검했다.
+- Alpaca MCP read-only로 account info, FILL activities, MRK client order 상태를 확인했다. 주문 제출/교체/취소/청산 도구는 호출하지 않았다.
+- 실제 체결: PFE/NKE/SO/SLB/AMZN/QQQ/V/GOOGL/NEE/WMT 각 1주 buy, 총 10건 약 2,144.99 USD. 매도 체결 없음. MRK 1주 buy는 filled_qty 0, canceled.
+- 임시 mark-to-market: Alpaca open position current_price 기준 약 -7.22 USD, -0.34%. 아직 1D/5D/20D 판단 전이라 정책 변경은 보류했다.
+- 산출물: [[2026-05-30-overnight-trade-review]], [[2026-05-30-overnight-trade-review-alpaca-readonly]].
+
+## [2026-05-30 07:42 Asia/Seoul] analysis | review-to-policy architecture proposal
+
+- 현재 회고 구조를 분석해 정책 업데이트 속도를 높이는 방안을 제안했다.
+- 결론: 정책 기준을 낮추기보다 회고를 `review-rows.jsonl`, `review-due-index.json`, review scorecard, `policy-signals.yaml`, policy proposal generator로 구조화하는 편이 안전하다.
+- 우선 후보: `review-backlog-throttle`, skipped/not-filled candidate counterfactual tracking, sell diagnostic metric completeness.
+- 산출물: [[2026-05-30-review-policy-learning-architecture-proposal]].
+- 주문 제출/교체/취소/청산은 수행하지 않았다.
+
 ## [2026-05-30 07:14 Asia/Seoul] after-hours-autopilot | 2026-05-30-0711-after-hours-autopilot scheduled paper autopilot
 
 - Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session `after_hours`; policy profile `after_hours_policy`; review bucket `after_hours_validation`.
@@ -2939,4 +2955,21 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Gates: universe strict PASS, MCP strict PASS, risk validator PASS with expected `orders is empty` warning. Submit gate failed before any order because candidate overnight quotes were stale (`2026-05-29T08:00:00Z`, about 853 minutes old versus the 5-minute after-hours cap). `risk_inputs.after_hours_new_orders_submitted_today=0`; regular validation order count was not reused.
 - Orders: no `place_stock_order` call; no `client_order_id`; reconcile not applicable because there was no submit attempt. Order plan kept `market.session=after_hours` and no order entries.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-30-0711-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-30-0711-after-hours-autopilot.json`, `wiki/evidence-store/sources/2026-05-30-0711-after-hours-autopilot-runtime-alpaca-spot-check.json`, [[2026-05-30-0711-after-hours-autopilot]].
+- Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
+
+## [2026-05-30 07:32 Asia/Seoul] analysis | daily policy update health check
+
+- 일별 자동운영/회고가 정책 업데이트로 잘 연결되는지 점검했다.
+- 결론: 정책학습 방향은 양호하고 단일 사례 overfit은 잘 막고 있지만, live paper review가 구조화된 row dataset/scorecard로 자동 집계되지는 않아 빠른 학습 루프는 아직 약하다.
+- 오늘 기준 `recommendation-policy.yaml` 추가 변경은 보류한다. 2026-05-29 밤 validation fills는 2026-06-01 미국 정규장 close 이후 1D review가 완료될 때까지 정책 변경 근거로 쓰지 않는다.
+- 산출물: [[2026-05-30-daily-policy-update-health-check]].
+- 주문 제출/교체/취소/청산은 수행하지 않았다.
+
+## [2026-05-30 07:36 Asia/Seoul] after-hours-autopilot | 2026-05-30-0731-after-hours-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session `after_hours`; policy profile `after_hours_policy`; review bucket `after_hours_validation`.
+- Scheduler evidence: used `wiki/evidence-store/sources/2026-05-30-0731-after-hours-autopilot-alpaca-core-preflight.json` and `wiki/evidence-store/sources/2026-05-30-0731-after-hours-autopilot-research-mcp-preflight.json`. Alpaca `first_blocking_gate=market_closed` was expected and nonblocking for after-hours; runtime Alpaca MCP confirmed regular market closed, positions readable, open US-equity orders `[]`, and overnight quote evidence. Runtime account-info spot check was cancelled, so the scheduler-owned passing account row was used.
+- Gates: universe strict PASS, MCP strict PASS, risk validator PASS with expected `orders is empty` warning. Submit gate failed before any order because candidate overnight quotes were stale (`2026-05-29T08:00:00Z`, about 874.7 minutes old versus the 5-minute after-hours cap). `risk_inputs.after_hours_new_orders_submitted_today=0`; regular validation order count was not reused.
+- Orders: no `place_stock_order` call; no `client_order_id`; reconcile not applicable because there was no submit attempt. Order plan kept `market.session=after_hours` and no order entries.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-30-0731-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-30-0731-after-hours-autopilot.json`, `wiki/evidence-store/sources/2026-05-30-0731-after-hours-autopilot-runtime-alpaca-spot-check.json`, [[2026-05-30-0731-after-hours-autopilot]].
 - Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
