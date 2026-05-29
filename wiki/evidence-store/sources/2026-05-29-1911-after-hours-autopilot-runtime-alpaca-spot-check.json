@@ -1,0 +1,207 @@
+{
+  "run_id": "2026-05-29-1911-after-hours-autopilot",
+  "created_at": "2026-05-29T19:13:30+09:00",
+  "paper": true,
+  "source": "fresh Alpaca MCP read-only spot checks during scheduled after-hours workflow",
+  "session": "after_hours",
+  "tool_results": {
+    "get_clock": {
+      "outcome": "pass",
+      "payload": {
+        "is_open": false,
+        "timestamp": "2026-05-29T06:12:12.370378168-04:00",
+        "next_open": "2026-05-29T09:30:00-04:00",
+        "next_close": "2026-05-29T16:00:00-04:00"
+      }
+    },
+    "get_account_info": {
+      "outcome": "pass",
+      "payload_summary": {
+        "status": "ACTIVE",
+        "currency": "USD",
+        "portfolio_value": 102409.5,
+        "cash": 36945.25,
+        "buying_power": 133236.31,
+        "trading_blocked": false,
+        "account_blocked": false
+      }
+    },
+    "get_orders_open_us_equity": {
+      "outcome": "pass",
+      "payload": {
+        "result": []
+      }
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "payload_summary": {
+        "position_count": 32
+      }
+    },
+    "get_account_activities_fill": {
+      "outcome": "pass",
+      "payload_summary": {
+        "after_hours_session_fills": [
+          {
+            "symbol": "ADBE",
+            "side": "buy",
+            "qty": 1,
+            "price": 242.36,
+            "transaction_time": "2026-05-29T00:16:54.397547Z"
+          }
+        ],
+        "after_hours_new_orders_submitted_today": 1
+      }
+    },
+    "get_asset": {
+      "outcome": "pass",
+      "symbols_checked": [
+        "NOK",
+        "NVDA",
+        "XOM",
+        "ADBE",
+        "LIN"
+      ],
+      "payload_summary": {
+        "NOK": {
+          "class": "us_equity",
+          "status": "active",
+          "tradable": true,
+          "overnight_tradable": true
+        },
+        "NVDA": {
+          "class": "us_equity",
+          "status": "active",
+          "tradable": true,
+          "overnight_tradable": true
+        },
+        "XOM": {
+          "class": "us_equity",
+          "status": "active",
+          "tradable": true,
+          "overnight_tradable": true
+        },
+        "ADBE": {
+          "class": "us_equity",
+          "status": "active",
+          "tradable": true,
+          "overnight_tradable": true
+        },
+        "LIN": {
+          "class": "us_equity",
+          "status": "active",
+          "tradable": true,
+          "overnight_tradable": true
+        }
+      }
+    },
+    "get_stock_latest_quote_overnight": {
+      "outcome": "pass",
+      "feed": "overnight",
+      "quotes": {
+        "NVDA": {
+          "bid": 215.27,
+          "ask": 215.43,
+          "t": "2026-05-29T08:00:00.413977496Z",
+          "spread_pct": 0.0743,
+          "spread_pass": true,
+          "quote_fresh": false,
+          "quote_age_minutes": 132.2
+        },
+        "SPY": {
+          "bid": 754.93,
+          "ask": 758.7,
+          "t": "2026-05-29T08:00:00.403389828Z",
+          "spread_pct": 0.4981,
+          "spread_pass": false,
+          "quote_fresh": false,
+          "quote_age_minutes": 132.2
+        },
+        "SMH": {
+          "bid": 593.88,
+          "ask": 618.91,
+          "t": "2026-05-29T08:00:00.397462213Z",
+          "spread_pct": 4.1277,
+          "spread_pass": false,
+          "quote_fresh": false,
+          "quote_age_minutes": 132.2
+        },
+        "NOK": {
+          "bid": 14.81,
+          "ask": 15.79,
+          "t": "2026-05-29T08:00:00.412618229Z",
+          "spread_pct": 6.4052,
+          "spread_pass": false,
+          "quote_fresh": false,
+          "quote_age_minutes": 132.2
+        },
+        "QQQ": {
+          "bid": 735.21,
+          "ask": 736.7,
+          "t": "2026-05-29T08:00:00.386377592Z",
+          "spread_pct": 0.2025,
+          "spread_pass": true,
+          "quote_fresh": false,
+          "quote_age_minutes": 132.2
+        },
+        "XOM": {
+          "bid": 145.51,
+          "ask": 151.95,
+          "t": "2026-05-29T08:00:00.400618942Z",
+          "spread_pct": 4.33,
+          "spread_pass": false,
+          "quote_fresh": false,
+          "quote_age_minutes": 132.2
+        },
+        "LIN": {
+          "bid": 495.03,
+          "ask": 502.05,
+          "t": "2026-05-29T08:00:00.313942005Z",
+          "spread_pct": 1.4081,
+          "spread_pass": false,
+          "quote_fresh": false,
+          "quote_age_minutes": 132.2
+        },
+        "ADBE": {
+          "bid": 242.8,
+          "ask": 268.18,
+          "t": "2026-05-29T08:00:00.406086772Z",
+          "spread_pct": 9.9339,
+          "spread_pass": false,
+          "quote_fresh": false,
+          "quote_age_minutes": 132.2
+        }
+      }
+    },
+    "get_stock_snapshot_overnight": {
+      "outcome": "pass",
+      "feed": "overnight",
+      "symbols": [
+        "NVDA",
+        "SPY",
+        "SMH",
+        "NOK",
+        "QQQ",
+        "XOM",
+        "LIN",
+        "ADBE"
+      ]
+    }
+  },
+  "gate_readout": {
+    "paper_mode": "PASS",
+    "regular_market_not_open": "PASS",
+    "account": "PASS",
+    "positions": "PASS",
+    "open_orders": "PASS",
+    "assets": "PASS",
+    "quote_freshness": "FAIL",
+    "quote_spread": "MIXED",
+    "submit_allowed": false,
+    "submit_block_reason": "overnight quote timestamps around 2026-05-29T08:00:00Z were older than after_hours_policy.max_quote_age_minutes_submit=5.0 at the fresh Alpaca clock check"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-29-1911-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-29-1911-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
