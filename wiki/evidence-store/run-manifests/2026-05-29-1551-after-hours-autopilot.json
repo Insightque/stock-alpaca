@@ -1,0 +1,245 @@
+{
+  "run_id": "2026-05-29-1551-after-hours-autopilot",
+  "created_at": "2026-05-29T15:55:00+09:00",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "policy_profile": "after_hours_policy",
+  "recommendation_policy_sha": "8e954abd7f8ccddc0369863ee5a11914ba7de415",
+  "market": {
+    "is_open": false,
+    "checked_at": "2026-05-29T06:52:36.919662785Z",
+    "next_open": "2026-05-29T09:30:00-04:00",
+    "next_close": "2026-05-29T16:00:00-04:00",
+    "session": "after_hours"
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "all_research_must_be_attempted": true,
+    "min_research_confirmations": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T06:52:36.919662785Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1551-after-hours-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "Scheduler Alpaca core preflight first_blocking_gate=market_closed was expected and nonblocking for after-hours. Runtime Alpaca MCP checks confirmed closed regular market, active account, empty open US equity orders, one same-session ADBE after-hours fill, QQQ/LIN live asset checks, overnight quotes for QQQ/NOK/SMH/SPY/NVDA/ADBE/LIN/XOM, and scheduler preflight passing positions/assets/open-order rows.",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T05:51:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1551-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-05-29T06:51:25+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1551-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Circuit breaker open until 2026-05-29T07:31:35+00:00 after recent provider_error failure: Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T04:51:27+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1551-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T06:11:22+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1551-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T06:31:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-29-1551-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "NOK",
+      "SMH",
+      "SPY",
+      "NVDA",
+      "ADBE",
+      "LIN",
+      "XOM"
+    ],
+    "final_candidates": [
+      "NOK",
+      "NVDA",
+      "XOM",
+      "ADBE"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0,
+    "weekly_turnover_ratio": 0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "after_hours_new_orders_submitted_today": 1,
+    "risk_recomputed_after_partial_fill": true
+  },
+  "gate_status": {
+    "paper_mode": "PASS",
+    "regular_market_not_open": "PASS",
+    "alpaca_core": "PASS",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "separate_after_hours_order_budget": "PASS",
+    "risk_policy": "PASS",
+    "quote_spread": "MIXED",
+    "order_shape": "NOT_APPLICABLE_EMPTY_PLAN",
+    "ticker_thesis": "BLOCK"
+  },
+  "candidate_decisions": [
+    {
+      "symbol": "NOK",
+      "quote_fresh": true,
+      "spread_pct": 0.0648,
+      "decision": "skip",
+      "reason": "quote/spread는 통과했지만 thesis가 overheat guard와 이전 add 약세 때문에 신규 추격을 막는다."
+    },
+    {
+      "symbol": "NVDA",
+      "quote_fresh": true,
+      "spread_pct": 0.1439,
+      "decision": "skip",
+      "reason": "quote/spread는 통과했지만 기존 AI semiconductor concentration을 after-hours validation에서 추가하지 않는다."
+    },
+    {
+      "symbol": "XOM",
+      "quote_fresh": true,
+      "spread_pct": 0.1093,
+      "decision": "skip",
+      "reason": "quote/spread는 통과했지만 약한 interim validation review 이후 fresh additional-buy thesis가 없다."
+    },
+    {
+      "symbol": "ADBE",
+      "quote_fresh": true,
+      "spread_pct": 0.0493,
+      "decision": "skip",
+      "reason": "같은 after-hours session에서 ADBE validation fill이 이미 있어 duplicate-session을 차단한다."
+    },
+    {
+      "symbol": "QQQ",
+      "quote_fresh": true,
+      "spread_pct": 0.0014,
+      "decision": "skip",
+      "reason": "quote/spread는 통과했지만 1주 notional이 after-hours per-order validation cap을 초과한다."
+    },
+    {
+      "symbol": "SPY",
+      "quote_fresh": true,
+      "spread_pct": 0.0331,
+      "decision": "skip",
+      "reason": "quote/spread는 통과했지만 1주 notional이 after-hours per-order validation cap을 초과한다."
+    },
+    {
+      "symbol": "SMH",
+      "quote_fresh": true,
+      "spread_pct": 0.1606,
+      "decision": "skip",
+      "reason": "quote/spread는 통과했지만 1주 notional이 after-hours per-order validation cap을 초과한다."
+    },
+    {
+      "symbol": "LIN",
+      "quote_fresh": false,
+      "spread_pct": 1.5299,
+      "decision": "skip",
+      "reason": "quote freshness와 spread cap을 모두 통과하지 못했다."
+    }
+  ],
+  "submit": {
+    "attempted": false,
+    "place_stock_order_called": false,
+    "reason": "all candidate buys blocked before submit gate",
+    "client_order_ids": []
+  },
+  "reconcile": {
+    "required": false,
+    "status": "not_applicable_no_submit",
+    "notes": "No new client_order_id was created. Same-session after-hours ADBE fill count was preserved through risk_inputs.after_hours_new_orders_submitted_today=1."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-29-1551-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-29-1551-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
