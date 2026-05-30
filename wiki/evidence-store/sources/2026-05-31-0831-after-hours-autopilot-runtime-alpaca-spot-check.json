@@ -1,0 +1,150 @@
+{
+  "run_id": "2026-05-31-0831-after-hours-autopilot",
+  "created_at": "2026-05-30T23:32:32Z",
+  "paper": true,
+  "session": "after_hours",
+  "source": "runtime_alpaca_mcp_spot_check",
+  "mcp": "alpaca",
+  "tool_results": {
+    "get_clock": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T23:32:32Z",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "payload": {
+        "is_open": false,
+        "timestamp": "2026-05-30T19:32:32.57200792-04:00",
+        "next_open": "2026-06-01T09:30:00-04:00",
+        "next_close": "2026-06-01T16:00:00-04:00"
+      }
+    },
+    "get_account_info": {
+      "outcome": "cancelled_by_tool_safety_layer",
+      "checked_at": "2026-05-30T23:32:32Z",
+      "gap_category": "cancelled",
+      "retry_count": 0,
+      "gap_reason": "Runtime account read was cancelled by the tool safety layer; scheduler-owned preflight account row was used and contained no blocking after-hours-required failure."
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T23:32:32Z",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "position_count": 32,
+      "symbols": [
+        "AAPL",
+        "ADBE",
+        "AMD",
+        "AMZN",
+        "AVGO",
+        "BAC",
+        "COP",
+        "CVX",
+        "ETN",
+        "FCX",
+        "GOOGL",
+        "INTC",
+        "IONQ",
+        "LLY",
+        "LRCX",
+        "NEE",
+        "NKE",
+        "NOK",
+        "NVDA",
+        "PFE",
+        "PLTR",
+        "QQQ",
+        "RGTI",
+        "SLB",
+        "SO",
+        "SPY",
+        "TSLA",
+        "TSM",
+        "UNH",
+        "V",
+        "WMT",
+        "XOM"
+      ]
+    },
+    "get_orders_open": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T23:32:32Z",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "payload": {
+        "result": []
+      }
+    },
+    "get_asset_QQQ": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T23:32:32Z",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "payload": {
+        "symbol": "QQQ",
+        "class": "us_equity",
+        "exchange": "NASDAQ",
+        "status": "active",
+        "tradable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "options_late_close",
+          "overnight_tradable"
+        ]
+      }
+    },
+    "get_stock_latest_quote_QQQ_overnight": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T23:32:32Z",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "payload": {
+        "quotes": {
+          "QQQ": {
+            "bp": 735.21,
+            "ap": 736.7,
+            "bs": 395,
+            "as": 10,
+            "t": "2026-05-29T08:00:00.386377592Z",
+            "z": "N"
+          }
+        }
+      }
+    },
+    "get_stock_snapshot_QQQ_overnight": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T23:32:32Z",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "payload": {
+        "QQQ": {
+          "latestQuote": {
+            "bp": 735.21,
+            "ap": 736.7,
+            "t": "2026-05-29T08:00:00.386377592Z"
+          },
+          "latestTrade": {
+            "p": 735.9,
+            "t": "2026-05-29T07:59:14.99126611Z"
+          },
+          "minuteBar": {
+            "t": "2026-05-29T07:59:00Z",
+            "c": 735.9
+          }
+        }
+      }
+    }
+  },
+  "gate_interpretation": {
+    "regular_market_open": false,
+    "market_closed_expected_nonblocking_for_after_hours": true,
+    "quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+    "quote_age_minutes": 2372.54,
+    "max_quote_age_minutes_submit": 5.0,
+    "spread_pct": 0.2025,
+    "max_spread_pct": 0.25,
+    "submit_gate": "fail_fresh_quote",
+    "place_stock_order_called": false
+  }
+}
