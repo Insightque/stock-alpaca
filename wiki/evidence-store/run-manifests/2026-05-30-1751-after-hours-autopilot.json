@@ -1,0 +1,376 @@
+{
+  "run_id": "2026-05-30-1751-after-hours-autopilot",
+  "created_at": "2026-05-30T08:54:25Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "recommendation_policy_sha": "ab8568c7f097c3066b4243ba871e5a31676339c8c3f8167ccd6e730417759928",
+  "risk_inputs": {
+    "policy_turnover_ratio": 0,
+    "weekly_turnover_ratio": 0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "after_hours_new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "review_backlog_pending_1d_count": 10,
+    "review_backlog_pending_5d_count": 32,
+    "review_backlog_pending_20d_count": 32
+  },
+  "market": {
+    "is_open": false,
+    "checked_at": "2026-05-30T08:52:51Z",
+    "next_open": "2026-06-01T09:30:00-04:00",
+    "next_close": "2026-06-01T16:00:00-04:00",
+    "session": "after_hours"
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "NOK",
+      "AVGO",
+      "NVDA",
+      "COST",
+      "FCX",
+      "UNH",
+      "SBUX"
+    ],
+    "final_candidates": [
+      "NOK",
+      "AVGO",
+      "NVDA",
+      "FCX",
+      "UNH"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_submit": 3,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-30T08:52:51Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ],
+      "gap_reason": "Scheduler Alpaca core preflight first_blocking_gate=market_closed was expected and nonblocking for after-hours. The same preflight passed account, positions, open_orders, recent activities, quote, and related checks; runtime Alpaca MCP spot-check confirmed regular market closed, account/positions readable, QQQ active/tradable/overnight_tradable, and QQQ overnight quote evidence. Runtime get_orders read was cancelled by the tool safety layer, so scheduler-owned open_orders=true evidence was retained. The latest available quote remained stale, blocking submit.",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-30T08:31:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-05-30T08:31:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-30T03:31:27+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-30T08:31:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-30T08:31:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "gate_status": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed_for_after_hours",
+    "alpaca_core": "pass_with_expected_market_closed_nonblocking",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_empty_order_plan",
+    "fresh_quote": "fail",
+    "spread_within_after_hours_policy": "not_evaluated_after_stale_quote_block",
+    "whole_share_day_limit_extended_hours_order": "not_applicable_no_orders",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "not_applicable_no_submit_attempt"
+  },
+  "candidate_decisions": [
+    {
+      "symbol": "QQQ",
+      "decision": "blocked_before_order_plan_entry",
+      "primary_blocking_gate": "fresh_quote",
+      "reason": "Latest available quote evidence was stale versus after_hours_policy.max_quote_age_minutes_submit=5.0 minutes; QQQ runtime spot-check quote age was about 1492.8 minutes at decision time.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ]
+    },
+    {
+      "symbol": "NOK",
+      "decision": "blocked_before_order_plan_entry",
+      "primary_blocking_gate": "fresh_quote",
+      "reason": "Latest available quote evidence was stale versus after_hours_policy.max_quote_age_minutes_submit=5.0 minutes; QQQ runtime spot-check quote age was about 1492.8 minutes at decision time.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "symbol": "AVGO",
+      "decision": "blocked_before_order_plan_entry",
+      "primary_blocking_gate": "fresh_quote",
+      "reason": "Latest available quote evidence was stale versus after_hours_policy.max_quote_age_minutes_submit=5.0 minutes; QQQ runtime spot-check quote age was about 1492.8 minutes at decision time.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "symbol": "NVDA",
+      "decision": "blocked_before_order_plan_entry",
+      "primary_blocking_gate": "fresh_quote",
+      "reason": "Latest available quote evidence was stale versus after_hours_policy.max_quote_age_minutes_submit=5.0 minutes; QQQ runtime spot-check quote age was about 1492.8 minutes at decision time.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "symbol": "FCX",
+      "decision": "blocked_before_order_plan_entry",
+      "primary_blocking_gate": "fresh_quote",
+      "reason": "Latest available quote evidence was stale versus after_hours_policy.max_quote_age_minutes_submit=5.0 minutes; QQQ runtime spot-check quote age was about 1492.8 minutes at decision time.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "symbol": "UNH",
+      "decision": "blocked_before_order_plan_entry",
+      "primary_blocking_gate": "fresh_quote",
+      "reason": "Latest available quote evidence was stale versus after_hours_policy.max_quote_age_minutes_submit=5.0 minutes; QQQ runtime spot-check quote age was about 1492.8 minutes at decision time.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    }
+  ],
+  "order_plan": "wiki/trade-ledger/orders/2026-05-30-1751-after-hours-autopilot.json",
+  "risk_check_result": {
+    "errors": [],
+    "path": "wiki/trade-ledger/orders/2026-05-30-1751-after-hours-autopilot.json",
+    "status": "PASS",
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 45888.9075,
+      "max_factor_value": 50987.675,
+      "max_invested": 81580.28000000001,
+      "max_speculative_value": 12237.042,
+      "max_theme_value": 35691.3725,
+      "max_ticker_value": 15296.3025,
+      "min_cash": 20395.070000000003,
+      "policy_version": "medium-risk-v1.1",
+      "post_cash": 34800.26,
+      "post_invested": 67175.09000000001,
+      "review_backlog_pending_1d_count": 10,
+      "sell_notional": 0.0,
+      "speculative_value": 6900.28
+    },
+    "warnings": [
+      "orders is empty"
+    ]
+  },
+  "submit_result": {
+    "status": "not_attempted",
+    "reason": "fresh_quote gate failed before any order plan entry; no place_stock_order call was made.",
+    "orders_submitted": 0
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-runtime-alpaca-spot-check.json"
+  ],
+  "validator_results": [
+    {
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-05-30-1751-after-hours-autopilot.json",
+      "result": {
+        "status": "PASS",
+        "errors": [],
+        "warnings": [],
+        "summary": {
+          "strict_required": true,
+          "actionable": true,
+          "minimum_required_symbols": 50,
+          "symbols_considered": 62,
+          "symbols_loaded": 62,
+          "benchmarks": [
+            "QQQ",
+            "SPY"
+          ],
+          "pre_mcp_shortlist_count": 8,
+          "final_candidate_count": 5,
+          "scope_limited_by_user": false
+        }
+      }
+    },
+    {
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-05-30-1751-after-hours-autopilot.json",
+      "result": {
+        "status": "PASS",
+        "errors": [],
+        "warnings": [],
+        "summary": {
+          "required_servers": [
+            "alpaca",
+            "sec-edgar",
+            "alpha-vantage",
+            "fred",
+            "firecrawl",
+            "yahoo-finance"
+          ],
+          "core_servers": [
+            "alpaca"
+          ],
+          "research_servers": [
+            "sec-edgar",
+            "alpha-vantage",
+            "fred",
+            "firecrawl",
+            "yahoo-finance"
+          ],
+          "covered_servers": [
+            "alpaca",
+            "alpha-vantage",
+            "firecrawl",
+            "fred",
+            "sec-edgar",
+            "yahoo-finance"
+          ],
+          "strict_required": true,
+          "actionable": true,
+          "min_research_confirmations": 3,
+          "positive_research_confirmations": [
+            "firecrawl",
+            "fred",
+            "sec-edgar",
+            "yahoo-finance"
+          ]
+        }
+      }
+    },
+    {
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-05-30-1751-after-hours-autopilot.json",
+      "result": {
+        "errors": [],
+        "path": "wiki/trade-ledger/orders/2026-05-30-1751-after-hours-autopilot.json",
+        "status": "PASS",
+        "summary": {
+          "buy_notional": 0.0,
+          "max_cluster_value": 45888.9075,
+          "max_factor_value": 50987.675,
+          "max_invested": 81580.28000000001,
+          "max_speculative_value": 12237.042,
+          "max_theme_value": 35691.3725,
+          "max_ticker_value": 15296.3025,
+          "min_cash": 20395.070000000003,
+          "policy_version": "medium-risk-v1.1",
+          "post_cash": 34800.26,
+          "post_invested": 67175.09000000001,
+          "review_backlog_pending_1d_count": 10,
+          "sell_notional": 0.0,
+          "speculative_value": 6900.28
+        },
+        "warnings": [
+          "orders is empty"
+        ]
+      }
+    }
+  ],
+  "submit_attempts": [],
+  "reconciliation": {
+    "status": "not_applicable_no_submit_attempt",
+    "by_client_order_id": []
+  }
+}

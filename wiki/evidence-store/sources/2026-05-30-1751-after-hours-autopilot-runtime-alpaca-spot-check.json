@@ -1,0 +1,101 @@
+{
+  "run_id": "2026-05-30-1751-after-hours-autopilot",
+  "created_at": "2026-05-30T08:52:51Z",
+  "session": "after_hours",
+  "paper": true,
+  "alpaca_mcp_read_only_calls": [
+    {
+      "tool": "get_clock",
+      "outcome": "pass",
+      "is_open": false,
+      "timestamp": "2026-05-30T04:52:51.30013404-04:00",
+      "next_open": "2026-06-01T09:30:00-04:00",
+      "next_close": "2026-06-01T16:00:00-04:00"
+    },
+    {
+      "tool": "get_account_info",
+      "outcome": "pass",
+      "status": "ACTIVE",
+      "currency": "USD",
+      "trading_blocked": false,
+      "account_blocked": false,
+      "portfolio_value": 101975.35,
+      "cash": 34800.26,
+      "buying_power": 130809.93,
+      "long_market_value": 67175.09
+    },
+    {
+      "tool": "get_all_positions",
+      "outcome": "pass",
+      "position_count": 32,
+      "long_market_value": 67175.09
+    },
+    {
+      "tool": "get_orders",
+      "outcome": "cancelled_by_tool_safety_layer",
+      "status": "open",
+      "asset_class": "us_equity",
+      "gap_category": "cancelled",
+      "fallback": "scheduler Alpaca core preflight hard_gate_summary.checks.open_orders=true"
+    },
+    {
+      "tool": "get_asset",
+      "symbol": "QQQ",
+      "outcome": "pass",
+      "asset_class": "us_equity",
+      "status": "active",
+      "tradable": true,
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "options_late_close",
+        "overnight_tradable"
+      ]
+    },
+    {
+      "tool": "get_stock_latest_quote",
+      "symbol": "QQQ",
+      "feed": "overnight",
+      "outcome": "pass",
+      "latest_quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+      "bid_price": 735.21,
+      "ask_price": 736.7,
+      "spread_pct": 0.20265
+    },
+    {
+      "tool": "get_stock_snapshot",
+      "symbol": "QQQ",
+      "feed": "overnight",
+      "outcome": "pass",
+      "latest_quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+      "bid_price": 735.21,
+      "ask_price": 736.7,
+      "spread_pct": 0.20265,
+      "latest_trade_timestamp": "2026-05-29T07:59:14.99126611Z"
+    },
+    {
+      "tool": "get_stock_latest_trade",
+      "symbol": "QQQ",
+      "feed": "overnight",
+      "outcome": "cancelled_by_user_or_tool",
+      "gap_category": "cancelled"
+    }
+  ],
+  "gate_observation": {
+    "regular_market_open": false,
+    "regular_market_closed_required_for_after_hours": true,
+    "scheduler_core_first_blocking_gate": "market_closed_expected_nonblocking_after_hours",
+    "scheduler_open_orders_check": true,
+    "latest_quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+    "quote_age_minutes_at_decision": 1492.85,
+    "max_quote_age_minutes_submit": 5.0,
+    "fresh_quote_gate": "fail",
+    "spread_pct": 0.20265,
+    "max_spread_pct": 0.25,
+    "spread_gate": "not_evaluated_after_stale_quote_block"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-30-1751-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
