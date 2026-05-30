@@ -1,0 +1,118 @@
+{
+  "run_id": "2026-05-31-0631-after-hours-autopilot",
+  "created_at": "2026-05-30T21:34:24Z",
+  "paper": true,
+  "source": "registered Alpaca MCP read-only runtime spot-check",
+  "read_only": true,
+  "orders_submitted": 0,
+  "checks": {
+    "get_clock": {
+      "outcome": "pass",
+      "payload": {
+        "is_open": false,
+        "next_close": "2026-06-01T16:00:00-04:00",
+        "next_open": "2026-06-01T09:30:00-04:00",
+        "timestamp": "2026-05-30T17:32:48.184077498-04:00"
+      }
+    },
+    "get_account_info": {
+      "outcome": "pass",
+      "payload": {
+        "status": "ACTIVE",
+        "currency": "USD",
+        "portfolio_value": "101975.35",
+        "cash": "34800.26",
+        "buying_power": "130809.93",
+        "trading_blocked": false,
+        "account_blocked": false
+      }
+    },
+    "get_orders": {
+      "outcome": "pass",
+      "arguments": {
+        "status": "open",
+        "asset_class": [
+          "us_equity"
+        ],
+        "limit": 100
+      },
+      "payload": {
+        "open_us_equity_order_count": 0
+      }
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "payload": {
+        "position_count": 32,
+        "symbols": [
+          "AAPL",
+          "ADBE",
+          "AMD",
+          "AMZN",
+          "AVGO",
+          "BAC",
+          "COP",
+          "CVX",
+          "ETN",
+          "FCX",
+          "GOOGL",
+          "INTC",
+          "IONQ",
+          "LLY",
+          "LRCX",
+          "NEE",
+          "NKE",
+          "NOK",
+          "NVDA",
+          "PFE",
+          "PLTR",
+          "QQQ",
+          "RGTI",
+          "SLB",
+          "SO",
+          "SPY",
+          "TSLA",
+          "TSM",
+          "UNH",
+          "V",
+          "WMT",
+          "XOM"
+        ]
+      }
+    },
+    "get_asset:QQQ": {
+      "outcome": "pass",
+      "payload": {
+        "symbol": "QQQ",
+        "class": "us_equity",
+        "status": "active",
+        "tradable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "options_late_close",
+          "overnight_tradable"
+        ]
+      }
+    },
+    "get_stock_latest_quote:QQQ:overnight": {
+      "outcome": "pass",
+      "payload": {
+        "symbol": "QQQ",
+        "feed": "overnight",
+        "bid_price": 735.21,
+        "ask_price": 736.7,
+        "bid_size": 395,
+        "ask_size": 10,
+        "timestamp": "2026-05-29T08:00:00.386377592Z",
+        "spread_pct": 0.2023,
+        "quote_age_minutes_at_decision": 2254.39
+      }
+    }
+  },
+  "submit_gate_result": {
+    "status": "blocked",
+    "first_blocking_gate": "fresh_quote",
+    "reason": "QQQ overnight quote age 2254.39 minutes exceeds after_hours_policy.max_quote_age_minutes_submit=5.0."
+  }
+}
