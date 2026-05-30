@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-05-30-1151-after-hours-autopilot",
+  "created_at": "2026-05-30T11:54:00+09:00",
+  "source": "runtime Alpaca MCP spot check by Codex",
+  "session": "after_hours",
+  "paper": true,
+  "checks": {
+    "paper_mode_env": "present_true",
+    "clock": {
+      "outcome": "pass",
+      "is_open": false,
+      "timestamp": "2026-05-29T22:52:41.730183009-04:00",
+      "next_open": "2026-06-01T09:30:00-04:00",
+      "next_close": "2026-06-01T16:00:00-04:00"
+    },
+    "account": {
+      "outcome": "pass",
+      "status": "ACTIVE",
+      "trading_blocked": false,
+      "currency": "USD",
+      "portfolio_value": 101975.35,
+      "cash": 34800.26,
+      "buying_power": 130809.93
+    },
+    "positions": {
+      "outcome": "pass",
+      "position_count": 32
+    },
+    "open_orders": {
+      "outcome": "pass",
+      "result_count": 0
+    },
+    "asset": {
+      "outcome": "pass",
+      "symbol": "QQQ",
+      "asset_class": "us_equity",
+      "status": "active",
+      "tradable": true,
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "options_late_close",
+        "overnight_tradable"
+      ]
+    },
+    "quote": {
+      "outcome": "pass",
+      "feed": "overnight",
+      "symbol": "QQQ",
+      "quote": {
+        "ap": 736.7,
+        "as": 10,
+        "ax": "B",
+        "bp": 735.21,
+        "bs": 395,
+        "bx": "B",
+        "c": [],
+        "t": "2026-05-29T08:00:00.386377592Z",
+        "z": "N"
+      },
+      "fresh_quote_gate": "fail"
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-30-1151-after-hours-autopilot-alpaca-core-preflight.json"
+  ]
+}
