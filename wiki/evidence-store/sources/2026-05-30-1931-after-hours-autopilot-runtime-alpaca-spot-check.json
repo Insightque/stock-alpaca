@@ -1,0 +1,133 @@
+{
+  "run_id": "2026-05-30-1931-after-hours-autopilot",
+  "created_at": "2026-05-30T10:34:30Z",
+  "paper": true,
+  "read_only": true,
+  "source": "runtime Alpaca MCP read-only spot-check from Codex workflow execution",
+  "tools": {
+    "get_clock": {
+      "outcome": "cancelled_by_tool_layer",
+      "gap_category": "cancelled",
+      "gap_reason": "MCP tool call returned user cancelled; scheduler-owned clock row retained."
+    },
+    "get_account_info": {
+      "outcome": "cancelled_by_tool_safety_layer",
+      "gap_category": "cancelled",
+      "gap_reason": "Tool safety layer cancelled account read; scheduler-owned passing account row retained."
+    },
+    "get_all_positions": {
+      "outcome": "cancelled_by_tool_layer",
+      "gap_category": "cancelled",
+      "gap_reason": "MCP tool call returned user cancelled; scheduler-owned passing positions row retained."
+    },
+    "get_orders_open": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T10:34:30Z",
+      "payload": {
+        "result": []
+      }
+    },
+    "get_asset_QQQ": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T10:34:30Z",
+      "payload": {
+        "class": "us_equity",
+        "exchange": "NASDAQ",
+        "symbol": "QQQ",
+        "name": "Invesco QQQ Trust, Series 1",
+        "status": "active",
+        "tradable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "options_late_close",
+          "overnight_tradable"
+        ]
+      }
+    },
+    "get_stock_latest_quote_QQQ_overnight": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T10:34:30Z",
+      "payload": {
+        "quotes": {
+          "QQQ": {
+            "ap": 736.7,
+            "as": 10,
+            "ax": "B",
+            "bp": 735.21,
+            "bs": 395,
+            "bx": "B",
+            "c": [],
+            "t": "2026-05-29T08:00:00.386377592Z",
+            "z": "N"
+          }
+        }
+      }
+    },
+    "get_stock_snapshot_QQQ_overnight": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T10:34:30Z",
+      "payload": {
+        "QQQ": {
+          "dailyBar": {
+            "c": 735.9,
+            "h": 737.02,
+            "l": 733.87,
+            "n": 4251,
+            "o": 735.85,
+            "t": "2026-05-29T00:00:00Z",
+            "v": 124485,
+            "vw": 735.385113
+          },
+          "latestQuote": {
+            "ap": 736.7,
+            "as": 10,
+            "ax": "B",
+            "bp": 735.21,
+            "bs": 395,
+            "bx": "B",
+            "c": [],
+            "t": "2026-05-29T08:00:00.386377592Z",
+            "z": "N"
+          },
+          "latestTrade": {
+            "c": [
+              "@"
+            ],
+            "p": 735.9,
+            "s": 130,
+            "t": "2026-05-29T07:59:14.99126611Z",
+            "x": "B",
+            "z": "N"
+          },
+          "minuteBar": {
+            "c": 735.9,
+            "h": 735.9,
+            "l": 735.87,
+            "n": 13,
+            "o": 735.87,
+            "t": "2026-05-29T07:59:00Z",
+            "v": 1127,
+            "vw": 735.885234
+          }
+        }
+      }
+    },
+    "get_stock_latest_trade_QQQ_overnight": {
+      "outcome": "cancelled_by_tool_layer",
+      "gap_category": "cancelled",
+      "gap_reason": "Standalone latest-trade call cancelled; snapshot latestTrade evidence retained."
+    }
+  },
+  "decision_evidence": {
+    "regular_market_open": false,
+    "regular_market_closed_source": "wiki/evidence-store/sources/2026-05-30-1931-after-hours-autopilot-alpaca-core-preflight.json",
+    "open_us_equity_orders": 0,
+    "asset_status": "active_tradable_overnight_tradable",
+    "latest_quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+    "latest_quote_age_minutes": 1594.5,
+    "max_quote_age_minutes_submit": 5.0,
+    "fresh_quote_gate": "fail",
+    "orders_submitted": 0
+  }
+}

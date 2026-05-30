@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-05-30-1931-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-30-1911-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-30-1851-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-30-1831-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
