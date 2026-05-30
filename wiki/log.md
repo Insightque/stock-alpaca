@@ -3046,3 +3046,20 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Orders: no `place_stock_order` call; no `client_order_id`; reconcile not applicable because there was no submit attempt. Order plan kept `market.session=after_hours` and no order entries.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-30-0851-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-30-0851-after-hours-autopilot.json`, `wiki/evidence-store/sources/2026-05-30-0851-after-hours-autopilot-runtime-alpaca-spot-check.json`, [[2026-05-30-0851-after-hours-autopilot]].
 - Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
+
+## [2026-05-30 09:07 Asia/Seoul] implementation | scheduled runtime refactor and wiki size guard
+
+- 정기 실행 래퍼의 중복 Codex MCP 승인 설정을 `scripts/scheduled_codex_config.py`로 통합했다. regular, after-hours, analyst-review 프로필은 같은 헬퍼에서 생성하되 after-hours는 별도 Alpaca 최소 도구 집합과 연구 MCP 미등록 경로를 유지한다.
+- 하네스 문서의 날짜 고정 사용자 지시와 중복 MCP 설정 설명을 제거하고, 영구 정책 값은 YAML/source-of-truth에 두도록 정리했다.
+- `scripts/check-wiki-size.py`를 추가해 wiki Markdown 크기 예산을 검사하고, `harness/workflows/wiki-lint.md`와 `wiki/index.md`에 검증 경로를 등록했다.
+- 검증: `python3 scripts/check-policy-source-of-truth.py` PASS, `python3 scripts/check-wiki-size.py` PASS, `bash -n` scheduled wrappers PASS, `python3 -m py_compile` PASS, `python3 -m unittest discover -s tests` PASS.
+- 주문 제출/교체/취소/청산은 수행하지 않았다.
+
+## [2026-05-30 09:13 Asia/Seoul] after-hours-autopilot | 2026-05-30-0911-after-hours-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session `after_hours`; policy profile `after_hours_policy`; review bucket `after_hours_validation`.
+- Scheduler evidence: used `wiki/evidence-store/sources/2026-05-30-0911-after-hours-autopilot-alpaca-core-preflight.json` and `wiki/evidence-store/sources/2026-05-30-0911-after-hours-autopilot-research-mcp-preflight.json`. Alpaca `first_blocking_gate=market_closed` was expected and nonblocking for after-hours; runtime Alpaca MCP confirmed regular market closed, account/positions readable, QQQ asset active/tradable, and overnight quote evidence. Runtime open-order read was cancelled by the tool safety monitor, so the scheduler-owned passing open_orders row was used.
+- Gates: universe strict PASS, MCP strict PASS, risk validator PASS with expected `orders is empty` warning. Submit gate failed before any order because candidate overnight quotes were stale (`2026-05-29T08:00:00Z`, about 972.6 minutes old versus the 5-minute after-hours cap). `risk_inputs.after_hours_new_orders_submitted_today=0`; regular validation order count was not reused.
+- Orders: no `place_stock_order` call; no `client_order_id`; reconcile not applicable because there was no submit attempt. Order plan kept `market.session=after_hours` and no order entries.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-30-0911-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-30-0911-after-hours-autopilot.json`, `wiki/evidence-store/sources/2026-05-30-0911-after-hours-autopilot-runtime-alpaca-spot-check.json`, [[2026-05-30-0911-after-hours-autopilot]].
+- Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.

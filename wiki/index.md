@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-05-30-0911-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-30-0851-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-30-0831-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-30-0811-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
@@ -417,6 +418,8 @@
 - `harness/symbol-metadata.yaml` - theme/factor/liquidity/source confidence/correlated cluster 중앙 metadata.
 - `harness/order-plan.schema.json` - 신규 order-plan JSON의 필수 메타데이터와 source refs 스키마.
 - `scripts/check-risk-policy.py` - schema 검증, YAML 리스크 정책 검증, `--json` 구조화 결과 출력.
+- `scripts/check-policy-source-of-truth.py` - 활성 하네스 문서가 YAML 정책 한도를 중복 복사하지 않는지 검사.
+- `scripts/check-wiki-size.py` - 위키 Markdown이 에이전트 반복 읽기에 너무 커지지 않았는지 검사.
 - `scripts/check-leakage.py` - 과거 추천 시뮬레이션과 order plan의 미래 정보 누출 점검.
 - `scripts/fred-mcp-server.py` / `scripts/mcp-fred.sh` - FRED 공식 API를 호출하는 로컬 MCP 서버와 wrapper. `get_series_observations`, `get_series_info`, `search_series`, `get_macro_snapshot` 제공.
 - `scripts/firecrawl-mcp-server.py` / `scripts/mcp-firecrawl.sh` - Firecrawl 공식 API를 호출하는 로컬 MCP 서버와 wrapper. `firecrawl_scrape`, `firecrawl_map` 제공.
