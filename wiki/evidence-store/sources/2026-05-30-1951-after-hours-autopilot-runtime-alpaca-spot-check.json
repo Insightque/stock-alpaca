@@ -1,0 +1,108 @@
+{
+  "run_id": "2026-05-30-1951-after-hours-autopilot",
+  "created_at": "2026-05-30T10:55:30Z",
+  "paper": true,
+  "session": "after_hours",
+  "read_only": true,
+  "orders_submitted": 0,
+  "tools": {
+    "get_clock": {
+      "outcome": "pass",
+      "source": "runtime Alpaca MCP",
+      "result": {
+        "is_open": false,
+        "timestamp": "2026-05-30T06:52:47.349504638-04:00",
+        "next_open": "2026-06-01T09:30:00-04:00",
+        "next_close": "2026-06-01T16:00:00-04:00"
+      }
+    },
+    "get_account_info": {
+      "outcome": "cancelled",
+      "gap_category": "cancelled",
+      "note": "Runtime read was cancelled by the tool safety layer; scheduler-owned preflight account row was retained."
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "position_count": 32,
+      "symbols": [
+        "AAPL",
+        "ADBE",
+        "AMD",
+        "AMZN",
+        "AVGO",
+        "BAC",
+        "COP",
+        "CVX",
+        "ETN",
+        "FCX",
+        "GOOGL",
+        "INTC",
+        "IONQ",
+        "LLY",
+        "LRCX",
+        "NEE",
+        "NKE",
+        "NOK",
+        "NVDA",
+        "PFE",
+        "PLTR",
+        "QQQ",
+        "RGTI",
+        "SLB",
+        "SO",
+        "SPY",
+        "TSLA",
+        "TSM",
+        "UNH",
+        "V",
+        "WMT",
+        "XOM"
+      ]
+    },
+    "get_orders_open": {
+      "outcome": "pass",
+      "open_us_equity_order_count": 0,
+      "orders": []
+    },
+    "get_asset_QQQ": {
+      "outcome": "pass",
+      "symbol": "QQQ",
+      "asset_class": "us_equity",
+      "status": "active",
+      "tradable": true,
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "options_late_close",
+        "overnight_tradable"
+      ]
+    },
+    "get_stock_latest_quote_QQQ_overnight": {
+      "outcome": "pass",
+      "quote": {
+        "bp": 735.21,
+        "ap": 736.7,
+        "bs": 395,
+        "as": 10,
+        "t": "2026-05-29T08:00:00.386377592Z",
+        "feed": "overnight"
+      },
+      "quote_age_minutes_at_decision": 1615.5
+    },
+    "get_stock_snapshot_QQQ_overnight": {
+      "outcome": "pass",
+      "latest_quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+      "latest_trade_timestamp": "2026-05-29T07:59:14.99126611Z",
+      "minute_bar_timestamp": "2026-05-29T07:59:00Z"
+    },
+    "get_stock_latest_trade_QQQ_overnight": {
+      "outcome": "cancelled",
+      "gap_category": "cancelled",
+      "note": "Standalone latest-trade call was cancelled; scheduler/snapshot latestTrade evidence was retained."
+    }
+  },
+  "submit_gate": {
+    "fresh_quote": "fail",
+    "reason": "Latest QQQ overnight quote age 1615.5 minutes exceeded after_hours_policy.max_quote_age_minutes_submit=5.0."
+  }
+}
