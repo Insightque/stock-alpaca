@@ -1,0 +1,132 @@
+{
+  "run_id": "2026-05-30-1231-after-hours-autopilot",
+  "created_at": "2026-05-30T12:34:26+09:00",
+  "paper": true,
+  "source": "runtime Alpaca MCP spot check via Codex MCP tools",
+  "read_only": true,
+  "orders_submitted": 0,
+  "clock": {
+    "is_open": false,
+    "timestamp": "2026-05-29T23:33:03.610205788-04:00",
+    "next_open": "2026-06-01T09:30:00-04:00",
+    "next_close": "2026-06-01T16:00:00-04:00"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "currency": "USD",
+    "portfolio_value": 101975.35,
+    "cash": 34800.26,
+    "buying_power": 130809.93,
+    "trading_blocked": false,
+    "account_blocked": false
+  },
+  "positions": {
+    "outcome": "pass",
+    "count": 32,
+    "long_only": true
+  },
+  "open_orders": {
+    "outcome": "pass",
+    "result": []
+  },
+  "asset_checks": {
+    "QQQ": {
+      "outcome": "pass",
+      "class": "us_equity",
+      "status": "active",
+      "tradable": true,
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "options_late_close",
+        "overnight_tradable"
+      ]
+    }
+  },
+  "latest_quotes": {
+    "outcome": "pass",
+    "feed": "overnight",
+    "checked_at": "2026-05-30T03:33:24Z",
+    "quotes": {
+      "UNH": {
+        "ap": 381.75,
+        "as": 1,
+        "bp": 376.69,
+        "bs": 2,
+        "t": "2026-05-29T08:00:00.401798049Z",
+        "quote_age_minutes": 1173.4,
+        "spread_pct": 1.3343
+      },
+      "FCX": {
+        "ap": 68.01,
+        "as": 12,
+        "bp": 63.31,
+        "bs": 5,
+        "t": "2026-05-29T08:00:00.405230523Z",
+        "quote_age_minutes": 1173.4,
+        "spread_pct": 7.1581
+      },
+      "COST": {
+        "ap": 1099.28,
+        "as": 1,
+        "bp": 859.42,
+        "bs": 10,
+        "t": "2026-05-29T08:00:00.40647009Z",
+        "quote_age_minutes": 1173.4,
+        "spread_pct": 24.4918
+      },
+      "NVDA": {
+        "ap": 215.43,
+        "as": 2,
+        "bp": 215.27,
+        "bs": 200,
+        "t": "2026-05-29T08:00:00.413977496Z",
+        "quote_age_minutes": 1173.4,
+        "spread_pct": 0.0743
+      },
+      "AVGO": {
+        "ap": 433.84,
+        "as": 1000,
+        "bp": 419.81,
+        "bs": 25,
+        "t": "2026-05-29T08:00:00.407946155Z",
+        "quote_age_minutes": 1173.4,
+        "spread_pct": 3.2871
+      },
+      "NOK": {
+        "ap": 15.79,
+        "as": 1750,
+        "bp": 14.81,
+        "bs": 110,
+        "t": "2026-05-29T08:00:00.412618229Z",
+        "quote_age_minutes": 1173.4,
+        "spread_pct": 6.4052
+      },
+      "QQQ": {
+        "ap": 736.7,
+        "as": 10,
+        "bp": 735.21,
+        "bs": 395,
+        "t": "2026-05-29T08:00:00.386377592Z",
+        "quote_age_minutes": 1173.4,
+        "spread_pct": 0.2025
+      },
+      "SBUX": {
+        "ap": 114.89,
+        "as": 8,
+        "bp": 100.47,
+        "bs": 20,
+        "t": "2026-05-29T08:00:00.383415333Z",
+        "quote_age_minutes": 1173.4,
+        "spread_pct": 13.3915
+      }
+    }
+  },
+  "submit_gate_summary": {
+    "regular_market_not_open": "pass",
+    "quote_freshness": "fail",
+    "spread_within_after_hours_policy": "mixed",
+    "risk_gate": "not_reached_for_nonempty_order",
+    "place_stock_order_called": false
+  }
+}
