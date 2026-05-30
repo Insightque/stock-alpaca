@@ -1,0 +1,141 @@
+{
+  "run_id": "2026-05-30-2111-after-hours-autopilot",
+  "created_at": "2026-05-30T12:12:37Z",
+  "source": "runtime_alpaca_mcp_spot_check",
+  "paper": true,
+  "session": "after_hours",
+  "checks": {
+    "get_clock": {
+      "outcome": "pass",
+      "payload": {
+        "is_open": false,
+        "timestamp": "2026-05-30T08:12:37.399488027-04:00",
+        "next_open": "2026-06-01T09:30:00-04:00",
+        "next_close": "2026-06-01T16:00:00-04:00"
+      }
+    },
+    "get_account_info": {
+      "outcome": "cancelled_by_tool_safety_layer",
+      "fallback": "scheduler preflight get_account_info pass row retained",
+      "payload_summary": {
+        "status": "ACTIVE",
+        "currency": "USD",
+        "trading_blocked": false,
+        "account_blocked": false,
+        "portfolio_value": "101975.35",
+        "cash": "34800.26",
+        "buying_power": "130809.93"
+      }
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "position_count": 32
+    },
+    "get_orders_open": {
+      "outcome": "pass",
+      "open_order_count": 0,
+      "payload_summary": []
+    },
+    "get_asset_QQQ": {
+      "outcome": "pass",
+      "payload_summary": {
+        "symbol": "QQQ",
+        "class": "us_equity",
+        "status": "active",
+        "tradable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "options_late_close",
+          "overnight_tradable"
+        ]
+      }
+    },
+    "get_stock_latest_quote_QQQ_overnight": {
+      "outcome": "pass",
+      "payload_summary": {
+        "bp": 735.21,
+        "ap": 736.7,
+        "bs": 395,
+        "as": 10,
+        "t": "2026-05-29T08:00:00.386377592Z"
+      }
+    },
+    "get_stock_snapshot_QQQ_overnight": {
+      "outcome": "pass",
+      "payload_summary": {
+        "latestQuote": {
+          "bp": 735.21,
+          "ap": 736.7,
+          "bs": 395,
+          "as": 10,
+          "t": "2026-05-29T08:00:00.386377592Z"
+        },
+        "latestTrade": {
+          "p": 735.9,
+          "s": 130,
+          "t": "2026-05-29T07:59:14.99126611Z"
+        }
+      }
+    },
+    "get_stock_latest_trade_QQQ_overnight": {
+      "outcome": "user_cancelled_tool_call",
+      "fallback": "runtime snapshot latestTrade retained"
+    }
+  },
+  "decision": {
+    "regular_market_closed": true,
+    "latest_candidate_quote_symbol": "NOK",
+    "latest_candidate_quote_timestamp": "2026-05-29T20:59:59.207760575Z",
+    "latest_candidate_quote_age_minutes": 912.6,
+    "qqq_benchmark_quote_timestamp": "2026-05-29T20:58:00.000802558Z",
+    "qqq_benchmark_quote_age_minutes": 914.6,
+    "overnight_snapshot_quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+    "overnight_snapshot_quote_age_minutes": 1692.6,
+    "fresh_quote_gate": "fail",
+    "candidate_quote_summaries": {
+      "QQQ": {
+        "timestamp": "2026-05-29T20:58:00.000802558Z",
+        "age_minutes": 914.6,
+        "bid": 737.95,
+        "ask": 738.04,
+        "spread_pct": 0.012
+      },
+      "NOK": {
+        "timestamp": "2026-05-29T20:59:59.207760575Z",
+        "age_minutes": 912.6,
+        "bid": 14.87,
+        "ask": 14.99,
+        "spread_pct": 0.804
+      },
+      "AVGO": {
+        "timestamp": "2026-05-29T20:10:54.804384654Z",
+        "age_minutes": 961.7,
+        "bid": 445.3,
+        "ask": 470,
+        "spread_pct": 5.397
+      },
+      "NVDA": {
+        "timestamp": "2026-05-29T20:33:53.684394431Z",
+        "age_minutes": 938.7,
+        "bid": 212.5,
+        "ask": 229.07,
+        "spread_pct": 7.505
+      },
+      "FCX": {
+        "timestamp": "2026-05-29T20:00:00.002647358Z",
+        "age_minutes": 972.6,
+        "bid": 63.16,
+        "ask": 68.78,
+        "spread_pct": 8.519
+      },
+      "UNH": {
+        "timestamp": "2026-05-29T20:00:00.004784948Z",
+        "age_minutes": 972.6,
+        "bid": 362.74,
+        "ask": 395.4,
+        "spread_pct": 8.616
+      }
+    }
+  }
+}
