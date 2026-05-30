@@ -1,0 +1,130 @@
+{
+  "run_id": "2026-05-30-2031-after-hours-autopilot",
+  "created_at": "2026-05-30T11:34:20Z",
+  "source": "runtime Alpaca MCP read-only spot-check",
+  "paper": true,
+  "read_only": true,
+  "session": "after_hours",
+  "tools": {
+    "get_clock": {
+      "outcome": "pass",
+      "is_open": false,
+      "timestamp": "2026-05-30T07:33:54.317679492-04:00",
+      "next_open": "2026-06-01T09:30:00-04:00",
+      "next_close": "2026-06-01T16:00:00-04:00",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    "get_account_info": {
+      "outcome": "pass",
+      "status": "ACTIVE",
+      "trading_blocked": false,
+      "transfers_blocked": false,
+      "account_blocked": false,
+      "portfolio_value": 101975.35,
+      "cash": 34800.26,
+      "buying_power": 130809.93,
+      "currency": "USD",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "position_count": 30,
+      "symbols": [
+        "AAPL",
+        "ADBE",
+        "AMD",
+        "AMZN",
+        "AVGO",
+        "BAC",
+        "COP",
+        "CVX",
+        "ETN",
+        "FCX",
+        "GOOGL",
+        "INTC",
+        "IONQ",
+        "LLY",
+        "LRCX",
+        "NEE",
+        "NKE",
+        "NOK",
+        "NVDA",
+        "PFE",
+        "PLTR",
+        "QQQ",
+        "RGTI",
+        "SLB",
+        "SO",
+        "SPY",
+        "TSLA",
+        "TSM",
+        "UNH",
+        "V",
+        "WMT",
+        "XOM"
+      ],
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    "get_orders": {
+      "outcome": "pass",
+      "status_filter": "open",
+      "asset_class": [
+        "us_equity"
+      ],
+      "open_order_count": 0,
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    "get_asset_QQQ": {
+      "outcome": "pass",
+      "symbol": "QQQ",
+      "asset_class": "us_equity",
+      "status": "active",
+      "tradable": true,
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "options_late_close",
+        "overnight_tradable"
+      ],
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    "get_stock_latest_quote_QQQ_overnight": {
+      "outcome": "pass",
+      "feed": "overnight",
+      "symbol": "QQQ",
+      "bid_price": 735.21,
+      "ask_price": 736.7,
+      "bid_size": 395,
+      "ask_size": 10,
+      "timestamp": "2026-05-29T08:00:00.386377592Z",
+      "quote_age_minutes_at_decision": 1653.9,
+      "spread_pct": 0.2027,
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    "get_stock_snapshot_QQQ_overnight": {
+      "outcome": "pass",
+      "feed": "overnight",
+      "symbol": "QQQ",
+      "latest_quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+      "latest_trade_timestamp": "2026-05-29T07:59:14.99126611Z",
+      "minute_bar_timestamp": "2026-05-29T07:59:00Z",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  },
+  "submit_gate": {
+    "fresh_quote": "fail",
+    "reason": "Freshest usable QQQ quote timestamp 2026-05-29T20:58:00.000802558Z was about 876.3 minutes old at decision time, above after_hours_policy.max_quote_age_minutes_submit=5.0. Runtime overnight quote timestamp 2026-05-29T08:00:00.386377592Z was about 1653.9 minutes old.",
+    "place_stock_order_called": false
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-30-2031-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-30-2031-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
