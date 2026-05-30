@@ -1,0 +1,126 @@
+{
+  "run_id": "2026-05-30-1851-after-hours-autopilot",
+  "created_at": "2026-05-30T09:54:20Z",
+  "paper": true,
+  "source": "runtime Alpaca MCP read-only spot-check",
+  "read_only": true,
+  "orders_submitted": 0,
+  "tool_results": {
+    "get_clock": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T09:53:16Z",
+      "payload": {
+        "is_open": false,
+        "timestamp": "2026-05-30T05:53:15.918674522-04:00",
+        "next_open": "2026-06-01T09:30:00-04:00",
+        "next_close": "2026-06-01T16:00:00-04:00"
+      }
+    },
+    "get_account_info": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T09:53:16Z",
+      "payload_summary": {
+        "status": "ACTIVE",
+        "currency": "USD",
+        "cash": "34800.26",
+        "buying_power": "130809.93",
+        "portfolio_value": "101975.35",
+        "trading_blocked": false,
+        "account_blocked": false
+      }
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T09:53:16Z",
+      "payload_summary": {
+        "position_count": 31,
+        "symbols": [
+          "AAPL",
+          "ADBE",
+          "AMD",
+          "AMZN",
+          "AVGO",
+          "BAC",
+          "COP",
+          "CVX",
+          "ETN",
+          "FCX",
+          "GOOGL",
+          "INTC",
+          "IONQ",
+          "LLY",
+          "LRCX",
+          "NEE",
+          "NKE",
+          "NOK",
+          "NVDA",
+          "PFE",
+          "PLTR",
+          "QQQ",
+          "RGTI",
+          "SLB",
+          "SO",
+          "SPY",
+          "TSLA",
+          "TSM",
+          "UNH",
+          "V",
+          "WMT",
+          "XOM"
+        ]
+      }
+    },
+    "get_orders_open": {
+      "outcome": "cancelled_runtime_tool_layer",
+      "checked_at": "2026-05-30T09:53:16Z",
+      "payload": null,
+      "fallback_source": "wiki/evidence-store/sources/2026-05-30-1851-after-hours-autopilot-alpaca-core-preflight.json",
+      "fallback_interpretation": "scheduler-owned Alpaca MCP preflight open order row passed with empty open orders"
+    },
+    "get_asset_QQQ": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T09:53:16Z",
+      "payload_summary": {
+        "symbol": "QQQ",
+        "class": "us_equity",
+        "status": "active",
+        "tradable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "options_late_close",
+          "overnight_tradable"
+        ]
+      }
+    },
+    "get_stock_latest_quote_QQQ_overnight": {
+      "outcome": "cancelled_runtime_tool_layer",
+      "checked_at": "2026-05-30T09:53:16Z",
+      "payload": null,
+      "fallback_source": "wiki/evidence-store/sources/2026-05-30-1851-after-hours-autopilot-alpaca-core-preflight.json",
+      "fallback_interpretation": "scheduler-owned quote row and runtime snapshot supplied quote evidence"
+    },
+    "get_stock_snapshot_QQQ_overnight": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T09:53:16Z",
+      "payload_summary": {
+        "latest_quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+        "latest_trade_timestamp": "2026-05-29T07:59:14.99126611Z",
+        "minute_bar_timestamp": "2026-05-29T07:59:00Z",
+        "latest_quote_bid": 735.21,
+        "latest_quote_ask": 736.7
+      }
+    }
+  },
+  "gate_interpretation": {
+    "regular_market_open": "pass_regular_market_closed_for_after_hours",
+    "alpaca_core": "pass_with_scheduler_fallback_for_cancelled_runtime_open_orders_and_quote_call",
+    "fresh_quote": "fail",
+    "quote_age_minutes_at_decision": 1553.3,
+    "after_hours_max_quote_age_minutes_submit": 5.0,
+    "spread_pct_from_stale_quote": 0.2025,
+    "after_hours_max_spread_pct": 0.25,
+    "submit_allowed": false,
+    "reason": "Quote/spread evidence was readable from scheduler preflight/runtime snapshot, but the latest QQQ overnight quote was stale versus the after-hours submit freshness gate."
+  }
+}
