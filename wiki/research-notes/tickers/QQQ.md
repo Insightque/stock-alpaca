@@ -57,3 +57,9 @@ QQQ는 더 높은 베타를 가진 광범위 시장 후보로 남아 있다. Alp
 2026-05-28 validation buy 1주는 728.36 USD 진입 대비 2026-05-29 close/current 737.99 USD로 +1.32%, SPY 대비 +1.13%p였다. AI-led risk-on 환경에서 benchmark ETF validation은 개별 software/AI 후보 해석 기준으로 유용했다.
 
 출처: [[2026-05-30-portfolio-review]], [[2026-05-30-0625-analyst-review-cycle-sources]]
+
+### 2026-05-31 analyst review cycle
+
+2026-05-29 validation add 1주는 737.62 USD 체결 후 주말 현재 738.31 USD reference로 +0.09%지만, 다음 미국 정규장 close 전이라 1D 판단은 보류한다. AI-led broad growth benchmark 노출은 2026-06-01 close 이후 SPY 대비로 재회고한다.
+
+출처: [[2026-05-31-portfolio-review]], [[2026-05-31-0624-analyst-review-cycle-sources]]
