@@ -1,0 +1,108 @@
+{
+  "run_id": "2026-05-31-0611-after-hours-autopilot",
+  "created_at": "2026-05-30T21:14:41Z",
+  "paper": true,
+  "source": "runtime Alpaca MCP spot-check by Codex after-hours workflow",
+  "read_only": true,
+  "orders_submitted": 0,
+  "tools": {
+    "get_clock": {
+      "outcome": "not_called_runtime",
+      "fallback": "scheduler-owned Alpaca core preflight clock row retained",
+      "payload": {
+        "is_open": false,
+        "timestamp": "2026-05-30T17:11:08.53740148-04:00",
+        "next_open": "2026-06-01T09:30:00-04:00",
+        "next_close": "2026-06-01T16:00:00-04:00"
+      }
+    },
+    "get_account_info": {
+      "outcome": "pass",
+      "payload_summary": {
+        "status": "ACTIVE",
+        "currency": "USD",
+        "cash": 34800.26,
+        "buying_power": 130809.93,
+        "portfolio_value": 101975.35,
+        "trading_blocked": false,
+        "transfers_blocked": false,
+        "account_blocked": false
+      }
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "payload_summary": {
+        "position_count": 32,
+        "long_only": true
+      }
+    },
+    "get_orders_open_us_equity": {
+      "outcome": "pass",
+      "payload_summary": {
+        "open_order_count": 0
+      }
+    },
+    "get_asset_QQQ": {
+      "outcome": "pass",
+      "payload_summary": {
+        "symbol": "QQQ",
+        "asset_class": "us_equity",
+        "status": "active",
+        "tradable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "options_late_close",
+          "overnight_tradable"
+        ]
+      }
+    },
+    "get_stock_latest_quote_QQQ_overnight": {
+      "outcome": "pass",
+      "payload": {
+        "ap": 736.7,
+        "as": 10,
+        "bp": 735.21,
+        "bs": 395,
+        "t": "2026-05-29T08:00:00.386377592Z",
+        "feed": "overnight"
+      }
+    },
+    "get_stock_snapshot_QQQ_overnight": {
+      "outcome": "pass",
+      "payload_summary": {
+        "latestQuote": {
+          "ap": 736.7,
+          "bp": 735.21,
+          "t": "2026-05-29T08:00:00.386377592Z"
+        },
+        "latestTrade": {
+          "p": 735.9,
+          "t": "2026-05-29T07:59:14.99126611Z"
+        },
+        "minuteBar": {
+          "t": "2026-05-29T07:59:00Z",
+          "c": 735.9
+        }
+      }
+    },
+    "get_stock_latest_trade_QQQ_overnight": {
+      "outcome": "cancelled_by_tool_safety_layer",
+      "fallback": "runtime snapshot latestTrade evidence retained"
+    }
+  },
+  "quote_gate": {
+    "symbol": "QQQ",
+    "status": "fail",
+    "quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+    "quote_age_minutes": 2234.68,
+    "max_quote_age_minutes_submit": 5.0,
+    "spread_pct": 0.2025,
+    "max_spread_pct": 0.25
+  },
+  "submit_attempted": false,
+  "client_order_id": null,
+  "reconcile": {
+    "status": "not_applicable_no_submit_attempt"
+  }
+}
