@@ -1,0 +1,106 @@
+{
+  "run_id": "2026-05-30-1311-after-hours-autopilot",
+  "created_at": "2026-05-30T04:13:49Z",
+  "paper": true,
+  "read_only": true,
+  "source": "registered Alpaca MCP runtime spot check",
+  "checks": {
+    "clock": {
+      "outcome": "pass",
+      "is_open": false,
+      "timestamp": "2026-05-30T00:12:36.12914546-04:00",
+      "next_open": "2026-06-01T09:30:00-04:00",
+      "next_close": "2026-06-01T16:00:00-04:00"
+    },
+    "account": {
+      "outcome": "pass",
+      "status": "ACTIVE",
+      "currency": "USD",
+      "portfolio_value": 101975.35,
+      "cash": 34800.26,
+      "buying_power": 130809.93,
+      "long_market_value": 67175.09,
+      "trading_blocked": false,
+      "account_blocked": false,
+      "redactions": [
+        "account_number",
+        "account_id"
+      ]
+    },
+    "positions": {
+      "outcome": "pass",
+      "position_count": 32,
+      "symbols": [
+        "AAPL",
+        "ADBE",
+        "AMD",
+        "AMZN",
+        "AVGO",
+        "BAC",
+        "COP",
+        "CVX",
+        "ETN",
+        "FCX",
+        "GOOGL",
+        "INTC",
+        "IONQ",
+        "LLY",
+        "LRCX",
+        "NEE",
+        "NKE",
+        "NOK",
+        "NVDA",
+        "PFE",
+        "PLTR",
+        "QQQ",
+        "RGTI",
+        "SLB",
+        "SO",
+        "SPY",
+        "TSLA",
+        "TSM",
+        "UNH",
+        "V",
+        "WMT",
+        "XOM"
+      ]
+    },
+    "open_orders": {
+      "outcome": "pass",
+      "asset_class": "us_equity",
+      "status": "open",
+      "orders": []
+    },
+    "asset_QQQ": {
+      "outcome": "pass",
+      "symbol": "QQQ",
+      "asset_class": "us_equity",
+      "status": "active",
+      "tradable": true,
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "options_late_close",
+        "overnight_tradable"
+      ]
+    },
+    "latest_quote_QQQ_overnight": {
+      "outcome": "pass_stale_for_submit",
+      "feed": "overnight",
+      "bid": 735.21,
+      "ask": 736.7,
+      "quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+      "quote_age_minutes_at_decision": 1213.8,
+      "max_quote_age_minutes_submit": 5.0,
+      "spread_pct": 0.2025,
+      "max_spread_pct": 0.25
+    }
+  },
+  "orders_submitted": 0,
+  "place_stock_order_called": false,
+  "submit_blocking_gate": "fresh_quote",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-30-1311-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-30-1311-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
