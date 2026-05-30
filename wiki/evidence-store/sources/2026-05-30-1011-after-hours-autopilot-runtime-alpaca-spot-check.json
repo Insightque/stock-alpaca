@@ -1,0 +1,204 @@
+{
+  "run_id": "2026-05-30-1011-after-hours-autopilot",
+  "created_at": "2026-05-30T10:13:30+09:00",
+  "source": "registered Alpaca MCP runtime read-only spot check",
+  "read_only": true,
+  "orders_submitted": 0,
+  "checks": {
+    "get_clock": {
+      "outcome": "pass",
+      "is_open": false,
+      "timestamp": "2026-05-29T21:13:19.668930249-04:00",
+      "next_open": "2026-06-01T09:30:00-04:00"
+    },
+    "get_account_info": {
+      "outcome": "pass",
+      "status": "ACTIVE",
+      "trading_blocked": false,
+      "cash": "34800.26",
+      "portfolio_value": "101964.04"
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "position_count": 32,
+      "symbols": [
+        "AAPL",
+        "ADBE",
+        "AMD",
+        "AMZN",
+        "AVGO",
+        "BAC",
+        "COP",
+        "CVX",
+        "ETN",
+        "FCX",
+        "GOOGL",
+        "INTC",
+        "IONQ",
+        "LLY",
+        "LRCX",
+        "NEE",
+        "NKE",
+        "NOK",
+        "NVDA",
+        "PFE",
+        "PLTR",
+        "QQQ",
+        "RGTI",
+        "SLB",
+        "SO",
+        "SPY",
+        "TSLA",
+        "TSM",
+        "UNH",
+        "V",
+        "WMT",
+        "XOM"
+      ]
+    },
+    "get_asset_QQQ": {
+      "outcome": "pass",
+      "symbol": "QQQ",
+      "asset_class": "us_equity",
+      "status": "active",
+      "tradable": true,
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "options_late_close",
+        "overnight_tradable"
+      ]
+    },
+    "get_stock_latest_quote_iex": {
+      "outcome": "pass",
+      "symbols": [
+        "AVGO",
+        "COST",
+        "FCX",
+        "NOK",
+        "NVDA",
+        "QQQ",
+        "SBUX",
+        "UNH"
+      ],
+      "quotes": {
+        "FCX": {
+          "ap": 68.78,
+          "bp": 63.16,
+          "t": "2026-05-29T20:00:00.002647358Z"
+        },
+        "COST": {
+          "ap": 989.89,
+          "bp": 916.3,
+          "t": "2026-05-29T20:00:00.001713104Z"
+        },
+        "NVDA": {
+          "ap": 229.07,
+          "bp": 212.5,
+          "t": "2026-05-29T20:33:53.684394431Z"
+        },
+        "AVGO": {
+          "ap": 470,
+          "bp": 445.3,
+          "t": "2026-05-29T20:10:54.804384654Z"
+        },
+        "NOK": {
+          "ap": 14.99,
+          "bp": 14.87,
+          "t": "2026-05-29T20:59:59.207760575Z"
+        },
+        "QQQ": {
+          "ap": 738.04,
+          "bp": 737.95,
+          "t": "2026-05-29T20:58:00.000802558Z"
+        },
+        "SBUX": {
+          "ap": 104.18,
+          "bp": 95.28,
+          "t": "2026-05-29T20:00:00.003476211Z"
+        },
+        "UNH": {
+          "ap": 395.4,
+          "bp": 362.74,
+          "t": "2026-05-29T20:00:00.004784948Z"
+        }
+      }
+    },
+    "get_stock_latest_quote_overnight": {
+      "outcome": "pass",
+      "symbols": [
+        "AVGO",
+        "COST",
+        "FCX",
+        "NOK",
+        "NVDA",
+        "QQQ",
+        "SBUX",
+        "UNH"
+      ],
+      "quotes": {
+        "AVGO": {
+          "ap": 433.84,
+          "as": 1000,
+          "bp": 419.81,
+          "bs": 25,
+          "t": "2026-05-29T08:00:00.407946155Z"
+        },
+        "NOK": {
+          "ap": 15.79,
+          "as": 1750,
+          "bp": 14.81,
+          "bs": 110,
+          "t": "2026-05-29T08:00:00.412618229Z"
+        },
+        "QQQ": {
+          "ap": 736.7,
+          "as": 10,
+          "bp": 735.21,
+          "bs": 395,
+          "t": "2026-05-29T08:00:00.386377592Z"
+        },
+        "SBUX": {
+          "ap": 114.89,
+          "as": 8,
+          "bp": 100.47,
+          "bs": 20,
+          "t": "2026-05-29T08:00:00.383415333Z"
+        },
+        "UNH": {
+          "ap": 381.75,
+          "as": 1,
+          "bp": 376.69,
+          "bs": 2,
+          "t": "2026-05-29T08:00:00.401798049Z"
+        },
+        "FCX": {
+          "ap": 68.01,
+          "as": 12,
+          "bp": 63.31,
+          "bs": 5,
+          "t": "2026-05-29T08:00:00.405230523Z"
+        },
+        "COST": {
+          "ap": 1099.28,
+          "as": 1,
+          "bp": 859.42,
+          "bs": 10,
+          "t": "2026-05-29T08:00:00.40647009Z"
+        },
+        "NVDA": {
+          "ap": 215.43,
+          "as": 2,
+          "bp": 215.27,
+          "bs": 200,
+          "t": "2026-05-29T08:00:00.413977496Z"
+        }
+      }
+    },
+    "open_orders": {
+      "outcome": "pass_from_scheduler_preflight",
+      "result": []
+    }
+  },
+  "secret_hygiene": "account_number and credentials omitted"
+}
