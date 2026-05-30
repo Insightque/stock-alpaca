@@ -1,0 +1,60 @@
+{
+  "run_id": "2026-05-30-1811-after-hours-autopilot",
+  "created_at": "2026-05-30T09:16:14Z",
+  "paper": true,
+  "read_only": true,
+  "source": "runtime Alpaca MCP spot-check plus scheduler-owned preflight fallback",
+  "checks": {
+    "clock": {
+      "outcome": "pass",
+      "is_open": false,
+      "timestamp": "2026-05-30T05:13:00.895002016-04:00",
+      "next_open": "2026-06-01T09:30:00-04:00",
+      "next_close": "2026-06-01T16:00:00-04:00"
+    },
+    "account": {
+      "outcome": "scheduler_preflight_pass_runtime_cancelled",
+      "checked_at": "2026-05-30T09:11:06Z",
+      "account_status": "ACTIVE",
+      "trading_blocked": false,
+      "source_ref": "wiki/evidence-store/sources/2026-05-30-1811-after-hours-autopilot-alpaca-core-preflight.json"
+    },
+    "positions": {
+      "outcome": "pass",
+      "runtime_position_count": 32,
+      "source": "Alpaca MCP get_all_positions runtime read"
+    },
+    "open_orders": {
+      "outcome": "scheduler_preflight_pass_runtime_cancelled",
+      "open_orders": [],
+      "source_ref": "wiki/evidence-store/sources/2026-05-30-1811-after-hours-autopilot-alpaca-core-preflight.json"
+    },
+    "asset_QQQ": {
+      "outcome": "pass",
+      "status": "active",
+      "tradable": true,
+      "asset_class": "us_equity",
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "options_late_close",
+        "overnight_tradable"
+      ]
+    },
+    "quote_QQQ": {
+      "outcome": "scheduler_preflight_pass_runtime_cancelled",
+      "feed": "iex",
+      "bid": 737.95,
+      "ask": 738.04,
+      "timestamp": "2026-05-29T20:58:00.000802558Z",
+      "quote_age_minutes_at_decision": 738.2,
+      "spread_pct": 0.0122,
+      "source_ref": "wiki/evidence-store/sources/2026-05-30-1811-after-hours-autopilot-alpaca-core-preflight.json"
+    }
+  },
+  "submit_gate": {
+    "status": "blocked",
+    "blocking_gate": "fresh_quote",
+    "reason": "Latest available QQQ quote age was about 738.2 minutes, above after_hours_policy.max_quote_age_minutes_submit=5.0."
+  }
+}
