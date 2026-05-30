@@ -1,0 +1,149 @@
+{
+  "run_id": "2026-05-31-0651-after-hours-autopilot",
+  "created_at": "2026-05-30T21:54:32Z",
+  "session": "after_hours",
+  "paper": true,
+  "read_only": true,
+  "tools": [
+    {
+      "server": "alpaca",
+      "tool": "get_clock",
+      "outcome": "cancelled_by_tool_layer",
+      "fallback": "wiki/evidence-store/sources/2026-05-31-0651-after-hours-autopilot-alpaca-core-preflight.json"
+    },
+    {
+      "server": "alpaca",
+      "tool": "get_account_info",
+      "outcome": "pass"
+    },
+    {
+      "server": "alpaca",
+      "tool": "get_all_positions",
+      "outcome": "pass",
+      "position_count": 32
+    },
+    {
+      "server": "alpaca",
+      "tool": "get_orders",
+      "outcome": "pass",
+      "open_us_equity_order_count": 0
+    },
+    {
+      "server": "alpaca",
+      "tool": "get_asset",
+      "outcome": "pass",
+      "symbol": "QQQ"
+    },
+    {
+      "server": "alpaca",
+      "tool": "get_stock_latest_quote",
+      "outcome": "pass",
+      "symbol": "QQQ",
+      "feed": "overnight"
+    },
+    {
+      "server": "alpaca",
+      "tool": "get_stock_snapshot",
+      "outcome": "pass",
+      "symbol": "QQQ",
+      "feed": "overnight"
+    },
+    {
+      "server": "alpaca",
+      "tool": "get_stock_latest_trade",
+      "outcome": "cancelled_by_tool_layer",
+      "fallback": "snapshot.latestTrade from scheduler/runtime snapshot evidence"
+    }
+  ],
+  "clock": {
+    "source": "wiki/evidence-store/sources/2026-05-31-0651-after-hours-autopilot-alpaca-core-preflight.json",
+    "is_open": false,
+    "timestamp": "2026-05-30T17:51:08.213455523-04:00",
+    "next_open": "2026-06-01T09:30:00-04:00",
+    "next_close": "2026-06-01T16:00:00-04:00",
+    "note": "Alpaca get_clock runtime call was cancelled by the tool layer; scheduler-owned Alpaca core preflight clock row passed and regular market closed is expected for after-hours."
+  },
+  "account_summary": {
+    "status": "ACTIVE",
+    "currency": "USD",
+    "cash": 34800.26,
+    "buying_power": 130809.93,
+    "portfolio_value": 101975.35,
+    "trading_blocked": false,
+    "account_blocked": false
+  },
+  "positions_summary": {
+    "count": 32,
+    "long_market_value": 67175.09,
+    "symbols": [
+      "AAPL",
+      "ADBE",
+      "AMD",
+      "AMZN",
+      "AVGO",
+      "BAC",
+      "COP",
+      "CVX",
+      "ETN",
+      "FCX",
+      "GOOGL",
+      "INTC",
+      "IONQ",
+      "LLY",
+      "LRCX",
+      "NEE",
+      "NKE",
+      "NOK",
+      "NVDA",
+      "PFE",
+      "PLTR",
+      "QQQ",
+      "RGTI",
+      "SLB",
+      "SO",
+      "SPY",
+      "TSLA",
+      "TSM",
+      "UNH",
+      "V",
+      "WMT",
+      "XOM"
+    ]
+  },
+  "open_orders_summary": {
+    "status": "pass",
+    "open_us_equity_order_count": 0
+  },
+  "asset_check": {
+    "symbol": "QQQ",
+    "asset_class": "us_equity",
+    "status": "active",
+    "tradable": true,
+    "attributes": [
+      "fractional_eh_enabled",
+      "has_options",
+      "options_late_close",
+      "overnight_tradable"
+    ]
+  },
+  "quote_check": {
+    "symbol": "QQQ",
+    "feed": "overnight",
+    "bid": 735.21,
+    "ask": 736.7,
+    "quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+    "quote_age_minutes": 2274.53,
+    "max_quote_age_minutes_submit": 5.0,
+    "spread_pct": 0.2025,
+    "max_spread_pct": 0.25,
+    "fresh_quote_gate": "fail",
+    "spread_gate": "pass_but_not_submit_eligible_due_to_stale_quote"
+  },
+  "submit_decision": {
+    "submit_attempted": false,
+    "place_stock_order_called": false,
+    "client_order_ids": [],
+    "blocking_gate": "fresh_quote",
+    "reason": "QQQ overnight quote is older than after_hours_policy.max_quote_age_minutes_submit=5.0."
+  }
+}
