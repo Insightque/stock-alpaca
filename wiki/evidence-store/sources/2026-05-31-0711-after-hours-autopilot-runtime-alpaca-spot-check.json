@@ -1,0 +1,130 @@
+{
+  "run_id": "2026-05-31-0711-after-hours-autopilot",
+  "created_at": "2026-05-30T22:14:00Z",
+  "paper": true,
+  "read_only": true,
+  "source": "runtime Alpaca MCP spot-check summarized by Codex; account identifiers omitted",
+  "tool_results": {
+    "get_clock": {
+      "tool": "get_clock",
+      "outcome": "pass",
+      "checked_at": "2026-05-30T18:12:48.287942278-04:00",
+      "payload_summary": {
+        "is_open": false,
+        "next_open": "2026-06-01T09:30:00-04:00",
+        "next_close": "2026-06-01T16:00:00-04:00"
+      },
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0
+    },
+    "get_account_info": {
+      "tool": "get_account_info",
+      "outcome": "pass",
+      "checked_at": "2026-05-30T22:14:00Z",
+      "payload_summary": {
+        "status": "ACTIVE",
+        "currency": "USD",
+        "portfolio_value": 101975.35,
+        "cash": 34800.26,
+        "buying_power": 130809.93,
+        "long_market_value": 67175.09,
+        "trading_blocked": false,
+        "account_blocked": false
+      },
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0
+    },
+    "get_all_positions": {
+      "tool": "get_all_positions",
+      "outcome": "pass",
+      "checked_at": "2026-05-30T22:14:00Z",
+      "payload_summary": {
+        "position_count": 32,
+        "asset_class": "us_equity",
+        "sides": [
+          "long"
+        ]
+      },
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0
+    },
+    "get_orders_open": {
+      "tool": "get_orders",
+      "outcome": "cancelled_runtime_retained_scheduler_pass",
+      "checked_at": "2026-05-30T22:14:00Z",
+      "payload_summary": {
+        "scheduler_preflight_open_us_equity_orders": 0
+      },
+      "gap_category": "cancelled",
+      "gap_reason": "Runtime open-order read was cancelled by the tool safety layer; scheduler-owned preflight get_orders_open passed with empty result.",
+      "retry_count": 0
+    },
+    "get_asset": {
+      "tool": "get_asset",
+      "outcome": "pass",
+      "checked_at": "2026-05-30T22:14:00Z",
+      "payload_summary": {
+        "symbol": "QQQ",
+        "class": "us_equity",
+        "status": "active",
+        "tradable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "options_late_close",
+          "overnight_tradable"
+        ]
+      },
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0
+    },
+    "get_stock_latest_quote": {
+      "tool": "get_stock_latest_quote",
+      "outcome": "pass_stale_for_submit",
+      "checked_at": "2026-05-30T22:14:00Z",
+      "feed": "overnight",
+      "payload_summary": {
+        "symbol": "QQQ",
+        "bid_price": 735.21,
+        "ask_price": 736.7,
+        "quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+        "spread_pct": 0.2025,
+        "quote_age_minutes": 2293.99
+      },
+      "gap_category": "not_applicable",
+      "gap_reason": "Quote exists but exceeds after_hours_policy.max_quote_age_minutes_submit=5.0.",
+      "retry_count": 0
+    },
+    "get_stock_snapshot": {
+      "tool": "get_stock_snapshot",
+      "outcome": "pass_stale_for_submit",
+      "checked_at": "2026-05-30T22:14:00Z",
+      "feed": "overnight",
+      "payload_summary": {
+        "symbol": "QQQ",
+        "latest_quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+        "latest_trade_timestamp": "2026-05-29T07:59:14.99126611Z",
+        "minute_bar_timestamp": "2026-05-29T07:59:00Z"
+      },
+      "gap_category": "not_applicable",
+      "gap_reason": "Snapshot confirms latest quote/trade evidence is stale for submit.",
+      "retry_count": 0
+    },
+    "get_stock_latest_trade": {
+      "tool": "get_stock_latest_trade",
+      "outcome": "cancelled_runtime_retained_snapshot_trade",
+      "checked_at": "2026-05-30T22:14:00Z",
+      "feed": "overnight",
+      "payload_summary": {
+        "snapshot_latest_trade_timestamp": "2026-05-29T07:59:14.99126611Z"
+      },
+      "gap_category": "cancelled",
+      "gap_reason": "Standalone latest-trade read was cancelled by the tool layer; snapshot latestTrade evidence was retained.",
+      "retry_count": 0
+    }
+  }
+}
