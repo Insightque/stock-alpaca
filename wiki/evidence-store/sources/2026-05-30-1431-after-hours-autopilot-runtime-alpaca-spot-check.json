@@ -1,0 +1,62 @@
+{
+  "run_id": "2026-05-30-1431-after-hours-autopilot",
+  "created_at": "2026-05-30T14:33:56+09:00",
+  "paper": true,
+  "session": "after_hours",
+  "source": "runtime_alpaca_mcp_spot_check",
+  "read_only": true,
+  "orders_submitted": 0,
+  "checks": {
+    "clock": {
+      "outcome": "pass",
+      "is_open": false,
+      "timestamp": "2026-05-30T01:32:53.372227514-04:00",
+      "next_open": "2026-06-01T09:30:00-04:00",
+      "next_close": "2026-06-01T16:00:00-04:00"
+    },
+    "account": {
+      "outcome": "pass",
+      "status": "ACTIVE",
+      "currency": "USD",
+      "portfolio_value": 101975.35,
+      "cash": 34800.26,
+      "buying_power": 130809.93,
+      "trading_blocked": false,
+      "account_blocked": false
+    },
+    "positions": {
+      "outcome": "pass",
+      "position_count": 32,
+      "long_market_value": 67175.09
+    },
+    "open_orders": {
+      "outcome": "pass",
+      "result": []
+    },
+    "asset_QQQ": {
+      "outcome": "pass",
+      "symbol": "QQQ",
+      "asset_class": "us_equity",
+      "status": "active",
+      "tradable": true,
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "options_late_close",
+        "overnight_tradable"
+      ]
+    },
+    "quote_QQQ_overnight": {
+      "outcome": "pass_but_stale_for_submit",
+      "feed": "overnight",
+      "bid": 735.21,
+      "ask": 736.7,
+      "timestamp": "2026-05-29T08:00:00.386377592Z",
+      "quote_age_minutes_at_decision": 1293.9,
+      "max_quote_age_minutes_submit": 5.0,
+      "spread_pct": 0.2025
+    }
+  },
+  "submit_permission": "blocked",
+  "first_blocking_submit_gate": "fresh_quote"
+}
