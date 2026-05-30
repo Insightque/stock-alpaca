@@ -1,0 +1,70 @@
+{
+  "run_id": "2026-05-30-1511-after-hours-autopilot",
+  "created_at": "2026-05-30T15:16:30+09:00",
+  "paper": true,
+  "read_only": true,
+  "source": "runtime Alpaca MCP spot check by Codex after-hours workflow",
+  "checks": {
+    "get_clock": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T06:12:40Z",
+      "payload": {
+        "is_open": false,
+        "timestamp": "2026-05-30T02:12:40.260793313-04:00",
+        "next_open": "2026-06-01T09:30:00-04:00",
+        "next_close": "2026-06-01T16:00:00-04:00"
+      }
+    },
+    "get_account_info": {
+      "outcome": "cancelled_by_tool_safety_layer",
+      "checked_at": "2026-05-30T06:12:40Z",
+      "gap_category": "cancelled",
+      "gap_reason": "Runtime read-only account spot-check was cancelled; scheduler-owned passing account row retained."
+    },
+    "get_orders_open_us_equity": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T06:12:40Z",
+      "payload": {
+        "result": []
+      }
+    },
+    "get_asset_QQQ": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T06:12:40Z",
+      "payload": {
+        "symbol": "QQQ",
+        "class": "us_equity",
+        "exchange": "NASDAQ",
+        "status": "active",
+        "tradable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "options_late_close",
+          "overnight_tradable"
+        ]
+      }
+    },
+    "get_stock_latest_quote_QQQ_overnight": {
+      "outcome": "pass",
+      "checked_at": "2026-05-30T06:12:40Z",
+      "payload": {
+        "ap": 736.7,
+        "as": 10,
+        "ax": "B",
+        "bp": 735.21,
+        "bs": 395,
+        "bx": "B",
+        "t": "2026-05-29T08:00:00.386377592Z",
+        "z": "N"
+      },
+      "quote_age_minutes_at_decision": 1333.0,
+      "fresh_quote_pass": false,
+      "spread_pct": 0.2025,
+      "spread_within_after_hours_policy": true
+    }
+  },
+  "submit_allowed": false,
+  "blocking_gate": "fresh_quote",
+  "orders_submitted": 0
+}
