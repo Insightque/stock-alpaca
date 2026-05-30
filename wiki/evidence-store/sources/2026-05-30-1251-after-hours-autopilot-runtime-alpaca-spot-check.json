@@ -1,0 +1,48 @@
+{
+  "run_id": "2026-05-30-1251-after-hours-autopilot",
+  "created_at": "2026-05-30T03:54:41Z",
+  "paper": true,
+  "session": "after_hours",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "alpaca_mcp_runtime_checks": [
+    {
+      "tool": "get_orders",
+      "outcome": "pass",
+      "checked_at": "2026-05-30T03:54:41Z",
+      "summary": "Live Alpaca MCP open US-equity orders returned an empty list.",
+      "source": "mcp__alpaca__.get_orders(status=open, asset_class=us_equity)"
+    },
+    {
+      "tool": "get_asset",
+      "outcome": "pass",
+      "checked_at": "2026-05-30T03:54:41Z",
+      "symbol": "QQQ",
+      "summary": "Live Alpaca MCP asset row showed QQQ active, tradable, US equity, and overnight_tradable.",
+      "source": "mcp__alpaca__.get_asset(QQQ)"
+    },
+    {
+      "tool": "get_clock",
+      "outcome": "cancelled_by_tool_safety_layer",
+      "checked_at": "2026-05-30T03:54:41Z",
+      "fallback": "scheduler_owned_preflight_get_clock_row",
+      "fallback_summary": "Scheduler preflight clock is_open=False, next_open=2026-06-01T09:30:00-04:00, next_close=2026-06-01T16:00:00-04:00."
+    },
+    {
+      "tool": "get_account_info|get_all_positions|get_stock_latest_quote",
+      "outcome": "cancelled_by_tool_safety_layer",
+      "checked_at": "2026-05-30T03:54:41Z",
+      "fallback": "scheduler_owned_preflight_rows",
+      "fallback_summary": "Scheduler preflight account, positions, and quote rows passed; quote freshness is evaluated separately and failed for submit."
+    }
+  ],
+  "submit_gate": {
+    "status": "blocked",
+    "blocking_gate": "fresh_quote",
+    "reason": "Available after-hours quote evidence is older than after_hours_policy.max_quote_age_minutes_submit=5.0 minutes.",
+    "place_stock_order_called": false
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-30-1251-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-30-1251-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
