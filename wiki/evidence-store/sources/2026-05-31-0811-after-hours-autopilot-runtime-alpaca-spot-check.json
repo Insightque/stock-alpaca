@@ -1,0 +1,89 @@
+{
+  "run_id": "2026-05-31-0811-after-hours-autopilot",
+  "created_at": "2026-05-30T23:13:03Z",
+  "paper": true,
+  "session": "after_hours",
+  "read_only": true,
+  "orders_submitted": 0,
+  "alpaca_mcp_results": {
+    "get_clock": {
+      "outcome": "pass",
+      "payload": {
+        "is_open": false,
+        "timestamp": "2026-05-30T19:13:03.12927549-04:00",
+        "next_open": "2026-06-01T09:30:00-04:00",
+        "next_close": "2026-06-01T16:00:00-04:00"
+      }
+    },
+    "get_account_info": {
+      "outcome": "cancelled",
+      "gap_category": "cancelled",
+      "gap_reason": "Runtime account call was cancelled by the MCP/tool layer; scheduler-owned account preflight row passed and was retained."
+    },
+    "get_all_positions": {
+      "outcome": "cancelled",
+      "gap_category": "cancelled",
+      "gap_reason": "Runtime positions call was cancelled by the MCP/tool layer; scheduler-owned positions preflight row passed with 32 positions and was retained."
+    },
+    "get_orders": {
+      "outcome": "pass",
+      "status": "open",
+      "asset_class": "us_equity",
+      "payload": {
+        "result": []
+      }
+    },
+    "get_asset_QQQ": {
+      "outcome": "pass",
+      "payload": {
+        "symbol": "QQQ",
+        "class": "us_equity",
+        "status": "active",
+        "tradable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "options_late_close",
+          "overnight_tradable"
+        ]
+      }
+    },
+    "get_stock_latest_quote_QQQ_overnight": {
+      "outcome": "pass",
+      "feed": "overnight",
+      "payload": {
+        "quotes": {
+          "QQQ": {
+            "ap": 736.7,
+            "as": 10,
+            "ax": "B",
+            "bp": 735.21,
+            "bs": 395,
+            "bx": "B",
+            "c": [],
+            "t": "2026-05-29T08:00:00.386377592Z",
+            "z": "N"
+          }
+        }
+      }
+    },
+    "get_stock_snapshot_QQQ_overnight": {
+      "outcome": "pass",
+      "feed": "overnight",
+      "payload_summary": {
+        "latest_quote_t": "2026-05-29T08:00:00.386377592Z",
+        "latest_trade_t": "2026-05-29T07:59:14.99126611Z",
+        "daily_bar_t": "2026-05-29T00:00:00Z"
+      }
+    }
+  },
+  "quote_gate": {
+    "symbol": "QQQ",
+    "status": "fail",
+    "quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+    "quote_age_minutes": 2353.05,
+    "max_quote_age_minutes_submit": 5.0,
+    "spread_pct": 0.2025,
+    "max_spread_pct": 0.25
+  }
+}
