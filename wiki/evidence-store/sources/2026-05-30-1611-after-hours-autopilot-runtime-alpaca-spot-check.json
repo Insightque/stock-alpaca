@@ -1,0 +1,77 @@
+{
+  "run_id": "2026-05-30-1611-after-hours-autopilot",
+  "created_at": "2026-05-30T16:13:20+09:00",
+  "paper": true,
+  "source": "runtime Alpaca MCP spot-check",
+  "read_only": true,
+  "orders_submitted": 0,
+  "checks": {
+    "clock": {
+      "outcome": "pass",
+      "is_open": false,
+      "timestamp": "2026-05-30T03:12:53.555146898-04:00",
+      "next_open": "2026-06-01T09:30:00-04:00",
+      "next_close": "2026-06-01T16:00:00-04:00"
+    },
+    "account": {
+      "outcome": "pass",
+      "status": "ACTIVE",
+      "currency": "USD",
+      "portfolio_value": 101975.35,
+      "cash": 34800.26,
+      "buying_power": 130809.93,
+      "trading_blocked": false,
+      "account_blocked": false
+    },
+    "positions": {
+      "outcome": "pass",
+      "position_count": 32,
+      "long_market_value": 67175.09
+    },
+    "open_orders": {
+      "outcome": "pass",
+      "asset_class": "us_equity",
+      "open_order_count": 0
+    },
+    "asset_QQQ": {
+      "outcome": "pass",
+      "symbol": "QQQ",
+      "asset_class": "us_equity",
+      "status": "active",
+      "tradable": true,
+      "attributes_checked": [
+        "overnight_tradable"
+      ]
+    },
+    "overnight_quote_QQQ": {
+      "outcome": "stale",
+      "feed": "overnight",
+      "bid_price": 735.21,
+      "ask_price": 736.7,
+      "bid_size": 395,
+      "ask_size": 10,
+      "timestamp": "2026-05-29T08:00:00.386377592Z",
+      "quote_age_minutes_at_decision": 1392.9,
+      "max_quote_age_minutes_submit": 5.0,
+      "spread_pct_mid": 0.2025,
+      "max_spread_pct": 0.25,
+      "blocking_gate": "fresh_quote"
+    },
+    "latest_trade_QQQ": {
+      "outcome": "cancelled_by_tool_layer",
+      "gap_category": "cancelled",
+      "blocking": false,
+      "reason": "Quote staleness already blocked submit before any order plan entry."
+    }
+  },
+  "gate_conclusion": {
+    "regular_market_closed_for_after_hours": true,
+    "fresh_quote": false,
+    "submit_allowed": false,
+    "reason": "after-hours quote evidence exceeded the 5 minute freshness cap."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-30-1611-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-30-1611-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
