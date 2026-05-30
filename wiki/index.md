@@ -617,3 +617,6 @@
 - `wiki/trade-ledger/positions/2026-05-30-0051-hourly-autopilot-post-trade.json` - 2026-05-30 00:55 KST hourly autopilot open-order snapshot: MRK remains open `new`, no submit attempt this run.
 
 - `wiki/trade-ledger/orders/2026-05-30-0651-after-hours-autopilot.json` - 2026-05-30 06:51 KST after-hours autopilot empty order plan, session=after_hours, quote freshness gate 실패로 submit 없음.
+
+- [[2026-05-30-2011-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
+- `wiki/trade-ledger/orders/2026-05-30-2011-after-hours-autopilot.json` - 2026-05-30 20:11 KST after-hours autopilot empty order plan, session=after_hours, quote freshness gate 실패로 submit 없음.

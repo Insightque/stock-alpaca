@@ -1,0 +1,123 @@
+{
+  "run_id": "2026-05-30-2011-after-hours-autopilot",
+  "created_at": "2026-05-30T11:14:52Z",
+  "source": "runtime_alpaca_mcp_spot_check",
+  "paper": true,
+  "session": "after_hours",
+  "tool_results": {
+    "get_clock": {
+      "tool": "get_clock",
+      "outcome": "pass",
+      "checked_at": "2026-05-30T11:14:52Z",
+      "payload": {
+        "is_open": false,
+        "timestamp": "2026-05-30T07:13:09.769023798-04:00",
+        "next_open": "2026-06-01T09:30:00-04:00",
+        "next_close": "2026-06-01T16:00:00-04:00"
+      },
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0
+    },
+    "get_account_info": {
+      "tool": "get_account_info",
+      "outcome": "cancelled",
+      "checked_at": "2026-05-30T11:14:52Z",
+      "gap_category": "cancelled",
+      "gap_reason": "Runtime read was cancelled by the tool safety layer; scheduler-owned 20:11 account pass row was retained.",
+      "retry_count": 0
+    },
+    "get_all_positions": {
+      "tool": "get_all_positions",
+      "outcome": "cancelled",
+      "checked_at": "2026-05-30T11:14:52Z",
+      "gap_category": "cancelled",
+      "gap_reason": "Runtime read was cancelled by the tool safety layer; scheduler-owned 20:11 positions pass row was retained.",
+      "retry_count": 0
+    },
+    "get_orders_open": {
+      "tool": "get_orders",
+      "arguments": {
+        "status": "open",
+        "asset_class": [
+          "us_equity"
+        ],
+        "limit": 100
+      },
+      "outcome": "cancelled",
+      "checked_at": "2026-05-30T11:14:52Z",
+      "gap_category": "cancelled",
+      "gap_reason": "Runtime read was cancelled by the tool safety layer; scheduler-owned 20:11 open-orders pass row was retained.",
+      "retry_count": 0
+    },
+    "get_asset_QQQ": {
+      "tool": "get_asset",
+      "arguments": {
+        "symbol_or_asset_id": "QQQ"
+      },
+      "outcome": "pass",
+      "checked_at": "2026-05-30T11:14:52Z",
+      "payload": {
+        "symbol": "QQQ",
+        "class": "us_equity",
+        "status": "active",
+        "tradable": true,
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "options_late_close",
+          "overnight_tradable"
+        ]
+      },
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0
+    },
+    "get_stock_latest_quote_QQQ_overnight": {
+      "tool": "get_stock_latest_quote",
+      "arguments": {
+        "symbols": "QQQ",
+        "feed": "overnight"
+      },
+      "outcome": "cancelled",
+      "checked_at": "2026-05-30T11:14:52Z",
+      "gap_category": "cancelled",
+      "gap_reason": "Runtime standalone latest-quote read was cancelled by the tool safety layer; scheduler quote row and runtime snapshot quote were retained.",
+      "retry_count": 0
+    },
+    "get_stock_snapshot_QQQ_overnight": {
+      "tool": "get_stock_snapshot",
+      "arguments": {
+        "symbols": "QQQ",
+        "feed": "overnight"
+      },
+      "outcome": "pass",
+      "checked_at": "2026-05-30T11:14:52Z",
+      "payload": {
+        "QQQ": {
+          "latestQuote": {
+            "bp": 735.21,
+            "ap": 736.7,
+            "t": "2026-05-29T08:00:00.386377592Z"
+          },
+          "latestTrade": {
+            "p": 735.9,
+            "t": "2026-05-29T07:59:14.99126611Z"
+          }
+        }
+      },
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0
+    }
+  },
+  "decision_summary": {
+    "regular_market_open": false,
+    "qqq_active_tradable_overnight_tradable": true,
+    "freshest_quote_timestamp": "2026-05-29T20:58:00.000802558Z",
+    "freshest_quote_age_minutes": 856.9,
+    "runtime_overnight_quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+    "runtime_overnight_quote_age_minutes": 1634.9,
+    "blocking_gate": "fresh_quote"
+  }
+}
