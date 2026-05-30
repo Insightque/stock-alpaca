@@ -1,0 +1,260 @@
+{
+  "run_id": "2026-05-30-1111-after-hours-autopilot",
+  "created_at": "2026-05-30T11:14:00+09:00",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "recommendation_policy_sha": "ab8568c7f097c3066b4243ba871e5a31676339c8c3f8167ccd6e730417759928",
+  "risk_inputs": {
+    "policy_turnover_ratio": 0,
+    "weekly_turnover_ratio": 0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "after_hours_new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "review_backlog_pending_1d_count": 10,
+    "review_backlog_pending_5d_count": 32,
+    "review_backlog_pending_20d_count": 32
+  },
+  "market": {
+    "is_open": false,
+    "checked_at": "2026-05-30T02:12:56Z",
+    "next_open": "2026-06-01T09:30:00-04:00",
+    "next_close": "2026-06-01T16:00:00-04:00",
+    "session": "after_hours"
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "NOK",
+      "AVGO",
+      "NVDA",
+      "COST",
+      "FCX",
+      "UNH",
+      "SBUX"
+    ],
+    "final_candidates": [
+      "NOK",
+      "AVGO",
+      "NVDA",
+      "FCX",
+      "UNH"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_submit": 3,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-30T02:12:56Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1111-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-05-30-1111-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ],
+      "gap_reason": "Scheduler Alpaca core preflight first_blocking_gate=market_closed was expected and nonblocking for after-hours. Scheduler account/positions/open_orders/assets/quotes rows passed; runtime Alpaca MCP confirmed regular market closed, account/positions readable, and QQQ active/tradable. Runtime open-order and fresh overnight quote spot checks were blocked by the tool safety layer, so scheduler-owned passing rows were retained. Quote freshness failed separately for submit because the available after-hours quote evidence was older than after_hours_policy.max_quote_age_minutes_submit.",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-30T01:11:27Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1111-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-05-30T01:11:27Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1111-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-29T21:11:33Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1111-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-30T01:11:27Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1111-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-05-30T01:51:29Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-05-30-1111-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "gate_status": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_not_open": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_for_after_hours_market_closed_expected",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "fresh_quote": "fail",
+    "spread_within_after_hours_policy": "mixed",
+    "risk_policy": "pass",
+    "whole_share_day_limit_extended_hours_order": "not_applicable_no_orders",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "not_applicable_no_submit"
+  },
+  "candidate_decisions": [
+    {
+      "symbol": "QQQ",
+      "quote_fresh": false,
+      "spread_pass": true,
+      "decision": "skip",
+      "reason": "available quote evidence exceeded after-hours 5-minute freshness cap; 1-share notional exceeds after-hours per-order validation cap."
+    },
+    {
+      "symbol": "NOK",
+      "quote_fresh": false,
+      "spread_pass": false,
+      "decision": "skip",
+      "reason": "available quote evidence exceeded after-hours 5-minute freshness cap and spread failed; prior large NOK exposure blocks another after-hours add."
+    },
+    {
+      "symbol": "AVGO",
+      "quote_fresh": false,
+      "spread_pass": false,
+      "decision": "skip",
+      "reason": "available quote evidence exceeded after-hours 5-minute freshness cap and spread failed; AI semiconductor concentration is already under policy pressure."
+    },
+    {
+      "symbol": "NVDA",
+      "quote_fresh": false,
+      "spread_pass": true,
+      "decision": "skip",
+      "reason": "available quote evidence exceeded after-hours 5-minute freshness cap; AI semiconductor concentration blocks after-hours add."
+    },
+    {
+      "symbol": "COST",
+      "quote_fresh": false,
+      "spread_pass": false,
+      "decision": "skip",
+      "reason": "available quote evidence exceeded after-hours 5-minute freshness cap and spread failed; 1-share notional exceeds after-hours per-order validation cap."
+    },
+    {
+      "symbol": "FCX",
+      "quote_fresh": false,
+      "spread_pass": false,
+      "decision": "skip",
+      "reason": "available quote evidence exceeded after-hours 5-minute freshness cap and spread failed; existing FCX validation exposure blocks duplicate add."
+    },
+    {
+      "symbol": "UNH",
+      "quote_fresh": false,
+      "spread_pass": false,
+      "decision": "skip",
+      "reason": "available quote evidence exceeded after-hours 5-minute freshness cap and spread failed."
+    },
+    {
+      "symbol": "SBUX",
+      "quote_fresh": false,
+      "spread_pass": false,
+      "decision": "skip",
+      "reason": "available quote evidence exceeded after-hours 5-minute freshness cap and spread failed; maintained ticker thesis evidence is not current enough for after-hours submit."
+    }
+  ],
+  "order_plan": {
+    "path": "wiki/trade-ledger/orders/2026-05-30-1111-after-hours-autopilot.json",
+    "orders": []
+  },
+  "risk_check_result": {
+    "status": "PASS",
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": {
+      "buy_notional": 0.0,
+      "sell_notional": 0.0,
+      "post_cash": 34800.26,
+      "post_invested": 67163.7849,
+      "review_backlog_pending_1d_count": 10,
+      "order_count": 0
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-30-1111-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-30-1111-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-05-30-1111-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/orders/2026-05-30-1111-after-hours-autopilot.json"
+  ]
+}
