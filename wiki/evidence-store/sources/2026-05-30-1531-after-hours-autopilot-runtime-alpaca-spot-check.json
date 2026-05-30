@@ -1,0 +1,68 @@
+{
+  "run_id": "2026-05-30-1531-after-hours-autopilot",
+  "created_at": "2026-05-30T15:33:14+09:00",
+  "paper": true,
+  "source": "runtime_alpaca_mcp_spot_check",
+  "session": "after_hours",
+  "checks": {
+    "clock": {
+      "outcome": "pass",
+      "is_open": false,
+      "timestamp": "2026-05-30T02:33:13.925330892-04:00",
+      "next_open": "2026-06-01T09:30:00-04:00",
+      "next_close": "2026-06-01T16:00:00-04:00"
+    },
+    "account": {
+      "outcome": "pass",
+      "status": "ACTIVE",
+      "trading_blocked": false,
+      "account_blocked": false,
+      "currency": "USD",
+      "portfolio_value": 101975.35,
+      "cash": 34800.26,
+      "buying_power": 130809.93
+    },
+    "positions": {
+      "outcome": "pass",
+      "position_count": 32
+    },
+    "open_orders": {
+      "outcome": "pass",
+      "asset_class": "us_equity",
+      "open_order_count": 0
+    },
+    "asset_QQQ": {
+      "outcome": "pass",
+      "symbol": "QQQ",
+      "asset_class": "us_equity",
+      "status": "active",
+      "tradable": true,
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "options_late_close",
+        "overnight_tradable"
+      ]
+    },
+    "overnight_quote_QQQ": {
+      "outcome": "pass_but_stale_for_submit",
+      "feed": "overnight",
+      "bid_price": 735.21,
+      "ask_price": 736.7,
+      "bid_size": 395,
+      "ask_size": 10,
+      "timestamp": "2026-05-29T08:00:00.386377592Z",
+      "quote_age_minutes_at_decision": 1353.2,
+      "max_allowed_age_minutes": 5.0
+    },
+    "overnight_trade_QQQ": {
+      "outcome": "cancelled_by_tool_layer",
+      "gap_category": "cancelled",
+      "gap_reason": "Runtime latest-trade spot-check was cancelled; quote evidence and scheduler rows were sufficient to block submit."
+    }
+  },
+  "secret_hygiene": {
+    "account_number": "redacted",
+    "api_keys": "not_recorded"
+  }
+}
