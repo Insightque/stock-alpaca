@@ -1,0 +1,71 @@
+{
+  "run_id": "2026-05-31-1151-after-hours-autopilot",
+  "created_at": "2026-05-31T02:53:07.838439Z",
+  "paper": true,
+  "session": "after_hours",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-05-31-1151-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-31-1151-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "clock": {
+    "is_open": false,
+    "timestamp": "2026-05-30T22:53:07.838438764-04:00",
+    "next_open": "2026-06-01T09:30:00-04:00",
+    "next_close": "2026-06-01T16:00:00-04:00"
+  },
+  "scheduler_core_preflight": {
+    "first_blocking_gate": "market_closed",
+    "treated_as_blocking": false,
+    "reason": "expected for after-hours workflow; after-hours-required rows passed"
+  },
+  "runtime_alpaca_mcp_spot_check": {
+    "clock": "pass_regular_market_closed",
+    "account": "pass",
+    "positions": "pass",
+    "open_orders": "pass_from_scheduler_preflight",
+    "asset_QQQ": "pass_active_tradable_overnight_tradable",
+    "overnight_quote_QQQ": "pass_but_stale",
+    "overnight_snapshot_QQQ": "pass_but_stale",
+    "latest_trade_QQQ": "cancelled_by_tool_layer_not_used_for_submit"
+  },
+  "after_hours_gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_with_market_closed_expected_nonblocking",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pending_validation",
+    "fresh_quote": "fail",
+    "spread_within_after_hours_policy": "pass",
+    "whole_share_day_limit_extended_hours_order": "not_applicable_no_orders",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "not_applicable_no_submit_attempt"
+  },
+  "quote_gate": {
+    "symbol": "QQQ",
+    "status": "fail",
+    "quote_timestamp": "2026-05-29T20:58:00.000802558Z",
+    "quote_age_minutes": 1795.13,
+    "max_quote_age_minutes_submit": 5.0,
+    "runtime_overnight_quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+    "runtime_overnight_quote_age_minutes": 2573.12,
+    "spread_pct": 0.0122,
+    "runtime_overnight_spread_pct": 0.2025,
+    "max_spread_pct": 0.25,
+    "bid": 737.95,
+    "ask": 738.04,
+    "runtime_overnight_bid": 735.21,
+    "runtime_overnight_ask": 736.7,
+    "asset_active_tradable": true,
+    "overnight_tradable": true
+  },
+  "submit_decision": "no_submit_fresh_quote_gate_failed",
+  "orders_submitted": 0,
+  "client_order_ids": []
+}
