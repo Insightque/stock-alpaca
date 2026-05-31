@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-05-30 06:25 KST analyst review reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-01 06:23 KST analyst review reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -20,7 +20,7 @@
 - [[IONQ]] - 양자컴퓨팅 소액 분산 후보, 2026-05-22 업데이트.
 - [[QBTS]] - 양자컴퓨팅 watchlist 후보, 2026-05-22 업데이트.
 - [[PLTR]] - 2026-05-28 validation buy 1D 회고 강함, 5D/20D 대기.
-- [[ADBE]] - 2026-05-29 after-hours validation buy 1D 회고 강함, 5D/20D 대기.
+- [[ADBE]] - 2026-05-29 after-hours validation buy 1D 회고 강함; 2026-06-01 analyst review에서 5D/20D 대기 유지.
 - [[TSLA]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기.
 - [[SPY]] - 2026-05-28 validation buy 1D 회고 양호, 벤치마크 기준점.
 - [[QQQ]] - 2026-05-28 validation buy 1D 회고 양호, 벤치마크 기준점.
@@ -50,6 +50,7 @@
 ## Current Runs
 
 - [[2026-06-01-0611-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
+- [[2026-06-01-portfolio-review]] - scheduled analyst review cycle. 2026-05-29 validation fills와 2026-05-22 stock-only 5D는 2026-06-01 미국 정규장 close 전이라 판단 보류; 주문 mutation 없음.
 - [[2026-05-31-2151-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-31-2131-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-05-31-2111-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.

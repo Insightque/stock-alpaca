@@ -1,6 +1,6 @@
 ---
 id: ADBE
-updated_at: 2026-05-29T09:15:00+09:00
+updated_at: 2026-06-01T06:23:00+09:00
 symbol: ADBE
 asset_type: stock
 ---
@@ -51,3 +51,9 @@ ADBE는 after-hours validation bucket에서 소액으로만 확인할 수 있는
 2026-05-29 after-hours validation buy 1주는 242.36 USD 진입 대비 2026-05-29 close/current 259.50 USD로 +7.07%, SPY 대비 +6.88%p였다. Yahoo 뉴스는 Firefly/AI agent 기대와 stock-photo cannibalization 우려가 같이 있음을 보여줬지만, 1D 가격 결과는 software/AI 재평가 쪽이 우세했다. 판단은 `강함`이나 1D 단일 표본이므로 정책 승격 근거로 쓰지 않는다.
 
 출처: [[2026-05-30-portfolio-review]], [[2026-05-30-0625-analyst-review-cycle-sources]]
+
+### 2026-06-01 analyst review cycle
+
+2026-06-01 06:23 KST run은 2026-06-01 미국 정규장 close 전이라 ADBE 5D/20D 판단을 새로 내리지 않았다. SEC EDGAR MCP는 최근 Form 4/Form 144/Schedule 13G/S-8 맥락을 반환했고, Yahoo Finance MCP는 AI shopping/referral, Firefly/AI-agent 기대, stock-photo cannibalization 우려가 공존함을 보여줬다. 이 정보는 2026-05-30의 강한 1D 회고를 설명하는 보조 맥락이지만 단일 표본이라 정책 승격 근거로 쓰지 않는다.
+
+출처: [[2026-06-01-portfolio-review]], [[2026-06-01-0623-analyst-review-cycle-sources]]
