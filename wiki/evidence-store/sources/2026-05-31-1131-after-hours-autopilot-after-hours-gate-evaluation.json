@@ -1,0 +1,103 @@
+{
+  "run_id": "2026-05-31-1131-after-hours-autopilot",
+  "created_at": "2026-05-31T02:33:02.942667Z",
+  "source": "runtime_alpaca_mcp_after_hours_gate_evaluation",
+  "paper": true,
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "scheduler_preflight_refs": [
+    "wiki/evidence-store/sources/2026-05-31-1131-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-31-1131-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "runtime_alpaca_mcp_checks": {
+    "clock": {
+      "outcome": "pass",
+      "is_open": false,
+      "timestamp": "2026-05-30T22:33:02.942667906-04:00",
+      "next_open": "2026-06-01T09:30:00-04:00",
+      "next_close": "2026-06-01T16:00:00-04:00"
+    },
+    "account": {
+      "outcome": "pass",
+      "status": "ACTIVE",
+      "currency": "USD",
+      "portfolio_value": 101975.35,
+      "cash": 34800.26,
+      "buying_power": 130809.93
+    },
+    "positions": {
+      "outcome": "pass",
+      "count": 34
+    },
+    "open_orders": {
+      "outcome": "cancelled",
+      "gap_category": "cancelled",
+      "gap_reason": "Runtime get_orders call was cancelled by the tool layer; scheduler-owned preflight open-order PASS row was retained."
+    },
+    "asset": {
+      "outcome": "pass",
+      "symbol": "QQQ",
+      "asset_class": "us_equity",
+      "status": "active",
+      "tradable": true,
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "options_late_close",
+        "overnight_tradable"
+      ]
+    },
+    "latest_quote_overnight": {
+      "outcome": "pass",
+      "symbol": "QQQ",
+      "feed": "overnight",
+      "bid": 735.21,
+      "ask": 736.7,
+      "timestamp": "2026-05-29T08:00:00.386377592Z",
+      "quote_age_minutes": 2553.04,
+      "spread_pct": 0.2025
+    },
+    "snapshot_overnight": {
+      "outcome": "pass",
+      "symbol": "QQQ",
+      "latest_quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+      "latest_trade_timestamp": "2026-05-29T07:59:14.99126611Z"
+    }
+  },
+  "after_hours_gate_result": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_with_market_closed_expected_nonblocking",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_empty_order_plan_warning_only",
+    "fresh_quote": "fail",
+    "spread_within_after_hours_policy": "pass",
+    "whole_share_day_limit_extended_hours_order": "not_applicable_no_orders",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "not_applicable_no_submit_attempt"
+  },
+  "quote_gate": {
+    "symbol": "QQQ",
+    "status": "fail",
+    "scheduler_quote_timestamp": "2026-05-29T20:58:00.000802558Z",
+    "scheduler_quote_age_minutes": 1775.05,
+    "runtime_overnight_quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+    "runtime_overnight_quote_age_minutes": 2553.04,
+    "max_quote_age_minutes_submit": 5.0,
+    "scheduler_spread_pct": 0.0122,
+    "runtime_overnight_spread_pct": 0.2025,
+    "max_spread_pct": 0.25,
+    "reason": "Scheduler and runtime QQQ quotes were older than after_hours_policy.max_quote_age_minutes_submit, so submit gate failed before order submission."
+  },
+  "orders": {
+    "submitted": 0,
+    "submit_attempted": false,
+    "client_order_ids": [],
+    "reconcile": "not_applicable_no_submit_attempt"
+  }
+}
