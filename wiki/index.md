@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-06-01-0651-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-06-01-0631-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-06-01-0611-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-06-01-portfolio-review]] - scheduled analyst review cycle. 2026-05-29 validation fills와 2026-05-22 stock-only 5D는 2026-06-01 미국 정규장 close 전이라 판단 보류; 주문 mutation 없음.
