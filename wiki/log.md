@@ -2669,6 +2669,16 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Post-trade reconciliation: `get_order_by_client_id`, `get_orders`, `get_all_positions`, and `get_account_info` completed. `get_account_activities` was cancelled by the tool monitor; PFE fill was confirmed through order and position reconciliation.
 - Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
 
+## [2026-05-31 16:55 KST] after-hours-autopilot | 2026-05-31-1651-after-hours-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session `after_hours`; policy profile `after_hours_policy`; artifact tag `after-hours`; review bucket `after_hours_validation`.
+- Scheduler evidence: used `wiki/evidence-store/sources/2026-05-31-1651-after-hours-autopilot-alpaca-core-preflight.json` and `wiki/evidence-store/sources/2026-05-31-1651-after-hours-autopilot-research-mcp-preflight.json`. Alpaca `first_blocking_gate=market_closed` was expected and nonblocking for after-hours; scheduler rows covered account, positions, open orders `[]`, assets, quotes, snapshots, and latest trades. Runtime Alpaca MCP confirmed regular market closed, account/positions readable, open US-equity orders `[]`, QQQ active/tradable/overnight_tradable, and QQQ overnight quote/snapshot evidence.
+- Gates: universe strict PASS, MCP strict PASS, risk validator PASS with expected `orders is empty` warning. Submit gate failed before any order because QQQ quote evidence was stale: scheduler quote `2026-05-29T20:58:00.000802558Z` was about 2096 minutes old and runtime overnight quote `2026-05-29T08:00:00.386377592Z` was about 2874 minutes old versus the 5-minute after-hours cap. `risk_inputs.after_hours_new_orders_submitted_today=0`; regular validation order count was not reused.
+- Orders: no `place_stock_order` call; no `client_order_id`; reconcile not applicable because there was no submit attempt. Order plan kept `market.session=after_hours` and no order entries.
+- Source-of-truth mismatch retained: `AGENTS.md` asks for top-level `quote_captured_at` and `asset_checked_at`, but `harness/order-plan.schema.json` rejects those fields, so the validated order plan follows the schema and omits them.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-05-31-1651-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-31-1651-after-hours-autopilot.json`, `wiki/evidence-store/sources/2026-05-31-1651-after-hours-autopilot-after-hours-gate-evaluation.json`, [[2026-05-31-1651-after-hours-autopilot]].
+- Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
+
 ## [2026-05-30 13:36 Asia/Seoul] after-hours-autopilot | 2026-05-30-1331-after-hours-autopilot scheduled paper autopilot
 
 - Workflow: `harness/workflows/after-hours-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; session `after_hours`; policy profile `after_hours_policy`; artifact tag `after-hours`; review bucket `after_hours_validation`.
@@ -3735,4 +3745,3 @@ Append new entries below. Do not rewrite earlier entries except to fix broken Ma
 - Source-of-truth mismatch retained: `AGENTS.md` asks for top-level `quote_captured_at` and `asset_checked_at`, but `harness/order-plan.schema.json` rejects those fields, so the validated order plan follows the schema and omits them.
 - Artifacts: `wiki/evidence-store/run-manifests/2026-05-31-1631-after-hours-autopilot.json`, `wiki/trade-ledger/orders/2026-05-31-1631-after-hours-autopilot.json`, `wiki/evidence-store/sources/2026-05-31-1631-after-hours-autopilot-after-hours-gate-evaluation.json`, [[2026-05-31-1631-after-hours-autopilot]].
 - Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json ...` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json ...` PASS.
-
