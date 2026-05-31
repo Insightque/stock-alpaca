@@ -1,0 +1,112 @@
+{
+  "run_id": "2026-05-31-1431-after-hours-autopilot",
+  "created_at": "2026-05-31T05:31:23Z",
+  "paper": true,
+  "source": "Codex runtime Alpaca MCP after-hours gate evaluation",
+  "read_only": true,
+  "orders_submitted": 0,
+  "submit_attempted": false,
+  "client_order_ids": [],
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "scheduler_preflight_refs": [
+    "wiki/evidence-store/sources/2026-05-31-1431-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-05-31-1431-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "runtime_alpaca_mcp_checks": {
+    "clock": {
+      "outcome": "pass",
+      "is_open": false,
+      "timestamp": "2026-05-31T01:31:05.351691263-04:00",
+      "next_open": "2026-06-01T09:30:00-04:00",
+      "next_close": "2026-06-01T16:00:00-04:00",
+      "after_hours_expected_regular_market_closed": true
+    },
+    "account": {
+      "outcome": "scheduler_preflight_pass_retained",
+      "status": "ACTIVE",
+      "currency": "USD",
+      "portfolio_value": 101975.35,
+      "cash": 34800.26,
+      "buying_power": 130809.93
+    },
+    "positions": {
+      "outcome": "scheduler_preflight_pass_retained",
+      "positions_count": 32,
+      "long_only_us_equity_positions_observed": true
+    },
+    "open_orders": {
+      "outcome": "scheduler_preflight_pass_retained",
+      "asset_class": "us_equity",
+      "open_order_count": 0
+    },
+    "asset_QQQ": {
+      "outcome": "scheduler_preflight_pass_retained",
+      "symbol": "QQQ",
+      "asset_class": "us_equity",
+      "status": "active",
+      "tradable": true,
+      "attributes_observed": [
+        "fractional_eh_enabled",
+        "has_options",
+        "options_late_close",
+        "overnight_tradable"
+      ]
+    },
+    "quote_QQQ": {
+      "outcome": "pass_data_available_but_stale_for_submit",
+      "feed": "iex",
+      "bid": 737.95,
+      "ask": 738.04,
+      "quote_timestamp": "2026-05-29T20:58:00.000802558Z",
+      "quote_age_minutes": 1953.38,
+      "spread_pct": 0.0122
+    },
+    "snapshot_QQQ": {
+      "outcome": "pass_data_available_but_stale_for_submit",
+      "latest_trade_timestamp": "2026-05-29T20:40:59.963546484Z",
+      "minute_bar_timestamp": "2026-05-29T20:40:00Z",
+      "daily_bar_timestamp": "2026-05-29T04:00:00Z"
+    },
+    "latest_trade_QQQ": {
+      "outcome": "pass_data_available_but_stale_for_submit",
+      "price": 737.86,
+      "trade_timestamp": "2026-05-29T20:40:59.963546484Z",
+      "trade_age_minutes": 1970.38
+    }
+  },
+  "scheduler_quote_QQQ": {
+    "source_ref": "wiki/evidence-store/sources/2026-05-31-1431-after-hours-autopilot-alpaca-core-preflight.json",
+    "bid": 737.95,
+    "ask": 738.04,
+    "quote_timestamp": "2026-05-29T20:58:00.000802558Z",
+    "quote_age_minutes": 1953.38,
+    "spread_pct": 0.0122
+  },
+  "after_hours_gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_with_market_closed_expected_nonblocking",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_empty_order_plan_warning_only",
+    "fresh_quote": "fail",
+    "spread_within_after_hours_policy": "pass",
+    "whole_share_day_limit_extended_hours_order": "not_applicable_no_orders",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "not_applicable_no_submit_attempt"
+  },
+  "risk_inputs": {
+    "after_hours_new_orders_submitted_today": 0,
+    "regular_validation_order_count_not_reused": true,
+    "review_backlog_pending_1d_count": 10,
+    "review_backlog_pending_5d_count": 32,
+    "review_backlog_pending_20d_count": 32
+  },
+  "blocking_reason": "QQQ scheduler quote evidence exceeded after_hours_policy.max_quote_age_minutes_submit=5.0, so no after-hours paper order was submitted."
+}
