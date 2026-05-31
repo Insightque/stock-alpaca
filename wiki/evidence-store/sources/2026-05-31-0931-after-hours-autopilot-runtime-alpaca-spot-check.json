@@ -1,0 +1,76 @@
+{
+  "run_id": "2026-05-31-0931-after-hours-autopilot",
+  "created_at": "2026-05-31T00:33:19.454555Z",
+  "source": "runtime Alpaca MCP read-only spot-check by Codex; sanitized summary only",
+  "paper": true,
+  "read_only": true,
+  "orders_submitted": 0,
+  "checks": {
+    "get_clock": {
+      "outcome": "pass",
+      "is_open": false,
+      "timestamp": "2026-05-30T20:33:19.454555288-04:00",
+      "next_open": "2026-06-01T09:30:00-04:00",
+      "next_close": "2026-06-01T16:00:00-04:00"
+    },
+    "get_account_info": {
+      "outcome": "pass",
+      "status": "ACTIVE",
+      "currency": "USD",
+      "portfolio_value": 101975.35,
+      "cash": 34800.26,
+      "buying_power": 130809.93
+    },
+    "get_all_positions": {
+      "outcome": "pass",
+      "position_count": 32
+    },
+    "get_orders": {
+      "outcome": "pass",
+      "status": "open",
+      "asset_class": "us_equity",
+      "result_count": 0,
+      "source": "wiki/evidence-store/sources/2026-05-31-0931-after-hours-autopilot-alpaca-core-preflight.json"
+    },
+    "get_asset_QQQ": {
+      "outcome": "pass",
+      "symbol": "QQQ",
+      "asset_class": "us_equity",
+      "status": "active",
+      "tradable": true,
+      "attributes": [
+        "fractional_eh_enabled",
+        "has_options",
+        "options_late_close",
+        "overnight_tradable"
+      ]
+    },
+    "get_stock_latest_quote_QQQ_overnight": {
+      "outcome": "pass",
+      "symbol": "QQQ",
+      "bid_price": 735.21,
+      "ask_price": 736.7,
+      "timestamp": "2026-05-29T08:00:00.386377592Z",
+      "quote_age_minutes": 2433.32,
+      "spread_pct": 0.2025
+    },
+    "get_stock_snapshot_QQQ_overnight": {
+      "outcome": "pass",
+      "symbol": "QQQ",
+      "latest_quote_timestamp": "2026-05-29T08:00:00.386377592Z",
+      "latest_trade_timestamp": "2026-05-29T07:59:14.99126611Z",
+      "minute_bar_timestamp": "2026-05-29T07:59:00Z"
+    },
+    "get_account_activities_FILL": {
+      "outcome": "pass",
+      "after": "2026-05-30T00:00:00Z",
+      "result_count": 0
+    }
+  },
+  "submit_gate_summary": {
+    "eligible_for_submit": false,
+    "blocking_gate": "fresh_quote",
+    "reason": "QQQ overnight quote age 2433.32 minutes exceeded after_hours_policy.max_quote_age_minutes_submit=5.0.",
+    "place_stock_order_called": false
+  }
+}
