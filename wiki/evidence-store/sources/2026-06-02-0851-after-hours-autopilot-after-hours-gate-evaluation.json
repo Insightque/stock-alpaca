@@ -1,0 +1,111 @@
+{
+  "run_id": "2026-06-02-0851-after-hours-autopilot",
+  "created_at": "2026-06-01T23:55:00Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "scheduler_preflight": {
+    "alpaca_core": "wiki/evidence-store/sources/2026-06-02-0851-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp": "wiki/evidence-store/sources/2026-06-02-0851-after-hours-autopilot-research-mcp-preflight.json",
+    "alpaca_first_blocking_gate": "market_closed",
+    "market_closed_treatment": "expected_nonblocking_for_after_hours",
+    "alpaca_required_rows": {
+      "clock": true,
+      "market_open": false,
+      "account": true,
+      "positions": true,
+      "open_orders": true,
+      "recent_activities": true,
+      "quotes": true
+    }
+  },
+  "runtime_alpaca_mcp": {
+    "clock_is_open": false,
+    "clock_timestamp": "2026-06-01T19:53:17.85337415-04:00",
+    "account_confirmed_active": true,
+    "positions_count": 32,
+    "open_us_equity_orders_count": 0,
+    "watchlists_count": 0,
+    "client_order_reconciliation": [
+      {
+        "client_order_id": "ah-20260601-0911-nvda-buy-01",
+        "symbol": "NVDA",
+        "status": "canceled",
+        "filled_qty": 0,
+        "extended_hours": true,
+        "side": "buy",
+        "type": "limit",
+        "time_in_force": "day"
+      },
+      {
+        "client_order_id": "ah-20260601-0931-avgo-buy-01",
+        "symbol": "AVGO",
+        "status": "filled",
+        "filled_qty": 1,
+        "extended_hours": true,
+        "side": "buy",
+        "type": "limit",
+        "time_in_force": "day"
+      }
+    ],
+    "supplemental_submit_note": "No place_stock_order call was made because the separate after-hours budget gate blocked before pre-submit quote/spread evaluation."
+  },
+  "gate_results": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "block_session_budget_reached",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_empty_order_plan_expected_warning",
+    "fresh_quote": "not_evaluated_submit_blocked_by_budget",
+    "spread_within_after_hours_policy": "not_evaluated_submit_blocked_by_budget",
+    "whole_share_day_limit_extended_hours_order": "not_applicable_no_orders",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "not_applicable_no_submit_attempt"
+  },
+  "submit_decision": {
+    "submit_attempted": false,
+    "orders_submitted": 0,
+    "block_reasons": [
+      "after_hours_new_orders_submitted_today=2 equals after_hours_policy.max_new_orders_per_session=2",
+      "after_hours_policy.allowed_sides is buy-only; sell/trim concerns are diagnostics only",
+      "no order candidate may proceed after the separate after-hours budget gate failed"
+    ]
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-02-0851-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-02-0851-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "validations": {
+    "universe_strict": "pass",
+    "mcp_strict": "pass",
+    "risk_policy": "pass_with_expected_orders_empty_warning"
+  },
+  "risk_check_result": {
+    "errors": [],
+    "path": "wiki/trade-ledger/orders/2026-06-02-0851-after-hours-autopilot.json",
+    "status": "PASS",
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 46419.426,
+      "max_factor_value": 51577.14,
+      "max_invested": 82523.424,
+      "max_speculative_value": 12378.5136,
+      "max_theme_value": 36103.998,
+      "max_ticker_value": 15473.142,
+      "min_cash": 20630.856,
+      "policy_version": "medium-risk-v1.1",
+      "post_cash": 34339.0,
+      "post_invested": 68843.05679999999,
+      "review_backlog_pending_1d_count": 2,
+      "sell_notional": 0.0,
+      "speculative_value": 6682.53
+    },
+    "warnings": [
+      "orders is empty"
+    ]
+  }
+}
