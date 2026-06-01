@@ -1,0 +1,473 @@
+{
+  "schema_version": "1.0",
+  "run_id": "2026-06-01-2331-hourly-autopilot",
+  "created_at": "2026-06-01T14:36:35Z",
+  "paper": true,
+  "mode": "submit",
+  "data_cutoff_time": "2026-06-01T14:31:37Z",
+  "market_clock_checked_at": "2026-06-01T10:31:16.748418151-04:00",
+  "recommendation_policy_sha": "ab8568c7f097c3066b4243ba871e5a31676339c8c3f8167ccd6e730417759928",
+  "prompt_file_sha": "e1f1bb73ad99bc1034c331bd5c9939dd29f5f88430205a69354e19c1f235b38c",
+  "git_commit": "9a60c22",
+  "risk_policy_version": "medium-risk-v1.1",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-runtime-quote-refresh.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml"
+  ],
+  "data_manifest": {
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-research-mcp-preflight.json",
+    "stale_order_cleanup": "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-stale-order-cleanup.json",
+    "runtime_quote_refresh": "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-runtime-quote-refresh.json",
+    "report_path": "wiki/current-runs/daily/2026-06-01-2331-hourly-autopilot.md",
+    "order_plan_path": "wiki/trade-ledger/orders/2026-06-01-2331-hourly-autopilot.json",
+    "post_trade_reconciliation_path": "wiki/trade-ledger/positions/2026-06-01-2331-hourly-autopilot-post-trade.json"
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + scheduler Alpaca preflight universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad metadata universe screen, scheduler Alpaca quote/position preflight, research MCP preflight, then sell/trim lifecycle and portfolio-construction filters",
+    "pre_mcp_shortlist": [
+      "BAC",
+      "GOOGL",
+      "NKE",
+      "NEE",
+      "COP",
+      "WMT",
+      "AAPL",
+      "AMZN",
+      "SPY",
+      "INTC"
+    ],
+    "final_candidates": [
+      "BAC",
+      "GOOGL",
+      "NKE",
+      "NEE",
+      "COP"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "all_research_must_be_attempted": true,
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_actionable": 3,
+    "min_research_confirmations_for_submit": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass",
+    "critical_source_rules": {
+      "earnings_signal": {
+        "require_any": [
+          "sec-edgar",
+          "alpha-vantage",
+          "firecrawl_company_ir"
+        ],
+        "missing_behavior": "downgrade_to_watch"
+      },
+      "macro_rate_sensitive_signal": {
+        "require_any": [
+          "fred",
+          "explicit_macro_source"
+        ],
+        "missing_behavior": "downgrade_to_watch"
+      },
+      "filing_risk_signal": {
+        "require_any": [
+          "sec-edgar_acceptance_time"
+        ],
+        "missing_behavior": "block_new_buy"
+      },
+      "analyst_only_signal": {
+        "allowed_use": "thesis_confirmation_only",
+        "missing_behavior": "no_positive_score_delta"
+      }
+    }
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-01T14:31:37Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-01T14:31:38+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-01T14:31:38+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-01T14:31:38+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "FRED API request failed: curl: (56) The requested URL returned error: 429",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-01T14:31:38+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-01T14:31:38+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-01T14:31:38+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-01T14:31:38+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "FRED API request failed: curl: (56) The requested URL returned error: 429",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    }
+  ],
+  "open_order_lifecycle": {
+    "status": "pass",
+    "initial_open_orders": [],
+    "remaining_open_orders": [],
+    "source_ref": "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-stale-order-cleanup.json"
+  },
+  "candidate_diagnostics": {
+    "shortlist": [
+      "BAC",
+      "GOOGL",
+      "NKE",
+      "NEE",
+      "COP"
+    ],
+    "top_recheck_candidates": [
+      "BAC",
+      "GOOGL",
+      "NKE",
+      "NEE",
+      "COP"
+    ],
+    "first_blocking_gate": "alpaca_quote_refresh_cancelled_for_order_metrics",
+    "next_relaxation_candidate": "runtime quote refresh succeeds and candidate-specific critical-source/portfolio-fit filters clear",
+    "runtime_quote_refresh": {
+      "run_id": "2026-06-01-2331-hourly-autopilot",
+      "created_at": "2026-06-01T14:36:35Z",
+      "source": "registered Codex Alpaca MCP get_stock_latest_quote runtime refresh",
+      "read_only": true,
+      "tool": "get_stock_latest_quote",
+      "arguments": {
+        "symbols": "AMD,TSLA,RGTI,BAC,GOOGL,NKE,NEE,COP,SPY,QQQ",
+        "feed": "iex"
+      },
+      "outcome": "failed",
+      "gap_category": "cancelled",
+      "gap_reason": "Registered Alpaca MCP quote refresh returned \"user cancelled MCP tool call\". Per workflow, no second retry and no order submission.",
+      "retry_count": 0,
+      "orders_submitted": 0
+    }
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "AMD",
+      "held_qty": 14.0,
+      "current_weight_pct": 6.86,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "AI semiconductor factor/cluster exposure is near target-band warning and AMD is intraday weak, but the required registered Alpaca quote refresh for order-level spread metrics returned cancelled. This leaves the trim as diagnostic only.",
+      "skipped_gate": "alpaca_quote_refresh_cancelled",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "Registered Alpaca MCP get_stock_latest_quote refresh was cancelled after one allowed attempt; decision-grade spread and expected-excess order metrics are unavailable, so no trim order was created.",
+      "replacement_symbol": "BAC",
+      "replacement_confidence_score": 0.56,
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-runtime-quote-refresh.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "TSLA",
+      "held_qty": 1.0,
+      "current_weight_pct": 0.411,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "High-beta holding remains a sell/trim watch item after weak prior review and current intraday weakness, but order-level quote/spread refresh was cancelled. The position is not promoted to an order.",
+      "skipped_gate": "alpaca_quote_refresh_cancelled",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "Registered Alpaca MCP quote refresh was cancelled; no exact current spread or decision-grade expected-excess metric was available for a trim order.",
+      "replacement_symbol": "SPY",
+      "replacement_confidence_score": 0.6,
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-runtime-quote-refresh.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "INTC",
+      "held_qty": 1.0,
+      "current_weight_pct": 0.107,
+      "trigger_status": "no_trigger",
+      "primary_reason": "INTC has a weak intraday move and unrealized loss, but it is a 1-share validation-sized position and no policy lifecycle close/trim decision was available in this run. Quote refresh cancellation also prevents order-grade spread validation.",
+      "skipped_gate": "sell_trigger_none",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "No decision-grade 20D expected-excess metric was produced, and the runtime quote refresh was cancelled; because no active trigger was present, this remains hold/watch diagnostic.",
+      "replacement_symbol": "BAC",
+      "replacement_confidence_score": 0.56,
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "hold_watch",
+      "blocked_sell_recheck": "not_applicable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-runtime-quote-refresh.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    }
+  ],
+  "validation_lifecycle": {
+    "status": "pass_with_watchlist_blocks",
+    "due_reviews": [
+      {
+        "symbol": "AAPL",
+        "horizon": "1D",
+        "decision_due": true,
+        "current_decision": "pending",
+        "source_refs": [
+          "wiki/index.md",
+          "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-alpaca-core-preflight.json"
+        ]
+      },
+      {
+        "symbol": "COP",
+        "horizon": "1D",
+        "decision_due": true,
+        "current_decision": "pending",
+        "source_refs": [
+          "wiki/index.md",
+          "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-alpaca-core-preflight.json"
+        ]
+      },
+      {
+        "symbol": "NOK",
+        "horizon": "1D",
+        "decision_due": true,
+        "current_decision": "pending",
+        "source_refs": [
+          "wiki/index.md",
+          "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-alpaca-core-preflight.json"
+        ]
+      }
+    ],
+    "blocked_add_symbols": [
+      "AAPL",
+      "COP",
+      "NOK"
+    ],
+    "due_reviews_blocking_adds": [
+      "AAPL",
+      "COP",
+      "NOK"
+    ],
+    "reviewed_recent_validation_symbols": [
+      "PLTR",
+      "TSLA",
+      "SPY",
+      "QQQ",
+      "NKE",
+      "PFE",
+      "SO",
+      "WMT",
+      "NEE",
+      "BAC",
+      "XOM",
+      "ADBE"
+    ],
+    "new_same_day_fills_not_due_yet": [
+      "AVGO"
+    ],
+    "source_refs": [
+      "wiki/index.md",
+      "wiki/evidence-store/sources/2026-06-01-2331-hourly-autopilot-alpaca-core-preflight.json",
+      "harness/recommendation-policy.yaml"
+    ]
+  },
+  "review_backlog_throttle": {
+    "enabled": true,
+    "review_backlog_pending_1d_count": 3,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 0,
+    "configured_reduce_new_buy_slots_at_pending_1d": 8,
+    "configured_stop_new_buys_at_pending_1d": 12,
+    "new_buy_slots_after_throttle": 5,
+    "sell_sides_excluded_from_throttle": true
+  },
+  "portfolio_construction_policy": {
+    "enabled": true,
+    "invested_ratio": 0.6654,
+    "status": "prefer_selective_buys_but_quote_refresh_cancelled_and_portfolio_fit_not_improved",
+    "replacement_rank_required": true
+  },
+  "recommendation_actionability": "blocked",
+  "first_blocking_gate": "alpaca_quote_refresh_cancelled_for_order_metrics",
+  "decision_summary": {
+    "submitted_orders": 0,
+    "planned_orders": 0,
+    "orders_blocked": true,
+    "summary_ko": "정규장 autopilot은 core/universe/MCP tiered gate를 통과했지만, 등록 Alpaca MCP quote refresh가 cancelled되어 주문 수준 spread/metric gate를 통과하지 못했다. 신규 주문은 제출하지 않았다."
+  },
+  "risk_check_result": {
+    "status": "PASS",
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": {
+      "order_count": 0,
+      "buy_notional": 0.0,
+      "sell_notional": 0.0,
+      "post_cash": 34339.0,
+      "post_invested": 68299.7588
+    }
+  },
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-01-2331-hourly-autopilot.json",
+  "order_plan": {
+    "path": "wiki/trade-ledger/orders/2026-06-01-2331-hourly-autopilot.json",
+    "orders": []
+  },
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-06-01-2331-hourly-autopilot-post-trade.json",
+  "validation_results": {
+    "universe_coverage": {
+      "status": "PASS",
+      "errors": [],
+      "warnings": []
+    },
+    "mcp_coverage": {
+      "status": "PASS",
+      "errors": [],
+      "warnings": []
+    },
+    "risk_policy": {
+      "status": "PASS",
+      "errors": [],
+      "warnings": [
+        "orders is empty"
+      ]
+    }
+  }
+}

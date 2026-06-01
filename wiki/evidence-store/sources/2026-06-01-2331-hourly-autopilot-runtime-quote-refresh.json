@@ -1,0 +1,16 @@
+{
+  "run_id": "2026-06-01-2331-hourly-autopilot",
+  "created_at": "2026-06-01T14:36:35Z",
+  "source": "registered Codex Alpaca MCP get_stock_latest_quote runtime refresh",
+  "read_only": true,
+  "tool": "get_stock_latest_quote",
+  "arguments": {
+    "symbols": "AMD,TSLA,RGTI,BAC,GOOGL,NKE,NEE,COP,SPY,QQQ",
+    "feed": "iex"
+  },
+  "outcome": "failed",
+  "gap_category": "cancelled",
+  "gap_reason": "Registered Alpaca MCP quote refresh returned \"user cancelled MCP tool call\". Per workflow, no second retry and no order submission.",
+  "retry_count": 0,
+  "orders_submitted": 0
+}
