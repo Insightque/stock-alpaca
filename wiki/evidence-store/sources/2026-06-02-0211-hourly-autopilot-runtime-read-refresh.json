@@ -1,0 +1,42 @@
+{
+  "run_id": "2026-06-02-0211-hourly-autopilot",
+  "created_at": "2026-06-01T17:11:35Z",
+  "paper": true,
+  "read_only": true,
+  "registered_alpaca_mcp_attempts": [
+    {
+      "tool": "get_account_info",
+      "outcome": "failed",
+      "gap_category": "cancelled",
+      "gap_reason": "Registered Alpaca MCP returned user cancelled MCP tool call during nested account payload refresh.",
+      "retry_count": 0,
+      "first_blocking_gate": "alpaca_account_payload_refresh_cancelled_for_submit"
+    },
+    {
+      "tool": "get_all_positions",
+      "outcome": "pass",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "summary": {
+        "positions_count": 32,
+        "symbols_match_latest_complete_snapshot": true
+      }
+    },
+    {
+      "tool": "get_orders",
+      "outcome": "pass",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "summary": {
+        "open_orders_count": 0
+      }
+    }
+  ],
+  "artifact_note": "Order-plan positions use the latest complete reconciled Alpaca position snapshot and the registered get_all_positions refresh confirmed the same 32-symbol held-position set; no place_stock_order call was made.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-02-0211-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-02-0151-hourly-autopilot.json"
+  ]
+}
