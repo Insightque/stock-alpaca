@@ -1,0 +1,68 @@
+{
+  "run_id": "2026-06-01-1031-after-hours-autopilot",
+  "created_at": "2026-06-01T01:36:00Z",
+  "session": "after_hours",
+  "paper": true,
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "scheduler_preflight_refs": [
+    "wiki/evidence-store/sources/2026-06-01-1031-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-01-1031-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "alpaca_core_preflight_first_blocking_gate": "market_closed_expected_nonblocking_after_hours",
+  "runtime_alpaca_mcp_checks": {
+    "clock": "pass_regular_market_closed",
+    "account": "pass",
+    "positions": "pass",
+    "open_orders": "pass_empty",
+    "prior_after_hours_order_count": "block_session_budget_exhausted",
+    "overnight_quotes": "pass_fresh_spread_for_AVGO_NVDA_QQQ"
+  },
+  "after_hours_budget": {
+    "after_hours_new_orders_submitted_today": 2,
+    "max_new_orders_per_session": 2,
+    "regular_validation_order_count_reused": false,
+    "blocking": true,
+    "reason": "09:11 NVDA canceled order and 09:31 AVGO filled order already consume the separate after-hours session order budget."
+  },
+  "candidate_order": null,
+  "pre_submit_gate_summary": null,
+  "validators": {
+    "universe_strict": "PASS",
+    "mcp_strict": "PASS",
+    "risk_policy": "PASS"
+  },
+  "submit_result": {
+    "attempted": false,
+    "reason": "No place_stock_order call because separate after-hours session budget was exhausted before submit path.",
+    "client_order_id": null,
+    "retry_attempted": false,
+    "alternate_client_order_id_used": false
+  },
+  "post_trade_check": {
+    "open_us_equity_orders": 0,
+    "account_status": "ACTIVE",
+    "cash": 34339.0,
+    "buying_power": 130609.53
+  },
+  "observed_after_hours_session_orders": [
+    {
+      "client_order_id": "ah-20260601-0911-nvda-buy-01",
+      "status": "canceled",
+      "filled_qty": "0",
+      "symbol": "NVDA"
+    },
+    {
+      "client_order_id": "ah-20260601-0931-avgo-buy-01",
+      "status": "filled",
+      "filled_qty": "1",
+      "symbol": "AVGO"
+    }
+  ],
+  "quote_spread_summary": {
+    "QQQ": "runtime overnight quote fresh; spread within after-hours policy",
+    "NVDA": "runtime overnight quote fresh; spread within after-hours policy",
+    "AVGO": "runtime overnight quote fresh; spread within after-hours policy"
+  }
+}

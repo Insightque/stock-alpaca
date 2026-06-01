@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-06-01-1031-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk/quote/spread gate는 통과했지만 장외 session budget 2건이 이미 소진되어 신규 주문 없음.
 - [[2026-06-01-1011-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk/quote/spread gate는 통과했지만 장외 session budget 2건이 이미 소진되어 신규 주문 없음.
 - [[2026-06-01-0951-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk/quote/spread gate는 통과했지만 장외 session budget 2건이 이미 소진되어 신규 주문 없음.
 - [[2026-06-01-0931-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, 09:11 NVDA stale open order 취소 후 universe/MCP/risk/quote/spread gate 통과로 AVGO 1주 extended-hours day limit buy 제출 및 filled.
