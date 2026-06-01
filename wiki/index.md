@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-06-02-0011-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell/trim 수량/metric gate와 신규 buy의 critical-source/lifecycle/portfolio-fit 조건이 모두 충족되지 않아 신규 주문 없음.
 - [[2026-06-01-2351-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell/trim active trigger와 신규 buy의 critical-source/lifecycle/portfolio-fit 조건이 모두 충족되지 않아 신규 주문 없음.
 - [[2026-06-01-2331-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 registered Alpaca MCP runtime quote refresh가 cancelled되어 주문 수준 quote/spread metric gate를 통과하지 못했고 신규 주문 없음.
 - [[2026-06-01-2311-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell/trim decision metric gap, FRED/Alpha provider_error, lifecycle/critical-source/portfolio-fit 제약으로 신규 주문 없음.
