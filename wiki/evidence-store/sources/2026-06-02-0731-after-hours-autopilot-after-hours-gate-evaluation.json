@@ -1,0 +1,131 @@
+{
+  "run_id": "2026-06-02-0731-after-hours-autopilot",
+  "created_at": "2026-06-01T22:36:36Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "paper_mode": "pass",
+  "regular_market_open": "pass_regular_market_closed",
+  "alpaca_core": {
+    "status": "pass_market_closed_nonblocking_after_hours",
+    "first_blocking_gate": "market_closed",
+    "source_ref": "wiki/evidence-store/sources/2026-06-02-0731-after-hours-autopilot-alpaca-core-preflight.json",
+    "checks": {
+      "clock": true,
+      "market_open": false,
+      "account": true,
+      "positions": true,
+      "open_orders": true,
+      "recent_activities": true,
+      "quotes": true
+    }
+  },
+  "research_mcp": {
+    "status": "pass_min_3_research_confirmations",
+    "positive_providers": [
+      "sec-edgar",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "gap_providers": [
+      "alpha-vantage",
+      "fred"
+    ],
+    "source_ref": "wiki/evidence-store/sources/2026-06-02-0731-after-hours-autopilot-research-mcp-preflight.json"
+  },
+  "universe": {
+    "status": "pass",
+    "symbols_considered": 62,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "shortlist": [
+      "SPY",
+      "QQQ",
+      "NOK",
+      "AVGO",
+      "PLTR",
+      "META",
+      "NEE",
+      "NVDA"
+    ]
+  },
+  "separate_after_hours_order_budget": {
+    "status": "block_session_budget_reached",
+    "after_hours_new_orders_submitted_today": 2,
+    "max_new_orders_per_session": 2,
+    "evidence": [
+      {
+        "client_order_id": "ah-20260601-0911-nvda-buy-01",
+        "symbol": "NVDA",
+        "status": "canceled",
+        "filled_qty": 0,
+        "extended_hours": true,
+        "side": "buy",
+        "type": "limit",
+        "time_in_force": "day"
+      },
+      {
+        "client_order_id": "ah-20260601-0931-avgo-buy-01",
+        "symbol": "AVGO",
+        "status": "filled",
+        "filled_qty": 1,
+        "extended_hours": true,
+        "side": "buy",
+        "type": "limit",
+        "time_in_force": "day"
+      }
+    ]
+  },
+  "submit_gate_summary": "No place_stock_order call: separate after-hours session budget already reached before quote/spread/order-shape submit gates.",
+  "orders_submitted": 0,
+  "submit_attempted": false,
+  "client_order_id_reconciliation": [
+    {
+      "client_order_id": "ah-20260601-0911-nvda-buy-01",
+      "symbol": "NVDA",
+      "status": "canceled",
+      "filled_qty": 0,
+      "extended_hours": true,
+      "side": "buy",
+      "type": "limit",
+      "time_in_force": "day"
+    },
+    {
+      "client_order_id": "ah-20260601-0931-avgo-buy-01",
+      "symbol": "AVGO",
+      "status": "filled",
+      "filled_qty": 1,
+      "extended_hours": true,
+      "side": "buy",
+      "type": "limit",
+      "time_in_force": "day"
+    }
+  ],
+  "risk_diagnostics_queued_for_regular_session": [
+    {
+      "symbol": "TSLA",
+      "risk_reason": "weak validation/review observation",
+      "next_regular_session_recheck": true,
+      "source_refs": [
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "risk_reason": "weak validation/review observation",
+      "next_regular_session_recheck": true,
+      "source_refs": [
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md"
+      ]
+    },
+    {
+      "symbol": "NEE",
+      "risk_reason": "weak validation/review observation",
+      "next_regular_session_recheck": true,
+      "source_refs": [
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md"
+      ]
+    }
+  ]
+}
