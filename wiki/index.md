@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-06-01-2031-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했지만 장외 session budget 2건 소진 및 runtime quote/spread submit gate 실패로 신규 주문 없음.
 - [[2026-06-01-2011-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했지만 장외 session budget 2건 소진 및 runtime quote/spread submit gate 실패로 신규 주문 없음.
 - [[2026-06-01-1951-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했지만 장외 session budget 2건 소진 및 runtime quote/spread submit gate 실패로 신규 주문 없음.
 - [[2026-06-01-1931-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했지만 장외 session budget 2건 소진 및 runtime quote/spread submit gate 실패로 신규 주문 없음.
