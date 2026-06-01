@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-06-01-2251-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell trigger 없음, Alpha/FRED provider_error, lifecycle/target-band/portfolio-fit 제약으로 신규 주문 없음.
 - [[2026-06-01-2231-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell trigger 없음, FRED macro gap에 따른 BAC watch 강등, target-band/lifecycle/portfolio-fit 제약으로 신규 주문 없음.
 - [[2026-06-01-2151-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했지만 장외 session budget 2건 소진 및 runtime quote/spread submit gate 실패로 신규 주문 없음.
 - [[2026-06-01-2131-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했지만 장외 session budget 2건 소진 및 runtime quote/spread submit gate 실패로 신규 주문 없음.
