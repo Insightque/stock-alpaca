@@ -1,0 +1,117 @@
+{
+  "run_id": "2026-06-01-1211-after-hours-autopilot",
+  "created_at": "2026-06-01T03:18:30Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "paper_mode": {
+    "alpaca_paper_trade_present": true,
+    "alpaca_paper_trade_true": true
+  },
+  "scheduler_preflights": {
+    "alpaca_core": "wiki/evidence-store/sources/2026-06-01-1211-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp": "wiki/evidence-store/sources/2026-06-01-1211-after-hours-autopilot-research-mcp-preflight.json",
+    "alpaca_first_blocking_gate": "market_closed",
+    "market_closed_expected_nonblocking_for_after_hours": true
+  },
+  "alpaca_mcp_runtime_spot_checks": {
+    "clock": {
+      "is_open": false,
+      "checked_at": "2026-05-31T23:11:10.41041253-04:00",
+      "next_open": "2026-06-01T09:30:00-04:00",
+      "next_close": "2026-06-01T16:00:00-04:00",
+      "session": "after_hours"
+    },
+    "clock_tool_runtime_status": "cancelled_by_mcp_runtime; scheduler preflight clock retained",
+    "account_status": "ACTIVE",
+    "positions_count": 32,
+    "open_us_equity_orders_count": 0,
+    "after_hours_session_orders": [
+      {
+        "client_order_id": "ah-20260601-0911-nvda-buy-01",
+        "symbol": "NVDA",
+        "status": "canceled",
+        "filled_qty": 0,
+        "extended_hours": true
+      },
+      {
+        "client_order_id": "ah-20260601-0931-avgo-buy-01",
+        "symbol": "AVGO",
+        "status": "filled",
+        "filled_qty": 1,
+        "extended_hours": true
+      }
+    ],
+    "asset_spot_check": {
+      "symbol": "QQQ",
+      "status": "active",
+      "tradable": true,
+      "asset_class": "us_equity",
+      "overnight_tradable": true
+    },
+    "quote_spot_check": {
+      "status": "empty_result_after_budget_exhausted",
+      "symbols": [
+        "QQQ",
+        "NOK",
+        "AVGO",
+        "NVDA",
+        "COST",
+        "FCX",
+        "UNH",
+        "SBUX"
+      ]
+    }
+  },
+  "gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_with_market_closed_expected_nonblocking",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "block_after_hours_session_budget_exhausted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_empty_order_plan",
+    "fresh_quote": "not_actionable_budget_exhausted_after_scheduler_quote_rows",
+    "spread_within_after_hours_policy": "not_actionable_budget_exhausted_after_scheduler_spread_rows",
+    "whole_share_day_limit_extended_hours_order": "not_applicable_no_order",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "not_applicable_no_submit"
+  },
+  "budget": {
+    "after_hours_new_orders_submitted_today": 2,
+    "max_new_orders_per_session": 2,
+    "regular_validation_order_count_reused": false,
+    "status": "exhausted"
+  },
+  "submit_decision": {
+    "submit_attempted": false,
+    "orders_submitted": 0,
+    "place_stock_order_called": false,
+    "reason": "after_hours_new_orders_submitted_today equals after_hours_policy.max_new_orders_per_session before submit path",
+    "client_order_ids": [],
+    "retry_with_alternate_client_order_id": false
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-01-1211-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-01-1211-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "validation_results": {
+    "universe_strict": {
+      "status": "PASS",
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-06-01-1211-after-hours-autopilot.json"
+    },
+    "mcp_strict": {
+      "status": "PASS",
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-06-01-1211-after-hours-autopilot.json"
+    },
+    "risk_policy": {
+      "status": "PASS",
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-06-01-1211-after-hours-autopilot.json",
+      "warnings": [
+        "orders is empty"
+      ]
+    }
+  }
+}
