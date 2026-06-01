@@ -1,0 +1,121 @@
+{
+  "run_id": "2026-06-01-1411-after-hours-autopilot",
+  "created_at": "2026-06-01T05:14:30Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "paper_mode": true,
+  "scheduler_preflight_refs": [
+    "wiki/evidence-store/sources/2026-06-01-1411-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-01-1411-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "alpaca_core": {
+    "status": "pass_with_expected_market_closed",
+    "first_blocking_gate": "market_closed_expected_nonblocking_after_hours",
+    "clock": {
+      "is_open": false,
+      "timestamp": "2026-06-01T01:13:10.139835135-04:00",
+      "next_open": "2026-06-01T09:30:00-04:00",
+      "next_close": "2026-06-01T16:00:00-04:00"
+    },
+    "account_status": "ACTIVE",
+    "positions_count": 32,
+    "open_us_equity_orders_count": 0,
+    "asset_spot_check": "QQQ active/tradable/us_equity/overnight_tradable confirmed by Alpaca MCP"
+  },
+  "runtime_alpaca_mcp_checks": {
+    "clock_is_open": false,
+    "account_status": "ACTIVE",
+    "positions_count": 32,
+    "open_us_equity_orders_count": 0,
+    "session_order_history": [
+      {
+        "client_order_id": "ah-20260601-0911-nvda-buy-01",
+        "symbol": "NVDA",
+        "status": "canceled",
+        "filled_qty": 0,
+        "extended_hours": true
+      },
+      {
+        "client_order_id": "ah-20260601-0931-avgo-buy-01",
+        "symbol": "AVGO",
+        "status": "filled",
+        "filled_qty": 1,
+        "extended_hours": true
+      }
+    ],
+    "overnight_quote_symbols": [
+      "QQQ",
+      "NOK",
+      "AVGO",
+      "NVDA",
+      "COST",
+      "FCX",
+      "UNH",
+      "SBUX"
+    ],
+    "overnight_quote_checked_at": "2026-06-01T05:13:47Z"
+  },
+  "budget": {
+    "after_hours_new_orders_submitted_today": 2,
+    "max_new_orders_per_session": 2,
+    "regular_validation_order_count_reused": false,
+    "status": "exhausted"
+  },
+  "gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_with_market_closed_expected_nonblocking",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "block_after_hours_session_budget_exhausted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_empty_order_plan",
+    "fresh_quote": "not_actionable_budget_exhausted_after_fresh_runtime_quote",
+    "spread_within_after_hours_policy": "not_actionable_budget_exhausted_after_fresh_runtime_quote",
+    "whole_share_day_limit_extended_hours_order": "not_applicable_no_order",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "not_applicable_no_submit"
+  },
+  "submit_decision": {
+    "submit_attempted": false,
+    "orders_submitted": 0,
+    "place_stock_order_called": false,
+    "reason": "after_hours_new_orders_submitted_today equals after_hours_policy.max_new_orders_per_session before submit path",
+    "client_order_ids": [],
+    "retry_with_alternate_client_order_id": false,
+    "prior_after_hours_client_order_id_reconciliation": [
+      {
+        "client_order_id": "ah-20260601-0911-nvda-buy-01",
+        "symbol": "NVDA",
+        "status": "canceled",
+        "filled_qty": 0,
+        "extended_hours": true
+      },
+      {
+        "client_order_id": "ah-20260601-0931-avgo-buy-01",
+        "symbol": "AVGO",
+        "status": "filled",
+        "filled_qty": 1,
+        "extended_hours": true
+      }
+    ]
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0,
+    "weekly_turnover_ratio": 0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 2,
+    "review_backlog_pending_5d_count": 2,
+    "review_backlog_pending_20d_count": 2
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-01-1411-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-01-1411-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-01-1411-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ]
+}
