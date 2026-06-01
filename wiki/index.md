@@ -4,20 +4,20 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-01 09:39 KST after-hours autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-02 06:24 KST analyst review reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
 
-- [[NVDA]] - AI 반도체 핵심 주식 후보, 2026-05-22 업데이트.
-- [[AMD]] - AI 반도체 보조 핵심 후보, 2026-05-22 업데이트.
-- [[AVGO]] - AI 반도체 인프라 후보, 2026-05-22 업데이트.
-- [[LRCX]] - 반도체 장비 후보, 2026-05-22 업데이트.
-- [[TSM]] - 글로벌 반도체 제조 후보, 2026-05-22 업데이트.
-- [[NOK]] - AI 인프라/네트워크 보조 후보, 2026-05-22 업데이트.
-- [[UNH]] - 헬스케어 방어적 분산 후보, 2026-05-22 업데이트.
-- [[ETN]] - 전력/인프라 분산 후보, 2026-05-22 업데이트.
-- [[IONQ]] - 양자컴퓨팅 소액 분산 후보, 2026-05-22 업데이트.
+- [[NVDA]] - 2026-05-22 stock-only 5D 회고 양호, 20D 대기.
+- [[AMD]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
+- [[AVGO]] - 2026-05-22 stock-only 5D 회고 강함; 2026-06-01 after-hours validation 첫 close 보류.
+- [[LRCX]] - 2026-05-22 stock-only 5D 회고 중립 양호, 20D 대기.
+- [[TSM]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
+- [[NOK]] - 2026-05-22 stock-only 5D 회고 강함이나 변동성 큼, 20D 대기.
+- [[UNH]] - 2026-05-22 stock-only 5D 회고 약함, 20D 대기.
+- [[ETN]] - 2026-05-22 stock-only 5D 회고 중립 양호, 20D 대기.
+- [[IONQ]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
 - [[QBTS]] - 양자컴퓨팅 watchlist 후보, 2026-05-22 업데이트.
 - [[PLTR]] - 2026-05-28 validation buy 1D 회고 강함, 5D/20D 대기.
 - [[ADBE]] - 2026-05-29 after-hours validation buy 1D 회고 강함; 2026-06-01 analyst review에서 5D/20D 대기 유지.
@@ -25,30 +25,31 @@
 - [[SPY]] - 2026-05-28 validation buy 1D 회고 양호, 벤치마크 기준점.
 - [[QQQ]] - 2026-05-28 validation buy 1D 회고 양호, 벤치마크 기준점.
 - [[SMH]] - 반도체 ETF 후보, 2026-05-22 업데이트.
-- [[RGTI]] - 투기적 양자컴퓨팅 촉매 종목, 2026-05-22 업데이트.
+- [[RGTI]] - 2026-05-22 stock-only 5D 회고 약함, 20D 대기.
 - [[SOXS]] - 레버리지 인버스 반도체 ETF, 핵심 롱 후보로 회피, 2026-05-22 업데이트.
 - [[FUTU]] - 갭다운 ADR 브로커 관찰 종목, 2026-05-22 업데이트.
 - [[TIGR]] - 갭다운 ADR 브로커 관찰 종목, 2026-05-22 업데이트.
 - [[LFS]] - 투기적 고모멘텀 mover, 2026-05-22 업데이트.
 - [[QTEX]] - 투기적 1달러 미만 mover, 2026-05-22 업데이트.
 - [[BIYA]] - 투기적 저가 mover, 2026-05-22 업데이트.
-- [[NKE]] - 2026-05-28 validation buy 1D 회고 양호, 5D/20D 대기.
-- [[PFE]] - 2026-05-28 validation buy 1D 회고 중립, 5D/20D 대기.
-- [[SO]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기.
-- [[WMT]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기.
-- [[NEE]] - 2026-05-28 validation buy 1D 회고 중립 약함, 5D/20D 대기.
-- [[AMZN]] - 2026-05-29 validation add는 주말 현재 1D 미완료, 2026-06-01 close 이후 회고 대기.
+- [[NKE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
+- [[PFE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
+- [[SO]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
+- [[WMT]] - 2026-05-29 validation add 1D 회고 중립 약함, 5D/20D 대기.
+- [[NEE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
+- [[AMZN]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[BAC]] - 2026-05-28 validation buy 1D 회고 양호, 5D/20D 대기.
 - [[XOM]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기.
-- [[V]] - 2026-05-29 validation add는 주말 현재 1D 미완료, 2026-06-01 close 이후 회고 대기.
+- [[V]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[INTC]] - 2026-05-28 after-hours validation buy 1D 회고 약함, 5D/20D 대기.
 - [[CVX]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기.
-- [[GOOGL]] - 2026-05-29 validation add는 주말 현재 1D 미완료, 2026-06-01 close 이후 회고 대기.
-- [[SLB]] - 2026-05-29 validation add는 주말 현재 1D 미완료, 2026-06-01 close 이후 회고 대기.
+- [[GOOGL]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
+- [[SLB]] - 2026-05-29 validation add 1D 회고 중립 약함, 5D/20D 대기.
 - [[COP]] - 2026-05-28 validation buy 1D 회고 중립 약함, 5D/20D 대기.
 
 ## Current Runs
 
+- [[2026-06-02-portfolio-review]] - scheduled analyst review cycle. 2026-05-29 validation fills 1D와 2026-05-22 stock-only 5D 회고 완료; 정책 변경 없음; 주문 mutation 없음.
 - [[2026-06-02-0611-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했지만 장외 session budget 2건이 이미 소진되어 신규 주문 없음.
 - [[2026-06-02-0451-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했지만 buy entry window 종료, validation lifecycle/review backlog/portfolio-fit 제약, sell/trim 수량·macro·decision metric gate로 신규 주문 없음.
 - [[2026-06-02-0431-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했지만 buy entry window 종료, validation lifecycle/review backlog/portfolio-fit 제약, sell/trim 수량·macro·decision metric gate로 신규 주문 없음.
@@ -482,7 +483,10 @@
 - [[2026-05-30-portfolio-review]] - 2026-05-28 validation fills와 ADBE after-hours fill의 1D interim analyst review. 정책 변경 없음.
 - [[2026-05-30-overnight-trade-review]] - 2026-05-29 밤~2026-05-30 새벽 자동운영 체결 10건과 MRK 미체결 취소를 회고 대기 상태로 점검. 정책 변경 없음.
 - [[2026-05-31-portfolio-review]] - 2026-05-29 정규장 validation fill 10건을 다음 정규장 close 전 대기 상태로 점검. 주문/정책 변경 없음.
+- [[2026-06-01-portfolio-review]] - 2026-05-29 validation fills와 2026-05-22 stock-only 5D를 정규장 close 전 대기 상태로 점검. 주문/정책 변경 없음.
+- [[2026-06-02-portfolio-review]] - 2026-05-29 validation fills 1D 및 2026-05-22 stock-only 5D interim analyst review. 정책 변경 없음.
 - `wiki/evidence-store/run-manifests/2026-05-29-0625-analyst-review-cycle.json` - 2026-05-29 analyst review cycle MCP coverage와 due-review manifest.
+- `wiki/evidence-store/run-manifests/2026-06-02-0624-analyst-review-cycle.json` - 2026-06-02 analyst review cycle MCP coverage와 due-review manifest.
 - `wiki/trade-ledger/orders/2026-05-26-1853-hourly-autopilot.json` - 2026-05-26 18:53 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2011-hourly-autopilot.json` - 2026-05-26 20:11 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2124-hourly-autopilot.json` - 2026-05-26 21:24 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
@@ -631,6 +635,7 @@
 - [[2026-05-27-0624-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/SEC/Alpha/Yahoo reconciliation, FRED/Firecrawl catalog gap, 1D 회고 원천.
 - [[2026-05-30-0625-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/SEC/Alpha/Yahoo reconciliation, FRED/Firecrawl wrapper gap, 2026-05-28 fill 1D 회고 원천.
 - [[2026-05-31-0624-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/SEC/Alpha/Yahoo reconciliation, FRED/Firecrawl wrapper gap, 2026-05-29 fill 대기 회고 원천.
+- [[2026-06-02-0624-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/SEC/Alpha/Yahoo reconciliation, FRED/Firecrawl wrapper gap, 2026-05-29 1D 및 2026-05-22 5D 회고 원천.
 - [[2026-05-30-overnight-trade-review-alpaca-readonly]] - 지난 밤 거래 회고용 Alpaca MCP read-only 계좌, FILL 10건, MRK 미체결 취소 확인.
 - `wiki/evidence-store/sources/2026-05-25-one-year-hourly-bars.json` - 62개 심볼 2025-05-23~2026-05-22 adjusted IEX 1시간봉 원자료.
 - `wiki/evidence-store/sources/2026-05-25-one-year-hourly-alpaca-news.json` - 1년 1시간봉 보강용 Alpaca MCP 뉴스 원자료.

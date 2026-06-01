@@ -61,3 +61,8 @@ NOK는 보유 유지 후보지만 신규 추격은 금지한다. 2026-05-22 종�
 - 2026-05-27: [[2026-05-27-portfolio-review]]에서 2026-05-22 stock-only 매수 1D interim review를 작성했다. NOK 전체 포지션은 평균 15.043641 USD 대비 Alpaca 현재가 16.75 USD, 미실현 +11.34%였다. Yahoo/Alpaca 뉴스에서도 AI networking/infrastructure 재평가가 확인됐지만 5D/20D 유지 여부는 대기한다.
 - 2026-05-28: [[2026-05-28-portfolio-review]]에서 2026-05-26 validation add 1D interim review를 작성했다. 추가 1주는 16.50 USD 진입 대비 2026-05-27 close 15.68 USD로 -4.97%, SPY 대비 -4.99%p였다. 기존 보유 400주 thesis는 별도이나, 52-week high 직후 추가 진입은 되돌림 위험이 컸다는 가설을 남겼다.
 - 2026-05-30: [[2026-05-30-portfolio-review]]에서 2026-05-28 after-hours validation add 1D interim review를 작성했다. 추가 1주는 15.40 USD 진입 대비 2026-05-29 close/current 14.9686 USD로 -2.80%, SPY 대비 -3.00%p였다. 기존 보유가 큰 고모멘텀 종목의 추가 1주가 두 번 연속 1D 부진해 `existing-position-breakout-add-penalty` 가설을 강화한다.
+### 2026-06-02 analyst review cycle
+
+2026-05-22 stock-only cohort는 15.04 USD 진입 대비 2026-06-01 close 16.235 USD로 +7.95%였다. 5D 결과는 강하지만 2026-05-29까지의 약세와 2026-06-01 급반등이 섞여 변동성이 크다. 기존 보유가 큰 상태에서의 추가매수는 20D 확인 전까지 더 엄격한 price confirmation이 필요하다.
+
+출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]

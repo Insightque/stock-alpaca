@@ -62,3 +62,8 @@ RGTI는 오늘 신규 매수 후보에서 제외했다. 2026-05-22 종가 26.41 
 ## 회고 기록
 
 - 2026-05-27: [[2026-05-27-portfolio-review]]에서 2026-05-22 stock-only 매수 1D interim review를 작성했다. RGTI는 25.569584 USD 진입 대비 Alpaca 현재가 24.84 USD, 미실현 -2.85%로 양자컴퓨팅 이벤트 추격 리스크가 바로 나타났다. 낮은 비중 편입은 유지하되 5D/20D 회고가 필요하다.
+### 2026-06-02 analyst review cycle
+
+2026-05-22 stock-only cohort는 25.569584 USD 진입 대비 2026-06-01 close 25.63 USD로 +0.24%였다. 절대 수익은 flat에 가깝고 SPY/QQQ 대비 약해, quantum sleeve 안에서도 IONQ보다 낮은 품질로 본다. 판단은 `약함`, 20D 회고 대기.
+
+출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]

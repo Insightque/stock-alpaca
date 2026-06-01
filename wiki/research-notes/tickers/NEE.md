@@ -24,3 +24,8 @@ asset_type: stock
 2026-05-29 validation add 1주는 86.46 USD 체결 후 주말 현재 87.01 USD reference로 +0.64%지만, 다음 미국 정규장 close 전이라 1D 판단은 보류한다. Utilities/defensive-yield thesis는 2026-06-01 close 이후 재회고한다.
 
 출처: [[2026-05-31-portfolio-review]], [[2026-05-31-0624-analyst-review-cycle-sources]]
+### 2026-06-02 analyst review cycle
+
+2026-05-29 validation add 1주는 86.46 USD 진입 대비 2026-06-01 close 83.65 USD로 -3.25%였다. rate-sensitive utility/renewable defensive thesis는 1D에서 크게 약했고 FRED macro gap도 남아 있다. 판단은 `약함`, 5D/20D 대기.
+
+출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]

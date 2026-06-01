@@ -64,3 +64,8 @@ Yahoo Finance MCP에서는 turnaround/valuation narrative와 Medicare Advantage 
 ## 회고 기록
 
 - 2026-05-27: [[2026-05-27-portfolio-review]]에서 2026-05-22 stock-only 매수 1D interim review를 작성했다. UNH는 386.56 USD 진입 대비 Alpaca 현재가 376.8175 USD, 미실현 -2.52%로 방어적 분산 의도가 1D에는 작동하지 않았다. Healthcare policy/headline risk를 다음 회고에서 계속 확인한다.
+### 2026-06-02 analyst review cycle
+
+2026-05-22 stock-only cohort는 386.56 USD 진입 대비 2026-06-01 close 379.85 USD로 -1.74%였다. 방어적 healthcare 분산 thesis는 5D에서도 SPY/QQQ 대비 약해 `약함`으로 분류한다. 20D 회고 대기.
+
+출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]

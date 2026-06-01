@@ -52,3 +52,8 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 ## 회고 기록
 
 - 2026-05-27: [[2026-05-27-portfolio-review]]에서 2026-05-22 stock-only 매수 1D interim review를 작성했다. AVGO는 410.73 USD 진입 대비 Alpaca 현재가 422.50 USD, 미실현 +2.87%였다. AI 인프라 thesis는 유효하지만 AMD/LRCX보다 1D follow-through는 약했다.
+### 2026-06-02 analyst review cycle
+
+2026-05-22 stock-only cohort는 410.73 USD 진입 대비 2026-06-01 close 460.09 USD로 +12.02%였다. AI semiconductor/infrastructure thesis는 5D에서 강했다. 별도로 2026-06-01 after-hours validation 1주는 461.26 USD 진입 대비 첫 regular close 460.09 USD로 -0.25%라 판단 보류이며, earnings-preview narrative는 1D/5D 확인 전 add 근거로 쓰지 않는다.
+
+출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]

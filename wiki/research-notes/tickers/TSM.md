@@ -59,3 +59,8 @@ dry-run order plan에는 8주 보조 추가 후보를 기록했다. 가격 추�
 ## 회고 기록
 
 - 2026-05-27: [[2026-05-27-portfolio-review]]에서 2026-05-22 stock-only 매수 1D interim review를 작성했다. TSM은 405.20 USD 진입 대비 Alpaca 현재가 411.8986 USD, 미실현 +1.65%로 SPY는 상회했지만 QQQ와 유사한 보조 supply-chain 노출로 평가했다.
+### 2026-06-02 analyst review cycle
+
+2026-05-22 stock-only cohort는 405.20 USD 진입 대비 2026-06-01 close 436.03 USD로 +7.61%였다. SPY/QQQ를 모두 이겨 AI semiconductor manufacturing thesis를 5D 기준 지지한다. 판단은 `강함`, 20D 회고 대기.
+
+출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]

@@ -1,0 +1,138 @@
+{
+  "id": "2026-06-02-0624-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-06-01T21:24:13Z",
+  "timezone": "Asia/Seoul",
+  "paper": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "alpaca_reconciliation": {
+    "clock_is_open": false,
+    "account_status": "ACTIVE",
+    "portfolio_value": 103380.11,
+    "cash": 34339.0,
+    "buying_power": 131106.21,
+    "long_market_value": 69041.11,
+    "open_us_equity_orders": 0,
+    "position_count": 32,
+    "recent_fill_scope_after": "2026-05-22",
+    "recent_sell_fill_count": 0,
+    "portfolio_history": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 2
+    }
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+    "reviewed_horizons": [
+      "2026-05-29 validation fills 1D",
+      "2026-05-22 stock-only cohort 5D",
+      "2026-06-01 AVGO after-hours first regular close"
+    ],
+    "symbols": [
+      "AMZN",
+      "NKE",
+      "PFE",
+      "SO",
+      "SLB",
+      "QQQ",
+      "V",
+      "GOOGL",
+      "WMT",
+      "NEE",
+      "NVDA",
+      "AMD",
+      "AVGO",
+      "LRCX",
+      "TSM",
+      "NOK",
+      "UNH",
+      "ETN",
+      "IONQ",
+      "RGTI"
+    ],
+    "due_now": true,
+    "next_due": "2026-06-02 regular-session close for AVGO 1D confirmation; 2026-06-04 to 2026-06-05 area for 5D checks on 2026-05-29/2026-06-01 fills depending on trading calendar"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-02-0624-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "portfolio_history_cancelled_only",
+      "gap_category": "cancelled",
+      "retry_count": 2
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-02-0624-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-02-0624-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "PING TOOL_CALL cancelled after TOOL_LIST and TOOL_GET; non-PING Alpha calls not attempted",
+      "gap_category": "cancelled",
+      "retry_count": 1
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-02-0624-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-02-0624-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-02-0624-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "1D and 5D evidence reinforced existing hypotheses but did not meet the repeated-evidence threshold for a new active rule; account-level portfolio history remained unavailable"
+  }
+}

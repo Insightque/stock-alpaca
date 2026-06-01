@@ -66,3 +66,8 @@ Alpaca/Yahoo Finance MCP에서는 2nm Venice CPU 생산 확대와 대만 AI supp
 ## 회고 기록
 
 - 2026-05-27: [[2026-05-27-portfolio-review]]에서 2026-05-22 stock-only 매수 1D interim review를 작성했다. AMD는 462.73 USD 진입 대비 Alpaca 현재가 504.60 USD, 미실현 +9.05%로 SPY/QQQ/SMH를 모두 상회했다. 단일 1D 결과라 정책 변경은 보류했다.
+### 2026-06-02 analyst review cycle
+
+2026-05-22 stock-only cohort는 462.73 USD 진입 대비 2026-06-01 close 510.05 USD로 +10.23%였다. SPY/QQQ 대비 모두 강해 AI semiconductor core thesis가 5D에서 잘 작동했다. 판단은 `강함`, 20D 회고 대기.
+
+출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]

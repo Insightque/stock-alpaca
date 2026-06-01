@@ -64,3 +64,8 @@ LRCX는 오늘 기준 1순위 추가 후보로 올렸다. 2026-05-22 종가 305.
 ## 회고 기록
 
 - 2026-05-27: [[2026-05-27-portfolio-review]]에서 2026-05-22 stock-only 매수 1D interim review를 작성했다. LRCX는 307.91 USD 진입 대비 Alpaca 현재가 322.62 USD, 미실현 +4.78%로 반도체 장비 체인 편입 판단이 1D 기준 타당했다.
+### 2026-06-02 analyst review cycle
+
+2026-05-22 stock-only cohort는 307.91 USD 진입 대비 2026-06-01 close 317.27 USD로 +3.04%였다. SPY 대비는 양호하지만 QQQ 대비 edge는 작아 `중립 양호`로 둔다. 반도체 장비 thesis는 유지하되 20D 회고에서 상대강도 지속 여부를 확인한다.
+
+출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]

@@ -59,3 +59,8 @@ Alpaca/Benzinga에서 quantum sector funding 기대와 short-interest/valuation 
 ## 회고 기록
 
 - 2026-05-27: [[2026-05-27-portfolio-review]]에서 2026-05-22 stock-only 매수 1D interim review를 작성했다. IONQ는 63.48 USD 진입 대비 Alpaca 현재가 62.99 USD, 미실현 -0.77%로 양자 섹터 강세가 다음 거래일에 충분히 이어지지 못했다.
+### 2026-06-02 analyst review cycle
+
+2026-05-22 stock-only cohort는 63.48 USD 진입 대비 2026-06-01 close 69.285 USD로 +9.14%였다. speculative quantum sleeve로는 5D 결과가 강했고 SPY/QQQ를 모두 이겼다. 다만 volatility bucket이 high이므로 소액 검증 원칙은 유지한다.
+
+출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]

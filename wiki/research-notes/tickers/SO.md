@@ -24,3 +24,8 @@ asset_type: stock
 2026-05-29 validation add 1주는 91.55 USD 체결 후 주말 현재 92.05 USD reference로 +0.55%지만, 다음 미국 정규장 close 전이라 1D 판단은 보류한다. Utilities defensive thesis는 SPY/QQQ 대비로 2026-06-01 close 이후 재회고한다.
 
 출처: [[2026-05-31-portfolio-review]], [[2026-05-31-0624-analyst-review-cycle-sources]]
+### 2026-06-02 analyst review cycle
+
+2026-05-29 validation add 1주는 91.55 USD 진입 대비 2026-06-01 close 89.03 USD로 -2.75%였다. Truist Hold/목표가 하향 headline과 금리민감 utility 특성이 겹쳤고, FRED gap이 있어 macro 확인도 불완전했다. 판단은 `약함`, 5D/20D 대기.
+
+출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]
