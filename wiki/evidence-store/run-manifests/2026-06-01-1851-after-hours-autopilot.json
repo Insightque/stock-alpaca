@@ -1,0 +1,296 @@
+{
+  "run_id": "2026-06-01-1851-after-hours-autopilot",
+  "created_at": "2026-06-01T09:56:44Z",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "policy_id": "recommendation-policy-v1.10",
+  "policy_version": "v1.10",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "git_commit": "56a454d6d6da330552f97715bbed605ea70da391",
+  "prompt_file_sha": "sha256:99103acaeae8dbc68188a55fddc371213fff62152a96dbdc760cb9fe59915891",
+  "risk_policy_version": "medium-risk-v1.1",
+  "recommendation_policy_sha": "sha256:ab8568c7f097c3066b4243ba871e5a31676339c8c3f8167ccd6e730417759928",
+  "schema_version": "1.2",
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [
+    {
+      "server": "fred",
+      "reason": "FRED provider_error 429 in scheduler research preflight"
+    }
+  ],
+  "mcp_gate_policy": {
+    "min_research_confirmations": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-01T09:51:08Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-1851-after-hours-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "market_closed is expected and nonblocking for after_hours; scheduler preflight rows passed for account/positions/open orders/asset/quotes, and runtime Alpaca MCP confirmed clock closed, positions, open orders, QQQ overnight quote, and client-order-id reconciliation. Runtime account read was blocked by tool safety, so scheduler-owned passing account row was used.",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": "market_closed_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-01T09:51:39+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-1851-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-01T09:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-1851-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-01T09:51:39+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-1851-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "FRED API request failed: curl: (56) The requested URL returned error: 429",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-01T09:31:32+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-1851-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-01T09:51:39+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-01-1851-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "NOK",
+      "AVGO",
+      "NVDA",
+      "COST",
+      "FCX",
+      "UNH",
+      "SBUX"
+    ],
+    "final_candidates": [
+      "QQQ",
+      "NOK",
+      "AVGO",
+      "NVDA",
+      "COST",
+      "FCX",
+      "UNH",
+      "SBUX"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "market": {
+    "is_open": false,
+    "checked_at": "2026-06-01T05:51:10.022715408-04:00",
+    "next_open": "2026-06-01T09:30:00-04:00",
+    "next_close": "2026-06-01T16:00:00-04:00",
+    "session": "after_hours"
+  },
+  "after_hours_gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "block_session_budget_reached",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_empty_order_plan_expected_warning",
+    "fresh_quote": "block_stale_runtime_quote",
+    "spread_within_after_hours_policy": "block_runtime_spread_above_after_hours_policy",
+    "whole_share_day_limit_extended_hours_order": "not_applicable_no_orders",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "not_applicable_no_submit_attempt"
+  },
+  "quote_gate": {
+    "selected_symbol": null,
+    "status": "blocked_by_budget_and_runtime_quote_not_submit_fresh",
+    "scheduler_quote_spread_rows_available": true,
+    "runtime_quote_spot_check": {
+      "symbols": [
+        "QQQ"
+      ],
+      "feed": "overnight",
+      "bid": 738.19,
+      "ask": 740.89,
+      "spread_pct": 0.3651,
+      "checked_at": "2026-06-01T08:00:00.374092471Z",
+      "age_minutes_at_runtime_check": 113.4,
+      "status": "block_stale_quote_and_spread_above_after_hours_policy"
+    },
+    "max_quote_age_minutes_submit": 5.0,
+    "max_spread_pct": 0.25,
+    "excluded_candidates": [
+      "QQQ runtime quote age/spread failed submit thresholds"
+    ],
+    "checked_at": "2026-06-01T09:56:44Z"
+  },
+  "recommendation_actionability": "blocked",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-01-1851-after-hours-autopilot.json",
+  "orders_submitted": 0,
+  "submit_attempted": false,
+  "client_order_ids": [],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-01-1851-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-01-1851-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-01-1851-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ],
+  "budget": {
+    "after_hours_new_orders_submitted_today": 2,
+    "max_new_orders_per_session": 2,
+    "regular_validation_order_count_reused": false,
+    "status": "blocked_session_limit_reached"
+  },
+  "reconciliation": {
+    "submit_attempted": false,
+    "reconciled_existing_after_hours_client_order_ids": [
+      {
+        "client_order_id": "ah-20260601-0911-nvda-buy-01",
+        "symbol": "NVDA",
+        "status": "canceled",
+        "filled_qty": "0",
+        "extended_hours": true,
+        "order_type": "limit",
+        "time_in_force": "day"
+      },
+      {
+        "client_order_id": "ah-20260601-0931-avgo-buy-01",
+        "symbol": "AVGO",
+        "status": "filled",
+        "filled_qty": "1",
+        "extended_hours": true,
+        "order_type": "limit",
+        "time_in_force": "day"
+      }
+    ],
+    "retry_with_alternate_client_order_id": false
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0,
+    "weekly_turnover_ratio": 0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 2,
+    "review_backlog_pending_5d_count": 2,
+    "review_backlog_pending_20d_count": 2
+  },
+  "skipped_order_reasons": [
+    {
+      "symbol": "QQQ",
+      "side": "buy",
+      "reason": "after_hours_session_budget_reached_and_runtime_quote_stale_wide"
+    },
+    {
+      "symbol": "NOK",
+      "side": "buy",
+      "reason": "after_hours_session_budget_reached_before_candidate_submit_gate"
+    },
+    {
+      "symbol": "AVGO",
+      "side": "buy",
+      "reason": "after_hours_session_budget_reached_before_candidate_submit_gate"
+    },
+    {
+      "symbol": "NVDA",
+      "side": "buy",
+      "reason": "after_hours_session_budget_reached_before_candidate_submit_gate"
+    },
+    {
+      "symbol": "COST",
+      "side": "buy",
+      "reason": "after_hours_session_budget_reached_before_candidate_submit_gate"
+    },
+    {
+      "symbol": "FCX",
+      "side": "buy",
+      "reason": "after_hours_session_budget_reached_before_candidate_submit_gate"
+    },
+    {
+      "symbol": "UNH",
+      "side": "buy",
+      "reason": "after_hours_session_budget_reached_before_candidate_submit_gate"
+    },
+    {
+      "symbol": "SBUX",
+      "side": "buy",
+      "reason": "after_hours_session_budget_reached_before_candidate_submit_gate"
+    }
+  ]
+}
