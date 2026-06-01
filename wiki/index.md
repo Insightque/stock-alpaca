@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-06-02-0311-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했지만 buy entry window 종료, validation lifecycle/review backlog/portfolio-fit 제약, sell/trim 수량·macro·decision metric gate로 신규 주문 없음.
 - [[2026-06-02-0251-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했지만 buy entry window 종료, validation lifecycle/review backlog/portfolio-fit 제약, sell/trim 수량·macro·decision metric gate로 신규 주문 없음.
 - [[2026-06-02-0231-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했지만 buy entry window 종료, validation lifecycle/review backlog/portfolio-fit 제약, sell/trim 수량·macro·decision metric gate로 신규 주문 없음.
 - [[2026-06-02-0211-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler Alpaca core/universe/MCP/risk gate는 통과했지만 nested account refresh cancelled와 sell/trim 수량·macro·decision metric gate, 신규 buy critical-source/lifecycle/portfolio-fit 조건으로 신규 주문 없음.
