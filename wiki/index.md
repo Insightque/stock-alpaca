@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-01 06:23 KST analyst review reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-01 09:39 KST after-hours autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-06-01-0931-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, 09:11 NVDA stale open order 취소 후 universe/MCP/risk/quote/spread gate 통과로 AVGO 1주 extended-hours day limit buy 제출 및 filled.
 - [[2026-06-01-0911-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk/quote/spread gate 통과 후 NVDA 1주 extended-hours day limit buy 제출, reconciliation 기준 open `new`.
 - [[2026-06-01-0851-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - [[2026-06-01-0831-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.

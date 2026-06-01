@@ -1,0 +1,65 @@
+{
+  "run_id": "2026-06-01-0931-after-hours-autopilot",
+  "created_at": "2026-06-01T00:39:00Z",
+  "paper": true,
+  "session": "after_hours",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102477.32,
+    "cash": 34339.0,
+    "buying_power": 130637.58,
+    "long_market_value": 68138.32,
+    "currency": "USD"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "AVGO",
+      "client_order_id": "ah-20260601-0931-avgo-buy-01",
+      "order_id": "4f24ea28-5479-45e4-ba93-150869e49cef",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 461.59,
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 461.26,
+      "submitted_at": "2026-06-01T00:38:21.873813953Z",
+      "filled_at": "2026-06-01T00:38:21.979401383Z",
+      "extended_hours": true,
+      "session": "after_hours",
+      "review_bucket": "after_hours_validation"
+    }
+  ],
+  "lifecycle_actions": [
+    {
+      "symbol": "NVDA",
+      "client_order_id": "ah-20260601-0911-nvda-buy-01",
+      "order_id": "f48e5dce-a673-489e-9cc2-dfb170a3232c",
+      "action": "cancelled_stale_unfilled_after_hours_order",
+      "status": "canceled",
+      "filled_qty": 0,
+      "canceled_at": "2026-06-01T00:34:44.971295748Z",
+      "reconciled_by": "client_order_id"
+    }
+  ],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "AVGO",
+      "qty": 16,
+      "avg_entry_price": 413.888125,
+      "current_price": 461.01,
+      "market_value": 7376.16
+    },
+    {
+      "symbol": "NVDA",
+      "qty": 37,
+      "avg_entry_price": 215.201892,
+      "current_price": 214.75,
+      "market_value": 7945.75
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/run-manifests/2026-06-01-0931-after-hours-autopilot.json",
+    "wiki/trade-ledger/orders/2026-06-01-0931-after-hours-autopilot.json"
+  ]
+}

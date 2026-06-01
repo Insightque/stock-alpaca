@@ -1,0 +1,105 @@
+{
+  "run_id": "2026-06-01-0931-after-hours-autopilot",
+  "created_at": "2026-06-01T00:35:30Z",
+  "session": "after_hours",
+  "paper": true,
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "scheduler_preflight_refs": [
+    "wiki/evidence-store/sources/2026-06-01-0931-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-01-0931-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "alpaca_core_preflight_first_blocking_gate": "market_closed_expected_nonblocking_after_hours",
+  "runtime_alpaca_mcp_checks": {
+    "clock": "pass_regular_market_closed",
+    "account": "pass",
+    "positions": "pass",
+    "open_orders_before_lifecycle": "pass_one_scheduler_owned_nvda_order",
+    "stale_order_cancel": "pass_cancelled_and_reconciled_by_client_order_id",
+    "open_orders_after_lifecycle": "pass_empty",
+    "asset_AVGO": "pass_active_tradable_us_equity_overnight_tradable",
+    "overnight_quote_AVGO": "pass_fresh_spread"
+  },
+  "candidate_order": {
+    "symbol": "AVGO",
+    "asset_type": "stock",
+    "asset_status": "active",
+    "asset_tradable": true,
+    "side": "buy",
+    "order_type": "limit",
+    "time_in_force": "day",
+    "extended_hours": true,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "qty": 1,
+    "limit_price": 461.59,
+    "reference_price": 461.59,
+    "quote_age_minutes": 0.242,
+    "quote_captured_at": "2026-06-01T00:37:31.654998342Z",
+    "asset_checked_at": "2026-06-01T00:35:20Z",
+    "theme": "ai_semiconductor",
+    "factor": "ai_semiconductor",
+    "volatility_bucket": "medium",
+    "speculative_flag": false,
+    "liquidity_bucket": "mega",
+    "source_confidence": "high",
+    "correlated_cluster": "ai_semiconductor_complex",
+    "strategy_id": "long_term_quality_momentum_v1",
+    "strategy_version": "v1",
+    "policy_status": "auto_eligible_paper",
+    "expected_excess_return_20d_pct": 3.0,
+    "expected_adverse_move_20d_pct": -6.7,
+    "confidence_score": 0.6,
+    "sizing_basis": "after_hours_validation_default_qty_1_under_0.5pct_notional_cap_second_session_slot",
+    "entry_style": "single",
+    "max_additional_entry_count": 0,
+    "liquidity": {
+      "bid": 461.33,
+      "ask": 461.59,
+      "spread_pct": 0.056,
+      "avg_daily_dollar_volume": 1000000000,
+      "quote_source": "alpaca",
+      "measured_at": "2026-06-01T00:37:31.654998342Z"
+    },
+    "client_order_id": "ah-20260601-0931-avgo-buy-01",
+    "decision_id": "2026-06-01-0931-after-hours-avgo-validation-buy",
+    "review_horizons": [
+      "1D",
+      "5D",
+      "20D"
+    ],
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-06-01-0931-after-hours-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-06-01-0931-after-hours-autopilot-research-mcp-preflight.json",
+      "wiki/research-notes/tickers/AVGO.md"
+    ],
+    "rationale": "장외 validation bucket의 두 번째 세션 슬롯으로 1주만 신규 편입한다. AVGO는 scheduler shortlist 후보이며 runtime Alpaca overnight quote가 fresh이고 spread가 after_hours_policy 한도 안에 있다. 직전 NVDA after-hours open order는 5분 lifecycle 한도를 넘어 같은 client_order_id로 취소 및 reconcile 완료했다."
+  },
+  "pre_submit_gate_summary": "PRE-SUBMIT 2026-06-01-0931-after-hours-autopilot after_hours: paper=true; regular_market_open=false; policy_profile=after_hours_policy; review_bucket=after_hours_validation; prior stale NVDA order cancelled/reconciled by client_order_id; open_orders=[]; universe strict PASS; MCP strict PASS; risk validator must pass after refresh; AVGO buy qty=1 limit=461.59 day extended_hours=true client_order_id=ah-20260601-0931-avgo-buy-01; quote age 0.242m spread 0.056%; after_hours_new_orders_submitted_today=1 of max 2.",
+  "validators": {
+    "universe_strict": "PASS",
+    "mcp_strict": "PASS",
+    "risk_policy": "PASS"
+  },
+  "submit_result": {
+    "client_order_id": "ah-20260601-0931-avgo-buy-01",
+    "order_id": "4f24ea28-5479-45e4-ba93-150869e49cef",
+    "submit_status": "pending_new",
+    "reconciled_status": "filled",
+    "filled_qty": "1",
+    "filled_avg_price": "461.26",
+    "submitted_at": "2026-06-01T00:38:21.873813953Z",
+    "filled_at": "2026-06-01T00:38:21.979401383Z",
+    "reconciled_by": "client_order_id",
+    "retry_attempted": false,
+    "alternate_client_order_id_used": false
+  },
+  "post_trade_check": {
+    "open_us_equity_orders": 0,
+    "avgo_qty": "16",
+    "account_status": "ACTIVE",
+    "cash": 34339.0,
+    "buying_power": 130637.58
+  }
+}
