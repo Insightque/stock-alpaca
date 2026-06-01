@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-06-02-0151-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell/trim 수량·macro·decision metric gate와 신규 buy의 critical-source/lifecycle/portfolio-fit 조건이 충족되지 않아 신규 주문 없음.
 - [[2026-06-02-0131-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell/trim 수량·macro·decision metric gate와 신규 buy의 critical-source/lifecycle/portfolio-fit 조건이 충족되지 않아 신규 주문 없음.
 - [[2026-06-02-0111-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell/trim 수량·macro·decision metric gate와 신규 buy의 critical-source/lifecycle/portfolio-fit 조건이 충족되지 않아 신규 주문 없음.
 - [[2026-06-02-0051-hourly-autopilot]] - hourly paper autopilot 실행. Alpaca core/universe/MCP/risk gate는 통과했지만 sell/trim 수량·macro·decision metric gate와 신규 buy의 critical-source/lifecycle/portfolio-fit 조건이 충족되지 않아 신규 주문 없음.
