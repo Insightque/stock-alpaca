@@ -1,0 +1,73 @@
+{
+  "run_id": "2026-06-02-0951-after-hours-autopilot",
+  "created_at": "2026-06-02T09:53:52+09:00",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "paper_mode": true,
+  "scheduler_preflights": {
+    "alpaca_core": "wiki/evidence-store/sources/2026-06-02-0951-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp": "wiki/evidence-store/sources/2026-06-02-0951-after-hours-autopilot-research-mcp-preflight.json"
+  },
+  "alpaca_core_interpretation": {
+    "first_blocking_gate": "market_closed",
+    "after_hours_expected_nonblocking": true,
+    "required_rows_used": [
+      "account",
+      "positions",
+      "open_orders",
+      "asset",
+      "quote",
+      "spread"
+    ]
+  },
+  "runtime_alpaca_mcp": {
+    "clock_is_open": false,
+    "clock_timestamp": "2026-06-01T20:52:49.046497041-04:00",
+    "account_confirmed_active": true,
+    "positions_count": 32,
+    "watchlists_count": 0,
+    "open_us_equity_orders_count": 0,
+    "open_orders_source": "scheduler-owned Alpaca core preflight open_orders row passed; registered Alpaca MCP get_orders tool was not exposed in this runtime",
+    "client_order_reconciliation": [
+      {
+        "client_order_id": "ah-20260601-0911-nvda-buy-01",
+        "symbol": "NVDA",
+        "status": "canceled",
+        "filled_qty": 0,
+        "extended_hours": true,
+        "side": "buy",
+        "type": "limit",
+        "time_in_force": "day"
+      },
+      {
+        "client_order_id": "ah-20260601-0931-avgo-buy-01",
+        "symbol": "AVGO",
+        "status": "filled",
+        "filled_qty": 1,
+        "extended_hours": true,
+        "side": "buy",
+        "type": "limit",
+        "time_in_force": "day"
+      }
+    ],
+    "supplemental_submit_note": "No place_stock_order call was made because the separate after-hours budget gate blocked before pre-submit quote/spread evaluation."
+  },
+  "budget": {
+    "after_hours_new_orders_submitted_today": 2,
+    "max_new_orders_per_session": 2,
+    "regular_validation_order_count_reused": false,
+    "result": "blocked_before_submit"
+  },
+  "submit_gate_summary": "Paper=true; session=after_hours; regular market closed; Alpaca core rows usable; universe/MCP/risk validations expected to pass; separate after-hours budget already consumed, so no place_stock_order call.",
+  "orders": {
+    "submit_attempted": false,
+    "submitted": [],
+    "new_client_order_id": null,
+    "retry_with_different_client_order_id": false
+  },
+  "diagnostics": [
+    "after-hours allowed_sides is buy-only; sell/trim observations are queued for regular-session diagnostics only"
+  ]
+}
