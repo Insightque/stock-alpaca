@@ -29,3 +29,8 @@ asset_type: stock
 2026-05-29 validation add 1주는 91.55 USD 진입 대비 2026-06-01 close 89.03 USD로 -2.75%였다. Truist Hold/목표가 하향 headline과 금리민감 utility 특성이 겹쳤고, FRED gap이 있어 macro 확인도 불완전했다. 판단은 `약함`, 5D/20D 대기.
 
 출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]
+### 2026-06-04 analyst review cycle
+
+2026-05-29 validation add 1주는 91.55 USD 진입 대비 2026-06-03 close 90.52 USD로 -1.13%였다. 1D 대비 낙폭은 줄었지만 SPY/QQQ 대비는 아직 약하고 utility/rate-sensitive thesis의 분명한 회복도 없다. 판단은 `중립 약함`, 20D 확인 전 add 보류가 맞다.
+
+출처: [[2026-06-04-portfolio-review]], [[2026-06-04-0624-analyst-review-cycle-sources]]

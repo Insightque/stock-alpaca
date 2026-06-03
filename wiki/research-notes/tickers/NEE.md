@@ -29,3 +29,8 @@ asset_type: stock
 2026-05-29 validation add 1주는 86.46 USD 진입 대비 2026-06-01 close 83.65 USD로 -3.25%였다. rate-sensitive utility/renewable defensive thesis는 1D에서 크게 약했고 FRED macro gap도 남아 있다. 판단은 `약함`, 5D/20D 대기.
 
 출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]
+### 2026-06-04 analyst review cycle
+
+2026-05-29 validation add 1주는 86.46 USD 진입 대비 2026-06-03 close 84.615 USD로 -2.13%였다. 1D 대비 손실은 줄었지만 rate-sensitive utility/renewable defensive thesis는 5D에서도 benchmark를 하회했다. 판단은 `약함`, 20D review 전 add 보류가 맞다.
+
+출처: [[2026-06-04-portfolio-review]], [[2026-06-04-0624-analyst-review-cycle-sources]]

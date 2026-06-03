@@ -29,3 +29,8 @@ asset_type: stock
 2026-05-29 validation add 1주는 272.76 USD 진입 대비 2026-06-01 close 261.20 USD로 -4.24%였다. SPY +0.28%, QQQ +0.59% 대비 모두 약해 mega-cap quality/AI infrastructure label만으로는 1D edge가 부족했다. 판단은 `약함`이며 5D/20D 대기.
 
 출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]
+### 2026-06-04 analyst review cycle
+
+2026-05-29 validation add 1주는 272.76 USD 진입 대비 2026-06-03 close 249.99 USD로 -8.35%였다. SPY 대비 -8.06%p, QQQ 대비 -9.16%p라서 mega-cap quality/AI adjacency thesis는 5D에서도 약했다. 판단은 `약함`이며 20D 전까지 add 근거로 쓰지 않는다.
+
+출처: [[2026-06-04-portfolio-review]], [[2026-06-04-0624-analyst-review-cycle-sources]]

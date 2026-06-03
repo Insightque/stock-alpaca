@@ -29,3 +29,8 @@ asset_type: stock
 2026-05-29 validation add 1주는 115.00 USD 진입 대비 2026-06-01 close 114.57 USD로 -0.37%였다. target raise headline은 있었지만 SPY/QQQ 대비 약해 defensive/quality retail validation은 `중립 약함`으로 본다. 5D/20D 대기.
 
 출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]
+### 2026-06-04 analyst review cycle
+
+2026-05-29 validation add 1주는 115.00 USD 진입 대비 2026-06-03 close 116.93 USD로 +1.68%였다. SPY 대비 +1.96%p, QQQ 대비 +0.87%p로 5D는 `중립 양호`까지 회복했다. 다만 defensive retail의 구조적 edge가 확인된 수준은 아니라 20D 확인이 필요하다.
+
+출처: [[2026-06-04-portfolio-review]], [[2026-06-04-0624-analyst-review-cycle-sources]]

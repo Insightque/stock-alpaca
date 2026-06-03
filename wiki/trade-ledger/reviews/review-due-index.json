@@ -1,0 +1,42 @@
+{
+  "updated_at": "2026-06-03T21:24:26Z",
+  "source_review": "wiki/trade-ledger/reviews/2026-06-04-portfolio-review.md",
+  "pending_1d_count": 0,
+  "pending_5d_count": 0,
+  "pending_20d_count": 2,
+  "blocked_add_symbols": [
+    "AVGO",
+    "NOK"
+  ],
+  "due_reviews_blocking_adds": [
+    "AVGO",
+    "NOK"
+  ],
+  "due_reviews": [
+    {
+      "symbol": "AVGO",
+      "horizon": "5D",
+      "decision_due": false,
+      "current_decision": "pending",
+      "due_after": "2026-06-05 US regular-session close",
+      "source_refs": [
+        "wiki/trade-ledger/reviews/2026-06-04-portfolio-review.md"
+      ]
+    },
+    {
+      "symbol": "NOK",
+      "horizon": "20D",
+      "decision_due": false,
+      "current_decision": "pending",
+      "due_after": "2026-06-18 US regular-session close",
+      "source_refs": [
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+        "wiki/trade-ledger/reviews/2026-06-04-portfolio-review.md"
+      ]
+    }
+  ],
+  "notes": [
+    "2026-06-04 analyst review closed the pending AVGO 1D and 2026-05-29 validation cohort 5D checks.",
+    "The add-blocking subset remains AVGO and NOK until later lifecycle horizons are reviewed."
+  ]
+}

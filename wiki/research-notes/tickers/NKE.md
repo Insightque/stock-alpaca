@@ -29,3 +29,8 @@ asset_type: stock
 2026-05-29 validation add 1주는 46.59 USD 진입 대비 2026-06-01 close 45.92 USD로 -1.44%였다. 소비재/turnaround validation thesis는 1D에서 SPY/QQQ를 모두 밑돌아 `약함`으로 분류한다. 5D/20D 회고 대기.
 
 출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]
+### 2026-06-04 analyst review cycle
+
+2026-05-29 validation add 1주는 46.59 USD 진입 대비 2026-06-03 close 43.81 USD로 -5.97%였다. SPY/QQQ 대비 모두 크게 약해 consumer turnaround validation은 5D에서도 실패 쪽으로 기울었다. 판단은 `약함`, 20D 전 정책 승격 근거는 없다.
+
+출처: [[2026-06-04-portfolio-review]], [[2026-06-04-0624-analyst-review-cycle-sources]]

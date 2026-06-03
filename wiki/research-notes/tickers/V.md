@@ -23,3 +23,8 @@ asset_type: stock
 2026-05-29 validation add 1주는 331.00 USD 진입 대비 2026-06-01 close 322.73 USD로 -2.50%였다. quality/financial network defensive 성격이 1D에서 SPY/QQQ 대비 방어로 작동하지 않아 `약함`으로 분류한다. 5D/20D 대기.
 
 출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]
+### 2026-06-04 analyst review cycle
+
+2026-05-29 validation add 1주는 331.00 USD 진입 대비 2026-06-03 close 313.635 USD로 -5.25%였다. payments/quality thesis는 5D에서도 SPY/QQQ 대비 방어력을 보여주지 못했다. 판단은 `약함`, 20D까지는 신규 add 근거로 쓰지 않는다.
+
+출처: [[2026-06-04-portfolio-review]], [[2026-06-04-0624-analyst-review-cycle-sources]]

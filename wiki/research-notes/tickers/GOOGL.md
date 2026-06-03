@@ -23,3 +23,8 @@ asset_type: stock
 2026-05-29 validation add 1주는 383.13 USD 진입 대비 2026-06-01 close 376.26 USD로 -1.79%였다. AI tape가 강했지만 직접 AI infrastructure 수혜주보다 약했고, mega-cap quality label만으로는 1D edge가 부족했다. 판단은 `약함`, 5D/20D 대기.
 
 출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]
+### 2026-06-04 analyst review cycle
+
+2026-05-29 validation add 1주는 383.13 USD 진입 대비 2026-06-03 close 359.37 USD로 -6.20%였다. Alphabet capital raise/AI spend narrative가 있었지만 direct AI infrastructure leader 대비 상대성과가 크게 약했다. 판단은 `약함`, mega-cap quality 라벨만으로는 재매수 근거가 부족하다.
+
+출처: [[2026-06-04-portfolio-review]], [[2026-06-04-0624-analyst-review-cycle-sources]]
