@@ -1,0 +1,503 @@
+{
+  "schema_version": "1.3",
+  "run_id": "2026-06-03-2231-hourly-autopilot",
+  "created_at": "2026-06-03T13:31:33Z",
+  "data_cutoff_time": "2026-06-03T13:31:33Z",
+  "market_clock_checked_at": "2026-06-03T09:31:10.537680631-04:00",
+  "mode": "submit",
+  "paper": true,
+  "git_commit": "04cab7a5e0035b25b6bd1ce7ea8e75636cb0013e",
+  "prompt_file_sha": "e1f1bb73ad99bc1034c331bd5c9939dd29f5f88430205a69354e19c1f235b38c",
+  "recommendation_policy_sha": "ab8568c7f097c3066b4243ba871e5a31676339c8c3f8167ccd6e730417759928",
+  "risk_policy_version": "medium-risk-v1.1",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-03-2231-hourly-autopilot.json",
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-06-03-2231-hourly-autopilot-post-trade.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md"
+  ],
+  "data_manifest": {
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-alpaca-core-preflight.json",
+    "research_preflight": "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json",
+    "stale_order_cleanup": "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-stale-order-cleanup.json"
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + scheduler Alpaca preflight universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad metadata universe screen, scheduler Alpaca quote/position preflight, scheduler research shortlist, then sell/trim lifecycle and portfolio-construction filters",
+    "pre_mcp_shortlist": [
+      "SPY",
+      "QQQ",
+      "SMH",
+      "BAC",
+      "NKE",
+      "BA",
+      "NOK",
+      "PLTR",
+      "RGTI",
+      "NEE"
+    ],
+    "final_candidates": [
+      "SPY",
+      "QQQ",
+      "SMH",
+      "BAC",
+      "NKE"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "all_research_must_be_attempted": true,
+    "provider_gap_blocks_order": false,
+    "critical_source_rules": {
+      "earnings_signal": {
+        "require_any": [
+          "sec-edgar",
+          "alpha-vantage",
+          "firecrawl_company_ir"
+        ],
+        "missing_behavior": "downgrade_to_watch"
+      },
+      "macro_rate_sensitive_signal": {
+        "require_any": [
+          "fred",
+          "explicit_macro_source"
+        ],
+        "missing_behavior": "downgrade_to_watch"
+      },
+      "filing_risk_signal": {
+        "require_any": [
+          "sec-edgar_acceptance_time"
+        ],
+        "missing_behavior": "block_new_buy"
+      },
+      "analyst_only_signal": {
+        "allowed_use": "thesis_confirmation_only",
+        "missing_behavior": "no_positive_score_delta"
+      }
+    }
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-03T13:31:33Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-03T13:31:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-03T13:31:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-03T13:31:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "FRED API request failed: curl: (56) The requested URL returned error: 429",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-03T13:31:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-03T13:31:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-03T13:31:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-03T13:31:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "FRED API request failed: curl: (56) The requested URL returned error: 429",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    }
+  ],
+  "open_order_lifecycle": {
+    "stale_cleanup_source_ref": "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-stale-order-cleanup.json",
+    "cleanup_status": "pass",
+    "open_orders_seen": 0,
+    "remaining_blocking_open_orders": [],
+    "passed": true
+  },
+  "recommendation_actionability": "watch_only_no_submit",
+  "first_blocking_gate": "candidate_selection_no_eligible_order",
+  "decision_summary": {
+    "market_open": true,
+    "invested_ratio": 0.6736,
+    "open_orders": 0,
+    "planned_orders": [],
+    "submitted_orders": [],
+    "skipped_orders": [
+      "Sell/trim diagnostics were evaluated first for TSLA/SO/NEE; no risk-reducing order passed spread or decision-grade metric gates.",
+      "BAC remains watch because rate-sensitive thesis support is downgraded by the FRED provider_error 429 gap.",
+      "SMH and other AI semiconductor adds remain constrained by target-band and existing cluster exposure.",
+      "SPY/QQQ are existing benchmark holds and did not improve replacement-rank or portfolio contribution enough for a new validation buy.",
+      "NKE and NOK did not clear lifecycle/add-discipline and portfolio-construction filters; BA also failed spread/thesis maintenance checks."
+    ],
+    "first_blocking_gate": "candidate_selection_no_eligible_order"
+  },
+  "candidate_diagnostics": [
+    {
+      "symbol": "SPY",
+      "decision": "watch",
+      "spread_pct": 0.1937,
+      "skip_reason": "broad-index validation exposure already exists and replacement-rank improvement was insufficient for another regular-session add.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "watch",
+      "spread_pct": 0.1416,
+      "skip_reason": "existing benchmark hold already covers the index validation role; additional add did not improve portfolio contribution enough.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "symbol": "SMH",
+      "decision": "watch",
+      "spread_pct": 0.0484,
+      "skip_reason": "semiconductor ETF spread is clean, but AI semiconductor cluster and target-band exposure are already elevated through existing holdings.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "symbol": "BAC",
+      "decision": "watch",
+      "spread_pct": 0.1156,
+      "skip_reason": "financial diversification candidate, but the rate-sensitive thesis is downgraded because FRED macro confirmation failed with provider_error 429.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "symbol": "NKE",
+      "decision": "watch",
+      "spread_pct": 0.1383,
+      "skip_reason": "recent weak validation review and existing held exposure left no portfolio-fit or replacement-rank edge for a new add.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md"
+      ]
+    },
+    {
+      "symbol": "NOK",
+      "decision": "watch",
+      "spread_pct": 0.0586,
+      "skip_reason": "existing large position and prior add-review weakness keep NOK under explicit add-discipline despite a clean regular-session spread.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/trade-ledger/reviews/2026-05-30-portfolio-review.md"
+      ]
+    },
+    {
+      "symbol": "BA",
+      "decision": "blocked",
+      "spread_pct": 0.7767,
+      "skip_reason": "ticker thesis page is not maintained and the current spread 0.7767% exceeds the 0.50% submit cap.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    }
+  ],
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "TSLA",
+      "held_qty": 1.0,
+      "current_weight_pct": 0.397,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "약한 1D review와 high-beta 성격으로 trim 재점검 대상이지만 현재 IEX spread가 1.0523%로 정책 상한 0.50%를 넘고 1주 보유라 부분 trim 유연성도 없다.",
+      "skipped_gate": "spread_within_policy",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "decision-grade 20D expected-excess metric이 scheduler preflight에 없고 현재 spread gate도 실패해 trim order를 만들지 않았다.",
+      "replacement_symbol": "SPY",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/trade-ledger/reviews/2026-05-30-portfolio-review.md",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "held_qty": 3.0,
+      "current_weight_pct": 0.259,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "defensive/utilities validation add가 1D review에서 약했고 현재가도 entry 아래지만 IEX spread가 5.1640%로 과도하며 금리민감 thesis의 macro confirmation도 FRED 429 공백이다.",
+      "skipped_gate": "spread_within_policy",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "decision-grade expected-excess metric과 macro confirmation이 모두 불완전해 risk trim을 진단만 남기고 주문으로 올리지 않았다.",
+      "replacement_symbol": "BAC",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "NEE",
+      "held_qty": 3.0,
+      "current_weight_pct": 0.243,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "최근 validation review가 약했고 rate-sensitive defensive thesis가 아직 회복되지 않았지만 trim 판단에 필요한 decision-grade expected-excess/macro metric이 비어 있어 hold/watch로 남겼다.",
+      "skipped_gate": "decision_grade_metric_and_macro_gap",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "FRED provider_error 429와 per-symbol 20D expected-excess 공백 때문에 trim justification을 결정급으로 만들 수 없었다.",
+      "replacement_symbol": "SPY",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "hold_watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-03-2231-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+        "harness/recommendation-policy.yaml"
+      ]
+    }
+  ],
+  "validation_lifecycle": {
+    "status": "pass_with_review_backlog_monitoring",
+    "due_reviews": [
+    {
+      "symbol": "NOK",
+      "horizon": "5D",
+      "decision_due": true,
+      "current_decision": "pending",
+      "source_refs": [
+        "wiki/index.md",
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md"
+        ]
+      },
+      {
+        "symbol": "AVGO",
+        "horizon": "1D",
+        "decision_due": true,
+        "current_decision": "pending",
+        "source_refs": [
+          "wiki/index.md",
+          "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md"
+        ]
+      }
+    ],
+    "blocked_add_symbols": [
+      "NOK",
+      "AVGO"
+    ],
+    "due_reviews_blocking_adds": [
+      "NOK",
+      "AVGO"
+    ],
+    "reviewed_recent_validation_symbols": [
+      "PLTR",
+      "TSLA",
+      "SPY",
+      "QQQ",
+      "NKE",
+      "PFE",
+      "SO",
+      "WMT",
+      "NEE",
+      "BAC",
+      "XOM",
+      "ADBE",
+      "INTC"
+    ],
+    "new_same_day_fills_not_due_yet": [],
+    "source_refs": [
+      "wiki/index.md",
+      "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+      "harness/recommendation-policy.yaml"
+    ]
+  },
+  "portfolio_construction_policy": {
+    "enabled": true,
+    "invested_ratio": 0.6736,
+    "replacement_rank_required": true,
+    "new_buy_requires_portfolio_fit_above_rebalance_threshold": false,
+    "result": "no_new_buy_added; candidates did not improve portfolio quality enough after source, lifecycle, target-band, and replacement-rank filters"
+  },
+  "review_backlog_throttle": {
+    "enabled": true,
+    "review_backlog_pending_1d_count": 2,
+    "review_backlog_pending_5d_count": 2,
+    "review_backlog_pending_20d_count": 2,
+    "max_new_buy_slots_before_throttle": 5,
+    "max_new_buy_slots_after_throttle": 5,
+    "result": "no throttle reduction; candidate filters blocked buys independently while sell/trim diagnostics remained independent"
+  },
+  "order_plan": {
+    "path": "wiki/trade-ledger/orders/2026-06-03-2231-hourly-autopilot.json",
+    "orders": []
+  },
+  "validation_results": {
+    "universe_coverage": {
+      "status": "PASS",
+      "errors": [],
+      "warnings": []
+    },
+    "mcp_coverage": {
+      "status": "PASS",
+      "errors": [],
+      "warnings": []
+    },
+    "risk_policy": {
+      "status": "PASS",
+      "errors": [],
+      "warnings": [
+        "orders is empty"
+      ]
+    }
+  },
+  "risk_check_result": {
+    "status": "PASS",
+    "errors": [],
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": {
+      "buy_notional": 0.0,
+      "sell_notional": 0.0,
+      "post_cash": 34339.0,
+      "post_invested": 70870.24,
+      "review_backlog_pending_1d_count": 2,
+      "policy_version": "medium-risk-v1.1"
+    }
+  }
+}
