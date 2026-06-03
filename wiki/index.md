@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-06-04-0411-hourly-autopilot]] - hourly paper autopilot 실행. scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했고 Alpha는 direct daily rate-limit `provider_error` gap으로 남았다. 신규 buy는 22:31-23:31 KST validation entry window 종료 때문에 제출하지 않았고, sell/trim은 TSLA spread·held-quantity·metric gap, SO/NEE decision-grade metric gap으로 보류됐으며 NOK/AVGO add는 due review 제약이 유지됐다.
 - [[2026-06-04-0351-hourly-autopilot]] - hourly paper autopilot 실행. scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했고 Alpha는 rate-limit circuit-breaker gap으로 남았다. 신규 buy는 22:31-23:31 KST validation entry window 종료 때문에 제출하지 않았고, sell/trim은 TSLA spread·held-quantity·metric gap, SO/NEE decision-grade metric gap으로 보류됐으며 NOK/AVGO add는 due review 제약이 유지됐다.
 - [[2026-06-04-0331-hourly-autopilot]] - hourly paper autopilot 실행. scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했고 Alpha는 rate-limit circuit-breaker gap으로 남았다. 신규 buy는 22:31-23:31 KST validation entry window 종료 때문에 제출하지 않았고, sell/trim은 TSLA spread·held-quantity·metric gap, SO/NEE decision-grade metric gap으로 보류됐으며 NOK/AVGO add는 due review 제약이 유지됐다.
 - [[2026-06-04-0311-hourly-autopilot]] - hourly paper autopilot 실행. scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했고 FRED가 다시 pass로 회복됐지만 Alpha는 daily rate-limit gap으로 남았다. 신규 buy는 22:31-23:31 KST validation entry window 종료 때문에 제출하지 않았고, sell/trim은 TSLA spread·held-quantity·metric gap, SO/NEE decision-grade metric gap으로 보류됐으며 NOK/AVGO add는 due review 제약이 유지됐다.
