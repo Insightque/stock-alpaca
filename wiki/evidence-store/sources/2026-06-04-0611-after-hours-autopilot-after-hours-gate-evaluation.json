@@ -1,0 +1,137 @@
+{
+  "run_id": "2026-06-04-0611-after-hours-autopilot",
+  "created_at": "2026-06-04T06:11:31+09:00",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "paper_mode": true,
+  "scheduler_preflights": {
+    "alpaca_core": "wiki/evidence-store/sources/2026-06-04-0611-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp": "wiki/evidence-store/sources/2026-06-04-0611-after-hours-autopilot-research-mcp-preflight.json"
+  },
+  "alpaca_core_interpretation": {
+    "first_blocking_gate": "market_closed",
+    "after_hours_expected_nonblocking": true,
+    "required_rows_used": [
+      "account",
+      "positions",
+      "open_orders",
+      "asset",
+      "quote",
+      "spread"
+    ]
+  },
+  "runtime_alpaca_mcp": {
+    "clock_is_open": false,
+    "clock_timestamp": "2026-06-03T17:11:08.714312849-04:00",
+    "account_confirmed_active": true,
+    "positions_count": 32,
+    "positions_source": "runtime Alpaca MCP get_all_positions was cancelled by the tool safety layer; scheduler-owned Alpaca core preflight passing positions row remained the evidence source",
+    "watchlists_count": 0,
+    "open_us_equity_orders_count": 0,
+    "open_orders_source": "runtime Alpaca MCP get_orders returned 0 open US-equity orders; scheduler-owned Alpaca core preflight open_orders row remained the hard-gate evidence source",
+    "after_hours_orders_submitted_today": 0,
+    "after_hours_orders_today_source": "runtime Alpaca MCP get_orders status=all after 2026-06-03T20:00:00Z returned no orders",
+    "positions_runtime_note": "No place_stock_order call was made; reconciliation by client_order_id was not needed because there was no submit attempt."
+  },
+  "budget": {
+    "after_hours_new_orders_submitted_today": 0,
+    "max_new_orders_per_session": 2,
+    "regular_validation_order_count_reused": false,
+    "result": "pass_no_budget_block"
+  },
+  "submit_gate_summary": "Paper=true; session=after_hours; regular market closed; scheduler-owned Alpaca core quote/spread rows usable; universe/MCP/risk validators passed; separate after-hours budget is 0/2 used; no shortlisted symbol cleared thesis/review/portfolio-fit promotion, so no place_stock_order call was made.",
+  "candidate_decisions": [
+    {
+      "symbol": "PFE",
+      "decision": "no_add_weak_validation_review",
+      "reason": "2026-05-29 validation add 1D 회고가 약했고 방어적 추가매수 thesis가 장외 buy-only 세션에서 재승격되지 않았다.",
+      "source_refs": [
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/index.md",
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md"
+      ]
+    },
+    {
+      "symbol": "NOK",
+      "decision": "no_add_existing_position_high_volatility",
+      "reason": "기존 큰 보유와 변동성 큰 5D 강세 메모가 공존해도 20D 확인 전 장외 추가매수로 승격하지 않는다.",
+      "source_refs": [
+        "wiki/research-notes/tickers/NOK.md",
+        "wiki/index.md",
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md"
+      ]
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "hold_existing_benchmark",
+      "reason": "기존 benchmark 보유가 있고 1D 회고 양호만으로 장외 추가 edge가 생기지 않았다.",
+      "source_refs": [
+        "wiki/research-notes/tickers/QQQ.md",
+        "wiki/index.md",
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md"
+      ]
+    },
+    {
+      "symbol": "SPY",
+      "decision": "hold_existing_benchmark",
+      "reason": "기존 benchmark 보유가 있어 after-hours validation buy를 추가할 포트폴리오 기여도가 제한적이다.",
+      "source_refs": [
+        "wiki/research-notes/tickers/SPY.md",
+        "wiki/index.md",
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md"
+      ]
+    },
+    {
+      "symbol": "META",
+      "decision": "no_buy_missing_ticker_thesis_page",
+      "reason": "scheduler research shortlist에는 포함됐지만 현재 위키 ticker thesis page가 없어 submit 전제 evidence를 충족하지 못했다.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-04-0611-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/index.md"
+      ]
+    },
+    {
+      "symbol": "XOM",
+      "decision": "no_add_weak_validation_review",
+      "reason": "2026-05-28 validation buy 1D 회고가 약했고 에너지 추가매수 thesis가 장외 세션에서 강화되지 않았다.",
+      "source_refs": [
+        "wiki/research-notes/tickers/XOM.md",
+        "wiki/index.md",
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md"
+      ]
+    },
+    {
+      "symbol": "INTC",
+      "decision": "no_add_weak_after_hours_validation_review",
+      "reason": "2026-05-28 after-hours validation buy 1D 회고가 약해 같은 장외 bucket에서 추가매수로 승격하지 않았다.",
+      "source_refs": [
+        "wiki/research-notes/tickers/INTC.md",
+        "wiki/index.md",
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md"
+      ]
+    },
+    {
+      "symbol": "AVGO",
+      "decision": "no_add_pending_after_hours_first_close_review",
+      "reason": "2026-06-01 after-hours validation fill의 첫 close 판단이 아직 보류라 동일 bucket add를 열지 않았다.",
+      "source_refs": [
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/index.md",
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md"
+      ]
+    }
+  ],
+  "orders": {
+    "submit_attempted": false,
+    "submitted": [],
+    "new_client_order_id": null,
+    "retry_with_different_client_order_id": false
+  },
+  "diagnostics": [
+    "after-hours allowed_sides is buy-only; any risk-trim concern stays queued for the next regular-session review.",
+    "review backlog counts were carried from the latest validated artifacts because wiki/trade-ledger/reviews/review-due-index.json is absent in the workspace.",
+    "runtime Alpaca MCP get_all_positions was cancelled by the tool safety layer, so scheduler-owned preflight rows remained the account/position evidence source."
+  ]
+}
