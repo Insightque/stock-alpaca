@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-06-03-2131-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했고 장외 세션 예산도 남아 있었지만 shortlist 후보 중 어떤 종목도 장외 buy로 승격되지 않아 신규 주문 없음.
 - [[2026-06-03-2111-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했고 장외 세션 예산도 남아 있었지만 shortlist 후보 중 어떤 종목도 장외 buy로 승격되지 않아 신규 주문 없음.
 - [[2026-06-02-0951-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했지만 장외 session budget 2건이 이미 소진되어 신규 주문 없음.
 - [[2026-06-02-0931-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했지만 장외 session budget 2건이 이미 소진되어 신규 주문 없음.
