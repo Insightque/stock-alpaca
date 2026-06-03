@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-06-04-0631-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, scheduler-owned `0631` preflight 재사용으로 regular-market `market_closed`를 비차단으로 처리했고 universe/MCP/risk gate는 통과했지만 shortlist `PFE/NOK/QQQ/SPY/META/XOM/INTC/AVGO` 중 장외 buy 승격 후보가 없어 주문은 제출하지 않았다.
 - [[2026-06-04-0611-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했고 Alpha는 provider_error gap으로 남았지만 shortlist `PFE/NOK/QQQ/SPY/META/XOM/INTC/AVGO` 중 장외 buy 승격 후보가 없어 주문은 제출하지 않았다.
 - [[2026-06-04-0451-hourly-autopilot]] - hourly paper autopilot 실행. scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했고 Alpha는 rate-limit circuit-breaker `provider_error` gap으로 남았다. 신규 buy는 22:31-23:31 KST validation entry window 종료 때문에 제출하지 않았고, sell/trim은 TSLA spread·held-quantity·metric gap, SO/NEE decision-grade metric gap으로 보류됐으며 NOK/AVGO add는 due review 제약이 유지됐다.
 - [[2026-06-04-0431-hourly-autopilot]] - hourly paper autopilot 실행. scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했고 Alpha는 rate-limit circuit-breaker `provider_error` gap으로 남았다. 신규 buy는 22:31-23:31 KST validation entry window 종료 때문에 제출하지 않았고, sell/trim은 TSLA spread·held-quantity·metric gap, SO/NEE decision-grade metric gap으로 보류됐으며 NOK/AVGO add는 due review 제약이 유지됐다.
