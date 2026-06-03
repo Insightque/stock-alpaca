@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-06-03-2251-hourly-autopilot]] - hourly paper autopilot 실행. scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했고 sell/trim은 TSLA가 held-quantity·metric gap, SO가 spread, NEE가 decision-grade metric·macro gap에 막혔으며, 신규 buy는 SPY/QQQ existing hold, BAC macro gap, WMT/NKE replacement-rank 부족, NOK due review 제약으로 제출하지 않았다.
 - [[2026-06-03-2231-hourly-autopilot]] - hourly paper autopilot 실행. scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했지만 sell/trim은 TSLA/SO/NEE가 spread·metric gate에 막혔고, 신규 buy는 SPY/QQQ existing hold, BAC macro gap, SMH cluster exposure, NKE/NOK add-discipline, BA thesis/spread 제약으로 제출하지 않았다.
 - [[2026-06-03-2151-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했고 장외 세션 예산도 남아 있었지만 shortlist 후보 중 어떤 종목도 장외 buy로 승격되지 않아 신규 주문 없음.
 - [[2026-06-03-2131-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했고 장외 세션 예산도 남아 있었지만 shortlist 후보 중 어떤 종목도 장외 buy로 승격되지 않아 신규 주문 없음.
