@@ -1,0 +1,60 @@
+{
+  "run_id": "2026-06-05-0151-hourly-autopilot",
+  "reconciled_at": "2026-06-04T16:59:10Z",
+  "paper": true,
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-05-0151-hourly-autopilot.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-05-0151-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0151-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0151-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/run-manifests/2026-06-05-0151-hourly-autopilot.json"
+  ],
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 103239.37,
+    "cash": 32141.17,
+    "buying_power": 257409.48,
+    "long_market_value": 71098.2,
+    "currency": "USD"
+  },
+  "orders": [
+    {
+      "symbol": "COP",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 119.17,
+      "status": "new",
+      "client_order_id": "hourly-20260605-0151-buy-cop",
+      "order_id": "640b1123-bbf3-46f4-ada0-361ca2516672",
+      "submitted_at": "2026-06-04T16:58:32.252584944Z",
+      "filled_at": null,
+      "filled_avg_price": null
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "COP",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 119.17,
+      "status": "new",
+      "client_order_id": "hourly-20260605-0151-buy-cop",
+      "order_id": "640b1123-bbf3-46f4-ada0-361ca2516672"
+    }
+  ],
+  "position_count": 32,
+  "position_changes": [
+    {
+      "symbol": "COP",
+      "prior_qty": 1,
+      "current_qty": 1,
+      "avg_entry_price": 114.95,
+      "current_price": 119.27,
+      "market_value": 119.27
+    }
+  ],
+  "notes": [
+    "COP same-cycle order는 get_order_by_client_id, get_orders(symbol=COP), get_orders(status=open), get_all_positions, get_account_info 기준 reconciliation pass이며 status는 아직 new open이다.",
+    "get_account_activities_by_type(FILL) 1회는 tool-layer cancelled로 끝나 fill cross-check는 gap_category=cancelled로 기록했고, 대신 order/position/account state를 대조했다."
+  ]
+}
