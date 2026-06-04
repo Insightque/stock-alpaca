@@ -1,0 +1,115 @@
+{
+  "run_id": "2026-06-04-2351-hourly-autopilot",
+  "reconciled_at": "2026-06-04T15:02:14.241594808Z",
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-04T11:02:14.241594808-04:00",
+    "next_open": "2026-06-05T09:30:00-04:00",
+    "next_close": "2026-06-04T16:00:00-04:00"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "BAC",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 53.6,
+      "client_order_id": "hourly-20260604-2351-buy-bac",
+      "order_id": "7d85f1b6-7d11-4992-9f96-8705ad4dfd73",
+      "submitted_at": "2026-06-04T15:01:18.198839834Z",
+      "status": "new",
+      "filled_qty": 0,
+      "filled_avg_price": null,
+      "extended_hours": false,
+      "time_in_force": "day"
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "BAC",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 53.6,
+      "client_order_id": "hourly-20260604-2351-buy-bac",
+      "order_id": "7d85f1b6-7d11-4992-9f96-8705ad4dfd73",
+      "status": "new"
+    }
+  ],
+  "fills_seen_this_reconciliation": [],
+  "positions_observed_count": 32,
+  "bac_position_after_reconciliation": {
+    "qty": 2,
+    "current_price": 53.735,
+    "market_value": 107.47,
+    "note": "new BAC order remained open/new, so held quantity had not increased yet"
+  },
+  "account_runtime_refresh": {
+    "outcome": "cancelled",
+    "gap_category": "cancelled",
+    "gap_reason": "supplementary runtime get_account_info call returned cancelled after submit; scheduler-owned preflight account snapshot remains the last confirmed account state for this cycle"
+  },
+  "account_last_confirmed_preflight": {
+    "id": "c86bfe28-5e2d-452e-b956-7b2595179486",
+    "admin_configurations": {},
+    "user_configurations": null,
+    "account_number": "[redacted]",
+    "status": "ACTIVE",
+    "crypto_status": "ACTIVE",
+    "options_approved_level": 3,
+    "options_trading_level": 3,
+    "currency": "USD",
+    "buying_power": "257992.2",
+    "regt_buying_power": "128996.1",
+    "daytrading_buying_power": "257992.2",
+    "effective_buying_power": "257992.2",
+    "non_marginable_buying_power": "64498.05",
+    "options_buying_power": "64498.05",
+    "bod_dtbp": "257992.2",
+    "cash": "32850.02",
+    "accrued_fees": "0",
+    "portfolio_value": "102586.12",
+    "pattern_day_trader": false,
+    "trading_blocked": false,
+    "transfers_blocked": false,
+    "account_blocked": false,
+    "created_at": "2026-05-22T10:46:50.176056Z",
+    "trade_suspended_by_user": false,
+    "multiplier": "4",
+    "shorting_enabled": true,
+    "equity": "102586.12",
+    "last_equity": "104278.3",
+    "long_market_value": "69736.1",
+    "short_market_value": "0",
+    "position_market_value": "69736.1",
+    "initial_margin": "38088.07",
+    "maintenance_margin": "25512.55",
+    "last_maintenance_margin": "25774.35",
+    "sma": "103486.72",
+    "daytrade_count": 0,
+    "balance_asof": "2026-06-03",
+    "crypto_tier": 1,
+    "intraday_adjustments": "0",
+    "pending_reg_taf_fees": "0"
+  },
+  "same_day_prior_fills_still_visible": [
+    {
+      "symbol": "QQQ",
+      "filled_at": "2026-06-04T14:20:05.463508Z",
+      "filled_avg_price": 735.23
+    },
+    {
+      "symbol": "SPY",
+      "filled_at": "2026-06-04T14:40:11.754058Z",
+      "filled_avg_price": 753.75
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-04-2351-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-04-2351-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-04-2351-hourly-autopilot-research-mcp-preflight.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/2026-06-04-portfolio-review.md",
+    "wiki/trade-ledger/reviews/review-due-index.json"
+  ]
+}
