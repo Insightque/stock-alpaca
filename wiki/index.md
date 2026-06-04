@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-04 06:24 KST analyst review reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-04 23:16 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-06-04-2311-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `2311` stale cleanup/core/research preflight와 strict universe/MCP/risk gate는 모두 통과했고, sell diagnostics 뒤 `QQQ` 1주 floor-size validation buy를 실제 제출했다. Alpaca MCP는 `order_id=ee60655d-ae94-4c06-839c-9a7d31194ddf`, `status=new` open order를 반환했고 post-trade reconciliation 기준 fill은 아직 없지만 QQQ buy open order 1건이 살아 있다.
 - [[2026-06-04-2251-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `2251` stale cleanup/core/research preflight와 strict universe/MCP/risk gate는 모두 통과했고, sell diagnostics 뒤 `QQQ` 1주 floor-size validation buy를 계획했다. 다만 Alpaca MCP `place_stock_order`가 same `client_order_id`로 두 번 모두 tool safety layer에서 `cancelled` 처리되어 주문 객체는 생성되지 않았고, post-trade reconciliation 기준 open orders/fills/state change는 없었다.
 - [[2026-06-04-2231-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `2231` stale cleanup/core/research preflight를 사용했고 regular market open, universe strict, MCP strict, risk validator는 모두 통과했다. 다만 sell diagnostics는 `AVGO/SO/TSLA`가 spread 또는 decision-grade metric gate에서 막혔고, buy shortlist `QQQ/BAC/NVDA/SMH/AMZN`는 replacement-rank 또는 AI semiconductor concentration discipline 때문에 주문 없이 종료했다.
 - [[2026-06-04-2151-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, scheduler-owned `2151` preflight를 사용해 regular-market `market_closed`를 비차단으로 처리했고 universe/MCP/risk gate는 모두 통과했다. Runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders/get_watchlists/get_stock_latest_quote` 보조 확인까지 거쳤지만 shortlist `SPY/QQQ/NOK/PFE/META/XOM/AVGO/MS` 중 장외 buy 승격 후보가 없어 주문은 제출하지 않았다.
