@@ -21,7 +21,7 @@ import os
 import re
 import sys
 from collections import Counter, defaultdict
-from datetime import datetime, time, timedelta, timezone
+from datetime import datetime, time, timedelta
 from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo

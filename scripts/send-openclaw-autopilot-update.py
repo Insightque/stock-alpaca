@@ -293,10 +293,8 @@ def build_completed_message(root: Path, run_id: str, session: str) -> str:
 
 
 def build_stock_train_message(root: Path, run_id: str, session: str, status: str, reason: str) -> str:
-    report_path = root / "wiki" / "current-runs" / "daily" / f"{run_id}.md"
     order_plan_path = root / "wiki" / "trade-ledger" / "orders" / f"{run_id}.json"
     manifest_path = root / "wiki" / "evidence-store" / "run-manifests" / f"{run_id}.json"
-    report = report_path.read_text(encoding="utf-8") if report_path.exists() else ""
     order_plan = load_json(order_plan_path)
     manifest = load_json(manifest_path)
     metrics = portfolio_metrics(root, run_id, order_plan)

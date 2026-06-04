@@ -963,7 +963,6 @@ def portfolio_position_picks(
 def compact_agent_result(agent_id: str, manifest: dict[str, Any], report_text: str, order_plan: dict[str, Any]) -> str:
     risk = normalize_risk_check_result(manifest)
     data_manifest = manifest.get("data_manifest", {})
-    orders = order_plan.get("orders", []) if isinstance(order_plan.get("orders"), list) else []
     submitted = manifest.get("submitted_order_ids", [])
     mcp_used = manifest.get("mcp_servers_used", [])
 

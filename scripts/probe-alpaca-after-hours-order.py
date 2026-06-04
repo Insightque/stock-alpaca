@@ -13,7 +13,6 @@ import argparse
 import asyncio
 import json
 import os
-import sys
 from datetime import datetime, timezone
 from decimal import Decimal, ROUND_DOWN
 from pathlib import Path

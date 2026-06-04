@@ -321,7 +321,7 @@ def write_markdown(path: Path, result: dict[str, Any]) -> None:
         f"- QQQ 10:00-10:59 ET return: `{result['qqq_10h_return_pct']:.4f}%`",
         f"- semi_breadth_count: `{result['semi_breadth_count']}`",
         f"- exit_rules: `{result['exit_rules']}`",
-        f"- orders_submitted: `0`",
+        "- orders_submitted: `0`",
         "",
         "## 신호 기록",
         "",
