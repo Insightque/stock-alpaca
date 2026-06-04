@@ -434,7 +434,7 @@
           },
           "entry_style": {
             "type": "string",
-            "enum": ["staged", "single", "trim", "exit"]
+            "enum": ["staged", "single", "validation_floor", "trim", "exit"]
           },
           "max_additional_entry_count": {
             "type": "integer",
@@ -608,6 +608,10 @@
               },
               "decision_due": {
                 "type": "boolean"
+              },
+              "due_after": {
+                "type": "string",
+                "format": "date-time"
               },
               "current_decision": {
                 "type": "string",

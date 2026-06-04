@@ -76,6 +76,9 @@ class McpRuntimeWrapperTests(unittest.TestCase):
                 "CODEX_AUTOPILOT_RUN_LABEL",
                 "CODEX_AUTOPILOT_AFTER_HOURS_ORDER_PROBE",
                 "probe-alpaca-after-hours-order.py",
+                "submit-validated-order-plan-mcp.py",
+                "CODEX_AUTOPILOT_DETERMINISTIC_SUBMIT",
+                "DETERMINISTIC_SUBMIT_PATH",
                 "Alpaca market is closed; scheduled autopilot exits before research/Codex run",
                 'sandbox_permissions=["network-full-access"]',
                 "mcp_servers.alpaca.command=",
@@ -170,6 +173,19 @@ class McpRuntimeWrapperTests(unittest.TestCase):
                 self.assertNotIn("--dangerously-bypass-approvals-and-sandbox", text)
                 for snippet in snippets:
                     self.assertIn(snippet, text)
+
+    def test_deterministic_submit_helper_uses_mcp_and_risk_validator(self):
+        text = (ROOT / "scripts/submit-validated-order-plan-mcp.py").read_text(encoding="utf-8")
+
+        self.assertIn("check-risk-policy.py", text)
+        self.assertIn('validator.get("status")', text)
+        self.assertIn("--max-plan-age-minutes", text)
+        self.assertIn("ALPACA_PAPER_TRADE=true is required", text)
+        self.assertIn("get_order_by_client_id", text)
+        self.assertIn("place_stock_order", text)
+        self.assertIn("get_all_positions", text)
+        self.assertIn("ClientSession", text)
+        self.assertNotIn("api.alpaca.markets", text)
 
     def test_hourly_autopilot_shell_handles_empty_research_cache_ttl_args(self):
         script_path = ROOT / "scripts" / "run-hourly-autopilot-codex.sh"

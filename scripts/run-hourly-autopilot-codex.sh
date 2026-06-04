@@ -29,6 +29,8 @@ STALE_ORDER_CLEANUP_PATH="${ROOT_DIR}/wiki/evidence-store/sources/${RUN_ID}-stal
 ALPACA_PREFLIGHT_PATH="${ROOT_DIR}/wiki/evidence-store/sources/${RUN_ID}-alpaca-core-preflight.json"
 RESEARCH_PREFLIGHT_PATH="${ROOT_DIR}/wiki/evidence-store/sources/${RUN_ID}-research-mcp-preflight.json"
 AFTER_HOURS_ORDER_PROBE_PATH="${ROOT_DIR}/wiki/evidence-store/sources/${RUN_ID}-after-hours-order-probe.json"
+ORDER_PLAN_PATH="${ROOT_DIR}/wiki/trade-ledger/orders/${RUN_ID}.json"
+DETERMINISTIC_SUBMIT_PATH="${ROOT_DIR}/wiki/evidence-store/sources/${RUN_ID}-deterministic-submit.json"
 NOTIFY_SCRIPT="${ROOT_DIR}/scripts/send-openclaw-autopilot-update.py"
 TERMINAL_NOTIFY_SENT=0
 RESEARCH_CACHE_TTL_ARGS=()
@@ -349,6 +351,16 @@ set -e
 if [ "${CODEX_EXIT}" -ne 0 ]; then
   notify_autopilot "failed" "nested regular Codex exited ${CODEX_EXIT}"
   exit "${CODEX_EXIT}"
+fi
+
+if [ "${CODEX_AUTOPILOT_DETERMINISTIC_SUBMIT:-1}" = "1" ] && [ -f "${ORDER_PLAN_PATH}" ]; then
+  if ! PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/scripts/submit-validated-order-plan-mcp.py" \
+    --run-id "${RUN_ID}" \
+    --order-plan "${ORDER_PLAN_PATH}" \
+    --output-json "${DETERMINISTIC_SUBMIT_PATH}" \
+    --execute; then
+    echo "$(now_iso) deterministic Alpaca MCP submit did not complete; see ${DETERMINISTIC_SUBMIT_PATH}"
+  fi
 fi
 
 PATH="/usr/local/bin:${PATH}" python3 "${ROOT_DIR}/scripts/build-agent-dashboard.py"
