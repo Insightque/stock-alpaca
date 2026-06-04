@@ -19,8 +19,8 @@ The machine-readable source of truth is `harness/recommendation-policy.yaml` und
 - Artifacts should include `after_hours_policy.artifact_tag` in the run id or filename.
 - After-hours order counts must use `risk_inputs.after_hours_new_orders_submitted_today`; do not reuse the regular validation count as the after-hours session budget.
 - Reviews must be recorded in the after-hours review bucket and must not be merged into regular-session validation conclusions unless a later policy review explicitly compares the buckets.
-- Do not import regular-session sell/trim or force-exit behavior into this workflow unless `after_hours_policy.allowed_sides` explicitly permits that side. If a regular-session risk-trim concern is noticed here, record it as a diagnostic for the next regular-session review rather than silently submitting outside the allowed side set.
-- If `after_hours_policy.risk_diagnostic_queue` is enabled, inspect holdings for risk-trim concerns without creating sell orders unless the allowed side set permits them. Queue those diagnostics for the next regular-session autopilot run.
+- Do not import regular-session sell/trim or force-exit behavior into this workflow unless `after_hours_policy.allowed_sides` explicitly permits that side. The active policy permits buy and sell paper orders, so eligible after-hours sell/trim candidates should be considered for execution rather than only queued.
+- If `after_hours_policy.risk_diagnostic_queue` is enabled, inspect holdings for risk-trim concerns. When the sell side is allowed, convert a passing floor-size trim/exit into an after-hours paper order instead of deferring every sell observation to the next regular-session run.
 
 ## Gates
 
@@ -34,6 +34,8 @@ After-hours orders may be submitted only when all of these pass:
 - Risk gate through `scripts/check-risk-policy.py`.
 - Whole-share day limit stock or ETF order shape.
 - `extended_hours=true`.
+
+When all after-hours hard gates pass, do not default to an empty order plan solely because a candidate is imperfect, the market tone is poor, or portfolio fit is marginal. Submit at least one floor-size paper buy or allowed sell/trim when `after_hours_policy.allowed_sides` and the risk validator permit it.
 
 The regular-session `market.is_open=true` gate does not apply to this workflow. Instead, `scripts/check-risk-policy.py` validates `market.session=after_hours` and applies the after-hours policy profile from `harness/recommendation-policy.yaml`.
 

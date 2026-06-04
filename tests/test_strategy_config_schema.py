@@ -51,6 +51,7 @@ class StrategyConfigSchemaTests(unittest.TestCase):
         self.assertEqual("exit_before_research_preflight_or_codex", cadence["off_market_behavior"])
 
         sizing = policy["paper_validation_execution"]["validation_order_sizing"]
+        self.assertTrue(policy["paper_validation_execution"]["prefer_small_validation_order_when_gates_pass"])
         self.assertEqual("staged_confidence_notional", sizing["allocation_mode"])
         self.assertEqual(5, sizing["max_new_buy_orders_per_run"])
         self.assertEqual(0.10, sizing["max_validation_notional_pct_per_day"])
@@ -81,6 +82,10 @@ class StrategyConfigSchemaTests(unittest.TestCase):
         self.assertEqual(8, backlog["reduce_new_buy_slots_at_pending_1d"])
         self.assertEqual(1, backlog["max_new_buy_slots_when_reduced"])
         self.assertEqual(12, backlog["stop_new_buys_at_pending_1d"])
+        learning_trade = policy["paper_validation_execution"]["learning_trade_directive"]
+        self.assertTrue(learning_trade["enabled"])
+        self.assertEqual(1, learning_trade["minimum_orders_when_hard_gates_pass"])
+        self.assertEqual(["sell", "buy"], learning_trade["prefer_order_sides"])
 
         critical = policy["mcp_gate_policy"]["critical_source_rules"]
         self.assertEqual("block_new_buy", critical["filing_risk_signal"]["missing_behavior"])
@@ -97,7 +102,8 @@ class StrategyConfigSchemaTests(unittest.TestCase):
         self.assertTrue(after_hours["separate_from_regular_validation"])
         self.assertTrue(after_hours["require_extended_hours_flag"])
         self.assertTrue(after_hours["require_separate_order_budget"])
-        self.assertTrue(after_hours["risk_diagnostic_queue"]["queue_for_next_regular_session"])
+        self.assertEqual(["buy", "sell"], after_hours["allowed_sides"])
+        self.assertFalse(after_hours["risk_diagnostic_queue"]["queue_for_next_regular_session"])
 
         self.assertTrue(policy["portfolio_construction_policy"]["enabled"])
         self.assertTrue(policy["policy_learning_pipeline"]["review_row_dataset"]["enabled"])

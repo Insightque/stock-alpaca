@@ -147,6 +147,9 @@ Hard requirements:
 - Do not submit if Alpaca regular market is open.
 - Every after-hours order must be a whole-share day limit stock/ETF order with `extended_hours=true`.
 - Every order plan must set `market.session=after_hours`; every order must set `session=after_hours` and the after-hours review bucket from `harness/recommendation-policy.yaml`.
+- The user explicitly wants policy learning from real paper buy/sell observations. If after-hours hard gates pass, do not return an empty order plan merely because the market tone is weak, a candidate is not ideal, or portfolio-fit is marginal.
+- Follow `after_hours_policy.allowed_sides`. The active policy permits buy and sell, so evaluate eligible floor-size sell/trim candidates as executable after-hours orders rather than diagnostics-only queue entries.
+- When all after-hours hard gates pass, create at least one floor-size paper order when the separate session budget and risk validator permit it: prefer an eligible sell/trim that passes sell gates; otherwise submit a 1-share buy in the highest-ranked benchmark, diversifier, or existing actionable holding that passes after-hours quote/spread/risk caps.
 - Include `risk_inputs.after_hours_new_orders_submitted_today`; do not reuse the regular validation order count as the after-hours session budget.
 - Validate with `scripts/check-risk-policy.py --json`.
 - If any gate fails, submit nothing and still write the report, manifest, order plan, and log entry with `session=after_hours`.

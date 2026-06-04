@@ -736,6 +736,85 @@
             }
           }
         },
+        "learning_trade_directive": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "enabled",
+            "minimum_orders_when_hard_gates_pass",
+            "prefer_order_sides",
+            "buy_candidate_relaxations",
+            "sell_candidate_relaxations",
+            "still_never_bypass"
+          ],
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "minimum_orders_when_hard_gates_pass": {
+              "type": "integer",
+              "minimum": 0
+            },
+            "prefer_order_sides": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["buy", "sell"]
+              }
+            },
+            "buy_candidate_relaxations": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "allow_benchmark_or_diversifier_when_no_clear_alpha",
+                "allow_existing_position_add_when_caps_pass",
+                "allow_zero_or_unknown_expected_excess_for_floor_size",
+                "max_qty_when_relaxed"
+              ],
+              "properties": {
+                "allow_benchmark_or_diversifier_when_no_clear_alpha": {
+                  "type": "boolean"
+                },
+                "allow_existing_position_add_when_caps_pass": {
+                  "type": "boolean"
+                },
+                "allow_zero_or_unknown_expected_excess_for_floor_size": {
+                  "type": "boolean"
+                },
+                "max_qty_when_relaxed": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              }
+            },
+            "sell_candidate_relaxations": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "allow_floor_trim_when_diagnostic_trigger_exists",
+                "allow_one_share_trim_when_remaining_qty_gate_passes",
+                "require_entry_style_trim_or_exit"
+              ],
+              "properties": {
+                "allow_floor_trim_when_diagnostic_trigger_exists": {
+                  "type": "boolean"
+                },
+                "allow_one_share_trim_when_remaining_qty_gate_passes": {
+                  "type": "boolean"
+                },
+                "require_entry_style_trim_or_exit": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "still_never_bypass": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
         "no_action_diagnostics": {
           "type": "object",
           "additionalProperties": false,

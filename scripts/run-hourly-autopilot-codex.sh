@@ -168,6 +168,9 @@ Hard requirements:
 - Do not call Alpaca trading REST endpoints directly.
 - Submit paper orders only if the market is open and universe, MCP, quote, spread, and risk gates all pass.
 - If any gate fails, submit nothing and still write the report, manifest, order plan, and log entry.
+- The user explicitly wants policy learning from real paper buy/sell observations. If hard gates pass, do not return an empty order plan merely because the market is weak, a candidate is not ideal, or portfolio-fit is marginal.
+- When all hard gates pass, create at least one floor-size validation order under `paper_validation_execution.learning_trade_directive`: prefer an eligible sell/trim that passes sell gates; otherwise submit a 1-share buy in the highest-ranked benchmark, diversifier, or existing actionable holding that passes risk caps.
+- Treat `watch`, `candidate weak`, `not compelling`, `portfolio-fit`, and `market bad` as sizing/ranking notes, not final no-trade blockers, unless they map to a specific hard gate failure.
 - Evaluate risk-reducing sell/trim/exit candidates before new buys on every run. The buy entry window, validation-buy slots, and validation-buy budget gate new buy exposure only; do not use them to suppress sell diagnostics or eligible risk-reducing sell/trim entries.
 - On every completed run, write `sell_candidate_diagnostics` into the order plan and manifest using `risk_trim_policy.sell_candidate_diagnostics`, including decision-grade metric fields or explicit metric gap reasons for the top unexecuted sell/trim candidates even when the final recommendation is hold/watch.
 - Apply `risk_trim_policy.validation_lifecycle`: due filled validation buys must get hold/add/trim/close decisions, and missing due reviews should block additional buys for that symbol until reviewed.

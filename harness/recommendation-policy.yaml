@@ -365,7 +365,7 @@ paper_validation_execution:
   purpose: strategy_learning_and_capital_allocation
   enabled_for_hourly_autopilot: true
   enabled_for_market_open_pulse: false
-  prefer_small_validation_order_when_gates_pass: false
+  prefer_small_validation_order_when_gates_pass: true
   do_not_force_trade_when_any_hard_gate_fails: true
   hard_gates:
     - alpaca_paper_mode
@@ -437,8 +437,33 @@ paper_validation_execution:
   candidate_floor:
     minimum_confidence_score: 0.50
     allow_medium_source_confidence: true
-    require_positive_expected_excess_return: true
+    require_positive_expected_excess_return: false
     require_no_thesis_break: true
+  learning_trade_directive:
+    enabled: true
+    minimum_orders_when_hard_gates_pass: 1
+    prefer_order_sides:
+      - sell
+      - buy
+    buy_candidate_relaxations:
+      allow_benchmark_or_diversifier_when_no_clear_alpha: true
+      allow_existing_position_add_when_caps_pass: true
+      allow_zero_or_unknown_expected_excess_for_floor_size: true
+      max_qty_when_relaxed: 1
+    sell_candidate_relaxations:
+      allow_floor_trim_when_diagnostic_trigger_exists: true
+      allow_one_share_trim_when_remaining_qty_gate_passes: true
+      require_entry_style_trim_or_exit: true
+    still_never_bypass:
+      - alpaca_paper_mode
+      - market_open
+      - alpaca_core_account_clock_position_order_quote_spread
+      - universe_strict
+      - mcp_tiered_strict
+      - risk_policy
+      - fresh_quote
+      - spread_within_policy
+      - whole_share_day_limit_order
   no_action_diagnostics:
     record_first_blocking_gate: true
     record_next_relaxation_candidate: true
@@ -483,6 +508,7 @@ after_hours_policy:
   require_separate_review_bucket: true
   allowed_sides:
     - buy
+    - sell
   max_new_buy_orders_per_run: 1
   max_new_orders_per_session: 2
   default_qty: 1
@@ -511,9 +537,9 @@ after_hours_policy:
     - 20D
   risk_diagnostic_queue:
     enabled: true
-    evaluate_holdings_without_after_hours_sell_submit: true
-    queue_for_next_regular_session: true
-    allowed_order_sides_unchanged: true
+    evaluate_holdings_without_after_hours_sell_submit: false
+    queue_for_next_regular_session: false
+    allowed_order_sides_unchanged: false
     required_fields:
       - symbol
       - risk_reason

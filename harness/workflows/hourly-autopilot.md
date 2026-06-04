@@ -20,6 +20,8 @@ This workflow is regular-session only. After-hours automation must use `harness/
   - A failed non-core research provider no longer blocks paper action by itself when core and minimum research confirmations pass.
 - Paper validation execution is intentionally less passive than production trading, but it must not bypass hard gates:
   - During regular market hours, prefer active paper validation orders when all hard gates pass.
+  - The user's operating directive is policy learning through actual paper buy/sell observations. When hard gates pass, do not default to `orders: []` merely because the market is unattractive, a candidate is not ideal, or portfolio-fit is only marginal.
+  - If no high-conviction buy or trim exists but all hard gates pass, create at least one floor-size validation order using `paper_validation_execution.learning_trade_directive`: first a valid risk-reducing sell/trim if one passes sell gates, otherwise a 1-share buy in the highest-ranked benchmark, diversifier, or existing actionable holding that passes risk caps.
   - Default exploratory validation size and confidence/notional sizing tiers come from `harness/recommendation-policy.yaml`; subject all quantities to whole-share rounding and `harness/risk-policy.yaml` caps.
   - Use `paper_validation_execution.validation_order_sizing.max_new_buy_orders_per_run` for normal per-run buy slots and the validation notional caps in `harness/recommendation-policy.yaml`; do not hardcode those values in this workflow.
   - Treat the invested-ratio path in `paper_validation_execution.validation_order_sizing.target_exposure_path` as a staged policy target, not a one-shot order target: below the acceleration threshold, allow normal acceleration; between selective and max target thresholds, require stronger candidate quality and diversification benefit; above the rebalance threshold, prefer trim/rebalance and only add high-conviction candidates.
@@ -28,7 +30,7 @@ This workflow is regular-session only. After-hours automation must use `harness/
   - Fresh open orders block new buys for the same symbol/side and normally for the same correlated cluster, but they do not automatically block different-cluster candidates when the open-order lifecycle gate passes.
   - Medium source confidence handling follows `harness/recommendation-policy.yaml`; candidates still need positive expected excess return, no thesis-break, and tiered MCP validation.
   - Evaluate risk-reducing sell/trim candidates before new buys on every run. The buy entry window and validation-buy budget gate new buy exposure only; they must not suppress sell/trim diagnostics or order-plan entries that pass the sell gates.
-  - If no order is submitted, record the first blocking gate, the next relaxation candidate, and the top recheck candidates. Do not submit a forced order.
+  - If no order is submitted despite hard gates passing, treat that as a policy exception: record the exact gate that blocked every possible floor-size buy/sell. Do not use broad labels such as `watch`, `portfolio-fit`, `not compelling`, `market bad`, or `candidate weak` as the final blocker.
 
 ## Required Cadence
 
@@ -120,8 +122,9 @@ For the 2026-05-27 US regular session, apply this user-requested overlay after a
    - Write `sell_candidate_diagnostics` into the order plan and manifest on every completed run. Use `risk_trim_policy.sell_candidate_diagnostics` for ranking, metric policy, and fields, and include the top unexecuted sell/trim candidates even when the final recommendation is hold/watch.
    - Sell diagnostics must fill decision-grade expected-excess and relative-performance fields, or explicitly mark a metric gap reason from the YAML metric policy. A zero value is acceptable only when the metric status says it is a valid calculated zero.
    - Treat the daily validation-buy cap as a buy-side throttle. It must not by itself suppress a risk-reducing sell/trim candidate that passes held-quantity, quote, spread, open-order, and risk checks.
-   - Apply `portfolio_construction_policy`: rank new buys against existing holdings, include portfolio contribution/replacement rank when available, and prefer trim/rebalance once the YAML invested-ratio path says new exposure should be selective.
-   - If all hard gates pass during regular market hours, prefer validation buys for the highest-ranked actionable candidates that pass position/theme/factor/speculative caps.
+   - Apply `portfolio_construction_policy`: rank new buys against existing holdings, include portfolio contribution/replacement rank when available, and prefer trim/rebalance once the YAML invested-ratio path says new exposure should be selective. Portfolio-fit is a ranking input and sizing throttle; it is not by itself a no-trade gate for floor-size paper learning orders when YAML hard gates pass.
+   - If all hard gates pass during regular market hours, submit at least one validation buy or eligible sell/trim for policy learning unless the order would fail an explicit hard gate in `paper_validation_execution.learning_trade_directive.still_never_bypass`.
+   - For floor-size learning buys, a benchmark/diversifier/existing holding may be used even when expected excess return is zero, unknown, or only marginal, provided source confidence is not low, there is no thesis break, and the risk validator passes.
    - Use up to `paper_validation_execution.validation_order_sizing.max_new_buy_orders_per_run` buy slots under normal conditions. Additional slots should normally be different correlated clusters and must satisfy the cash-ratio floors in `harness/recommendation-policy.yaml`.
    - Size validation buys from `paper_validation_execution.validation_order_sizing.confidence_tiers`. Use the largest whole-share quantity that fits the candidate tier's `max_notional_pct` and `max_qty`, then run the normal risk validator.
    - Apply `target_exposure_path`: below the acceleration threshold, a strong diversified run may use up to the normal per-run exposure budget; high-conviction runs may use the high-conviction budget. Between the selective threshold and the max policy target, submit only candidates that improve portfolio quality or diversify risk. Above the rebalance threshold, evaluate trim/rebalance before new buys.
@@ -181,6 +184,7 @@ python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/YOUR-RUN.js
 - Alpaca core MCP is unavailable or returns unusable data for an actionable order candidate.
 - Fewer than 3 research MCPs are usable/pass for a buy candidate after retries.
 - Universe strict gate fails.
+- A weak market, unattractive setup, ambiguous alpha, or portfolio-fit preference is not a stop condition by itself. It can shrink size to the 1-share validation floor, but it must not suppress all paper buy/sell observations when hard gates pass.
 - MCP strict gate fails.
 - Risk gate fails.
 - Quote or spread validation fails.
