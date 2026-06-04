@@ -1,0 +1,47 @@
+{
+  "run_id": "2026-06-05-0051-hourly-autopilot",
+  "recorded_at": "2026-06-04T16:03:04Z",
+  "paper": true,
+  "session": "regular",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-05-0051-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-05-0051-hourly-autopilot.json"
+  ],
+  "order_submission": {
+    "order_id": "46a4b55c-3721-4b27-ab8a-8d04b6806aca",
+    "client_order_id": "hourly-20260605-0051-buy-xom",
+    "symbol": "XOM",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 153.41,
+    "status": "filled",
+    "created_at": "2026-06-04T16:02:01.614850118Z",
+    "submitted_at": "2026-06-04T16:02:01.680628434Z",
+    "filled_at": "2026-06-04T16:02:05.40965797Z",
+    "filled_avg_price": 153.26
+  },
+  "reconciliation": {
+    "get_order_by_client_id_status": "filled",
+    "same_window_orders_count": 1,
+    "same_window_fill_count": 1,
+    "account_info_runtime_status": "cancelled",
+    "positions_count": 32,
+    "open_orders_after_reconciliation": 0
+  },
+  "xom_position_after": {
+    "symbol": "XOM",
+    "qty": 3,
+    "avg_entry_price": 149.566667,
+    "current_price": 153.25,
+    "market_value": 459.75,
+    "change_today": 0.00472
+  },
+  "account_snapshot": {
+    "source": "scheduler core preflight last confirmed snapshot",
+    "portfolio_value": 102771.44,
+    "cash": 32482.3,
+    "buying_power": 257589.13,
+    "runtime_gap_category": "cancelled",
+    "runtime_gap_reason": "Direct post-trade get_account_info MCP call returned cancelled twice; kept pre-submit confirmed account snapshot and reconciled fill from orders/activities/positions."
+  }
+}
