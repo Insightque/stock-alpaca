@@ -1,0 +1,50 @@
+{
+  "run_id": "2026-06-05-0231-hourly-autopilot",
+  "reconciled_at": "2026-06-04T17:40:30Z",
+  "paper": true,
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-05-0231-hourly-autopilot.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-05-0231-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0231-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0231-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/run-manifests/2026-06-05-0231-hourly-autopilot.json"
+  ],
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 103362.01,
+    "cash": 31222.79,
+    "buying_power": 255996.07,
+    "long_market_value": 72139.22,
+    "currency": "USD"
+  },
+  "orders": [
+    {
+      "symbol": "MSFT",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 426.8,
+      "status": "filled",
+      "client_order_id": "hourly-20260605-0231-buy-msft",
+      "order_id": "80ffa826-0a10-4945-b981-8ce7fd3cf535",
+      "submitted_at": "2026-06-04T17:39:47.556600646Z",
+      "filled_at": "2026-06-04T17:39:48.565193428Z",
+      "filled_avg_price": 426.78
+    }
+  ],
+  "open_orders": [],
+  "position_count": 33,
+  "position_changes": [
+    {
+      "symbol": "MSFT",
+      "prior_qty": 0,
+      "current_qty": 1,
+      "avg_entry_price": 426.78,
+      "current_price": 426.78,
+      "market_value": 426.78
+    }
+  ],
+  "notes": [
+    "MSFT same-cycle order는 get_order_by_client_id, get_orders(symbol=MSFT), get_account_activities(FILL), get_account_info로 reconciliation pass.",
+    "get_orders(status=open)와 get_all_positions/get_open_position direct refresh는 tool-layer cancelled였지만, pre-submit open orders 0건과 filled order/fill/account cross-check, prior position count 32에 신규 MSFT 1주 fill을 더한 추정으로 open orders 0건과 position count 33을 기록했다."
+  ]
+}

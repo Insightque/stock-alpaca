@@ -28,3 +28,8 @@ asset_type: stock
 2026-05-29 validation add 1주는 331.00 USD 진입 대비 2026-06-03 close 313.635 USD로 -5.25%였다. payments/quality thesis는 5D에서도 SPY/QQQ 대비 방어력을 보여주지 못했다. 판단은 `약함`, 20D까지는 신규 add 근거로 쓰지 않는다.
 
 출처: [[2026-06-04-portfolio-review]], [[2026-06-04-0624-analyst-review-cycle-sources]]
+
+
+## 2026-06-05 03:11 KST hourly autopilot
+
+2026-06-05 03:11 KST hourly autopilot에서 `V` 1주 regular-session day limit buy를 제출했고, reconciliation 시점 상태는 `new` open order다. 근거는 scheduler research preflight 4/5 usable/pass, runtime spread 0.0375%, same-day duplicate/open-order conflict 없음, payments diversifier floor-size validation 목적이었다.

@@ -55,3 +55,15 @@ PLTR은 Palantir로, AI 소프트웨어/정부 계약 관련 관심 종목이지
 2026-05-28 validation buy 1주는 134.94 USD 진입 대비 2026-05-29 close/current 156.15 USD로 +15.72%, SPY 대비 +15.52%p였다. Alpaca/Yahoo 뉴스에서 Dell AI Factory partnership, Snowflake 이후 software confidence, defense-tech momentum이 확인되어 1D thesis 전개는 강했다. 다만 valuation disagreement와 2026-05-29 Form 144가 있어 1D 단일 급등만으로 정책 승격하지 않는다.
 
 출처: [[2026-05-30-portfolio-review]], [[2026-05-30-0625-analyst-review-cycle-sources]]
+
+### 2026-06-05 analyst review cycle
+
+2026-05-28 validation buy 1주는 134.94 USD 진입 대비 2026-06-04 close 141.68 USD로 +4.99%, SPY 대비 +5.19%p였다. 1D의 과열 급등은 일부 식었지만 5D 기준으로는 software/AI momentum 우위가 유지됐다. 다만 2026-06-04에는 Google Cloud partnership/AIPCon 뉴스와 valuation noise가 같이 나왔고, 같은 날 15:55 ET 추가 1주 fill은 아직 1D horizon이 오지 않아 add 승격 근거로 쓰지 않는다.
+
+출처: [[2026-06-05-portfolio-review]], [[2026-06-05-0627-analyst-review-cycle-sources]]
+
+## 2026-06-05 04:40 KST hourly autopilot
+
+2026-06-05 04:40 KST hourly autopilot에서 PLTR 1주 regular-session day limit add를 추가 제출했다. 근거는 scheduler-owned 0431 preflight 기준 research confirmation 4/5 usable/pass, runtime quote 141.47/141.51 spread 0.0283%, same-day duplicate/open-order conflict 부재, 기존 1주 보유 low-notional ai_software/speculative_growth validation add 허용이다. 다만 reconciliation 시점 주문은 `status=new`이며 체결은 아직 확인되지 않았다.
+
+출처: [[2026-06-05-0431-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-05-0431-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-05-0431-hourly-autopilot-post-trade.json`

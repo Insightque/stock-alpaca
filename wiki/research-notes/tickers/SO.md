@@ -34,3 +34,9 @@ asset_type: stock
 2026-05-29 validation add 1주는 91.55 USD 진입 대비 2026-06-03 close 90.52 USD로 -1.13%였다. 1D 대비 낙폭은 줄었지만 SPY/QQQ 대비는 아직 약하고 utility/rate-sensitive thesis의 분명한 회복도 없다. 판단은 `중립 약함`, 20D 확인 전 add 보류가 맞다.
 
 출처: [[2026-06-04-portfolio-review]], [[2026-06-04-0624-analyst-review-cycle-sources]]
+
+### 2026-06-05 analyst review cycle
+
+`SO`는 반복적으로 weak-to-neutral이다. `2026-05-27` validation buy 1주는 94.28 USD 대비 91.62 USD로 -2.82%, `2026-05-28` validation buy 1주는 93.38 USD 대비 91.62 USD로 -1.88%다. `XLU`와 비교해도 edge가 약해 utility defensive 라벨만으로 add를 정당화하기 어렵다.
+
+출처: [[2026-06-05-portfolio-review]], [[2026-06-05-0627-analyst-review-cycle-sources]]

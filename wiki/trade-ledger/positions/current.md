@@ -1,27 +1,39 @@
 # portfolio-current
 
-_Last updated: 2026-06-05 02:22 KST_
+_Last updated: 2026-06-05 06:14 KST_
 
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: $103,311.34
-- Cash: $31,649.57
-- Buying power: $256,800.45
-- Long market value: $71,661.77
+- Portfolio value: $103,592.39
+- Cash: $30,629.38
+- Buying power: $254,850.28
+- Long market value: $72,963.01
 
-## 최신 hourly-autopilot reconciliation
+## 최신 after-hours-autopilot reconciliation
 
-- Run: [[2026-06-05-0211-hourly-autopilot]]
-- Open/new: 없음. same-day earlier fills `GOOGL`, `COP`, `FCX`, `WMT`, `XOM`, `AAPL`, `SLB`, `SPY`, `QQQ`는 order history에 남아 있다.
-- Filled: `GOOGL` buy 1 @ `372.48` limit, `filled_avg_price=372.43`, `client_order_id=hourly-20260605-0211-buy-googl`.
-- Position count observed by Alpaca MCP: 32
-- Recent reconciliation scope: `get_order_by_client_id`, `get_orders(symbol=GOOGL)`, `get_all_positions`, `get_account_info` 기준 GOOGL fill과 updated position/account state를 확인했다.
-- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
-- Source note: `wiki/trade-ledger/positions/2026-06-05-0211-hourly-autopilot-post-trade.json`
+- Run: [[2026-06-05-0611-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: 33 positions. 장외 세션에서 신규 fill, 신규 open order, 포지션 수량 변화는 없었다.
+- Recent reconciliation scope: scheduler-owned `0611` Alpaca core preflight와 runtime `get_clock` 기준 regular market closed를 재확인했고, after-hours candidate quote/spread/notional gate 실패로 `place_stock_order` 호출은 생략했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-05-0611-after-hours-autopilot-post-trade.json`
+
+## 직전 hourly-autopilot reconciliation
+
+- Run: [[2026-06-05-0451-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: `JNJ` buy 1 @ `229.25` limit, `client_order_id=hourly-20260605-0451-buy-jnj`, `order_id=915838ec-e52b-41c2-9682-fdb7b94dba52`, `status=canceled`
+- Position count observed by Alpaca MCP: 33 positions. `JNJ` 신규 보유는 생기지 않았다.
+- Recent reconciliation scope: `get_clock`, `place_stock_order`, `cancel_order_by_id`, `get_order_by_id`, `get_orders(status=open)` 기준 regular close 이후 생성된 JNJ queued order를 즉시 취소했고 open order 0건을 확인했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 1 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-05-0451-hourly-autopilot-post-trade.json`
 
 ## 계좌 요약 주석
 
-- 위 계좌 요약 수치는 submit 이후 runtime `get_account_info` MCP call 기준이다.
-- GOOGL는 2주에서 3주로 증가했고 평균단가는 `381.52 USD`로 갱신됐다.
-- `get_orders(status=open)`와 `get_account_activities_by_type(FILL)`는 tool-layer `cancelled`였지만, order/position/account state 대조는 모두 완료했다.
+- 위 계좌 요약 수치는 `0451` scheduler core preflight의 마지막 확인 account snapshot이다.
+- `JNJ` order는 pre-submit gate 시점에는 market open이었지만 실제 Alpaca submit timestamp가 `16:02:59 ET`로 close 이후가 되어, workflow safety 복구 차원에서 즉시 취소했다.
+- close 이후 reconciliation 기준 open order는 0건이며 신규 fill은 없다.

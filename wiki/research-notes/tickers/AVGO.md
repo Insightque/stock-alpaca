@@ -62,3 +62,9 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 2026-06-01 after-hours validation 1주는 461.26 USD 진입 대비 2026-06-03 close 478.62 USD로 +3.76%였다. SPY 대비 +4.33%p, QQQ 대비 +3.55%p라 first-close validation 자체는 `양호`다. 다만 Yahoo Finance 기준 post-market price가 425.30 USD까지 밀려 earnings event risk가 남았으므로, 즉시 add 규칙으로 승격하지 않고 5D/20D를 더 본다.
 
 출처: [[2026-06-04-portfolio-review]], [[2026-06-04-0624-analyst-review-cycle-sources]]
+
+### 2026-06-05 analyst review cycle
+
+2026-06-04 미국 정규장에서는 earnings-event 재평가로 close 417.99 USD, 당일 -12.78%가 나왔다. 기존 stock-only 15주는 평균 413.888125 USD라 계좌 손익은 아직 소폭 플러스지만, `2026-06-01` after-hours validation 1주 5D horizon은 `2026-06-05` 미국 정규장 close 이후에야 닫을 수 있다. 오늘 run에서는 AI 인프라 thesis 유지와 event-risk 확대를 동시에 기록하고, add/trim 정책 승격은 보류한다.
+
+출처: [[2026-06-05-portfolio-review]], [[2026-06-05-0627-analyst-review-cycle-sources]]

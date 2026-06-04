@@ -1,0 +1,49 @@
+{
+  "run_id": "2026-06-05-0351-hourly-autopilot",
+  "reconciled_at": "2026-06-04T18:57:42Z",
+  "paper": true,
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-05-0351-hourly-autopilot.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-05-0351-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0351-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0351-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/run-manifests/2026-06-05-0351-hourly-autopilot.json"
+  ],
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 103530.26,
+    "cash": 30683.4,
+    "buying_power": 255210.85,
+    "long_market_value": 72846.86,
+    "currency": "USD",
+    "snapshot_basis": "post_submit_runtime_account"
+  },
+  "orders": [
+    {
+      "symbol": "SO",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 90.98,
+      "status": "filled",
+      "client_order_id": "hourly-20260605-0351-buy-so",
+      "order_id": "18694d74-dc58-44a9-9e81-65c35faeefe6",
+      "submitted_at": "2026-06-04T18:57:36.831968212Z",
+      "filled_at": "2026-06-04T18:57:37.323501712Z",
+      "filled_avg_price": 90.95
+    }
+  ],
+  "open_orders": [
+
+  ],
+  "position_count": 33,
+  "position_changes": [
+    "SO qty 3 -> 4 confirmed by post-submit get_all_positions; avg_entry_price updated to 92.54."
+  ],
+  "notes": [
+    "SO same-cycle order는 get_order_by_client_id와 FILL activity로 reconciliation pass했고 filled 상태다.",
+    "runtime get_all_positions는 SO 보유수량 4주와 avg_entry_price 92.54를 반환해 포지션 증가를 확인했다.",
+    "post-submit get_account_info 기준 cash 30683.40, portfolio value 103530.26, buying power 255210.85였다.",
+    "첫 submit 시도는 cancelled였지만 동일 client_order_id로 재조정 후 1회 재시도만 수행했다.",
+    "직전 cycle NKE buy 1주는 2026-06-04T18:45:35.26386Z filled로 유지된다."
+  ]
+}

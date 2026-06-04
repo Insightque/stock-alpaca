@@ -1,0 +1,44 @@
+{
+  "run_id": "2026-06-05-0251-hourly-autopilot",
+  "reconciled_at": "2026-06-04T18:01:25Z",
+  "paper": true,
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-05-0251-hourly-autopilot.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-05-0251-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0251-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0251-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/run-manifests/2026-06-05-0251-hourly-autopilot.json"
+  ],
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 103696.12,
+    "cash": 31222.79,
+    "buying_power": 256417.16,
+    "long_market_value": 72473.33,
+    "currency": "USD"
+  },
+  "orders": [
+    {
+      "symbol": "NEE",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 85.36,
+      "status": "new",
+      "client_order_id": "hourly-20260605-0251-buy-nee",
+      "order_id": "bcd3b9a7-78d4-43d2-a540-4825f572e8fa",
+      "submitted_at": "2026-06-04T18:00:34.073652841Z",
+      "filled_at": null,
+      "filled_avg_price": null
+    }
+  ],
+  "open_orders": [
+    "NEE buy 1 @ 85.36 status=new client_order_id=hourly-20260605-0251-buy-nee"
+  ],
+  "position_count": 33,
+  "position_changes": [],
+  "notes": [
+    "NEE same-cycle order는 get_orders(symbol=NEE)와 get_orders(status=open), get_account_info로 reconciliation pass했다.",
+    "reconciliation 시점 order status는 new/open이고 filled_qty=0이어서 포지션 증가는 아직 기록하지 않았다.",
+    "cash는 31222.79로 유지됐고 open order 1건만 새로 생겼다."
+  ]
+}

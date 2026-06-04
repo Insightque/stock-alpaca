@@ -66,3 +66,9 @@ NOK는 보유 유지 후보지만 신규 추격은 금지한다. 2026-05-22 종�
 2026-05-22 stock-only cohort는 15.04 USD 진입 대비 2026-06-01 close 16.235 USD로 +7.95%였다. 5D 결과는 강하지만 2026-05-29까지의 약세와 2026-06-01 급반등이 섞여 변동성이 크다. 기존 보유가 큰 상태에서의 추가매수는 20D 확인 전까지 더 엄격한 price confirmation이 필요하다.
 
 출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]
+
+### 2026-06-05 analyst review cycle
+
+validation add 관점에서는 신호가 여전히 엇갈린다. `2026-05-26` add 1주는 16.50 USD 진입 대비 2026-06-04 close 16.61 USD로 +0.67%에 그쳐 사실상 본전이고, `2026-05-28` after-hours add 1주는 15.40 USD 대비 16.61 USD로 +7.86%다. 즉 기존 대형 보유 thesis는 살아 있지만, add timing은 변동성 의존이 커서 `existing-position-breakout-add-penalty` 가설을 아직 지운다고 보기 어렵다.
+
+출처: [[2026-06-05-portfolio-review]], [[2026-06-05-0627-analyst-review-cycle-sources]]

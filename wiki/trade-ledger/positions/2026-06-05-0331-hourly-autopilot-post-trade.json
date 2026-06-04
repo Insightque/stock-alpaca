@@ -1,0 +1,46 @@
+{
+  "run_id": "2026-06-05-0331-hourly-autopilot",
+  "reconciled_at": "2026-06-04T18:42:10Z",
+  "paper": true,
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-05-0331-hourly-autopilot.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-05-0331-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0331-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0331-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/run-manifests/2026-06-05-0331-hourly-autopilot.json"
+  ],
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 103630.87,
+    "cash": 30817.61,
+    "buying_power": 255572.55,
+    "long_market_value": 72813.26,
+    "currency": "USD",
+    "snapshot_basis": "post_submit_runtime_account"
+  },
+  "orders": [
+    {
+      "symbol": "NKE",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 43.26,
+      "status": "new",
+      "client_order_id": "hourly-20260605-0331-buy-nke",
+      "order_id": "b80fab3c-72bd-4735-9230-4ea12623a096",
+      "submitted_at": "2026-06-04T18:41:45.099072688Z",
+      "filled_at": null,
+      "filled_avg_price": null
+    }
+  ],
+  "open_orders": [
+    "NKE buy 1 @ 43.26 status=new client_order_id=hourly-20260605-0331-buy-nke"
+  ],
+  "position_count": 34,
+  "position_changes": [],
+  "notes": [
+    "NKE same-cycle order는 get_order_by_client_id로 reconciliation pass했고 status=new open order다.",
+    "post-submit FILL activity는 비어 있어 체결은 아직 확인되지 않았다.",
+    "post-submit get_all_positions와 get_order_by_id는 cancelled였지만 cash unchanged와 order status=new 조합으로 포지션 증가는 아직 없다고 기록한다.",
+    "직전 cycle V buy 1주는 2026-06-04T18:27:33.088713Z filled로 유지된다."
+  ]
+}

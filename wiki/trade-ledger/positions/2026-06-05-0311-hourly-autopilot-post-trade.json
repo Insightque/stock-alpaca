@@ -1,0 +1,46 @@
+{
+  "run_id": "2026-06-05-0311-hourly-autopilot",
+  "reconciled_at": "2026-06-04T18:21:10Z",
+  "paper": true,
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-05-0311-hourly-autopilot.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-05-0311-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0311-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0311-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/run-manifests/2026-06-05-0311-hourly-autopilot.json"
+  ],
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 103780.45,
+    "cash": 31137.44,
+    "buying_power": 256593.9,
+    "long_market_value": 72643.01,
+    "currency": "USD",
+    "snapshot_basis": "last_confirmed_pre_submit_runtime_account"
+  },
+  "orders": [
+    {
+      "symbol": "V",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 319.83,
+      "status": "new",
+      "client_order_id": "hourly-20260605-0311-buy-v",
+      "order_id": "767f5f8e-d77a-48e8-bcc2-614f7b5d15e7",
+      "submitted_at": "2026-06-04T18:20:52.46051867Z",
+      "filled_at": null,
+      "filled_avg_price": null
+    }
+  ],
+  "open_orders": [
+    "V buy 1 @ 319.83 status=new client_order_id=hourly-20260605-0311-buy-v"
+  ],
+  "position_count": 34,
+  "position_changes": [],
+  "notes": [
+    "V same-cycle order는 get_order_by_client_id와 get_orders(symbol=V)로 reconciliation pass했다.",
+    "reconciliation 시점 order status는 new/open이고 filled_qty=0이어서 포지션 증가는 아직 기록하지 않았다.",
+    "post-submit get_orders(status=open)와 get_account_info는 tool safety layer에서 cancelled였고, direct positions refresh 기준 V 보유수량은 2주로 유지됐다.",
+    "NEE prior-cycle open order는 이번 cycle runtime check에서 filled로 정리됐고 NEE 보유수량은 4주가 됐다."
+  ]
+}

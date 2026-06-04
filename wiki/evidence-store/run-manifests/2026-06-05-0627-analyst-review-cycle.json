@@ -1,0 +1,151 @@
+{
+  "id": "2026-06-05-0627-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-06-04T21:27:37Z",
+  "timezone": "Asia/Seoul",
+  "paper": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "alpaca_reconciliation": {
+    "clock_is_open": false,
+    "account_status": "ACTIVE",
+    "portfolio_value": 102944.26,
+    "cash": 30487.94,
+    "buying_power": 253654.69,
+    "long_market_value": 72456.32,
+    "open_us_equity_orders": 0,
+    "position_count": 33,
+    "recent_fill_scope_after": "2026-05-22",
+    "direct_fill_activity": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 2
+    },
+    "portfolio_history": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 2
+    }
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-06-05-portfolio-review.md",
+    "reviewed_horizons": [
+      "2026-05-26 validation fills 5D",
+      "2026-05-27 validation fills 5D",
+      "2026-05-28 validation fills 5D",
+      "open-position catalyst review",
+      "skipped recommendations re-check"
+    ],
+    "symbols": [
+      "LLY",
+      "FCX",
+      "NOK",
+      "NVDA",
+      "AAPL",
+      "NKE",
+      "PFE",
+      "SO",
+      "WMT",
+      "NEE",
+      "AMZN",
+      "BAC",
+      "XOM",
+      "V",
+      "INTC",
+      "PLTR",
+      "QQQ",
+      "CVX",
+      "GOOGL",
+      "SLB",
+      "SPY",
+      "COP",
+      "TSLA",
+      "AVGO",
+      "HOOD",
+      "JNJ",
+      "MRK"
+    ],
+    "due_now": true,
+    "next_due": "2026-06-05 US regular-session close for 2026-06-04 1D cohort and AVGO after-hours validation 5D"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-0627-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "portfolio_history_and_direct_fill_activity_cancelled_only",
+      "gap_category": "cancelled",
+      "retry_count": 2
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-0627-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "AVGO financials refresh cancelled twice",
+      "gap_category": "cancelled",
+      "retry_count": 1
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-0627-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "PING health check passed; first non-PING TOOL_CALL(EARNINGS, AVGO) cancelled, so Alpha retries stopped per workflow",
+      "gap_category": "cancelled",
+      "retry_count": 1
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-0627-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-0627-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-0627-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "Repeated defensive-diversification weakness and stronger software-energy-financials follow-through were visible, but provider gaps plus missing account-path evidence kept the result below active-rule threshold"
+  }
+}

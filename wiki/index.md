@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 02:22 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 04:40 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -17,6 +17,7 @@
 - [[TSM]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
 - [[NOK]] - 2026-05-22 stock-only 5D 회고 강함이나 변동성 큼, 20D 대기.
 - [[UNH]] - 2026-05-22 stock-only 5D 회고 약함, 20D 대기.
+- [[JNJ]] - defensive healthcare diversifier 후보. 2026-06-05 04:51 KST hourly-autopilot에서 1주 validation buy를 계획했지만 actual submit timestamp가 regular close 이후로 밀려 즉시 취소됐다.
 - [[ETN]] - 2026-05-22 stock-only 5D 회고 중립 양호, 20D 대기.
 - [[IONQ]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
 - [[QBTS]] - 양자컴퓨팅 watchlist 후보, 2026-05-22 업데이트.
@@ -33,13 +34,13 @@
 - [[LFS]] - 투기적 고모멘텀 mover, 2026-05-22 업데이트.
 - [[QTEX]] - 투기적 1달러 미만 mover, 2026-05-22 업데이트.
 - [[BIYA]] - 투기적 저가 mover, 2026-05-22 업데이트.
-- [[NKE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
+- [[NKE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기; 2026-06-05 03:31 KST hourly-autopilot에서 1주 추가 validation buy 제출, 현재 `status=new`.
 - [[PFE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[SO]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[WMT]] - 2026-05-29 validation add 5D 회고 중립 양호; 2026-06-05 01:11 KST hourly-autopilot에서 1주 추가 validation buy 체결.
 - [[NEE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[AMZN]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
-- [[BAC]] - 2026-05-28 validation buy 1D 회고 양호, 5D/20D 대기.
+- [[BAC]] - 2026-05-28 validation buy 1D 회고 양호, 5D/20D 대기; 2026-06-05 04:21 KST hourly-autopilot에서 1주 추가 validation buy 체결.
 - [[XOM]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기; 2026-06-05 00:51 KST hourly-autopilot에서 1주 추가 validation buy 체결.
 - [[V]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[INTC]] - 2026-05-28 after-hours validation buy 1D 회고 약함, 5D/20D 대기.
@@ -50,6 +51,14 @@
 
 ## Current Runs
 
+- [[2026-06-05-0611-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0611` core/research preflight와 strict universe/MCP/risk validator는 모두 통과했다. 다만 runtime after-hours quote gate에서 어떤 후보도 `max_quote_age_minutes_submit=5.0`과 `max_spread_pct=0.25`, per-order notional cap을 동시에 만족하지 못해 Alpaca submit 없이 종료했다.
+- [[2026-06-05-0451-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0451` stale cleanup/core/research preflight와 strict universe/MCP/risk gate는 pre-submit 시점까지 유지됐고 `JNJ` 1주 floor-size validation buy를 계획했다. 다만 actual Alpaca submit timestamp가 `2026-06-04T20:02:59Z` (`16:02:59 ET`)로 regular close 이후가 되어 runtime clock `is_open=false`를 확인한 직후 `cancel_order_by_id`로 취소했고, 최종적으로 open orders/fills/state change는 남기지 않았다.
+- [[2026-06-05-0431-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0431` stale cleanup/core/research preflight와 strict universe/MCP/risk gate를 유지한 채 `PLTR` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=257d23eb-d449-4e25-8276-efce67f15ace`는 reconciliation 기준 `status=new` open order이며, post-submit account snapshot 기준 cash `30629.38`, open orders 1건, `PLTR` 보유수량은 아직 1주다.
+- [[2026-06-05-0411-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0411` stale cleanup/core/research preflight와 strict universe/MCP/risk gate를 유지한 채 `BAC` 1주 floor-size validation buy를 제출했고 Alpaca MCP `order_id=8c0016bd-c60a-45c1-a631-3568c5bc0098`는 `filled_avg_price=54.02`로 즉시 체결됐다. runtime `CVX` quote는 spread 0.615%로 hard gate 실패여서 제외했고, reconciliation 기준 open orders는 0건, BAC 보유수량은 3주가 됐다.
+- [[2026-06-05-0331-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0331` stale cleanup/core/research preflight와 strict universe/MCP/risk gate를 유지한 채 `NKE` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=b80fab3c-72bd-4735-9230-4ea12623a096`는 reconciliation 기준 `status=new` open order이고, 직전 `V` buy는 이번 cycle 시작 전 `filled_avg_price=319.83`으로 정리됐다.
+- [[2026-06-05-0311-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0311` stale cleanup/core/research preflight와 strict universe/MCP/risk gate를 유지한 채 `V` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=767f5f8e-d77a-48e8-bcc2-614f7b5d15e7`는 reconciliation 기준 `status=new` open order이며, prior-cycle `NEE` buy는 이번 cycle에서 `filled_avg_price=85.35`로 정리됐다.
+- [[2026-06-05-0251-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0251` stale cleanup/core/research preflight와 strict universe/MCP/risk gate를 유지한 채 sell diagnostics 뒤 `NEE` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=bcd3b9a7-78d4-43d2-a540-4825f572e8fa`는 reconciliation 기준 `status=new` open order이며 cash `31222.79`, open orders 1건을 확인했다.
+- [[2026-06-05-0231-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0231` stale cleanup/core/research preflight와 strict universe/MCP/risk gate를 유지한 채 sell diagnostics 뒤 `MSFT` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=80ffa826-0a10-4945-b981-8ce7fd3cf535`는 `filled_avg_price=426.78`으로 즉시 체결됐고, direct full position refresh는 cancelled였지만 order/fill/account cross-check 기준 신규 `MSFT` 1주와 account cash `31222.79`를 확인했다.
 - [[2026-06-05-0211-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0211` stale cleanup/core/research preflight와 strict universe/MCP/risk gate를 유지한 채 sell diagnostics 뒤 `GOOGL` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=7e8243e9-1a7a-4644-b242-a039774b2711`는 `filled_avg_price=372.43`으로 즉시 체결됐고 post-trade reconciliation 기준 open orders는 0건, GOOGL 보유수량은 3주가 됐다.
 - [[2026-06-05-0151-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0151` stale cleanup/core/research preflight와 strict universe/MCP/risk gate를 유지한 채 sell diagnostics 뒤 `COP` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=640b1123-bbf3-46f4-ada0-361ca2516672`는 reconciliation 기준 `status=new` open order이며 COP 보유수량은 아직 1주다.
 - [[2026-06-05-0131-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0131` stale cleanup/core/research preflight와 strict universe/MCP/risk gate를 유지한 채 sell diagnostics 뒤 `FCX` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=1e90f417-7b16-4201-a6b5-f94710b16b3a`는 즉시 `filled`로 전환됐고 post-trade reconciliation 기준 open orders는 0건, FCX 보유수량은 2주가 됐다.
@@ -146,6 +155,7 @@
 - [[2026-06-02-0631-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했지만 장외 session budget 2건이 이미 소진되어 신규 주문 없음.
 - [[2026-06-02-portfolio-review]] - scheduled analyst review cycle. 2026-05-29 validation fills 1D와 2026-05-22 stock-only 5D 회고 완료; 정책 변경 없음; 주문 mutation 없음.
 - [[2026-06-04-portfolio-review]] - scheduled analyst review cycle. 2026-05-29 validation fills 5D와 AVGO after-hours validation 1D 회고 완료; 정책 변경 없음; 주문 mutation 없음.
+- [[2026-06-05-portfolio-review]] - scheduled analyst review cycle. 2026-05-26/27/28 validation fills 5D backlog closeout과 skipped recommendation 재점검 완료; AVGO earnings-event risk alert 기록; 정책 변경 없음.
 - [[2026-06-02-0611-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했지만 장외 session budget 2건이 이미 소진되어 신규 주문 없음.
 - [[2026-06-02-0451-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했지만 buy entry window 종료, validation lifecycle/review backlog/portfolio-fit 제약, sell/trim 수량·macro·decision metric gate로 신규 주문 없음.
 - [[2026-06-02-0431-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했지만 buy entry window 종료, validation lifecycle/review backlog/portfolio-fit 제약, sell/trim 수량·macro·decision metric gate로 신규 주문 없음.
@@ -582,9 +592,11 @@
 - [[2026-06-01-portfolio-review]] - 2026-05-29 validation fills와 2026-05-22 stock-only 5D를 정규장 close 전 대기 상태로 점검. 주문/정책 변경 없음.
 - [[2026-06-02-portfolio-review]] - 2026-05-29 validation fills 1D 및 2026-05-22 stock-only 5D interim analyst review. 정책 변경 없음.
 - [[2026-06-04-portfolio-review]] - 2026-05-29 validation fills 5D 및 AVGO after-hours validation 1D interim analyst review. 정책 변경 없음.
+- [[2026-06-05-portfolio-review]] - 2026-05-26/27/28 validation fills 5D interim analyst review와 skipped recommendation 재점검. 정책 변경 없음.
 - `wiki/evidence-store/run-manifests/2026-05-29-0625-analyst-review-cycle.json` - 2026-05-29 analyst review cycle MCP coverage와 due-review manifest.
 - `wiki/evidence-store/run-manifests/2026-06-02-0624-analyst-review-cycle.json` - 2026-06-02 analyst review cycle MCP coverage와 due-review manifest.
 - `wiki/evidence-store/run-manifests/2026-06-04-0624-analyst-review-cycle.json` - 2026-06-04 analyst review cycle MCP coverage와 due-review manifest.
+- `wiki/evidence-store/run-manifests/2026-06-05-0627-analyst-review-cycle.json` - 2026-06-05 analyst review cycle MCP coverage, backlog 5D closeout, skipped-review manifest.
 - `wiki/trade-ledger/orders/2026-05-26-1853-hourly-autopilot.json` - 2026-05-26 18:53 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2011-hourly-autopilot.json` - 2026-05-26 20:11 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2124-hourly-autopilot.json` - 2026-05-26 21:24 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
@@ -735,6 +747,7 @@
 - [[2026-05-31-0624-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/SEC/Alpha/Yahoo reconciliation, FRED/Firecrawl wrapper gap, 2026-05-29 fill 대기 회고 원천.
 - [[2026-06-02-0624-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/SEC/Alpha/Yahoo reconciliation, FRED/Firecrawl wrapper gap, 2026-05-29 1D 및 2026-05-22 5D 회고 원천.
 - [[2026-06-04-0624-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/Alpha/Yahoo reconciliation, SEC cancelled gap, FRED/Firecrawl wrapper gap, 2026-05-29 5D 및 AVGO 1D 회고 원천.
+- [[2026-06-05-0627-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/Alpha/Yahoo reconciliation, SEC cancelled gap, FRED/Firecrawl wrapper gap, 2026-05-26/27/28 5D backlog closeout과 skipped recommendation 회고 원천.
 - [[2026-05-30-overnight-trade-review-alpaca-readonly]] - 지난 밤 거래 회고용 Alpaca MCP read-only 계좌, FILL 10건, MRK 미체결 취소 확인.
 - `wiki/evidence-store/sources/2026-05-25-one-year-hourly-bars.json` - 62개 심볼 2025-05-23~2026-05-22 adjusted IEX 1시간봉 원자료.
 - `wiki/evidence-store/sources/2026-05-25-one-year-hourly-alpaca-news.json` - 1년 1시간봉 보강용 Alpaca MCP 뉴스 원자료.

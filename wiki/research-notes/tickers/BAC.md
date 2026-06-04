@@ -24,3 +24,9 @@ asset_type: stock
 2026-05-28 validation buy 1주는 51.14 USD 진입 대비 2026-05-29 close/current 51.55 USD로 +0.80%, SPY 대비 +0.60%p였다. 2026-05-27 fill 1D 부진과 달리 이번 financials 분산 표본은 양호했다. 단일 1D 반전이라 정책 변경은 없다.
 
 출처: [[2026-05-30-portfolio-review]], [[2026-05-30-0625-analyst-review-cycle-sources]]
+
+### 2026-06-05 analyst review cycle
+
+5D 기준으로는 financials 분산 thesis가 회복됐다. `2026-05-27` validation buy 1주는 52.06 USD 대비 54.11 USD로 +3.94%, `2026-05-28` validation buy 1주는 51.14 USD 대비 54.11 USD로 +5.81%였다. 두 표본 모두 `XLF`, SPY, QQQ를 앞질렀고 1D 약세만으로 failure로 단정하지 말아야 한다는 사례가 됐다.
+
+출처: [[2026-06-05-portfolio-review]], [[2026-06-05-0627-analyst-review-cycle-sources]]
