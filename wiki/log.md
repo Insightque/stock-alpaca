@@ -2,6 +2,17 @@
 
 Append new entries below. Do not rewrite earlier entries except to fix broken Markdown formatting.
 
+## [2026-06-05 00:21 Asia/Seoul] hourly-autopilot | 0011 regular-session validation buy executed
+
+- Scheduled `hourly-autopilot` cycle `2026-06-05-0011-hourly-autopilot`를 regular session submit mode로 실행했다.
+- `.env`의 `ALPACA_PAPER_TRADE=true`를 확인했고 scheduler-owned `0011` stale cleanup/core/research preflight와 strict universe/MCP/risk validators는 모두 PASS였다.
+- stale cleanup 이후 prior-cycle `BAC` buy open order 1건은 남아 있었지만 stale failure는 아니었고, fresh financials-cluster open order로만 기록했다.
+- `AAPL`은 runtime quote `2026-06-04T15:16:15.62335292Z`에서 spread가 약 `0.5089%`로 policy 상한을 넘겨 제외했다.
+- `SLB`는 2026-06-04 portfolio review의 5D follow-through와 runtime spread `0.0173%`를 근거로 1주 regular-session day limit buy를 제출했고, Alpaca MCP `order_id=5fb634fc-6fed-47b9-9ced-86ebdf06f652`는 `2026-06-04T15:20:39.771624551Z`에 `filled`됐다.
+- BAC open order는 reconciliation 기준 계속 `status=new`이며, SLB 보유수량은 2주에서 3주로 증가했다.
+- Artifacts: `wiki/current-runs/daily/2026-06-05-0011-hourly-autopilot.md`, `wiki/evidence-store/run-manifests/2026-06-05-0011-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-06-05-0011-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-05-0011-hourly-autopilot-post-trade.json`.
+- Validators: `python3 scripts/check-risk-policy.py --json`, `python3 scripts/check-mcp-coverage.py --strict --json`, `python3 scripts/check-universe-coverage.py --strict --json`.
+
 ## [2026-05-22 21:45 Asia/Seoul] setup | Harness initialized
 
 - Added initial llm-wiki structure for Alpaca paper-trading research and execution.

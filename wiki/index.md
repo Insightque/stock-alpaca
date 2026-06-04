@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-04 23:42 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 00:21 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -44,11 +44,12 @@
 - [[INTC]] - 2026-05-28 after-hours validation buy 1D 회고 약함, 5D/20D 대기.
 - [[CVX]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기.
 - [[GOOGL]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
-- [[SLB]] - 2026-05-29 validation add 1D 회고 중립 약함, 5D/20D 대기.
+- [[SLB]] - 2026-05-29 validation add 5D 회고 양호; 2026-06-05 00:11 KST hourly-autopilot에서 1주 추가 validation buy 체결.
 - [[COP]] - 2026-05-28 validation buy 1D 회고 중립 약함, 5D/20D 대기.
 
 ## Current Runs
 
+- [[2026-06-05-0011-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0011` stale cleanup/core/research preflight와 strict universe/MCP/risk gate는 모두 통과했고, `AAPL`은 `2026-06-04T15:16:15Z` runtime spread 초과로 제외한 뒤 `SLB` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=5fb634fc-6fed-47b9-9ced-86ebdf06f652`는 즉시 `filled`로 체결됐고, BAC prior-cycle buy open order 1건은 계속 `status=new`로 남아 있다.
 - [[2026-06-04-2351-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `2351` stale cleanup/core/research preflight와 strict universe/MCP/risk gate는 모두 통과했고, `QQQ`/`SPY` same-day duplicate buy를 피하기 위해 `BAC` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=7d85f1b6-7d11-4992-9f96-8705ad4dfd73`는 reconciliation 기준 `status=new` open order이며 BAC 보유수량은 아직 2주다.
 - [[2026-06-04-2331-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `2331` stale cleanup/core/research preflight와 strict universe/MCP/risk gate는 모두 통과했고, `QQQ` same-day duplicate buy를 회피하기 위해 `SPY` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=a15802cd-81bf-4450-bfa5-52f8782fe8c9`는 즉시 `filled`로 전환됐고 post-trade reconciliation 기준 open orders는 0건, SPY 보유수량은 2주가 됐다.
 - [[2026-06-04-2311-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `2311` stale cleanup/core/research preflight와 strict universe/MCP/risk gate는 모두 통과했고, sell diagnostics 뒤 `QQQ` 1주 floor-size validation buy를 실제 제출했다. Alpaca MCP는 `order_id=ee60655d-ae94-4c06-839c-9a7d31194ddf`, `status=new` open order를 반환했고 post-trade reconciliation 기준 fill은 아직 없지만 QQQ buy open order 1건이 살아 있다.

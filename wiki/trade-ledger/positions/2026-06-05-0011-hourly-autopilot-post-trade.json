@@ -1,0 +1,89 @@
+{
+  "run_id": "2026-06-05-0011-hourly-autopilot",
+  "reconciled_at": "2026-06-04T15:20:44Z",
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-04T11:15:39.322531376-04:00",
+    "next_open": "2026-06-05T09:30:00-04:00",
+    "next_close": "2026-06-04T16:00:00-04:00"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "SLB",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 57.66,
+      "client_order_id": "hourly-20260605-0011-buy-slb",
+      "order_id": "5fb634fc-6fed-47b9-9ced-86ebdf06f652",
+      "submitted_at": "2026-06-04T15:20:39.132755791Z",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 57.65,
+      "filled_at": "2026-06-04T15:20:39.771624551Z",
+      "extended_hours": false,
+      "time_in_force": "day"
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "BAC",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 53.6,
+      "client_order_id": "hourly-20260604-2351-buy-bac",
+      "order_id": "7d85f1b6-7d11-4992-9f96-8705ad4dfd73",
+      "status": "new"
+    }
+  ],
+  "fills_seen_this_reconciliation": [
+    {
+      "symbol": "SLB",
+      "filled_at": "2026-06-04T15:20:39.771624551Z",
+      "filled_avg_price": 57.65,
+      "qty": 1
+    }
+  ],
+  "positions_observed_count": 32,
+  "slb_position_after_reconciliation": {
+    "qty": 3,
+    "current_price": 57.58,
+    "market_value": 172.74,
+    "avg_entry_price": 55.973333,
+    "note": "new SLB order filled immediately, so held quantity increased from 2 to 3"
+  },
+  "bac_open_order_after_reconciliation": {
+    "qty": 1,
+    "limit_price": 53.6,
+    "status": "new",
+    "note": "prior-cycle BAC order remains open and unfilled"
+  },
+  "account_after_reconciliation": {
+    "buying_power": 258869.54,
+    "cash": 32792.37,
+    "portfolio_value": 103222.48,
+    "long_market_value": 70430.11
+  },
+  "same_day_prior_fills_still_visible": [
+    {
+      "symbol": "QQQ",
+      "filled_at": "2026-06-04T14:20:05.463508Z",
+      "filled_avg_price": 735.23
+    },
+    {
+      "symbol": "SPY",
+      "filled_at": "2026-06-04T14:40:11.754058Z",
+      "filled_avg_price": 753.75
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-05-0011-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-05-0011-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0011-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-05-0011-hourly-autopilot.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "wiki/research-notes/tickers/SLB.md",
+    "wiki/trade-ledger/reviews/2026-06-04-portfolio-review.md",
+    "wiki/trade-ledger/reviews/review-due-index.json"
+  ]
+}
