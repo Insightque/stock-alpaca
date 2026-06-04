@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-04 23:16 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-04 23:42 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-06-04-2331-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `2331` stale cleanup/core/research preflight와 strict universe/MCP/risk gate는 모두 통과했고, `QQQ` same-day duplicate buy를 회피하기 위해 `SPY` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=a15802cd-81bf-4450-bfa5-52f8782fe8c9`는 즉시 `filled`로 전환됐고 post-trade reconciliation 기준 open orders는 0건, SPY 보유수량은 2주가 됐다.
 - [[2026-06-04-2311-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `2311` stale cleanup/core/research preflight와 strict universe/MCP/risk gate는 모두 통과했고, sell diagnostics 뒤 `QQQ` 1주 floor-size validation buy를 실제 제출했다. Alpaca MCP는 `order_id=ee60655d-ae94-4c06-839c-9a7d31194ddf`, `status=new` open order를 반환했고 post-trade reconciliation 기준 fill은 아직 없지만 QQQ buy open order 1건이 살아 있다.
 - [[2026-06-04-2251-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `2251` stale cleanup/core/research preflight와 strict universe/MCP/risk gate는 모두 통과했고, sell diagnostics 뒤 `QQQ` 1주 floor-size validation buy를 계획했다. 다만 Alpaca MCP `place_stock_order`가 same `client_order_id`로 두 번 모두 tool safety layer에서 `cancelled` 처리되어 주문 객체는 생성되지 않았고, post-trade reconciliation 기준 open orders/fills/state change는 없었다.
 - [[2026-06-04-2231-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `2231` stale cleanup/core/research preflight를 사용했고 regular market open, universe strict, MCP strict, risk validator는 모두 통과했다. 다만 sell diagnostics는 `AVGO/SO/TSLA`가 spread 또는 decision-grade metric gate에서 막혔고, buy shortlist `QQQ/BAC/NVDA/SMH/AMZN`는 replacement-rank 또는 AI semiconductor concentration discipline 때문에 주문 없이 종료했다.
