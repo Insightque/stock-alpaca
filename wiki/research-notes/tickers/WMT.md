@@ -5,6 +5,13 @@ asset_type: stock
 
 # WMT
 
+
+## 2026-06-05 01:11 KST hourly-autopilot
+
+`WMT` 1주 regular-session day limit buy가 `118.40 USD` limit으로 제출됐고, Alpaca MCP 기준 `2026-06-04T16:20:17.746749451Z`에 `118.36 USD`로 즉시 체결됐다. 근거는 scheduler core/research preflight와 strict universe/MCP/risk gate 통과, same-day duplicate가 없는 기존 defensive holding, 그리고 runtime IEX quote `118.37/118.40` 기준 spread `0.0253%`가 policy 한도 이내였다는 점이다. 이 체결은 새 validation lifecycle 표본으로 기록하며 1D/5D/20D review를 추적한다.
+
+출처: [[2026-06-05-0111-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-05-0111-hourly-autopilot-post-trade.json`
+
 ## 회고 기록
 
 ### 2026-05-29 analyst review cycle

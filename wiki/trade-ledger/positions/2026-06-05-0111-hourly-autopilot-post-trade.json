@@ -1,0 +1,50 @@
+{
+  "run_id": "2026-06-05-0111-hourly-autopilot",
+  "recorded_at": "2026-06-04T16:21:10Z",
+  "paper": true,
+  "session": "regular",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-05-0111-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-05-0111-hourly-autopilot.json"
+  ],
+  "order_submission": {
+    "order_id": "c4705629-49b0-4080-851a-e889edb7c843",
+    "client_order_id": "hourly-20260605-0111-buy-wmt",
+    "symbol": "WMT",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 118.4,
+    "status": "filled",
+    "created_at": "2026-06-04T16:20:17.088103894Z",
+    "submitted_at": "2026-06-04T16:20:17.09485555Z",
+    "filled_at": "2026-06-04T16:20:17.746749451Z",
+    "filled_avg_price": 118.36
+  },
+  "reconciliation": {
+    "get_order_by_client_id_status": "filled",
+    "same_window_orders_count": 1,
+    "same_window_fill_count": 1,
+    "account_info_runtime_status": "pass",
+    "positions_count": 32,
+    "open_orders_after_reconciliation": 0,
+    "position_runtime_gap_category": "cancelled",
+    "position_runtime_gap_reason": "Direct position refresh MCP call returned cancelled; reconciled WMT quantity from last confirmed preflight position plus filled_qty=1."
+  },
+  "wmt_position_after": {
+    "symbol": "WMT",
+    "qty": 4,
+    "avg_entry_price": 117.575,
+    "current_price": 118.36,
+    "market_value": 473.44,
+    "change_today": 0.0
+  },
+  "account_snapshot": {
+    "source": "runtime get_account_info after filled order",
+    "portfolio_value": 103075.9,
+    "cash": 32210.68,
+    "buying_power": 257459.91,
+    "long_market_value": 70865.22,
+    "runtime_gap_category": "not_applicable",
+    "runtime_gap_reason": ""
+  }
+}

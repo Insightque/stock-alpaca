@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 00:21 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 01:20 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -36,7 +36,7 @@
 - [[NKE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[PFE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[SO]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
-- [[WMT]] - 2026-05-29 validation add 1D 회고 중립 약함, 5D/20D 대기.
+- [[WMT]] - 2026-05-29 validation add 5D 회고 중립 양호; 2026-06-05 01:11 KST hourly-autopilot에서 1주 추가 validation buy 체결.
 - [[NEE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[AMZN]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[BAC]] - 2026-05-28 validation buy 1D 회고 양호, 5D/20D 대기.
@@ -50,6 +50,7 @@
 
 ## Current Runs
 
+- [[2026-06-05-0111-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0111` stale cleanup/core/research preflight와 strict universe/MCP/risk gate를 유지한 채 sell diagnostics 뒤 `WMT` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=c4705629-49b0-4080-851a-e889edb7c843`는 즉시 `filled`로 전환됐고 post-trade reconciliation 기준 open orders는 0건, WMT 보유수량은 4주가 됐다.
 - [[2026-06-05-0051-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0051` stale cleanup/core/research preflight와 strict universe/MCP/risk gate를 유지한 채 sell diagnostics 뒤 `XOM` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=46a4b55c-3721-4b27-ab8a-8d04b6806aca`는 즉시 `filled`로 전환됐고 post-trade reconciliation 기준 open orders는 0건, XOM 보유수량은 3주가 됐다.
 - [[2026-06-05-0031-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0031` stale cleanup/core/research preflight를 사용했고, prior-cycle `BAC` stale unfilled buy를 Alpaca MCP로 취소한 뒤 strict universe/MCP/risk gate를 유지한 채 `AAPL` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=b0b8c633-96d5-4aa1-bdb2-c0d455110a66`는 즉시 `filled`로 체결됐고 post-trade reconciliation 기준 open orders는 0건, AAPL 보유수량은 2주가 됐다.
 - [[2026-06-05-0011-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0011` stale cleanup/core/research preflight와 strict universe/MCP/risk gate는 모두 통과했고, `AAPL`은 `2026-06-04T15:16:15Z` runtime spread 초과로 제외한 뒤 `SLB` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=5fb634fc-6fed-47b9-9ced-86ebdf06f652`는 즉시 `filled`로 체결됐고, BAC prior-cycle buy open order 1건은 계속 `status=new`로 남아 있다.
