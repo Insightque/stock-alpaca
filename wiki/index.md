@@ -49,6 +49,7 @@
 
 ## Current Runs
 
+- [[2026-06-04-1751-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, scheduler-owned `1751` preflight를 사용해 regular-market `market_closed`를 비차단으로 처리했고 universe/MCP/risk gate는 모두 통과했다. runtime `get_watchlists` 0건과 shortlist `PFE/NOK/QQQ/SPY/META/XOM/INTC/AVGO`를 근거로 장외 buy 승격 후보 부재를 확인해 주문은 제출하지 않았다.
 - [[2026-06-04-1731-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, scheduler-owned `1731` preflight를 사용해 regular-market `market_closed`를 비차단으로 처리했고 universe/MCP/risk gate는 모두 통과했다. runtime `get_watchlists` 0건과 shortlist `PFE/NOK/QQQ/SPY/META/XOM/INTC/AVGO`를 근거로 장외 buy 승격 후보 부재를 확인해 주문은 제출하지 않았다.
 - [[2026-06-04-1711-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, scheduler-owned `1711` preflight를 사용해 regular-market `market_closed`를 비차단으로 처리했고 universe/MCP/risk gate는 모두 통과했다. runtime `get_watchlists`는 MCP cancel 응답이었지만 scheduler watchlists row 0건과 shortlist `PFE/NOK/QQQ/SPY/META/XOM/INTC/AVGO`를 근거로 장외 buy 승격 후보 부재를 확인해 주문은 제출하지 않았다.
 - [[2026-06-04-1651-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, scheduler-owned `1651` preflight를 사용해 regular-market `market_closed`를 비차단으로 처리했고 universe/MCP/risk gate는 모두 통과했다. shortlist `PFE/NOK/QQQ/SPY/META/XOM/INTC/AVGO` 중 장외 buy 승격 후보가 없어 주문은 제출하지 않았다.
