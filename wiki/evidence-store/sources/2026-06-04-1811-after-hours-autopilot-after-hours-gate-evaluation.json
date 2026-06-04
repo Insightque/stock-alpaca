@@ -1,0 +1,41 @@
+{
+  "run_id": "2026-06-04-1811-after-hours-autopilot",
+  "created_at": "2026-06-04T18:17:43+09:00",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "summary": {
+    "result": "no_submit",
+    "reason": "No shortlisted symbol was promoted to an after-hours buy under the separate after-hours policy profile."
+  },
+  "submit_gate": {
+    "submit_allowed": false,
+    "first_blocking_gate": "no_after_hours_buy_candidate_promoted",
+    "pre_submit_summary": "paper mode PASS; regular market closed PASS for after-hours; order plan prepared; no symbol promoted to an after-hours buy candidate, so no place_stock_order call was eligible."
+  },
+  "selected_symbols": [],
+  "blocked_symbols": [
+    "PFE",
+    "NOK",
+    "QQQ",
+    "SPY",
+    "META",
+    "XOM",
+    "INTC",
+    "AVGO"
+  ],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 0,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 2
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-04-1811-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-04-1811-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
