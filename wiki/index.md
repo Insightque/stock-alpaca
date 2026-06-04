@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 01:59 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 02:22 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -44,12 +44,13 @@
 - [[V]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[INTC]] - 2026-05-28 after-hours validation buy 1D 회고 약함, 5D/20D 대기.
 - [[CVX]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기.
-- [[GOOGL]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
+- [[GOOGL]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기; 2026-06-05 02:21 KST hourly-autopilot에서 1주 추가 validation buy 체결.
 - [[SLB]] - 2026-05-29 validation add 5D 회고 양호; 2026-06-05 00:11 KST hourly-autopilot에서 1주 추가 validation buy 체결.
 - [[COP]] - 2026-05-28 validation buy 1D 회고 중립 약함, 5D/20D 대기.
 
 ## Current Runs
 
+- [[2026-06-05-0211-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0211` stale cleanup/core/research preflight와 strict universe/MCP/risk gate를 유지한 채 sell diagnostics 뒤 `GOOGL` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=7e8243e9-1a7a-4644-b242-a039774b2711`는 `filled_avg_price=372.43`으로 즉시 체결됐고 post-trade reconciliation 기준 open orders는 0건, GOOGL 보유수량은 3주가 됐다.
 - [[2026-06-05-0151-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0151` stale cleanup/core/research preflight와 strict universe/MCP/risk gate를 유지한 채 sell diagnostics 뒤 `COP` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=640b1123-bbf3-46f4-ada0-361ca2516672`는 reconciliation 기준 `status=new` open order이며 COP 보유수량은 아직 1주다.
 - [[2026-06-05-0131-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0131` stale cleanup/core/research preflight와 strict universe/MCP/risk gate를 유지한 채 sell diagnostics 뒤 `FCX` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=1e90f417-7b16-4201-a6b5-f94710b16b3a`는 즉시 `filled`로 전환됐고 post-trade reconciliation 기준 open orders는 0건, FCX 보유수량은 2주가 됐다.
 - [[2026-06-05-0111-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0111` stale cleanup/core/research preflight와 strict universe/MCP/risk gate를 유지한 채 sell diagnostics 뒤 `WMT` 1주 floor-size validation buy를 제출했다. Alpaca MCP `order_id=c4705629-49b0-4080-851a-e889edb7c843`는 즉시 `filled`로 전환됐고 post-trade reconciliation 기준 open orders는 0건, WMT 보유수량은 4주가 됐다.

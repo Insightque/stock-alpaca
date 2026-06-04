@@ -1,0 +1,50 @@
+{
+  "run_id": "2026-06-05-0211-hourly-autopilot",
+  "reconciled_at": "2026-06-04T17:22:40Z",
+  "paper": true,
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-05-0211-hourly-autopilot.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-05-0211-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0211-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0211-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/run-manifests/2026-06-05-0211-hourly-autopilot.json"
+  ],
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 103311.34,
+    "cash": 31649.57,
+    "buying_power": 256800.45,
+    "long_market_value": 71661.77,
+    "currency": "USD"
+  },
+  "orders": [
+    {
+      "symbol": "GOOGL",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 372.48,
+      "status": "filled",
+      "client_order_id": "hourly-20260605-0211-buy-googl",
+      "order_id": "7e8243e9-1a7a-4644-b242-a039774b2711",
+      "submitted_at": "2026-06-04T17:21:27.772588737Z",
+      "filled_at": "2026-06-04T17:21:28.345440863Z",
+      "filled_avg_price": 372.43
+    }
+  ],
+  "open_orders": [],
+  "position_count": 32,
+  "position_changes": [
+    {
+      "symbol": "GOOGL",
+      "prior_qty": 2,
+      "current_qty": 3,
+      "avg_entry_price": 381.52,
+      "current_price": 372.565,
+      "market_value": 1117.695
+    }
+  ],
+  "notes": [
+    "GOOGL same-cycle order는 get_order_by_client_id, get_orders(symbol=GOOGL), get_all_positions, get_account_info로 모두 reconciliation pass.",
+    "get_orders(status=open)와 get_account_activities_by_type(FILL)는 tool-layer cancelled였지만 order/position/account state cross-check로 filled 상태를 확정했다."
+  ]
+}
