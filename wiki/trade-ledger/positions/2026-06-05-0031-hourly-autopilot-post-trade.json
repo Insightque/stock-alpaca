@@ -1,0 +1,89 @@
+{
+  "run_id": "2026-06-05-0031-hourly-autopilot",
+  "reconciled_at": "2026-06-04T15:41:26.912888446Z",
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-04T11:34:25.101791594-04:00",
+    "next_open": "2026-06-05T09:30:00-04:00",
+    "next_close": "2026-06-04T16:00:00-04:00"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "AAPL",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 310.1,
+      "client_order_id": "hourly-20260605-0031-buy-aapl",
+      "order_id": "b0b8c633-96d5-4aa1-bdb2-c0d455110a66",
+      "submitted_at": "2026-06-04T15:41:26.364611772Z",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 310.07,
+      "filled_at": "2026-06-04T15:41:26.912888446Z",
+      "extended_hours": false,
+      "time_in_force": "day"
+    }
+  ],
+  "open_orders": [],
+  "fills_seen_this_reconciliation": [
+    {
+      "symbol": "AAPL",
+      "filled_at": "2026-06-04T15:41:26.912888446Z",
+      "filled_avg_price": 310.07,
+      "qty": 1
+    }
+  ],
+  "positions_observed_count": 32,
+  "aapl_position_after_reconciliation": {
+    "qty": 2,
+    "current_price": 310.07,
+    "market_value": 620.14,
+    "avg_entry_price": 309.76,
+    "note": "new AAPL order filled immediately, so held quantity increased from 1 to 2"
+  },
+  "canceled_stale_order": {
+    "symbol": "BAC",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 53.6,
+    "client_order_id": "hourly-20260604-2351-buy-bac",
+    "order_id": "7d85f1b6-7d11-4992-9f96-8705ad4dfd73",
+    "status": "canceled",
+    "canceled_at": "2026-06-04T15:38:31.780201499Z",
+    "note": "prior-cycle stale unfilled autopilot order was canceled before the new buy submit"
+  },
+  "account_after_reconciliation": {
+    "buying_power": 258122.41,
+    "cash": 32482.3,
+    "portfolio_value": 103075.23,
+    "long_market_value": 70592.93
+  },
+  "same_day_prior_fills_still_visible": [
+    {
+      "symbol": "QQQ",
+      "filled_at": "2026-06-04T14:20:05.463508Z",
+      "filled_avg_price": 735.23
+    },
+    {
+      "symbol": "SPY",
+      "filled_at": "2026-06-04T14:40:11.754058Z",
+      "filled_avg_price": 753.75
+    },
+    {
+      "symbol": "SLB",
+      "filled_at": "2026-06-04T15:20:39.771624551Z",
+      "filled_avg_price": 57.65
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-05-0031-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-05-0031-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0031-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-05-0031-hourly-autopilot.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "wiki/research-notes/tickers/AAPL.md",
+    "wiki/trade-ledger/reviews/2026-06-04-portfolio-review.md",
+    "wiki/trade-ledger/reviews/review-due-index.json"
+  ]
+}
