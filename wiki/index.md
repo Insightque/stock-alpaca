@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 17:34 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 17:53 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -51,6 +51,7 @@
 
 ## Current Runs
 
+- [[2026-06-05-1751-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1751` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. runtime Alpaca MCP 기준 실제 장외 submit count는 여전히 `ah-20260605-1231-buy-wmt` 취소 + `ah-20260605-1251-buy-wmt` 체결로 `2/2`였고, 이번 cycle에서는 `AVGO/PFE/WMT/QQQ/SPY` overnight quote가 모두 `53.60`분 stale였다. spread도 각각 `2.6189%`, `2.0897%`, `12.6346%`, `4.7399%`, `0.4728%`로 장외 spread cap을 넘겼고 `QQQ`/`SPY`는 1주 ask가 장외 per-order cap `510.81 USD`도 초과했다.
 - [[2026-06-05-1731-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1731` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. runtime Alpaca MCP 기준 실제 장외 submit count는 여전히 `ah-20260605-1231-buy-wmt` 취소 + `ah-20260605-1251-buy-wmt` 체결로 `2/2`였고, 이번 cycle에서는 `AVGO/PFE/WMT/QQQ/SPY` overnight quote가 모두 `33.71`분 stale였다. spread도 각각 `2.6190%`, `2.0897%`, `12.6346%`, `4.7405%`, `0.4728%`로 장외 spread cap을 넘겼고 `QQQ`/`SPY`는 1주 ask가 장외 per-order cap `511.36 USD`도 초과했다.
 - [[2026-06-05-1711-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1711` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. runtime Alpaca MCP 기준 실제 장외 submit count는 여전히 `ah-20260605-1231-buy-wmt` 취소 + `ah-20260605-1251-buy-wmt` 체결로 `2/2`였고, 이번 cycle에서는 `AVGO/PFE/WMT/QQQ/SPY` overnight quote가 모두 `14.24`분 stale로 fresh-quote gate를 깼다. spread도 각각 `2.6190%`, `2.0897%`, `12.6346%`, `4.7405%`, `0.4728%`로 장외 spread cap을 넘겼고 `QQQ`/`SPY`는 1주 ask가 장외 per-order cap `510.15 USD`도 초과했다.
 - [[2026-06-05-1651-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1651` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. runtime Alpaca MCP 기준 실제 장외 submit count는 여전히 `ah-20260605-1231-buy-wmt` 취소 + `ah-20260605-1251-buy-wmt` 체결로 `2/2`였고, 이번 cycle에서는 `PFE`와 `WMT`가 각각 runtime overnight spread `0.5035%`, `0.6089%`로 장외 spread cap을 넘겼다. `QQQ`/`SPY`는 1주 ask가 장외 per-order cap `510.80 USD`를 초과했고 `AVGO` trim은 decision-grade metric gap과 due-review discipline으로 계속 보류됐다.

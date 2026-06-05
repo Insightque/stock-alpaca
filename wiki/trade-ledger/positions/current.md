@@ -1,14 +1,25 @@
 # portfolio-current
 
-_Last updated: 2026-06-05 17:34 KST_
+_Last updated: 2026-06-05 17:53 KST_
 
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: $102,272.64
+- Portfolio value: $102,162.30
 - Cash: $30,369.55
-- Buying power: $252,372.13
-- Long market value: $71,903.09
+- Buying power: $252,255.98
+- Long market value: $71,792.75
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-05-1751-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: 33 positions. `WMT` 5주, `AVGO` 16주, `PFE` 3주, 신규 open order 없음.
+- Recent reconciliation scope: scheduler-owned `1751` Alpaca core/research preflight와 runtime `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-04T20:00:00Z)/get_order_by_client_id/get_stock_latest_quote(feed=overnight)/get_stock_snapshot(feed=overnight)` 확인 기준 장외 separate session budget `2/2` 소진으로 submit 없이 종료했다. runtime overnight quote는 `AVGO/PFE/WMT/QQQ/SPY` 모두 quote age `53.60`분으로 stale했고 spread도 각각 `2.6189%`, `2.0897%`, `12.6346%`, `4.7399%`, `0.4728%`로 cap을 넘겼다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-05-1751-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 
@@ -155,6 +166,6 @@ _Last updated: 2026-06-05 17:34 KST_
 
 ## 계좌 요약 주석
 
-- 위 계좌 요약 수치는 `1731` scheduler-owned Alpaca core preflight와 runtime positions/orders/overnight quote 확인 기준이다.
-- after-hours session budget은 `1231` cancel + `1251` fill submit lifecycle로 이미 `2/2`라 `1731` cycle에서도 추가 주문을 만들지 않았다.
-- close 이후 reconciliation 기준 open order는 0건이며 `1731` 신규 fill은 없다.
+- 위 계좌 요약 수치는 `1751` scheduler-owned Alpaca core preflight와 runtime positions/orders/overnight quote 확인 기준이다.
+- after-hours session budget은 `1231` cancel + `1251` fill submit lifecycle로 이미 `2/2`라 `1751` cycle에서도 추가 주문을 만들지 않았다.
+- close 이후 reconciliation 기준 open order는 0건이며 `1751` 신규 fill은 없다.
