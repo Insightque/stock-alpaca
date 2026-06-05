@@ -73,3 +73,7 @@ Alpaca/Benzinga에서는 CPU 시장 기대와 post-earnings pullback/support nar
 2026-05-22 stock-only cohort는 215.32 USD 진입 대비 2026-06-01 close 224.42 USD로 +4.23%였다. 5D 기준 SPY/QQQ를 모두 이겨 AI semiconductor core thesis를 지지한다. 판단은 `양호`, 20D 회고 대기.
 
 출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]
+
+## 2026-06-06 00:59 KST hourly autopilot
+
+2026-06-06 00:59 KST hourly autopilot에서 `NVDA` 1주 regular-session day limit buy를 제출했고, immediate reconciliation 시점 상태는 `new` open order다. 근거는 scheduler research preflight shortlist 포함, preflight quote `208.76/208.80`, spread `0.0192%`, same-day duplicate/open-order conflict 없음, 5D review 양호, review backlog throttle 통과, 그리고 ai_semiconductor_complex warning band를 반영한 floor-size validation add 목적이다.

@@ -1,6 +1,6 @@
 # portfolio-current
 
-_Last updated: 2026-06-06 00:39 KST_
+_Last updated: 2026-06-06 00:59 KST_
 
 ## 계좌 요약
 
@@ -9,6 +9,17 @@ _Last updated: 2026-06-06 00:39 KST_
 - Cash: $29,357.09
 - Buying power: last confirmed pre-submit $247,108.30
 - Long market value: $70,698.76
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-06-0051-hourly-autopilot]]
+- Open/new: `NVDA` buy 1 @ `208.80` (`client_order_id=hourly-20260606-0051-buy-nvda`, `status=new`)
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: 33 positions 유지. `NVDA`는 runtime `get_all_positions` 기준 아직 37주이며 신규 주문은 미체결 상태다.
+- Recent reconciliation scope: scheduler-owned `0051` stale cleanup/core/research preflight와 runtime `get_clock/get_orders(status=open)/get_orders(status=all, after=2026-06-05T04:00:00Z)/get_account_activities(FILL)/place_stock_order/get_order_by_client_id/get_orders(status=open, symbols=NVDA)/get_orders(status=all, symbols=NVDA, after=2026-06-05T04:00:00Z)/get_all_positions` 확인 기준 `NVDA` 1주 regular-session validation add를 제출했고 Alpaca order id `93f2530d-3f49-4705-8640-664357426b14`가 `2026-06-05T15:59:35.508322723Z`에 `status=new`로 생성됐다. post-submit `get_account_info`와 `get_account_activities(FILL)` refresh는 safety monitor가 취소돼 계좌 수치는 last confirmed pre-submit snapshot인 portfolio value `99,938.01 USD`, cash `29,357.09 USD`, buying power `246,445.79 USD`, long market value `70,580.92 USD`를 유지 기록했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-06-0051-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

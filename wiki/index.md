@@ -4,13 +4,13 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-06 00:39 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-06 00:59 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
 
 - [[AAPL]] - 2026-05-26 validation buy 1D review 양호; 2026-06-05 00:31 KST hourly-autopilot 1주 추가 buy와 2026-06-06 00:19 KST 1주 추가 validation buy가 모두 체결.
-- [[NVDA]] - 2026-05-22 stock-only 5D 회고 양호, 20D 대기.
+- [[NVDA]] - 2026-05-22 stock-only 5D 회고 양호, 20D 대기. 2026-06-06 00:59 KST hourly-autopilot에서 1주 추가 validation buy가 `status=new` open order로 생성됐다.
 - [[AMD]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
 - [[AVGO]] - 2026-05-22 stock-only 5D 회고 강함; 2026-06-01 after-hours validation 첫 close 보류.
 - [[LRCX]] - 2026-05-22 stock-only 5D 회고 중립 양호, 20D 대기.
@@ -50,6 +50,8 @@
 - [[COP]] - 2026-05-28 validation buy 1D 회고 중립 약함, 5D/20D 대기.
 
 ## Current Runs
+
+- [[2026-06-06-0051-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0051` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim은 `AVGO`/`SO`/`TSLA`가 decision-grade metric 또는 held-quantity gate에 막혔다. same-day filled buy 때문에 `BAC`/`WMT`/`FCX`/`PLTR`/`AAPL`/`V`는 duplicate symbol/side gate에 걸렸고, `QQQ`/`SPY`는 1주 ask가 validation per-order cap을 초과했다. `SO`/`NEE`/`NKE`/`AMZN`/`INTC`/`TSLA`는 review 약세나 cluster/speculative 부담으로 우선순위가 낮았다. `NVDA`는 preflight quote `208.76/208.80`, quote age 약 `2.6`분, spread `0.0192%`, active/tradable, duplicate/open-order conflict 없음, review backlog throttle 통과 조건을 충족해 floor-size validation buy 1주 후보가 됐고 `hourly-20260606-0051-buy-nvda`가 Alpaca order id `93f2530d-3f49-4705-8640-664357426b14`로 `2026-06-05T15:59:35.508322723Z`에 `status=new` open order로 생성됐다.
 
 - [[2026-06-06-0031-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0031` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim은 `AVGO`/`SO`/`TSLA`가 decision-grade metric 또는 held-quantity gate에 막혔다. `BAC`/`WMT`/`FCX`/`PLTR`/`AAPL`은 same-day filled buy로 duplicate symbol/side gate에 걸렸고, `QQQ`/`SPY`는 1주 ask가 validation floor per-order cap을 초과했다. `NVDA`는 ai_semiconductor_complex warning band, `COP`은 energy/materials cluster 재사용, `NEE`/`NKE`는 최근 review 약세로 우선순위가 낮았다. `V`는 preflight quote `322.35/322.41`, quote age 약 `5.6`분, spread `0.0186%`, active/tradable, duplicate/open-order conflict 없음, review backlog throttle 통과 조건을 충족해 floor-size validation buy 1주 후보가 됐고 `hourly-20260606-0031-buy-v`가 Alpaca order id `5b3210f1-f85c-4b68-b85d-3f8d3c384629`로 `2026-06-05T15:37:28.378344604Z`에 `321.90 USD`로 체결됐다.
 
