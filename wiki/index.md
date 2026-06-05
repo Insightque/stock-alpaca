@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 13:34 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 13:55 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -51,6 +51,7 @@
 
 ## Current Runs
 
+- [[2026-06-05-1351-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1351` core/research preflight와 strict universe/MCP/risk validator는 유지됐다. runtime Alpaca MCP 기준 `PFE`는 장외 quote/spread/notional submit stack을 통과했지만 `get_orders(status=all, after=2026-06-04T20:00:00Z)` 기준 실제 장외 submit이 이미 `ah-20260605-1231-buy-wmt` 취소와 `ah-20260605-1251-buy-wmt` 체결로 `2/2`여서 separate session budget gate에 막혀 submit 없이 종료했다. `WMT`는 이번 cycle에서는 overnight spread `0.3977%`로 장외 spread cap을 넘겼다.
 - [[2026-06-05-1331-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1331` core/research preflight와 strict universe/MCP/risk validator는 유지됐다. runtime Alpaca MCP 기준 `PFE`는 장외 quote/spread/notional submit stack을 통과했지만 `get_orders(status=all, after=2026-06-04T20:00:00Z)` 기준 실제 장외 submit이 이미 `ah-20260605-1231-buy-wmt` 취소와 `ah-20260605-1251-buy-wmt` 체결로 `2/2`여서 separate session budget gate에 막혀 submit 없이 종료했다. `WMT`는 이번 cycle에서는 overnight spread `0.5337%`로 장외 spread cap을 넘겼다.
 - [[2026-06-05-1311-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1311` core/research preflight와 strict universe/MCP/risk validator는 유지됐다. runtime Alpaca MCP spot-check에서 `WMT`와 `PFE`는 장외 quote/spread/notional submit stack을 만족했지만, `get_orders(status=all, after=2026-06-04T20:00:00Z)` 기준 실제 장외 submit이 이미 `ah-20260605-1231-buy-wmt` 취소와 `ah-20260605-1251-buy-wmt` 체결로 `2/2`여서 separate session budget gate에 막혀 submit 없이 종료했다.
 - [[2026-06-05-1251-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1251` core/research preflight와 strict universe/MCP/risk validator를 모두 통과했다. stale `ah-20260605-1231-buy-wmt`를 먼저 취소한 뒤 `WMT` 1주 extended-hours day limit buy를 `client_order_id=ah-20260605-1251-buy-wmt`로 제출했고 same-client-id reconciliation 기준 즉시 `filled`였다.
