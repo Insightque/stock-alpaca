@@ -1,0 +1,55 @@
+{
+  "run_id": "2026-06-06-0131-hourly-autopilot",
+  "created_at": "2026-06-05T16:39:40Z",
+  "paper": true,
+  "session": "regular",
+  "submit_attempted": true,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-06-0131-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-06-0131-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-06-0131-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-06-0131-hourly-autopilot.json"
+  ],
+  "pre_submit_account_snapshot": {
+    "portfolio_value": 99282.63,
+    "cash": 29092.69,
+    "buying_power": 245024.31,
+    "long_market_value": 70189.94,
+    "currency": "USD",
+    "checked_at": "2026-06-05T16:31:08Z",
+    "source": "scheduler core preflight get_account_info"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "COP",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 117.51,
+      "client_order_id": "hourly-20260606-0131-buy-cop",
+      "order_id": "a50fe428-af24-4829-98bd-be3a80b2728d",
+      "status": "filled_inferred_from_positions",
+      "submitted_at": "2026-06-05T16:37:40.837514519Z",
+      "filled_at": null,
+      "filled_avg_price_estimate": 117.42
+    }
+  ],
+  "open_orders": [],
+  "positions_reconciliation": {
+    "runtime_positions_before_submit": {
+      "COP_qty": 2.0,
+      "COP_avg_entry_price": 117.06,
+      "COP_market_value": 234.94,
+      "position_count": 33
+    },
+    "post_trade_inference": {
+      "COP_qty": 3.0,
+      "COP_avg_entry_price_estimate": 117.18,
+      "COP_incremental_fill_price_estimate": 117.42,
+      "COP_market_value_estimate": 352.26,
+      "position_count": 33,
+      "cash_estimate_after_fill": 28975.27
+    },
+    "account_refresh_after_submit": "unavailable",
+    "note": "Direct get_order_by_client_id/get_order_by_id/get_orders(status=all, symbols=COP) reconciliation paths were blocked by the tool safety monitor. The run therefore uses open-orders=0 plus runtime get_all_positions confirmation that COP moved from 2 shares at 117.06 average entry to 3 shares at 117.18 average entry, which implies the 1-share validation add filled at approximately 117.42."
+  }
+}
