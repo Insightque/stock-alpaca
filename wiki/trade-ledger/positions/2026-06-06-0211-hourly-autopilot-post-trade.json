@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-06-0211-hourly-autopilot",
+  "created_at": "2026-06-05T17:21:15Z",
+  "paper": true,
+  "session": "regular",
+  "submit_attempted": true,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-06-0211-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-06-0211-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-06-0211-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-06-0211-hourly-autopilot.json"
+  ],
+  "pre_submit_account_snapshot": {
+    "portfolio_value": 99001.65,
+    "cash": 28722.1,
+    "buying_power": 243755.64,
+    "long_market_value": 70279.55,
+    "currency": "USD",
+    "checked_at": "2026-06-05T17:11:08Z",
+    "source": "scheduler-owned Alpaca core preflight get_account_info"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "PFE",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 26.09,
+      "client_order_id": "hourly-20260606-0211-buy-pfe",
+      "order_id": "c646425a-7a9d-42c2-b611-7776cce9446d",
+      "status": "new",
+      "submitted_at": "2026-06-05T17:20:39.474610535Z",
+      "filled_at": null,
+      "filled_avg_price": null
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "PFE",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 26.09,
+      "client_order_id": "hourly-20260606-0211-buy-pfe",
+      "order_id": "c646425a-7a9d-42c2-b611-7776cce9446d",
+      "status": "new",
+      "expires_at": "2026-06-05T20:00:00Z"
+    }
+  ],
+  "positions_reconciliation": {
+    "runtime_positions_before_submit": {
+      "PFE_qty": 3.0,
+      "PFE_avg_entry_price": 26.196667,
+      "PFE_market_value": 78.255,
+      "position_count": 33
+    },
+    "post_submit_confirmed": {
+      "PFE_qty": 3.0,
+      "PFE_avg_entry_price": 26.196667,
+      "PFE_market_value": 78.2895,
+      "position_count": 33,
+      "cash_after_submit": 28722.1,
+      "buying_power_after_submit": 243636.32,
+      "portfolio_value_after_submit": 98973.27
+    },
+    "account_refresh_after_submit": "confirmed",
+    "note": "place_stock_order accepted the order and returned order id c646425a-7a9d-42c2-b611-7776cce9446d. get_order_by_client_id and get_orders(status=all, symbols=PFE, after=2026-06-05T04:00:00Z) both confirmed the same order in status new with filled_qty 0. get_orders(status=open, symbols=PFE) was cancelled once by the tool layer, but direct order lookup plus all-orders reconciliation and get_all_positions confirmed the order remains open and PFE holdings are still 3 shares."
+  }
+}

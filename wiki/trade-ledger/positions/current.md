@@ -1,14 +1,25 @@
 # portfolio-current
 
-_Last updated: 2026-06-06 02:02 KST_
+_Last updated: 2026-06-06 02:21 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-06-0211-hourly-autopilot]]
+- Open/new: `PFE` buy 1 @ `26.09` (`client_order_id=hourly-20260606-0211-buy-pfe`, `status=new`)
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: `33` positions 유지. `PFE`는 runtime `get_all_positions` 기준 아직 `3주`다.
+- Recent reconciliation scope: scheduler-owned `0211` stale cleanup/core/research preflight와 runtime `get_clock/place_stock_order/get_order_by_client_id/get_orders(status=all, symbols=PFE, after=2026-06-05T04:00:00Z)/get_all_positions/get_account_info` 확인 기준 `PFE` 1주 regular-session validation add가 Alpaca order id `c646425a-7a9d-42c2-b611-7776cce9446d`로 생성됐다. `get_orders(status=open, symbols=PFE)`는 tool layer에서 1회 cancelled 되었지만, direct order lookup과 all-orders reconciliation이 동일 주문을 `status=new`, `filled_qty=0`으로 재확인했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-06-0211-hourly-autopilot-post-trade.json`
 
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: last confirmed pre-submit $99,257.09
-- Cash: last confirmed pre-submit $28,975.27
-- Buying power: last confirmed pre-submit $244,738.38
-- Long market value: last confirmed pre-submit $70,281.82
+- Portfolio value: post-submit runtime confirmed $98,973.27
+- Cash: post-submit runtime confirmed $28,722.10
+- Buying power: post-submit runtime confirmed $243,636.32
+- Long market value: post-submit runtime confirmed $70,251.17
 
 ## 최신 hourly-autopilot reconciliation
 

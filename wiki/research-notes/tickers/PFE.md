@@ -5,6 +5,12 @@ asset_type: stock
 
 # PFE
 
+## 2026-06-06 02:20 KST hourly-autopilot
+
+`PFE` 1주 regular-session day limit buy가 `26.09 USD` limit으로 제출됐다. scheduler-owned `0211` stale cleanup/core/research preflight와 strict universe/MCP/risk gate가 모두 통과했고, same-day duplicate/open-order conflict가 없으며 Yahoo Finance preflight에서 Chai AI drug discovery license headline과 usable recommendation breadth가 확인됐다. immediate reconciliation 기준 Alpaca order id `c646425a-7a9d-42c2-b611-7776cce9446d`, `client_order_id=hourly-20260606-0211-buy-pfe`는 `status=new`, `filled_qty=0` open order다. `get_all_positions` 기준 보유수량은 아직 3주이고, post-submit `get_account_info`는 성공했지만 체결은 아직 확인되지 않았다.
+
+출처: [[2026-06-06-0211-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-06-0211-hourly-autopilot-post-trade.json`
+
 ## 회고 기록
 
 ### 2026-05-29 analyst review cycle
