@@ -2,6 +2,15 @@
 
 Append new entries below. Do not rewrite earlier entries except to fix broken Markdown formatting.
 
+## [2026-06-06 01:16 Asia/Seoul] hourly-autopilot | 2026-06-06-0111-hourly-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; scheduler-owned `0111` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate`는 비어 있는 pass 상태였다.
+- Gates: universe strict PASS, MCP strict PASS, risk validator PASS. scheduler stale cleanup은 open order 0건으로 종료됐다. research preflight는 `sec-edgar/fred/firecrawl/yahoo-finance` positive confirmations 4건을 유지했고 `alpha-vantage`는 one-call throttle `provider_error` nonblocking gap으로 남았다. sell/trim은 `AVGO`/`SO`/`TSLA`가 decision-grade metric 또는 held-quantity gate에 막혔다. core preflight recent fills 기준 직전 `NVDA` buy가 `2026-06-05T16:02:01.455431Z`에 `208.73 USD`로 filled여서 open-order lifecycle blocker는 없었다. same-day filled buy 때문에 `BAC`/`WMT`/`FCX`/`PLTR`/`AAPL`/`V`/`NVDA`는 duplicate symbol/side gate에 걸렸고, `QQQ`/`SPY`는 1주 ask가 validation per-order cap 약 `498.41 USD`를 초과했다. `GOOGL`/`AMZN`/`INTC`/`NKE`/`SO`는 최근 review 약세로 `SLB`보다 ranking이 낮았다.
+- Orders: `place_stock_order`로 `hourly-20260606-0111-buy-slb` 1주 regular-session day limit buy를 제출했고, `get_order_by_client_id` 기준 `2026-06-05T16:15:33.962605999Z`에 `55.67 USD`로 즉시 filled 됐다.
+- Reconciliation: runtime `get_orders(status=open)`은 pre-submit 0건이었다. post-submit `get_orders/get_all_positions/get_account_info` refresh는 tool layer에서 cancelled 되었지만 `get_order_by_client_id` confirmed fill과 pre-submit runtime positions `SLB 3주`를 결합해 reconciliation상 `SLB 4주`로 기록했다. 계좌 수치는 last confirmed pre-submit snapshot `portfolio_value 99,681.62 USD`, `cash 29,148.36 USD`, `buying_power 245,718.16 USD`, `long_market_value 70,533.26 USD`를 유지 기록했다.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-06-06-0111-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-06-06-0111-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-06-0111-hourly-autopilot-post-trade.json`, `wiki/current-runs/daily/2026-06-06-0111-hourly-autopilot.md`, updated `wiki/trade-ledger/positions/current.md`, updated `wiki/research-notes/tickers/SLB.md`, updated `wiki/index.md`.
+- Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-06-06-0111-hourly-autopilot.json` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-06-06-0111-hourly-autopilot.json` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-06-06-0111-hourly-autopilot.json` PASS.
+
 ## [2026-06-05 00:21 Asia/Seoul] hourly-autopilot | 0011 regular-session validation buy executed
 
 - Scheduled `hourly-autopilot` cycle `2026-06-05-0011-hourly-autopilot`를 regular session submit mode로 실행했다.

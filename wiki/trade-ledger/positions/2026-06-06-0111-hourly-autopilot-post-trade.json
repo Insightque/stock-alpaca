@@ -1,0 +1,52 @@
+{
+  "run_id": "2026-06-06-0111-hourly-autopilot",
+  "created_at": "2026-06-05T16:16:05Z",
+  "paper": true,
+  "session": "regular",
+  "submit_attempted": true,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-06-0111-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-06-0111-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-06-0111-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-06-0111-hourly-autopilot.json"
+  ],
+  "pre_submit_account_snapshot": {
+    "portfolio_value": 99681.62,
+    "cash": 29148.36,
+    "buying_power": 245718.16,
+    "long_market_value": 70533.26,
+    "currency": "USD",
+    "checked_at": "2026-06-05T16:14:00Z",
+    "source": "runtime get_account_info"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "SLB",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 55.7,
+      "client_order_id": "hourly-20260606-0111-buy-slb",
+      "order_id": "168aa67e-ad79-4dad-8e9c-4962fca93ef2",
+      "status": "filled",
+      "submitted_at": "2026-06-05T16:15:32.363169782Z",
+      "filled_at": "2026-06-05T16:15:33.962605999Z",
+      "filled_avg_price": 55.67
+    }
+  ],
+  "open_orders": [],
+  "positions_reconciliation": {
+    "runtime_positions_before_submit": {
+      "SLB_qty": 3.0,
+      "SLB_market_value": 167.13,
+      "position_count": 33
+    },
+    "post_trade_inference": {
+      "SLB_qty": 4.0,
+      "SLB_avg_entry_price_estimate": 55.8975,
+      "SLB_market_value_estimate": 222.84,
+      "position_count": 33
+    },
+    "account_refresh_after_submit": "unavailable",
+    "note": "get_order_by_client_id confirmed the fill. Post-submit get_orders/get_all_positions/get_account_info refreshes were blocked, so the reconciliation keeps the last confirmed pre-submit account snapshot and applies the filled SLB 1-share add as an inferred position update."
+  }
+}

@@ -1,14 +1,25 @@
 # portfolio-current
 
-_Last updated: 2026-06-06 00:59 KST_
+_Last updated: 2026-06-06 01:16 KST_
 
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: $100,055.85
-- Cash: $29,357.09
-- Buying power: last confirmed pre-submit $247,108.30
-- Long market value: $70,698.76
+- Portfolio value: last confirmed pre-submit $99,681.62
+- Cash: last confirmed pre-submit $29,148.36
+- Buying power: last confirmed pre-submit $245,718.16
+- Long market value: last confirmed pre-submit $70,533.26
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-06-0111-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `SLB` buy 1 @ `55.67` (`client_order_id=hourly-20260606-0111-buy-slb`)
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: pre-submit runtime `33` positions. post-submit refresh는 blocked 되었지만 `get_order_by_client_id` confirmed fill과 pre-submit positions 기준 `SLB`는 `3주 -> 4주`로 reconciliation 기록했다.
+- Recent reconciliation scope: scheduler-owned `0111` stale cleanup/core/research preflight와 runtime `get_account_info/get_all_positions/get_orders(status=open)/get_stock_latest_quote/place_stock_order/get_order_by_client_id` 확인 기준 `SLB` 1주 regular-session validation add가 Alpaca order id `168aa67e-ad79-4dad-8e9c-4962fca93ef2`로 생성됐고 `2026-06-05T16:15:33.962605999Z`에 `55.67 USD`로 즉시 체결됐다. post-submit `get_orders/get_all_positions/get_account_info` refresh는 tool layer에서 cancelled 되어 계좌 수치는 last confirmed pre-submit snapshot을 유지 기록했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-06-0111-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
