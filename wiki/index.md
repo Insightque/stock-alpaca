@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-06 01:39 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-06 02:02 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -39,7 +39,7 @@
 - [[SO]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[WMT]] - 2026-05-29 validation add 5D 회고 중립 양호; 2026-06-05 01:11 KST hourly-autopilot에서 1주 추가 validation buy 체결, 2026-06-05 23:11 KST hourly-autopilot에서 1주 추가 validation buy가 `119.78 USD`에 체결.
 - [[NEE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
-- [[AMZN]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
+- [[AMZN]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기. 2026-06-06 01:51 KST hourly-autopilot에서 1주 추가 validation buy가 `253.17 USD`에 체결.
 - [[BAC]] - 2026-05-28 validation buy 1D 회고 양호, 5D/20D 대기; 2026-06-05 04:21 KST hourly-autopilot에서 1주 추가 validation buy 체결; 2026-06-05 22:39 KST hourly-autopilot에서 1주 추가 validation buy가 `53.83 USD`에 체결.
 - [[XOM]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기; 2026-06-05 00:51 KST hourly-autopilot에서 1주 추가 validation buy 체결.
 - [[V]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기. 2026-06-06 00:39 KST hourly-autopilot에서 1주 추가 validation buy가 `321.90 USD`에 체결.
@@ -50,6 +50,8 @@
 - [[COP]] - 2026-05-28 validation buy 5D 회고 양호. 2026-06-06 01:37 KST hourly-autopilot에서 1주 추가 validation buy가 positions reconciliation 기준 체결로 기록됐다.
 
 ## Current Runs
+
+- [[2026-06-06-0151-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0151` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim은 `AVGO`/`SO`/`TSLA`가 decision-grade metric 또는 held-quantity gate에 막혔다. same-day filled buy 때문에 `BAC`/`WMT`/`FCX`/`PLTR`/`AAPL`/`V`/`NVDA`/`SLB`/`COP`는 duplicate symbol/side gate에 걸렸고, `QQQ`/`SPY`/`SMH`는 1주 ask가 validation per-order cap을 초과했다. `TSLA`는 speculative low-confidence, `NKE`는 hold-heavy turnaround review 약세로 `AMZN`보다 ranking이 낮았다. `AMZN`은 preflight quote `253.12/253.17`, spread `0.0197%`, asset active/tradable, same-day duplicate/open-order conflict 없음, four-provider positive research confirmation을 근거로 floor-size validation buy 1주 후보가 됐고 `hourly-20260606-0151-buy-amzn`가 Alpaca order id `ccfc1bb3-2f8a-4752-8185-a6b230ef6bad`로 제출된 뒤 `2026-06-05T17:01:54.545263432Z`에 `253.17 USD`로 체결됐다.
 
 - [[2026-06-06-0131-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0131` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim은 `AVGO`/`SO`/`TSLA`가 decision-grade metric 또는 held-quantity gate에 막혔다. same-day filled buy 때문에 `BAC`/`WMT`/`FCX`/`PLTR`/`AAPL`/`V`/`NVDA`/`SLB`는 duplicate symbol/side gate에 걸렸고, `QQQ`/`SPY`는 1주 ask가 validation per-order cap을 초과했다. `AMZN`/`NKE`/`GOOGL`은 최근 review 약세, `SO`/`INTC`는 spread gate로 밀렸다. `COP`는 runtime quote `117.49/117.51`, spread `0.0170%`, active/tradable preflight, duplicate/open-order conflict 없음, 2026-06-05 portfolio review의 5D follow-through 양호를 근거로 floor-size validation buy 1주 후보가 됐고 `hourly-20260606-0131-buy-cop`가 Alpaca order id `a50fe428-af24-4829-98bd-be3a80b2728d`로 제출됐다. direct order lookup은 tool safety monitor가 막혔지만 post-submit `get_all_positions` 기준 `COP`가 `2주 -> 3주`, 평균단가 `117.06 -> 117.18`로 갱신돼 약 `117.42 USD` fill로 reconciliation 기록했다.
 

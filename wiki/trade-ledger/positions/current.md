@@ -1,14 +1,25 @@
 # portfolio-current
 
-_Last updated: 2026-06-06 01:39 KST_
+_Last updated: 2026-06-06 02:02 KST_
 
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: last confirmed pre-submit $99,282.63
-- Cash: last confirmed pre-submit $29,092.69
-- Buying power: last confirmed pre-submit $245,024.31
-- Long market value: last confirmed pre-submit $70,189.94
+- Portfolio value: last confirmed pre-submit $99,257.09
+- Cash: last confirmed pre-submit $28,975.27
+- Buying power: last confirmed pre-submit $244,738.38
+- Long market value: last confirmed pre-submit $70,281.82
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-06-0151-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `AMZN` buy 1 @ `253.17` (`client_order_id=hourly-20260606-0151-buy-amzn`)
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: post-submit runtime `33` positions. `AMZN`은 `3주 -> 4주`, 평균단가 `271.12 -> 266.6325`로 갱신됐다.
+- Recent reconciliation scope: scheduler-owned `0151` stale cleanup/core/research preflight와 runtime `get_account_info/get_orders(status=open)/place_stock_order/get_order_by_client_id/get_orders(status=all, symbols=AMZN, after=2026-06-05T04:00:00Z)/get_account_activities(FILL)/get_all_positions` 확인 기준 `AMZN` 1주 regular-session validation add가 Alpaca order id `ccfc1bb3-2f8a-4752-8185-a6b230ef6bad`로 제출됐고 `2026-06-05T17:01:54.545263432Z`에 `253.17 USD`로 체결됐다. post-submit `get_account_info` refresh는 tool safety monitor가 막혀 cash는 pre-submit `28,975.27 USD`에서 confirmed fill notional을 차감한 `28,722.10 USD` 추정치로 기록했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-06-0151-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

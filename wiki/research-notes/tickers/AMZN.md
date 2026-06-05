@@ -5,6 +5,10 @@ asset_type: stock
 
 # AMZN
 
+## 2026-06-06 01:51 KST hourly autopilot
+
+`AMZN` 1주 regular-session day limit buy가 `253.17 USD` limit으로 제출됐고, Alpaca MCP 기준 `2026-06-05T17:01:54.545263432Z`에 `253.17 USD`로 체결됐다. 근거는 scheduler core/research preflight와 strict universe/MCP/risk gate 통과, same-day duplicate가 없는 기존 mega-cap AI/cloud holding, 그리고 preflight IEX quote `253.12/253.17` 기준 spread `0.0197%`가 policy 한도 이내였다는 점이다. 최근 5D review 약세는 남아 있지만 hard gates가 모두 통과한 상태에서 learning_trade_directive floor-size observation을 우선해 새 validation lifecycle 표본으로 기록한다.
+
 ## 회고 기록
 
 ### 2026-05-29 analyst review cycle

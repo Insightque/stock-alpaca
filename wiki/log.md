@@ -2,6 +2,15 @@
 
 Append new entries below. Do not rewrite earlier entries except to fix broken Markdown formatting.
 
+## [2026-06-06 02:02 Asia/Seoul] hourly-autopilot | 2026-06-06-0151-hourly-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; scheduler-owned `0151` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate`는 비어 있는 pass 상태였다.
+- Gates: universe strict PASS, MCP strict PASS, risk validator PASS. scheduler stale cleanup은 open order 0건으로 종료됐다. research preflight는 `sec-edgar/fred/firecrawl/yahoo-finance` positive confirmations 4건을 유지했고 `alpha-vantage`는 one-call throttle `provider_error` nonblocking gap으로 남았다. sell/trim은 `AVGO`/`SO`/`TSLA`가 decision-grade metric 또는 held-quantity gate에 막혔다. same-day filled buy 때문에 `BAC`/`WMT`/`FCX`/`PLTR`/`AAPL`/`V`/`NVDA`/`SLB`/`COP`는 duplicate symbol/side gate에 걸렸고, `QQQ`/`SPY`/`SMH`는 1주 ask가 validation per-order cap 약 `496.29 USD`를 초과했다. `TSLA`는 speculative low-confidence로 제외했고 `NKE`는 hold-heavy turnaround review 약세로 `AMZN`보다 ranking이 낮았다.
+- Orders: `place_stock_order`로 `hourly-20260606-0151-buy-amzn` 1주 regular-session day limit buy를 제출했고, `get_order_by_client_id` 기준 `2026-06-05T17:01:54.545263432Z`에 `253.17 USD`로 즉시 filled 됐다.
+- Reconciliation: `get_orders(status=all, symbols=AMZN, after=2026-06-05T04:00:00Z)`와 `get_account_activities(FILL)`가 동일 체결 1건을 확인했고, `get_all_positions` 기준 `AMZN` 보유수량은 `3주 -> 4주`, 평균단가는 `271.12 -> 266.6325`로 갱신됐다. post-submit `get_account_info`는 tool safety monitor가 취소되어 cash는 pre-submit `28,975.27 USD`에서 confirmed fill `253.17 USD`를 뺀 `28,722.10 USD` 추정치로 기록했다.
+- Artifacts: `wiki/evidence-store/run-manifests/2026-06-06-0151-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-06-06-0151-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-06-0151-hourly-autopilot-post-trade.json`, `wiki/current-runs/daily/2026-06-06-0151-hourly-autopilot.md`, updated `wiki/trade-ledger/positions/current.md`, updated `wiki/research-notes/tickers/AMZN.md`, updated `wiki/index.md`.
+- Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-06-06-0151-hourly-autopilot.json` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-06-06-0151-hourly-autopilot.json` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-06-06-0151-hourly-autopilot.json` PASS.
+
 ## [2026-06-06 01:16 Asia/Seoul] hourly-autopilot | 2026-06-06-0111-hourly-autopilot scheduled paper autopilot
 
 - Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; scheduler-owned `0111` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate`는 비어 있는 pass 상태였다.

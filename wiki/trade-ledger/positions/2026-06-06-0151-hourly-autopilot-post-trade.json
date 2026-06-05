@@ -1,0 +1,54 @@
+{
+  "run_id": "2026-06-06-0151-hourly-autopilot",
+  "created_at": "2026-06-05T17:02:10Z",
+  "paper": true,
+  "session": "regular",
+  "submit_attempted": true,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-06-0151-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-06-0151-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-06-0151-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-06-0151-hourly-autopilot.json"
+  ],
+  "pre_submit_account_snapshot": {
+    "portfolio_value": 99257.09,
+    "cash": 28975.27,
+    "buying_power": 244738.38,
+    "long_market_value": 70281.82,
+    "currency": "USD",
+    "checked_at": "2026-06-05T16:57:25Z",
+    "source": "runtime Alpaca MCP get_account_info"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "AMZN",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 253.17,
+      "client_order_id": "hourly-20260606-0151-buy-amzn",
+      "order_id": "ccfc1bb3-2f8a-4752-8185-a6b230ef6bad",
+      "status": "filled",
+      "submitted_at": "2026-06-05T17:01:46.540049632Z",
+      "filled_at": "2026-06-05T17:01:54.545263432Z",
+      "filled_avg_price": 253.17
+    }
+  ],
+  "open_orders": [],
+  "positions_reconciliation": {
+    "runtime_positions_before_submit": {
+      "AMZN_qty": 3.0,
+      "AMZN_avg_entry_price": 271.12,
+      "AMZN_market_value": 759.57,
+      "position_count": 33
+    },
+    "post_submit_confirmed": {
+      "AMZN_qty": 4.0,
+      "AMZN_avg_entry_price": 266.6325,
+      "AMZN_market_value": 1012.0,
+      "position_count": 33,
+      "cash_estimate_after_fill": 28722.1
+    },
+    "account_refresh_after_submit": "unavailable",
+    "note": "get_order_by_client_id and get_orders(status=all, symbols=AMZN, after=2026-06-05T04:00:00Z) both confirmed the same order as filled at 253.17 USD. get_all_positions confirmed AMZN moved from 3 shares at 271.12 average entry to 4 shares at 266.6325 average entry. Post-submit get_account_info was cancelled by the tool safety monitor, so cash is recorded as a pre-submit cash minus confirmed fill estimate."
+  }
+}
