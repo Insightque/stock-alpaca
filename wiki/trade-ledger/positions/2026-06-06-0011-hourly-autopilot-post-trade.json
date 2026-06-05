@@ -1,0 +1,61 @@
+{
+  "run_id": "2026-06-06-0011-hourly-autopilot",
+  "created_at": "2026-06-05T15:19:40Z",
+  "paper": true,
+  "mode": "submit",
+  "submitted_orders": [
+    {
+      "order_id": "7f76779b-289d-4fcb-ba49-b4e4f0e2f6eb",
+      "client_order_id": "hourly-20260606-0011-buy-aapl",
+      "symbol": "AAPL",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 314.25,
+      "status": "filled",
+      "submitted_at": "2026-06-05T15:19:24.430450939Z",
+      "filled_at": "2026-06-05T15:19:25.344149286Z",
+      "filled_qty": 1,
+      "filled_avg_price": 313.27
+    }
+  ],
+  "open_orders": [],
+  "positions_count": 33,
+  "position_focus": {
+    "symbol": "AAPL",
+    "qty": 3,
+    "avg_entry_price": 310.93,
+    "current_price": 313.195,
+    "filled_this_run": true,
+    "note": "runtime get_all_positions reconciliation showed AAPL qty 3 and avg_entry_price 310.93 after the immediate fill."
+  },
+  "account_snapshot": {
+    "portfolio_value": 100190.83,
+    "cash": 29678.99,
+    "buying_power": 247546.97,
+    "long_market_value": 70511.84,
+    "source": "post-submit runtime get_account_info after confirmed AAPL fill."
+  },
+  "reconciliation": {
+    "initial_submit_result": "accepted",
+    "get_order_by_client_id_status": "filled",
+    "open_orders_after_submit": 0,
+    "fill_activities_after_submit": 1,
+    "fill_activity_symbol": "AAPL",
+    "fill_activity_price": 313.27,
+    "notes": [
+      "AAPL order did not require idempotent retry; first submit created the Alpaca order and it filled immediately.",
+      "runtime get_open_position(AAPL) was cancelled in nested Codex, but get_all_positions and get_account_info both succeeded and were used for final reconciliation."
+    ]
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-06-0011-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-06-0011-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-06-0011-hourly-autopilot-research-mcp-preflight.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/2026-06-05-portfolio-review.md",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/research-notes/tickers/AAPL.md"
+  ]
+}

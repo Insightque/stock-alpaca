@@ -4,12 +4,12 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-06 00:01 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-06 00:20 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
 
-- [[AAPL]] - 2026-05-26 validation buy 1D review 양호; 2026-06-05 00:31 KST hourly-autopilot에서 1주 추가 validation buy 체결.
+- [[AAPL]] - 2026-05-26 validation buy 1D review 양호; 2026-06-05 00:31 KST hourly-autopilot 1주 추가 buy와 2026-06-06 00:19 KST 1주 추가 validation buy가 모두 체결.
 - [[NVDA]] - 2026-05-22 stock-only 5D 회고 양호, 20D 대기.
 - [[AMD]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
 - [[AVGO]] - 2026-05-22 stock-only 5D 회고 강함; 2026-06-01 after-hours validation 첫 close 보류.
@@ -50,6 +50,8 @@
 - [[COP]] - 2026-05-28 validation buy 1D 회고 중립 약함, 5D/20D 대기.
 
 ## Current Runs
+
+- [[2026-06-06-0011-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0011` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim은 `AVGO`/`SO`/`TSLA`가 decision-grade metric 또는 held-quantity gate에 막혔다. `PLTR`/`BAC`/`WMT`/`FCX`는 same-day filled buy로 duplicate symbol/side gate에 걸렸고, `QQQ`/`SPY`는 1주 ask가 validation floor per-order cap을 초과했다. `AAPL`은 runtime quote `313.02/314.25`, quote age 약 `0.3`분, spread `0.3929%`, duplicate/open-order conflict 없음, review backlog throttle 통과, tiered MCP strict gate 유지 조건을 충족해 floor-size validation buy 1주 후보가 됐고 `hourly-20260606-0011-buy-aapl`이 Alpaca order id `7f76779b-289d-4fcb-ba49-b4e4f0e2f6eb`로 `2026-06-05T15:19:25.344149286Z`에 `313.27 USD`로 체결됐다.
 
 - [[2026-06-05-2351-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `2351` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim은 `AVGO`/`SO`/`TSLA`가 decision-grade metric 또는 held-quantity gate에 막혔다. `BAC`/`WMT`/`FCX`는 same-day filled buy로 duplicate symbol/side gate에 걸렸고, `QQQ`/`SPY`는 1주 ask가 validation floor per-order cap을 초과했다. `PLTR`은 runtime quote `138.50/138.56`, quote age 약 `0.1`분, spread `0.0433%`, same-day duplicate/open-order conflict 없음, 5D cohort 양호, review backlog throttle 통과 조건을 충족해 floor-size validation buy 1주 후보가 됐다. 첫 submit cancellation 후 동일 client id reconcile/retry를 거쳐 `hourly-20260605-2351-buy-pltr`가 Alpaca order id `a89c2fdb-979b-42e1-a5ff-050916aa6257`로 `2026-06-05T15:00:44.444163302Z`에 `status=new` open order로 생성됐다.
 

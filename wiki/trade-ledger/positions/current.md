@@ -1,14 +1,25 @@
 # portfolio-current
 
-_Last updated: 2026-06-06 00:01 KST_
+_Last updated: 2026-06-06 00:20 KST_
 
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: $100,670.12
-- Cash: $30,130.79
-- Buying power: $249,228.27
-- Long market value: $70,539.33
+- Portfolio value: $100,190.83
+- Cash: $29,678.99
+- Buying power: $247,546.97
+- Long market value: $70,511.84
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-06-0011-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `AAPL` buy 1 @ `313.27` (`client_order_id=hourly-20260606-0011-buy-aapl`)
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: 33 positions 유지. `AAPL`는 runtime `get_all_positions` 기준 2주에서 3주, 평균단가 `309.76`에서 `310.93`으로 갱신됐다.
+- Recent reconciliation scope: scheduler-owned `0011` stale cleanup/core/research preflight와 runtime `get_clock/get_account_info/get_orders(status=all, after=2026-06-05T04:00:00Z)/get_stock_latest_quote(AAPL,COP,NVDA,AMZN,NKE,SLB,QQQ,SPY,INTC,TSLA)/place_stock_order/get_order_by_client_id/get_account_activities(FILL)/get_orders(status=open)/get_all_positions/get_account_info` 확인 기준 `AAPL` 1주 regular-session validation add가 `2026-06-05T15:19:25.344149286Z`에 `313.27 USD`로 즉시 체결됐다. `get_open_position(AAPL)`는 runtime safety monitor가 취소했지만 `get_all_positions`와 post-submit `get_account_info`는 성공해 최종 snapshot을 runtime MCP 기준으로 기록했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-06-0011-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
