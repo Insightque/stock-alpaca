@@ -1,14 +1,25 @@
 # portfolio-current
 
-_Last updated: 2026-06-05 23:19 KST_
+_Last updated: 2026-06-05 23:40 KST_
 
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: $100,506.69
-- Cash: $30,195.94
-- Buying power: $248,919.27
-- Long market value: $70,310.75
+- Portfolio value: $100,526.30
+- Cash: $30,130.79
+- Buying power: $248,926.56
+- Long market value: $70,395.51
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-05-2331-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `FCX` buy 1 @ `65.15` (`client_order_id=hourly-20260605-2331-buy-fcx`)
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: 33 positions 유지. `FCX`는 scheduler core preflight 기준 2주에서 confirmed fill 반영 후 3주로 증가했다.
+- Recent reconciliation scope: scheduler-owned `2331` stale cleanup/core/research preflight와 runtime `get_clock/get_orders(status=open)/get_orders(status=all, after=2026-06-05T04:00:00Z)/get_asset(FCX)/place_stock_order/get_order_by_client_id` 확인 기준 `FCX` 1주 regular-session validation buy가 `2026-06-05T14:39:22.134743752Z`에 `65.15 USD`로 체결됐다. direct post-fill `get_orders(status=open)`, `get_all_positions`, `get_account_info` refresh는 runtime safety monitor가 취소해 account/position snapshot은 fresh 2331 core preflight에 confirmed fill을 결합해 기록했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-05-2331-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

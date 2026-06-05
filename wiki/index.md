@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 23:11 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 23:40 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -50,6 +50,8 @@
 - [[COP]] - 2026-05-28 validation buy 1D 회고 중립 약함, 5D/20D 대기.
 
 ## Current Runs
+
+- [[2026-06-05-2331-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `2331` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim은 `AVGO`/`SO`/`TSLA`가 decision-grade metric 또는 held-quantity gate에 막혔고, `BAC`/`WMT`는 same-day filled buy로 duplicate symbol/side gate에 걸렸다. `QQQ`/`SPY`는 1주 ask가 validation floor per-order cap을 초과했고 `NVDA`는 ai_semiconductor_complex warning band로 우선순위가 낮아졌다. `FCX`는 quote `65.28/65.31`, quote age 약 `4.5`분, spread `0.0460%`, duplicate/open-order conflict 없음, materials/mining diversifier 역할 유지 조건을 동시에 만족해 floor-size validation buy 1주 후보가 됐고, `hourly-20260605-2331-buy-fcx`가 `2026-06-05T14:39:22.134743752Z`에 `65.15 USD`로 체결됐다.
 
 - [[2026-06-05-2311-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `2311` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim은 `AVGO`/`SO`/`TSLA`가 decision-grade metric 또는 held-quantity gate에 막혔고, `BAC`는 2231 same-day filled buy로 duplicate symbol/side gate에 걸렸다. `AAPL`은 scheduler quote spread `0.6068%`로 policy cap을 넘겼고 `QQQ`/`SPY`는 1주 ask가 validation floor per-order cap을 초과했다. `WMT`는 quote `120.45/120.50`, quote age `2.9`분, spread `0.0415%`, 5D review `중립 양호`, duplicate/open-order conflict 없음으로 floor-size validation buy 1주 후보가 됐고, 첫 submit cancellation 후 동일 client id reconcile/retry를 거쳐 `hourly-20260605-2311-buy-wmt`가 `2026-06-05T14:17:18.858272769Z`에 `119.78 USD`로 체결됐다.
 

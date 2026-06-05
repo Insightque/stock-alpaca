@@ -8,6 +8,12 @@ Freeport-McMoRan paper validation 후보. 2026-05-26 hourly autopilot에서 mate
 
 출처: [[2026-06-05-0131-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-05-0131-hourly-autopilot-post-trade.json`
 
+## 2026-06-05 23:31 KST hourly-autopilot
+
+`FCX` 1주 regular-session day limit buy가 `65.31 USD` limit으로 제출됐고, Alpaca MCP `get_order_by_client_id` 기준 `2026-06-05T14:39:22.134743752Z`에 `65.15 USD`로 즉시 체결됐다. 근거는 scheduler-owned `2331` core/research preflight, strict universe/MCP/risk gate 통과, 같은 ET session `BAC`/`WMT` duplicate 제외 이후에도 남는 materials/mining diversifier 수요, 그리고 scheduler quote `65.28/65.31` 기준 spread `0.0460%`가 policy 한도 이내였다는 점이다. direct post-fill `get_all_positions/get_account_info` refresh는 runtime safety monitor가 취소돼 post-trade snapshot은 fresh 2331 preflight에 confirmed fill을 결합해 기록했다.
+
+출처: [[2026-06-05-2331-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-05-2331-hourly-autopilot-post-trade.json`
+
 ## 회고 기록
 
 - 2026-05-28: [[2026-05-28-portfolio-review]]에서 2026-05-26 validation buy 1D interim review를 작성했다. 63.94 USD 진입 대비 2026-05-27 close 63.625 USD로 -0.49%, SPY 대비 -0.51%p였다. 손실은 작지만 commodity 분산 thesis의 우위는 1D에 확인되지 않아 5D/20D 대기다.
