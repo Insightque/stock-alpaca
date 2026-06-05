@@ -5,6 +5,8 @@ asset_type: stock
 
 # BAC
 
+`BAC` 1주 regular-session day limit buy가 `53.92 USD` limit으로 제출됐고, Alpaca MCP 기준 `2026-06-05T13:39:42.716508022Z`에 `53.83 USD`로 체결됐다. 근거는 scheduler-owned `2231` core/research preflight와 strict universe/MCP/risk gate 통과, live BAC quote `53.90/53.92` 기준 spread `0.0371%`, same-day duplicate/open-order conflict 없음, 그리고 2026-06-05 portfolio review에서 financials diversification 5D 결과가 strongest cohort로 확인됐다는 점이다. 이 체결은 새 validation lifecycle 표본으로 기록하며 1D/5D/20D review를 추적한다.
+
 ## 2026-05-28 22:31 KST hourly autopilot
 
 2026-05-28 22:31 KST hourly autopilot에서 BAC 1주 regular-session day limit buy를 제출했으나 post-trade reconciliation 기준 status `new`, filled_qty 0으로 open order다. financials cluster 분산 후보이며 open-order lifecycle gate에서 다음 run이 추적해야 한다.

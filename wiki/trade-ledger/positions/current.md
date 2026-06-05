@@ -1,14 +1,25 @@
 # portfolio-current
 
-_Last updated: 2026-06-05 21:53 KST_
+_Last updated: 2026-06-05 22:40 KST_
 
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: $101,895.54
-- Cash: $30,369.55
-- Buying power: $251,859.14
-- Long market value: $71,525.99
+- Portfolio value: $101,177.93 (pre-submit account snapshot; direct post-fill account refresh cancelled)
+- Cash: ~$30,315.72 after confirmed `BAC` fill
+- Buying power: $250,661.09 (last successful direct read before fill)
+- Long market value: ~$70,862.21 after confirmed `BAC` fill
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-05-2231-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `BAC` buy 1 @ `53.83` (`client_order_id=hourly-20260605-2231-buy-bac`)
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: 33 positions 유지. `BAC`는 scheduler core preflight 기준 3주에서 confirmed fill 반영 후 4주로 증가했다.
+- Recent reconciliation scope: scheduler-owned `2231` stale cleanup/core/research preflight와 runtime `get_clock/get_orders(status=open)/get_orders(status=all, after=2026-06-05T04:00:00Z)/get_asset(BAC)/get_stock_latest_quote(BAC)/place_stock_order/get_order_by_client_id` 확인 기준 `BAC` 1주 regular-session validation buy가 `2026-06-05T13:39:42.716508022Z`에 `53.83 USD`로 체결됐고 이후 open orders는 0건이었다. direct post-fill `get_all_positions/get_account_info` refresh는 runtime safety monitor가 취소해 account/position snapshot은 fresh 2231 core preflight에 confirmed fill을 결합해 기록했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-05-2231-hourly-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 

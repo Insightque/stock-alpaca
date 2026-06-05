@@ -40,7 +40,7 @@
 - [[WMT]] - 2026-05-29 validation add 5D 회고 중립 양호; 2026-06-05 01:11 KST hourly-autopilot에서 1주 추가 validation buy 체결.
 - [[NEE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[AMZN]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
-- [[BAC]] - 2026-05-28 validation buy 1D 회고 양호, 5D/20D 대기; 2026-06-05 04:21 KST hourly-autopilot에서 1주 추가 validation buy 체결.
+- [[BAC]] - 2026-05-28 validation buy 1D 회고 양호, 5D/20D 대기; 2026-06-05 04:21 KST hourly-autopilot에서 1주 추가 validation buy 체결; 2026-06-05 22:39 KST hourly-autopilot에서 1주 추가 validation buy가 `53.83 USD`에 체결.
 - [[XOM]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기; 2026-06-05 00:51 KST hourly-autopilot에서 1주 추가 validation buy 체결.
 - [[V]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[INTC]] - 2026-05-28 after-hours validation buy 1D 회고 약함, 5D/20D 대기.
@@ -50,6 +50,8 @@
 - [[COP]] - 2026-05-28 validation buy 1D 회고 중립 약함, 5D/20D 대기.
 
 ## Current Runs
+
+- [[2026-06-05-2231-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `2231` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim은 `AVGO`/`SO`/`TSLA`가 decision-grade metric 또는 held-quantity gate에 막혔고, 신규 buy는 `BAC`가 strongest 5D financials diversifier로 승격돼 `hourly-20260605-2231-buy-bac` 1주 regular-session day limit buy를 제출했다. runtime `get_order_by_client_id` 기준 `2026-06-05T13:39:42.716508022Z`에 `53.83 USD`로 체결됐고, 이후 `get_orders(status=open)`는 0건이었다. direct post-fill account/positions refresh는 runtime safety monitor가 취소해 post-trade snapshot은 fresh 2231 core preflight와 confirmed fill을 결합해 기록했다.
 
 - [[2026-06-05-2151-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `2151` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. runtime Alpaca MCP 기준 실제 장외 submit count는 `ah-20260605-1231-buy-wmt` 취소 + `ah-20260605-1251-buy-wmt` 체결로 여전히 `2/2`였고, runtime overnight quote `AVGO/PFE/WMT/QQQ/SPY`는 모두 `293.20`분 수준 stale였다. spread도 각각 `2.6189%`, `2.0897%`, `12.6346%`, `4.7399%`, `0.4728%`로 장외 spread cap을 넘겼고 `QQQ`와 `SPY`는 1주 ask가 장외 per-order cap `509.48 USD`도 초과해 submit 없이 종료했다. `AGENTS.md`가 요구한 order-plan 루트 필드 `quote_captured_at`/`asset_checked_at`/`skipped_orders`는 현재 schema validator와 충돌해 제거했고 mismatch는 `wiki/log.md`에 기록했다.
 - [[2026-06-05-2131-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `2131` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. runtime Alpaca MCP 기준 실제 장외 submit count는 `ah-20260605-1231-buy-wmt` 취소 + `ah-20260605-1251-buy-wmt` 체결로 여전히 `2/2`였고, runtime overnight quote `AVGO/PFE/WMT/QQQ/SPY`는 모두 `273.11`분 수준 stale였다. spread도 각각 `2.6189%`, `2.0897%`, `12.6346%`, `4.7399%`, `0.4728%`로 장외 spread cap을 넘겼고 `QQQ`와 `SPY`는 1주 ask가 장외 per-order cap `508.97 USD`도 초과해 submit 없이 종료했다.
