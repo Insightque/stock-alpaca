@@ -1,14 +1,25 @@
 # portfolio-current
 
-_Last updated: 2026-06-05 20:51 KST_
+_Last updated: 2026-06-05 21:11 KST_
 
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: $102,384.04
+- Portfolio value: $101,966.68
 - Cash: $30,369.55
-- Buying power: $252,634.74
-- Long market value: $72,014.49
+- Buying power: $251,920.70
+- Long market value: $71,597.13
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-05-2111-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: 33 positions. `WMT` 5주, `AVGO` 16주, `PFE` 3주, 신규 open order 없음.
+- Recent reconciliation scope: scheduler-owned `2111` Alpaca core/research preflight와 runtime `get_orders(status=open)/get_orders(status=all, after=2026-06-04T20:00:00Z)/get_order_by_client_id/get_stock_latest_quote(feed=overnight)/get_stock_snapshot(feed=overnight)` 확인 기준 장외 separate session budget `2/2` 소진으로 submit 없이 종료했다. runtime overnight quote는 `AVGO/PFE/WMT/QQQ/SPY` 모두 quote age `253.37`분 수준으로 stale했고 spread도 각각 `2.6189%`, `2.0897%`, `12.6346%`, `4.7399%`, `0.4728%`로 cap을 넘겼다. `QQQ`와 `SPY`는 1주 ask가 각각 `734.40 USD`, `755.01 USD`로 장외 per-order cap `509.96 USD`도 초과했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-05-2111-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 
