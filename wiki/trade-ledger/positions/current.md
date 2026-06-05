@@ -1,6 +1,6 @@
 # portfolio-current
 
-_Last updated: 2026-06-05 11:53 KST_
+_Last updated: 2026-06-05 12:15 KST_
 
 ## 계좌 요약
 
@@ -12,14 +12,14 @@ _Last updated: 2026-06-05 11:53 KST_
 
 ## 최신 after-hours-autopilot reconciliation
 
-- Run: [[2026-06-05-1151-after-hours-autopilot]]
+- Run: [[2026-06-05-1211-after-hours-autopilot]]
 - Open/new: 없음
 - Filled: 없음
 - Cancelled: 없음
 - Position count observed by Alpaca MCP: 33 positions. 장외 세션에서 신규 fill, 신규 open order, 포지션 수량 변화는 없었다.
-- Recent reconciliation scope: scheduler-owned `1151` Alpaca core/research preflight와 runtime `get_stock_latest_quote/get_stock_snapshot` spot-check 기준 regular market closed와 장외 `ah-` 신규 주문 0건을 재확인했다. `QQQ`는 여전히 1주 ask가 per-order cap `511.98 USD`를 넘었고 scheduler clock 기준 quote freshness도 362.94분 stale라 `place_stock_order` 호출은 생략했다.
+- Recent reconciliation scope: scheduler-owned `1211` Alpaca core/research preflight와 runtime `get_clock/get_account_info/get_orders(status=open)/get_stock_latest_quote/get_stock_snapshot` spot-check 기준 regular market closed와 장외 `ah-` 신규 주문 0건을 재확인했다. runtime `get_all_positions`는 cancelled였지만 scheduler-owned passing positions row가 있어 authoritative source를 유지했다. `QQQ`는 여전히 1주 ask가 per-order cap `511.82 USD`를 넘었고 scheduler clock 기준 quote freshness도 383.01분 stale라 `place_stock_order` 호출은 생략했다.
 - Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
-- Source note: `wiki/trade-ledger/positions/2026-06-05-1151-after-hours-autopilot-post-trade.json`
+- Source note: `wiki/trade-ledger/positions/2026-06-05-1211-after-hours-autopilot-post-trade.json`
 
 ## 직전 hourly-autopilot reconciliation
 

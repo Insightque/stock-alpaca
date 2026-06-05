@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 11:53 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 12:15 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -51,6 +51,7 @@
 
 ## Current Runs
 
+- [[2026-06-05-1211-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1211` core/research preflight와 strict universe/MCP/risk validator는 모두 통과했다. 다만 `QQQ`도 quote age `383.01`분과 1주 ask `738.73 USD`가 장외 per-order cap `511.82 USD`를 동시에 위반했고 `PFE/SMH/BA/XOM/WMT/MA/GE`와 `AVGO` trim도 stale/wide quote 및 due-review discipline으로 submit 없이 종료했다.
 - [[2026-06-05-1151-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1151` core/research preflight와 strict universe/MCP/risk validator는 모두 통과했다. 다만 `QQQ`도 quote age `362.94`분과 1주 ask `738.73 USD`가 장외 per-order cap `511.98 USD`를 동시에 위반했고 `PFE/SMH/BA/XOM/WMT/MA/GE`와 `AVGO` trim도 stale/wide quote 및 due-review discipline으로 submit 없이 종료했다.
 - [[2026-06-05-1131-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1131` core/research preflight와 strict universe/MCP/risk validator는 모두 통과했다. 다만 `QQQ`도 quote age `342.94`분과 1주 ask `738.73 USD`가 장외 per-order cap `512.39 USD`를 동시에 위반했고 `PFE/SMH/BA/XOM/WMT/MA/GE`와 `AVGO` trim도 stale/wide quote 및 due-review discipline으로 submit 없이 종료했다.
 - [[2026-06-05-1111-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1111` core/research preflight와 strict universe/MCP/risk validator는 모두 통과했다. 다만 `QQQ`도 quote age `323.00`분과 1주 ask `738.73 USD`가 장외 per-order cap `511.54 USD`를 동시에 위반했고 `PFE/SMH/BA/XOM/WMT/MA/GE`와 `AVGO` trim도 stale/wide quote 및 due-review discipline으로 submit 없이 종료했다.
