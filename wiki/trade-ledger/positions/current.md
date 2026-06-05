@@ -1,6 +1,6 @@
 # portfolio-current
 
-_Last updated: 2026-06-05 12:59 KST_
+_Last updated: 2026-06-05 13:14 KST_
 
 ## 계좌 요약
 
@@ -11,6 +11,17 @@ _Last updated: 2026-06-05 12:59 KST_
 - Long market value: $71,799.28
 
 ## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-05-1311-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: 33 positions. `WMT` 5주, `AVGO` 16주, 신규 open order 없음.
+- Recent reconciliation scope: scheduler-owned `1311` Alpaca core/research preflight와 runtime `get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-04T20:00:00Z)/get_stock_latest_quote/get_stock_snapshot` 확인 기준 장외 separate session budget `2/2` 소진으로 submit 없이 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-05-1311-after-hours-autopilot-post-trade.json`
+
+## 직전 after-hours-autopilot reconciliation
 
 - Run: [[2026-06-05-1251-after-hours-autopilot]]
 - Open/new: 없음
@@ -34,6 +45,6 @@ _Last updated: 2026-06-05 12:59 KST_
 
 ## 계좌 요약 주석
 
-- 위 계좌 요약 수치는 `1251` scheduler core preflight와 runtime Alpaca MCP reconciliation 기준이다.
-- after-hours session budget은 이번 체결로 `2/2`가 됐고, 같은 세션의 stale prior WMT order는 먼저 취소 후 재실행됐다.
-- close 이후 reconciliation 기준 open order는 0건이며 신규 fill은 `WMT` 1주다.
+- 위 계좌 요약 수치는 `1311` runtime Alpaca MCP reconciliation 기준이다.
+- after-hours session budget은 `1231` cancel + `1251` fill submit lifecycle로 이미 `2/2`가 되어 `1311` cycle에서는 추가 주문을 만들지 않았다.
+- close 이후 reconciliation 기준 open order는 0건이며 `1311` 신규 fill은 없다.
