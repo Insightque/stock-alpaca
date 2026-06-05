@@ -1,0 +1,40 @@
+{
+  "run_id": "2026-06-05-1231-after-hours-autopilot",
+  "created_at": "2026-06-05T03:41:30Z",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102289.23,
+    "cash": 30487.94,
+    "buying_power": 252666.22,
+    "long_market_value": 71801.29,
+    "positions_count": 33
+  },
+  "submitted_orders": [],
+  "lifecycle_actions": [
+    {
+      "action": "submit_blocked",
+      "client_order_id": "ah-20260605-1231-buy-wmt",
+      "reason": "Alpaca MCP safety interceptor cancelled place_stock_order before order creation; get_order_by_client_id returned 404 and open-order query remained empty."
+    }
+  ],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "WMT",
+      "qty": "4",
+      "note": "planned after-hours validation buy 1 share at 118.28 USD was not created because the executor MCP safety interceptor blocked submit before order creation."
+    },
+    {
+      "symbol": "AVGO",
+      "qty": "16",
+      "note": "sell side remained evaluated first, but no executable trim trigger was promoted in the 2026-06-05 after-hours run."
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/run-manifests/2026-06-05-1231-after-hours-autopilot.json",
+    "wiki/trade-ledger/orders/2026-06-05-1231-after-hours-autopilot.json"
+  ]
+}
