@@ -1,0 +1,134 @@
+{
+  "run_id": "2026-06-06-0731-after-hours-autopilot",
+  "created_at": "2026-06-06T07:33:49+09:00",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "submit_attempted": false,
+  "orders_submitted": [],
+  "shortlist_symbols": [
+    "QQQ",
+    "GOOGL",
+    "SMH",
+    "SPY",
+    "WMT",
+    "XOM",
+    "BAC",
+    "TSLA"
+  ],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 18,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 13,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1
+  },
+  "review_backlog_throttle": {
+    "enabled": true,
+    "max_new_buy_slots_before_throttle": 1,
+    "max_new_buy_slots_after_throttle": 1,
+    "review_backlog_pending_1d_count": 13,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "result": "pending 1D backlog exceeded the throttle threshold, but the after-hours policy was already capped at one buy slot per run; no candidate cleared the fresh-quote gate anyway."
+  },
+  "runtime_alpaca_mcp": {
+    "account_confirmed_active": true,
+    "account_source": "Scheduler-owned 0731 Alpaca core preflight remained the primary account/open-order/position snapshot source as required by the after-hours workflow. Runtime Alpaca MCP quote and snapshot checks reconfirmed that the regular market stayed closed, the freshest executable benchmark quote remained stale, and the BOATS feed was unavailable on the current subscription.",
+    "after_hours_new_orders_submitted_today": 0,
+    "clock_is_open": false,
+    "clock_timestamp": "2026-06-05T18:31:07.009059321-04:00",
+    "open_orders_count": 0,
+    "positions_count": 33,
+    "reconciled_client_order_ids": []
+  },
+  "gate_results": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_no_submit_quote_gate_block",
+    "fresh_quote": "fail_runtime_iex_and_overnight_quotes_stale_over_5_minutes_for_qqq_smh_spy_avgo_pfe_wmt_so_bac_xom_googl_tsla",
+    "spread_within_after_hours_policy": "fail_runtime_iex_spread_cap_or_missing_ask_and_boats_unavailable_for_smh_spy_avgo_pfe_wmt_so_bac_xom_googl_tsla",
+    "whole_share_day_limit_extended_hours_order": "pass_candidate_shape_confirmed_but_not_executed",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit_reconciled_by_order_history_and_open_orders"
+  },
+  "block_reasons": [
+    "Scheduler-owned 0731 Alpaca core preflight remained the primary account/order/position evidence source. It confirmed paper account ACTIVE, open orders 0, recent fills available, and first_blocking_gate=market_closed, which is expected and nonblocking for after-hours automation.",
+    "Runtime Alpaca MCP IEX quotes were stale at the submit boundary. The freshest candidate was QQQ at 2026-06-05T20:48:07.458456075Z, which was already about 105.69 minutes old at 2026-06-06 07:33 KST. SMH, SPY, WMT, GOOGL, XOM, BAC, SO, and TSLA were about 153-154 minutes stale, all above the after-hours fresh-quote cap 5.0 minutes.",
+    "Spread or quote-completeness also failed the after-hours cap. QQQ spread passed at about 0.0157% but was stale. SMH/SPY/WMT/GOOGL/XOM/BAC/SO/TSLA were about 5.4261%/6.1271%/8.2299%/2.5083%/8.3170%/8.6568%/8.9408%/8.7736%, all above the 0.25% cap. AVGO and PFE only exposed bid-side prices on runtime IEX, so they lacked executable two-sided quotes for an extended-hours limit submit. Alpaca overnight quotes for QQQ/AVGO/PFE were about 873.81 minutes stale, and BOATS access returned 403 on the current paper subscription.",
+    "Alpha Vantage remained a non-blocking research provider gap in this cycle: NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols."
+  ],
+  "candidate_diagnostics": [
+    {
+      "symbol": "AVGO",
+      "decision": "skip_quote_stale_missing_ask_and_duplicate_sell_discipline",
+      "reason": "After-hours sell is allowed by policy, but runtime IEX quote for AVGO exposed only bid 386.40 at 2026-06-05T20:00:55.167085571Z with no ask and was about 152.90 minutes stale at 2026-06-06 07:33 KST, so the order could not satisfy the executable two-sided quote/spread gate. The same symbol also already had a same-day regular-session trim fill, and the 2026-06-05 portfolio review still treats the earnings-event drawdown as a catalyst-risk alert under due-review discipline rather than a forced second trim.",
+      "source_refs": [
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/trade-ledger/reviews/2026-06-05-portfolio-review.md",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/evidence-store/sources/2026-06-06-0731-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "skip_fresh_quote_only_block",
+      "reason": "QQQ remained the strongest fallback benchmark because runtime IEX quote 700.15/700.26 had spread about 0.0157%, but the quote timestamp 2026-06-05T20:48:07.458456075Z was still about 105.69 minutes stale at 2026-06-06 07:33 KST, so it failed the 5-minute fresh-quote cap before submit planning. The Alpaca overnight feed also returned only 2026-06-05T08:00:00.406190958Z data, about 873.81 minutes stale.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-06-0731-after-hours-autopilot-research-mcp-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "SMH",
+      "decision": "skip_quote_stale_and_spread_block",
+      "reason": "SMH runtime IEX quote 557.43/588.52 at 2026-06-05T20:00:00.010128509Z was about 153.82 minutes stale with spread about 5.4261%, far above the after-hours spread cap 0.25%.",
+      "source_refs": [
+        "wiki/research-notes/tickers/SMH.md",
+        "wiki/evidence-store/sources/2026-06-06-0731-after-hours-autopilot-research-mcp-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "SPY",
+      "decision": "skip_quote_stale_spread_and_per_order_cap_block",
+      "reason": "SPY runtime IEX quote 714.79/759.97 at 2026-06-05T20:00:00.003806119Z was about 153.82 minutes stale with spread about 6.1271%. The 1-share ask 759.97 USD also exceeded the after-hours per-order cap implied by the 0.5% notional rule.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-06-0731-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "WMT",
+      "decision": "skip_quote_stale_and_spread_block",
+      "reason": "WMT runtime IEX quote 114.76/124.61 at 2026-06-05T20:00:01.069298811Z was about 153.80 minutes stale with spread about 8.2299%, far above the after-hours spread cap 0.25%.",
+      "source_refs": [
+        "wiki/research-notes/tickers/WMT.md",
+        "wiki/evidence-store/sources/2026-06-06-0731-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-06-0731-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-06-0731-after-hours-autopilot-research-mcp-preflight.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "wiki/trade-ledger/reviews/2026-06-05-portfolio-review.md",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md"
+  ]
+}
