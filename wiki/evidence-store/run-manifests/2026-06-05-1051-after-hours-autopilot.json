@@ -1,0 +1,203 @@
+{
+  "run_id": "2026-06-05-1051-after-hours-autopilot",
+  "created_at": "2026-06-05T10:51:00+09:00",
+  "data_cutoff_time": "2026-06-04T21:51:09.296547571-04:00",
+  "market_clock_checked_at": "2026-06-04T21:51:09.296547571-04:00",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "policy_id": "recommendation-policy-v1.10",
+  "policy_version": "v1.10",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "git_commit": "6512e62b02a4c6c0e56e74fec214c0a6d63e933a",
+  "recommendation_policy_sha": "de9b53371f5b8e4b65aa39d5f196b6cf7473efeec465af920da02cac664760e6",
+  "risk_policy_version": "medium-risk-v1.1",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-05-1051-after-hours-autopilot.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-05-1051-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-1051-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-1051-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ],
+  "data_manifest": {
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-05-1051-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_preflight": "wiki/evidence-store/sources/2026-06-05-1051-after-hours-autopilot-research-mcp-preflight.json",
+    "gate_evaluation": "wiki/evidence-store/sources/2026-06-05-1051-after-hours-autopilot-after-hours-gate-evaluation.json"
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "PFE",
+      "SMH",
+      "BA",
+      "XOM",
+      "WMT",
+      "MA",
+      "GE"
+    ],
+    "final_candidates": [
+      "QQQ",
+      "PFE",
+      "SMH",
+      "XOM",
+      "WMT"
+    ],
+    "passed": true,
+    "gap_reason": "",
+    "status": "pass",
+    "source": "wiki/evidence-store/sources/2026-06-05-1051-after-hours-autopilot-alpaca-core-preflight.json",
+    "source_refs": []
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "all_research_must_be_attempted": true,
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_submit": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-05T01:51:32Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-1051-after-hours-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "regular market closed; expected nonblocking for after-hours while scheduler-owned preflight rows passed for account, positions, open orders, assets, quotes, and spreads",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": "market_closed"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-05T00:51:32+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-1051-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-05T00:51:32+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-1051-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-04T21:11:34+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-1051-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-05T00:51:32+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-1051-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-05T01:51:32+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-1051-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-05T00:51:32+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-1051-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    }
+  ],
+  "recommendation_actionability": "watch_only_no_submit",
+  "first_blocking_gate": "fresh_quote",
+  "decision_summary": {
+    "market_open": false,
+    "invested_ratio": 0.701,
+    "open_orders": 0,
+    "planned_orders": [],
+    "submitted_orders": [],
+    "skipped_orders": [
+      "No candidate passed the after-hours quote/spread/notional stack at the 21:51 ET scheduler-owned clock. QQQ kept the best spread but its latest quote timestamp was already 303.02 minutes old and its 1-share ask 738.73 USD exceeded the 510.64 USD per-order cap. PFE/SMH/BA/XOM/WMT/MA/GE remained 351.14+ minutes stale with spreads far above 0.25%, and AVGO sell/trim stayed blocked by due-review discipline plus a 351.16-minute stale 9.9199% spread quote."
+    ],
+    "first_blocking_gate": "fresh_quote"
+  }
+}

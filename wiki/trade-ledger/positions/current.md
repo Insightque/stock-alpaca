@@ -1,25 +1,25 @@
 # portfolio-current
 
-_Last updated: 2026-06-05 10:33 KST_
+_Last updated: 2026-06-05 10:54 KST_
 
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: $101,946.58
+- Portfolio value: $102,127.24
 - Cash: $30,487.94
-- Buying power: $252,061.32
-- Long market value: $71,458.64
+- Buying power: $252,334.20
+- Long market value: $71,639.30
 
 ## 최신 after-hours-autopilot reconciliation
 
-- Run: [[2026-06-05-1031-after-hours-autopilot]]
+- Run: [[2026-06-05-1051-after-hours-autopilot]]
 - Open/new: 없음
 - Filled: 없음
 - Cancelled: 없음
 - Position count observed by Alpaca MCP: 33 positions. 장외 세션에서 신규 fill, 신규 open order, 포지션 수량 변화는 없었다.
-- Recent reconciliation scope: scheduler-owned `1031` Alpaca core/research preflight와 runtime `get_clock`, `get_orders(status=open)`, `get_orders(after=2026-06-04T20:00:00Z)`, `get_stock_latest_quote`, `get_stock_snapshot` 기준 regular market closed와 장외 `ah-` 신규 주문 0건을 재확인했다. `QQQ`는 여전히 1주 ask가 per-order cap을 넘었고 quote freshness도 285분 이상 stale라 `place_stock_order` 호출은 생략했다.
+- Recent reconciliation scope: scheduler-owned `1051` Alpaca core/research preflight와 runtime `get_account_info`, `get_orders(status=open)`, `get_orders(after=2026-06-04T20:00:00Z)`, `get_watchlists`, `get_stock_latest_quote`, `get_stock_snapshot` 기준 regular market closed와 장외 `ah-` 신규 주문 0건을 재확인했다. `QQQ`는 여전히 1주 ask가 per-order cap을 넘었고 quote freshness도 303분 이상 stale라 `place_stock_order` 호출은 생략했다.
 - Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
-- Source note: `wiki/trade-ledger/positions/2026-06-05-1031-after-hours-autopilot-post-trade.json`
+- Source note: `wiki/trade-ledger/positions/2026-06-05-1051-after-hours-autopilot-post-trade.json`
 
 ## 직전 hourly-autopilot reconciliation
 
@@ -34,6 +34,6 @@ _Last updated: 2026-06-05 10:33 KST_
 
 ## 계좌 요약 주석
 
-- 위 계좌 요약 수치는 `1031` scheduler core preflight account snapshot과 runtime `get_clock/get_orders/get_stock_latest_quote/get_stock_snapshot` 보조 확인 기준이다.
+- 위 계좌 요약 수치는 `1051` scheduler core preflight account snapshot과 runtime `get_account_info/get_orders/get_watchlists/get_stock_latest_quote/get_stock_snapshot` 보조 확인 기준이다.
 - `JNJ` order는 pre-submit gate 시점에는 market open이었지만 실제 Alpaca submit timestamp가 `16:02:59 ET`로 close 이후가 되어, workflow safety 복구 차원에서 즉시 취소했다.
 - close 이후 reconciliation 기준 open order는 0건이며 신규 fill은 없다.
