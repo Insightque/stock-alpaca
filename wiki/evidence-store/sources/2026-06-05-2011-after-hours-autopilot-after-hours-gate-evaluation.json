@@ -1,0 +1,258 @@
+{
+  "run_id": "2026-06-05-2011-after-hours-autopilot",
+  "created_at": "2026-06-05T20:11:00+09:00",
+  "session": "after_hours",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "QQQ",
+    "PFE",
+    "SMH",
+    "BA",
+    "XOM",
+    "WMT",
+    "MA",
+    "GE",
+    "AVGO",
+    "SPY"
+  ],
+  "gate_results": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "fail_budget_already_2_of_2_submitted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_no_submit_budget_block",
+    "fresh_quote": "fail_runtime_quotes_stale_over_5_minutes_for_avgo_pfe_wmt_qqq_spy",
+    "spread_within_after_hours_policy": "fail_runtime_spread_cap_exceeded_for_avgo_pfe_wmt_qqq_spy",
+    "whole_share_day_limit_extended_hours_order": "pass_candidate_shape_confirmed_but_not_executed",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit_reconciled_by_account_orders_positions"
+  },
+  "block_reasons": [
+    "Runtime Alpaca MCP get_orders(status=all, after=2026-06-04T20:00:00Z) and get_order_by_client_id reconfirmed the two submitted after-hours session orders: canceled ah-20260605-1231-buy-wmt and filled ah-20260605-1251-buy-wmt. The separate after-hours session budget in recommendation-policy.yaml remained exhausted at 2/2.",
+    "Scheduler-owned 2011 Alpaca core preflight quote rows for AVGO, PFE, QQQ, SPY, and WMT were already stale by 863.33 to 911.47 minutes at 2026-06-05 20:11 KST, breaching the after-hours fresh-quote cap 5.0 minutes before any new submit could be considered.",
+    "AVGO/PFE/WMT quote rows also breached the after-hours spread cap from the same preflight rows: AVGO 9.4511%, PFE 5.4432%, WMT 7.9942%. QQQ 1-share ask 738.73 USD exceeded the 511.49 USD after-hours per-order cap, and SPY lacked a usable ask in the reused preflight quote row."
+  ],
+  "candidate_diagnostics": [
+    {
+      "symbol": "AVGO",
+      "decision": "skip_budget_quote_age_and_trim_metric_block",
+      "reason": "After-hours sell is permitted by policy, but the reused scheduler-owned preflight quote row for AVGO showed 396.26/437.62 at 2026-06-04T20:00:00Z, already 911.47 minutes old with spread 9.4511%, breaching both fresh-quote and spread caps. Even without those quote failures, the 2026-06-05 portfolio review still treats the earnings-event drawdown as a catalyst-risk alert rather than a live trim directive, and review-due-index keeps AVGO under due-review discipline. No executable trim or close trigger was promoted.",
+      "source_refs": [
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/trade-ledger/reviews/2026-06-05-portfolio-review.md",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/evidence-store/sources/2026-06-05-1951-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "decision": "skip_budget_quote_age_and_spread_block",
+      "reason": "The reused scheduler-owned preflight quote row for PFE showed 24.32/25.72 at 2026-06-04T20:00:01Z, already 911.45 minutes old with spread 5.4432%, above the after-hours spread cap 0.25% and fresh-quote cap 5.0 minutes. A 1-share order stayed below the 511.49 USD per-order cap, but the separate after-hours session budget was already exhausted at 2/2 from the 1231 and 1251 WMT submits.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-1951-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-05-1951-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/research-notes/tickers/PFE.md",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "WMT",
+      "decision": "skip_budget_quote_age_and_spread_block",
+      "reason": "The reused scheduler-owned preflight quote row for WMT showed 113.71/123.59 at 2026-06-04T20:00:00Z, already 911.47 minutes old with spread 7.9942%, far above the after-hours spread cap 0.25%. Even if quote freshness and spread had passed, the separate after-hours session budget was already exhausted at 2/2.",
+      "source_refs": [
+        "wiki/research-notes/tickers/WMT.md",
+        "wiki/evidence-store/sources/2026-06-05-1951-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    }
+  ],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 20,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 0,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1
+  },
+  "review_backlog_throttle": {
+    "enabled": true,
+    "review_backlog_pending_1d_count": 0,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "max_new_buy_slots_before_throttle": 1,
+    "max_new_buy_slots_after_throttle": 1,
+    "result": "no throttle reduction; buy-side limit would still be one slot, but the separate after-hours session budget was already exhausted before submit planning."
+  },
+  "orders_submitted": [],
+  "submit_attempted": false,
+  "runtime_alpaca_mcp": {
+    "clock_is_open": false,
+    "clock_timestamp": "2026-06-05T07:11:09.205156158-04:00",
+    "account_confirmed_active": true,
+    "account_source": "Scheduler-owned Alpaca core preflight supplied the passing ACTIVE account row used for after-hours gating; runtime Alpaca MCP order-state reconciliation showed no contradictory after-hours order lifecycle.",
+    "positions_count": 33,
+    "positions_source": "Scheduler-owned Alpaca core preflight supplied the passing positions row with 33 holdings. Runtime Alpaca MCP position refresh was safety-blocked, so this run reused the scheduler-owned positions evidence and verified only order-state continuity via Alpaca MCP order tools.",
+    "open_us_equity_orders_count": 0,
+    "open_orders_source": "Runtime Alpaca MCP get_orders(status=open) returned no open orders, matching the passing open-orders row in the scheduler-owned core preflight.",
+    "after_hours_orders_submitted_today": 2,
+    "after_hours_orders_today_source": "Runtime Alpaca MCP get_orders(status=all, after=2026-06-04T20:00:00Z) plus get_order_by_client_id confirmed canceled ah-20260605-1231-buy-wmt and filled ah-20260605-1251-buy-wmt, exhausting the separate after-hours session budget.",
+    "runtime_quote_screen": [
+      {
+        "symbol": "AVGO",
+        "bid": 396.26,
+        "ask": 437.62,
+        "quote_timestamp": "2026-06-04T20:00:00Z",
+        "spread_pct": 9.4511,
+        "within_notional_cap": true,
+        "quote_age_minutes": 911.47,
+        "per_order_notional_usd": 437.62,
+        "per_order_cap_usd": 511.49,
+        "within_spread_cap": false,
+        "within_quote_age_cap": false
+      },
+      {
+        "symbol": "PFE",
+        "bid": 24.32,
+        "ask": 25.72,
+        "quote_timestamp": "2026-06-04T20:00:01Z",
+        "spread_pct": 5.4432,
+        "within_notional_cap": true,
+        "quote_age_minutes": 911.45,
+        "per_order_notional_usd": 25.72,
+        "per_order_cap_usd": 511.49,
+        "within_spread_cap": false,
+        "within_quote_age_cap": false
+      },
+      {
+        "symbol": "QQQ",
+        "bid": 738.64,
+        "ask": 738.73,
+        "quote_timestamp": "2026-06-04T20:48:08Z",
+        "spread_pct": 0.0122,
+        "within_notional_cap": false,
+        "quote_age_minutes": 863.33,
+        "per_order_notional_usd": 738.73,
+        "per_order_cap_usd": 511.49,
+        "within_spread_cap": true,
+        "within_quote_age_cap": false
+      },
+      {
+        "symbol": "SPY",
+        "bid": 756.96,
+        "ask": 0.0,
+        "quote_timestamp": "2026-06-04T20:00:59Z",
+        "spread_pct": null,
+        "within_notional_cap": false,
+        "quote_age_minutes": 910.47,
+        "per_order_notional_usd": 0.0,
+        "per_order_cap_usd": 511.49,
+        "within_spread_cap": false,
+        "within_quote_age_cap": false
+      },
+      {
+        "symbol": "WMT",
+        "bid": 113.71,
+        "ask": 123.59,
+        "quote_timestamp": "2026-06-04T20:00:00Z",
+        "spread_pct": 7.9942,
+        "within_notional_cap": true,
+        "quote_age_minutes": 911.47,
+        "per_order_notional_usd": 123.59,
+        "per_order_cap_usd": 511.49,
+        "within_spread_cap": false,
+        "within_quote_age_cap": false
+      }
+    ],
+    "asset_checks": [
+      {
+        "symbol": "PFE",
+        "status": "active",
+        "tradable": true,
+        "class": "us_equity",
+        "exchange": "NYSE",
+        "overnight_tradable": true
+      },
+      {
+        "symbol": "WMT",
+        "status": "active",
+        "tradable": true,
+        "class": "us_equity",
+        "exchange": "NASDAQ",
+        "overnight_tradable": true
+      },
+      {
+        "symbol": "QQQ",
+        "status": "active",
+        "tradable": true,
+        "class": "us_equity",
+        "exchange": "NASDAQ",
+        "overnight_tradable": true
+      },
+      {
+        "symbol": "SPY",
+        "status": "active",
+        "tradable": true,
+        "class": "us_equity",
+        "exchange": "ARCA",
+        "overnight_tradable": true
+      },
+      {
+        "symbol": "AVGO",
+        "status": "active",
+        "tradable": true,
+        "class": "us_equity",
+        "exchange": "NASDAQ",
+        "overnight_tradable": true
+      }
+    ],
+    "orders_today": [
+      {
+        "id": "6bc7b899-df65-463e-bee9-b671d20c2126",
+        "client_order_id": "ah-20260605-1251-buy-wmt",
+        "symbol": "WMT",
+        "side": "buy",
+        "qty": "1",
+        "limit_price": "118.39",
+        "status": "filled",
+        "submitted_at": "2026-06-05T03:59:25.218988Z",
+        "filled_at": "2026-06-05T03:59:25.256344Z",
+        "extended_hours": true
+      },
+      {
+        "id": "1fd44ccc-f889-4d18-ad35-6326e16e557e",
+        "client_order_id": "ah-20260605-1231-buy-wmt",
+        "symbol": "WMT",
+        "side": "buy",
+        "qty": "1",
+        "limit_price": "118.28",
+        "status": "canceled",
+        "submitted_at": "2026-06-05T03:43:20.396928Z",
+        "canceled_at": "2026-06-05T03:54:36.765315Z",
+        "extended_hours": true
+      },
+      {
+        "id": "915838ec-e52b-41c2-9682-fdb7b94dba52",
+        "client_order_id": "hourly-20260605-0451-buy-jnj",
+        "symbol": "JNJ",
+        "side": "buy",
+        "qty": "1",
+        "limit_price": "229.25",
+        "status": "canceled",
+        "submitted_at": "2026-06-04T20:02:59.733373Z",
+        "canceled_at": "2026-06-04T20:04:09.116874Z",
+        "extended_hours": false
+      }
+    ]
+  }
+}
