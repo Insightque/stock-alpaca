@@ -1,0 +1,249 @@
+{
+  "run_id": "2026-06-05-1411-after-hours-autopilot",
+  "created_at": "2026-06-05T14:15:14+09:00",
+  "session": "after_hours",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "QQQ",
+    "PFE",
+    "SMH",
+    "BA",
+    "XOM",
+    "WMT",
+    "MA",
+    "GE",
+    "AVGO",
+    "SPY"
+  ],
+  "gate_results": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "fail_budget_already_2_of_2_submitted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_no_submit_budget_block",
+    "fresh_quote": "pass_pfe_avgo_qqq_spy_wmt_runtime_quotes_fresh",
+    "spread_within_after_hours_policy": "pass_pfe_avgo_qqq_spy_within_cap_wmt_over_cap_budget_still_blocking",
+    "whole_share_day_limit_extended_hours_order": "pass_candidate_shape_confirmed_but_not_executed",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit_reconciled_by_account_orders_positions"
+  },
+  "block_reasons": [
+    "Runtime Alpaca MCP get_orders(status=all, after=2026-06-04T20:00:00Z) showed two submitted after-hours orders for this session: canceled ah-20260605-1231-buy-wmt and filled ah-20260605-1251-buy-wmt. The separate after-hours session budget in recommendation-policy.yaml is exhausted at 2/2.",
+    "AVGO sell/trim remained blocked by decision-grade trim metric gaps and due-review discipline even though the overnight quote was fresh and spread-compliant.",
+    "QQQ and SPY still exceeded the after-hours per-order notional cap 511.55 USD, while WMT failed the after-hours spread cap at runtime."
+  ],
+  "candidate_diagnostics": [
+    {
+      "symbol": "AVGO",
+      "decision": "skip_no_executable_trim_trigger",
+      "reason": "After-hours sell is permitted by policy, and runtime overnight quote 412.32/412.45 at 2026-06-05T05:14:20.187510452Z was fresh and spread-compliant at 0.0315%. However, the 2026-06-05 portfolio review still treats the earnings-event drawdown as a catalyst-risk alert rather than a live trim directive, and review-due-index keeps AVGO in blocked_add_symbols. No executable trim or close trigger was promoted.",
+      "source_refs": [
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/trade-ledger/reviews/2026-06-05-portfolio-review.md",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/evidence-store/sources/2026-06-05-1411-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "decision": "skip_budget_exhausted",
+      "reason": "Runtime overnight quote 25.66/25.67 at 2026-06-05T05:14:07.430560752Z implied 0.039% spread and 1.11-minute quote age, both within after-hours submit caps. A 1-share order stayed far below the 511.55 USD per-order cap, but separate after-hours session budget was already exhausted at 2/2 from the 1231 and 1251 WMT submits.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-1411-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-05-1411-after-hours-autopilot-research-mcp-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "WMT",
+      "decision": "skip_spread_and_budget_block",
+      "reason": "Runtime overnight quote 117.68/118.08 at 2026-06-05T05:14:21.665925269Z kept quote age inside policy at 0.87 minutes, but spread widened to 0.3388%, above the after-hours spread cap 0.25%. Even absent that quote/spread failure, the separate after-hours session budget was already exhausted at 2/2.",
+      "source_refs": [
+        "wiki/research-notes/tickers/WMT.md",
+        "wiki/evidence-store/sources/2026-06-05-1411-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    }
+  ],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 20,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 0,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1
+  },
+  "review_backlog_throttle": {
+    "enabled": true,
+    "review_backlog_pending_1d_count": 0,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "max_new_buy_slots_before_throttle": 1,
+    "max_new_buy_slots_after_throttle": 1,
+    "result": "no throttle reduction; buy-side limit would still be one slot, but the separate after-hours session budget was already exhausted before submit planning."
+  },
+  "orders_submitted": [],
+  "submit_attempted": false,
+  "runtime_alpaca_mcp": {
+    "clock_is_open": false,
+    "clock_timestamp": "2026-06-05T01:13:24.998778062-04:00",
+    "account_confirmed_active": true,
+    "account_source": "Runtime Alpaca MCP get_account_info remained ACTIVE while the scheduler-owned Alpaca core preflight only showed market_closed. This run used runtime Alpaca MCP to fill the missing account/position/order/asset/quote evidence.",
+    "positions_count": 33,
+    "positions_source": "Runtime Alpaca MCP get_all_positions confirmed 33 positions; WMT remained at 5 shares after the 1251 fill.",
+    "open_us_equity_orders_count": 0,
+    "open_orders_source": "Runtime Alpaca MCP get_orders(status=open) returned 0 open orders.",
+    "after_hours_orders_submitted_today": 2,
+    "after_hours_orders_today_source": "Runtime Alpaca MCP get_orders(status=all, after=2026-06-04T20:00:00Z) showed canceled ah-20260605-1231-buy-wmt and filled ah-20260605-1251-buy-wmt, exhausting the separate after-hours session budget.",
+    "runtime_quote_screen": [
+      {
+        "symbol": "PFE",
+        "bid": 25.66,
+        "ask": 25.67,
+        "spread_pct": 0.039,
+        "quote_age_minutes": 1.11,
+        "quote_timestamp": "2026-06-05T05:14:07.430560752Z",
+        "per_order_notional_usd": 25.67,
+        "per_order_cap_usd": 511.55,
+        "within_spread_cap": true,
+        "within_quote_age_cap": true,
+        "within_notional_cap": true
+      },
+      {
+        "symbol": "AVGO",
+        "bid": 412.32,
+        "ask": 412.45,
+        "spread_pct": 0.0315,
+        "quote_age_minutes": 0.9,
+        "quote_timestamp": "2026-06-05T05:14:20.187510452Z",
+        "per_order_notional_usd": 412.45,
+        "per_order_cap_usd": 511.55,
+        "within_spread_cap": true,
+        "within_quote_age_cap": true,
+        "within_notional_cap": true
+      },
+      {
+        "symbol": "QQQ",
+        "bid": 734.65,
+        "ask": 734.8,
+        "spread_pct": 0.0204,
+        "quote_age_minutes": 0.81,
+        "quote_timestamp": "2026-06-05T05:14:25.498317065Z",
+        "per_order_notional_usd": 734.8,
+        "per_order_cap_usd": 511.55,
+        "within_spread_cap": true,
+        "within_quote_age_cap": true,
+        "within_notional_cap": false
+      },
+      {
+        "symbol": "SPY",
+        "bid": 754.03,
+        "ask": 754.1,
+        "spread_pct": 0.0093,
+        "quote_age_minutes": 0.82,
+        "quote_timestamp": "2026-06-05T05:14:24.916460869Z",
+        "per_order_notional_usd": 754.1,
+        "per_order_cap_usd": 511.55,
+        "within_spread_cap": true,
+        "within_quote_age_cap": true,
+        "within_notional_cap": false
+      },
+      {
+        "symbol": "WMT",
+        "bid": 117.68,
+        "ask": 118.08,
+        "spread_pct": 0.3388,
+        "quote_age_minutes": 0.87,
+        "quote_timestamp": "2026-06-05T05:14:21.665925269Z",
+        "per_order_notional_usd": 118.08,
+        "per_order_cap_usd": 511.55,
+        "within_spread_cap": false,
+        "within_quote_age_cap": true,
+        "within_notional_cap": true
+      }
+    ],
+    "asset_checks": [
+      {
+        "symbol": "PFE",
+        "status": "active",
+        "tradable": true,
+        "class": "us_equity",
+        "exchange": "NYSE",
+        "overnight_tradable": true
+      },
+      {
+        "symbol": "WMT",
+        "status": "active",
+        "tradable": true,
+        "class": "us_equity",
+        "exchange": "NASDAQ",
+        "overnight_tradable": true
+      },
+      {
+        "symbol": "QQQ",
+        "status": "active",
+        "tradable": true,
+        "class": "us_equity",
+        "exchange": "NASDAQ",
+        "overnight_tradable": true
+      },
+      {
+        "symbol": "AVGO",
+        "status": "active",
+        "tradable": true,
+        "class": "us_equity",
+        "exchange": "NASDAQ",
+        "overnight_tradable": true
+      }
+    ],
+    "orders_today": [
+      {
+        "id": "6bc7b899-df65-463e-bee9-b671d20c2126",
+        "client_order_id": "ah-20260605-1251-buy-wmt",
+        "symbol": "WMT",
+        "side": "buy",
+        "qty": "1",
+        "limit_price": "118.39",
+        "status": "filled",
+        "submitted_at": "2026-06-05T03:59:25.218988176Z",
+        "filled_at": "2026-06-05T03:59:25.256343803Z",
+        "extended_hours": true
+      },
+      {
+        "id": "1fd44ccc-f889-4d18-ad35-6326e16e557e",
+        "client_order_id": "ah-20260605-1231-buy-wmt",
+        "symbol": "WMT",
+        "side": "buy",
+        "qty": "1",
+        "limit_price": "118.28",
+        "status": "canceled",
+        "submitted_at": "2026-06-05T03:43:20.396928Z",
+        "canceled_at": "2026-06-05T03:54:36.765315Z",
+        "extended_hours": true
+      },
+      {
+        "id": "915838ec-e52b-41c2-9682-fdb7b94dba52",
+        "client_order_id": "hourly-20260605-0451-buy-jnj",
+        "symbol": "JNJ",
+        "side": "buy",
+        "qty": "1",
+        "limit_price": "229.25",
+        "status": "canceled",
+        "submitted_at": "2026-06-04T20:02:59.733373Z",
+        "canceled_at": "2026-06-04T20:04:09.116874Z",
+        "extended_hours": false
+      }
+    ]
+  }
+}
