@@ -1,25 +1,25 @@
 # portfolio-current
 
-_Last updated: 2026-06-05 12:31 KST_
+_Last updated: 2026-06-05 12:59 KST_
 
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: $102,396.91
-- Cash: $30,487.94
-- Buying power: $252,736.86
-- Long market value: $71,908.97
+- Portfolio value: $102,168.84
+- Cash: $30,369.56
+- Buying power: $252,204.76
+- Long market value: $71,799.28
 
 ## 최신 after-hours-autopilot reconciliation
 
-- Run: [[2026-06-05-1231-after-hours-autopilot]]
+- Run: [[2026-06-05-1251-after-hours-autopilot]]
 - Open/new: 없음
-- Filled: 없음
-- Cancelled: 없음
-- Position count observed by Alpaca MCP: 33 positions. 장외 세션에서 신규 fill, 신규 open order, 포지션 수량 변화는 없었다.
-- Recent reconciliation scope: scheduler-owned `1231` Alpaca core/research preflight와 runtime `get_account_info/get_all_positions/get_orders(status=open)/get_orders(after=2026-06-04T20:00:00Z)/get_stock_latest_quote` 확인 기준 regular market closed와 장외 `ah-` 신규 주문 0건을 재확인했다. `WMT`는 runtime overnight quote `118.17/118.28`로 submit candidate까지 승격됐지만 `place_stock_order`는 Alpaca MCP safety interceptor가 주문 생성 전에 차단했고, 같은 `client_order_id=ah-20260605-1231-buy-wmt` 조회도 `404`라 실제 order object는 생성되지 않았다.
-- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
-- Source note: `wiki/trade-ledger/positions/2026-06-05-1231-after-hours-autopilot-post-trade.json`
+- Filled: `WMT` buy 1 @ `118.38` avg fill, `client_order_id=ah-20260605-1251-buy-wmt`, `order_id=6bc7b899-df65-463e-bee9-b671d20c2126`, `status=filled`
+- Cancelled: stale prior `WMT` buy 1 @ `118.28` limit, `client_order_id=ah-20260605-1231-buy-wmt`, `order_id=1fd44ccc-f889-4d18-ad35-6326e16e557e`, `status=canceled`
+- Position count observed by Alpaca MCP: 33 positions. `WMT` 보유 수량은 5주로 증가했고 신규 open order는 없다.
+- Recent reconciliation scope: scheduler-owned `1251` Alpaca core/research preflight와 runtime `cancel_order_by_id/place_stock_order/get_order_by_client_id/get_orders(status=open)/get_orders(after=2026-06-04T20:00:00Z)/get_account_info/get_all_positions` 확인 기준 장외 stale order cancel 후 replacement buy 1주가 즉시 체결됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 1 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-05-1251-after-hours-autopilot-post-trade.json`
 
 ## 직전 hourly-autopilot reconciliation
 
@@ -34,6 +34,6 @@ _Last updated: 2026-06-05 12:31 KST_
 
 ## 계좌 요약 주석
 
-- 위 계좌 요약 수치는 `1151` scheduler core preflight account snapshot과 runtime `get_stock_latest_quote/get_stock_snapshot` 보조 확인 기준이다.
-- `JNJ` order는 pre-submit gate 시점에는 market open이었지만 실제 Alpaca submit timestamp가 `16:02:59 ET`로 close 이후가 되어, workflow safety 복구 차원에서 즉시 취소했다.
-- close 이후 reconciliation 기준 open order는 0건이며 신규 fill은 없다.
+- 위 계좌 요약 수치는 `1251` scheduler core preflight와 runtime Alpaca MCP reconciliation 기준이다.
+- after-hours session budget은 이번 체결로 `2/2`가 됐고, 같은 세션의 stale prior WMT order는 먼저 취소 후 재실행됐다.
+- close 이후 reconciliation 기준 open order는 0건이며 신규 fill은 `WMT` 1주다.

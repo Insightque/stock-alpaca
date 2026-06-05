@@ -1,0 +1,66 @@
+{
+  "run_id": "2026-06-05-1251-after-hours-autopilot",
+  "created_at": "2026-06-05T03:59:40Z",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102168.84,
+    "cash": 30369.56,
+    "buying_power": 252204.76,
+    "long_market_value": 71799.28,
+    "currency": "USD"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "WMT",
+      "client_order_id": "ah-20260605-1251-buy-wmt",
+      "order_id": "6bc7b899-df65-463e-bee9-b671d20c2126",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 118.39,
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 118.38,
+      "submitted_at": "2026-06-05T03:59:25.218988176Z",
+      "filled_at": "2026-06-05T03:59:25.256343803Z",
+      "extended_hours": true,
+      "session": "after_hours",
+      "review_bucket": "after_hours_validation"
+    }
+  ],
+  "lifecycle_actions": [
+    {
+      "symbol": "WMT",
+      "client_order_id": "ah-20260605-1231-buy-wmt",
+      "order_id": "1fd44ccc-f889-4d18-ad35-6326e16e557e",
+      "action": "cancelled_stale_unfilled_after_hours_order",
+      "status": "canceled",
+      "filled_qty": 0,
+      "canceled_at": "2026-06-05T03:54:36.765314532Z",
+      "reconciled_by": "client_order_id"
+    }
+  ],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "WMT",
+      "qty": 5,
+      "avg_entry_price": 117.736,
+      "current_price": 118.2,
+      "market_value": 591.0
+    },
+    {
+      "symbol": "AVGO",
+      "qty": 16,
+      "avg_entry_price": 413.888125,
+      "current_price": 411.0,
+      "market_value": 6576.0
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/run-manifests/2026-06-05-1251-after-hours-autopilot.json",
+    "wiki/trade-ledger/orders/2026-06-05-1251-after-hours-autopilot.json"
+  ]
+}
