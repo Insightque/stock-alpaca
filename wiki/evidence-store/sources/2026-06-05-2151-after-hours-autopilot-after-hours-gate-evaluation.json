@@ -1,0 +1,134 @@
+{
+  "run_id": "2026-06-05-2151-after-hours-autopilot",
+  "created_at": "2026-06-05T12:53:00Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "submit_attempted": false,
+  "orders_submitted": [],
+  "shortlist_symbols": [
+    "QQQ",
+    "PFE",
+    "WMT",
+    "AVGO",
+    "SPY"
+  ],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 20,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 0,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1
+  },
+  "review_backlog_throttle": {
+    "enabled": true,
+    "review_backlog_pending_1d_count": 0,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "max_new_buy_slots_before_throttle": 1,
+    "max_new_buy_slots_after_throttle": 1,
+    "result": "no throttle reduction; buy-side limit would still be one slot, but the separate after-hours session budget was already exhausted before submit planning."
+  },
+  "runtime_alpaca_mcp": {
+    "clock_is_open": false,
+    "clock_timestamp": "2026-06-05T08:53:12.371688405-04:00",
+    "account_confirmed_active": true,
+    "account_source": "Scheduler-owned 2131 Alpaca core preflight remained the primary evidence source for ACTIVE account/account value while runtime Alpaca MCP reconfirmed open-order state, session order history, and overnight quote/spread failures.",
+    "positions_count": 33,
+    "open_orders_count": 0,
+    "after_hours_new_orders_submitted_today": 2,
+    "reconciled_client_order_ids": [
+      "ah-20260605-1231-buy-wmt",
+      "ah-20260605-1251-buy-wmt"
+    ]
+  },
+  "gate_results": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "fail_budget_already_2_of_2_submitted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_no_submit_budget_block",
+    "fresh_quote": "fail_runtime_overnight_quotes_stale_over_5_minutes_for_avgo_pfe_wmt_qqq_spy",
+    "spread_within_after_hours_policy": "fail_runtime_overnight_spread_cap_for_avgo_pfe_wmt_qqq_spy",
+    "whole_share_day_limit_extended_hours_order": "pass_candidate_shape_confirmed_but_not_executed",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit_reconciled_by_order_history_and_open_orders"
+  },
+  "block_reasons": [
+    "Runtime Alpaca MCP get_orders(status=all, after=2026-06-04T20:00:00Z) reconfirmed the two submitted after-hours session orders: canceled ah-20260605-1231-buy-wmt and filled ah-20260605-1251-buy-wmt. The separate after-hours session budget in recommendation-policy.yaml remained exhausted at 2/2.",
+    "Runtime Alpaca MCP overnight quotes for AVGO, PFE, WMT, QQQ, and SPY were already stale by 293.20 minutes at 2026-06-05 21:53 KST, breaching the after-hours fresh-quote cap 5.0 minutes before any new submit could be considered.",
+    "AVGO/PFE/WMT/QQQ/SPY runtime overnight spreads were 2.6189%/2.0897%/12.6346%/4.7399%/0.4728%, all above the after-hours spread cap 0.25%. QQQ and SPY also exceeded the 509.48 USD after-hours per-order cap with 1-share asks 734.40 USD and 755.01 USD.",
+    "Alpha Vantage remained a non-blocking research provider gap in this cycle: NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols."
+  ],
+  "candidate_diagnostics": [
+    {
+      "symbol": "AVGO",
+      "decision": "skip_budget_quote_age_spread_and_trim_metric_block",
+      "reason": "After-hours sell is permitted by policy, but runtime overnight quote for AVGO was 409.39/420.40 at 2026-06-05T08:00:00.414992659Z, already 293.20 minutes old with spread 2.6189%, breaching both fresh-quote and spread caps. Even without those quote failures, the 2026-06-05 portfolio review still treats the earnings-event drawdown as a catalyst-risk alert rather than a live trim directive, and review-due-index keeps AVGO under due-review discipline. No executable trim or close trigger was promoted.",
+      "source_refs": [
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/trade-ledger/reviews/2026-06-05-portfolio-review.md",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/evidence-store/sources/2026-06-05-2151-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "decision": "skip_budget_quote_age_and_spread_block",
+      "reason": "Runtime overnight quote for PFE was 25.77/26.32 at 2026-06-05T08:00:00.402824909Z, already 293.20 minutes old with spread 2.0897%, above the after-hours spread cap 0.25% and fresh-quote cap 5.0 minutes. A 1-share order stayed below the 509.48 USD per-order cap, but the separate after-hours session budget was already exhausted at 2/2 from the 1231 and 1251 WMT submits.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-2151-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-05-2151-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/research-notes/tickers/PFE.md",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "WMT",
+      "decision": "skip_budget_quote_age_and_spread_block",
+      "reason": "Runtime overnight quote for WMT was 112.78/129.09 at 2026-06-05T08:00:00.395669280Z, already 293.20 minutes old with spread 12.6346%, far above the after-hours spread cap 0.25%. Even if quote freshness and spread had passed, the separate after-hours session budget was already exhausted at 2/2.",
+      "source_refs": [
+        "wiki/research-notes/tickers/WMT.md",
+        "wiki/evidence-store/sources/2026-06-05-2151-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "skip_budget_quote_age_spread_and_per_order_cap_block",
+      "reason": "Runtime overnight quote for QQQ was 699.59/734.40 at 2026-06-05T08:00:00.406190958Z, already 293.20 minutes old with spread 4.7399%. The 1-share ask 734.40 USD also exceeded the after-hours per-order cap 509.48 USD, and the separate session budget was already exhausted at 2/2.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-2151-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-05-2151-after-hours-autopilot-research-mcp-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "SPY",
+      "decision": "skip_budget_quote_age_spread_and_per_order_cap_block",
+      "reason": "Runtime overnight quote for SPY was 751.44/755.01 at 2026-06-05T08:00:00.411452435Z, already 293.20 minutes old with spread 0.4728%. The 1-share ask 755.01 USD exceeded the after-hours per-order cap 509.48 USD, so it could not be used as the fallback benchmark buy even before the separate session budget check.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-05-2151-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-05-2151-after-hours-autopilot-research-mcp-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-05-2151-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-2151-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/run-manifests/2026-06-05-2151-after-hours-autopilot.json",
+    "wiki/trade-ledger/orders/2026-06-05-2151-after-hours-autopilot.json"
+  ]
+}
