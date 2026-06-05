@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-06 02:44 KST_
+_Last updated: 2026-06-06 02:58 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-06-0251-hourly-autopilot]]
+- Open/new: `NEE` buy 1 @ `85.47` (`client_order_id=hourly-20260606-0231-buy-nee`, `status=new`), `CVX` buy 1 @ `187.68` (`client_order_id=hourly-20260606-0251-buy-cvx`, `status=new`)
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: latest confirmed positions snapshot 기준 `33` positions 유지. `CVX`는 아직 `1주 @ 184.03`이다.
+- Recent reconciliation scope: scheduler-owned `0251` stale cleanup/core/research preflight와 runtime `place_stock_order/get_order_by_client_id/get_order_by_id` 확인 기준 `CVX` 1주 regular-session validation add가 Alpaca order id `5fbf3e4a-cd4d-4551-88ef-d14fb2dd78fe`로 생성됐고 direct lookup 기준 `status=new`, `filled_qty=0`이다. post-submit `get_all_positions/get_open_position/get_stock_latest_trade`는 tool layer에서 cancelled 되어 계좌 수치는 last confirmed pre-submit snapshot인 portfolio value `99,069.12 USD`, cash `28,696.01 USD`, buying power `243,685.21 USD`, long market value `70,373.11 USD`를 유지 기록한다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-06-0251-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
@@ -27,10 +38,10 @@ _Last updated: 2026-06-06 02:44 KST_
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: post-submit runtime confirmed $98,973.27
-- Cash: post-submit runtime confirmed $28,722.10
-- Buying power: post-submit runtime confirmed $243,636.32
-- Long market value: post-submit runtime confirmed $70,251.17
+- Portfolio value: last confirmed snapshot $99,069.12
+- Cash: last confirmed snapshot $28,696.01
+- Buying power: last confirmed snapshot $243,685.21
+- Long market value: last confirmed snapshot $70,373.11
 
 ## 최신 hourly-autopilot reconciliation
 

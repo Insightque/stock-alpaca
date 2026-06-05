@@ -1,0 +1,74 @@
+{
+  "run_id": "2026-06-06-0251-hourly-autopilot",
+  "created_at": "2026-06-05T17:58:20Z",
+  "paper": true,
+  "session": "regular",
+  "submit_attempted": true,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-06-0251-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-06-0251-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-06-0251-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-06-0251-hourly-autopilot.json"
+  ],
+  "pre_submit_account_snapshot": {
+    "portfolio_value": 99069.12,
+    "cash": 28696.01,
+    "buying_power": 243685.21,
+    "long_market_value": 70373.11,
+    "currency": "USD",
+    "checked_at": "2026-06-05T17:51:09Z",
+    "source": "scheduler-owned Alpaca core preflight get_account_info"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "CVX",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 187.68,
+      "client_order_id": "hourly-20260606-0251-buy-cvx",
+      "order_id": "5fbf3e4a-cd4d-4551-88ef-d14fb2dd78fe",
+      "status": "new",
+      "submitted_at": "2026-06-05T17:57:53.013680189Z",
+      "filled_at": null,
+      "filled_avg_price": null
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "NEE",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 85.47,
+      "client_order_id": "hourly-20260606-0231-buy-nee",
+      "order_id": "202d7a0d-c061-4385-a693-b91f403a2b4f",
+      "status": "new",
+      "expires_at": "2026-06-05T20:00:00Z"
+    },
+    {
+      "symbol": "CVX",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 187.68,
+      "client_order_id": "hourly-20260606-0251-buy-cvx",
+      "order_id": "5fbf3e4a-cd4d-4551-88ef-d14fb2dd78fe",
+      "status": "new",
+      "expires_at": "2026-06-05T20:00:00Z"
+    }
+  ],
+  "positions_reconciliation": {
+    "runtime_positions_before_submit": {
+      "CVX_qty": 1.0,
+      "CVX_avg_entry_price": 184.03,
+      "CVX_market_value": 187.64,
+      "position_count": 33
+    },
+    "post_submit_confirmed": {
+      "CVX_qty": 1.0,
+      "CVX_avg_entry_price": 184.03,
+      "CVX_market_value": 187.64,
+      "position_count": 33
+    },
+    "account_refresh_after_submit": "unavailable",
+    "note": "place_stock_order 첫 시도에서 order id 5fbf3e4a-cd4d-4551-88ef-d14fb2dd78fe가 즉시 생성됐다. get_order_by_client_id와 get_order_by_id가 동일 주문을 status new, filled_qty 0으로 확인했다. post-submit get_all_positions와 get_open_position(CVX), get_stock_latest_trade(CVX)는 tool layer에서 cancelled 되어 post-trade account/positions snapshot은 0251 scheduler core preflight의 마지막 확정 계좌/포지션 상태와 confirmed open-order state를 결합해 기록한다."
+  }
+}
