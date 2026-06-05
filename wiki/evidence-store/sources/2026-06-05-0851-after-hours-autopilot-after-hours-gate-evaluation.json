@@ -1,0 +1,233 @@
+{
+  "run_id": "2026-06-05-0851-after-hours-autopilot",
+  "created_at": "2026-06-05T08:51:00+09:00",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "QQQ",
+    "PFE",
+    "SMH",
+    "BA",
+    "XOM",
+    "WMT",
+    "MA",
+    "GE"
+  ],
+  "gate_results": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_submitted_today",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_empty_order_plan_expected_warning",
+    "fresh_quote": "block_no_candidate_quote_within_5_minutes",
+    "spread_within_after_hours_policy": "block_no_candidate_spread_within_0_25_pct_with_fresh_quote",
+    "whole_share_day_limit_extended_hours_order": "not_applicable_no_orders",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit_attempt"
+  },
+  "block_reasons": [
+    "No candidate passed the after-hours quote/spread/notional stack at the 19:51 ET scheduler clock: QQQ remained the only narrow-spread shortlist symbol but its latest quote was 182.98 minutes stale and 1-share ask 738.73 USD exceeded the 512.84 USD per-order cap; PFE/SMH/BA/XOM/WMT/MA/GE were all more than 231 minutes stale with spreads far above 0.25%; AVGO sell/trim remained blocked by stale wide quote and pending-review discipline."
+  ],
+  "candidate_diagnostics": [
+    {
+      "symbol": "QQQ",
+      "decision": "blocked_stale_quote_and_notional_cap",
+      "reason": "QQQ는 shortlist 중 유일하게 spread 자체는 좁았지만 scheduler-owned latest quote age가 19:51 ET 기준 182.98분으로 after-hours max 5분을 초과했다. 또한 1주 ask 738.73 USD가 after_hours_policy.max_notional_pct_per_order 한도 512.84 USD를 넘었다.",
+      "source_refs": [
+        "wiki/research-notes/tickers/QQQ.md",
+        "wiki/evidence-store/sources/2026-06-05-0851-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "decision": "blocked_stale_quote_and_wide_spread",
+      "reason": "PFE는 1주 notional은 작지만 scheduler-owned latest quote row가 231.11분 stale이고 spread가 5.5955%로 after-hours max 0.25%를 크게 넘었다. review backlog는 완화됐지만 quote/spread hard gate에서 즉시 차단된다.",
+      "source_refs": [
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/evidence-store/sources/2026-06-05-0851-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/trade-ledger/reviews/2026-06-05-portfolio-review.md",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "SMH",
+      "decision": "blocked_stale_quote_wide_spread_and_notional_cap",
+      "reason": "SMH는 scheduler-owned latest quote row가 231.12분 stale이고 spread 5.9019%로 장외 한도를 넘었다. 1주 ask 650.82 USD도 after-hours per-order notional cap 512.84 USD를 초과했다.",
+      "source_refs": [
+        "wiki/research-notes/tickers/SMH.md",
+        "wiki/evidence-store/sources/2026-06-05-0851-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "JNJ",
+      "decision": "blocked_runtime_fallback_stale_quote_and_wide_spread",
+      "reason": "regular-session close-race로 취소된 JNJ를 장외 fallback diversifier로 다시 검토했지만, 같은 scheduler quote row 기준 quote age 231.12분과 spread 10.6582%가 모두 hard gate를 위반했다.",
+      "source_refs": [
+        "wiki/research-notes/tickers/JNJ.md",
+        "wiki/current-runs/daily/2026-06-05-0451-hourly-autopilot.md",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "AVGO",
+      "decision": "blocked_sell_trim_review_quote_and_metric_gates",
+      "reason": "sell side 허용 정책에 따라 AVGO trim도 재평가했지만 review_due_index에서 `AVGO`가 due-review blocking add/sell discipline에 남아 있고, scheduler-owned latest quote는 231.12분 stale에 spread 9.9199%로 장외 submit용 quote gate를 통과하지 못했다.",
+      "source_refs": [
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/evidence-store/sources/2026-06-05-0851-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    }
+  ],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 0,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1
+  },
+  "review_backlog_throttle": {
+    "enabled": true,
+    "review_backlog_pending_1d_count": 0,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "max_new_buy_slots_before_throttle": 1,
+    "max_new_buy_slots_after_throttle": 1,
+    "result": "no throttle reduction; pending-review counts stayed below the 1D reduction threshold, but no candidate cleared after-hours quote freshness and spread requirements"
+  },
+  "orders_submitted": [],
+  "submit_attempted": false,
+  "runtime_alpaca_mcp": {
+    "clock_is_open": false,
+    "clock_timestamp": "2026-06-04T19:51:07.412017135-04:00",
+    "account_confirmed_active": true,
+    "account_source": "Scheduler-owned Alpaca core preflight get_account_info returned ACTIVE at 19:51 ET and remained authoritative for this no-submit after-hours run.",
+    "positions_count": 33,
+    "positions_source": "Runtime Alpaca MCP get_all_positions reconfirmed 33 positions; scheduler-owned core preflight remained the source of truth for planning and risk evaluation.",
+    "open_us_equity_orders_count": 0,
+    "open_orders_source": "Runtime Alpaca MCP get_orders(status=open) returned 0 open US equity orders and no submit boundary was reached in this run.",
+    "after_hours_orders_submitted_today": 0,
+    "after_hours_orders_today_source": "Runtime Alpaca MCP get_orders(status=all, after=2026-06-04T20:00:00Z) returned only the regular-session JNJ cancel and no ah- prefix order, so the separate after-hours order budget remained 0 used.",
+    "watchlists_runtime_note": "Scheduler-owned core preflight get_watchlists passed and returned no watchlists; this run kept the scheduled research shortlist authoritative.",
+    "quote_runtime_note": "Runtime Alpaca MCP get_stock_latest_quote returned the same stale/wide shortlist state as the scheduler-owned preflight: no candidate had a quote within the 5-minute freshness cap at the 19:51 ET scheduler clock.",
+    "candidate_quote_diagnostics": [
+      {
+        "symbol": "QQQ",
+        "quote_timestamp": "2026-06-04T20:48:08.361970692Z",
+        "quote_age_minutes": 182.984,
+        "bid": 738.64,
+        "ask": 738.73,
+        "spread_pct": 0.0122,
+        "latest_trade_timestamp": "2026-06-04T20:50:18.072563331Z",
+        "latest_trade_price": 738.6
+      },
+      {
+        "symbol": "PFE",
+        "quote_timestamp": "2026-06-04T20:00:01.069056052Z",
+        "quote_age_minutes": 231.106,
+        "bid": 24.32,
+        "ask": 25.72,
+        "spread_pct": 5.5955,
+        "latest_trade_timestamp": "2026-06-04T19:59:59.822292437Z",
+        "latest_trade_price": 25.7
+      },
+      {
+        "symbol": "SMH",
+        "quote_timestamp": "2026-06-04T20:00:00.002607381Z",
+        "quote_age_minutes": 231.123,
+        "bid": 613.51,
+        "ask": 650.82,
+        "spread_pct": 5.9019,
+        "latest_trade_timestamp": "2026-06-04T19:59:59.957667739Z",
+        "latest_trade_price": 628.51
+      },
+      {
+        "symbol": "BA",
+        "quote_timestamp": "2026-06-04T20:00:00.010718961Z",
+        "quote_age_minutes": 231.123,
+        "bid": 210.35,
+        "ask": 228.29,
+        "spread_pct": 8.1798,
+        "latest_trade_timestamp": "2026-06-04T19:59:55.40066161Z",
+        "latest_trade_price": 217.35
+      },
+      {
+        "symbol": "XOM",
+        "quote_timestamp": "2026-06-04T20:00:00.008278127Z",
+        "quote_age_minutes": 231.123,
+        "bid": 144.23,
+        "ask": 156.67,
+        "spread_pct": 8.2685,
+        "latest_trade_timestamp": "2026-06-04T19:59:59.976676904Z",
+        "latest_trade_price": 152.09
+      },
+      {
+        "symbol": "WMT",
+        "quote_timestamp": "2026-06-04T20:00:00.003359295Z",
+        "quote_age_minutes": 231.123,
+        "bid": 113.71,
+        "ask": 123.59,
+        "spread_pct": 8.327,
+        "latest_trade_timestamp": "2026-06-04T19:59:59.918446631Z",
+        "latest_trade_price": 117.75
+      },
+      {
+        "symbol": "MA",
+        "quote_timestamp": "2026-06-04T20:00:00.283725631Z",
+        "quote_age_minutes": 231.119,
+        "bid": 463.48,
+        "ask": 504.0,
+        "spread_pct": 8.3764,
+        "latest_trade_timestamp": "2026-06-04T20:50:43.160537845Z",
+        "latest_trade_price": 481.43
+      },
+      {
+        "symbol": "GE",
+        "quote_timestamp": "2026-06-04T20:00:00.010233473Z",
+        "quote_age_minutes": 231.123,
+        "bid": 312.84,
+        "ask": 340.73,
+        "spread_pct": 8.5347,
+        "latest_trade_timestamp": "2026-06-04T19:59:56.278682043Z",
+        "latest_trade_price": 327.74
+      },
+      {
+        "symbol": "AVGO",
+        "quote_timestamp": "2026-06-04T20:00:00.010617632Z",
+        "quote_age_minutes": 231.123,
+        "bid": 396.26,
+        "ask": 437.62,
+        "spread_pct": 9.9199,
+        "latest_trade_timestamp": "2026-06-04T20:52:49.497091022Z",
+        "latest_trade_price": 417.58
+      },
+      {
+        "symbol": "JNJ",
+        "quote_timestamp": "2026-06-04T20:00:00.008333612Z",
+        "quote_age_minutes": 231.123,
+        "bid": 214.6,
+        "ask": 238.76,
+        "spread_pct": 10.6582,
+        "latest_trade_timestamp": "2026-06-04T19:59:55.289074308Z",
+        "latest_trade_price": 228.27
+      }
+    ]
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-05-0851-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-0851-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}

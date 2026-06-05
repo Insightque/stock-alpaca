@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 04:40 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 08:51 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -51,6 +51,7 @@
 
 ## Current Runs
 
+- [[2026-06-05-0851-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0851` core/research preflight와 strict universe/MCP/risk validator는 모두 통과했다. 다만 `QQQ`조차 quote age `182.98`분과 1주 ask `738.73 USD`가 장외 per-order cap `512.84 USD`를 동시에 위반했고 `PFE/SMH/BA/XOM/WMT/MA/GE`는 모두 `231`분 이상 stale/wide quote라 Alpaca submit 없이 종료했다.
 - [[2026-06-05-0831-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0831` core/research preflight와 strict universe/MCP/risk validator는 모두 통과했다. 다만 `QQQ`조차 quote age `163.02`분과 1주 ask `738.73 USD`가 장외 per-order cap `513.14 USD`를 동시에 위반했고 `PFE/SMH/BA/XOM/WMT/MA/GE`는 모두 `211`분 이상 stale/wide quote라 Alpaca submit 없이 종료했다.
 - [[2026-06-05-0811-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0811` core/research preflight와 strict universe/MCP/risk validator는 모두 통과했다. 다만 same preflight 기준 `QQQ` quote age가 `143.02`분으로 stale했고 1주 ask `738.73 USD`가 장외 per-order cap `514.07 USD`를 넘었다. `PFE/SMH/BA/XOM/WMT/MA/GE`도 모두 `191`분 이상 stale/wide quote라 Alpaca submit 없이 종료했다.
 - [[2026-06-05-0751-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0751` core/research preflight와 strict universe/MCP/risk validator는 모두 통과했다. 다만 same preflight 기준 `QQQ` quote age가 `123.03`분으로 stale했고 1주 ask `738.73 USD`가 장외 per-order cap `514.20 USD`를 넘었다. `PFE/SMH/BA/XOM/WMT/MA/GE`도 모두 `171`분 이상 stale/wide quote라 Alpaca submit 없이 종료했다.
