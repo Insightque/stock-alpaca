@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 09:51 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 10:13 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -51,6 +51,7 @@
 
 ## Current Runs
 
+- [[2026-06-05-1011-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1011` core/research preflight와 strict universe/MCP/risk validator는 모두 통과했다. 다만 runtime Alpaca MCP 기준 `QQQ`도 quote age `265.22`분과 1주 ask `738.73 USD`가 장외 per-order cap `509.74 USD`를 동시에 위반했고 `PFE/SMH/BA/XOM/WMT/MA/GE`와 `AVGO` trim도 stale/wide quote 및 due-review discipline으로 submit 없이 종료했다.
 - [[2026-06-05-0951-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0951` core/research preflight와 strict universe/MCP validator는 유지됐다. runtime Alpaca MCP에서 `QQQ` quote freshness는 `3.04`분으로 회복됐지만 1주 ask `738.73 USD`가 장외 per-order cap `510.52 USD`를 넘어 주문 계획을 비웠고, `PFE/SMH/BA/XOM/WMT/MA/GE`와 `AVGO` trim은 stale/wide quote 및 due-review discipline으로 submit 없이 종료했다.
 - [[2026-06-05-0931-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0931` core/research preflight와 strict universe/MCP/risk validator는 모두 통과했다. 다만 `QQQ`조차 quote age `222.95`분과 1주 ask `738.73 USD`가 장외 per-order cap `510.50 USD`를 동시에 위반했고 `PFE/SMH/BA/XOM/WMT/MA/GE`는 모두 `271`분 이상 stale/wide quote라 Alpaca submit 없이 종료했다.
 - [[2026-06-05-0911-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0911` core/research preflight와 strict universe/MCP/risk validator는 모두 통과했다. 다만 `QQQ`조차 quote age `203.01`분과 1주 ask `738.73 USD`가 장외 per-order cap `512.71 USD`를 동시에 위반했고 `PFE/SMH/BA/XOM/WMT/MA/GE`는 모두 `251`분 이상 stale/wide quote라 Alpaca submit 없이 종료했다.
