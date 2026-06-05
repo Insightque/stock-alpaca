@@ -1,6 +1,6 @@
 # portfolio-current
 
-_Last updated: 2026-06-05 14:33 KST_
+_Last updated: 2026-06-05 14:55 KST_
 
 ## 계좌 요약
 
@@ -12,6 +12,17 @@ _Last updated: 2026-06-05 14:33 KST_
 
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-06-05-1451-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: 33 positions. `WMT` 5주, `AVGO` 16주, `PFE` 3주, 신규 open order 없음.
+- Recent reconciliation scope: scheduler-owned `1451` Alpaca core/research preflight와 runtime `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-04T20:00:00Z)/get_stock_latest_quote(feed=overnight)/get_stock_snapshot(feed=overnight)` 확인 기준 장외 separate session budget `2/2` 소진으로 submit 없이 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-05-1451-after-hours-autopilot-post-trade.json`
+
+## 직전 after-hours-autopilot reconciliation
+
 - Run: [[2026-06-05-1431-after-hours-autopilot]]
 - Open/new: 없음
 - Filled: 없음
@@ -21,7 +32,7 @@ _Last updated: 2026-06-05 14:33 KST_
 - Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
 - Source note: `wiki/trade-ledger/positions/2026-06-05-1431-after-hours-autopilot-post-trade.json`
 
-## 직전 after-hours-autopilot reconciliation
+## 그전 after-hours-autopilot reconciliation
 
 - Run: [[2026-06-05-1411-after-hours-autopilot]]
 - Open/new: 없음
@@ -32,7 +43,7 @@ _Last updated: 2026-06-05 14:33 KST_
 - Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
 - Source note: `wiki/trade-ledger/positions/2026-06-05-1411-after-hours-autopilot-post-trade.json`
 
-## 그전 after-hours-autopilot reconciliation
+## 이전 after-hours-autopilot reconciliation
 
 - Run: [[2026-06-05-1351-after-hours-autopilot]]
 - Open/new: 없음
@@ -56,6 +67,6 @@ _Last updated: 2026-06-05 14:33 KST_
 
 ## 계좌 요약 주석
 
-- 위 계좌 요약 수치는 `1431` scheduler-owned Alpaca core preflight 기준이다.
-- after-hours session budget은 `1231` cancel + `1251` fill submit lifecycle로 이미 `2/2`라 `1431` cycle에서도 추가 주문을 만들지 않았다.
-- close 이후 reconciliation 기준 open order는 0건이며 `1431` 신규 fill은 없다.
+- 위 계좌 요약 수치는 `1451` scheduler-owned Alpaca core preflight 기준이다.
+- after-hours session budget은 `1231` cancel + `1251` fill submit lifecycle로 이미 `2/2`라 `1451` cycle에서도 추가 주문을 만들지 않았다.
+- close 이후 reconciliation 기준 open order는 0건이며 `1451` 신규 fill은 없다.
