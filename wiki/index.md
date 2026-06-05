@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 23:40 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-06 00:01 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -50,6 +50,8 @@
 - [[COP]] - 2026-05-28 validation buy 1D 회고 중립 약함, 5D/20D 대기.
 
 ## Current Runs
+
+- [[2026-06-05-2351-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `2351` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim은 `AVGO`/`SO`/`TSLA`가 decision-grade metric 또는 held-quantity gate에 막혔다. `BAC`/`WMT`/`FCX`는 same-day filled buy로 duplicate symbol/side gate에 걸렸고, `QQQ`/`SPY`는 1주 ask가 validation floor per-order cap을 초과했다. `PLTR`은 runtime quote `138.50/138.56`, quote age 약 `0.1`분, spread `0.0433%`, same-day duplicate/open-order conflict 없음, 5D cohort 양호, review backlog throttle 통과 조건을 충족해 floor-size validation buy 1주 후보가 됐다. 첫 submit cancellation 후 동일 client id reconcile/retry를 거쳐 `hourly-20260605-2351-buy-pltr`가 Alpaca order id `a89c2fdb-979b-42e1-a5ff-050916aa6257`로 `2026-06-05T15:00:44.444163302Z`에 `status=new` open order로 생성됐다.
 
 - [[2026-06-05-2331-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `2331` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim은 `AVGO`/`SO`/`TSLA`가 decision-grade metric 또는 held-quantity gate에 막혔고, `BAC`/`WMT`는 same-day filled buy로 duplicate symbol/side gate에 걸렸다. `QQQ`/`SPY`는 1주 ask가 validation floor per-order cap을 초과했고 `NVDA`는 ai_semiconductor_complex warning band로 우선순위가 낮아졌다. `FCX`는 quote `65.28/65.31`, quote age 약 `4.5`분, spread `0.0460%`, duplicate/open-order conflict 없음, materials/mining diversifier 역할 유지 조건을 동시에 만족해 floor-size validation buy 1주 후보가 됐고, `hourly-20260605-2331-buy-fcx`가 `2026-06-05T14:39:22.134743752Z`에 `65.15 USD`로 체결됐다.
 

@@ -1,14 +1,25 @@
 # portfolio-current
 
-_Last updated: 2026-06-05 23:40 KST_
+_Last updated: 2026-06-06 00:01 KST_
 
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: $100,526.30
+- Portfolio value: $100,670.12
 - Cash: $30,130.79
-- Buying power: $248,926.56
-- Long market value: $70,395.51
+- Buying power: $249,228.27
+- Long market value: $70,539.33
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-05-2351-hourly-autopilot]]
+- Open/new: `PLTR` buy 1 @ `138.56` (`client_order_id=hourly-20260605-2351-buy-pltr`, `status=new`)
+- Filled: 없음
+- Cancelled: 첫 submit 시도 1건은 runtime safety cancellation으로 반환됐지만 reconcile 후 동일 idempotent client id 재시도에서 open order가 생성됐다.
+- Position count observed by Alpaca MCP: 33 positions 유지. `PLTR`는 runtime `get_all_positions` 기준 아직 2주이며 신규 주문은 미체결 상태다.
+- Recent reconciliation scope: scheduler-owned `2351` stale cleanup/core/research preflight와 runtime `get_clock/get_orders(status=open)/get_orders(status=all, after=2026-06-05T04:00:00Z)/get_asset(PLTR)/get_stock_latest_quote(PLTR)/place_stock_order/get_order_by_client_id/get_all_positions/get_account_activities(FILL)` 확인 기준 첫 submit cancellation 후 `hourly-20260605-2351-buy-pltr`를 동일 id로 1회만 재시도했고, Alpaca order id `a89c2fdb-979b-42e1-a5ff-050916aa6257`가 `2026-06-05T15:00:44.444163302Z`에 `status=new`로 생성됐다. direct post-submit `get_orders(status=all, symbols=PLTR, after=2026-06-05T04:00:00Z)`와 `get_account_info` refresh는 runtime safety monitor가 취소돼 계좌 수치는 pre-submit runtime snapshot을 유지했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-05-2351-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

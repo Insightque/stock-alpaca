@@ -1,0 +1,75 @@
+{
+  "run_id": "2026-06-05-2351-hourly-autopilot",
+  "created_at": "2026-06-05T15:01:44Z",
+  "paper": true,
+  "mode": "submit",
+  "submitted_orders": [
+    {
+      "order_id": "a89c2fdb-979b-42e1-a5ff-050916aa6257",
+      "client_order_id": "hourly-20260605-2351-buy-pltr",
+      "symbol": "PLTR",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 138.56,
+      "status": "new",
+      "submitted_at": "2026-06-05T15:00:44.444163302Z",
+      "filled_qty": 0,
+      "filled_avg_price": null
+    }
+  ],
+  "open_orders": [
+    {
+      "order_id": "a89c2fdb-979b-42e1-a5ff-050916aa6257",
+      "client_order_id": "hourly-20260605-2351-buy-pltr",
+      "symbol": "PLTR",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 138.56,
+      "status": "new"
+    }
+  ],
+  "positions_count": 33,
+  "position_focus": {
+    "symbol": "PLTR",
+    "qty": 2,
+    "avg_entry_price": 138.19,
+    "current_price": 138.84,
+    "filled_this_run": false,
+    "note": "runtime get_all_positions after submit still showed PLTR qty 2, so the new order had not filled at reconciliation time."
+  },
+  "account_snapshot": {
+    "portfolio_value": 100670.12,
+    "cash": 30130.79,
+    "buying_power": 249228.27,
+    "long_market_value": 70539.33,
+    "source": "pre-submit runtime get_account_info; direct post-submit get_account_info was cancelled by the runtime safety monitor."
+  },
+  "reconciliation": {
+    "initial_submit_result": "cancelled",
+    "reconcile_after_cancel": {
+      "get_order_by_client_id": "404 not found",
+      "get_orders_symbol_same_day": 0,
+      "get_orders_open_symbol": 0,
+      "conclusion": "no Alpaca order existed after the first cancelled submit attempt"
+    },
+    "retry_result": "accepted",
+    "get_order_by_client_id_status": "new",
+    "open_orders_after_retry": 1,
+    "fill_activities_after_retry": 0,
+    "notes": [
+      "submit retried exactly once with the same client_order_id after reconciliation.",
+      "direct symbol-specific get_orders(status=all, symbols=PLTR, after=2026-06-05T04:00:00Z) after retry was cancelled, but get_order_by_client_id and get_orders(status=open) both confirmed the open order."
+    ]
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-05-2351-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-05-2351-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-05-2351-hourly-autopilot-research-mcp-preflight.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/2026-06-05-portfolio-review.md",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/research-notes/tickers/PLTR.md"
+  ]
+}
