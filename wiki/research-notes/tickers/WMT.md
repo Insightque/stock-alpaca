@@ -5,6 +5,11 @@ asset_type: stock
 
 # WMT
 
+## 2026-06-05 23:11 KST hourly-autopilot
+
+`WMT` 1주 regular-session day limit buy가 `120.50 USD` limit으로 제출됐고, Alpaca MCP 기준 첫 submit 시도는 runtime safety cancellation으로 반환됐지만 동일 `client_order_id=hourly-20260605-2311-buy-wmt` 기준 404/0건 reconciliation 후 1회만 재시도해 `2026-06-05T14:17:18.858272769Z`에 `119.78 USD`로 즉시 체결됐다. 근거는 scheduler-owned `2311` core/research preflight와 strict universe/MCP/risk gate 통과, same-day duplicate/open-order conflict 없음, scheduler quote `120.45/120.50` 기준 spread `0.0415%`, 그리고 2026-06-05 portfolio review에서 defensive cohort 전반은 약했지만 `WMT` 개별 5D 평가는 `중립 양호`로 회복했다는 점이다. 이 체결은 새 validation lifecycle 표본으로 기록하며 1D/5D/20D review를 추적한다.
+
+출처: [[2026-06-05-2311-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-05-2311-hourly-autopilot-post-trade.json`
 
 ## 2026-06-05 01:11 KST hourly-autopilot
 

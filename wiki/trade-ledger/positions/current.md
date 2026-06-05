@@ -1,14 +1,36 @@
 # portfolio-current
 
-_Last updated: 2026-06-05 22:40 KST_
+_Last updated: 2026-06-05 23:19 KST_
 
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: $101,177.93 (pre-submit account snapshot; direct post-fill account refresh cancelled)
-- Cash: ~$30,315.72 after confirmed `BAC` fill
-- Buying power: $250,661.09 (last successful direct read before fill)
-- Long market value: ~$70,862.21 after confirmed `BAC` fill
+- Portfolio value: $100,506.69
+- Cash: $30,195.94
+- Buying power: $248,919.27
+- Long market value: $70,310.75
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-05-2311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `WMT` buy 1 @ `119.78` (`client_order_id=hourly-20260605-2311-buy-wmt`)
+- Cancelled: 첫 submit 시도 1건은 runtime safety cancellation으로 반환됐지만 동일 idempotent client id reconcile 후 재시도에서 체결
+- Position count observed by Alpaca MCP: 33 positions 유지. `WMT`는 scheduler core preflight 기준 5주에서 confirmed fill 반영 후 6주로 증가했다.
+- Recent reconciliation scope: scheduler-owned `2311` stale cleanup/core/research preflight와 runtime `get_clock/get_orders(status=all, after=2026-06-05T04:00:00Z)/get_asset(WMT)/place_stock_order/get_order_by_client_id/get_orders(status=open)` 확인 기준 `WMT` 1주 regular-session validation buy가 첫 cancellation 후 동일 `client_order_id=hourly-20260605-2311-buy-wmt`로 1회만 재시도돼 `2026-06-05T14:17:18.858272769Z`에 `119.78 USD`로 체결됐다. direct post-fill `get_orders(status=all, symbols=WMT, after=2026-06-05T04:00:00Z)`와 `get_open_position(WMT)` refresh는 runtime safety monitor가 취소해 account/position snapshot은 fresh 2311 core preflight에 confirmed fill을 결합해 기록했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-05-2311-hourly-autopilot-post-trade.json`
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-05-2251-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: 33 positions 유지. `SLB`는 여전히 3주이며 `hourly-20260605-2251-buy-slb`에 해당하는 신규 주문은 생성되지 않았다.
+- Recent reconciliation scope: scheduler-owned `2251` stale cleanup/core/research preflight와 runtime `get_orders(status=all, after=2026-06-05T04:00:00Z)/get_asset(SLB)/get_stock_latest_quote(SLB)/get_order_by_client_id/get_all_positions/get_account_info` 확인 기준 `SLB` 1주 regular-session validation buy 계획은 hard gate와 validator를 모두 통과했지만 `place_stock_order`가 runtime safety cancellation으로 두 차례 모두 submit되지 않았다. `get_order_by_client_id(hourly-20260605-2251-buy-slb)`는 404, `get_orders(status=all, symbols=SLB, after=2026-06-05T04:00:00Z)`는 0건이어서 실제 Alpaca 주문 미생성을 확인했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-05-2251-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

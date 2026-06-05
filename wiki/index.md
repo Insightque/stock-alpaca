@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 21:35 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-05 23:11 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -37,7 +37,7 @@
 - [[NKE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기; 2026-06-05 03:31 KST hourly-autopilot에서 1주 추가 validation buy 제출, 현재 `status=new`.
 - [[PFE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[SO]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
-- [[WMT]] - 2026-05-29 validation add 5D 회고 중립 양호; 2026-06-05 01:11 KST hourly-autopilot에서 1주 추가 validation buy 체결.
+- [[WMT]] - 2026-05-29 validation add 5D 회고 중립 양호; 2026-06-05 01:11 KST hourly-autopilot에서 1주 추가 validation buy 체결, 2026-06-05 23:11 KST hourly-autopilot에서 1주 추가 validation buy가 `119.78 USD`에 체결.
 - [[NEE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[AMZN]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[BAC]] - 2026-05-28 validation buy 1D 회고 양호, 5D/20D 대기; 2026-06-05 04:21 KST hourly-autopilot에서 1주 추가 validation buy 체결; 2026-06-05 22:39 KST hourly-autopilot에서 1주 추가 validation buy가 `53.83 USD`에 체결.
@@ -50,6 +50,10 @@
 - [[COP]] - 2026-05-28 validation buy 1D 회고 중립 약함, 5D/20D 대기.
 
 ## Current Runs
+
+- [[2026-06-05-2311-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `2311` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim은 `AVGO`/`SO`/`TSLA`가 decision-grade metric 또는 held-quantity gate에 막혔고, `BAC`는 2231 same-day filled buy로 duplicate symbol/side gate에 걸렸다. `AAPL`은 scheduler quote spread `0.6068%`로 policy cap을 넘겼고 `QQQ`/`SPY`는 1주 ask가 validation floor per-order cap을 초과했다. `WMT`는 quote `120.45/120.50`, quote age `2.9`분, spread `0.0415%`, 5D review `중립 양호`, duplicate/open-order conflict 없음으로 floor-size validation buy 1주 후보가 됐고, 첫 submit cancellation 후 동일 client id reconcile/retry를 거쳐 `hourly-20260605-2311-buy-wmt`가 `2026-06-05T14:17:18.858272769Z`에 `119.78 USD`로 체결됐다.
+
+- [[2026-06-05-2251-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `2251` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim은 `AVGO`/`SO`/`TSLA`가 decision-grade metric 또는 held-quantity gate에 막혔고, `BAC`는 2231 same-day filled buy 때문에 duplicate symbol/side gate에 걸렸다. `SLB`는 live quote `56.62/56.66`, quote age `4.4`분, spread `0.0706%`, 5D review 양호로 floor-size validation buy 1주 후보가 됐지만 `place_stock_order`가 runtime safety cancellation으로 두 차례 모두 submit되지 않았고 reconciliation 결과 실제 Alpaca 주문은 생성되지 않았다.
 
 - [[2026-06-05-2231-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `2231` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim은 `AVGO`/`SO`/`TSLA`가 decision-grade metric 또는 held-quantity gate에 막혔고, 신규 buy는 `BAC`가 strongest 5D financials diversifier로 승격돼 `hourly-20260605-2231-buy-bac` 1주 regular-session day limit buy를 제출했다. runtime `get_order_by_client_id` 기준 `2026-06-05T13:39:42.716508022Z`에 `53.83 USD`로 체결됐고, 이후 `get_orders(status=open)`는 0건이었다. direct post-fill account/positions refresh는 runtime safety monitor가 취소해 post-trade snapshot은 fresh 2231 core preflight와 confirmed fill을 결합해 기록했다.
 
