@@ -33,3 +33,7 @@ asset_type: stock
 ## 2026-06-05 03:11 KST hourly autopilot
 
 2026-06-05 03:11 KST hourly autopilot에서 `V` 1주 regular-session day limit buy를 제출했고, reconciliation 시점 상태는 `new` open order다. 근거는 scheduler research preflight 4/5 usable/pass, runtime spread 0.0375%, same-day duplicate/open-order conflict 없음, payments diversifier floor-size validation 목적이었다.
+
+## 2026-06-06 00:39 KST hourly autopilot
+
+2026-06-06 00:39 KST hourly autopilot에서 `V` 1주 regular-session day limit buy를 `322.41 USD` limit으로 제출했고, Alpaca `client_order_id=hourly-20260606-0031-buy-v`는 `2026-06-05T15:37:28.378344604Z`에 `321.90 USD`로 즉시 체결됐다. 근거는 scheduler research preflight 4/5 usable/pass, preflight quote `322.35/322.41` 기준 spread `0.0186%`, same-day duplicate/open-order conflict 없음, payments diversifier floor-size validation 목적이었다. reconciliation 기준 `V` 보유수량은 4주, 평균단가는 `325.685 USD`다.

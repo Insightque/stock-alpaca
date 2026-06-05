@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-04T21:27:37Z",
+  "updated_at": "2026-06-05T15:39:30Z",
   "source_review": "wiki/trade-ledger/reviews/2026-06-05-portfolio-review.md",
   "pending_1d_count": 0,
   "pending_5d_count": 0,
@@ -176,6 +176,17 @@
         "wiki/current-runs/daily/2026-06-05-0431-hourly-autopilot.md",
         "wiki/trade-ledger/positions/2026-06-05-0431-hourly-autopilot-post-trade.json"
       ]
+    },
+    {
+      "symbol": "V",
+      "horizon": "1D",
+      "decision_due": false,
+      "current_decision": "pending",
+      "due_after": "2026-06-05 US regular-session close",
+      "source_refs": [
+        "wiki/current-runs/daily/2026-06-06-0031-hourly-autopilot.md",
+        "wiki/trade-ledger/positions/2026-06-06-0031-hourly-autopilot-post-trade.json"
+      ]
     }
   ],
   "notes": [
@@ -193,6 +204,7 @@
     "2026-06-05 03:57 KST hourly-autopilot이 SO validation add 1주를 14:57 ET에 filled 처리했고, 1D review는 2026-06-05 US regular-session close 이후 대기다.",
     "BAC 2026-06-05 04:21 KST hourly-autopilot 신규 validation buy 1주는 2026-06-05 미국 정규장 close 이후 1D review 대상이다.",
     "2026-06-05 analyst review는 2026-05-26/27/28 validation fills 5D backlog를 닫았다. 현재 due-now lifecycle blocker는 AVGO 2026-06-01 after-hours validation 5D와 NOK 20D만 유지한다.",
-    "PLTR 2026-06-05 04:40 KST add 1주는 2026-06-04 15:55 ET filled로 확인됐고, COP 2026-06-05 01:51 KST buy 1주도 2026-06-04 session 1D review 대기열에 포함했다."
+    "PLTR 2026-06-05 04:40 KST add 1주는 2026-06-04 15:55 ET filled로 확인됐고, COP 2026-06-05 01:51 KST buy 1주도 2026-06-04 session 1D review 대기열에 포함했다.",
+    "2026-06-06 00:39 KST hourly-autopilot이 V validation buy 1주를 2026-06-05T15:37:28.378344604Z에 filled 처리했고, 1D review는 2026-06-05 US regular-session close 이후 대기다."
   ]
 }

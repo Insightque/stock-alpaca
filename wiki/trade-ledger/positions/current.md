@@ -1,14 +1,25 @@
 # portfolio-current
 
-_Last updated: 2026-06-06 00:20 KST_
+_Last updated: 2026-06-06 00:39 KST_
 
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: $100,190.83
-- Cash: $29,678.99
-- Buying power: $247,546.97
-- Long market value: $70,511.84
+- Portfolio value: $100,055.85
+- Cash: $29,357.09
+- Buying power: last confirmed pre-submit $247,108.30
+- Long market value: $70,698.76
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-06-0031-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `V` buy 1 @ `321.90` (`client_order_id=hourly-20260606-0031-buy-v`)
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: 33 positions 유지. `V`는 runtime `get_all_positions` 기준 3주에서 4주, 평균단가 `326.946667`에서 `325.685`로 갱신됐다.
+- Recent reconciliation scope: scheduler-owned `0031` stale cleanup/core/research preflight와 runtime `get_orders(status=open)/get_orders(status=all, after=2026-06-05T04:00:00Z)/place_stock_order/get_order_by_client_id/get_orders(status=open, symbols=V)/get_orders(status=all, symbols=V, after=2026-06-05T04:00:00Z)/get_all_positions` 확인 기준 `V` 1주 regular-session validation add가 `2026-06-05T15:37:28.378344604Z`에 `321.90 USD`로 즉시 체결됐다. post-submit `get_account_info`와 `get_account_activities(FILL)`는 tool layer에서 cancelled 되었지만, last confirmed pre-submit account snapshot과 confirmed fill, 최신 포지션 합계를 결합해 cash `29,357.09 USD`, inferred portfolio value `100,055.85 USD`, long market value `70,698.76 USD`로 기록했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-06-0031-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
