@@ -1,0 +1,90 @@
+{
+  "run_id": "2026-06-06-0311-hourly-autopilot",
+  "created_at": "2026-06-05T18:21:35Z",
+  "paper": true,
+  "session": "regular",
+  "submit_attempted": true,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-06-0311-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-06-0311-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-06-0311-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-06-0311-hourly-autopilot.json"
+  ],
+  "pre_submit_account_snapshot": {
+    "portfolio_value": 98628.81,
+    "cash": 28696.01,
+    "buying_power": 242561.89,
+    "long_market_value": 69932.8,
+    "currency": "USD",
+    "checked_at": "2026-06-05T18:15:29Z",
+    "source": "runtime Alpaca get_account_info before submit"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "SO",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 93.32,
+      "client_order_id": "hourly-20260606-0311-buy-so",
+      "order_id": "dcf8d47c-979f-469c-a22c-06d04c5a25f1",
+      "status": "new",
+      "submitted_at": "2026-06-05T18:20:49.922430981Z",
+      "filled_at": null,
+      "filled_avg_price": null
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "NEE",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 85.47,
+      "client_order_id": "hourly-20260606-0231-buy-nee",
+      "order_id": "202d7a0d-c061-4385-a693-b91f403a2b4f",
+      "status": "new",
+      "expires_at": "2026-06-05T20:00:00Z"
+    },
+    {
+      "symbol": "CVX",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 187.68,
+      "client_order_id": "hourly-20260606-0251-buy-cvx",
+      "order_id": "5fbf3e4a-cd4d-4551-88ef-d14fb2dd78fe",
+      "status": "new",
+      "expires_at": "2026-06-05T20:00:00Z"
+    },
+    {
+      "symbol": "SO",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 93.32,
+      "client_order_id": "hourly-20260606-0311-buy-so",
+      "order_id": "dcf8d47c-979f-469c-a22c-06d04c5a25f1",
+      "status": "new",
+      "expires_at": "2026-06-05T20:00:00Z"
+    }
+  ],
+  "positions_reconciliation": {
+    "runtime_positions_before_submit": {
+      "SO_qty": 4.0,
+      "SO_avg_entry_price": 92.54,
+      "SO_market_value": 373.32,
+      "position_count": 33
+    },
+    "post_submit_confirmed": {
+      "SO_qty": 4.0,
+      "SO_avg_entry_price": 92.54,
+      "SO_market_value": 373.32,
+      "position_count": 33
+    },
+    "account_refresh_after_submit": {
+      "portfolio_value": 98610.82,
+      "cash": 28696.01,
+      "buying_power": 242395.53,
+      "long_market_value": 69914.81,
+      "currency": "USD"
+    },
+    "note": "첫 place_stock_order는 tool safety cancellation으로 반환됐다. 즉시 get_order_by_client_id 404, get_orders(status=all, symbols=SO, after=2026-06-05T04:00:00Z) 0건, get_orders(status=open, symbols=SO) 0건을 확인한 뒤 동일 client_order_id로 1회만 재시도했고 order id dcf8d47c-979f-469c-a22c-06d04c5a25f1가 생성됐다. 이후 get_order_by_client_id/get_order_by_id/get_orders(status=open, symbols=SO)는 동일 주문을 status new, filled_qty 0으로 확인했다. post-submit get_all_positions는 tool layer에서 cancelled 되어 post-trade positions snapshot은 latest confirmed pre-submit positions와 confirmed open-order state를 결합해 기록한다."
+  }
+}

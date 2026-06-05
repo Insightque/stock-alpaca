@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-06 02:58 KST_
+_Last updated: 2026-06-06 03:21 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-06-0311-hourly-autopilot]]
+- Open/new: `NEE` buy 1 @ `85.47` (`client_order_id=hourly-20260606-0231-buy-nee`, `status=new`), `CVX` buy 1 @ `187.68` (`client_order_id=hourly-20260606-0251-buy-cvx`, `status=new`), `SO` buy 1 @ `93.32` (`client_order_id=hourly-20260606-0311-buy-so`, `status=new`)
+- Filled: 없음
+- Cancelled: 첫 submit 시도 1건은 tool safety cancellation으로 반환됐지만 동일 idempotent client id reconcile 후 재시도에서 open order가 생성됐다.
+- Position count observed by Alpaca MCP: latest confirmed pre-submit positions snapshot 기준 `33` positions 유지. `SO`는 아직 `4주 @ 92.54`다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight와 runtime `get_clock/get_account_info/get_orders(status=open)/get_stock_latest_quote/get_asset/get_order_by_client_id/get_order_by_id` 확인 기준 `SO` 1주 regular-session validation add가 Alpaca order id `dcf8d47c-979f-469c-a22c-06d04c5a25f1`로 생성됐고 direct lookup 기준 `status=new`, `filled_qty=0`이다. post-submit `get_all_positions`는 tool layer에서 cancelled 되었지만 post-submit `get_account_info`는 성공해 portfolio value `98,610.82 USD`, cash `28,696.01 USD`, buying power `242,395.53 USD`, long market value `69,914.81 USD`를 기록했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-06-0311-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
@@ -38,10 +49,10 @@ _Last updated: 2026-06-06 02:58 KST_
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: last confirmed snapshot $99,069.12
+- Portfolio value: last confirmed snapshot $98,610.82
 - Cash: last confirmed snapshot $28,696.01
-- Buying power: last confirmed snapshot $243,685.21
-- Long market value: last confirmed snapshot $70,373.11
+- Buying power: last confirmed snapshot $242,395.53
+- Long market value: last confirmed snapshot $69,914.81
 
 ## 최신 hourly-autopilot reconciliation
 

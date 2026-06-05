@@ -40,3 +40,8 @@ asset_type: stock
 `SO`는 반복적으로 weak-to-neutral이다. `2026-05-27` validation buy 1주는 94.28 USD 대비 91.62 USD로 -2.82%, `2026-05-28` validation buy 1주는 93.38 USD 대비 91.62 USD로 -1.88%다. `XLU`와 비교해도 edge가 약해 utility defensive 라벨만으로 add를 정당화하기 어렵다.
 
 출처: [[2026-06-05-portfolio-review]], [[2026-06-05-0627-analyst-review-cycle-sources]]
+
+
+## 2026-06-06 03:11 KST hourly autopilot
+
+2026-06-06 03:11 KST hourly autopilot에서 `SO` 1주 regular-session day limit buy를 계획했고, 첫 submit safety cancellation 뒤 동일 `client_order_id` reconcile/retry를 거쳐 Alpaca order id `dcf8d47c-979f-469c-a22c-06d04c5a25f1`가 생성됐다. immediate reconciliation 시점 상태는 `new` open order다. 근거는 scheduler research preflight shortlist 포함, FRED macro row pass, runtime spread 0.0214%, same-day duplicate/open-order conflict 없음, utilities diversifier floor-size validation 목적이었다.
