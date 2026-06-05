@@ -1,0 +1,148 @@
+{
+  "id": "2026-06-06-0626-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-06-05T21:26:55Z",
+  "timezone": "Asia/Seoul",
+  "paper": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 1,
+  "alpaca_reconciliation": {
+    "clock_is_open": false,
+    "account_status": "ACTIVE",
+    "portfolio_value": 97974.0,
+    "cash": 29947.81,
+    "buying_power": 293831.53,
+    "long_market_value": 68026.19,
+    "open_us_equity_orders": 0,
+    "position_count": 33,
+    "recent_fill_scope_after": "2026-06-04T00:00:00Z",
+    "direct_fill_activity": {
+      "outcome": "usable",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    "portfolio_history": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 2
+    }
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-06-06-portfolio-review.md",
+    "symbol_reviews": [
+      "wiki/trade-ledger/reviews/2026-06-06-INTC-review.md"
+    ],
+    "reviewed_horizons": [
+      "2026-06-04 ET validation fills 1D",
+      "AVGO 2026-06-01 after-hours validation 5D",
+      "INTC closed-position final review",
+      "open-position catalyst review",
+      "skipped recommendations re-check"
+    ],
+    "symbols": [
+      "QQQ",
+      "SPY",
+      "SLB",
+      "AAPL",
+      "XOM",
+      "WMT",
+      "FCX",
+      "COP",
+      "GOOGL",
+      "MSFT",
+      "NEE",
+      "V",
+      "NKE",
+      "SO",
+      "BAC",
+      "PLTR",
+      "AVGO",
+      "INTC",
+      "JPM",
+      "JNJ",
+      "CVX"
+    ],
+    "due_now": true,
+    "next_due": "2026-06-08 US regular-session close for 2026-06-05 fill cohort 1D"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-06-0626-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "portfolio_history_cancelled_only",
+      "gap_category": "cancelled",
+      "retry_count": 2
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-06-0626-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-06-0626-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "PING health check passed; first non-PING TOOL_CALL(EARNINGS, AVGO) cancelled, so Alpha retries stopped per workflow",
+      "gap_category": "cancelled",
+      "retry_count": 1
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-06-0626-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-06-0626-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-06-0626-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "AVGO recommendations query safety-cancelled and excluded from scoring",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "AVGO validation add weakness, INTC lifecycle exit usefulness, and shock-day defensive resilience all remained below active-rule evidence threshold because account-path and provider gaps persisted"
+  }
+}

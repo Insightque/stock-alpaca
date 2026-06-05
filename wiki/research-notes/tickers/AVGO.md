@@ -76,3 +76,9 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 `0331` scheduled hourly-autopilot은 stale cleanup artifact의 `CVX/NEE` open-order 모순을 runtime Alpaca reconciliation으로 해소한 뒤, buy 쪽 same-day duplicate/per-order-cap 제약과 별개로 `AVGO`를 sell/trim 우선 평가했다. ai_semiconductor_complex warning band 노출, earnings-event drawdown, runtime quote `389.00/389.72`, spread `0.1847%`, active/tradable, held qty `16`이라는 조건에서 25% trim `4주` regular-session day limit sell을 제출했고, 첫 submit cancellation 뒤 동일 `client_order_id=hourly-20260606-0331-sell-avgo`로 1회만 재시도해 `389.25 USD`에 체결됐다. 체결 후 보유수량은 `16주 -> 12주`로 감소했다.
 
 출처: [[2026-06-06-0331-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-06-0331-hourly-autopilot-post-trade.json`
+
+### 2026-06-06 analyst review cycle
+
+`2026-06-01` after-hours validation 1주는 평균 `461.26 USD` 진입 대비 `2026-06-05` 미국 정규장 close `385.73 USD`로 `-16.37%` 5D 결과를 남겼다. earnings 이후 AI guidance disappointment와 semiconductor-wide de-risking이 겹쳐 validation add 자체는 `약함`으로 닫는다. 다만 `2026-06-06 03:37 KST` trim 4주가 `389.25 USD`에 체결돼 size reduction 대응은 합리적이었다. 현재 해석은 `validation add 실패 + core thesis 완전 폐기 아님`이다.
+
+출처: [[2026-06-06-portfolio-review]], [[2026-06-06-0626-analyst-review-cycle-sources]]

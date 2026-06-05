@@ -15,6 +15,6 @@ asset_type: stock
 
 ### 2026-06-06 04:11 KST hourly autopilot
 
-2026-06-06 04:11 KST hourly autopilot은 2026-06-05 portfolio review의 5D `약함` 판단과 SPY 대비 underperformance를 근거로 `INTC` 1주 full-exit day limit sell `99.93 USD`를 제출했다. immediate Alpaca reconciliation 기준 주문은 `status=new` open order이며, 아직 포지션 수량 변화는 확인되지 않았다.
+2026-06-06 04:11 KST hourly autopilot은 2026-06-05 portfolio review의 5D `약함` 판단과 SPY 대비 underperformance를 근거로 `INTC` 1주 full-exit day limit sell `99.93 USD`를 제출했다. 이후 direct Alpaca `FILL` ledger와 all-orders reconciliation에서 동일 주문이 `2026-06-05T19:24:41.141020Z`에 `99.93 USD`로 체결된 것이 확인됐다.
 
-출처: [[2026-06-06-0411-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-06-0411-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-06-0411-hourly-autopilot-post-trade.json`
+출처: [[2026-06-06-0411-hourly-autopilot]], [[2026-06-06-portfolio-review]], [[2026-06-06-INTC-review]]

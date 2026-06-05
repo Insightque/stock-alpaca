@@ -33,3 +33,11 @@ asset_type: stock
 
 - 2026-06-06 04:02 KST: scheduled hourly-autopilot에서 `hourly-20260606-0351-buy-jpm` 1주 regular-session day limit buy가 `311.81 USD`에 체결됐다.
 - 주문/체결 출처: [[2026-06-06-0351-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-06-0351-hourly-autopilot-post-trade.json`
+
+## 회고 기록
+
+### 2026-06-06 analyst review cycle
+
+`JPM` 신규 1주는 `311.81 USD` 진입 뒤 첫 close `312.38 USD`로 day-one 절대손익은 소폭 플러스였다. Yahoo Finance는 financials rotation headline과 recommendation breadth `strongBuy 4 / buy 8 / hold 12 / sell 0 / strongSell 0`를 보였고, Alpaca recent fill ledger도 immediate fill을 확인했다. 다만 아직 1D horizon 전이므로 판단은 `회고 대기`다.
+
+출처: [[2026-06-06-portfolio-review]], [[2026-06-06-0626-analyst-review-cycle-sources]]
