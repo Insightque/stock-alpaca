@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-06 03:21 KST_
+_Last updated: 2026-06-06 03:43 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-06-0331-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `AVGO` sell 4 @ `389.25` (`client_order_id=hourly-20260606-0331-sell-avgo`)
+- Cancelled: 첫 submit 시도 1건은 tool safety cancellation으로 반환됐지만 동일 idempotent client id reconciliation 후 재시도에서 실제 주문이 생성·체결됐다.
+- Position count observed by Alpaca MCP: post-trade runtime `33` positions. `AVGO`는 `16주 -> 12주`, `SO`는 직전 fill 반영 상태인 `5주` 유지다.
+- Recent reconciliation scope: scheduler-owned `0331` stale cleanup/core/research preflight와 runtime `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-05T04:00:00Z)/get_stock_latest_quote/get_asset/place_stock_order/get_order_by_client_id/get_order_by_id` 확인 기준 stale cleanup 파일의 `CVX`/`NEE` open-order 모순은 실제 Alpaca 상태에서 `2026-06-05T18:31:08Z` canceled로 해소됐다. 이후 `AVGO` 4주 regular-session trim이 Alpaca order id `3a911e61-97c5-4431-bff6-8c9c812ea311`로 제출돼 `2026-06-05T18:37:44.452055748Z`에 `389.25 USD`로 체결됐다. post-trade `get_account_info`는 portfolio value `98,237.81 USD`, cash `30,159.69 USD`, buying power `245,462.62 USD`, long market value `68,078.12 USD`를 기록했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-06-0331-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
