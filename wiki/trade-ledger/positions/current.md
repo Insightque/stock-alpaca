@@ -1,14 +1,25 @@
 # portfolio-current
 
-_Last updated: 2026-06-05 16:56 KST_
+_Last updated: 2026-06-05 17:14 KST_
 
 ## 계좌 요약
 
 - Alpaca paper account status: ACTIVE
-- Portfolio value: $102,159.46
+- Portfolio value: $102,029.87
 - Cash: $30,369.56
-- Buying power: $252,081.48
-- Long market value: $71,789.90
+- Buying power: $251,991.13
+- Long market value: $71,660.31
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-05-1711-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: 33 positions. `WMT` 5주, `AVGO` 16주, `PFE` 3주, 신규 open order 없음.
+- Recent reconciliation scope: scheduler-owned `1711` Alpaca core/research preflight와 runtime `get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-04T20:00:00Z)/get_order_by_client_id/get_stock_latest_quote(feed=overnight)/get_stock_snapshot(feed=overnight)` 확인 기준 장외 separate session budget `2/2` 소진으로 submit 없이 종료했다. runtime overnight quote는 `AVGO/PFE/WMT/QQQ/SPY` 모두 quote age `14.24`분으로 stale했고 spread도 각각 `2.6190%`, `2.0897%`, `12.6346%`, `4.7405%`, `0.4728%`로 cap을 넘겼다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-05-1711-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 
@@ -133,6 +144,6 @@ _Last updated: 2026-06-05 16:56 KST_
 
 ## 계좌 요약 주석
 
-- 위 계좌 요약 수치는 `1651` runtime Alpaca MCP account/positions 확인과 scheduler-owned core/research preflight 기준이다.
-- after-hours session budget은 `1231` cancel + `1251` fill submit lifecycle로 이미 `2/2`라 `1651` cycle에서도 추가 주문을 만들지 않았다.
-- close 이후 reconciliation 기준 open order는 0건이며 `1651` 신규 fill은 없다.
+- 위 계좌 요약 수치는 `1711` runtime Alpaca MCP account/positions 확인과 scheduler-owned core/research preflight 기준이다.
+- after-hours session budget은 `1231` cancel + `1251` fill submit lifecycle로 이미 `2/2`라 `1711` cycle에서도 추가 주문을 만들지 않았다.
+- close 이후 reconciliation 기준 open order는 0건이며 `1711` 신규 fill은 없다.
