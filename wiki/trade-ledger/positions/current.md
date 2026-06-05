@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-06 04:23 KST_
+_Last updated: 2026-06-06 04:36 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-06-0431-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `INTC` sell 1 @ `99.93` (`client_order_id=hourly-20260606-0411-sell-intc`)가 0431 core preflight recent activities에서 confirmed fill로 확인됐다.
+- Cancelled: `NEE` same-day buy `hourly-20260606-0231-buy-nee`는 `2026-06-05T18:31:08.289816Z` canceled 상태가 runtime all-orders reconciliation에서 재확인됐다.
+- Position count observed by Alpaca MCP: scheduler core preflight 기준 `33` positions. `INTC`는 계좌 포지션에서 제거됐고 open orders는 0건이다.
+- Recent reconciliation scope: scheduler-owned `0431` stale cleanup/core/research preflight와 runtime `get_clock/get_account_info/get_orders(status=all, symbols=NEE,NKE,TSLA,SO,AVGO, after=2026-06-05T04:00:00Z)` 확인 기준 새 submit attempt는 없었다. account snapshot은 portfolio value `98,445.76 USD`, cash `29,947.81 USD`, buying power `245,318.08 USD`, long market value `68,497.95 USD`다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-06-0431-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
