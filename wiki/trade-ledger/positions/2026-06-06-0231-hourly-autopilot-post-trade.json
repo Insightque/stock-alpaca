@@ -1,0 +1,64 @@
+{
+  "run_id": "2026-06-06-0231-hourly-autopilot",
+  "created_at": "2026-06-05T17:44:30Z",
+  "paper": true,
+  "session": "regular",
+  "submit_attempted": true,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-06-0231-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-06-0231-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-06-0231-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-06-0231-hourly-autopilot.json"
+  ],
+  "pre_submit_account_snapshot": {
+    "portfolio_value": 99123.29,
+    "cash": 28696.01,
+    "buying_power": 243948.52,
+    "long_market_value": 70427.28,
+    "currency": "USD",
+    "checked_at": "2026-06-05T17:31:11Z",
+    "source": "scheduler-owned Alpaca core preflight get_account_info"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "NEE",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 85.47,
+      "client_order_id": "hourly-20260606-0231-buy-nee",
+      "order_id": "202d7a0d-c061-4385-a693-b91f403a2b4f",
+      "status": "new",
+      "submitted_at": "2026-06-05T17:43:45.162494138Z",
+      "filled_at": null,
+      "filled_avg_price": null
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "NEE",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 85.47,
+      "client_order_id": "hourly-20260606-0231-buy-nee",
+      "order_id": "202d7a0d-c061-4385-a693-b91f403a2b4f",
+      "status": "new",
+      "expires_at": "2026-06-05T20:00:00Z"
+    }
+  ],
+  "positions_reconciliation": {
+    "runtime_positions_before_submit": {
+      "NEE_qty": 4.0,
+      "NEE_avg_entry_price": 86.745,
+      "NEE_market_value": 341.84,
+      "position_count": 33
+    },
+    "post_submit_confirmed": {
+      "NEE_qty": 4.0,
+      "NEE_avg_entry_price": 86.745,
+      "NEE_market_value": 341.84,
+      "position_count": 33
+    },
+    "account_refresh_after_submit": "unavailable",
+    "note": "첫 place_stock_order 시도는 safety cancellation으로 반환됐다. 이후 동일 client_order_id로 get_order_by_client_id 404 및 get_orders(status=all, symbols=NEE, after=2026-06-05T04:00:00Z) 0건을 확인한 뒤 동일 client_order_id로 1회만 재시도했고, Alpaca order id 202d7a0d-c061-4385-a693-b91f403a2b4f가 생성됐다. get_order_by_client_id와 get_order_by_id, get_orders(status=all, symbols=NEE, after=2026-06-05T17:40:00Z)가 모두 동일 주문을 status new, filled_qty 0으로 확인했다. post-submit get_orders(status=open, symbols=NEE)와 추가 market-data refresh는 tool layer에서 cancelled 되었고 get_all_positions/get_account_info refresh는 이번 cycle에서 확보하지 못해, post-trade account/positions snapshot은 0231 scheduler core preflight의 마지막 확정 계좌/포지션 상태와 confirmed open-order state를 결합해 기록한다."
+  }
+}

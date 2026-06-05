@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-06 02:21 KST_
+_Last updated: 2026-06-06 02:44 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-06-0231-hourly-autopilot]]
+- Open/new: `NEE` buy 1 @ `85.47` (`client_order_id=hourly-20260606-0231-buy-nee`, `status=new`)
+- Filled: 없음
+- Cancelled: 첫 submit 시도 1건은 safety cancellation으로 반환됐지만 동일 idempotent client id reconcile 후 재시도에서 open order가 생성됐다.
+- Position count observed by Alpaca MCP: scheduler core preflight 기준 `33` positions 유지. `NEE`는 latest confirmed positions snapshot 기준 아직 `4주`다.
+- Recent reconciliation scope: scheduler-owned `0231` stale cleanup/core/research preflight와 runtime `place_stock_order/get_order_by_client_id/get_order_by_id/get_orders(status=all, symbols=NEE, after=2026-06-05T04:00:00Z)/get_orders(status=all, symbols=NEE, after=2026-06-05T17:40:00Z)` 확인 기준 첫 submit cancellation 후 `hourly-20260606-0231-buy-nee`를 동일 id로 1회만 재시도했고, Alpaca order id `202d7a0d-c061-4385-a693-b91f403a2b4f`가 `2026-06-05T17:43:45.162494138Z`에 `status=new`로 생성됐다. `get_orders(status=open, symbols=NEE)`와 post-submit market/account/positions refresh는 tool layer에서 cancelled 되어 계좌 수치는 last confirmed pre-submit snapshot인 portfolio value `99,123.29 USD`, cash `28,696.01 USD`, buying power `243,948.52 USD`, long market value `70,427.28 USD`를 유지 기록했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-06-0231-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
