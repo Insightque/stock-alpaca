@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-06 04:36 KST_
+_Last updated: 2026-06-06 05:01 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-06-0451-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: `NKE` buy 1 @ `43.20` (`client_order_id=hourly-20260606-0451-buy-nke`)는 actual submit timestamp가 `2026-06-05T20:00:07.873287392Z` (`16:00:07 ET`)로 regular close 이후에 기록돼 즉시 취소됐다.
+- Position count observed by Alpaca MCP: latest confirmed `0451` scheduler core preflight 기준 `33` positions 유지. 추가 `NKE` fill은 없고 standing order도 남기지 않았다.
+- Recent reconciliation scope: scheduler-owned `0451` stale cleanup/core/research preflight와 runtime `place_stock_order/get_order_by_client_id/get_order_by_id/get_clock/cancel_order_by_id/get_orders(status=all, symbols=NKE, after=2026-06-05T04:00:00Z)` 확인 기준 close-race submit을 cancel로 복구했다. last confirmed account snapshot은 portfolio value `98,361.48 USD`, cash `29,947.81 USD`, buying power `245,113.34 USD`, long market value `68,413.67 USD`다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 1 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-06-0451-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

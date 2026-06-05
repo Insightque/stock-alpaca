@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-06 04:03 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-06 05:01 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -35,7 +35,7 @@
 - [[LFS]] - 투기적 고모멘텀 mover, 2026-05-22 업데이트.
 - [[QTEX]] - 투기적 1달러 미만 mover, 2026-05-22 업데이트.
 - [[BIYA]] - 투기적 저가 mover, 2026-05-22 업데이트.
-- [[NKE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기; 2026-06-05 03:31 KST hourly-autopilot에서 1주 추가 validation buy 제출, 현재 `status=new`.
+- [[NKE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기; 2026-06-06 05:00 KST hourly-autopilot에서 1주 validation buy를 시도했지만 actual submit timestamp가 regular close 이후로 밀려 즉시 취소됐다.
 - [[PFE]] - 2026-05-29 validation add 1D/5D 회고는 약했지만, 2026-06-06 02:20 KST hourly-autopilot에서 1주 추가 validation buy가 `status=new` open order로 생성됐다.
 - [[SO]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[WMT]] - 2026-05-29 validation add 5D 회고 중립 양호; 2026-06-05 01:11 KST hourly-autopilot에서 1주 추가 validation buy 체결, 2026-06-05 23:11 KST hourly-autopilot에서 1주 추가 validation buy가 `119.78 USD`에 체결.
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-06-0451-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0451` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate와 `NKE` pre-submit quote/spread gate는 통과했다. sell/trim 우선 평가에서는 `AVGO` same-day duplicate sell, `SO` decision-grade metric gap, `TSLA` held-quantity/metric gap이 유지됐다. buy fallback에서는 `IONQ`가 spread `2.56%`로 hard gate에 막히고 `SPY/QQQ`는 validation floor per-order cap을 초과해 `NKE` 1주가 floor-size learning candidate로 승격됐다. 다만 actual `place_stock_order`가 `16:00:07 ET`에 기록돼 regular close 이후로 넘어갔고 runtime clock `16:00:39 ET`에서 `is_open=false`를 확인해 해당 order를 즉시 취소했다. 최종 standing order와 fill은 남기지 않았다.
 - [[2026-06-06-0431-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0431` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. `INTC` 0411 exit sell은 0431 recent activities에서 `99.93 USD` fill로 닫힌 것이 확인됐다. sell/trim 우선 평가에서는 `AVGO`가 same-day duplicate sell, `SO`가 decision-grade metric gap, `TSLA`가 held-quantity/metric gap에 막혔고, buy fallback에서는 `NEE`가 same-day canceled buy reentry discipline, `NKE`가 runtime asset-check `cancelled`, `SPY/QQQ`가 validation floor per-order cap 때문에 최종 hard gate를 닫지 못해 주문은 제출하지 않았다.
 - [[2026-06-06-0411-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0411` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim 우선 평가에서 `INTC`가 2026-06-05 portfolio review 5D `약함`, SPY 대비 underperformance, same-day duplicate 없음, quote `99.93/99.96`, spread `0.0300%`, active/tradable 조건을 근거로 risk-reducing exit 후보로 승격됐고 `hourly-20260606-0411-sell-intc`가 Alpaca order id `3cb070b3-08ed-461d-854d-8fa63cf9d441`로 제출돼 immediate reconciliation 기준 `status=new` open order로 기록됐다. `AVGO`는 same-day duplicate sell discipline, `SO`는 decision-grade metric gap, `SPY/QQQ`는 validation per-order cap 때문에 보류됐다.
 - [[2026-06-06-0351-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0351` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim 우선 평가에서는 `AVGO`가 직전 0331 cycle same-day trim filled 때문에 duplicate symbol/side discipline에 걸렸고 `SO`/`TSLA`는 metric gate에 막혔다. 신규 buy 쪽은 same-day duplicate와 benchmark per-order cap 제약을 거친 뒤 `JPM`이 financials diversifier floor-size validation 후보로 승격됐고, `hourly-20260606-0351-buy-jpm`가 Alpaca order id `dc6e7545-bf7d-47a1-a257-fc5c82866680`로 제출돼 `311.81 USD`에 체결됐다.
