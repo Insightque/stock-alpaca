@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-06 03:43 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-06 04:03 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -18,6 +18,7 @@
 - [[NOK]] - 2026-05-22 stock-only 5D 회고 강함이나 변동성 큼, 20D 대기.
 - [[UNH]] - 2026-05-22 stock-only 5D 회고 약함, 20D 대기.
 - [[JNJ]] - defensive healthcare diversifier 후보. 2026-06-05 04:51 KST hourly-autopilot에서 1주 validation buy를 계획했지만 actual submit timestamp가 regular close 이후로 밀려 즉시 취소됐다.
+- [[JPM]] - financials diversifier 후보. 2026-06-06 04:02 KST hourly-autopilot에서 1주 validation buy가 `311.81 USD`에 체결됐다.
 - [[ETN]] - 2026-05-22 stock-only 5D 회고 중립 양호, 20D 대기.
 - [[IONQ]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
 - [[QBTS]] - 양자컴퓨팅 watchlist 후보, 2026-05-22 업데이트.
@@ -43,7 +44,7 @@
 - [[BAC]] - 2026-05-28 validation buy 1D 회고 양호, 5D/20D 대기; 2026-06-05 04:21 KST hourly-autopilot에서 1주 추가 validation buy 체결; 2026-06-05 22:39 KST hourly-autopilot에서 1주 추가 validation buy가 `53.83 USD`에 체결.
 - [[XOM]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기; 2026-06-05 00:51 KST hourly-autopilot에서 1주 추가 validation buy 체결.
 - [[V]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기. 2026-06-06 00:39 KST hourly-autopilot에서 1주 추가 validation buy가 `321.90 USD`에 체결.
-- [[INTC]] - 2026-05-28 after-hours validation buy 1D 회고 약함, 5D/20D 대기.
+- [[INTC]] - 2026-05-28 after-hours validation buy 5D 회고 약함. 2026-06-06 04:11 KST hourly-autopilot에서 weak lifecycle review를 근거로 1주 exit sell이 `status=new` open order로 생성됐다.
 - [[CVX]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기.
 - [[GOOGL]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기; 2026-06-05 02:21 KST hourly-autopilot에서 1주 추가 validation buy 체결.
 - [[SLB]] - 2026-05-29 validation add 5D 회고 양호; 2026-06-05 00:11 KST와 2026-06-06 01:15 KST hourly-autopilot에서 각각 1주 추가 validation buy 체결.
@@ -51,6 +52,8 @@
 
 ## Current Runs
 
+- [[2026-06-06-0411-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0411` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim 우선 평가에서 `INTC`가 2026-06-05 portfolio review 5D `약함`, SPY 대비 underperformance, same-day duplicate 없음, quote `99.93/99.96`, spread `0.0300%`, active/tradable 조건을 근거로 risk-reducing exit 후보로 승격됐고 `hourly-20260606-0411-sell-intc`가 Alpaca order id `3cb070b3-08ed-461d-854d-8fa63cf9d441`로 제출돼 immediate reconciliation 기준 `status=new` open order로 기록됐다. `AVGO`는 same-day duplicate sell discipline, `SO`는 decision-grade metric gap, `SPY/QQQ`는 validation per-order cap 때문에 보류됐다.
+- [[2026-06-06-0351-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0351` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. sell/trim 우선 평가에서는 `AVGO`가 직전 0331 cycle same-day trim filled 때문에 duplicate symbol/side discipline에 걸렸고 `SO`/`TSLA`는 metric gate에 막혔다. 신규 buy 쪽은 same-day duplicate와 benchmark per-order cap 제약을 거친 뒤 `JPM`이 financials diversifier floor-size validation 후보로 승격됐고, `hourly-20260606-0351-buy-jpm`가 Alpaca order id `dc6e7545-bf7d-47a1-a257-fc5c82866680`로 제출돼 `311.81 USD`에 체결됐다.
 - [[2026-06-06-0331-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0331` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. stale cleanup artifact는 `CVX`/`NEE` cancel attempt는 `pass`인데 `remaining_open_orders`에 두 주문이 남아 있는 모순이 있었지만, runtime Alpaca reconciliation 기준 두 주문 모두 `2026-06-05T18:31:08Z`에 `canceled`, open orders 0건으로 정리돼 `risk_open_order_lifecycle` blocker는 해소됐다. 신규 buy 쪽은 `AAPL`/`NVDA`/`BAC`/`WMT`/`COP`/`AMZN`/`PLTR` same-day duplicate, `SPY`/`QQQ` per-order cap, `NEE` same-session stale-cancel reentry 회피 때문에 명시적 hard-gate 통과 대상을 만들지 못했다. sell/trim 우선 평가에서 `AVGO`는 ai_semiconductor_complex warning band, earnings-event drawdown, runtime quote `389.00/389.72`, spread `0.1847%`, active/tradable, same-day sell/open-order conflict 없음으로 25% trim 4주 후보가 되었고, 첫 submit cancellation 후 동일 `client_order_id` reconcile/retry를 거쳐 `hourly-20260606-0331-sell-avgo`가 Alpaca order id `3a911e61-97c5-4431-bff6-8c9c812ea311`로 생성된 뒤 `389.25 USD`에 체결됐다.
 - [[2026-06-06-0311-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0311` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. stale cleanup 기준 stale autopilot order는 0건이었고 fresh open buy `CVX`/`NEE`는 same symbol/cluster 신규 buy만 차단했다. same-day duplicate 때문에 `BAC`/`WMT`/`FCX`/`PLTR`/`AAPL`/`V`/`NVDA`/`SLB`/`COP`/`AMZN`/`PFE`는 추가 buy 후보에서 제외됐고 `SPY`/`QQQ`는 1주 ask가 validation per-order cap을 초과했다. `NKE`는 5D review 약세가 이어졌고 `SO`는 repeated weak-to-neutral review라는 약점이 있지만, four-provider positive research confirmation과 FRED macro row, runtime quote `93.30/93.32`, spread `0.0214%`, active/tradable, duplicate/open-order conflict 없음으로 floor-size validation buy 1주 후보가 됐다. 첫 submit cancellation 후 동일 `client_order_id` reconcile/retry를 거쳐 `hourly-20260606-0311-buy-so`가 Alpaca order id `dcf8d47c-979f-469c-a22c-06d04c5a25f1`로 생성됐고 immediate reconciliation 기준 `status=new` open order로 기록됐다.
 - [[2026-06-06-0251-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0251` stale cleanup/core/research preflight를 우선 사용했고 Alpaca core/universe/MCP/risk gate는 모두 통과했다. stale cleanup 기준 `NEE` fresh open buy 1건이 남아 same symbol/cluster 신규 buy를 차단했고, same-day duplicate 때문에 `AAPL`/`NVDA`/`WMT`/`SLB`/`BAC`/`COP`/`PFE`/`AMZN`/`V`/`PLTR`/`FCX`는 추가 buy 후보에서 제외됐다. `SPY`는 1주 ask가 validation per-order cap을 초과했고 `HOOD`는 speculative broker candidate로 thesis evidence가 얕았다. `GOOGL`/`NKE`는 recent 5D review 약세로 `CVX`보다 replacement rank가 낮았고, `CVX`는 preflight quote `187.62/187.68`, spread `0.0320%`, active/tradable, four-provider positive research confirmation을 근거로 floor-size validation buy 1주 후보가 됐다. `hourly-20260606-0251-buy-cvx`가 Alpaca order id `5fbf3e4a-cd4d-4551-88ef-d14fb2dd78fe`로 생성됐고 immediate reconciliation 기준 `status=new` open order로 기록됐다.

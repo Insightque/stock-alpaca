@@ -1,6 +1,36 @@
 # portfolio-current
 
-_Last updated: 2026-06-06 03:43 KST_
+_Last updated: 2026-06-06 04:23 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-06-0411-hourly-autopilot]]
+- Open/new: `INTC` sell 1 @ `99.93` (`client_order_id=hourly-20260606-0411-sell-intc`, `status=new`)
+- Filled: 없음
+- Cancelled: post-submit symbol-filtered `get_orders` refresh는 tool layer에서 cancelled 되었지만 direct order lookup 기준 주문 생성은 확인됐다.
+- Position count observed by Alpaca MCP: latest confirmed scheduler core preflight 기준 `34` positions 유지. `INTC`는 아직 `1주 @ 116.79`다.
+- Recent reconciliation scope: scheduler-owned `0411` stale cleanup/core/research preflight와 runtime `get_clock/get_account_info/get_orders(status=open)/get_orders(status=all, after=2026-06-05T04:00:00Z)/get_asset(INTC)/place_stock_order/get_order_by_client_id/get_order_by_id` 확인 기준 `INTC` 1주 regular-session validation exit가 Alpaca order id `3cb070b3-08ed-461d-854d-8fa63cf9d441`로 생성됐고 immediate reconciliation 기준 `status=new`, `filled_qty=0`이다. post-submit `get_account_info`는 portfolio value `97,970.99 USD`, cash `29,847.88 USD`, buying power `244,265.17 USD`, long market value `68,123.11 USD`를 기록했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-06-0411-hourly-autopilot-post-trade.json`
+
+## 계좌 요약
+
+- Alpaca paper account status: ACTIVE
+- Portfolio value: last confirmed snapshot $97,970.99
+- Cash: last confirmed snapshot $29,847.88
+- Buying power: last confirmed snapshot $244,265.17
+- Long market value: last confirmed snapshot $68,123.11
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-06-0351-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `JPM` buy 1 @ `311.81` (`client_order_id=hourly-20260606-0351-buy-jpm`)
+- Cancelled: post-submit `get_orders(status=open, symbols=JPM)` 1건은 tool layer에서 cancelled 되었지만 filled lookup/positions/account reconciliation은 성공했다.
+- Position count observed by Alpaca MCP: post-trade runtime `34` positions. `JPM` 신규 보유 `1주 @ 311.81`, `AVGO`는 직전 trim 이후 `12주` 유지다.
+- Recent reconciliation scope: scheduler-owned `0351` stale cleanup/core/research preflight와 runtime `get_clock/place_stock_order/get_order_by_client_id/get_all_positions/get_account_info` 확인 기준 `JPM` 1주 regular-session validation buy가 Alpaca order id `dc6e7545-bf7d-47a1-a257-fc5c82866680`로 제출돼 `2026-06-05T19:02:33.577640965Z`에 `311.81 USD`로 체결됐다. post-trade `get_account_info`는 portfolio value `98,378.18 USD`, cash `29,847.88 USD`, buying power `244,983.06 USD`, long market value `68,530.30 USD`를 기록했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-06-0351-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
