@@ -82,3 +82,9 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 `2026-06-01` after-hours validation 1주는 평균 `461.26 USD` 진입 대비 `2026-06-05` 미국 정규장 close `385.73 USD`로 `-16.37%` 5D 결과를 남겼다. earnings 이후 AI guidance disappointment와 semiconductor-wide de-risking이 겹쳐 validation add 자체는 `약함`으로 닫는다. 다만 `2026-06-06 03:37 KST` trim 4주가 `389.25 USD`에 체결돼 size reduction 대응은 합리적이었다. 현재 해석은 `validation add 실패 + core thesis 완전 폐기 아님`이다.
 
 출처: [[2026-06-06-portfolio-review]], [[2026-06-06-0626-analyst-review-cycle-sources]]
+
+### 2026-06-07 analyst review cycle
+
+`2026-06-06` 미국 정규장 close 기준 새로 닫힌 horizon은 없었다. 다만 current Alpaca snapshot상 `AVGO`는 close/current `385.73 USD`, 평균단가 `414.940833 USD`로 미실현 `-7.04%` 수준이고, 전일 close `418.955 USD` 대비 하루 `-7.93%`다. 이미 `2026-06-06 03:37 KST` trim으로 size를 줄인 만큼 이번 run에서는 추가 trim/exit 규칙을 만들지 않고 `post-earnings risk watch`를 유지한다.
+
+출처: [[2026-06-07-portfolio-review]], [[2026-06-07-0623-analyst-review-cycle-sources]]

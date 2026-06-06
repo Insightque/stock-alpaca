@@ -41,3 +41,9 @@ asset_type: stock
 `JPM` 신규 1주는 `311.81 USD` 진입 뒤 첫 close `312.38 USD`로 day-one 절대손익은 소폭 플러스였다. Yahoo Finance는 financials rotation headline과 recommendation breadth `strongBuy 4 / buy 8 / hold 12 / sell 0 / strongSell 0`를 보였고, Alpaca recent fill ledger도 immediate fill을 확인했다. 다만 아직 1D horizon 전이므로 판단은 `회고 대기`다.
 
 출처: [[2026-06-06-portfolio-review]], [[2026-06-06-0626-analyst-review-cycle-sources]]
+
+### 2026-06-07 analyst review cycle
+
+`2026-06-06` 미국 정규장 close 기준 `JPM` 1주의 공식 1D horizon은 아직 도래하지 않았다. current Alpaca snapshot close/current는 `312.38 USD`로 평균단가 `311.81 USD` 대비 `+0.18%`이며, financials benchmark `XLF`도 같은 날 `+0.18%`였다. 따라서 현재 평가는 `회고 대기 유지`다.
+
+출처: [[2026-06-07-portfolio-review]], [[2026-06-07-0623-analyst-review-cycle-sources]]

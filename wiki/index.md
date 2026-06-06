@@ -288,6 +288,7 @@
 - [[2026-06-04-portfolio-review]] - scheduled analyst review cycle. 2026-05-29 validation fills 5D와 AVGO after-hours validation 1D 회고 완료; 정책 변경 없음; 주문 mutation 없음.
 - [[2026-06-05-portfolio-review]] - scheduled analyst review cycle. 2026-05-26/27/28 validation fills 5D backlog closeout과 skipped recommendation 재점검 완료; AVGO earnings-event risk alert 기록; 정책 변경 없음.
 - [[2026-06-06-portfolio-review]] - scheduled analyst review cycle. 2026-06-04 ET validation fills 1D, AVGO after-hours validation 5D, INTC final review, recent skipped recommendation 재점검 완료; 정책 변경 없음.
+- [[2026-06-07-portfolio-review]] - scheduled analyst review cycle. 2026-06-06 ET close 기준 새 due horizon 없음; AVGO/JPM/SO/NOK open-position monitor와 skipped recommendation 재점검만 수행; 정책 변경 없음.
 - [[2026-06-02-0611-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했지만 장외 session budget 2건이 이미 소진되어 신규 주문 없음.
 - [[2026-06-02-0451-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했지만 buy entry window 종료, validation lifecycle/review backlog/portfolio-fit 제약, sell/trim 수량·macro·decision metric gate로 신규 주문 없음.
 - [[2026-06-02-0431-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했지만 buy entry window 종료, validation lifecycle/review backlog/portfolio-fit 제약, sell/trim 수량·macro·decision metric gate로 신규 주문 없음.
@@ -726,11 +727,13 @@
 - [[2026-06-04-portfolio-review]] - 2026-05-29 validation fills 5D 및 AVGO after-hours validation 1D interim analyst review. 정책 변경 없음.
 - [[2026-06-05-portfolio-review]] - 2026-05-26/27/28 validation fills 5D interim analyst review와 skipped recommendation 재점검. 정책 변경 없음.
 - [[2026-06-06-portfolio-review]] - 2026-06-04 ET validation fills 1D, AVGO 5D, INTC final review, skipped recommendation 재점검. 정책 변경 없음.
+- [[2026-06-07-portfolio-review]] - 2026-06-06 ET close 기준 새 due review 없음. open-position monitor와 skipped recommendation 재점검만 수행. 정책 변경 없음.
 - `wiki/evidence-store/run-manifests/2026-05-29-0625-analyst-review-cycle.json` - 2026-05-29 analyst review cycle MCP coverage와 due-review manifest.
 - `wiki/evidence-store/run-manifests/2026-06-02-0624-analyst-review-cycle.json` - 2026-06-02 analyst review cycle MCP coverage와 due-review manifest.
 - `wiki/evidence-store/run-manifests/2026-06-04-0624-analyst-review-cycle.json` - 2026-06-04 analyst review cycle MCP coverage와 due-review manifest.
 - `wiki/evidence-store/run-manifests/2026-06-05-0627-analyst-review-cycle.json` - 2026-06-05 analyst review cycle MCP coverage, backlog 5D closeout, skipped-review manifest.
 - `wiki/evidence-store/run-manifests/2026-06-06-0626-analyst-review-cycle.json` - 2026-06-06 analyst review cycle MCP coverage, 1D/5D/final review closeout, skipped-review manifest.
+- `wiki/evidence-store/run-manifests/2026-06-07-0623-analyst-review-cycle.json` - 2026-06-07 analyst review cycle MCP coverage, waiting review scan, open-position monitor manifest.
 - `wiki/trade-ledger/orders/2026-05-26-1853-hourly-autopilot.json` - 2026-05-26 18:53 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2011-hourly-autopilot.json` - 2026-05-26 20:11 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2124-hourly-autopilot.json` - 2026-05-26 21:24 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
@@ -883,6 +886,7 @@
 - [[2026-06-04-0624-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/Alpha/Yahoo reconciliation, SEC cancelled gap, FRED/Firecrawl wrapper gap, 2026-05-29 5D 및 AVGO 1D 회고 원천.
 - [[2026-06-05-0627-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/Alpha/Yahoo reconciliation, SEC cancelled gap, FRED/Firecrawl wrapper gap, 2026-05-26/27/28 5D backlog closeout과 skipped recommendation 회고 원천.
 - [[2026-06-06-0626-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/SEC/Alpha/Yahoo reconciliation, FRED/Firecrawl wrapper gap, 2026-06-04 ET 1D, AVGO 5D, INTC final review, skipped recommendation 회고 원천.
+- [[2026-06-07-0623-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/Yahoo reconciliation, SEC cancelled gap, Alpha provider-error, FRED/Firecrawl wrapper gap, 2026-06-06 ET waiting review scan 원천.
 - [[2026-05-30-overnight-trade-review-alpaca-readonly]] - 지난 밤 거래 회고용 Alpaca MCP read-only 계좌, FILL 10건, MRK 미체결 취소 확인.
 - `wiki/evidence-store/sources/2026-05-25-one-year-hourly-bars.json` - 62개 심볼 2025-05-23~2026-05-22 adjusted IEX 1시간봉 원자료.
 - `wiki/evidence-store/sources/2026-05-25-one-year-hourly-alpaca-news.json` - 1년 1시간봉 보강용 Alpaca MCP 뉴스 원자료.

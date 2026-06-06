@@ -1,0 +1,140 @@
+{
+  "id": "2026-06-07-0623-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-06-06T21:23:41Z",
+  "timezone": "Asia/Seoul",
+  "paper": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "alpaca_reconciliation": {
+    "clock_is_open": false,
+    "account_status": "ACTIVE",
+    "portfolio_value": 98156.33,
+    "cash": 29947.79,
+    "buying_power": 294276.14,
+    "long_market_value": 68208.54,
+    "open_us_equity_orders": 0,
+    "position_count": 33,
+    "recent_fill_scope_after": "2026-06-04T00:00:00Z",
+    "direct_fill_activity": {
+      "outcome": "usable",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    "portfolio_history": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 2
+    }
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-06-07-portfolio-review.md",
+    "symbol_reviews": [],
+    "reviewed_horizons": [
+      "2026-06-06 ET close review-due scan",
+      "open-position catalyst review",
+      "skipped recommendations re-check",
+      "provider coverage and gap classification"
+    ],
+    "symbols": [
+      "AVGO",
+      "JPM",
+      "SO",
+      "NOK",
+      "JNJ",
+      "NKE",
+      "CVX",
+      "NEE",
+      "SPY",
+      "QQQ",
+      "XLU",
+      "XLF",
+      "SMH",
+      "XLE",
+      "XLY",
+      "XLK"
+    ],
+    "due_now": false,
+    "next_due": "2026-06-08 US regular-session close for 2026-06-05 fill cohort 1D"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-07-0623-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "portfolio_history_cancelled_after_initial_plus_2_retries",
+      "gap_category": "cancelled",
+      "retry_count": 2
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-07-0623-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "get_insider_summary(AVGO,30) cancelled on initial attempt and both allowed retries",
+      "gap_category": "cancelled",
+      "retry_count": 2
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-07-0623-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "PING health check passed; first non-PING TOOL_CALL(EARNINGS,{symbol:AVGO}) returned daily-rate-limit payload",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-07-0623-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-07-0623-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-07-0623-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "No new 1D/5D/20D horizon matured at the 2026-06-06 US close, and Alpaca portfolio-history plus SEC/Alpha/FRED/Firecrawl gaps left the evidence below active-rule threshold"
+  }
+}

@@ -72,3 +72,9 @@ NOK는 보유 유지 후보지만 신규 추격은 금지한다. 2026-05-22 종�
 validation add 관점에서는 신호가 여전히 엇갈린다. `2026-05-26` add 1주는 16.50 USD 진입 대비 2026-06-04 close 16.61 USD로 +0.67%에 그쳐 사실상 본전이고, `2026-05-28` after-hours add 1주는 15.40 USD 대비 16.61 USD로 +7.86%다. 즉 기존 대형 보유 thesis는 살아 있지만, add timing은 변동성 의존이 커서 `existing-position-breakout-add-penalty` 가설을 아직 지운다고 보기 어렵다.
 
 출처: [[2026-06-05-portfolio-review]], [[2026-06-05-0627-analyst-review-cycle-sources]]
+
+### 2026-06-07 analyst review cycle
+
+`NOK` 20D add-block review는 아직 `2026-06-18` 미국 정규장 close 이후다. 다만 current Alpaca snapshot close/current `14.35 USD`는 전일 close `16.61 USD` 대비 `-13.61%`로 다시 크게 밀렸고, 평균단가 `15.044527 USD` 대비 포지션도 미실현 손실 구간으로 돌아왔다. 이번 run에서는 add-block 해제 근거가 없으므로 기존 `existing-position-breakout-add-penalty` 가설과 함께 block을 유지한다.
+
+출처: [[2026-06-07-portfolio-review]], [[2026-06-07-0623-analyst-review-cycle-sources]]

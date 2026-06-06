@@ -45,3 +45,9 @@ asset_type: stock
 ## 2026-06-06 03:11 KST hourly autopilot
 
 2026-06-06 03:11 KST hourly autopilot에서 `SO` 1주 regular-session day limit buy를 계획했고, 첫 submit safety cancellation 뒤 동일 `client_order_id` reconcile/retry를 거쳐 Alpaca order id `dcf8d47c-979f-469c-a22c-06d04c5a25f1`가 생성됐다. immediate reconciliation 시점 상태는 `new` open order다. 근거는 scheduler research preflight shortlist 포함, FRED macro row pass, runtime spread 0.0214%, same-day duplicate/open-order conflict 없음, utilities diversifier floor-size validation 목적이었다.
+
+### 2026-06-07 analyst review cycle
+
+current Alpaca snapshot 기준 `SO`는 `2026-06-05` close/current `92.64 USD`, 평균단가 `92.696 USD`로 사실상 본전이다. `XLU`는 같은 날 `+0.93%`였고 `SO`도 first-close 방어력은 나쁘지 않았다. 다만 기존 weak-to-neutral review 이력이 남아 있어 이번 run에서도 `회고 대기`를 유지하고, `2026-06-08` 미국 정규장 close 이후 1D interim verdict를 내린다.
+
+출처: [[2026-06-07-portfolio-review]], [[2026-06-07-0623-analyst-review-cycle-sources]]
