@@ -1,6 +1,6 @@
-policy_id: recommendation-policy-v1.10
-updated_at: "2026-05-30T07:43:00+09:00"
-policy_version: v1.10
+policy_id: recommendation-policy-v1.11
+updated_at: "2026-06-06T11:20:00+09:00"
+policy_version: v1.11
 strategy_status:
   long_term_quality_momentum_v1:
     status: auto_eligible_paper
@@ -394,16 +394,16 @@ paper_validation_execution:
     allow_multiple_candidates_per_run: true
     prefer_different_clusters_for_additional_orders: true
     max_same_cluster_new_buys_per_run: 1
-    cash_ratio_floor_for_second_order: 0.25
-    cash_ratio_floor_for_third_order: 0.25
-    cash_ratio_floor_for_additional_orders: 0.25
+    cash_ratio_floor_for_second_order: 0.10
+    cash_ratio_floor_for_third_order: 0.10
+    cash_ratio_floor_for_additional_orders: 0.10
     target_exposure_path:
-      current_to_accelerate_until_ratio: 0.70
-      selective_allocation_until_ratio: 0.75
-      max_policy_target_ratio: 0.80
-      max_new_exposure_pct_per_run_normal: 0.03
-      max_new_exposure_pct_per_run_high_conviction: 0.05
-      prefer_rebalance_over_new_buy_above_ratio: 0.75
+      current_to_accelerate_until_ratio: 0.85
+      selective_allocation_until_ratio: 0.90
+      max_policy_target_ratio: 0.95
+      max_new_exposure_pct_per_run_normal: 0.05
+      max_new_exposure_pct_per_run_high_conviction: 0.08
+      prefer_rebalance_over_new_buy_above_ratio: 0.90
       prefer_rebalance_over_new_buy_behavior: evaluate_trim_rotation_before_new_buy
     review_backlog_throttle:
       enabled: true
