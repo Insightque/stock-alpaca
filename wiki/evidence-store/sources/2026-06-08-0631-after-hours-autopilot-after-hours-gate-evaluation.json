@@ -1,0 +1,154 @@
+{
+  "run_id": "2026-06-08-0631-after-hours-autopilot",
+  "created_at": "2026-06-08T06:34:36+09:00",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "submit_attempted": false,
+  "orders_submitted": [],
+  "shortlist_symbols": [
+    "QQQ",
+    "GOOGL",
+    "SMH",
+    "SPY",
+    "WMT",
+    "XOM",
+    "BAC",
+    "TSLA"
+  ],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 18,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 13,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "cash_deployment_blocker": "quote_or_spread_gate_failed"
+  },
+  "review_backlog_throttle": {
+    "enabled": true,
+    "max_new_buy_slots_before_throttle": 1,
+    "max_new_buy_slots_after_throttle": 1,
+    "review_backlog_pending_1d_count": 13,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "result": "pending 1D backlog exceeded the throttle threshold, but this cycle was already blocked by fresh quote / spread hard gates before any after-hours buy slot could be used."
+  },
+  "runtime_alpaca_mcp": {
+    "clock": {
+      "is_open": false,
+      "timestamp": "2026-06-07T17:33:03.228159825-04:00",
+      "next_open": "2026-06-08T09:30:00-04:00",
+      "next_close": "2026-06-08T16:00:00-04:00"
+    },
+    "account_status": "ACTIVE",
+    "position_count": 33,
+    "open_order_count": 0,
+    "orders_after_2026_06_05_200000z": 1,
+    "watchlist_count": 0,
+    "fill_activity_count": 0
+  },
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass",
+      "detail": "ALPACA_PAPER_TRADE=true 확인"
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed",
+      "detail": "regular market closed at runtime get_clock 2026-06-07T17:33:03.228159825-04:00"
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass",
+      "detail": "session=after_hours and extended-hours policy profile retained"
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_market_closed_nonblocking_after_hours",
+      "detail": "0631 scheduler-owned core preflight first_blocking_gate=market_closed treated as expected nonblocking; account/positions/orders/asset/quote rows passed"
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass",
+      "detail": "after_hours_policy artifact tag, review bucket, and order id prefix retained"
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "pass_zero_of_two_submitted",
+      "detail": "after_hours_new_orders_submitted_today=0 and max_new_orders_per_session=2"
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass",
+      "detail": "broad universe 62 symbols with SPY/QQQ included and scheduler-owned shortlist 8 symbols"
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass",
+      "detail": "sec-edgar/fred/firecrawl/yahoo-finance pass; alpha-vantage empty_response did not block because core and minimum research confirmations passed"
+    },
+    {
+      "gate": "risk_policy",
+      "status": "pass_no_submit_quote_gate_block",
+      "detail": "risk validator passes with expected orders-is-empty warning because fresh quote/spread gates failed before order construction"
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "fail_scheduler_owned_iex_quotes_stale_over_5_minutes_for_qqq_2924.93_minutes_and_other_candidates_2973.01_to_2973.05_minutes",
+      "detail": "all executable candidates failed the 5 minute after-hours quote freshness cap"
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "fail_only_qqq_inside_0_25pct_but_stale_and_rest_spread_or_two_sided_quote_failed",
+      "detail": "QQQ spread passed but stale; AVGO/PFE were bid-only; SMH/SPY/WMT/GOOGL/XOM/BAC/TSLA spread exceeded 0.25%; runtime overnight quotes were even staler at about 3693.05 minutes."
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "pass_no_orders_built",
+      "detail": "whole-share day limit extended-hours shape preserved, but no order survived quote gates"
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "pass_no_submit",
+      "detail": "no place_stock_order call; no new client_order_id to reconcile"
+    }
+  ],
+  "block_reasons": [
+    "AVGO sell/trim은 허용 side로 재평가했지만 scheduler-owned IEX quote가 bid-only 386.40이고 runtime clock 대비 약 2972.13분 stale여서 executable sell로 승격되지 않았다.",
+    "QQQ는 spread 0.0157%로 가장 양호한 fallback benchmark였지만 quote timestamp가 2026-06-05T20:48:07.458456075Z라 runtime clock 대비 약 2924.93분 stale여서 5분 fresh-quote cap에서 막혔다.",
+    "SMH/SPY/WMT/GOOGL/XOM/BAC/TSLA는 모두 scheduler-owned IEX quote가 약 2973.01-2973.05분 stale였고 spread가 after-hours cap 0.25%를 크게 초과했다. PFE도 bid-only quote라 executable extended-hours two-sided quote를 만들지 못했다."
+  ],
+  "candidate_notes": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "summary": "bid-only IEX quote 386.40 at 2026-06-05T20:00:55.167085571Z and age 2972.13 minutes blocked executable trim"
+    },
+    {
+      "symbol": "QQQ",
+      "side": "buy",
+      "summary": "best fallback benchmark with spread 0.0157% but quote age 2924.93 minutes exceeded 5 minute cap"
+    },
+    {
+      "symbol": "SPY",
+      "side": "buy",
+      "summary": "quote age 2973.05 minutes, spread 6.1271%, and 1 share ask 759.97 USD all failed executable after-hours caps"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-08-0631-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-08-0631-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-08-0631-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/2026-06-07-portfolio-review.md",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md"
+  ]
+}
