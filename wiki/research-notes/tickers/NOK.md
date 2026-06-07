@@ -78,3 +78,9 @@ validation add 관점에서는 신호가 여전히 엇갈린다. `2026-05-26` ad
 `NOK` 20D add-block review는 아직 `2026-06-18` 미국 정규장 close 이후다. 다만 current Alpaca snapshot close/current `14.35 USD`는 전일 close `16.61 USD` 대비 `-13.61%`로 다시 크게 밀렸고, 평균단가 `15.044527 USD` 대비 포지션도 미실현 손실 구간으로 돌아왔다. 이번 run에서는 add-block 해제 근거가 없으므로 기존 `existing-position-breakout-add-penalty` 가설과 함께 block을 유지한다.
 
 출처: [[2026-06-07-portfolio-review]], [[2026-06-07-0623-analyst-review-cycle-sources]]
+
+### 2026-06-08 analyst review cycle
+
+`2026-06-07 17:22 ET` closed-market scan 기준 `NOK` current close/current는 `14.38 USD`, 평균단가 `15.044527 USD` 대비 미실현 `-4.42%`다. Yahoo news는 AI infrastructure 기대와 valuation re-rating 논쟁을 보여주지만, tape 약세를 뒤집을 새 확정 촉매는 보이지 않는다. 이번 run에서도 `existing-position-breakout-add-penalty` add-block을 유지한다.
+
+출처: [[2026-06-08-portfolio-review]], [[2026-06-08-0622-analyst-review-cycle-sources]]

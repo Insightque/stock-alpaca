@@ -51,3 +51,9 @@ asset_type: stock
 current Alpaca snapshot 기준 `SO`는 `2026-06-05` close/current `92.64 USD`, 평균단가 `92.696 USD`로 사실상 본전이다. `XLU`는 같은 날 `+0.93%`였고 `SO`도 first-close 방어력은 나쁘지 않았다. 다만 기존 weak-to-neutral review 이력이 남아 있어 이번 run에서도 `회고 대기`를 유지하고, `2026-06-08` 미국 정규장 close 이후 1D interim verdict를 내린다.
 
 출처: [[2026-06-07-portfolio-review]], [[2026-06-07-0623-analyst-review-cycle-sources]]
+
+### 2026-06-08 analyst review cycle
+
+`2026-06-07 17:22 ET` closed-market scan 기준 `SO`는 close/current `92.60 USD`, 평균단가 `92.696 USD`로 `-0.10%`다. Yahoo news도 explicit catalyst보다는 utility defensive/valuation narrative에 머물러 있어, 기존 weak-to-neutral 이력을 뒤집을 새 근거가 없다. 따라서 이번 run에서도 `회고 대기`를 유지하고 official 1D close를 기다린다.
+
+출처: [[2026-06-08-portfolio-review]], [[2026-06-08-0622-analyst-review-cycle-sources]]

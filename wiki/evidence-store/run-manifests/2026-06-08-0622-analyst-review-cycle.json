@@ -1,0 +1,128 @@
+{
+  "id": "2026-06-08-0622-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-06-07T21:22:00Z",
+  "timezone": "Asia/Seoul",
+  "paper": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "alpaca_reconciliation": {
+    "clock_is_open": false,
+    "account_status": "ACTIVE",
+    "portfolio_value": 98156.33,
+    "cash": 29947.79,
+    "buying_power": 294276.14,
+    "long_market_value": 68208.54,
+    "open_us_equity_orders": 0,
+    "position_count": 33,
+    "recent_fill_scope_after": "2026-06-04T00:00:00Z",
+    "direct_fill_activity": {
+      "outcome": "usable",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+    "symbol_reviews": [],
+    "reviewed_horizons": [
+      "2026-06-07 ET waiting review scan",
+      "open-position catalyst monitor",
+      "skipped recommendations re-check"
+    ],
+    "symbols": [
+      "AVGO",
+      "JPM",
+      "SO",
+      "NOK",
+      "PFE",
+      "NVDA",
+      "JNJ",
+      "NKE",
+      "CVX",
+      "NEE"
+    ],
+    "due_now": false,
+    "next_due": "2026-06-08 ET regular-session close for 2026-06-05 fill cohort 1D"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-0622-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-0622-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "get_insider_summary(AVGO, 30) initial plus 2 retries all cancelled",
+      "gap_category": "cancelled",
+      "retry_count": 2
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-0622-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-0622-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-0622-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-0622-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "no new due horizon closed; waiting review only, so evidence threshold for recommendation-policy update was not met"
+  }
+}

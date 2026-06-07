@@ -47,3 +47,9 @@ asset_type: stock
 `2026-06-06` 미국 정규장 close 기준 `JPM` 1주의 공식 1D horizon은 아직 도래하지 않았다. current Alpaca snapshot close/current는 `312.38 USD`로 평균단가 `311.81 USD` 대비 `+0.18%`이며, financials benchmark `XLF`도 같은 날 `+0.18%`였다. 따라서 현재 평가는 `회고 대기 유지`다.
 
 출처: [[2026-06-07-portfolio-review]], [[2026-06-07-0623-analyst-review-cycle-sources]]
+
+### 2026-06-08 analyst review cycle
+
+`2026-06-07 17:22 ET` closed-market scan 기준 `JPM` 1주의 공식 1D horizon은 여전히 열리지 않았다. current close/current `312.37 USD`는 평균단가 `311.81 USD` 대비 `+0.18%`로 사실상 전일과 같은 수준이고, Yahoo recommendation breadth도 `strongBuy 4 / buy 8 / hold 12 / sell 0 / strongSell 0`로 급격한 악화는 없다. 이번 run의 판단도 `회고 대기 유지`다.
+
+출처: [[2026-06-08-portfolio-review]], [[2026-06-08-0622-analyst-review-cycle-sources]]
