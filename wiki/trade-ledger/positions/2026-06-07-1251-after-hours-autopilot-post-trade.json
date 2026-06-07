@@ -1,0 +1,50 @@
+{
+  "run_id": "2026-06-07-1251-after-hours-autopilot",
+  "created_at": "2026-06-07T03:57:08Z",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "portfolio_value": 98156.33,
+    "cash": 29947.79,
+    "buying_power": 294276.14,
+    "long_market_value": 68208.54,
+    "currency": "USD",
+    "status": "ACTIVE"
+  },
+  "submitted_orders": [],
+  "lifecycle_actions": [],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "AVGO",
+      "qty": 12.0,
+      "market_value": 4628.76
+    },
+    {
+      "symbol": "QQQ",
+      "qty": 3.0,
+      "market_value": 2115.18
+    },
+    {
+      "symbol": "WMT",
+      "qty": 6.0,
+      "market_value": 713.28
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": false,
+    "client_order_ids_checked": [],
+    "recent_orders_after": "2026-06-05T20:00:00Z",
+    "recent_after_hours_orders_found": 0,
+    "recent_after_hours_fills_found": 0,
+    "position_delta": "none",
+    "notes": "Runtime get_orders(status=all, after=2026-06-05T20:00:00Z) returned one canceled regular-session NKE order with extended_hours=false and no after-hours client_order_id. Runtime get_account_activities(activity_types=FILL, after=2026-06-05T20:00:00Z) was empty. No submit attempt occurred in this cycle, so reconcile state stayed on the scheduler-owned 1251 preflight plus runtime order/watchlist/fill cross-check path."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-07-1251-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-07-1251-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-07-1251-after-hours-autopilot.json",
+    "wiki/evidence-store/run-manifests/2026-06-07-1251-after-hours-autopilot.json"
+  ]
+}
