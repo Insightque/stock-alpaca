@@ -1,0 +1,50 @@
+{
+  "run_id": "2026-06-08-0651-after-hours-autopilot",
+  "created_at": "2026-06-07T21:54:22Z",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 98156.33,
+    "cash": 29947.79,
+    "buying_power": 294276.14,
+    "long_market_value": 68208.54,
+    "currency": "USD"
+  },
+  "submitted_orders": [],
+  "lifecycle_actions": [],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "AVGO",
+      "qty": 12.0,
+      "market_value": 4628.76
+    },
+    {
+      "symbol": "QQQ",
+      "qty": 3.0,
+      "market_value": 2115.18
+    },
+    {
+      "symbol": "WMT",
+      "qty": 6.0,
+      "market_value": 713.28
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": false,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "client_order_ids_checked": [],
+    "new_fills_detected": 0,
+    "position_delta": "none",
+    "note": "No submit path. Runtime Alpaca MCP get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-05T20:00:00Z)/get_watchlists/get_account_activities(activity_types=FILL, after=2026-06-05T20:00:00Z)/get_stock_latest_quote(feed=iex)/get_stock_latest_quote(feed=overnight) confirmed no new after-hours order object, no standing extended-hours order, and no position count change."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-08-0651-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-08-0651-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-08-0651-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-08-0651-after-hours-autopilot.json"
+  ]
+}
