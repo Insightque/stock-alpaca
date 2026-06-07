@@ -1,0 +1,208 @@
+{
+  "run_id": "2026-06-07-1211-after-hours-autopilot",
+  "created_at": "2026-06-07T03:13:28Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "submit_attempted": false,
+  "orders_submitted": [],
+  "shortlist_symbols": [
+    "QQQ",
+    "GOOGL",
+    "SMH",
+    "SPY",
+    "WMT",
+    "XOM",
+    "BAC",
+    "TSLA",
+    "AVGO",
+    "PFE"
+  ],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 18,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 13,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "cash_deployment_blocker": "quote_or_spread_gate_failed"
+  },
+  "review_backlog_throttle": {
+    "enabled": true,
+    "max_new_buy_slots_before_throttle": 1,
+    "max_new_buy_slots_after_throttle": 1,
+    "review_backlog_pending_1d_count": 13,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "result": "pending 1D backlog exceeded the throttle threshold, but this cycle was already blocked by fresh quote / spread hard gates before any after-hours buy slot could be used."
+  },
+  "runtime_alpaca_mcp": {
+    "account_confirmed_active": true,
+    "account_source": "Scheduler-owned 1211 Alpaca core preflight remained the source of record for clock, account, positions, open orders, asset, and IEX quote rows. Runtime Alpaca MCP cross-checks reconfirmed get_clock regular-market-closed, get_account_info ACTIVE, get_all_positions=33, get_orders(status=open)=0, get_orders(status=all, after=2026-06-05T20:00:00Z)=1 canceled regular-session order only, get_watchlists=0, and get_account_activities(activity_types=FILL, after=2026-06-05T20:00:00Z)=0.",
+    "after_hours_new_orders_submitted_today": 0,
+    "clock_is_open": false,
+    "clock_timestamp": "2026-06-06T23:13:28.600968127-04:00",
+    "open_orders_count": 0,
+    "positions_count": 33,
+    "watchlists_count": 0,
+    "reconciled_client_order_ids": [],
+    "clock": {
+      "is_open": false,
+      "next_close": "2026-06-08T16:00:00-04:00",
+      "next_open": "2026-06-08T09:30:00-04:00",
+      "timestamp": "2026-06-06T23:13:28.600968127-04:00"
+    }
+  },
+  "gate_results": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_no_submit_quote_gate_block",
+    "fresh_quote": "fail_runtime_iex_quotes_stale_over_5_minutes_for_qqq_1825.35_minutes_and_other_candidates_1872.56_to_1873.48_minutes",
+    "spread_within_after_hours_policy": "fail_only_qqq_inside_0.25pct_but_stale_and_rest_spread_or_two_sided_quote_failed",
+    "whole_share_day_limit_extended_hours_order": "pass_no_orders_built",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit"
+  },
+  "quote_diagnostics": {
+    "after_hours_policy_max_quote_age_minutes_submit": 5.0,
+    "after_hours_policy_max_spread_pct": 0.25,
+    "runtime_clock_timestamp": "2026-06-06T23:13:28.600968127-04:00",
+    "iex": {
+      "SPY": {
+        "quote_timestamp": "2026-06-05T20:00:00.003806119Z",
+        "quote_age_minutes": 1873.48,
+        "bid_price": 714.79,
+        "ask_price": 759.97,
+        "spread_pct": 6.1271,
+        "two_sided": true
+      },
+      "PFE": {
+        "quote_timestamp": "2026-06-05T20:00:47.99072808Z",
+        "quote_age_minutes": 1872.68,
+        "bid_price": 26.01,
+        "ask_price": 0.0,
+        "spread_pct": null,
+        "two_sided": false
+      },
+      "GOOGL": {
+        "quote_timestamp": "2026-06-05T20:00:02.905618137Z",
+        "quote_age_minutes": 1873.43,
+        "bid_price": 359.04,
+        "ask_price": 368.16,
+        "spread_pct": 2.5083,
+        "two_sided": true
+      },
+      "AVGO": {
+        "quote_timestamp": "2026-06-05T20:00:55.167085571Z",
+        "quote_age_minutes": 1872.56,
+        "bid_price": 386.4,
+        "ask_price": 0.0,
+        "spread_pct": null,
+        "two_sided": false
+      },
+      "BAC": {
+        "quote_timestamp": "2026-06-05T20:00:00.128927608Z",
+        "quote_age_minutes": 1873.47,
+        "bid_price": 51.39,
+        "ask_price": 56.04,
+        "spread_pct": 8.6568,
+        "two_sided": true
+      },
+      "XOM": {
+        "quote_timestamp": "2026-06-05T20:00:00.079542774Z",
+        "quote_age_minutes": 1873.48,
+        "bid_price": 144.16,
+        "ask_price": 156.67,
+        "spread_pct": 8.317,
+        "two_sided": true
+      },
+      "QQQ": {
+        "quote_timestamp": "2026-06-05T20:48:07.458456075Z",
+        "quote_age_minutes": 1825.35,
+        "bid_price": 700.15,
+        "ask_price": 700.26,
+        "spread_pct": 0.0157,
+        "two_sided": true
+      },
+      "SMH": {
+        "quote_timestamp": "2026-06-05T20:00:00.010128509Z",
+        "quote_age_minutes": 1873.48,
+        "bid_price": 557.43,
+        "ask_price": 588.52,
+        "spread_pct": 5.4261,
+        "two_sided": true
+      },
+      "TSLA": {
+        "quote_timestamp": "2026-06-05T20:00:00.009282218Z",
+        "quote_age_minutes": 1873.48,
+        "bid_price": 375.32,
+        "ask_price": 409.76,
+        "spread_pct": 8.7736,
+        "two_sided": true
+      },
+      "WMT": {
+        "quote_timestamp": "2026-06-05T20:00:01.069298811Z",
+        "quote_age_minutes": 1873.46,
+        "bid_price": 114.76,
+        "ask_price": 124.61,
+        "spread_pct": 8.2299,
+        "two_sided": true
+      }
+    },
+    "overnight": {
+      "AVGO": {
+        "quote_timestamp": "2026-06-05T08:00:00.414992659Z",
+        "quote_age_minutes": 2593.47,
+        "bid_price": 409.39,
+        "ask_price": 420.4,
+        "spread_pct": 2.6532,
+        "two_sided": true
+      },
+      "PFE": {
+        "quote_timestamp": "2026-06-05T08:00:00.402824909Z",
+        "quote_age_minutes": 2593.47,
+        "bid_price": 25.77,
+        "ask_price": 26.32,
+        "spread_pct": 2.1114,
+        "two_sided": true
+      },
+      "QQQ": {
+        "quote_timestamp": "2026-06-05T08:00:00.406190958Z",
+        "quote_age_minutes": 2593.47,
+        "bid_price": 699.59,
+        "ask_price": 734.4,
+        "spread_pct": 4.8544,
+        "two_sided": true
+      }
+    }
+  },
+  "decision_summary": {
+    "market_open": false,
+    "invested_ratio": 0.6949,
+    "open_orders": 0,
+    "planned_orders": [],
+    "submitted_orders": [],
+    "skipped_orders": [
+      "AVGO sell/trim은 허용 side로 재평가했지만 runtime IEX quote가 bid-only 386.40이고 약 1852.28분 stale여서 executable sell로 승격되지 않았다.",
+      "QQQ는 spread 0.0157%로 가장 양호한 fallback benchmark였지만 quote timestamp가 2026-06-05T20:48:07.458456075Z라 runtime clock 대비 약 1805.08분 stale여서 5분 fresh-quote cap에서 막혔다.",
+      "SMH, SPY, WMT, GOOGL, XOM, BAC, TSLA는 모두 runtime IEX quote가 약 1853.15-1853.20분 stale였고 spread가 after-hours cap 0.25%를 크게 초과했다. PFE도 bid-only quote라 executable extended-hours two-sided quote를 만들지 못했다."
+    ]
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-07-1211-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-07-1211-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-07-1211-after-hours-autopilot.json",
+    "wiki/evidence-store/run-manifests/2026-06-07-1211-after-hours-autopilot.json"
+  ]
+}
