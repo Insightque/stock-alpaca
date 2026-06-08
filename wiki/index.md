@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-08 23:34 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-08 23:58 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-08-2351-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `2351` stale cleanup/core/research preflight를 우선 사용했고 runtime Alpaca MCP `get_watchlists/get_orders(status=open)/get_orders(status=all, after=2026-06-08T00:00:00Z)/get_stock_latest_quote(feed=iex)/get_account_info/get_all_positions`로 duplicate/open-order/quote/account/positions 상태를 재확인했다. `review_backlog_pending_1d_count=13` backlog throttle 때문에 신규 buy는 차단됐고, sell-first 후보도 `RGTI` same-day duplicate, `AVGO` same-day duplicate, `SO` decision-grade metric gap에 막혀 no-submit으로 종료했다. positions는 `32`, open orders는 0건 유지됐고 runtime quote 기준 `AVGO` spread는 `0.2880%`로 정상 범위였다.
 - [[2026-06-08-2331-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `2331` stale cleanup/core/research preflight를 우선 사용했고 runtime Alpaca MCP `get_watchlists/get_orders(status=open)/get_orders(status=all, after=2026-06-08T00:00:00Z)/get_stock_latest_quote(feed=iex)`로 duplicate/open-order/quote 상태를 재확인했다. `review_backlog_pending_1d_count=13` backlog throttle 때문에 신규 buy는 차단됐고, sell-first 후보도 `RGTI` same-day duplicate, `AVGO` duplicate+spread `1.5306%`, `SO` decision-grade metric gap에 막혀 no-submit으로 종료했다. positions는 `32`, open orders는 0건 유지됐다.
 - [[2026-06-08-2311-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `2311` stale cleanup/core/research preflight를 우선 사용했고 runtime Alpaca MCP `get_watchlists/get_orders(status=open)/get_orders(status=all, after=2026-06-08T00:00:00Z)/get_stock_latest_quote(feed=iex)`로 duplicate/open-order/quote 상태를 재확인했다. `review_backlog_pending_1d_count=13` backlog throttle 때문에 신규 buy는 차단됐고, sell-first 후보도 `RGTI` same-day duplicate, `AVGO` duplicate+spread `1.5189%`, `SO` decision-grade metric gap에 막혀 no-submit으로 종료했다. positions는 `32`, open orders는 0건 유지됐다.
 - [[2026-06-08-2251-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `2251` stale cleanup/core/research preflight를 우선 사용했고 runtime Alpaca MCP `get_watchlists/get_orders(status=open)/get_orders(status=all, after=2026-06-08T00:00:00Z)/get_account_activities(activity_types=FILL, after=2026-06-08T00:00:00Z)/get_all_positions/get_account_info`로 submit 직전/직후 상태를 대조했다. `review_backlog_pending_1d_count=13` review backlog throttle 때문에 신규 buy는 차단됐지만 risk-reducing sell은 독립적으로 평가되어 `RGTI` 30주 trim이 `21.48 USD`에 전량 체결됐고 positions는 `32`를 유지한 채 `RGTI 120 -> 90`으로 감소했다.
