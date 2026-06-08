@@ -16,3 +16,9 @@ asset_type: stock
 2026-05-28 validation buy 1주는 114.95 USD 진입 대비 2026-05-29 close/current 114.36 USD로 -0.51%, SPY 대비 -0.71%p였다. 손실은 작지만 energy/value hedge 후보로서 1D 우위는 확인되지 않았다. 판단은 `중립 약함`이며 5D/20D 대기.
 
 출처: [[2026-05-30-portfolio-review]], [[2026-05-30-0625-analyst-review-cycle-sources]]
+
+### 2026-06-09 analyst review cycle
+
+`2026-06-05 ET` fill 1D는 `117.42 USD -> 118.92 USD`로 `+1.28%`였다. `SPY` 대비 `+1.04%p`, `QQQ` 대비 `-0.24%p`라 broad risk-on을 거의 따라가면서 energy/value hedge 역할도 유지했다. 판단은 `양호`이며 5D에서도 energy sleeve가 계속 버티는지 확인한다.
+
+출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]

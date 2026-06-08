@@ -18,3 +18,9 @@ Apple paper validation 후보. 2026-05-26 hourly autopilot에서 mega-cap qualit
 `AAPL` 1주 regular-session day limit add가 `314.25 USD` limit으로 제출됐고, Alpaca MCP 기준 `2026-06-05T15:19:25.344149286Z`에 `313.27 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0011` core/research preflight와 strict universe/MCP/risk gate 통과, runtime quote `313.02/314.25`에서 spread `0.3929%`, same-day duplicate/open-order conflict 부재, 그리고 `PLTR/BAC/WMT/FCX` duplicate block 및 `QQQ/SPY` notional cap 초과 이후 남은 가장 보수적인 mega-cap quality floor-size validation add였다는 점이다. 이 체결 후 runtime `get_all_positions` 기준 `AAPL` 보유수량은 3주, 평균단가는 `310.93 USD`로 갱신됐다.
 
 출처: [[2026-06-06-0011-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-06-0011-hourly-autopilot-post-trade.json`
+
+### 2026-06-09 analyst review cycle
+
+`2026-06-05 ET` fill 1D는 `313.27 USD -> 301.57 USD`로 `-3.73%`였다. `SPY` 대비 `-3.98%p`, `QQQ` 대비 `-5.25%p`라 mega-cap quality add의 immediate timing은 좋지 않았다. 판단은 `약함`이며, broad tech dip에서 quality label만으로 추가 진입 cadence를 높이면 안 된다는 표본으로 남긴다.
+
+출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]

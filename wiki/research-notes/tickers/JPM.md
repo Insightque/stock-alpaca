@@ -53,3 +53,9 @@ asset_type: stock
 `2026-06-07 17:22 ET` closed-market scan 기준 `JPM` 1주의 공식 1D horizon은 여전히 열리지 않았다. current close/current `312.37 USD`는 평균단가 `311.81 USD` 대비 `+0.18%`로 사실상 전일과 같은 수준이고, Yahoo recommendation breadth도 `strongBuy 4 / buy 8 / hold 12 / sell 0 / strongSell 0`로 급격한 악화는 없다. 이번 run의 판단도 `회고 대기 유지`다.
 
 출처: [[2026-06-08-portfolio-review]], [[2026-06-08-0622-analyst-review-cycle-sources]]
+
+### 2026-06-09 analyst review cycle
+
+`2026-06-05 ET` fill 1D는 `311.81 USD -> 311.11 USD`로 `-0.22%`였다. 절대수익은 소폭 음수지만 `SPY +0.24%`, `QQQ +1.51%`와 비교한 underperformance보다 `XLF -0.59%` 대비 상대방어가 더 중요했다. financials diversifier floor-size validation으로는 `중립 양호`이며 5D는 `2026-06-12 ET` close 이후 다시 본다.
+
+출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]

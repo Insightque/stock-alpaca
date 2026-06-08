@@ -67,3 +67,9 @@ RGTI는 오늘 신규 매수 후보에서 제외했다. 2026-05-22 종가 26.41 
 2026-05-22 stock-only cohort는 25.569584 USD 진입 대비 2026-06-01 close 25.63 USD로 +0.24%였다. 절대 수익은 flat에 가깝고 SPY/QQQ 대비 약해, quantum sleeve 안에서도 IONQ보다 낮은 품질로 본다. 판단은 `약함`, 20D 회고 대기.
 
 출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]
+
+### 2026-06-09 analyst review cycle
+
+`2026-06-08 ET` trim 30주는 `21.48 USD`에 체결됐고 same-day close는 `21.77 USD`였다. trimmed lot 기준 원진입 `25.569583 USD` 대비 `-15.99%` loss realization이지만, close-after-trim rebound는 `+1.35%`에 그쳐 speculative sleeve 축소 의사결정 자체를 뒤집지는 않는다. 판단은 `양호`이며 남은 90주는 20D review와 별도로 계속 monitor한다.
+
+출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]

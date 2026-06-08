@@ -17,3 +17,9 @@ Freeport-McMoRan paper validation 후보. 2026-05-26 hourly autopilot에서 mate
 ## 회고 기록
 
 - 2026-05-28: [[2026-05-28-portfolio-review]]에서 2026-05-26 validation buy 1D interim review를 작성했다. 63.94 USD 진입 대비 2026-05-27 close 63.625 USD로 -0.49%, SPY 대비 -0.51%p였다. 손실은 작지만 commodity 분산 thesis의 우위는 1D에 확인되지 않아 5D/20D 대기다.
+
+### 2026-06-09 analyst review cycle
+
+`2026-06-05 ET` fill 1D는 `65.15 USD -> 63.88 USD`로 `-1.95%`였다. `SPY` 대비 `-2.19%p`, `QQQ` 대비 `-3.46%p`라 materials/mining diversifier add는 첫날 우위를 보여주지 못했다. 판단은 `중립 약함`이며 commodity follow-through는 5D까지 더 봐야 한다.
+
+출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]

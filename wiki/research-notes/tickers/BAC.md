@@ -32,3 +32,9 @@ asset_type: stock
 5D 기준으로는 financials 분산 thesis가 회복됐다. `2026-05-27` validation buy 1주는 52.06 USD 대비 54.11 USD로 +3.94%, `2026-05-28` validation buy 1주는 51.14 USD 대비 54.11 USD로 +5.81%였다. 두 표본 모두 `XLF`, SPY, QQQ를 앞질렀고 1D 약세만으로 failure로 단정하지 말아야 한다는 사례가 됐다.
 
 출처: [[2026-06-05-portfolio-review]], [[2026-06-05-0627-analyst-review-cycle-sources]]
+
+### 2026-06-09 analyst review cycle
+
+`2026-06-05 ET` fill 1D는 `53.83 USD -> 53.59 USD`로 `-0.45%`였다. `SPY` 대비 `-0.69%p`, `QQQ` 대비 `-1.96%p`지만 financials benchmark `XLF -0.59%`보다는 약간 나았다. 첫날 큰 alpha는 없었어도 financials diversifier 표본으로는 `중립 양호`다.
+
+출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]

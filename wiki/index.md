@@ -406,6 +406,7 @@
 - [[2026-06-06-portfolio-review]] - scheduled analyst review cycle. 2026-06-04 ET validation fills 1D, AVGO after-hours validation 5D, INTC final review, recent skipped recommendation 재점검 완료; 정책 변경 없음.
 - [[2026-06-07-portfolio-review]] - scheduled analyst review cycle. 2026-06-06 ET close 기준 새 due horizon 없음; AVGO/JPM/SO/NOK open-position monitor와 skipped recommendation 재점검만 수행; 정책 변경 없음.
 - [[2026-06-08-portfolio-review]] - scheduled analyst review cycle. 2026-06-07 ET close 기준 새 due horizon 없음; AVGO/JPM/SO/NOK waiting monitor와 skipped recommendation 재점검만 수행; 정책 변경 없음.
+- [[2026-06-09-portfolio-review]] - scheduled analyst review cycle. 2026-06-05 ET validation buy 13건의 1D backlog closeout과 2026-06-08 ET sell/trim review를 완료했고 정책 변경은 없었다.
 - [[2026-06-02-0611-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk gate는 통과했지만 장외 session budget 2건이 이미 소진되어 신규 주문 없음.
 - [[2026-06-02-0451-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했지만 buy entry window 종료, validation lifecycle/review backlog/portfolio-fit 제약, sell/trim 수량·macro·decision metric gate로 신규 주문 없음.
 - [[2026-06-02-0431-hourly-autopilot]] - hourly paper autopilot 실행. Scheduler stale cleanup/Alpaca core/universe/MCP/risk gate는 통과했지만 buy entry window 종료, validation lifecycle/review backlog/portfolio-fit 제약, sell/trim 수량·macro·decision metric gate로 신규 주문 없음.
@@ -846,6 +847,7 @@
 - [[2026-06-06-portfolio-review]] - 2026-06-04 ET validation fills 1D, AVGO 5D, INTC final review, skipped recommendation 재점검. 정책 변경 없음.
 - [[2026-06-07-portfolio-review]] - 2026-06-06 ET close 기준 새 due review 없음. open-position monitor와 skipped recommendation 재점검만 수행. 정책 변경 없음.
 - [[2026-06-08-portfolio-review]] - 2026-06-07 ET close 기준 새 due review 없음. waiting review scan, open-position monitor, skipped recommendation 재점검만 수행. 정책 변경 없음.
+- [[2026-06-09-portfolio-review]] - 2026-06-05 ET validation buy 13건의 1D review, 2026-06-08 ET sell/trim review, skipped recommendation 재점검. 정책 변경 없음.
 - `wiki/evidence-store/run-manifests/2026-05-29-0625-analyst-review-cycle.json` - 2026-05-29 analyst review cycle MCP coverage와 due-review manifest.
 - `wiki/evidence-store/run-manifests/2026-06-02-0624-analyst-review-cycle.json` - 2026-06-02 analyst review cycle MCP coverage와 due-review manifest.
 - `wiki/evidence-store/run-manifests/2026-06-04-0624-analyst-review-cycle.json` - 2026-06-04 analyst review cycle MCP coverage와 due-review manifest.

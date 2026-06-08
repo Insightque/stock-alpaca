@@ -1,0 +1,149 @@
+{
+  "id": "2026-06-09-0623-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-06-08T21:23:17Z",
+  "timezone": "Asia/Seoul",
+  "paper": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "alpaca_reconciliation": {
+    "clock_is_open": false,
+    "account_status": "ACTIVE",
+    "portfolio_value": 100068.19,
+    "cash": 31774.85,
+    "buying_power": 301909.49,
+    "long_market_value": 68293.34,
+    "open_us_equity_orders": 0,
+    "position_count": 32,
+    "recent_fill_scope_after": "2026-06-05T00:00:00Z",
+    "direct_fill_activity": {
+      "outcome": "usable",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    "portfolio_history": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 2,
+      "gap_reason": "get_portfolio_history initial plus 2 retries all cancelled"
+    }
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+    "symbol_reviews": [],
+    "reviewed_horizons": [
+      "2026-06-05 ET fill cohort 1D closeout",
+      "2026-06-08 ET sell and trim review",
+      "open-position monitor",
+      "skipped recommendations re-check"
+    ],
+    "symbols": [
+      "AVGO",
+      "TSLA",
+      "RGTI",
+      "JPM",
+      "SO",
+      "PFE",
+      "AMZN",
+      "COP",
+      "SLB",
+      "NVDA",
+      "V",
+      "AAPL",
+      "PLTR",
+      "FCX",
+      "WMT",
+      "BAC",
+      "NOK",
+      "JNJ",
+      "CVX",
+      "NEE",
+      "SPY",
+      "QQQ",
+      "XLF",
+      "XLU"
+    ],
+    "due_now": true,
+    "next_due": "2026-06-09 ET regular-session close for AVGO/RGTI/TSLA sell follow-up and 2026-06-12 ET regular-session close for 2026-06-05 fill cohort 5D"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-09-0623-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-09-0623-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "analyze_form4_transactions(AVGO,30) and analyze_form4_transactions(JPM,30) cancelled",
+      "gap_category": "cancelled",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-09-0623-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "TOOL_CALL(EARNINGS,{symbol:AVGO}) returned daily-rate-limit payload after successful PING health check",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-09-0623-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-09-0623-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-09-0623-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "review backlog closeout improved evidence quality but did not meet the repeated-pattern threshold for recommendation-policy changes"
+  }
+}

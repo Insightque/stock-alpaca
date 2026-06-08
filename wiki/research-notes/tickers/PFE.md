@@ -40,3 +40,9 @@ asset_type: stock
 2026-05-29 validation add 1주는 26.09 USD 진입 대비 2026-06-03 close 25.36 USD로 -2.80%였다. defensive healthcare 분산 thesis는 5D에서도 SPY/QQQ를 모두 하회했다. 판단은 `약함`, 20D review 전 add 또는 정책 승격 근거로 쓰지 않는다.
 
 출처: [[2026-06-04-portfolio-review]], [[2026-06-04-0624-analyst-review-cycle-sources]]
+
+### 2026-06-09 analyst review cycle
+
+`2026-06-05 ET` fill 1D는 `26.09 USD -> 25.61 USD`로 `-1.84%`였다. 절대 손실과 `SPY/QQQ` 대비 부진이 동시에 남아 defensive healthcare 분산 thesis의 개선 증거가 되지 못했다. 판단은 `약함`이며 5D close 전까지 추가 승격 근거로 쓰지 않는다.
+
+출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]

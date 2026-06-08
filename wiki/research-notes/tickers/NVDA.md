@@ -77,3 +77,9 @@ Alpaca/Benzinga에서는 CPU 시장 기대와 post-earnings pullback/support nar
 ## 2026-06-06 00:59 KST hourly autopilot
 
 2026-06-06 00:59 KST hourly autopilot에서 `NVDA` 1주 regular-session day limit buy를 제출했고, immediate reconciliation 시점 상태는 `new` open order다. 근거는 scheduler research preflight shortlist 포함, preflight quote `208.76/208.80`, spread `0.0192%`, same-day duplicate/open-order conflict 없음, 5D review 양호, review backlog throttle 통과, 그리고 ai_semiconductor_complex warning band를 반영한 floor-size validation add 목적이다.
+
+### 2026-06-09 analyst review cycle
+
+`2026-06-05 ET` fill 1D는 `208.73 USD -> 208.66 USD`로 `-0.03%`였다. 절대수익은 flat이지만 `SPY` 대비 `-0.28%p`, `QQQ` 대비 `-1.55%p`로 과도한 추격 손실 없이 버틴 편이다. AI core holding validation으로는 `중립 양호`이며, 강한 verdict는 5D에서 다시 판단한다.
+
+출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]

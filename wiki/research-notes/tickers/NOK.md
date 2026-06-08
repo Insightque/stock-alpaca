@@ -84,3 +84,9 @@ validation add 관점에서는 신호가 여전히 엇갈린다. `2026-05-26` ad
 `2026-06-07 17:22 ET` closed-market scan 기준 `NOK` current close/current는 `14.38 USD`, 평균단가 `15.044527 USD` 대비 미실현 `-4.42%`다. Yahoo news는 AI infrastructure 기대와 valuation re-rating 논쟁을 보여주지만, tape 약세를 뒤집을 새 확정 촉매는 보이지 않는다. 이번 run에서도 `existing-position-breakout-add-penalty` add-block을 유지한다.
 
 출처: [[2026-06-08-portfolio-review]], [[2026-06-08-0622-analyst-review-cycle-sources]]
+
+### 2026-06-09 analyst review cycle
+
+`2026-06-08 ET` close/current `14.595 USD`는 평균단가 `15.044527 USD` 대비 `-2.99%`다. Yahoo와 Alpaca news 모두 AI infrastructure 기대와 valuation 논쟁이 공존했지만, add-block을 해제할 정도의 가격 구조 회복은 없다. 이번 run에서도 `existing-position-breakout-add-penalty`를 유지하고 `2026-06-18 ET` 20D review를 기다린다.
+
+출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]

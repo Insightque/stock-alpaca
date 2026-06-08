@@ -40,3 +40,9 @@ asset_type: stock
 `SLB` 1주 regular-session day limit buy가 `55.70 USD` limit으로 제출됐고, Alpaca MCP `get_order_by_client_id` 기준 `2026-06-05T16:15:33.962605999Z`에 `55.67 USD`로 즉시 체결됐다. 근거는 2026-06-05 portfolio review의 5D follow-through 양호, runtime Alpaca quote `55.68/55.70`에서 spread `0.0359%`, scheduler-owned stale cleanup/core/research preflight와 risk gate 통과다. 이 체결은 같은 energy-services validation 표본의 추가 learning fill로 기록하며 1D/5D/20D review를 추적한다.
 
 출처: [[2026-06-06-0111-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-06-0111-hourly-autopilot-post-trade.json`
+
+### 2026-06-09 analyst review cycle
+
+`2026-06-05 ET` fill 1D는 `55.67 USD -> 56.55 USD`로 `+1.58%`였다. `SPY` 대비 `+1.34%p`, `QQQ` 대비 `+0.07%p`라 절대수익과 상대수익이 모두 양호했다. 에너지 서비스 validation add는 이번 1D에서는 `양호`이며, oil headline 의존성이 여전히 큰지만 5D에서 다시 본다.
+
+출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]

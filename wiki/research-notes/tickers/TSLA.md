@@ -50,3 +50,9 @@ TSLA는 Tesla로, 가격 흐름은 전일 대비 긍정적이지만 이번 업�
 2026-05-28 validation buy 1주는 441.40 USD 진입 대비 2026-05-29 close/current 435.04 USD로 -1.44%, SPY 대비 -1.64%p였다. EV/AI optionality 표본은 1D에서 약했고, 기존 AI software 강세와는 다르게 움직였다.
 
 출처: [[2026-05-30-portfolio-review]], [[2026-05-30-0625-analyst-review-cycle-sources]]
+
+### 2026-06-09 analyst review cycle
+
+`2026-06-08 ET` final exit 1주는 `398.59 USD`에 체결돼 original entry `441.40 USD` 대비 `-9.70%`를 확정했다. same-day close `408.95 USD`는 exit 이후 `+2.60%` rebound라 price timing은 아쉽지만, low-confidence optionality thesis와 prior weak review를 감안하면 risk-reducing close decision 자체는 이해 가능하다. final 판단은 `중립 약함`이다.
+
+출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]

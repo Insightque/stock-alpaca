@@ -67,3 +67,9 @@ PLTR은 Palantir로, AI 소프트웨어/정부 계약 관련 관심 종목이지
 2026-06-05 04:40 KST hourly autopilot에서 PLTR 1주 regular-session day limit add를 추가 제출했다. 근거는 scheduler-owned 0431 preflight 기준 research confirmation 4/5 usable/pass, runtime quote 141.47/141.51 spread 0.0283%, same-day duplicate/open-order conflict 부재, 기존 1주 보유 low-notional ai_software/speculative_growth validation add 허용이다. 다만 reconciliation 시점 주문은 `status=new`이며 체결은 아직 확인되지 않았다.
 
 출처: [[2026-06-05-0431-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-05-0431-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-05-0431-hourly-autopilot-post-trade.json`
+
+### 2026-06-09 analyst review cycle
+
+`2026-06-05 ET` fill 1D는 `138.53 USD -> 136.47 USD`로 `-1.49%`였다. `SPY` 대비 `-1.73%p`, `QQQ` 대비 `-3.00%p`라 software/AI momentum add의 follow-through는 기대보다 약했다. 다만 손실 폭은 제한돼 판단은 `중립 약함`으로 두고 5D에서 재확인한다.
+
+출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]

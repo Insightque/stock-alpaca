@@ -107,3 +107,9 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 `0931` scheduled after-hours-autopilot은 scheduler-owned core preflight가 regular-market-closed clock row만 남긴 sparse artifact였기 때문에, runtime Alpaca MCP로 account/positions/orders/asset/overnight quote를 다시 채웠다. 그 결과 `AVGO`는 `392.73/392.78` 장외 quote, spread `0.012731%`, quote age `0.06`분, held qty `11` 조건에서 다시 floor-size trim 경로를 통과했고 `client_order_id=ah-20260608-0931-sell-avgo`로 1주 sell을 제출했다. same client id reconciliation 기준 주문은 `2026-06-08T00:37:53.182189Z`에 `392.80 USD`로 체결됐고 보유수량은 `11주 -> 10주`로 감소했다. 해석은 여전히 `validation add 실패 + core thesis 완전 폐기 아님`이며, buy backlog throttle 아래에서 post-earnings risk watch를 반영한 추가 de-risking이다.
 
 출처: [[2026-06-08-0931-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-08-0931-after-hours-autopilot-post-trade.json`
+
+### 2026-06-09 analyst review cycle
+
+`2026-06-08 ET` after-hours trim 2건은 `391.27 USD`, `392.80 USD`에 체결됐고 same-day close는 `396.72 USD`였다. exit 이후 `+1.39%`, `+1.00%` rebound가 있어 exact timing은 조금 이르렀지만, 평균단가 `414.940833 USD` 대비 포지션은 여전히 `-4.39%`라 post-earnings staged de-risking 자체는 타당했다. 판단은 `중립 양호`이며 core thesis를 전면 폐기하지는 않는다.
+
+출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]

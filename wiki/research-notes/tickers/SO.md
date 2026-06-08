@@ -57,3 +57,9 @@ current Alpaca snapshot 기준 `SO`는 `2026-06-05` close/current `92.64 USD`, �
 `2026-06-07 17:22 ET` closed-market scan 기준 `SO`는 close/current `92.60 USD`, 평균단가 `92.696 USD`로 `-0.10%`다. Yahoo news도 explicit catalyst보다는 utility defensive/valuation narrative에 머물러 있어, 기존 weak-to-neutral 이력을 뒤집을 새 근거가 없다. 따라서 이번 run에서도 `회고 대기`를 유지하고 official 1D close를 기다린다.
 
 출처: [[2026-06-08-portfolio-review]], [[2026-06-08-0622-analyst-review-cycle-sources]]
+
+### 2026-06-09 analyst review cycle
+
+`2026-06-05 ET` fill 1D는 `93.32 USD -> 91.28 USD`로 `-2.19%`였다. `SPY +0.24%`, `QQQ +1.51%`를 모두 하회했고 utility benchmark `XLU -1.94%`보다도 `0.25%p` 약했다. 반복된 weak-to-neutral 이력이 유지돼 이번 판단은 `약함`이며, defensive label만으로 add를 정당화하지 않는다.
+
+출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]
