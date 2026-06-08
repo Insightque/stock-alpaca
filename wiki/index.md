@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-08 22:43 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-08 22:59 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-08-2251-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `2251` stale cleanup/core/research preflight를 우선 사용했고 runtime Alpaca MCP `get_watchlists/get_orders(status=open)/get_orders(status=all, after=2026-06-08T00:00:00Z)/get_account_activities(activity_types=FILL, after=2026-06-08T00:00:00Z)/get_all_positions/get_account_info`로 submit 직전/직후 상태를 대조했다. `review_backlog_pending_1d_count=13` review backlog throttle 때문에 신규 buy는 차단됐지만 risk-reducing sell은 독립적으로 평가되어 `RGTI` 30주 trim이 `21.48 USD`에 전량 체결됐고 positions는 `32`를 유지한 채 `RGTI 120 -> 90`으로 감소했다.
 - [[2026-06-08-2231-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `2231` stale cleanup/core/research preflight를 우선 사용했고, runtime Alpaca MCP `get_watchlists/get_orders(status=open)/get_orders(status=all, after=2026-06-08T00:00:00Z)/get_all_positions/get_account_info`로 duplicate/open-order 상태를 재확인했다. `pending_1d_count=13` review backlog throttle 때문에 신규 buy는 차단됐지만 risk-reducing sell은 독립적으로 평가되어 `TSLA` 1주 exit가 `398.59 USD`에 즉시 체결됐고 positions는 `33 -> 32`로 감소했다.
 - [[2026-06-08-2151-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `2151` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 장외 세션에서 expected nonblocking으로 처리했다. scheduler-owned `get_clock/get_account_info/get_all_positions/get_orders_open/get_account_activities/get_asset/get_stock_latest_quote/get_stock_latest_trade` rows와 Alpaca MCP `get_watchlists/get_orders(status=open)/get_orders(status=all, after=2026-06-08T00:00:00Z)/get_order_by_client_id(ah-20260608-0911-sell-avgo, ah-20260608-0931-sell-avgo)` 교차 확인 기준 regular market은 closed, account `ACTIVE`, open orders는 0건, positions는 33건, watchlists는 0건이었다. same-session after-hours filled orders `ah-20260608-0911-sell-avgo`, `ah-20260608-0931-sell-avgo` 두 건으로 separate after-hours session budget이 `2/2`라 신규 주문은 제출하지 않았다.
 - [[2026-06-08-2131-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `2131` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 장외 세션에서 expected nonblocking으로 처리했다. scheduler-owned `get_clock/get_account_info/get_all_positions/get_orders_open/get_account_activities/get_asset/get_stock_latest_quote/get_stock_latest_trade` rows와 Alpaca MCP `get_watchlists/get_orders(status=all, after=2026-06-08T00:00:00Z)/get_account_activities(activity_types=FILL, after=2026-06-08T00:00:00Z)/get_order_by_client_id(ah-20260608-0911-sell-avgo, ah-20260608-0931-sell-avgo)` 교차 확인 기준 regular market은 closed, account `ACTIVE`, open orders는 0건, positions는 33건, watchlists는 0건이었다. same-session after-hours filled orders `ah-20260608-0911-sell-avgo`, `ah-20260608-0931-sell-avgo` 두 건으로 separate after-hours session budget이 `2/2`라 신규 주문은 제출하지 않았다.

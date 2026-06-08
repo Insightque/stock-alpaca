@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-08 22:43 KST_
+_Last updated: 2026-06-08 22:59 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-08-2251-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `RGTI` sell 30 @ `21.48` (`client_order_id=hourly-20260608-2251-sell-rgti`)가 regular-session runtime reconciliation 기준 전량 체결됐다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `32` positions. `RGTI`는 `120 -> 90`으로 감소했고 open orders는 0건이다.
+- Recent reconciliation scope: scheduler-owned `2251` stale cleanup/core/research preflight와 runtime `get_watchlists/get_orders(status=open)/get_orders(status=all, after=2026-06-08T00:00:00Z)/get_account_activities(activity_types=FILL, after=2026-06-08T00:00:00Z)/get_all_positions/get_account_info/place_stock_order` 확인 기준 review backlog throttle로 신규 buy는 계속 차단됐지만 risk-reducing sell 경로에서 `RGTI` 30주 trim이 허용됐다. post-trade account snapshot은 portfolio value `99,552.10 USD`, cash `31,774.85 USD`, buying power `300,430.68 USD`, long market value `67,777.25 USD`다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-08-2251-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
