@@ -1,0 +1,1251 @@
+{
+  "schema_version": "1.3",
+  "run_id": "2026-06-08-2311-hourly-autopilot",
+  "created_at": "2026-06-08T14:15:09Z",
+  "data_cutoff_time": "2026-06-08T14:15:09Z",
+  "market_clock_checked_at": "2026-06-08T10:11:08.808835723-04:00",
+  "git_commit": "0f823ba4a07e06a0c4324258911f0d0af107f31e",
+  "prompt_file_sha": "04074b8efd7de291cac919ec156ad41f311cb968ea8cbe367848dd7bdfa36864",
+  "paper": true,
+  "mode": "submit",
+  "first_blocking_gate": "review_backlog_throttle",
+  "recommendation_actionability": {
+    "actionable": false,
+    "submit_mode": true,
+    "minimum_learning_orders_required": 1,
+    "minimum_learning_orders_planned": 0,
+    "hard_gates_passed": false,
+    "exception": "review_backlog_throttle blocked new buys; RGTI same_day_duplicate_symbol_side; AVGO spread_and_same_day_duplicate_symbol_side; SO decision_grade_metric_gap; SPY/QQQ validation_floor_per_order_cap; NOK validation_lifecycle_blocked_add"
+  },
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "risk_policy_version": "medium-risk-v1.2",
+  "report_path": "wiki/current-runs/daily/2026-06-08-2311-hourly-autopilot.md",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-08-2311-hourly-autopilot.json",
+  "post_trade_path": "wiki/trade-ledger/positions/2026-06-08-2311-hourly-autopilot-post-trade.json",
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 13,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "cash_deployment_blocker": "review_backlog_throttle"
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + scheduler Alpaca preflight universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad metadata universe screen, scheduler Alpaca core/research preflight, sell-trim-first evaluation, runtime duplicate/open-order reconciliation, review-backlog throttle for buys only, and floor-size buy fallback diagnostics",
+    "pre_mcp_shortlist": [
+      "RGTI",
+      "AVGO",
+      "SO",
+      "SPY",
+      "QQQ",
+      "NOK"
+    ],
+    "final_candidates": [
+      "RGTI",
+      "AVGO",
+      "SO"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-08T14:11:30Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-runtime-gate-evaluation.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-08T14:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-08T14:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-08T13:31:36+00:00, retry after ~1204s.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-08T13:31:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-08T14:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-08T14:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_actionable": 3,
+    "min_research_confirmations_for_submit": 3,
+    "all_research_must_be_attempted": true,
+    "provider_gap_blocks_order": false,
+    "critical_source_rules": {
+      "earnings_signal": {
+        "require_any": [
+          "sec-edgar",
+          "alpha-vantage",
+          "firecrawl_company_ir"
+        ],
+        "missing_behavior": "downgrade_to_watch"
+      },
+      "macro_rate_sensitive_signal": {
+        "require_any": [
+          "fred",
+          "explicit_macro_source"
+        ],
+        "missing_behavior": "downgrade_to_watch"
+      },
+      "filing_risk_signal": {
+        "require_any": [
+          "sec-edgar_acceptance_time"
+        ],
+        "missing_behavior": "block_new_buy"
+      },
+      "analyst_only_signal": {
+        "allowed_use": "thesis_confirmation_only",
+        "missing_behavior": "no_positive_score_delta"
+      }
+    }
+  },
+  "open_order_lifecycle": {
+    "stale_cleanup_source_ref": "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-stale-order-cleanup.json",
+    "cleanup_status": "pass",
+    "open_orders_seen": 0,
+    "remaining_blocking_open_orders": [],
+    "passed": true
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "RGTI",
+      "held_qty": 90.0,
+      "current_weight_pct": 1.952,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "RGTI는 2251 cycle에서 이미 30주 trim이 filled 되었고 현재 avg entry 25.569583 USD 대비 약 -15.49% 손실이라 speculative sleeve trim trigger는 계속 active다. 그러나 2026-06-08 same-day all-orders에 `hourly-20260608-2251-sell-rgti` filled sell이 남아 있어 같은 symbol/side 추가 trim은 duplicate discipline에 막힌다.",
+      "skipped_gate": "same_day_duplicate_symbol_side",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.48,
+      "relative_to_spy_20d_pct": -1.48,
+      "metric_gap_reason": "",
+      "replacement_symbol": "SPY",
+      "replacement_expected_excess_margin_pct": 1.48,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+        "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/SPY.md",
+        "wiki/research-notes/tickers/QQQ.md",
+        "wiki/research-notes/tickers/NOK.md"
+      ]
+    },
+    {
+      "symbol": "AVGO",
+      "held_qty": 10.0,
+      "current_weight_pct": 3.945,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "AVGO는 ai_semiconductor warning band와 earnings-event de-risking 때문에 trim 재검토 대상이지만, 2026-06-08 same-day after-hours sell 2건이 이미 있고 runtime regular-session quote도 392.00/398.00으로 spread 1.5189%가 hard cap 0.50%를 크게 초과한다. duplicate discipline과 spread gate를 동시에 넘길 수 없다.",
+      "skipped_gate": "spread_and_same_day_duplicate_symbol_side",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -3.55,
+      "relative_to_spy_20d_pct": -4.33,
+      "metric_gap_reason": "",
+      "replacement_symbol": "SPY",
+      "replacement_expected_excess_margin_pct": 3.0,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+        "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/SPY.md",
+        "wiki/research-notes/tickers/QQQ.md",
+        "wiki/research-notes/tickers/NOK.md"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "held_qty": 5.0,
+      "current_weight_pct": 0.464,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "SO는 반복된 weak-to-neutral review 때문에 trim watch 대상이지만, runtime quote 92.24/92.27과 spread 0.0325%는 정상이더라도 official 1D close 전이라 trim을 정당화할 decision-grade expected-excess/replacement margin이 이번 cycle에도 비어 있다.",
+      "skipped_gate": "decision_grade_metric_gap",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "SO는 weak-to-neutral review 이력은 누적됐지만 이번 cycle에서 trim order를 정당화할 decision-grade expected-excess/replacement margin이 없다. quote/spread gate는 통과해도 metric policy가 먼저 막는다.",
+      "replacement_symbol": "SPY",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+        "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/SPY.md",
+        "wiki/research-notes/tickers/QQQ.md",
+        "wiki/research-notes/tickers/NOK.md"
+      ]
+    }
+  ],
+  "validation_lifecycle": {
+    "status": "review_backlog_throttle_blocks_new_buys_only",
+    "due_reviews": [
+      {
+        "symbol": "NOK",
+        "horizon": "20D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-18 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+          "wiki/trade-ledger/reviews/2026-06-04-portfolio-review.md"
+        ]
+      },
+      {
+        "symbol": "JPM",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0351-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0351-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "SO",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0311-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0311-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "PFE",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0211-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0211-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "AMZN",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0151-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0151-hourly-autopilot-post-trade.json"
+        ]
+      }
+    ],
+    "blocked_add_symbols": [
+      "NOK"
+    ],
+    "due_reviews_blocking_adds": [
+      "NOK"
+    ],
+    "reviewed_recent_validation_symbols": [
+      "AVGO",
+      "JPM",
+      "SO",
+      "NOK"
+    ],
+    "new_same_day_fills_not_due_yet": [
+      "JPM",
+      "SO",
+      "PFE",
+      "AMZN",
+      "COP",
+      "SLB",
+      "NVDA",
+      "V",
+      "AAPL",
+      "PLTR",
+      "FCX",
+      "WMT",
+      "BAC"
+    ],
+    "source_refs": [
+      "wiki/trade-ledger/reviews/review-due-index.json",
+      "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+      "harness/recommendation-policy.yaml"
+    ]
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+    "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/SPY.md",
+    "wiki/research-notes/tickers/QQQ.md",
+    "wiki/research-notes/tickers/NOK.md"
+  ],
+  "order_plan": {
+    "run_id": "2026-06-08-2311-hourly-autopilot",
+    "schema_version": "1.2",
+    "risk_policy_version": "medium-risk-v1.2",
+    "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+    "created_at": "2026-06-08T14:15:09Z",
+    "mode": "submit",
+    "paper": true,
+    "market": {
+      "is_open": true,
+      "checked_at": "2026-06-08T10:11:08.808835723-04:00",
+      "next_open": "2026-06-09T09:30:00-04:00",
+      "next_close": "2026-06-08T16:00:00-04:00",
+      "session": "regular"
+    },
+    "account": {
+      "portfolio_value": 99661.78,
+      "cash": 31774.85,
+      "buying_power": 300765.93,
+      "currency": "USD",
+      "daily_realized_loss": 0.0
+    },
+    "positions": [
+      {
+        "symbol": "AAPL",
+        "asset_type": "stock",
+        "qty": 3.0,
+        "market_value": 933.99,
+        "avg_entry_price": 310.93,
+        "current_price": 311.33,
+        "theme": "mega_cap_tech",
+        "factor": "growth_quality",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "mega",
+        "source_confidence": "high",
+        "correlated_cluster": "mega_cap_tech"
+      },
+      {
+        "symbol": "ADBE",
+        "asset_type": "stock",
+        "qty": 1.0,
+        "market_value": 248.17,
+        "avg_entry_price": 242.36,
+        "current_price": 248.17,
+        "theme": "software",
+        "factor": "growth_quality",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "large",
+        "source_confidence": "high",
+        "correlated_cluster": "software_cloud"
+      },
+      {
+        "symbol": "AMD",
+        "asset_type": "stock",
+        "qty": 14.0,
+        "market_value": 6792.8,
+        "avg_entry_price": 462.73,
+        "current_price": 485.2,
+        "theme": "ai_semiconductor",
+        "factor": "ai_semiconductor",
+        "volatility_bucket": "high",
+        "speculative_flag": false,
+        "liquidity_bucket": "mega",
+        "source_confidence": "high",
+        "correlated_cluster": "ai_semiconductor_complex"
+      },
+      {
+        "symbol": "AMZN",
+        "asset_type": "stock",
+        "qty": 4.0,
+        "market_value": 987.42,
+        "avg_entry_price": 266.6325,
+        "current_price": 246.855,
+        "theme": "mega_cap_tech",
+        "factor": "growth_quality",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "mega",
+        "source_confidence": "high",
+        "correlated_cluster": "mega_cap_tech"
+      },
+      {
+        "symbol": "AVGO",
+        "asset_type": "stock",
+        "qty": 10.0,
+        "market_value": 3931.35,
+        "avg_entry_price": 414.940833,
+        "current_price": 393.135,
+        "theme": "ai_semiconductor",
+        "factor": "ai_semiconductor",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "mega",
+        "source_confidence": "high",
+        "correlated_cluster": "ai_semiconductor_complex"
+      },
+      {
+        "symbol": "BAC",
+        "asset_type": "stock",
+        "qty": 4.0,
+        "market_value": 216.92,
+        "avg_entry_price": 52.7625,
+        "current_price": 54.23,
+        "theme": "financials",
+        "factor": "bank_rate_sensitive",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "mega",
+        "source_confidence": "high",
+        "correlated_cluster": "financials"
+      },
+      {
+        "symbol": "COP",
+        "asset_type": "stock",
+        "qty": 3.0,
+        "market_value": 359.34,
+        "avg_entry_price": 117.18,
+        "current_price": 119.78,
+        "theme": "energy",
+        "factor": "commodity_cyclical",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "large",
+        "source_confidence": "high",
+        "correlated_cluster": "energy_commodity"
+      },
+      {
+        "symbol": "CVX",
+        "asset_type": "stock",
+        "qty": 1.0,
+        "market_value": 190.65,
+        "avg_entry_price": 184.03,
+        "current_price": 190.65,
+        "theme": "energy",
+        "factor": "commodity_cyclical",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "large",
+        "source_confidence": "high",
+        "correlated_cluster": "energy_commodity"
+      },
+      {
+        "symbol": "ETN",
+        "asset_type": "stock",
+        "qty": 15.0,
+        "market_value": 6039.9,
+        "avg_entry_price": 387.9,
+        "current_price": 402.66,
+        "theme": "power_infrastructure",
+        "factor": "industrial_power",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "large",
+        "source_confidence": "high",
+        "correlated_cluster": "electrification_infrastructure"
+      },
+      {
+        "symbol": "FCX",
+        "asset_type": "stock",
+        "qty": 3.0,
+        "market_value": 193.95,
+        "avg_entry_price": 66.2,
+        "current_price": 64.65,
+        "theme": "materials_mining",
+        "factor": "commodity_cyclical",
+        "volatility_bucket": "high",
+        "speculative_flag": false,
+        "liquidity_bucket": "large",
+        "source_confidence": "high",
+        "correlated_cluster": "energy_commodity"
+      },
+      {
+        "symbol": "GOOGL",
+        "asset_type": "stock",
+        "qty": 3.0,
+        "market_value": 1083.012,
+        "avg_entry_price": 381.52,
+        "current_price": 361.004,
+        "theme": "mega_cap_tech",
+        "factor": "growth_quality",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "mega",
+        "source_confidence": "high",
+        "correlated_cluster": "mega_cap_tech"
+      },
+      {
+        "symbol": "IONQ",
+        "asset_type": "stock",
+        "qty": 45.0,
+        "market_value": 2739.6,
+        "avg_entry_price": 63.48,
+        "current_price": 60.88,
+        "theme": "quantum_speculative",
+        "factor": "speculative_growth",
+        "volatility_bucket": "high",
+        "speculative_flag": true,
+        "liquidity_bucket": "medium",
+        "source_confidence": "medium",
+        "correlated_cluster": "quantum_speculative"
+      },
+      {
+        "symbol": "JPM",
+        "asset_type": "stock",
+        "qty": 1.0,
+        "market_value": 313.18,
+        "avg_entry_price": 311.81,
+        "current_price": 313.18,
+        "theme": "financials",
+        "factor": "bank_rate_sensitive",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "mega",
+        "source_confidence": "high",
+        "correlated_cluster": "financials"
+      },
+      {
+        "symbol": "LLY",
+        "asset_type": "stock",
+        "qty": 1.0,
+        "market_value": 1176.295,
+        "avg_entry_price": 1079.38,
+        "current_price": 1176.295,
+        "theme": "healthcare_pharma",
+        "factor": "healthcare_growth",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "mega",
+        "source_confidence": "high",
+        "correlated_cluster": "healthcare"
+      },
+      {
+        "symbol": "LRCX",
+        "asset_type": "stock",
+        "qty": 20.0,
+        "market_value": 6367.0,
+        "avg_entry_price": 307.91,
+        "current_price": 318.35,
+        "theme": "semicap_equipment",
+        "factor": "ai_semiconductor",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "large",
+        "source_confidence": "high",
+        "correlated_cluster": "ai_semiconductor_complex"
+      },
+      {
+        "symbol": "MSFT",
+        "asset_type": "stock",
+        "qty": 1.0,
+        "market_value": 411.9,
+        "avg_entry_price": 426.78,
+        "current_price": 411.9,
+        "theme": "mega_cap_tech",
+        "factor": "growth_quality",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "mega",
+        "source_confidence": "high",
+        "correlated_cluster": "mega_cap_tech"
+      },
+      {
+        "symbol": "NEE",
+        "asset_type": "stock",
+        "qty": 4.0,
+        "market_value": 342.9,
+        "avg_entry_price": 86.745,
+        "current_price": 85.725,
+        "theme": "utilities_power",
+        "factor": "defensive_yield",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "large",
+        "source_confidence": "high",
+        "correlated_cluster": "utilities"
+      },
+      {
+        "symbol": "NKE",
+        "asset_type": "stock",
+        "qty": 4.0,
+        "market_value": 174.36,
+        "avg_entry_price": 45.5075,
+        "current_price": 43.59,
+        "theme": "consumer_cyclical",
+        "factor": "consumer_rate_sensitive",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "large",
+        "source_confidence": "high",
+        "correlated_cluster": "consumer_discretionary"
+      },
+      {
+        "symbol": "NOK",
+        "asset_type": "stock",
+        "qty": 402.0,
+        "market_value": 5863.17,
+        "avg_entry_price": 15.044527,
+        "current_price": 14.585,
+        "theme": "networking",
+        "factor": "international_adr",
+        "volatility_bucket": "high",
+        "speculative_flag": false,
+        "liquidity_bucket": "medium",
+        "source_confidence": "medium",
+        "correlated_cluster": "communications_infrastructure"
+      },
+      {
+        "symbol": "NVDA",
+        "asset_type": "stock",
+        "qty": 38.0,
+        "market_value": 7862.96,
+        "avg_entry_price": 215.031579,
+        "current_price": 206.92,
+        "theme": "ai_semiconductor",
+        "factor": "ai_semiconductor",
+        "volatility_bucket": "high",
+        "speculative_flag": false,
+        "liquidity_bucket": "mega",
+        "source_confidence": "high",
+        "correlated_cluster": "ai_semiconductor_complex"
+      },
+      {
+        "symbol": "PFE",
+        "asset_type": "stock",
+        "qty": 4.0,
+        "market_value": 104.5,
+        "avg_entry_price": 26.17,
+        "current_price": 26.125,
+        "theme": "healthcare_pharma",
+        "factor": "defensive_healthcare",
+        "volatility_bucket": "low",
+        "speculative_flag": false,
+        "liquidity_bucket": "large",
+        "source_confidence": "high",
+        "correlated_cluster": "healthcare"
+      },
+      {
+        "symbol": "PLTR",
+        "asset_type": "stock",
+        "qty": 3.0,
+        "market_value": 412.23,
+        "avg_entry_price": 138.303333,
+        "current_price": 137.41,
+        "theme": "ai_software",
+        "factor": "high_beta_growth",
+        "volatility_bucket": "high",
+        "speculative_flag": true,
+        "liquidity_bucket": "large",
+        "source_confidence": "medium",
+        "correlated_cluster": "speculative_growth"
+      },
+      {
+        "symbol": "QQQ",
+        "asset_type": "etf",
+        "qty": 3.0,
+        "market_value": 2147.28,
+        "avg_entry_price": 733.736667,
+        "current_price": 715.76,
+        "theme": "broad_market",
+        "factor": "growth_index",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "mega",
+        "source_confidence": "high",
+        "correlated_cluster": "broad_index"
+      },
+      {
+        "symbol": "RGTI",
+        "asset_type": "stock",
+        "qty": 90.0,
+        "market_value": 1944.9,
+        "avg_entry_price": 25.569583,
+        "current_price": 21.61,
+        "theme": "quantum_speculative",
+        "factor": "speculative_growth",
+        "volatility_bucket": "high",
+        "speculative_flag": true,
+        "liquidity_bucket": "medium",
+        "source_confidence": "medium",
+        "correlated_cluster": "quantum_speculative"
+      },
+      {
+        "symbol": "SLB",
+        "asset_type": "stock",
+        "qty": 4.0,
+        "market_value": 227.08,
+        "avg_entry_price": 55.8975,
+        "current_price": 56.77,
+        "theme": "energy_services",
+        "factor": "commodity_cyclical",
+        "volatility_bucket": "high",
+        "speculative_flag": false,
+        "liquidity_bucket": "large",
+        "source_confidence": "high",
+        "correlated_cluster": "energy_commodity"
+      },
+      {
+        "symbol": "SO",
+        "asset_type": "stock",
+        "qty": 5.0,
+        "market_value": 462.3,
+        "avg_entry_price": 92.696,
+        "current_price": 92.46,
+        "theme": "utilities_power",
+        "factor": "defensive_yield",
+        "volatility_bucket": "low",
+        "speculative_flag": false,
+        "liquidity_bucket": "large",
+        "source_confidence": "high",
+        "correlated_cluster": "utilities"
+      },
+      {
+        "symbol": "SPY",
+        "asset_type": "etf",
+        "qty": 2.0,
+        "market_value": 1484.26,
+        "avg_entry_price": 753.565,
+        "current_price": 742.13,
+        "theme": "broad_market",
+        "factor": "broad_index",
+        "volatility_bucket": "low",
+        "speculative_flag": false,
+        "liquidity_bucket": "mega",
+        "source_confidence": "high",
+        "correlated_cluster": "broad_index"
+      },
+      {
+        "symbol": "TSM",
+        "asset_type": "stock",
+        "qty": 15.0,
+        "market_value": 6402.525,
+        "avg_entry_price": 405.2,
+        "current_price": 426.835,
+        "theme": "ai_semiconductor",
+        "factor": "ai_semiconductor",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "large",
+        "source_confidence": "high",
+        "correlated_cluster": "ai_semiconductor_complex"
+      },
+      {
+        "symbol": "UNH",
+        "asset_type": "stock",
+        "qty": 15.0,
+        "market_value": 6009.375,
+        "avg_entry_price": 386.56,
+        "current_price": 400.625,
+        "theme": "healthcare",
+        "factor": "defensive_healthcare",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "large",
+        "source_confidence": "high",
+        "correlated_cluster": "healthcare"
+      },
+      {
+        "symbol": "V",
+        "asset_type": "stock",
+        "qty": 4.0,
+        "market_value": 1286.0,
+        "avg_entry_price": 325.685,
+        "current_price": 321.5,
+        "theme": "payments",
+        "factor": "growth_quality",
+        "volatility_bucket": "low",
+        "speculative_flag": false,
+        "liquidity_bucket": "large",
+        "source_confidence": "high",
+        "correlated_cluster": "financials"
+      },
+      {
+        "symbol": "WMT",
+        "asset_type": "stock",
+        "qty": 6.0,
+        "market_value": 718.32,
+        "avg_entry_price": 118.076667,
+        "current_price": 119.72,
+        "theme": "consumer_defensive",
+        "factor": "defensive_quality",
+        "volatility_bucket": "low",
+        "speculative_flag": false,
+        "liquidity_bucket": "mega",
+        "source_confidence": "high",
+        "correlated_cluster": "consumer_defensive"
+      },
+      {
+        "symbol": "XOM",
+        "asset_type": "stock",
+        "qty": 3.0,
+        "market_value": 460.05,
+        "avg_entry_price": 149.566667,
+        "current_price": 153.35,
+        "theme": "energy",
+        "factor": "commodity_cyclical",
+        "volatility_bucket": "medium",
+        "speculative_flag": false,
+        "liquidity_bucket": "mega",
+        "source_confidence": "high",
+        "correlated_cluster": "energy_commodity"
+      }
+    ],
+    "open_orders": [],
+    "risk_inputs": {
+      "policy_turnover_ratio": 0.0,
+      "weekly_turnover_ratio": 0.0,
+      "stop_triggered_orders_today": 0,
+      "new_orders_submitted_today": 0,
+      "risk_recomputed_after_partial_fill": true,
+      "after_hours_new_orders_submitted_today": 2,
+      "review_backlog_pending_1d_count": 13,
+      "review_backlog_pending_5d_count": 0,
+      "review_backlog_pending_20d_count": 1,
+      "cash_deployment_blocker": "review_backlog_throttle"
+    },
+    "orders": [],
+    "sell_candidate_diagnostics": [
+      {
+        "symbol": "RGTI",
+        "held_qty": 90.0,
+        "current_weight_pct": 1.952,
+        "trigger_status": "blocked_by_gate",
+        "primary_reason": "RGTI는 2251 cycle에서 이미 30주 trim이 filled 되었고 현재 avg entry 25.569583 USD 대비 약 -15.49% 손실이라 speculative sleeve trim trigger는 계속 active다. 그러나 2026-06-08 same-day all-orders에 `hourly-20260608-2251-sell-rgti` filled sell이 남아 있어 같은 symbol/side 추가 trim은 duplicate discipline에 막힌다.",
+        "skipped_gate": "same_day_duplicate_symbol_side",
+        "metric_status": "fallback",
+        "expected_excess_return_20d_pct": -1.48,
+        "relative_to_spy_20d_pct": -1.48,
+        "metric_gap_reason": "",
+        "replacement_symbol": "SPY",
+        "replacement_expected_excess_margin_pct": 1.48,
+        "recommendation": "watch",
+        "blocked_sell_recheck": "blocked_sell_candidate",
+        "source_refs": [
+          "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-stale-order-cleanup.json",
+          "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-alpaca-core-preflight.json",
+          "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-research-mcp-preflight.json",
+          "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-runtime-gate-evaluation.json",
+          "harness/recommendation-policy.yaml",
+          "harness/risk-policy.yaml",
+          "harness/symbol-metadata.yaml",
+          "wiki/trade-ledger/reviews/review-due-index.json",
+          "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+          "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+          "wiki/research-notes/tickers/RGTI.md",
+          "wiki/research-notes/tickers/AVGO.md",
+          "wiki/research-notes/tickers/SO.md",
+          "wiki/research-notes/tickers/SPY.md",
+          "wiki/research-notes/tickers/QQQ.md",
+          "wiki/research-notes/tickers/NOK.md"
+        ]
+      },
+      {
+        "symbol": "AVGO",
+        "held_qty": 10.0,
+        "current_weight_pct": 3.945,
+        "trigger_status": "blocked_by_gate",
+        "primary_reason": "AVGO는 ai_semiconductor warning band와 earnings-event de-risking 때문에 trim 재검토 대상이지만, 2026-06-08 same-day after-hours sell 2건이 이미 있고 runtime regular-session quote도 392.00/398.00으로 spread 1.5189%가 hard cap 0.50%를 크게 초과한다. duplicate discipline과 spread gate를 동시에 넘길 수 없다.",
+        "skipped_gate": "spread_and_same_day_duplicate_symbol_side",
+        "metric_status": "fallback",
+        "expected_excess_return_20d_pct": -3.55,
+        "relative_to_spy_20d_pct": -4.33,
+        "metric_gap_reason": "",
+        "replacement_symbol": "SPY",
+        "replacement_expected_excess_margin_pct": 3.0,
+        "recommendation": "watch",
+        "blocked_sell_recheck": "blocked_sell_candidate",
+        "source_refs": [
+          "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-stale-order-cleanup.json",
+          "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-alpaca-core-preflight.json",
+          "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-research-mcp-preflight.json",
+          "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-runtime-gate-evaluation.json",
+          "harness/recommendation-policy.yaml",
+          "harness/risk-policy.yaml",
+          "harness/symbol-metadata.yaml",
+          "wiki/trade-ledger/reviews/review-due-index.json",
+          "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+          "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+          "wiki/research-notes/tickers/RGTI.md",
+          "wiki/research-notes/tickers/AVGO.md",
+          "wiki/research-notes/tickers/SO.md",
+          "wiki/research-notes/tickers/SPY.md",
+          "wiki/research-notes/tickers/QQQ.md",
+          "wiki/research-notes/tickers/NOK.md"
+        ]
+      },
+      {
+        "symbol": "SO",
+        "held_qty": 5.0,
+        "current_weight_pct": 0.464,
+        "trigger_status": "blocked_by_gate",
+        "primary_reason": "SO는 반복된 weak-to-neutral review 때문에 trim watch 대상이지만, runtime quote 92.24/92.27과 spread 0.0325%는 정상이더라도 official 1D close 전이라 trim을 정당화할 decision-grade expected-excess/replacement margin이 이번 cycle에도 비어 있다.",
+        "skipped_gate": "decision_grade_metric_gap",
+        "metric_status": "gap",
+        "expected_excess_return_20d_pct": null,
+        "relative_to_spy_20d_pct": null,
+        "metric_gap_reason": "SO는 weak-to-neutral review 이력은 누적됐지만 이번 cycle에서 trim order를 정당화할 decision-grade expected-excess/replacement margin이 없다. quote/spread gate는 통과해도 metric policy가 먼저 막는다.",
+        "replacement_symbol": "SPY",
+        "replacement_expected_excess_margin_pct": null,
+        "recommendation": "watch",
+        "blocked_sell_recheck": "blocked_sell_candidate",
+        "source_refs": [
+          "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-stale-order-cleanup.json",
+          "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-alpaca-core-preflight.json",
+          "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-research-mcp-preflight.json",
+          "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-runtime-gate-evaluation.json",
+          "harness/recommendation-policy.yaml",
+          "harness/risk-policy.yaml",
+          "harness/symbol-metadata.yaml",
+          "wiki/trade-ledger/reviews/review-due-index.json",
+          "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+          "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+          "wiki/research-notes/tickers/RGTI.md",
+          "wiki/research-notes/tickers/AVGO.md",
+          "wiki/research-notes/tickers/SO.md",
+          "wiki/research-notes/tickers/SPY.md",
+          "wiki/research-notes/tickers/QQQ.md",
+          "wiki/research-notes/tickers/NOK.md"
+        ]
+      }
+    ],
+    "validation_lifecycle": {
+      "status": "review_backlog_throttle_blocks_new_buys_only",
+      "due_reviews": [
+        {
+          "symbol": "NOK",
+          "horizon": "20D",
+          "decision_due": false,
+          "current_decision": "pending",
+          "due_after": "2026-06-18 US regular-session close",
+          "source_refs": [
+            "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+            "wiki/trade-ledger/reviews/2026-06-04-portfolio-review.md"
+          ]
+        },
+        {
+          "symbol": "JPM",
+          "horizon": "1D",
+          "decision_due": false,
+          "current_decision": "pending",
+          "due_after": "2026-06-08 US regular-session close",
+          "source_refs": [
+            "wiki/current-runs/daily/2026-06-06-0351-hourly-autopilot.md",
+            "wiki/trade-ledger/positions/2026-06-06-0351-hourly-autopilot-post-trade.json"
+          ]
+        },
+        {
+          "symbol": "SO",
+          "horizon": "1D",
+          "decision_due": false,
+          "current_decision": "pending",
+          "due_after": "2026-06-08 US regular-session close",
+          "source_refs": [
+            "wiki/current-runs/daily/2026-06-06-0311-hourly-autopilot.md",
+            "wiki/trade-ledger/positions/2026-06-06-0311-hourly-autopilot-post-trade.json"
+          ]
+        },
+        {
+          "symbol": "PFE",
+          "horizon": "1D",
+          "decision_due": false,
+          "current_decision": "pending",
+          "due_after": "2026-06-08 US regular-session close",
+          "source_refs": [
+            "wiki/current-runs/daily/2026-06-06-0211-hourly-autopilot.md",
+            "wiki/trade-ledger/positions/2026-06-06-0211-hourly-autopilot-post-trade.json"
+          ]
+        },
+        {
+          "symbol": "AMZN",
+          "horizon": "1D",
+          "decision_due": false,
+          "current_decision": "pending",
+          "due_after": "2026-06-08 US regular-session close",
+          "source_refs": [
+            "wiki/current-runs/daily/2026-06-06-0151-hourly-autopilot.md",
+            "wiki/trade-ledger/positions/2026-06-06-0151-hourly-autopilot-post-trade.json"
+          ]
+        }
+      ],
+      "blocked_add_symbols": [
+        "NOK"
+      ],
+      "due_reviews_blocking_adds": [
+        "NOK"
+      ],
+      "reviewed_recent_validation_symbols": [
+        "AVGO",
+        "JPM",
+        "SO",
+        "NOK"
+      ],
+      "new_same_day_fills_not_due_yet": [
+        "JPM",
+        "SO",
+        "PFE",
+        "AMZN",
+        "COP",
+        "SLB",
+        "NVDA",
+        "V",
+        "AAPL",
+        "PLTR",
+        "FCX",
+        "WMT",
+        "BAC"
+      ],
+      "source_refs": [
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-stale-order-cleanup.json",
+      "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-research-mcp-preflight.json",
+      "wiki/evidence-store/sources/2026-06-08-2311-hourly-autopilot-runtime-gate-evaluation.json",
+      "harness/recommendation-policy.yaml",
+      "harness/risk-policy.yaml",
+      "harness/symbol-metadata.yaml",
+      "wiki/trade-ledger/reviews/review-due-index.json",
+      "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+      "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+      "wiki/research-notes/tickers/RGTI.md",
+      "wiki/research-notes/tickers/AVGO.md",
+      "wiki/research-notes/tickers/SO.md",
+      "wiki/research-notes/tickers/SPY.md",
+      "wiki/research-notes/tickers/QQQ.md",
+      "wiki/research-notes/tickers/NOK.md"
+    ],
+    "manifest_path": "wiki/evidence-store/run-manifests/2026-06-08-2311-hourly-autopilot.json"
+  },
+  "risk_check_result": {
+    "status": "PASS",
+    "errors": [],
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 44847.801,
+      "max_factor_value": 49830.89,
+      "max_invested": 94678.69099999999,
+      "max_speculative_value": 11959.4136,
+      "max_theme_value": 34881.623,
+      "max_ticker_value": 14949.267,
+      "min_cash": 4983.089,
+      "policy_version": "medium-risk-v1.2",
+      "post_cash": 31774.85,
+      "post_invested": 67887.68700000002,
+      "review_backlog_pending_1d_count": 13,
+      "sell_notional": 0.0,
+      "speculative_value": 5096.73,
+      "target_max_cash": 9966.178,
+      "target_min_invested": 89695.602
+    }
+  },
+  "universe_check_result": {
+    "status": "PASS",
+    "errors": [],
+    "warnings": [],
+    "summary": {
+      "strict_required": true,
+      "actionable": true,
+      "minimum_required_symbols": 50,
+      "symbols_considered": 62,
+      "symbols_loaded": 62,
+      "benchmarks": [
+        "QQQ",
+        "SPY"
+      ],
+      "pre_mcp_shortlist_count": 6,
+      "final_candidate_count": 3,
+      "scope_limited_by_user": false
+    }
+  },
+  "mcp_check_result": {
+    "status": "PASS",
+    "errors": [],
+    "warnings": [],
+    "summary": {
+      "required_servers": [
+        "alpaca",
+        "sec-edgar",
+        "alpha-vantage",
+        "fred",
+        "firecrawl",
+        "yahoo-finance"
+      ],
+      "core_servers": [
+        "alpaca"
+      ],
+      "research_servers": [
+        "sec-edgar",
+        "alpha-vantage",
+        "fred",
+        "firecrawl",
+        "yahoo-finance"
+      ],
+      "covered_servers": [
+        "alpaca",
+        "alpha-vantage",
+        "firecrawl",
+        "fred",
+        "sec-edgar",
+        "yahoo-finance"
+      ],
+      "strict_required": true,
+      "actionable": true,
+      "min_research_confirmations": 3,
+      "positive_research_confirmations": [
+        "firecrawl",
+        "fred",
+        "sec-edgar",
+        "yahoo-finance"
+      ]
+    }
+  },
+  "order_submission_result": {
+    "submitted_orders": 0,
+    "filled_orders": 0,
+    "skipped_orders": 0,
+    "client_order_ids": []
+  },
+  "post_trade_reconciliation": {
+    "positions_count_after": 32,
+    "open_orders_after": 0,
+    "same_day_orders_after": 4,
+    "account_portfolio_value_after": 99661.78,
+    "account_cash_after": 31774.85,
+    "account_buying_power_after": 300765.93
+  }
+}
