@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-09 03:51 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-09 04:11 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-09-0411-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0411` stale cleanup/core/research preflight를 우선 사용했고 required core rows가 모두 fresh/pass라 추가 Alpaca read-only MCP 호출 없이 scheduler evidence로 clock/account/positions/open-order/quote/recent-fill 상태를 확정했다. `review_backlog_pending_1d_count=13` backlog throttle 때문에 신규 buy는 차단됐고, sell-first 후보도 `RGTI` same-day duplicate, `AVGO` duplicate+spread `0.5394%`, `SO` spread `2.1025%` + decision-grade metric gap에 막혀 no-submit으로 종료했다. scheduler preflight 기준 positions는 `32`, open orders는 0건 유지됐다.
 - [[2026-06-09-0351-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0351` stale cleanup/core/research preflight를 우선 사용했고 required core rows가 모두 fresh/pass라 추가 Alpaca read-only MCP 호출 없이 scheduler evidence로 clock/account/positions/open-order/quote/recent-fill 상태를 확정했다. `review_backlog_pending_1d_count=13` backlog throttle 때문에 신규 buy는 차단됐고, sell-first 후보도 `RGTI` same-day duplicate, `AVGO` duplicate+spread `0.9471%`, `SO` spread `1.0799%` + decision-grade metric gap에 막혀 no-submit으로 종료했다. scheduler preflight 기준 positions는 `32`, open orders는 0건 유지됐다.
 - [[2026-06-09-0331-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0331` stale cleanup/core/research preflight를 우선 사용했고 required core rows가 모두 fresh/pass라 추가 Alpaca read-only MCP 호출 없이 scheduler evidence로 clock/account/positions/open-order/quote/recent-fill 상태를 확정했다. `review_backlog_pending_1d_count=13` backlog throttle 때문에 신규 buy는 차단됐고, sell-first 후보도 `RGTI` same-day duplicate, `AVGO` duplicate+spread `1.4342%`, `SO` decision-grade metric gap에 막혀 no-submit으로 종료했다. scheduler preflight 기준 positions는 `32`, open orders는 0건 유지됐다.
 - [[2026-06-09-0311-hourly-autopilot]] - hourly paper autopilot 실행. scheduler-owned `0311` stale cleanup/core/research preflight를 우선 사용했고 required core rows가 모두 fresh/pass라 추가 Alpaca read-only MCP 호출 없이 scheduler evidence로 clock/account/positions/open-order/quote/recent-fill 상태를 확정했다. `review_backlog_pending_1d_count=13` backlog throttle 때문에 신규 buy는 차단됐고, sell-first 후보도 `RGTI` same-day duplicate, `AVGO` duplicate+spread `0.8130%`, `SO` decision-grade metric gap에 막혀 no-submit으로 종료했다. scheduler preflight 기준 positions는 `32`, open orders는 0건 유지됐다.
