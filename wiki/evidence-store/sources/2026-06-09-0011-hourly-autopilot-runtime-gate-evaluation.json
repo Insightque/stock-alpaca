@@ -1,0 +1,277 @@
+{
+  "run_id": "2026-06-09-0011-hourly-autopilot",
+  "created_at": "2026-06-08T15:14:44Z",
+  "paper": true,
+  "mode": "submit",
+  "market": {
+    "is_open": true,
+    "checked_at": "2026-06-08T11:11:11.015246966-04:00",
+    "next_open": "2026-06-09T09:30:00-04:00",
+    "next_close": "2026-06-08T16:00:00-04:00",
+    "session": "regular"
+  },
+  "runtime_account": {
+    "status": "ACTIVE",
+    "portfolio_value": 100500.48,
+    "cash": 31774.85,
+    "buying_power": 302697.83,
+    "long_market_value": 68725.63
+  },
+  "runtime_reconciliation": {
+    "watchlists_count": 0,
+    "open_orders_count": 0,
+    "same_day_orders": [
+      "hourly-20260608-2251-sell-rgti",
+      "hourly-20260608-2231-sell-tsla",
+      "ah-20260608-0931-sell-avgo",
+      "ah-20260608-0911-sell-avgo"
+    ],
+    "same_day_fills": [
+      {
+        "symbol": "RGTI",
+        "side": "sell",
+        "qty": 30,
+        "filled_avg_price": 21.48,
+        "client_order_id": "hourly-20260608-2251-sell-rgti"
+      },
+      {
+        "symbol": "TSLA",
+        "side": "sell",
+        "qty": 1,
+        "filled_avg_price": 398.59,
+        "client_order_id": "hourly-20260608-2231-sell-tsla"
+      },
+      {
+        "symbol": "AVGO",
+        "side": "sell",
+        "qty": 1,
+        "filled_avg_price": 392.8,
+        "client_order_id": "ah-20260608-0931-sell-avgo"
+      },
+      {
+        "symbol": "AVGO",
+        "side": "sell",
+        "qty": 1,
+        "filled_avg_price": 391.27,
+        "client_order_id": "ah-20260608-0911-sell-avgo"
+      }
+    ],
+    "positions_count": 32
+  },
+  "review_backlog": {
+    "updated_at": "2026-06-06T21:23:41Z",
+    "source_review": "wiki/trade-ledger/reviews/2026-06-07-portfolio-review.md",
+    "pending_1d_count": 13,
+    "pending_5d_count": 0,
+    "pending_20d_count": 1,
+    "blocked_add_symbols": [
+      "NOK"
+    ],
+    "due_reviews_blocking_adds": [
+      "NOK"
+    ],
+    "due_reviews": [
+      {
+        "symbol": "NOK",
+        "horizon": "20D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-18 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+          "wiki/trade-ledger/reviews/2026-06-04-portfolio-review.md"
+        ]
+      },
+      {
+        "symbol": "JPM",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0351-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0351-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "SO",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0311-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0311-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "PFE",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0211-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0211-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "AMZN",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0151-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0151-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "COP",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0131-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0131-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "SLB",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0111-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0111-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "NVDA",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0051-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0051-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "V",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0031-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0031-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "AAPL",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0011-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0011-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "PLTR",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-05-2351-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-05-2351-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "FCX",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-05-2331-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-05-2331-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "WMT",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-05-2311-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-05-2311-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "BAC",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-05-2231-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-05-2231-hourly-autopilot-post-trade.json"
+        ]
+      }
+    ]
+  },
+  "candidate_quotes": {
+    "RGTI": {
+      "bid": 22.21,
+      "ask": 22.22,
+      "quote_timestamp": "2026-06-08T15:11:30.511804018Z",
+      "spread_pct": 0.045
+    },
+    "AVGO": {
+      "bid": 396,
+      "ask": 399.85,
+      "quote_timestamp": "2026-06-08T15:11:30.632116813Z",
+      "spread_pct": 0.9722
+    },
+    "SO": {
+      "bid": 91.78,
+      "ask": 91.79,
+      "quote_timestamp": "2026-06-08T15:11:31.077672764Z",
+      "spread_pct": 0.0109
+    },
+    "SPY": {
+      "bid": 745.15,
+      "ask": 745.18,
+      "quote_timestamp": "2026-06-08T15:11:31.205433083Z",
+      "spread_pct": 0.004
+    },
+    "QQQ": {
+      "bid": 722.66,
+      "ask": 722.69,
+      "quote_timestamp": "2026-06-08T15:11:30.93887747Z",
+      "spread_pct": 0.0042
+    },
+    "NOK": {
+      "bid": 14.95,
+      "ask": 14.96,
+      "quote_timestamp": "2026-06-08T15:11:30.673579972Z",
+      "spread_pct": 0.0669
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-09-0011-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-09-0011-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-0011-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-0011-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+    "harness/recommendation-policy.yaml"
+  ]
+}
