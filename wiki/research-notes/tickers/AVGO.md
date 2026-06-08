@@ -49,6 +49,7 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 - 2026-05-22: paper 매수 15주가 평균 410.73 USD에 체결됐다.
 - 2026-06-01: after-hours validation buy 1주가 평균 461.26 USD에 체결됐다.
 - 2026-06-06 03:37 KST: scheduled hourly-autopilot에서 risk-reducing trim 4주가 `389.25 USD`에 체결됐다.
+- 2026-06-08 09:20 KST: scheduled after-hours-autopilot에서 post-earnings risk watch와 validation add failure를 근거로 추가 1주 trim이 `391.27 USD`에 체결됐다.
 - 주문/체결 출처: [[2026-05-22-paper-order-submission]]
 
 ## 회고 기록
@@ -94,3 +95,9 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 `2026-06-07 17:22 ET` closed-market scan 기준 새로 닫힌 review horizon은 없다. Alpha Vantage `EARNINGS`는 latest quarter `reportedDate=2026-06-03`, `reportedEPS=2.44`, `estimatedEPS=2.39`, `surprisePercentage=2.0921`를 재확인했지만, price는 여전히 `385.73 USD`로 평균단가 대비 `-7.04%`다. 따라서 이번 run에서도 `validation add 실패 + core thesis 완전 폐기 아님` 해석과 `post-earnings risk watch`를 유지한다.
 
 출처: [[2026-06-08-portfolio-review]], [[2026-06-08-0622-analyst-review-cycle-sources]]
+
+### 2026-06-08 after-hours-autopilot trim
+
+`0911` scheduled after-hours-autopilot은 scheduler-owned core/research preflight와 runtime Alpaca MCP 장외 quote를 재확인한 뒤, `AVGO` 1주 trim을 `391.26 USD` limit, `extended_hours=true`, `client_order_id=ah-20260608-0911-sell-avgo`로 제출했다. same client id reconciliation 기준 주문은 `2026-06-08T00:20:05.775901Z`에 `391.27 USD`로 체결됐고 보유수량은 `12주 -> 11주`로 감소했다. 해석은 `validation add 실패 + core thesis 완전 폐기 아님`을 유지한 채 post-earnings risk watch에 맞춘 floor-size 추가 de-risking이다.
+
+출처: [[2026-06-08-0911-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-08-0911-after-hours-autopilot-post-trade.json`

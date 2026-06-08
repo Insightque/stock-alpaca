@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-08-0911-after-hours-autopilot",
+  "created_at": "2026-06-08T00:20:20Z",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 98601.15,
+    "cash": 30339.06,
+    "buying_power": 295718.63,
+    "long_market_value": 68262.09,
+    "currency": "USD"
+  },
+  "submitted_orders": [
+    {
+      "order_id": "59e6a81b-1c03-449a-ba62-8a141eef7b4b",
+      "client_order_id": "ah-20260608-0911-sell-avgo",
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1,
+      "limit_price": 391.26,
+      "filled_qty": 1,
+      "filled_avg_price": 391.27,
+      "status": "filled",
+      "extended_hours": true,
+      "submitted_at": "2026-06-08T00:19:54.689489726Z",
+      "filled_at": "2026-06-08T00:20:05.775901065Z"
+    }
+  ],
+  "lifecycle_actions": [],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "AVGO",
+      "qty": 11.0,
+      "market_value": 4303.2
+    },
+    {
+      "symbol": "QQQ",
+      "qty": 3.0,
+      "market_value": 2128.5
+    },
+    {
+      "symbol": "WMT",
+      "qty": 6.0,
+      "market_value": 709.2
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": true,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "client_order_ids_checked": [
+      "ah-20260608-0911-sell-avgo"
+    ],
+    "new_fills_detected": 1,
+    "position_delta": "AVGO 12 -> 11",
+    "note": "AVGO after-hours sell 1 share was submitted through Alpaca MCP and immediately reconciled by client_order_id via get_orders(status=all, symbols=AVGO, after=2026-06-08T00:00:00Z) plus get_account_activities(FILL). Post-trade get_account_info showed cash 30339.06 USD and buying_power 295718.63 USD, and get_all_positions confirmed AVGO quantity fell to 11 with no remaining open AVGO order."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-08-0911-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-08-0911-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-08-0911-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-08-0911-after-hours-autopilot.json"
+  ]
+}
