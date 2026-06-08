@@ -1,0 +1,342 @@
+{
+  "run_id": "2026-06-08-1331-after-hours-autopilot",
+  "created_at": "2026-06-08T04:34:23Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "shortlist_symbols": [
+    "QQQ",
+    "GOOGL",
+    "SMH",
+    "SPY",
+    "WMT",
+    "XOM",
+    "BAC",
+    "TSLA"
+  ],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 19,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 13,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "cash_deployment_blocker": "separate_after_hours_order_budget_reached"
+  },
+  "review_backlog_throttle": {
+    "enabled": true,
+    "max_new_buy_slots_before_throttle": 1,
+    "max_new_buy_slots_after_throttle": 1,
+    "review_backlog_pending_1d_count": 13,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "result": "pending 1D backlog keeps new after-hours buys secondary, and this cycle was blocked earlier by separate after-hours session budget 2/2."
+  },
+  "runtime_alpaca_mcp": {
+    "regular_market_clock": "2026-06-08T00:32:50.42554482-04:00 closed",
+    "tools_used": [
+      "scheduler-owned alpaca core preflight rows",
+      "get_clock",
+      "get_account_info",
+      "get_all_positions",
+      "get_orders(status=open)",
+      "get_orders(status=all, after=2026-06-08T00:00:00Z)",
+      "get_account_activities(activity_types=FILL, after=2026-06-08T00:00:00Z)",
+      "get_stock_latest_quote(feed=overnight)",
+      "get_asset(AVGO)",
+      "get_asset(QQQ)"
+    ],
+    "account_status": "ACTIVE",
+    "positions_count": 33,
+    "open_orders": 0,
+    "after_hours_orders_seen_today": 2,
+    "after_hours_order_client_ids": [
+      "ah-20260608-0911-sell-avgo",
+      "ah-20260608-0931-sell-avgo"
+    ],
+    "fresh_quotes_used": {
+      "AVGO": {
+        "bid": 389.13,
+        "ask": 389.8,
+        "timestamp": "2026-06-08T04:32:51.837935864Z",
+        "spread_pct": 0.171883
+      },
+      "GOOGL": {
+        "bid": 365.7,
+        "ask": 365.83,
+        "timestamp": "2026-06-08T04:32:47.960395141Z",
+        "spread_pct": 0.035535
+      },
+      "PFE": {
+        "bid": 25.91,
+        "ask": 25.99,
+        "timestamp": "2026-06-08T04:32:51.264698202Z",
+        "spread_pct": 0.307811
+      },
+      "BAC": {
+        "bid": 53.7,
+        "ask": 53.74,
+        "timestamp": "2026-06-08T04:32:31.827048143Z",
+        "spread_pct": 0.074433
+      },
+      "TSLA": {
+        "bid": 395.1,
+        "ask": 395.4,
+        "timestamp": "2026-06-08T04:32:52.367102128Z",
+        "spread_pct": 0.075873
+      },
+      "WMT": {
+        "bid": 118.34,
+        "ask": 119.08,
+        "timestamp": "2026-06-08T04:32:44.78778589Z",
+        "spread_pct": 0.621431
+      },
+      "XOM": {
+        "bid": 151.68,
+        "ask": 152.3,
+        "timestamp": "2026-06-08T04:31:53.717320396Z",
+        "spread_pct": 0.407091
+      },
+      "QQQ": {
+        "bid": 709.39,
+        "ask": 709.47,
+        "timestamp": "2026-06-08T04:32:52.305538609Z",
+        "spread_pct": 0.011276
+      },
+      "SPY": {
+        "bid": 738.81,
+        "ask": 738.85,
+        "timestamp": "2026-06-08T04:32:52.024099158Z",
+        "spread_pct": 0.005414
+      },
+      "SMH": {
+        "bid": 578.93,
+        "ask": 580.73,
+        "timestamp": "2026-06-08T04:32:52.410854116Z",
+        "spread_pct": 0.309955
+      }
+    }
+  },
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass",
+      "detail": "ALPACA_PAPER_TRADE=true \ud655\uc778"
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed",
+      "detail": "regular market closed at scheduler-owned preflight hard gate market_closed and runtime get_clock 2026-06-08T00:32:50.42554482-04:00"
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass",
+      "detail": "session=after_hours and extended-hours policy profile retained"
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_preflight_rows_plus_runtime_cross_check",
+      "detail": "1331 scheduler-owned core preflight supplied passing account ACTIVE, positions 33, open orders 0, recent fills including two same-session AVGO sells, broad asset checks, and quote rows. Runtime Alpaca MCP cross-check kept market closed, positions 33, open orders 0, repeated the same two AVGO fills, and confirmed fresh overnight quotes for AVGO/GOOGL/PFE/BAC/TSLA/QQQ/SPY/SMH/XOM/WMT."
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass",
+      "detail": "after_hours_policy artifact tag, review bucket, and order id prefix retained"
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "fail_two_of_two_submitted",
+      "detail": "after_hours_new_orders_submitted_today=2 and max_new_orders_per_session=2 after ah-20260608-0911-sell-avgo and ah-20260608-0931-sell-avgo"
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass",
+      "detail": "broad universe 62 symbols with SPY/QQQ included and scheduler-owned shortlist 8 symbols"
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass",
+      "detail": "sec-edgar/fred/firecrawl/yahoo-finance pass; alpha-vantage empty_response did not block because core and minimum research confirmations passed"
+    },
+    {
+      "gate": "risk_policy",
+      "status": "pass_no_orders_budget_blocked",
+      "detail": "risk validator still expected to pass with orders=[], but actionable submit path was already blocked by separate after-hours session budget 2/2"
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "pass_runtime_overnight_candidate_stack_under_2_minutes",
+      "detail": "AVGO, GOOGL, PFE, BAC, TSLA, WMT, XOM, QQQ, SPY, and SMH overnight quote timestamps stayed inside the 5 minute after-hours freshness cap."
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "pass_executable_sell_and_buy_candidates_exist_but_budget_blocked",
+      "detail": "AVGO 0.171883%, GOOGL 0.035535%, BAC 0.074433%, TSLA 0.075873%, QQQ 0.011276%, and SPY 0.005414% were within the 0.25% spread cap. PFE 0.307811%, WMT 0.621431%, XOM 0.407091%, and SMH 0.309955% failed spread; QQQ/SPY/SMH still failed the per-order notional cap."
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "pass_candidate_shape_but_not_submitted",
+      "detail": "eligible after-hours shapes remained whole-share day limit stock/ETF orders with extended_hours=true, but budget gate prevented submit"
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "pass_no_submit",
+      "detail": "no place_stock_order call was allowed, so reconciliation remained a no-submit lifecycle record"
+    }
+  ],
+  "candidate_assessment": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "status": "preferred_sell_candidate_budget_blocked",
+      "reason": "overnight spread 0.171883% and 1-share sell shape passed after-hours caps, but the separate session budget was already 2/2 before submit could begin",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "GOOGL",
+      "side": "buy",
+      "status": "fallback_buy_candidate_budget_blocked",
+      "reason": "overnight quote/spread and notional cap pass at 365.83 USD ask, but buy fallback remained secondary and budget gate closed first",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "BAC",
+      "side": "buy",
+      "status": "fallback_buy_candidate_budget_blocked",
+      "reason": "overnight spread 0.074433% and 1-share ask 53.74 USD passed quote/spread/notional caps, but separate session budget blocked deterministic fallback selection",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "TSLA",
+      "side": "buy",
+      "status": "fallback_buy_candidate_budget_blocked",
+      "reason": "overnight spread 0.075873% and 1-share ask 395.40 USD passed quote/spread/notional caps, but separate session budget blocked deterministic fallback selection",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "side": "buy",
+      "status": "spread_blocked",
+      "reason": "overnight spread 0.307811% exceeded the 0.25% after-hours cap before fallback buy ranking mattered",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "WMT",
+      "side": "buy",
+      "status": "spread_blocked",
+      "reason": "overnight spread 0.621431% exceeded the 0.25% after-hours cap before fallback buy ranking mattered",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "XOM",
+      "side": "buy",
+      "status": "spread_blocked",
+      "reason": "overnight spread 0.407091% exceeded the 0.25% after-hours cap before fallback buy ranking mattered",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "QQQ",
+      "side": "buy",
+      "status": "notional_cap_blocked",
+      "reason": "1-share ask 709.47 USD exceeded the after-hours 0.5% per-order cap based on 98,684.25 USD portfolio value",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "SPY",
+      "side": "buy",
+      "status": "notional_cap_blocked",
+      "reason": "1-share ask 738.85 USD exceeded the after-hours 0.5% per-order cap based on 98,684.25 USD portfolio value",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "SMH",
+      "side": "buy",
+      "status": "spread_and_notional_blocked",
+      "reason": "1-share ask 580.73 USD exceeded the after-hours 0.5% per-order cap and spread 0.309955% also exceeded the 0.25% cap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-1331-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": false,
+    "reconciled_by": "scheduler_owned_1311_alpaca_core_preflight_plus_runtime_get_clock_get_account_info_get_all_positions_get_orders_open_get_orders_all(after=2026-06-08T00:00:00Z)_get_watchlists_get_account_activities(activity_types=FILL,after=2026-06-08T00:00:00Z)_get_stock_latest_quote(feed=overnight)_get_asset(AVGO,QQQ)_and_no_submit_path",
+    "open_orders_after_run": 0,
+    "new_fills_detected": 0,
+    "position_delta": "none",
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation"
+  },
+  "risk_check_result": {
+    "errors": [],
+    "path": "wiki/trade-ledger/orders/2026-06-08-1311-after-hours-autopilot.json",
+    "status": "PASS",
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 44436.546,
+      "max_factor_value": 49373.94,
+      "max_invested": 93810.486,
+      "max_speculative_value": 11849.7456,
+      "max_theme_value": 34561.758,
+      "max_ticker_value": 14812.182,
+      "min_cash": 4937.394,
+      "policy_version": "medium-risk-v1.2",
+      "post_cash": 30731.86,
+      "post_invested": 68018.52,
+      "review_backlog_pending_1d_count": 13,
+      "sell_notional": 0.0,
+      "speculative_value": 5880.39,
+      "target_max_cash": 9874.788,
+      "target_min_invested": 88873.092
+    },
+    "warnings": [
+      "orders is empty"
+    ]
+  },
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-06-08-1311-after-hours-autopilot-post-trade.json",
+  "submitted_order_ids": [],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-08-1311-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-08-1311-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-08-1311-after-hours-autopilot.json",
+    "wiki/trade-ledger/positions/2026-06-08-1311-after-hours-autopilot-post-trade.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md"
+  ]
+}
