@@ -1,0 +1,50 @@
+{
+  "run_id": "2026-06-09-0851-after-hours-autopilot",
+  "created_at": "2026-06-08T23:51:31Z",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 100027.25,
+    "cash": 31774.85,
+    "buying_power": 301749.28,
+    "long_market_value": 68252.4,
+    "currency": "USD"
+  },
+  "submitted_orders": [],
+  "lifecycle_actions": [],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "AVGO",
+      "qty": 10.0,
+      "market_value": 3959.4
+    },
+    {
+      "symbol": "QQQ",
+      "qty": 3.0,
+      "market_value": 2145.18
+    },
+    {
+      "symbol": "NVDA",
+      "qty": 38.0,
+      "market_value": 7894.5
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": false,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "client_order_ids_checked": [],
+    "new_fills_detected": 0,
+    "position_delta": "none",
+    "note": "No submit path. Scheduler-owned 0851 Alpaca core preflight confirmed no open order, no new same-session after-hours fill, and no position count change; no additional runtime Alpaca MCP call was required because all after-hours-required rows were present and passing."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-09-0851-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-0851-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-0851-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-09-0851-after-hours-autopilot.json"
+  ]
+}
