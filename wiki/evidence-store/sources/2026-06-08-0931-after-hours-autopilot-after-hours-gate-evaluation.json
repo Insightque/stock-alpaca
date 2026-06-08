@@ -1,0 +1,171 @@
+{
+  "run_id": "2026-06-08-0931-after-hours-autopilot",
+  "created_at": "2026-06-08T09:35:40+09:00",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "submit_attempted": true,
+  "orders_submitted": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1,
+      "limit_price": 392.73,
+      "filled_avg_price": 392.8,
+      "filled_at": "2026-06-08T00:37:53.182189418Z",
+      "extended_hours": true,
+      "session": "after_hours",
+      "review_bucket": "after_hours_validation",
+      "client_order_id": "ah-20260608-0931-sell-avgo",
+      "order_id": "1fcbc469-1e8e-466f-9881-4b5538eecef1",
+      "status": "filled"
+    }
+  ],
+  "shortlist_symbols": [
+    "QQQ",
+    "GOOGL",
+    "SMH",
+    "SPY",
+    "WMT",
+    "XOM",
+    "BAC",
+    "TSLA"
+  ],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 19,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 1,
+    "review_backlog_pending_1d_count": 13,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1
+  },
+  "review_backlog_throttle": {
+    "enabled": true,
+    "max_new_buy_slots_before_throttle": 1,
+    "max_new_buy_slots_after_throttle": 1,
+    "review_backlog_pending_1d_count": 13,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "result": "pending 1D backlog stops new after-hours buys, so this cycle used the allowed sell side instead; buy fallback remained secondary only."
+  },
+  "runtime_alpaca_mcp": {
+    "clock": {
+      "is_open": false,
+      "timestamp": "2026-06-07T20:35:36.957789009-04:00",
+      "next_open": "2026-06-08T09:30:00-04:00",
+      "next_close": "2026-06-08T16:00:00-04:00"
+    },
+    "account_status": "ACTIVE",
+    "position_count": 33,
+    "open_order_count": 0,
+    "orders_submitted_in_scheduler_preflight": 1,
+    "watchlist_count": 0,
+    "runtime_quote_feeds_checked": [
+      "iex",
+      "overnight"
+    ]
+  },
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass",
+      "detail": "ALPACA_PAPER_TRADE=true 확인"
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed",
+      "detail": "regular market closed at scheduler-owned get_clock 2026-06-07T20:31:08.388870633-04:00 and runtime get_clock 2026-06-07T20:35:36.957789009-04:00"
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass",
+      "detail": "session=after_hours and extended-hours policy profile retained"
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_runtime_core_backfill_after_sparse_preflight",
+      "detail": "0931 scheduler-owned core preflight supplied only the closed regular-market clock row. Runtime Alpaca MCP backfilled account ACTIVE, positions 33, open orders 0, AVGO asset active/tradable/overnight_tradable, and fresh overnight quote/spread evidence, so required after-hours core rows were satisfied."
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass",
+      "detail": "after_hours_policy artifact tag, review bucket, and order id prefix retained"
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "pass_one_of_two_submitted",
+      "detail": "after_hours_new_orders_submitted_today=1 and max_new_orders_per_session=2"
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass",
+      "detail": "broad universe 62 symbols with SPY/QQQ included and scheduler-owned shortlist 8 symbols"
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass",
+      "detail": "sec-edgar/fred/firecrawl/yahoo-finance pass; alpha-vantage empty_response did not block because core and minimum research confirmations passed"
+    },
+    {
+      "gate": "risk_policy",
+      "status": "pass_sell_trim_candidate_ready",
+      "detail": "AVGO 1-share after-hours sell trim prepared for strict risk validation with separate session budget 1/2 used"
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "pass_runtime_overnight_quote_age_0_06_minutes_for_avgo",
+      "detail": "AVGO overnight quote timestamp 2026-06-08T00:35:36.591156828Z stayed inside the 5 minute after-hours freshness cap"
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "pass_runtime_overnight_spread_0_012731pct_for_avgo",
+      "detail": "AVGO overnight spread 0.012731% stayed within after_hours_policy.max_spread_pct=0.25%"
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "pass_avgo_sell_order_shape",
+      "detail": "AVGO order remained whole-share, day limit, extended_hours=true, session=after_hours"
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "pass_reconciled_filled",
+      "detail": "place_stock_order created AVGO sell order 1fcbc469-1e8e-466f-9881-4b5538eecef1 and same client id reconciliation confirmed filled 1 share at 392.80 with no remaining open order"
+    }
+  ],
+  "block_reasons": [
+    "QQQ와 SPY는 overnight spread는 양호했지만 1주 ask가 after-hours per-order 0.5% cap을 초과했다.",
+    "GOOGL/PFE/XOM은 quote/spread/notional cap을 통과했지만 review backlog throttle 때문에 buy fallback으로만 유지했다.",
+    "BAC와 WMT는 overnight spread가 after-hours cap 0.25%를 넘었다."
+  ],
+  "candidate_notes": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "summary": "selected trim candidate with overnight quote 392.73/392.78, spread 0.012731%, quote age 0.06 minutes, and validation-add failure still on post-earnings risk watch"
+    },
+    {
+      "symbol": "GOOGL",
+      "side": "buy",
+      "summary": "buy fallback passed quote and notional gates, but review backlog throttle kept new after-hours buys secondary to the allowed sell side"
+    },
+    {
+      "symbol": "XOM",
+      "side": "buy",
+      "summary": "alternate diversifier also passed quote and notional gates, but AVGO trim remained the higher-priority executable path"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-08-0931-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-08-0931-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-08-0931-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/research-notes/tickers/AVGO.md"
+  ]
+}
