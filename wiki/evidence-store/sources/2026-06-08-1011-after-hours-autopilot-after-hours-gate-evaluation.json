@@ -1,0 +1,210 @@
+{
+  "run_id": "2026-06-08-1011-after-hours-autopilot",
+  "created_at": "2026-06-08T10:14:47+09:00",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "shortlist_symbols": [
+    "QQQ",
+    "GOOGL",
+    "SMH",
+    "SPY",
+    "WMT",
+    "XOM",
+    "BAC",
+    "TSLA"
+  ],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 19,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 13,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "cash_deployment_blocker": "separate_after_hours_order_budget_reached"
+  },
+  "review_backlog_throttle": {
+    "enabled": true,
+    "max_new_buy_slots_before_throttle": 1,
+    "max_new_buy_slots_after_throttle": 1,
+    "review_backlog_pending_1d_count": 13,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "result": "pending 1D backlog still keeps new after-hours buys secondary, and this cycle was blocked earlier by separate after-hours session budget 2/2."
+  },
+  "runtime_alpaca_mcp": {
+    "regular_market_clock": "2026-06-07T21:13:09.553352073-04:00 closed",
+    "tools_used": [
+      "scheduler-owned alpaca core preflight rows",
+      "get_clock",
+      "get_account_info",
+      "get_all_positions",
+      "get_orders(status=open)",
+      "get_orders(status=all, symbols=AVGO, after=2026-06-08T00:00:00Z)",
+      "get_stock_latest_quote(feed=overnight)"
+    ],
+    "account_status": "ACTIVE",
+    "positions_count": 33,
+    "open_orders": 0,
+    "after_hours_orders_seen_today": 2,
+    "after_hours_order_client_ids": [
+      "ah-20260608-0911-sell-avgo",
+      "ah-20260608-0931-sell-avgo"
+    ],
+    "fresh_quotes_used": {
+      "AVGO": {
+        "bid": 388.67,
+        "ask": 389.56,
+        "spread_pct": 0.228463,
+        "timestamp": "2026-06-08T01:13:24.709196851Z"
+      },
+      "QQQ": {
+        "bid": 710.13,
+        "ask": 710.23,
+        "spread_pct": 0.01408,
+        "timestamp": "2026-06-08T01:13:24.899653499Z"
+      },
+      "SPY": {
+        "bid": 738.53,
+        "ask": 738.67,
+        "spread_pct": 0.018953,
+        "timestamp": "2026-06-08T01:13:24.881635112Z"
+      },
+      "GOOGL": {
+        "bid": 366.27,
+        "ask": 366.37,
+        "spread_pct": 0.027295,
+        "timestamp": "2026-06-08T01:13:24.884676185Z"
+      },
+      "PFE": {
+        "bid": 26.01,
+        "ask": 26.03,
+        "spread_pct": 0.076834,
+        "timestamp": "2026-06-08T01:13:22.332610438Z"
+      },
+      "BAC": {
+        "bid": 53.66,
+        "ask": 53.98,
+        "spread_pct": 0.592812,
+        "timestamp": "2026-06-08T01:12:11.214880073Z"
+      },
+      "WMT": {
+        "bid": 118.16,
+        "ask": 118.42,
+        "spread_pct": 0.219557,
+        "timestamp": "2026-06-08T01:12:43.546297717Z"
+      },
+      "XOM": {
+        "bid": 150.86,
+        "ask": 151.62,
+        "spread_pct": 0.501253,
+        "timestamp": "2026-06-08T01:13:19.147493882Z"
+      }
+    }
+  },
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass",
+      "detail": "ALPACA_PAPER_TRADE=true 확인"
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed",
+      "detail": "regular market closed at scheduler-owned get_clock 2026-06-07T21:11:08.825543324-04:00 and runtime get_clock 2026-06-07T21:13:09.553352073-04:00"
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass",
+      "detail": "session=after_hours and extended-hours policy profile retained"
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_preflight_rows_plus_runtime_cross_check",
+      "detail": "1011 scheduler-owned core preflight supplied passing account ACTIVE, positions 33, open orders 0, recent fills including two same-session AVGO sells, broad asset checks, and quote rows. Runtime Alpaca MCP cross-check kept market closed, positions 33, open orders 0, and confirmed fresh overnight quotes for AVGO/GOOGL/PFE/WMT while BAC/XOM still failed spread."
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass",
+      "detail": "after_hours_policy artifact tag, review bucket, and order id prefix retained"
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "fail_two_of_two_submitted",
+      "detail": "after_hours_new_orders_submitted_today=2 and max_new_orders_per_session=2 after ah-20260608-0911-sell-avgo and ah-20260608-0931-sell-avgo"
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass",
+      "detail": "broad universe 62 symbols with SPY/QQQ included and scheduler-owned shortlist 8 symbols"
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass",
+      "detail": "sec-edgar/fred/firecrawl/yahoo-finance pass; alpha-vantage empty_response did not block because core and minimum research confirmations passed"
+    },
+    {
+      "gate": "risk_policy",
+      "status": "pass_no_orders_budget_blocked",
+      "detail": "risk validator still expected to pass with orders=[], but actionable submit path was already blocked by separate after-hours session budget 2/2"
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "pass_runtime_overnight_candidate_stack_under_1_minute",
+      "detail": "AVGO, GOOGL, PFE, QQQ, SPY, BAC, WMT, and XOM overnight quote timestamps all stayed inside the 5 minute after-hours freshness cap"
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "pass_executable_candidates_exist",
+      "detail": "AVGO 0.228463%, GOOGL 0.027295%, PFE 0.076834%, QQQ 0.014080%, SPY 0.018953%, and WMT 0.219557% stayed within the 0.25% cap; BAC 0.592812% and XOM 0.501253% did not"
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "pass_candidate_order_shape_ready",
+      "detail": "if budget were available, AVGO sell 1 share would remain a whole-share day limit extended-hours order with session=after_hours"
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "not_applicable_no_submit_due_to_budget",
+      "detail": "no place_stock_order call was made because the separate after-hours session budget gate failed before submit"
+    }
+  ],
+  "block_reasons": [
+    "same-session after-hours submitted count가 이미 2/2라 별도 장외 주문 예산이 소진됐다.",
+    "review backlog throttle 때문에 신규 after-hours buy fallback은 여전히 secondary였고, budget gate를 우회할 수 없었다.",
+    "QQQ와 SPY는 1주 ask가 per-order cap을 초과했고, BAC와 XOM은 runtime overnight spread가 after-hours cap 0.25%를 넘었다."
+  ],
+  "candidate_notes": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "summary": "fresh overnight quote 388.67/389.56, spread 0.228463%로 executable trim candidate였지만 same-session budget 2/2로 block"
+    },
+    {
+      "symbol": "GOOGL",
+      "side": "buy",
+      "summary": "overnight quote 366.27/366.37, spread 0.027295%로 fallback buy quality는 유지됐지만 backlog throttle plus budget gate 때문에 secondary only"
+    },
+    {
+      "symbol": "PFE",
+      "side": "buy",
+      "summary": "overnight quote 26.01/26.03, spread 0.076834%로 floor-size buy 가능 범위였지만 this cycle budget exhausted"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-08-1011-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-08-1011-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-08-1011-after-hours-autopilot.json",
+    "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/research-notes/tickers/AVGO.md"
+  ]
+}
