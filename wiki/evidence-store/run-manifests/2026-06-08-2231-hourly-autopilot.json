@@ -1,0 +1,576 @@
+{
+  "schema_version": "1.3",
+  "run_id": "2026-06-08-2231-hourly-autopilot",
+  "created_at": "2026-06-08T13:36:13Z",
+  "data_cutoff_time": "2026-06-08T13:36:13Z",
+  "market_clock_checked_at": "2026-06-08T09:36:13.51028951-04:00",
+  "git_commit": "fbbe9e2e447dd50bac6a6add32fe058f1af4b74b",
+  "prompt_file_sha": "04074b8efd7de291cac919ec156ad41f311cb968ea8cbe367848dd7bdfa36864",
+  "paper": true,
+  "mode": "submit",
+  "first_blocking_gate": "",
+  "recommendation_actionability": {
+    "actionable": true,
+    "submit_mode": true,
+    "minimum_learning_orders_required": 1,
+    "minimum_learning_orders_planned": 1,
+    "hard_gates_passed": true,
+    "exception": ""
+  },
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "risk_policy_version": "medium-risk-v1.2",
+  "report_path": "wiki/current-runs/daily/2026-06-08-2231-hourly-autopilot.md",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-08-2231-hourly-autopilot.json",
+  "post_trade_path": "wiki/trade-ledger/positions/2026-06-08-2231-hourly-autopilot-post-trade.json",
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 13,
+    "review_backlog_pending_5d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "cash_deployment_blocker": "review_backlog_throttle"
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + scheduler Alpaca preflight universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad metadata universe screen, scheduler Alpaca core/research preflight, sell-trim-first evaluation, runtime duplicate/open-order reconciliation, review-backlog throttle for buys only, and floor-size risk-reducing sell priority",
+    "pre_mcp_shortlist": [
+      "TSLA",
+      "AVGO",
+      "SO",
+      "SPY",
+      "QQQ",
+      "NOK"
+    ],
+    "final_candidates": [
+      "TSLA",
+      "AVGO",
+      "SO"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-08T13:31:32Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-runtime-gate-evaluation.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-08T13:31:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-08T13:31:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-08T13:31:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-08T13:31:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-08T13:31:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_actionable": 3,
+    "min_research_confirmations_for_submit": 3,
+    "all_research_must_be_attempted": true,
+    "provider_gap_blocks_order": false,
+    "critical_source_rules": {
+      "earnings_signal": {
+        "require_any": [
+          "sec-edgar",
+          "alpha-vantage",
+          "firecrawl_company_ir"
+        ],
+        "missing_behavior": "downgrade_to_watch"
+      },
+      "macro_rate_sensitive_signal": {
+        "require_any": [
+          "fred",
+          "explicit_macro_source"
+        ],
+        "missing_behavior": "downgrade_to_watch"
+      },
+      "filing_risk_signal": {
+        "require_any": [
+          "sec-edgar_acceptance_time"
+        ],
+        "missing_behavior": "block_new_buy"
+      },
+      "analyst_only_signal": {
+        "allowed_use": "thesis_confirmation_only",
+        "missing_behavior": "no_positive_score_delta"
+      }
+    }
+  },
+  "open_order_lifecycle": {
+    "stale_cleanup_source_ref": "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-stale-order-cleanup.json",
+    "cleanup_status": "pass",
+    "open_orders_seen": 0,
+    "remaining_blocking_open_orders": [],
+    "passed": true
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "TSLA",
+      "held_qty": 1.0,
+      "current_weight_pct": 0.401,
+      "trigger_status": "active",
+      "primary_reason": "TSLA는 speculative validation buy 1주가 현재 avg entry 441.40 USD 대비 약 -10.19% 손실로 recommendation-policy의 speculative_loss_pct -8%를 이미 하회했고, 2026-05-30 portfolio review의 1D 판단도 `약함`이었다. same-day TSLA sell duplicate와 open order가 없어 full exit risk-reducing sell이 가능하다.",
+      "skipped_gate": "",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.64,
+      "relative_to_spy_20d_pct": -1.64,
+      "metric_gap_reason": "",
+      "replacement_symbol": "SPY",
+      "replacement_expected_excess_margin_pct": 1.64,
+      "recommendation": "close",
+      "blocked_sell_recheck": "",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+        "wiki/trade-ledger/reviews/2026-05-30-portfolio-review.md",
+        "wiki/research-notes/tickers/TSLA.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/NOK.md",
+        "wiki/research-notes/tickers/SPY.md"
+      ]
+    },
+    {
+      "symbol": "AVGO",
+      "held_qty": 10.0,
+      "current_weight_pct": 4.023,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "AVGO는 post-earnings risk watch와 same-day after-hours trim 이력이 있어 sell/trim 재검토 대상이지만, 이번 runtime regular-session quote spread가 1.7937%로 hard cap 0.50%를 크게 초과하고 same-day duplicate discipline도 남아 있다.",
+      "skipped_gate": "spread_and_same_day_duplicate_symbol_side",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -3.55,
+      "relative_to_spy_20d_pct": -4.33,
+      "metric_gap_reason": "",
+      "replacement_symbol": "SPY",
+      "replacement_expected_excess_margin_pct": 3.0,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+        "wiki/trade-ledger/reviews/2026-05-30-portfolio-review.md",
+        "wiki/research-notes/tickers/TSLA.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/NOK.md",
+        "wiki/research-notes/tickers/SPY.md"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "held_qty": 5.0,
+      "current_weight_pct": 0.464,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "SO는 반복된 weak-to-neutral validation review 때문에 trim watch 대상이지만, runtime quote가 87.49/92.63으로 비정상적이어서 spread 5.7066%가 hard cap을 넘고 decision-grade replacement margin도 비어 있다.",
+      "skipped_gate": "spread_and_decision_grade_metric_gap",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "SO는 runtime quote quality가 불안정해 spread hard gate를 먼저 통과하지 못했고, 기존 weak-to-neutral review를 trim order로 승격할 decision-grade expected-excess/replacement margin도 비어 있다.",
+      "replacement_symbol": "SPY",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+        "wiki/trade-ledger/reviews/2026-05-30-portfolio-review.md",
+        "wiki/research-notes/tickers/TSLA.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/NOK.md",
+        "wiki/research-notes/tickers/SPY.md"
+      ]
+    }
+  ],
+  "validation_lifecycle": {
+    "status": "review_backlog_throttle_blocks_new_buys_only",
+    "due_reviews": [
+      {
+        "symbol": "NOK",
+        "horizon": "20D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-18 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+          "wiki/trade-ledger/reviews/2026-06-04-portfolio-review.md"
+        ]
+      },
+      {
+        "symbol": "JPM",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0351-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0351-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "SO",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0311-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0311-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "PFE",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0211-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0211-hourly-autopilot-post-trade.json"
+        ]
+      },
+      {
+        "symbol": "AMZN",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-08 US regular-session close",
+        "source_refs": [
+          "wiki/current-runs/daily/2026-06-06-0151-hourly-autopilot.md",
+          "wiki/trade-ledger/positions/2026-06-06-0151-hourly-autopilot-post-trade.json"
+        ]
+      }
+    ],
+    "blocked_add_symbols": [
+      "NOK"
+    ],
+    "due_reviews_blocking_adds": [
+      "NOK"
+    ],
+    "reviewed_recent_validation_symbols": [
+      "AVGO",
+      "JPM",
+      "SO",
+      "NOK"
+    ],
+    "new_same_day_fills_not_due_yet": [
+      "JPM",
+      "SO",
+      "PFE",
+      "AMZN",
+      "COP",
+      "SLB",
+      "NVDA",
+      "V",
+      "AAPL",
+      "PLTR",
+      "FCX",
+      "WMT",
+      "BAC"
+    ],
+    "source_refs": [
+      "wiki/trade-ledger/reviews/review-due-index.json",
+      "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+      "harness/recommendation-policy.yaml"
+    ]
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+    "wiki/trade-ledger/reviews/2026-05-30-portfolio-review.md",
+    "wiki/research-notes/tickers/TSLA.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/NOK.md",
+    "wiki/research-notes/tickers/SPY.md"
+  ],
+  "order_plan": {
+    "orders": [
+      {
+        "symbol": "TSLA",
+        "asset_type": "stock",
+        "asset_status": "active",
+        "asset_tradable": true,
+        "side": "sell",
+        "order_type": "limit",
+        "time_in_force": "day",
+        "extended_hours": false,
+        "session": "regular",
+        "review_bucket": "regular_validation",
+        "qty": 1,
+        "limit_price": 396.52,
+        "reference_price": 396.84,
+        "quote_age_minutes": 1.77,
+        "quote_captured_at": "2026-06-08T13:34:26.637833292Z",
+        "asset_checked_at": "2026-06-08T13:31:30Z",
+        "theme": "ev_ai_event",
+        "factor": "high_beta_growth",
+        "volatility_bucket": "high",
+        "speculative_flag": true,
+        "liquidity_bucket": "mega",
+        "source_confidence": "medium",
+        "correlated_cluster": "speculative_growth",
+        "strategy_id": "long_term_quality_momentum_v1",
+        "strategy_version": "recommendation-policy-v1.11",
+        "policy_status": "auto_eligible_paper",
+        "expected_excess_return_20d_pct": -1.64,
+        "expected_adverse_move_20d_pct": -10.19,
+        "confidence_score": 0.57,
+        "sizing_basis": "full_exit_speculative_loss_control_after_weak_validation_review",
+        "entry_style": "exit",
+        "max_additional_entry_count": 0,
+        "liquidity": {
+          "bid": 396.52,
+          "ask": 396.77,
+          "spread_pct": 0.063,
+          "avg_daily_dollar_volume": 100000000.0,
+          "quote_source": "alpaca",
+          "measured_at": "2026-06-08T13:34:26.637833292Z"
+        },
+        "client_order_id": "hourly-20260608-2231-sell-tsla",
+        "decision_id": "2026-06-08-2231-hourly-autopilot-TSLA-sell-exit",
+        "review_horizons": [
+          "1D",
+          "5D",
+          "20D"
+        ],
+        "source_refs": [
+          "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-stale-order-cleanup.json",
+          "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-alpaca-core-preflight.json",
+          "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-research-mcp-preflight.json",
+          "wiki/evidence-store/sources/2026-06-08-2231-hourly-autopilot-runtime-gate-evaluation.json",
+          "harness/recommendation-policy.yaml",
+          "harness/risk-policy.yaml",
+          "harness/symbol-metadata.yaml",
+          "wiki/trade-ledger/reviews/review-due-index.json",
+          "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+          "wiki/trade-ledger/reviews/2026-05-30-portfolio-review.md",
+          "wiki/research-notes/tickers/TSLA.md",
+          "wiki/research-notes/tickers/AVGO.md",
+          "wiki/research-notes/tickers/SO.md",
+          "wiki/research-notes/tickers/NOK.md",
+          "wiki/research-notes/tickers/SPY.md"
+        ],
+        "rationale": "TSLA 1주 exit. 2231 cycle은 scheduler-owned stale cleanup/core/research preflight를 우선 사용했고 paper mode, market open, universe strict, tiered MCP strict, quote freshness, spread, risk gate를 모두 점검했다. runtime Alpaca MCP 기준 watchlist 0건, open orders 0건이며 same-day all-orders에는 AVGO after-hours sell 2건만 있어 TSLA symbol/side duplicate는 없다. TSLA는 2026-05-30 portfolio review에서 2026-05-28 validation buy 1D가 `약함`으로 기록됐고, 현재도 avg entry 441.40 USD 대비 약 -10.19% 손실로 recommendation-policy의 speculative_loss_pct -8%를 하회한다. 이번 runtime IEX quote 396.52/396.77은 spread 0.0630%, quote age 약 1.77분으로 hard gate를 통과하고, preflight asset row도 active/tradable US equity를 재확인한다. review backlog throttle 때문에 신규 buy는 차단되지만 risk-reducing sell은 독립적으로 평가되며, 1주 전량 exit가 speculative loss control과 validation learning 관찰을 동시에 충족한다. 따라서 learning_trade_directive의 sell 우선 원칙에 따라 TSLA 1주 whole-share day limit sell을 제출한다."
+      }
+    ]
+  },
+  "risk_check_result": {
+    "status": "PASS",
+    "errors": [],
+    "warnings": [],
+    "summary": {
+      "buy_notional": 0.0,
+      "sell_notional": 396.52,
+      "post_cash": 31128.38,
+      "post_invested": 68501.4718,
+      "review_backlog_pending_1d_count": 13,
+      "policy_version": "medium-risk-v1.2"
+    }
+  },
+  "universe_check_result": {
+    "status": "PASS",
+    "errors": [],
+    "warnings": [],
+    "summary": {
+      "strict_required": true,
+      "actionable": true,
+      "minimum_required_symbols": 50,
+      "symbols_considered": 62,
+      "symbols_loaded": 62,
+      "benchmarks": [
+        "QQQ",
+        "SPY"
+      ],
+      "pre_mcp_shortlist_count": 6,
+      "final_candidate_count": 3,
+      "scope_limited_by_user": false
+    }
+  },
+  "mcp_check_result": {
+    "status": "PASS",
+    "errors": [],
+    "warnings": [],
+    "summary": {
+      "required_servers": [
+        "alpaca",
+        "sec-edgar",
+        "alpha-vantage",
+        "fred",
+        "firecrawl",
+        "yahoo-finance"
+      ],
+      "core_servers": [
+        "alpaca"
+      ],
+      "research_servers": [
+        "sec-edgar",
+        "alpha-vantage",
+        "fred",
+        "firecrawl",
+        "yahoo-finance"
+      ],
+      "covered_servers": [
+        "alpaca",
+        "alpha-vantage",
+        "firecrawl",
+        "fred",
+        "sec-edgar",
+        "yahoo-finance"
+      ],
+      "strict_required": true,
+      "actionable": true,
+      "min_research_confirmations": 3,
+      "positive_research_confirmations": [
+        "firecrawl",
+        "fred",
+        "sec-edgar",
+        "yahoo-finance"
+      ]
+    }
+  },
+  "order_submission_result": {
+    "submitted_orders": 1,
+    "filled_orders": 1,
+    "skipped_orders": 0,
+    "client_order_ids": [
+      "hourly-20260608-2231-sell-tsla"
+    ]
+  },
+  "post_trade_reconciliation": {
+    "positions_count_after": 32,
+    "open_orders_after": 0,
+    "same_day_orders_after": 3,
+    "tsla_order_status": "filled",
+    "tsla_filled_avg_price": 398.59,
+    "account_portfolio_value_after": 99862.11,
+    "account_cash_after": 31130.45,
+    "account_buying_power_after": 300491.66
+  }
+}

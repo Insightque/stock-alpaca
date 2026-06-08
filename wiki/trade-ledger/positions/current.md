@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-06 05:01 KST_
+_Last updated: 2026-06-08 22:43 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-08-2231-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `TSLA` sell 1 @ `398.59` (`client_order_id=hourly-20260608-2231-sell-tsla`)가 regular-session runtime reconciliation 기준 즉시 체결됐다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `32` positions. `TSLA`는 계좌 포지션에서 제거됐고 open orders는 0건이다.
+- Recent reconciliation scope: scheduler-owned `2231` stale cleanup/core/research preflight와 runtime `get_watchlists/get_orders(status=open)/get_orders(status=all, after=2026-06-08T00:00:00Z)/get_all_positions/get_account_info/place_stock_order` 확인 기준 review backlog throttle로 신규 buy는 차단됐지만 risk-reducing sell 경로에서 `TSLA` 1주 exit가 허용됐다. post-trade account snapshot은 portfolio value `99,862.11 USD`, cash `31,130.45 USD`, buying power `300,491.66 USD`, long market value `68,731.66 USD`다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-08-2231-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

@@ -1,0 +1,130 @@
+{
+  "run_id": "2026-06-08-2231-hourly-autopilot",
+  "created_at": "2026-06-08T13:36:13Z",
+  "source": "runtime Alpaca MCP gate evaluation",
+  "paper": true,
+  "mode": "submit",
+  "checks": {
+    "checked_at": "2026-06-08T13:36:13Z",
+    "paper_mode": true,
+    "watchlists_count": 0,
+    "open_orders_count": 0,
+    "same_day_orders_count": 2,
+    "same_day_orders": [
+      {
+        "symbol": "AVGO",
+        "side": "sell",
+        "qty": 1,
+        "status": "filled",
+        "client_order_id": "ah-20260608-0911-sell-avgo",
+        "filled_at": "2026-06-08T00:20:05.775901Z",
+        "filled_avg_price": 391.27,
+        "extended_hours": true
+      },
+      {
+        "symbol": "AVGO",
+        "side": "sell",
+        "qty": 1,
+        "status": "filled",
+        "client_order_id": "ah-20260608-0931-sell-avgo",
+        "filled_at": "2026-06-08T00:37:53.182189418Z",
+        "filled_avg_price": 392.8,
+        "extended_hours": true
+      }
+    ],
+    "runtime_clock": {
+      "is_open": true,
+      "timestamp": "2026-06-08T09:36:13.51028951-04:00",
+      "next_open": "2026-06-09T09:30:00-04:00",
+      "next_close": "2026-06-08T16:00:00-04:00"
+    },
+    "runtime_account": {
+      "portfolio_value": 99520.41,
+      "cash": 30731.86,
+      "buying_power": 298843.31,
+      "long_market_value": 68788.55,
+      "status": "ACTIVE"
+    },
+    "runtime_quotes": {
+      "TSLA": {
+        "bid": 396.52,
+        "ask": 396.77,
+        "quote_at": "2026-06-08T13:34:26.637833292Z",
+        "last_trade": 396.84,
+        "spread_pct": 0.063
+      },
+      "AVGO": {
+        "bid": 390.0,
+        "ask": 397.06,
+        "quote_at": "2026-06-08T13:34:26.624383018Z",
+        "last_trade": 396.64,
+        "spread_pct": 1.7937
+      },
+      "SO": {
+        "bid": 87.49,
+        "ask": 92.63,
+        "quote_at": "2026-06-08T13:34:25.133018599Z",
+        "last_trade": 92.47,
+        "spread_pct": 5.7066
+      },
+      "SPY": {
+        "bid": 742.57,
+        "ask": 742.6,
+        "quote_at": "2026-06-08T13:34:26.637053321Z",
+        "last_trade": 742.47,
+        "spread_pct": 0.004
+      },
+      "QQQ": {
+        "bid": 715.22,
+        "ask": 715.78,
+        "quote_at": "2026-06-08T13:34:26.637680341Z",
+        "last_trade": 715.65,
+        "spread_pct": 0.0783
+      },
+      "NOK": {
+        "bid": 14.5,
+        "ask": 14.51,
+        "quote_at": "2026-06-08T13:34:26.208920581Z",
+        "last_trade": 14.5,
+        "spread_pct": 0.0689
+      }
+    }
+  },
+  "research_provider_summary": [
+    {
+      "server": "sec-edgar",
+      "outcome": "pass",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "gap_reason": ""
+    },
+    {
+      "server": "alpha-vantage",
+      "outcome": "gap",
+      "gap_category": "empty_response",
+      "retry_count": 0,
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols."
+    },
+    {
+      "server": "fred",
+      "outcome": "pass",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "gap_reason": ""
+    },
+    {
+      "server": "firecrawl",
+      "outcome": "pass",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "gap_reason": ""
+    },
+    {
+      "server": "yahoo-finance",
+      "outcome": "pass",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "gap_reason": ""
+    }
+  ]
+}
