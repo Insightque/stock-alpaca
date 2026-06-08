@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-09 00:14 KST_
+_Last updated: 2026-06-09 01:14 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-09-0111-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `32` positions 유지. open orders는 0건이고 `RGTI/AVGO/SO` 모두 신규 수량 변화 없이 유지됐다.
+- Recent reconciliation scope: scheduler-owned `0111` stale cleanup/core/research preflight와 runtime `get_clock/get_orders(status=open)/get_orders(status=all, after=2026-06-08T00:00:00Z)/get_account_activities(activity_types=FILL)/get_all_positions/get_account_info/get_watchlists/get_stock_latest_quote(feed=iex)` 확인 기준 신규 buy는 `review_backlog_pending_1d_count=13` backlog throttle에 막혔고, sell-first 후보는 `RGTI` same-day duplicate, `AVGO` same-day duplicate, `SO` spread `6.8511%` + metric gap 때문에 submit되지 않았다. same-day filled orders는 `AVGO` 장외 sell 2건, `TSLA` exit 1건, `RGTI` trim 1건으로 총 4건 재확인됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-09-0111-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
