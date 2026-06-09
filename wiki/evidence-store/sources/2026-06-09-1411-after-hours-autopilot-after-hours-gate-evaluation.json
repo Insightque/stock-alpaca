@@ -1,0 +1,130 @@
+{
+  "run_id": "2026-06-09-1411-after-hours-autopilot",
+  "created_at": "2026-06-09T14:13:02+09:00",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "QQQ",
+    "SPY",
+    "SMH",
+    "XOM",
+    "NVDA",
+    "NKE",
+    "ADBE",
+    "AMAT"
+  ],
+  "runtime_alpaca_mcp": {
+    "used_scheduler_preflight": true,
+    "source_of_record": "wiki/evidence-store/sources/2026-06-09-1411-after-hours-autopilot-alpaca-core-preflight.json",
+    "note": "Alpaca core preflight first_blocking_gate=market_closed is expected and nonblocking for after-hours runs; account/positions/orders/asset/quote/spread rows were read from the same preflight."
+  },
+  "submit_attempted": false,
+  "orders_submitted": [],
+  "review_backlog_throttle": {
+    "pending_1d_count": 0,
+    "pending_5d_count": 13,
+    "pending_20d_count": 1,
+    "status": "monitored_not_blocking"
+  },
+  "risk_inputs": {
+    "after_hours_new_orders_submitted_today": 0,
+    "cash_deployment_blocker": "quote_or_spread_gate_failed",
+    "new_orders_submitted_today": 0,
+    "policy_turnover_ratio": 0.0,
+    "review_backlog_pending_1d_count": 0,
+    "review_backlog_pending_20d_count": 1,
+    "review_backlog_pending_5d_count": 13,
+    "risk_recomputed_after_partial_fill": true,
+    "stop_triggered_orders_today": 0,
+    "weekly_turnover_ratio": 0.0
+  },
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass",
+      "detail": "ALPACA_PAPER_TRADE=true 확인"
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed",
+      "detail": "regular market closed at scheduler-owned get_clock 2026-06-09T01:11:08.147678375-04:00"
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass",
+      "detail": "session=after_hours and extended-hours policy profile retained"
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_market_closed_nonblocking_after_hours",
+      "detail": "1411 scheduler-owned core preflight first_blocking_gate=market_closed treated as expected nonblocking; passing account/positions/open-order/asset/quote/spread rows reused"
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass",
+      "detail": "after_hours_policy artifact tag, review bucket, order id prefix, and allowed_sides buy/sell retained"
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "pass_zero_of_two_submitted",
+      "detail": "after_hours_new_orders_submitted_today=0 and max_new_orders_per_session=2; regular validation count was not reused"
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass",
+      "detail": "broad universe 62 symbols with SPY/QQQ included and scheduler-owned research shortlist 8 symbols"
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass",
+      "detail": "sec-edgar/fred/firecrawl/yahoo-finance pass; alpha-vantage empty_response did not block because core and minimum research confirmations passed"
+    },
+    {
+      "gate": "risk_policy",
+      "status": "pass_no_submit_quote_gate_block",
+      "detail": "risk validator should pass with expected orders-is-empty warning because fresh quote/spread gates failed before order construction"
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "fail_scheduler_iex_quotes_stale_over_5_minutes_for_qqq_529.05_minutes_and_other_candidates_551.09_to_551.14_minutes",
+      "detail": "all executable candidates failed the 5 minute after-hours quote freshness cap in scheduler-owned 1411 quote evidence"
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "fail_only_qqq_inside_0_25pct_but_stale_and_rest_spread_over_cap_or_bid_only",
+      "detail": "QQQ spread passed but stale; AVGO/PFE/BAC/RGTI were bid-only on IEX; SPY/SMH/XOM/NVDA/NKE/ADBE/AMAT/SO/WMT/GOOGL exceeded the 0.25% cap"
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "pass_no_orders_built",
+      "detail": "whole-share day limit extended-hours shape preserved, but no order survived quote gates"
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "pass_no_submit",
+      "detail": "no place_stock_order call; no new client_order_id to reconcile or cancel"
+    }
+  ],
+  "candidate_notes": [
+    "QQQ quote age 529.05분 stale despite 0.0126% spread.",
+    "AVGO/PFE/BAC/RGTI remained bid-only on scheduler-owned IEX after-hours quote evidence.",
+    "NVDA/NKE/ADBE/AMAT/XOM/SPY/SMH/SO/WMT/GOOGL remained stale and above the 0.25% after-hours spread cap."
+  ],
+  "block_reasons": [
+    "fresh_quote",
+    "spread_within_after_hours_policy"
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-09-1411-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-1411-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-1411-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+    "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+    "wiki/trade-ledger/positions/current.md"
+  ]
+}
