@@ -23,3 +23,9 @@ Freeport-McMoRan paper validation 후보. 2026-05-26 hourly autopilot에서 mate
 `2026-06-05 ET` fill 1D는 `65.15 USD -> 63.88 USD`로 `-1.95%`였다. `SPY` 대비 `-2.19%p`, `QQQ` 대비 `-3.46%p`라 materials/mining diversifier add는 첫날 우위를 보여주지 못했다. 판단은 `중립 약함`이며 commodity follow-through는 5D까지 더 봐야 한다.
 
 출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]
+
+## 2026-06-10 04:18 KST hourly-autopilot
+
+`FCX` 1주 regular-session day limit buy가 `64.02 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260610-0411-buy-fcx`, `order_id=80a34b1a-5044-47cf-aadc-338e0db675f9`가 생성된 뒤 same client id reconciliation에서 `2026-06-09T19:18:02.754609037Z`에 `63.75 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0411` stale cleanup/core/research preflight와 live Alpaca MCP submit-boundary check 기준 paper mode/market open/universe strict/MCP strict/risk strict 모두 통과했고, sell-first 재평가에서 executable risk-reducing sell이 남지 않은 뒤 same-day duplicate가 없는 materials/mining existing holding floor-size add가 learning_trade_directive를 가장 보수적으로 충족했다는 점이다.
+
+출처: [[2026-06-10-0411-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-10-0411-hourly-autopilot-post-trade.json`

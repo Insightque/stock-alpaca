@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-10 03:59 KST_
+_Last updated: 2026-06-10 04:18 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-10-0411-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `FCX` buy 1주 @ `63.75 USD`
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `33` positions 유지. `FCX`는 `3주 -> 4주`, `avg_entry_price=65.5875`, `qty_available=4`로 증가했다.
+- Recent reconciliation scope: scheduler-owned `0411` stale cleanup/core/research preflight를 우선 사용했고 live Alpaca MCP submit-boundary check에서 regular market open, ACTIVE account, open orders 0건, same-day fills `JNJ/AMZN/COP/SLB/WMT/AVGO/PFE/BAC/RGTI`, `FCX` live quote `64.00/64.02`를 재확인했다. sell-first 재평가 결과 `AVGO`와 `RGTI`는 same-day sell duplicate, `SO`는 trim metric gap으로 blocked였다. buy fallback에서는 `BAC/COP/WMT/PFE/SLB/AMZN/JNJ` same-day duplicate, `QQQ/SMH` per-order cap, `NVDA` same-cluster add block, `AAPL/NKE/NEE` 약세/스프레드 문제, `SBUX` wiki thesis 부재가 남아 `FCX`를 materials/mining floor-size add로 direct Alpaca MCP submit했고 immediate same-client-id reconciliation 기준 `order_id=80a34b1a-5044-47cf-aadc-338e0db675f9`, `filled_avg_price=63.75 USD`로 즉시 체결됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-06-10-0411-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

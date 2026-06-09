@@ -1,0 +1,51 @@
+{
+  "run_id": "2026-06-10-0411-hourly-autopilot",
+  "recorded_at": "2026-06-09T19:18:06Z",
+  "paper": true,
+  "market_session": "regular",
+  "orders_submitted": [
+    {
+      "symbol": "FCX",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 64.02,
+      "client_order_id": "hourly-20260610-0411-buy-fcx",
+      "order_id": "80a34b1a-5044-47cf-aadc-338e0db675f9",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 63.75,
+      "submitted_at": "2026-06-09T19:18:02.533928517Z",
+      "filled_at": "2026-06-09T19:18:02.754609037Z"
+    }
+  ],
+  "open_orders": [],
+  "account_snapshot": {
+    "portfolio_value": 98342.07,
+    "cash": 32099.89,
+    "buying_power": 298492.52,
+    "status": "ACTIVE"
+  },
+  "positions_summary": {
+    "position_count": 33,
+    "fcx_qty": 4,
+    "fcx_avg_entry_price": 65.5875,
+    "fcx_qty_available": 4,
+    "fcx_market_value": 255.04
+  },
+  "fill_activity": [
+    {
+      "symbol": "FCX",
+      "side": "buy",
+      "qty": 1,
+      "price": 63.75,
+      "transaction_time": "2026-06-09T19:18:02.754609Z",
+      "order_id": "80a34b1a-5044-47cf-aadc-338e0db675f9"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-0411-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-10-0411-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0411-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0411-hourly-autopilot-stale-order-cleanup.json"
+  ]
+}
