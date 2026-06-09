@@ -1,0 +1,116 @@
+{
+  "run_id": "2026-06-10-0151-hourly-autopilot",
+  "created_at": "2026-06-09T17:00:30Z",
+  "order_submit_attempted": true,
+  "submitted_orders": [
+    {
+      "id": "3f342972-201b-4599-9209-ba6ec56f89eb",
+      "client_order_id": "hourly-20260610-0151-buy-pfe",
+      "symbol": "PFE",
+      "side": "buy",
+      "qty": "1",
+      "limit_price": "25.85",
+      "status": "filled",
+      "submitted_at": "2026-06-09T17:00:21.398436784Z"
+    }
+  ],
+  "open_orders": [
+    {
+      "id": "d850cf67-3c44-4a63-9f44-ef53c5fe8897",
+      "client_order_id": "hourly-20260610-0131-sell-avgo",
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": "2",
+      "filled_qty": "0",
+      "limit_price": "375.32",
+      "status": "new",
+      "submitted_at": "2026-06-09T16:39:38.248640731Z"
+    }
+  ],
+  "fills_after_submit": [
+    {
+      "symbol": "PFE",
+      "side": "buy",
+      "qty": "1",
+      "price": "25.82",
+      "transaction_time": "2026-06-09T17:00:21.914656919Z",
+      "client_order_id": "hourly-20260610-0151-buy-pfe"
+    }
+  ],
+  "same_session_recent_fills": [
+    {
+      "symbol": "PFE",
+      "side": "buy",
+      "qty": "1",
+      "price": "25.82",
+      "transaction_time": "2026-06-09T17:00:21.914656919Z"
+    },
+    {
+      "symbol": "BAC",
+      "side": "buy",
+      "qty": "1",
+      "price": "54.07",
+      "transaction_time": "2026-06-09T14:45:16.076672Z"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": "20",
+      "price": "22.3",
+      "transaction_time": "2026-06-09T13:40:55.433789Z"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": "2",
+      "price": "22.28",
+      "transaction_time": "2026-06-09T13:40:54.991719Z"
+    }
+  ],
+  "positions_count": 32,
+  "positions_focus": [
+    {
+      "symbol": "PFE",
+      "qty": "5",
+      "qty_available": "5",
+      "current_price": "25.815"
+    },
+    {
+      "symbol": "AVGO",
+      "qty": "10",
+      "qty_available": "8",
+      "current_price": "375.38"
+    }
+  ],
+  "account": {
+    "portfolio_value": 97153.73,
+    "cash": 32185.5,
+    "buying_power": 295519.35,
+    "currency": "USD"
+  },
+  "notes": [
+    "0151 cycle에서는 registered Alpaca MCP place_stock_order로 PFE buy 1주 day limit validation order를 제출했고 즉시 체결됐다.",
+    "immediate reconciliation 기준 신규 PFE buy는 filled로 닫혔고 open order는 기존 AVGO sell 1건만 남아 있다.",
+    "get_all_positions 기준 PFE 총 보유수량은 5주로 증가했고 AVGO는 총 10주, qty_available 8주로 기존 open sell 2주가 계속 예약된 상태다."
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-0151-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-10-0151-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0151-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0151-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+    "wiki/research-notes/tickers/PFE.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/BAC.md",
+    "wiki/research-notes/tickers/GOOGL.md",
+    "wiki/research-notes/tickers/SPY.md",
+    "wiki/research-notes/tickers/QQQ.md",
+    "wiki/research-notes/tickers/NOK.md"
+  ]
+}
