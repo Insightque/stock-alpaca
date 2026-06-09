@@ -1,0 +1,93 @@
+{
+  "run_id": "2026-06-10-0031-hourly-autopilot",
+  "created_at": "2026-06-09T15:34:42Z",
+  "order_submit_attempted": false,
+  "submitted_orders": [],
+  "open_orders": [
+    {
+      "id": "8775f764-2758-4958-9fa1-21a92e69fb91",
+      "client_order_id": "hourly-20260610-0011-buy-so",
+      "created_at": "2026-06-09T15:19:57.293613981Z",
+      "updated_at": "2026-06-09T15:19:57.301006791Z",
+      "submitted_at": "2026-06-09T15:19:57.299892703Z",
+      "filled_at": null,
+      "symbol": "SO",
+      "side": "buy",
+      "qty": "1",
+      "filled_qty": "0",
+      "filled_avg_price": null,
+      "limit_price": "92.03",
+      "status": "new",
+      "time_in_force": "day",
+      "order_type": "limit",
+      "extended_hours": false
+    },
+    {
+      "id": "487039ff-24cb-4094-9301-add50be8886c",
+      "client_order_id": "hourly-20260609-2351-buy-wmt",
+      "created_at": "2026-06-09T15:01:17.030479Z",
+      "updated_at": "2026-06-09T15:01:17.039292Z",
+      "submitted_at": "2026-06-09T15:01:17.038229Z",
+      "filled_at": null,
+      "symbol": "WMT",
+      "side": "buy",
+      "qty": "1",
+      "filled_qty": "0",
+      "filled_avg_price": null,
+      "limit_price": "118.99",
+      "status": "new",
+      "time_in_force": "day",
+      "order_type": "limit",
+      "extended_hours": false
+    }
+  ],
+  "fills_after_submit": [],
+  "same_session_recent_fills": [
+    {
+      "symbol": "BAC",
+      "side": "buy",
+      "qty": "1",
+      "price": "54.07",
+      "transaction_time": "2026-06-09T14:45:16.076672Z"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": "22",
+      "price": "22.298182",
+      "transaction_time": "2026-06-09T13:40:55.433789Z"
+    }
+  ],
+  "positions_count": 32,
+  "account": {
+    "portfolio_value": 98282.46,
+    "cash": 32211.32,
+    "buying_power": 298184.56,
+    "currency": "USD"
+  },
+  "notes": [
+    "0031 cycle에서는 신규 submit를 시도하지 않았다.",
+    "scheduler-owned stale cleanup은 pass였지만 WMT open buy가 validator 시점에 30분을 넘어 risk_open_order_lifecycle first blocking gate가 됐다.",
+    "SO/WMT open orders 2건은 그대로 유지됐고 same-session 신규 fill은 없었다."
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-0031-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-10-0031-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0031-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0031-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+    "wiki/research-notes/tickers/PFE.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/WMT.md",
+    "wiki/research-notes/tickers/BAC.md",
+    "wiki/research-notes/tickers/NEE.md",
+    "wiki/research-notes/tickers/SPY.md",
+    "wiki/research-notes/tickers/QQQ.md"
+  ]
+}

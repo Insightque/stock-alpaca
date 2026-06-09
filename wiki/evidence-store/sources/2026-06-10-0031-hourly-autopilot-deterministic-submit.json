@@ -1,0 +1,43 @@
+{
+  "alpaca_mcp_only": true,
+  "clock": {},
+  "created_at": "2026-06-09T15:41:46Z",
+  "execute": true,
+  "gap_category": "risk_validator_failed",
+  "gap_reason": "[\"WMT: open order age 32.7 minutes exceeds lifecycle limit 30.0\"]",
+  "order_plan_path": "/Users/insightque/stock-alpaca/wiki/trade-ledger/orders/2026-06-10-0031-hourly-autopilot.json",
+  "orders": [],
+  "paper": true,
+  "post_reconcile": {},
+  "risk_validator": {
+    "errors": [
+      "WMT: open order age 32.7 minutes exceeds lifecycle limit 30.0"
+    ],
+    "path": "/Users/insightque/stock-alpaca/wiki/trade-ledger/orders/2026-06-10-0031-hourly-autopilot.json",
+    "returncode": 1,
+    "status": "FAIL",
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 44227.107,
+      "max_factor_value": 49141.23,
+      "max_invested": 93368.337,
+      "max_speculative_value": 11793.8952,
+      "max_theme_value": 34398.861,
+      "max_ticker_value": 14742.369,
+      "min_cash": 4914.1230000000005,
+      "policy_version": "medium-risk-v1.2",
+      "post_cash": 32211.32,
+      "post_invested": 66082.1366,
+      "review_backlog_pending_1d_count": 0,
+      "sell_notional": 0.0,
+      "speculative_value": 4253.07,
+      "target_max_cash": 9828.246000000001,
+      "target_min_invested": 88454.214
+    },
+    "warnings": [
+      "orders is empty"
+    ]
+  },
+  "run_id": "2026-06-10-0031-hourly-autopilot",
+  "status": "failed"
+}
