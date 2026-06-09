@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-10 03:17 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-10 03:38 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -40,7 +40,7 @@
 - [[SO]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[WMT]] - 2026-05-29 validation add 5D 회고 중립 양호; 2026-06-05 01:11 KST hourly-autopilot에서 1주 추가 validation buy 체결, 2026-06-05 23:11 KST hourly-autopilot에서 1주 추가 validation buy가 `119.78 USD`에 체결, 2026-06-10 02:19 KST hourly-autopilot에서 floor-size defensive fallback buy 1주가 `118.70 USD`에 즉시 체결.
 - [[NEE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
-- [[AMZN]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기. 2026-06-06 01:51 KST hourly-autopilot에서 1주 추가 validation buy가 `253.17 USD`에 체결.
+- [[AMZN]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기. 2026-06-06 01:51 KST hourly-autopilot에서 1주 추가 validation buy가 `253.17 USD`에 체결됐고, 2026-06-10 03:38 KST hourly-autopilot에서 different-cluster fallback buy 1주가 `245.40 USD`에 즉시 체결됐다.
 - [[BAC]] - 2026-05-28 validation buy 1D 회고 양호, 5D/20D 대기; 2026-06-05 04:21 KST hourly-autopilot에서 1주 추가 validation buy 체결; 2026-06-05 22:39 KST hourly-autopilot에서 1주 추가 validation buy가 `53.83 USD`에 체결.
 - [[XOM]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기; 2026-06-05 00:51 KST hourly-autopilot에서 1주 추가 validation buy 체결.
 - [[V]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기. 2026-06-06 00:39 KST hourly-autopilot에서 1주 추가 validation buy가 `321.90 USD`에 체결.
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-10-0331-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0331` stale cleanup/core/research preflight를 source-of-record로 사용했고 fresh open `NVDA` buy 1건은 lifecycle limit 안의 nonblocking 다른-cluster open order로 재분류했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day sell duplicate, `SO`는 trim decision-grade metric gap으로 blocked였다. buy fallback에서는 `COP/SLB/WMT/PFE/BAC` same-day duplicate, `SPY/QQQ` per-order cap, `NEE` spread fail, `AAPL/GOOGL` 약세 재평가가 남아 `AMZN` 1주 buy @ `245.48 USD` day limit를 direct Alpaca MCP로 제출했고 same client id reconciliation 기준 `filled_avg_price=245.40 USD`로 즉시 체결됐다.
 - [[2026-06-10-0311-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 open-order lifecycle은 0건으로 clean했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day sell duplicate, `SO`는 trim decision-grade metric gap으로 blocked였다. buy fallback에서는 `COP/SLB/WMT/PFE/BAC` same-day duplicate, `SPY/QQQ` per-order cap, `AAPL/AMZN/GOOGL/NKE` review 약세가 남아 `NVDA` 1주 buy @ `205.40 USD` day limit를 direct Alpaca MCP로 제출했고 immediate reconciliation 기준 `status=new` open order다.
 - [[2026-06-10-0251-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0251` stale cleanup/core/research preflight를 source-of-record로 사용했고 open-order lifecycle은 0건으로 clean했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day sell duplicate, `SO`는 trim decision-grade metric gap으로 blocked였다. buy fallback에서는 `SLB/WMT/PFE/BAC` same-day duplicate, `SPY/QQQ` per-order cap, `NOK` add-block이 남아 `COP` 1주 buy @ `116.14 USD` day limit를 direct Alpaca MCP로 제출했고 same client id reconciliation 기준 `filled_avg_price=116.05 USD`로 즉시 체결됐다.
 - [[2026-06-10-0231-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0231` stale cleanup/core/research preflight를 source-of-record로 사용했고 open-order lifecycle은 0건으로 clean했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day sell duplicate, `SO`는 trim decision-grade metric gap으로 blocked였다. buy fallback에서는 `WMT/PFE/BAC` same-day duplicate, `GOOGL` live spread fail, `SPY/QQQ` per-order cap, `NOK` add-block이 남아 `SLB` 1주 buy @ `55.11 USD` day limit를 direct Alpaca MCP로 제출했고 immediate reconciliation 기준 `status=new` open order다.

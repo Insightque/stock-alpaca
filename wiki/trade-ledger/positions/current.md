@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-10 03:17 KST_
+_Last updated: 2026-06-10 03:38 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-10-0331-hourly-autopilot]]
+- Open/new: 기존 `NVDA` buy 1주 @ `205.40 USD` (`status=new`)
+- Filled: `AMZN` buy 1주 @ `245.40 USD`
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `32` positions 유지. `AMZN`은 `4주 -> 5주`, `avg_entry_price=262.386`, `qty_available=5`로 증가했고 `NVDA` open buy 1건은 그대로 남아 있다.
+- Recent reconciliation scope: scheduler-owned `0331` stale cleanup/core/research preflight를 우선 사용했고 live Alpaca MCP submit-boundary check에서 regular market open, ACTIVE account, fresh `NVDA` open buy 1건, same-day fills `COP/SLB/WMT/AVGO/PFE/BAC/RGTI`, `AMZN` live IEX quote `245.43/245.48`를 재확인했다. sell-first 재평가 결과 `AVGO`와 `RGTI`는 same-day sell duplicate, `SO`는 trim metric gap으로 blocked였다. buy fallback에서는 `COP/SLB/WMT/PFE/BAC` same-day duplicate, `SPY/QQQ` per-order cap, `NEE` spread fail, `AAPL/GOOGL` 약세 재평가가 남아 `AMZN`을 different-cluster mega-cap AI/cloud floor-size add로 direct Alpaca MCP submit했고 immediate same-client-id reconciliation 기준 `order_id=7a783061-253f-4c53-8c0e-377e194c469e`, `filled_avg_price=245.40 USD`로 즉시 체결됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-06-10-0331-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

@@ -1,0 +1,59 @@
+{
+  "run_id": "2026-06-10-0331-hourly-autopilot",
+  "created_at": "2026-06-09T18:38:10Z",
+  "paper": true,
+  "account": {
+    "portfolio_value": 98762.36,
+    "cash": 32401.18,
+    "buying_power": 299705.49,
+    "currency": "USD"
+  },
+  "open_orders": [
+    {
+      "symbol": "NVDA",
+      "side": "buy",
+      "qty": 1,
+      "status": "new",
+      "limit_price": 205.4,
+      "filled_qty": 0,
+      "client_order_id": "hourly-20260610-0311-buy-nvda",
+      "order_id": "56d0bb25-b51d-40e5-8ba9-f76ab79d67ae",
+      "submitted_at": "2026-06-09T18:18:48.647992497Z",
+      "expires_at": "2026-06-09T20:00:00Z"
+    }
+  ],
+  "filled_orders": [
+    {
+      "symbol": "AMZN",
+      "side": "buy",
+      "qty": 1,
+      "status": "filled",
+      "limit_price": 245.48,
+      "filled_qty": 1,
+      "filled_avg_price": 245.4,
+      "client_order_id": "hourly-20260610-0331-buy-amzn",
+      "order_id": "7a783061-253f-4c53-8c0e-377e194c469e",
+      "submitted_at": "2026-06-09T18:38:02.978686822Z",
+      "filled_at": "2026-06-09T18:38:03.133912338Z"
+    }
+  ],
+  "canceled_orders": [],
+  "positions_count": 32,
+  "position_focus": {
+    "AMZN": {
+      "qty": 5,
+      "qty_available": 5,
+      "avg_entry_price": 262.386,
+      "current_price": 245.36
+    },
+    "NVDA": {
+      "qty": 38,
+      "qty_available": 38,
+      "avg_entry_price": 215.031579,
+      "current_price": 206.95
+    }
+  },
+  "source_refs": [
+    "wiki/trade-ledger/positions/2026-06-10-0331-hourly-autopilot-post-trade.json"
+  ]
+}
