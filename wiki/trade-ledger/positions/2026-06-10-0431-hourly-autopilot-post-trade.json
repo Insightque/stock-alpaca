@@ -1,0 +1,51 @@
+{
+  "run_id": "2026-06-10-0431-hourly-autopilot",
+  "recorded_at": "2026-06-09T19:38:56Z",
+  "paper": true,
+  "market_session": "regular",
+  "orders_submitted": [
+    {
+      "symbol": "XOM",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 148.4,
+      "client_order_id": "hourly-20260610-0431-buy-xom",
+      "order_id": "5a36c3ae-d9e0-4af8-a378-b82ced709bb6",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 148.35,
+      "submitted_at": "2026-06-09T19:38:54.437247666Z",
+      "filled_at": "2026-06-09T19:38:54.928294142Z"
+    }
+  ],
+  "open_orders": [],
+  "account_snapshot": {
+    "portfolio_value": 98676.74,
+    "cash": 31951.54,
+    "buying_power": 299131.58,
+    "status": "ACTIVE"
+  },
+  "positions_summary": {
+    "position_count": 33,
+    "xom_qty": 4,
+    "xom_avg_entry_price": 149.2625,
+    "xom_qty_available": 4,
+    "xom_market_value": 593.16
+  },
+  "fill_activity": [
+    {
+      "symbol": "XOM",
+      "side": "buy",
+      "qty": 1,
+      "price": 148.35,
+      "transaction_time": "2026-06-09T19:38:54.928294Z",
+      "order_id": "5a36c3ae-d9e0-4af8-a378-b82ced709bb6"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-0431-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-10-0431-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0431-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0431-hourly-autopilot-stale-order-cleanup.json"
+  ]
+}

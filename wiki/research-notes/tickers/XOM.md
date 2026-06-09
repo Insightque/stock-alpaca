@@ -11,6 +11,12 @@ asset_type: stock
 
 출처: [[2026-06-05-0051-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-05-0051-hourly-autopilot-post-trade.json`
 
+## 2026-06-10 04:39 KST hourly-autopilot
+
+`XOM` 1주 regular-session day limit buy가 `148.40 USD` limit으로 제출됐고, direct Alpaca MCP reconciliation 기준 `2026-06-09T19:38:54.928294142Z`에 `148.35 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0431` stale cleanup/core/research preflight 재사용, same-day duplicate/open-order conflict 부재, `XOM` live quote `148.36/148.40` spread `0.0270%`, active tradable NYSE stock 확인, 그리고 `2026-06-09` portfolio review에서 energy/value sleeve의 `COP/SLB` follow-through가 양호했다고 기록된 점이다. 이번 체결도 validation lifecycle 표본으로 1D/5D/20D review를 추가 추적한다.
+
+출처: [[2026-06-10-0431-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-10-0431-hourly-autopilot-post-trade.json`
+
 ## 회고 기록
 
 ### 2026-05-29 analyst review cycle

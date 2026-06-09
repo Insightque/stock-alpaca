@@ -1,0 +1,153 @@
+{
+  "run_id": "2026-06-10-0431-hourly-autopilot",
+  "created_at": "2026-06-09T19:34:30Z",
+  "paper": true,
+  "clock": {
+    "is_open": true,
+    "timestamp": "2026-06-09T15:33:48.037828129-04:00",
+    "next_open": "2026-06-10T09:30:00-04:00",
+    "next_close": "2026-06-09T16:00:00-04:00"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 98634.6,
+    "cash": 32099.89,
+    "buying_power": 299197.24
+  },
+  "open_orders": {
+    "count": 0,
+    "symbols": []
+  },
+  "same_day_fills": [
+    {
+      "symbol": "FCX",
+      "side": "buy",
+      "qty": 1,
+      "price": 63.75,
+      "transaction_time": "2026-06-09T19:18:02.754609Z"
+    },
+    {
+      "symbol": "JNJ",
+      "side": "buy",
+      "qty": 1,
+      "price": 237.54,
+      "transaction_time": "2026-06-09T18:59:06.62308Z"
+    },
+    {
+      "symbol": "AMZN",
+      "side": "buy",
+      "qty": 1,
+      "price": 245.4,
+      "transaction_time": "2026-06-09T18:38:03.133912Z"
+    },
+    {
+      "symbol": "COP",
+      "side": "buy",
+      "qty": 1,
+      "price": 116.05,
+      "transaction_time": "2026-06-09T18:00:39.436794Z"
+    },
+    {
+      "symbol": "SLB",
+      "side": "buy",
+      "qty": 1,
+      "price": 55.11,
+      "transaction_time": "2026-06-09T17:45:47.321214Z"
+    },
+    {
+      "symbol": "WMT",
+      "side": "buy",
+      "qty": 1,
+      "price": 118.7,
+      "transaction_time": "2026-06-09T17:19:41.414935Z"
+    },
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 2,
+      "price": 375.47,
+      "transaction_time": "2026-06-09T17:00:40.001486Z"
+    },
+    {
+      "symbol": "PFE",
+      "side": "buy",
+      "qty": 1,
+      "price": 25.82,
+      "transaction_time": "2026-06-09T17:00:21.914657Z"
+    },
+    {
+      "symbol": "BAC",
+      "side": "buy",
+      "qty": 1,
+      "price": 54.07,
+      "transaction_time": "2026-06-09T14:45:16.076672Z"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 22,
+      "price": 22.298182,
+      "transaction_time": "2026-06-09T13:40:55.433789Z"
+    }
+  ],
+  "candidate_quotes": {
+    "AVGO": {
+      "bid": 381.03,
+      "ask": 391.59,
+      "spread_pct": 2.7339
+    },
+    "RGTI": {
+      "bid": 19.51,
+      "ask": 19.52,
+      "spread_pct": 0.0512
+    },
+    "SO": {
+      "bid": 91.76,
+      "ask": 92.71,
+      "spread_pct": 1.0298
+    },
+    "XOM": {
+      "bid": 148.36,
+      "ask": 148.4,
+      "spread_pct": 0.027
+    },
+    "QQQ": {
+      "bid": 703.92,
+      "ask": 704.15,
+      "spread_pct": 0.0327
+    },
+    "SPY": {
+      "bid": 734.12,
+      "ask": 734.27,
+      "spread_pct": 0.0204
+    },
+    "NVDA": {
+      "bid": 206.01,
+      "ask": 206.04,
+      "spread_pct": 0.0146
+    },
+    "AAPL": {
+      "bid": 290.0,
+      "ask": 290.86,
+      "spread_pct": 0.2961
+    },
+    "NEE": {
+      "bid": 84.39,
+      "ask": 84.4,
+      "spread_pct": 0.0118
+    },
+    "UNH": {
+      "bid": 407.0,
+      "ask": 411.07,
+      "spread_pct": 0.9948
+    }
+  },
+  "decision": {
+    "selected_symbol": "XOM",
+    "selected_side": "buy",
+    "selected_limit_price": 148.4,
+    "selected_qty": 1,
+    "first_blocking_gate": "",
+    "hard_gates_passed": true
+  }
+}

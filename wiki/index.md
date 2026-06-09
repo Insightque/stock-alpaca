@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-10 04:18 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-10 04:39 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -42,7 +42,7 @@
 - [[NEE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[AMZN]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기. 2026-06-06 01:51 KST hourly-autopilot에서 1주 추가 validation buy가 `253.17 USD`에 체결됐고, 2026-06-10 03:38 KST hourly-autopilot에서 different-cluster fallback buy 1주가 `245.40 USD`에 즉시 체결됐다.
 - [[BAC]] - 2026-05-28 validation buy 1D 회고 양호, 5D/20D 대기; 2026-06-05 04:21 KST hourly-autopilot에서 1주 추가 validation buy 체결; 2026-06-05 22:39 KST hourly-autopilot에서 1주 추가 validation buy가 `53.83 USD`에 체결.
-- [[XOM]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기; 2026-06-05 00:51 KST hourly-autopilot에서 1주 추가 validation buy 체결.
+- [[XOM]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기; 2026-06-05 00:51 KST hourly-autopilot에서 1주 추가 validation buy 체결, 2026-06-10 04:39 KST hourly-autopilot에서는 `148.40 USD` day limit buy 1주가 `filled_avg_price=148.35 USD`로 즉시 체결됐다.
 - [[V]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기. 2026-06-06 00:39 KST hourly-autopilot에서 1주 추가 validation buy가 `321.90 USD`에 체결.
 - [[INTC]] - 2026-05-28 after-hours validation buy 5D 회고 약함. 2026-06-06 04:11 KST hourly-autopilot에서 weak lifecycle review를 근거로 1주 exit sell이 `status=new` open order로 생성됐다.
 - [[CVX]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기.
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-10-0431-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0431` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca MCP boundary check에서 open orders 0건과 same-day fill stack을 재확인했다. sell-first 재평가에서는 `AVGO`와 `RGTI`가 same-day sell duplicate, `SO`는 spread `1.0298%`와 trim metric gap으로 blocked였고, buy fallback에서는 `FCX/COP/SLB/WMT/PFE/BAC/AMZN/JNJ` same-day duplicate, `QQQ/SPY` per-order cap, `NVDA` same-cluster add block, `UNH` spread fail, `AAPL` 약세 review, `NEE` lower-rank watch가 남아 `XOM` 1주 buy @ `148.40 USD` day limit를 direct Alpaca MCP로 제출했다. same order id reconciliation 기준 `filled_avg_price=148.35 USD`로 즉시 체결됐다.
 - [[2026-06-10-0411-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0411` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca MCP boundary check에서 open orders 0건과 same-day fill stack을 재확인했다. sell-first 재평가에서는 `AVGO`와 `RGTI`가 same-day sell duplicate, `SO`는 trim metric gap으로 blocked였고, buy fallback에서는 `BAC/COP/WMT/PFE/SLB/AMZN/JNJ` same-day duplicate, `QQQ/SMH` per-order cap, `NVDA` same-cluster add block, `AAPL/NKE/NEE` 약세/스프레드 문제, `SBUX` wiki thesis 부재가 남아 `FCX` 1주 buy @ `64.02 USD` day limit를 direct Alpaca MCP로 제출했다. same client id reconciliation 기준 `filled_avg_price=63.75 USD`로 즉시 체결됐다.
 - [[2026-06-10-0351-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0351` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca MCP boundary check에서 stale `NVDA` open buy cancel과 open orders 0건을 재확인했다. sell-first 재평가에서는 `AVGO`와 `RGTI`가 same-day sell duplicate, `SO`가 live spread `2.3170%`와 trim metric gap으로 막혔다. buy fallback에서는 `COP/SLB/WMT/PFE/BAC/AMZN` same-day duplicate, `SPY/QQQ` per-order cap, `NVDA` same-cluster add block, `AAPL/NKE/NEE` 약세가 남아 `JNJ` 1주 buy @ `237.55 USD` day limit를 direct Alpaca MCP로 제출했고 same client id reconciliation 기준 `filled_avg_price=237.54 USD`로 즉시 체결됐다.
 - [[2026-06-10-0331-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0331` stale cleanup/core/research preflight를 source-of-record로 사용했고 fresh open `NVDA` buy 1건은 lifecycle limit 안의 nonblocking 다른-cluster open order로 재분류했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day sell duplicate, `SO`는 trim decision-grade metric gap으로 blocked였다. buy fallback에서는 `COP/SLB/WMT/PFE/BAC` same-day duplicate, `SPY/QQQ` per-order cap, `NEE` spread fail, `AAPL/GOOGL` 약세 재평가가 남아 `AMZN` 1주 buy @ `245.48 USD` day limit를 direct Alpaca MCP로 제출했고 same client id reconciliation 기준 `filled_avg_price=245.40 USD`로 즉시 체결됐다.
