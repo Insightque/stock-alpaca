@@ -1,0 +1,79 @@
+{
+  "run_id": "2026-06-09-2231-hourly-autopilot",
+  "created_at": "2026-06-09T13:42:36Z",
+  "paper": true,
+  "session": "regular",
+  "review_bucket": "regular_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 100629.16,
+    "cash": 32265.39,
+    "buying_power": 304479.71,
+    "long_market_value": 68363.77,
+    "currency": "USD"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 22,
+      "limit_price": 22.07,
+      "order_id": "cb22952f-69a1-4b37-a8a8-09740c4225ac",
+      "status": "filled",
+      "filled_qty": 22,
+      "filled_avg_price": 22.298182,
+      "client_order_id": "hourly-20260609-2231-sell-rgti",
+      "submitted_at": "2026-06-09T13:40:53.708875627Z",
+      "filled_at": "2026-06-09T13:40:55.433789Z"
+    }
+  ],
+  "lifecycle_actions": [
+    {
+      "symbol": "RGTI",
+      "action": "trim",
+      "reason": "speculative_loss_control",
+      "remaining_qty": 68
+    }
+  ],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "NVDA",
+      "qty": 38.0,
+      "market_value": 7959.4838
+    },
+    {
+      "symbol": "AMD",
+      "qty": 14.0,
+      "market_value": 6845.37
+    },
+    {
+      "symbol": "LRCX",
+      "qty": 20.0,
+      "market_value": 6820.0
+    },
+    {
+      "symbol": "RGTI",
+      "qty": 68.0,
+      "market_value": 1511.64
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": true,
+    "session": "regular",
+    "review_bucket": "regular_validation",
+    "client_order_ids_checked": [
+      "hourly-20260609-2231-sell-rgti"
+    ],
+    "new_fills_detected": 2,
+    "position_delta": "RGTI 90주 -> 68주",
+    "note": "Registered Codex Alpaca MCP `place_stock_order`가 RGTI sell 22주를 제출했고, same-day orders와 FILL activities reconciliation 기준 `filled`로 닫혔다. Nested shell submit helper는 DNS wrapper_error로 실패했지만 actual order path는 registered MCP로 성공했다."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-09-2231-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-2231-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-2231-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-09-2231-hourly-autopilot-deterministic-submit.json",
+    "wiki/trade-ledger/orders/2026-06-09-2231-hourly-autopilot.json"
+  ]
+}
