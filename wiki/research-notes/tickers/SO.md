@@ -63,3 +63,10 @@ current Alpaca snapshot 기준 `SO`는 `2026-06-05` close/current `92.64 USD`, �
 `2026-06-05 ET` fill 1D는 `93.32 USD -> 91.28 USD`로 `-2.19%`였다. `SPY +0.24%`, `QQQ +1.51%`를 모두 하회했고 utility benchmark `XLU -1.94%`보다도 `0.25%p` 약했다. 반복된 weak-to-neutral 이력이 유지돼 이번 판단은 `약함`이며, defensive label만으로 add를 정당화하지 않는다.
 
 출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]
+
+
+## 2026-06-10 00:11 KST hourly autopilot
+
+`SO` 1주 regular-session day limit buy가 `92.03 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260610-0011-buy-so`, `order_id=8775f764-2758-4958-9fa1-21a92e69fb91`가 생성됐다. immediate reconciliation 시점 상태는 `new` open order이며 fill은 아직 없다. 근거는 scheduler-owned `0011` core/research preflight와 runtime gate 재확인 기준 paper mode/market open/universe strict/MCP strict/risk strict 모두 통과, `SO` pre-submit quote `91.90/92.03` spread `0.1414%`, same-day duplicate/open-order conflict 없음, review backlog throttle 비차단, `WMT/BAC/SPY/QQQ/NOK`가 각각 exact hard gate에 막힌 상황에서 utilities defensive existing holding floor-size fallback이 learning_trade_directive를 충족했다는 점이다.
+
+출처: [[2026-06-10-0011-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-10-0011-hourly-autopilot-post-trade.json`
