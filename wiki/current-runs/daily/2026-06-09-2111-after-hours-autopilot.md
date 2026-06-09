@@ -1,0 +1,84 @@
+# 2026-06-09-2111-after-hours-autopilot
+
+## 요약
+
+- Workflow: `harness/workflows/after-hours-autopilot.md`
+- Session: `after_hours`
+- Policy profile: `after_hours_policy`
+- Artifact tag: `after-hours`
+- Review bucket: `after_hours_validation`
+- Paper mode: `ALPACA_PAPER_TRADE=true` 확인
+- 결과: scheduler-owned `2111` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만, scheduler-owned Alpaca MCP quote/order/fill source rows 기준 executable two-sided fresh quote stack을 만들지 못해 주문 없이 종료했다.
+
+## 사용한 스케줄러 프리플라이트
+
+- Alpaca core: `wiki/evidence-store/sources/2026-06-09-2111-after-hours-autopilot-alpaca-core-preflight.json`
+- Research MCP: `wiki/evidence-store/sources/2026-06-09-2111-after-hours-autopilot-research-mcp-preflight.json`
+- Alpaca core preflight의 `first_blocking_gate=market_closed`는 장외 워크플로우에서 예상되는 상태였고, passing account/positions/open-order/asset/quote/spread rows는 그대로 사용했다. runtime Alpaca MCP cross-check는 closed market, ACTIVE account, positions `32`, open orders `0`, watchlists `0`, same-session fills `0`을 재확인했다. 다만 source of record는 scheduler-owned `2111` preflight의 account/positions/open-order/asset/quote/spread rows로 유지했다.
+
+## Alpaca MCP 확인
+
+- Regular market: closed (`2026-06-09T08:11:09.448778609-04:00`)
+- Account/positions: scheduler-owned core preflight를 주 원천으로 사용했다. account `ACTIVE`, portfolio value `100688.42 USD`, cash `31774.83 USD`, buying power `303376.09 USD`, positions `32`건이다.
+- Open orders: scheduler-owned `get_orders_open` 기준 `0`건이었다.
+- Watchlists: scheduler-owned Alpaca MCP `get_watchlists` 기준 `0`건이었다.
+- Same-session after-hours orders: 이번 cycle은 `place_stock_order` 호출이 없었고 `client_order_id`도 생성되지 않았다. deterministic submit path도 `orders=[]`로 `status=no_orders`를 기록했다. 따라서 `risk_inputs.after_hours_new_orders_submitted_today=0`, session cap은 `0/2`다.
+
+## 후보 평가
+
+- `AVGO` sell/trim: sell side 허용 정책에 따라 우선 재평가했다. 그러나 scheduler-owned IEX quote는 bid-only `374.07`이고 timestamp `2026-06-08T20:00:02.048843518Z`로 약 `971.47`분 stale였다. executable trim order를 만들지 못했다.
+- `QQQ`: scheduler-owned research shortlist의 가장 강한 fallback benchmark였다. IEX quote `714.93/715.02`는 spread 약 `0.0126%`로 양호했지만 timestamp가 `2026-06-08T20:22:05.194321373Z`라 decision clock 기준 약 `929.05`분 stale였다.
+- `SPY`: scheduler-owned IEX quote `742.33/742.48`는 age 약 `0.01`분, spread 약 `0.0202%`로 after-hours quote/spread gate를 통과했다. 그러나 1주 ask notional `742.48 USD`가 after-hours per-order cap 약 `503.44 USD`를 넘어 floor-size fallback buy를 만들 수 없었다.
+- `NVDA/NKE/ADBE/AMAT/XOM`: research shortlist에 포함됐지만 scheduler-owned IEX quote age가 `971.48-971.50`분 stale였고 spread도 각각 `8.1632%`, `8.3871%`, `8.6932%`, `8.8421%`, `7.1875%`로 after-hours cap `0.25%`를 크게 초과했다.
+- `SMH`: sector fallback으로 유지했지만 spread가 약 `6.0522%`로 과도했고 quote age도 약 `971.50`분 stale였다.
+- `PFE/BAC/RGTI`: IEX quote가 bid-only라 two-sided extended-hours order shape를 만들 수 없었다.
+- `SO/WMT/GOOGL`: held fallback 후보였지만 spread가 각각 `9.0780%`, `14.3271%`, `10.0754%`로 정책 cap을 크게 넘었다.
+- Review backlog: `review-due-index` 기준 `pending_1d_count=0`, `pending_5d_count=13`, `pending_20d_count=1`였다. 이번 cycle은 backlog throttle이 아니라 fresh-quote/spread hard gate가 직접 차단 요인이었다.
+
+## Artifacts
+
+- Manifest: `wiki/evidence-store/run-manifests/2026-06-09-2111-after-hours-autopilot.json`
+- Order plan: `wiki/trade-ledger/orders/2026-06-09-2111-after-hours-autopilot.json`
+- Gate evaluation source: `wiki/evidence-store/sources/2026-06-09-2111-after-hours-autopilot-after-hours-gate-evaluation.json`
+- Post-trade snapshot: `wiki/trade-ledger/positions/2026-06-09-2111-after-hours-autopilot-post-trade.json`
+- Deterministic submit artifact: `wiki/evidence-store/sources/2026-06-09-2111-after-hours-autopilot-deterministic-submit.json`
+
+## Gate 결과
+
+| Gate | Status |
+| --- | --- |
+| alpaca_paper_mode | pass |
+| regular_market_open | pass_regular_market_closed |
+| extended_hours_session | pass |
+| alpaca_core_account_clock_position_order_quote_spread | pass_market_closed_nonblocking_after_hours |
+| after_hours_policy_profile | pass |
+| separate_after_hours_order_budget | pass_zero_of_two_submitted |
+| universe_strict | pass |
+| mcp_tiered_strict | pass |
+| risk_policy | pass_no_submit_quote_and_notional_gate_block |
+| fresh_quote | fail_qqq_stale_949_41_minutes_and_most_other_candidates_970_78_971_50_minutes_while_spy_only_was_fresh |
+| spread_within_after_hours_policy | fail_qqq_and_spy_inside_0_25pct_but_qqq_was_stale_spy_hit_notional_cap_and_rest_were_wide_or_bid_only |
+| whole_share_day_limit_extended_hours_order | pass_no_orders_built |
+| immediate_reconcile_and_cancel_or_lifecycle_record | pass_no_submit |
+
+## 주문 및 제출
+
+- 제출 전 요약: 실행 가능한 after-hours 후보군이 없었다. `QQQ`는 spread는 통과했지만 stale였고, `SPY`는 fresh two-sided quote였지만 1주 ask notional이 after-hours per-order cap을 넘었다. `AVGO/PFE/BAC/RGTI`는 bid-only였고, 나머지 후보는 stale 또는 spread cap 초과였다.
+- `place_stock_order`: 호출하지 않음
+- `cancel_order_by_id`: 호출하지 않음
+- 결정적 제출 경로: `scripts/submit-validated-order-plan-mcp.py --execute`는 `orders=[]` plan으로 실행되고 `wiki/evidence-store/sources/2026-06-09-2111-after-hours-autopilot-deterministic-submit.json`에 `status=no_orders`를 기록한다.
+
+## Reconciliation
+
+- Submit attempted: 아니오
+- Open orders after run: `0`
+- Same-session new fills detected: `0`
+- Position delta: `none`
+- Source of record: scheduler-owned core preflight `get_orders_open`, `get_account_activities(activity_types=FILL)`, `get_all_positions`, `get_watchlists`; 이번 cycle은 after-hours-required row가 모두 preflight에 포함되어 있어 추가 runtime Alpaca MCP retry가 필요하지 않았다.
+
+## Validators
+
+- `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-06-09-2111-after-hours-autopilot.json`: PASS
+- `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-06-09-2111-after-hours-autopilot.json`: PASS
+- `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-06-09-2111-after-hours-autopilot.json`: PASS (`orders is empty` warning only)
+- `PATH=/usr/local/bin:$PATH python3 scripts/submit-validated-order-plan-mcp.py --run-id 2026-06-09-2111-after-hours-autopilot --order-plan wiki/trade-ledger/orders/2026-06-09-2111-after-hours-autopilot.json --output-json wiki/evidence-store/sources/2026-06-09-2111-after-hours-autopilot-deterministic-submit.json --execute`: completed with `status=no_orders`
