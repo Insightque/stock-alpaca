@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-09 17:31 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-09 17:54 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-09-1751-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1751` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 scheduler-owned IEX quote evidence 기준 `QQQ`도 quote age 약 `749.40`분으로 stale였고 `AVGO/PFE/BAC/RGTI`는 bid-only, `NVDA/NKE/ADBE/AMAT/XOM/SPY/SMH/SO/WMT/GOOGL`는 spread cap 초과 또는 stale라 executable two-sided fresh quote stack을 만들지 못해 no-submit으로 종료했다.
 - [[2026-06-09-1731-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1731` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 scheduler-owned IEX quote evidence 기준 `QQQ`도 quote age 약 `729.02`분으로 stale였고 `AVGO/PFE/BAC/RGTI`는 bid-only, `NVDA/NKE/ADBE/AMAT/XOM/SPY/SMH/SO/WMT/GOOGL`는 spread cap 초과 또는 stale라 executable two-sided fresh quote stack을 만들지 못해 no-submit으로 종료했다.
 - [[2026-06-09-1711-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1711` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 scheduler-owned IEX quote evidence 기준 `QQQ`도 quote age 약 `709.09`분으로 stale였고 `AVGO/PFE/BAC/RGTI`는 bid-only, `NVDA/NKE/ADBE/AMAT/XOM/SPY/SMH/SO/WMT/GOOGL`는 spread cap 초과 또는 stale라 executable two-sided fresh quote stack을 만들지 못해 no-submit으로 종료했다.
 - [[2026-06-09-1651-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1651` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 scheduler-owned IEX quote evidence 기준 `QQQ`도 quote age 약 `689.07`분으로 stale였고 `AVGO/PFE/BAC/RGTI`는 bid-only, `NVDA/NKE/ADBE/AMAT/XOM/SPY/SMH/SO/WMT/GOOGL`는 spread cap 초과 또는 stale라 executable two-sided fresh quote stack을 만들지 못해 no-submit으로 종료했다.
