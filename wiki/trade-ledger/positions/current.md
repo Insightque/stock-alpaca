@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-09 21:33 KST_
+_Last updated: 2026-06-09 21:51 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-09-2151-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler core preflight `get_all_positions` 기준 `32` positions 유지. runtime `get_all_positions` 교차 확인도 `32`였다. open orders는 0건이고 after-hours 신규 order/fill은 없었다.
+- Recent reconciliation scope: scheduler-owned `2151` after-hours core/research preflight를 우선 사용했고 `market_closed`는 장외 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 scheduler-owned IEX quote evidence에서 `NOK`만 age 약 `0.03`분의 fresh two-sided quote를 보였고 `QQQ/SPY`는 각각 약 `13.44/13.46`분 stale였다. `NOK` 1주 ask `14.80 USD`는 after-hours per-order cap 안이었지만 pending 20D validation review로 add-block 상태였고, `AVGO/PFE/BAC/RGTI`는 bid-only였으며 `NVDA/NKE/ADBE/SMH/XOM`는 spread cap 초과 또는 stale라 submit되지 않았다. runtime Alpaca MCP cross-check는 closed market, ACTIVE account, positions `32`, open orders `0`, same-session orders `0`, watchlists `0`을 재확인했지만 source-of-record는 scheduler preflight로 유지했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-09-2151-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 

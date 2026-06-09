@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-09 21:33 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-09 21:51 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-09-2151-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `2151` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었고 `NOK`만 fresh two-sided under-cap quote를 보였지만 pending 20D validation review로 add-block 상태였다. `QQQ/SPY`는 각각 약 `13.44/13.46`분 stale이면서 1주 ask가 after-hours per-order cap 약 `503.46 USD`를 넘었고, `AVGO/PFE/BAC/RGTI`는 bid-only, `NVDA/NKE/ADBE/SMH/XOM`는 spread cap 초과 또는 stale라 no-submit으로 종료했다.
 - [[2026-06-09-2131-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `2131` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 scheduler-owned IEX quote evidence 기준 `QQQ`는 quote age 약 `969.35`분으로 stale였고 `SPY`는 fresh two-sided quote였어도 1주 ask `742.73 USD`가 after-hours per-order cap 약 `503.39 USD`를 넘어 fallback buy를 만들 수 없었다. `AVGO/PFE/BAC/RGTI`는 bid-only였고 `NVDA/NKE/ADBE/AMAT/XOM/SMH/SO/WMT/GOOGL`는 spread cap 초과 또는 stale라 no-submit으로 종료했다.
 - [[2026-06-09-2111-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `2111` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 scheduler-owned IEX quote evidence 기준 `QQQ`는 quote age 약 `949.41`분으로 stale였고 `SPY`는 fresh two-sided quote였어도 1주 ask `742.48 USD`가 after-hours per-order cap 약 `503.44 USD`를 넘어 fallback buy를 만들 수 없었다. `AVGO/PFE/BAC/RGTI`는 bid-only였고 `NVDA/NKE/ADBE/AMAT/XOM/SMH/SO/WMT/GOOGL`는 spread cap 초과 또는 stale라 no-submit으로 종료했다.
 - [[2026-06-09-2051-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `2051` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 scheduler-owned IEX quote evidence 기준 `QQQ`도 quote age 약 `929.05`분으로 stale였고 `AVGO/PFE/BAC/RGTI`는 bid-only, `NVDA/NKE/ADBE/AMAT/XOM/SPY/SMH/SO/WMT/GOOGL`는 spread cap 초과 또는 stale라 executable two-sided fresh quote stack을 만들지 못해 no-submit으로 종료했다.
