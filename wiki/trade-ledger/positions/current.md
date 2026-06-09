@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-10 02:41 KST_
+_Last updated: 2026-06-10 03:01 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-10-0251-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `COP` buy 1주 @ `116.05 USD`
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `32` positions 유지. `COP`는 `3주 -> 4주`, `avg_entry_price=116.8975`, `qty_available=4`로 증가했다.
+- Recent reconciliation scope: scheduler-owned `0251` stale cleanup/core/research preflight를 우선 사용했고 live Alpaca MCP submit-boundary check에서 regular market open, ACTIVE account, open orders 0건, same-day fills `SLB/WMT/AVGO/PFE/BAC/RGTI`, `COP` live IEX quote `116.09/116.14`를 재확인했다. sell-first 재평가 결과 `AVGO`와 `RGTI`는 same-day sell duplicate, `SO`는 trim metric gap으로 blocked였다. buy fallback에서는 `SLB/WMT/PFE/BAC` same-day duplicate, `SPY/QQQ` per-order cap, `NOK` add-block이 남아 `COP`를 floor-size energy/value diversifier fallback buy로 direct Alpaca MCP submit했고 immediate same-client-id reconciliation 기준 `order_id=34da84fa-1653-4852-a955-6a1e0efd3fa8`, `filled_avg_price=116.05 USD`로 즉시 체결됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-06-10-0251-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

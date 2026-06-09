@@ -1,0 +1,177 @@
+{
+  "run_id": "2026-06-10-0251-hourly-autopilot",
+  "created_at": "2026-06-09T17:59:35Z",
+  "paper": true,
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-09T13:53:14.173164099-04:00",
+    "next_close": "2026-06-09T16:00:00-04:00",
+    "next_open": "2026-06-10T09:30:00-04:00"
+  },
+  "source_of_record": {
+    "stale_cleanup": "wiki/evidence-store/sources/2026-06-10-0251-hourly-autopilot-stale-order-cleanup.json",
+    "alpaca_core": "wiki/evidence-store/sources/2026-06-10-0251-hourly-autopilot-alpaca-core-preflight.json",
+    "research_preflight": "wiki/evidence-store/sources/2026-06-10-0251-hourly-autopilot-research-mcp-preflight.json"
+  },
+  "live_submit_boundary_checks": {
+    "clock": {
+      "outcome": "pass",
+      "timestamp": "2026-06-09T13:53:14.173164099-04:00"
+    },
+    "account": {
+      "outcome": "pass",
+      "portfolio_value": 98086.98,
+      "cash": 32762.63,
+      "buying_power": 298622.39
+    },
+    "open_orders": {
+      "outcome": "pass",
+      "count": 0
+    },
+    "positions": {
+      "outcome": "pass",
+      "count": 32
+    },
+    "recent_fills": {
+      "outcome": "pass",
+      "same_day_symbols": [
+        "SLB",
+        "WMT",
+        "AVGO",
+        "PFE",
+        "BAC",
+        "RGTI"
+      ]
+    },
+    "quote_cross_check_sip": {
+      "outcome": "gap",
+      "gap_category": "auth",
+      "detail": "feed=sip recent quote query returned 403 subscription restriction; scheduler-owned core preflight quote rows remained fresh so core gate stayed pass."
+    },
+    "asset": {
+      "symbol": "COP",
+      "outcome": "pass",
+      "status": "active",
+      "tradable": true,
+      "exchange": "NYSE"
+    },
+    "quote": {
+      "symbol": "COP",
+      "outcome": "pass",
+      "bid": 116.09,
+      "ask": 116.14,
+      "spread_pct": 0.0431,
+      "captured_at": "2026-06-09T17:53:26.322614844Z",
+      "feed": "iex"
+    },
+    "duplicate_symbol_side_same_day": {
+      "symbol": "COP",
+      "outcome": "pass",
+      "blocking_fill_found": false
+    }
+  },
+  "buy_stack_recheck": [
+    {
+      "symbol": "SLB",
+      "decision": "blocked",
+      "gate": "duplicate_symbol_side_same_day",
+      "detail": "2026-06-09T17:45:47Z same-day buy fill 1주"
+    },
+    {
+      "symbol": "WMT",
+      "decision": "blocked",
+      "gate": "duplicate_symbol_side_same_day",
+      "detail": "2026-06-09T17:19:41Z same-day buy fill 1주"
+    },
+    {
+      "symbol": "PFE",
+      "decision": "blocked",
+      "gate": "duplicate_symbol_side_same_day",
+      "detail": "2026-06-09T17:00:21Z same-day buy fill 1주"
+    },
+    {
+      "symbol": "BAC",
+      "decision": "blocked",
+      "gate": "duplicate_symbol_side_same_day",
+      "detail": "2026-06-09T14:45:16Z same-day buy fill 1주"
+    },
+    {
+      "symbol": "SPY",
+      "decision": "blocked",
+      "gate": "validation_floor_per_order_cap",
+      "detail": "1주 ask 732.62 USD > validation floor per-order cap"
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "blocked",
+      "gate": "validation_floor_per_order_cap",
+      "detail": "1주 ask 700.30 USD > validation floor per-order cap"
+    },
+    {
+      "symbol": "NOK",
+      "decision": "blocked",
+      "gate": "validation_lifecycle_add_block",
+      "detail": "review-due-index blocked_add_symbols 유지"
+    },
+    {
+      "symbol": "NEE",
+      "decision": "watch",
+      "gate": "lower_rank_than_cop",
+      "detail": "same-cycle research-covered utilities diversifier이지만 최근 review는 약함이고 COP의 1D validation follow-through가 더 강함"
+    },
+    {
+      "symbol": "NKE",
+      "decision": "watch",
+      "gate": "lower_rank_than_cop",
+      "detail": "consumer rebound review가 약해 same-cycle research-covered fallback 중 COP보다 후순위"
+    },
+    {
+      "symbol": "COP",
+      "decision": "selected",
+      "gate": "pass",
+      "detail": "1D review 양호, live spread 0.0431%, duplicate/open-order 없음, same-cycle research preflight coverage 있음"
+    }
+  ],
+  "submit": {
+    "pre_submit_summary": "paper mode true; market open; universe PASS; MCP PASS; risk PASS; COP quote freshness ~0m; spread 0.0431%; buy 1 share limit 116.14 day stock; duplicate/open-order PASS",
+    "order_request": {
+      "symbol": "COP",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 116.14,
+      "time_in_force": "day",
+      "client_order_id": "hourly-20260610-0251-buy-cop"
+    },
+    "place_stock_order": {
+      "order_id": "34da84fa-1653-4852-a955-6a1e0efd3fa8",
+      "client_order_id": "hourly-20260610-0251-buy-cop",
+      "submitted_at": "2026-06-09T18:00:38.708446313Z",
+      "status": "filled"
+    }
+  },
+  "reconciliation": {
+    "get_order_by_client_id": {
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 116.05
+    },
+    "get_orders_open_symbol_count": 0,
+    "get_orders_all_symbol_count": 1,
+    "new_fills_after_submit": [
+      {
+        "symbol": "COP",
+        "side": "buy",
+        "qty": 1,
+        "price": 116.05,
+        "transaction_time": "2026-06-09T18:00:39.436794Z"
+      }
+    ],
+    "positions_count": 32,
+    "account_after_submit": {
+      "portfolio_value": 98245.27,
+      "cash": 32646.58,
+      "buying_power": 298881.33
+    },
+    "summary": "Immediate reconciliation 기준 COP order는 116.05 USD에 즉시 체결됐고 open order는 남지 않았다."
+  }
+}

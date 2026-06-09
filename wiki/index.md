@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-10 02:41 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-10 03:01 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-10-0251-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0251` stale cleanup/core/research preflight를 source-of-record로 사용했고 open-order lifecycle은 0건으로 clean했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day sell duplicate, `SO`는 trim decision-grade metric gap으로 blocked였다. buy fallback에서는 `SLB/WMT/PFE/BAC` same-day duplicate, `SPY/QQQ` per-order cap, `NOK` add-block이 남아 `COP` 1주 buy @ `116.14 USD` day limit를 direct Alpaca MCP로 제출했고 same client id reconciliation 기준 `filled_avg_price=116.05 USD`로 즉시 체결됐다.
 - [[2026-06-10-0231-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0231` stale cleanup/core/research preflight를 source-of-record로 사용했고 open-order lifecycle은 0건으로 clean했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day sell duplicate, `SO`는 trim decision-grade metric gap으로 blocked였다. buy fallback에서는 `WMT/PFE/BAC` same-day duplicate, `GOOGL` live spread fail, `SPY/QQQ` per-order cap, `NOK` add-block이 남아 `SLB` 1주 buy @ `55.11 USD` day limit를 direct Alpaca MCP로 제출했고 immediate reconciliation 기준 `status=new` open order다.
 - [[2026-06-10-0211-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0211` stale cleanup/core/research preflight를 source-of-record로 사용했고 open-order lifecycle은 0건으로 clean했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day sell duplicate, `SO`는 trim decision-grade metric gap으로 blocked였고, buy fallback에서는 `PFE/BAC` same-day duplicate, `GOOGL` spread fail, `SPY/QQQ` per-order cap, `NOK` add-block이 남았다. 남은 executable fallback인 `WMT` 1주 buy @ `118.84 USD` day limit를 direct Alpaca MCP로 제출했고 same client id reconciliation 기준 `filled_avg_price=118.70 USD`로 즉시 체결됐다.
 - [[2026-06-10-0151-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0151` stale cleanup/core/research preflight를 우선 사용했고 stale `PFE` buy candidate는 cleanup 이후 live order history에서 `canceled`로 재확인됐다. sell-first 재평가에서 `AVGO`는 spread는 정상화됐지만 existing open sell duplicate 때문에 추가 trim이 막혔고, `RGTI`는 same-day sell duplicate, `SO`는 trim metric gap으로 blocked였다. buy fallback 재랭크 결과 `BAC` same-day duplicate, `GOOGL` spread fail, `SPY/QQQ` per-order cap, `NOK` add-block을 거쳐 `PFE` 1주 buy @ `25.85 USD` day limit가 direct Alpaca MCP로 제출됐고 immediate reconciliation 기준 `filled_avg_price=25.82 USD`로 체결됐다.
