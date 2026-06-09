@@ -1,0 +1,50 @@
+{
+  "run_id": "2026-06-09-2131-after-hours-autopilot",
+  "created_at": "2026-06-09T12:31:26Z",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 100677.34,
+    "cash": 31774.83,
+    "buying_power": 303378.72,
+    "long_market_value": 68902.51,
+    "currency": "USD"
+  },
+  "submitted_orders": [],
+  "lifecycle_actions": [],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "NVDA",
+      "qty": 38.0,
+      "market_value": 7949.22
+    },
+    {
+      "symbol": "AMD",
+      "qty": 14.0,
+      "market_value": 7000.0
+    },
+    {
+      "symbol": "LRCX",
+      "qty": 20.0,
+      "market_value": 6650.0
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": false,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "client_order_ids_checked": [],
+    "new_fills_detected": 0,
+    "position_delta": "none",
+    "note": "No submit path. Scheduler-owned 2131 Alpaca core preflight remained the source of record; runtime Alpaca MCP cross-checks matched 0 open orders, 0 same-session orders since 2026-06-08T20:00:00Z, and 32 positions."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-09-2131-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-2131-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-2131-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-09-2131-after-hours-autopilot.json"
+  ]
+}
