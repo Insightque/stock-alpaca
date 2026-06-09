@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-10 03:01 KST_
+_Last updated: 2026-06-10 03:17 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-10-0311-hourly-autopilot]]
+- Open/new: `NVDA` buy 1주 @ `205.40 USD` (`status=new`)
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `32` positions 유지. `NVDA`는 아직 `38주`, `avg_entry_price=215.031579`, `qty_available=38`로 unchanged이며 open orders는 `NVDA` buy 1건이다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 우선 사용했고 live Alpaca MCP submit-boundary check에서 regular market open, ACTIVE account, open orders 0건, same-day fills `COP/SLB/WMT/AVGO/PFE/BAC/RGTI`, `NVDA` live IEX quote `205.37/205.40`를 재확인했다. sell-first 재평가 결과 `AVGO`와 `RGTI`는 same-day sell duplicate, `SO`는 trim metric gap으로 blocked였다. buy fallback에서는 `COP/SLB/WMT/PFE/BAC` same-day duplicate, `SPY/QQQ` per-order cap, `AAPL/AMZN/GOOGL/NKE` review 약세가 남아 `NVDA`를 floor-size AI core holding add로 direct Alpaca MCP submit했다. immediate same-order-id reconciliation 기준 `order_id=56d0bb25-b51d-40e5-8ba9-f76ab79d67ae`, `status=new`, `filled_qty=0` open order다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-10-0311-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
