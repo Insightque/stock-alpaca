@@ -50,3 +50,10 @@ JNJ는 healthcare/pharma 성격의 대형 방어주로, 이번 regular-session v
 2026-06-05 04:51 KST hourly autopilot에서 JNJ 1주 regular-session day limit validation buy를 계획하고 `place_stock_order`까지 호출했지만, 실제 Alpaca submit timestamp가 `2026-06-04T20:02:59Z` (`16:02:59 ET`)로 regular close 이후에 기록됐다. runtime clock 재확인에서 `is_open=false`가 확인되어 해당 주문은 즉시 취소됐고, 신규 fill이나 포지션 증가는 남기지 않았다.
 
 출처: [[2026-06-05-0451-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-05-0451-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-05-0451-hourly-autopilot-post-trade.json`
+
+
+## 2026-06-10 03:59 KST hourly autopilot
+
+`JNJ` 1주 regular-session day limit buy가 `237.55 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260610-0351-buy-jnj`, `order_id=6f39a832-aec9-4c63-96bb-491a32b8864b`가 생성된 뒤 same client id reconciliation에서 `2026-06-09T18:59:06.623080055Z`에 `237.54 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0351` stale cleanup/core/research preflight와 live Alpaca MCP submit-boundary check 기준 paper mode/market open/universe strict/MCP strict/risk strict 모두 통과했고, sell-first 재평가에서 executable risk-reducing sell이 남지 않은 뒤 healthcare defensive diversifier floor-size validation fallback이 learning_trade_directive를 가장 깔끔하게 충족했다는 점이다.
+
+출처: [[2026-06-10-0351-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-10-0351-hourly-autopilot-post-trade.json`

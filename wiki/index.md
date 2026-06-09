@@ -17,7 +17,7 @@
 - [[TSM]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
 - [[NOK]] - 2026-05-22 stock-only 5D 회고 강함이나 변동성 큼, 20D 대기.
 - [[UNH]] - 2026-05-22 stock-only 5D 회고 약함, 20D 대기.
-- [[JNJ]] - defensive healthcare diversifier 후보. 2026-06-05 04:51 KST hourly-autopilot에서 1주 validation buy를 계획했지만 actual submit timestamp가 regular close 이후로 밀려 즉시 취소됐다.
+- [[JNJ]] - defensive healthcare diversifier 후보. 2026-06-05 04:51 KST hourly-autopilot에서는 actual submit timestamp가 regular close 이후로 밀려 1주 validation buy가 즉시 취소됐지만, 2026-06-10 03:59 KST hourly-autopilot에서는 `237.55 USD` day limit buy 1주가 `filled_avg_price=237.54 USD`로 즉시 체결됐다.
 - [[JPM]] - financials diversifier 후보. 2026-06-06 04:02 KST hourly-autopilot에서 1주 validation buy가 `311.81 USD`에 체결됐다.
 - [[ETN]] - 2026-05-22 stock-only 5D 회고 중립 양호, 20D 대기.
 - [[IONQ]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-10-0351-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0351` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca MCP boundary check에서 stale `NVDA` open buy cancel과 open orders 0건을 재확인했다. sell-first 재평가에서는 `AVGO`와 `RGTI`가 same-day sell duplicate, `SO`가 live spread `2.3170%`와 trim metric gap으로 막혔다. buy fallback에서는 `COP/SLB/WMT/PFE/BAC/AMZN` same-day duplicate, `SPY/QQQ` per-order cap, `NVDA` same-cluster add block, `AAPL/NKE/NEE` 약세가 남아 `JNJ` 1주 buy @ `237.55 USD` day limit를 direct Alpaca MCP로 제출했고 same client id reconciliation 기준 `filled_avg_price=237.54 USD`로 즉시 체결됐다.
 - [[2026-06-10-0331-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0331` stale cleanup/core/research preflight를 source-of-record로 사용했고 fresh open `NVDA` buy 1건은 lifecycle limit 안의 nonblocking 다른-cluster open order로 재분류했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day sell duplicate, `SO`는 trim decision-grade metric gap으로 blocked였다. buy fallback에서는 `COP/SLB/WMT/PFE/BAC` same-day duplicate, `SPY/QQQ` per-order cap, `NEE` spread fail, `AAPL/GOOGL` 약세 재평가가 남아 `AMZN` 1주 buy @ `245.48 USD` day limit를 direct Alpaca MCP로 제출했고 same client id reconciliation 기준 `filled_avg_price=245.40 USD`로 즉시 체결됐다.
 - [[2026-06-10-0311-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 open-order lifecycle은 0건으로 clean했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day sell duplicate, `SO`는 trim decision-grade metric gap으로 blocked였다. buy fallback에서는 `COP/SLB/WMT/PFE/BAC` same-day duplicate, `SPY/QQQ` per-order cap, `AAPL/AMZN/GOOGL/NKE` review 약세가 남아 `NVDA` 1주 buy @ `205.40 USD` day limit를 direct Alpaca MCP로 제출했고 immediate reconciliation 기준 `status=new` open order다.
 - [[2026-06-10-0251-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0251` stale cleanup/core/research preflight를 source-of-record로 사용했고 open-order lifecycle은 0건으로 clean했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day sell duplicate, `SO`는 trim decision-grade metric gap으로 blocked였다. buy fallback에서는 `SLB/WMT/PFE/BAC` same-day duplicate, `SPY/QQQ` per-order cap, `NOK` add-block이 남아 `COP` 1주 buy @ `116.14 USD` day limit를 direct Alpaca MCP로 제출했고 same client id reconciliation 기준 `filled_avg_price=116.05 USD`로 즉시 체결됐다.

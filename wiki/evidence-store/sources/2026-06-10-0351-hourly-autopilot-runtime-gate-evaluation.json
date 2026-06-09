@@ -1,0 +1,421 @@
+{
+  "run_id": "2026-06-10-0351-hourly-autopilot",
+  "created_at": "2026-06-09T18:55:20Z",
+  "paper": true,
+  "mode": "submit",
+  "market": {
+    "is_open": true,
+    "checked_at": "2026-06-09T18:54:53.337787802Z",
+    "next_open": "2026-06-10T09:30:00-04:00",
+    "next_close": "2026-06-09T16:00:00-04:00",
+    "session": "regular"
+  },
+  "runtime_account": {
+    "status": "ACTIVE",
+    "portfolio_value": 98919.8,
+    "cash": 32163.64,
+    "buying_power": 300049.79,
+    "long_market_value": 66756.16
+  },
+  "runtime_reconciliation": {
+    "watchlists_count": 0,
+    "open_orders_count": 0,
+    "same_day_orders": [
+      "hourly-20260610-0351-buy-jnj",
+      "hourly-20260610-0331-buy-amzn",
+      "hourly-20260610-0311-buy-nvda",
+      "hourly-20260610-0251-buy-cop",
+      "hourly-20260610-0231-buy-slb",
+      "hourly-20260610-0211-buy-wmt",
+      "hourly-20260610-0151-buy-pfe",
+      "hourly-20260610-0131-sell-avgo",
+      "hourly-20260609-2331-buy-bac",
+      "hourly-20260609-2231-sell-rgti"
+    ],
+    "same_day_fills": [
+      {
+        "symbol": "JNJ",
+        "side": "buy",
+        "qty": 1,
+        "filled_avg_price": 237.54,
+        "client_order_id": "hourly-20260610-0351-buy-jnj"
+      },
+      {
+        "symbol": "AMZN",
+        "side": "buy",
+        "qty": 1,
+        "filled_avg_price": 245.4,
+        "client_order_id": "hourly-20260610-0331-buy-amzn"
+      },
+      {
+        "symbol": "COP",
+        "side": "buy",
+        "qty": 1,
+        "filled_avg_price": 116.05,
+        "client_order_id": "hourly-20260610-0251-buy-cop"
+      },
+      {
+        "symbol": "SLB",
+        "side": "buy",
+        "qty": 1,
+        "filled_avg_price": 55.11,
+        "client_order_id": "hourly-20260610-0231-buy-slb"
+      },
+      {
+        "symbol": "WMT",
+        "side": "buy",
+        "qty": 1,
+        "filled_avg_price": 118.7,
+        "client_order_id": "hourly-20260610-0211-buy-wmt"
+      },
+      {
+        "symbol": "AVGO",
+        "side": "sell",
+        "qty": 2,
+        "filled_avg_price": 375.47,
+        "client_order_id": "hourly-20260610-0131-sell-avgo"
+      },
+      {
+        "symbol": "PFE",
+        "side": "buy",
+        "qty": 1,
+        "filled_avg_price": 25.82,
+        "client_order_id": "hourly-20260610-0151-buy-pfe"
+      },
+      {
+        "symbol": "BAC",
+        "side": "buy",
+        "qty": 1,
+        "filled_avg_price": 54.07,
+        "client_order_id": "hourly-20260609-2331-buy-bac"
+      },
+      {
+        "symbol": "RGTI",
+        "side": "sell",
+        "qty": 22,
+        "filled_avg_price": 22.298182,
+        "client_order_id": "hourly-20260609-2231-sell-rgti"
+      }
+    ],
+    "positions_count": 33
+  },
+  "review_backlog": {
+    "updated_at": "2026-06-08T21:23:17Z",
+    "source_review": "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+    "pending_1d_count": 0,
+    "pending_5d_count": 13,
+    "pending_20d_count": 1,
+    "blocked_add_symbols": [
+      "NOK"
+    ],
+    "due_reviews_blocking_adds": [
+      "NOK"
+    ],
+    "due_reviews": [
+      {
+        "symbol": "NOK",
+        "horizon": "20D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-18 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+          "wiki/trade-ledger/reviews/2026-06-04-portfolio-review.md"
+        ]
+      },
+      {
+        "symbol": "JPM",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-12 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-06-0351-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "SO",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-12 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-06-0311-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "PFE",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-12 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-06-0211-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "AMZN",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-12 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-06-0151-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "COP",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-12 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-06-0131-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "SLB",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-12 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-06-0111-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "NVDA",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-12 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-06-0051-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "V",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-12 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-06-0031-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "AAPL",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-12 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-06-0011-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "PLTR",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-12 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-05-2351-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "FCX",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-12 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-05-2331-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "WMT",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-12 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-05-2311-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "BAC",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-12 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-05-2231-hourly-autopilot.md"
+        ]
+      }
+    ],
+    "notes": [
+      "2026-06-09 analyst review는 2026-06-05 ET fill cohort 13건의 1D backlog를 closeout했다.",
+      "validation buy review backlog는 1D 기준 해소됐고 다음 핵심 due horizon은 2026-06-12 ET 5D cohort다.",
+      "AVGO/RGTI/TSLA sell follow-up은 별도 monitor로 유지하지만 buy backlog count에는 포함하지 않는다.",
+      "NOK add-block은 2026-06-18 ET 20D review까지 유지한다."
+    ]
+  },
+  "candidate_quotes": {
+    "AVGO": {
+      "bid": 389.75,
+      "ask": 391.0,
+      "quote_timestamp": "2026-06-09T18:51:27.624536242Z",
+      "spread_pct": 0.003202,
+      "spread_pct_display": 0.3202,
+      "latest_trade": 389.9,
+      "latest_trade_ts": "2026-06-09T18:51:24.116191371Z"
+    },
+    "RGTI": {
+      "bid": 19.49,
+      "ask": 19.5,
+      "quote_timestamp": "2026-06-09T18:51:34.047032061Z",
+      "spread_pct": 0.000513,
+      "spread_pct_display": 0.0513,
+      "latest_trade": 19.495,
+      "latest_trade_ts": "2026-06-09T18:51:30.952169231Z"
+    },
+    "SO": {
+      "bid": 92.57,
+      "ask": 94.74,
+      "quote_timestamp": "2026-06-09T18:51:26.995504128Z",
+      "spread_pct": 0.02317,
+      "spread_pct_display": 2.317,
+      "latest_trade": 92.57,
+      "latest_trade_ts": "2026-06-09T18:50:49.073305829Z"
+    },
+    "JNJ": {
+      "bid": 237.49,
+      "ask": 237.55,
+      "quote_timestamp": "2026-06-09T18:51:32.194184793Z",
+      "spread_pct": 0.000253,
+      "spread_pct_display": 0.0253,
+      "latest_trade": 237.45,
+      "latest_trade_ts": "2026-06-09T18:51:12.096754835Z"
+    },
+    "XOM": {
+      "bid": 148.62,
+      "ask": 148.66,
+      "quote_timestamp": "2026-06-09T18:51:28.070467521Z",
+      "spread_pct": 0.000269,
+      "spread_pct_display": 0.0269,
+      "latest_trade": 148.66,
+      "latest_trade_ts": "2026-06-09T18:51:35.590620137Z"
+    },
+    "NVDA": {
+      "bid": 206.46,
+      "ask": 206.53,
+      "quote_timestamp": "2026-06-09T18:51:34.564789062Z",
+      "spread_pct": 0.000339,
+      "spread_pct_display": 0.0339,
+      "latest_trade": 206.45,
+      "latest_trade_ts": "2026-06-09T18:51:35.849076402Z"
+    },
+    "SPY": {
+      "bid": 735.39,
+      "ask": 735.48,
+      "quote_timestamp": "2026-06-09T18:51:34.779355393Z",
+      "spread_pct": 0.000122,
+      "spread_pct_display": 0.0122,
+      "latest_trade": 735.35,
+      "latest_trade_ts": "2026-06-09T18:51:36.027435089Z"
+    },
+    "QQQ": {
+      "bid": 704.42,
+      "ask": 704.48,
+      "quote_timestamp": "2026-06-09T18:51:34.589599725Z",
+      "spread_pct": 8.5e-05,
+      "spread_pct_display": 0.0085,
+      "latest_trade": 704.47,
+      "latest_trade_ts": "2026-06-09T18:51:36.248530377Z"
+    },
+    "AAPL": {
+      "bid": 290.43,
+      "ask": 290.46,
+      "quote_timestamp": "2026-06-09T18:51:33.460813722Z",
+      "spread_pct": 0.000103,
+      "spread_pct_display": 0.0103,
+      "latest_trade": 290.48,
+      "latest_trade_ts": "2026-06-09T18:51:34.812535976Z"
+    },
+    "NKE": {
+      "bid": 44.75,
+      "ask": 44.76,
+      "quote_timestamp": "2026-06-09T18:51:34.253582924Z",
+      "spread_pct": 0.000223,
+      "spread_pct_display": 0.0223,
+      "latest_trade": 44.75,
+      "latest_trade_ts": "2026-06-09T18:51:34.679170889Z"
+    },
+    "NEE": {
+      "bid": 84.42,
+      "ask": 84.44,
+      "quote_timestamp": "2026-06-09T18:51:34.219732561Z",
+      "spread_pct": 0.000237,
+      "spread_pct_display": 0.0237,
+      "latest_trade": 84.43,
+      "latest_trade_ts": "2026-06-09T18:51:11.394688838Z"
+    },
+    "HOOD": {
+      "bid": 83.39,
+      "ask": 83.41,
+      "quote_timestamp": "2026-06-09T18:51:33.484093822Z",
+      "spread_pct": 0.00024,
+      "spread_pct_display": 0.024,
+      "latest_trade": 83.41,
+      "latest_trade_ts": "2026-06-09T18:51:34.538017391Z"
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-0351-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-10-0351-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0351-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0351-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/JNJ.md",
+    "wiki/research-notes/tickers/XOM.md",
+    "wiki/research-notes/tickers/AAPL.md",
+    "wiki/research-notes/tickers/NKE.md",
+    "wiki/research-notes/tickers/NEE.md",
+    "wiki/research-notes/tickers/NVDA.md"
+  ],
+  "open_orders": {
+    "result": []
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 7,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 0,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1
+  }
+}
