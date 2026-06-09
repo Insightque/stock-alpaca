@@ -1,0 +1,108 @@
+{
+  "run_id": "2026-06-09-2331-hourly-autopilot",
+  "created_at": "2026-06-09T14:36:10Z",
+  "paper": true,
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-09T10:35:38.546700706-04:00",
+    "next_open": "2026-06-10T09:30:00-04:00",
+    "next_close": "2026-06-09T16:00:00-04:00"
+  },
+  "account_snapshot": {
+    "portfolio_value": 99903.33,
+    "cash": 32265.39,
+    "buying_power": 302611.39,
+    "long_market_value": 67637.94
+  },
+  "first_blocking_gate": "",
+  "order_lifecycle": {
+    "stale_cleanup_status": "pass",
+    "open_orders_seen": 0,
+    "blocking_client_order_ids": [],
+    "resolved_by_live_reconciliation": {
+      "client_order_id": "hourly-20260609-2251-sell-avgo",
+      "status": "canceled",
+      "canceled_at": "2026-06-09T14:31:11.020892Z",
+      "note": "stale cleanup report retained a stale candidate row, but later Alpaca core preflight and live get_orders(status=open) confirmed no remaining open orders."
+    }
+  },
+  "candidate_checks": {
+    "AVGO": {
+      "decision": "watch",
+      "blocking_gate": "spread_out_of_policy",
+      "quote": {
+        "bid": 390.0,
+        "ask": 394.0,
+        "quote_time": "2026-06-09T14:35:37.998309625Z"
+      },
+      "reason": "Open-order lifecycle was resolved by cancellation, but live spread 1.0152% exceeds policy max 0.50%."
+    },
+    "RGTI": {
+      "decision": "watch",
+      "blocking_gate": "duplicate_symbol_side_same_day",
+      "quote": {
+        "bid": 21.08,
+        "ask": 21.09,
+        "quote_time": "2026-06-09T14:35:40.097236612Z"
+      },
+      "reason": "same-day sell fill already exists."
+    },
+    "SO": {
+      "decision": "watch",
+      "blocking_gate": "decision_grade_metric_gap",
+      "quote": {
+        "bid": 91.68,
+        "ask": 91.85,
+        "quote_time": "2026-06-09T14:35:40.121265023Z"
+      },
+      "reason": "decision-grade replacement margin is still missing."
+    },
+    "BAC": {
+      "decision": "submit",
+      "blocking_gate": "",
+      "quote": {
+        "bid": 54.32,
+        "ask": 54.33,
+        "quote_time": "2026-06-09T14:35:39.887488728Z"
+      },
+      "reason": "sell-first diagnostics produced no executable risk-reducing sell; floor-size financials diversifier buy satisfies learning_trade_directive and all hard gates."
+    },
+    "SPY": {
+      "decision": "watch",
+      "blocking_gate": "validation_floor_per_order_cap",
+      "quote": {
+        "bid": 740.75,
+        "ask": 740.78,
+        "quote_time": "2026-06-09T14:35:40.145869910Z"
+      },
+      "reason": "one share notional exceeds validation floor per-order cap."
+    },
+    "QQQ": {
+      "decision": "watch",
+      "blocking_gate": "validation_floor_per_order_cap",
+      "quote": {
+        "bid": 715.19,
+        "ask": 715.25,
+        "quote_time": "2026-06-09T14:35:40.146738919Z"
+      },
+      "reason": "one share notional exceeds validation floor per-order cap."
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-09-2331-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-09-2331-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-2331-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-2331-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/BAC.md",
+    "wiki/research-notes/tickers/SPY.md",
+    "wiki/research-notes/tickers/QQQ.md"
+  ]
+}

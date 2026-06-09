@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-09 23:18 KST_
+_Last updated: 2026-06-10 00:02 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-09-2351-hourly-autopilot]]
+- Open/new: `WMT` buy 1주 @ `118.99 USD` (`status=new`)
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `32` positions 유지. `WMT`는 아직 `6주` 그대로이며 open orders는 `WMT` 1건이다.
+- Recent reconciliation scope: scheduler-owned `2351` stale cleanup/core/research preflight를 우선 사용했고 sell-first 재평가 결과 `AVGO`는 live spread `3.5054%`로 hard gate fail, `RGTI`는 same-day sell duplicate conflict, `SO`는 decision-grade metric gap으로 blocked였다. `BAC`는 `2331` cycle buy 1주가 `2026-06-09T14:45:16Z` same-day fill로 확인돼 buy-side duplicate gate에 걸렸고, `SPY/QQQ`는 1주 ask가 validation floor per-order cap을 넘었다. 따라서 `WMT`를 floor-size defensive diversifier fallback buy로 제출했고 immediate reconciliation 기준 `order_id=487039ff-24cb-4094-9301-add50be8886c`, `status=new`, `filled_qty=0` open order다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-09-2351-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

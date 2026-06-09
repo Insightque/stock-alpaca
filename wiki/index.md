@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-09 23:18 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-10 00:02 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-09-2351-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `2351` stale cleanup/core/research preflight를 우선 사용했고 open-order lifecycle block이 해소된 상태에서 sell-first 재평가를 수행했다. `AVGO`는 live spread `3.5054%`로 trim hard gate fail, `RGTI`는 same-day sell duplicate conflict, `SO`는 decision-grade metric gap, `BAC`는 same-day buy duplicate로 각각 blocked됐다. `SPY/QQQ`는 1주 ask가 validation floor per-order cap을 넘었고, `WMT`는 1D review `중립 양호`와 live spread `0.0420%`를 근거로 floor-size fallback buy 1주 @ `118.99 USD` day limit를 제출했다. immediate reconciliation 기준 주문은 `status=new` open order로 남아 있다.
 - [[2026-06-09-2251-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `2251` stale cleanup/core/research preflight와 live Alpaca MCP check를 결합했고, same-day `RGTI` sell fill 때문에 duplicate symbol/side conflict가 생겨 `RGTI` 추가 trim은 diagnostic으로만 남겼다. 대신 spread가 `0.1636%`로 정상화된 `AVGO`를 sell-first validation trim 후보로 승격해 `AVGO` 2주 sell @ `403.00 USD` day limit를 제출했고 immediate reconciliation 시점에는 `status=new` open order로 남아 있다.
 - [[2026-06-09-2231-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `2231` stale cleanup/core/research preflight와 live Alpaca MCP check를 결합했고, sell-first workflow에 따라 `RGTI` speculative-loss control trim 22주를 `22.298182 USD`에 체결했다. `AVGO`는 live spread `3.9990%`로 hard gate fail, `SO`는 decision-grade metric gap으로 blocked였으며 `BAC/SPY/QQQ` buy fallback은 eligible risk-reducing sell이 먼저 열려 있어 사용하지 않았다.
 - [[2026-06-09-2151-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `2151` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었고 `NOK`만 fresh two-sided under-cap quote를 보였지만 pending 20D validation review로 add-block 상태였다. `QQQ/SPY`는 각각 약 `13.44/13.46`분 stale이면서 1주 ask가 after-hours per-order cap 약 `503.46 USD`를 넘었고, `AVGO/PFE/BAC/RGTI`는 bid-only, `NVDA/NKE/ADBE/SMH/XOM`는 spread cap 초과 또는 stale라 no-submit으로 종료했다.
