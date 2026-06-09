@@ -1,0 +1,91 @@
+{
+  "run_id": "2026-06-09-2251-hourly-autopilot",
+  "created_at": "2026-06-09T14:00:30Z",
+  "paper": true,
+  "session": "regular",
+  "review_bucket": "regular_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 100656.56,
+    "cash": 32265.39,
+    "buying_power": 304528.07,
+    "long_market_value": 68391.17,
+    "currency": "USD"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 2,
+      "limit_price": 403.0,
+      "order_id": "bf1247db-2054-4304-a16b-58ada7b39af7",
+      "status": "new",
+      "filled_qty": 0,
+      "filled_avg_price": null,
+      "client_order_id": "hourly-20260609-2251-sell-avgo",
+      "submitted_at": "2026-06-09T13:59:46.314770733Z",
+      "filled_at": null
+    }
+  ],
+  "lifecycle_actions": [
+    {
+      "symbol": "AVGO",
+      "action": "trim_open",
+      "reason": "target_band_de_risking",
+      "remaining_qty_if_filled": 8
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 2,
+      "limit_price": 403.0,
+      "status": "new",
+      "client_order_id": "hourly-20260609-2251-sell-avgo",
+      "order_id": "bf1247db-2054-4304-a16b-58ada7b39af7",
+      "submitted_at": "2026-06-09T13:59:46.322000156Z"
+    }
+  ],
+  "position_highlights": [
+    {
+      "symbol": "NVDA",
+      "qty": 38.0,
+      "market_value": 7946.94
+    },
+    {
+      "symbol": "LRCX",
+      "qty": 20.0,
+      "market_value": 6927.6
+    },
+    {
+      "symbol": "AMD",
+      "qty": 14.0,
+      "market_value": 6846.14
+    },
+    {
+      "symbol": "AVGO",
+      "qty": 10.0,
+      "market_value": 3989.6,
+      "qty_available": 8.0
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": true,
+    "session": "regular",
+    "review_bucket": "regular_validation",
+    "client_order_ids_checked": [
+      "hourly-20260609-2251-sell-avgo"
+    ],
+    "new_fills_detected": 0,
+    "position_delta": "AVGO qty 10 \uc720\uc9c0, qty_available 10\uc8fc -> 8\uc8fc",
+    "note": "Registered Codex Alpaca MCP `place_stock_order`\uac00 AVGO sell 2\uc8fc\ub97c \uc81c\ucd9c\ud588\uace0, immediate same-day reconciliation \uc2dc\uc810\uc5d0\ub294 `status=new` open order\ub85c \ub0a8\uc544 \uc788\uc5c8\ub2e4. fills\ub294 \uc5c6\uc5c8\uace0 open orders\ub294 AVGO 1\uac74\uc774\ub2e4."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-09-2251-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-2251-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-2251-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-09-2251-hourly-autopilot-deterministic-submit.json",
+    "wiki/trade-ledger/orders/2026-06-09-2251-hourly-autopilot.json"
+  ]
+}

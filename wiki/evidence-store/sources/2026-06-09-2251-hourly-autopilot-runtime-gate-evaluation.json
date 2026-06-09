@@ -1,0 +1,93 @@
+{
+  "run_id": "2026-06-09-2251-hourly-autopilot",
+  "created_at": "2026-06-09T13:55:40Z",
+  "paper": true,
+  "session": "regular",
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-09T09:54:10.546861459-04:00",
+    "next_close": "2026-06-09T16:00:00-04:00",
+    "next_open": "2026-06-10T09:30:00-04:00"
+  },
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "portfolio_value": 100992.35,
+    "cash": 32265.39,
+    "buying_power": 305267.48,
+    "long_market_value": 68726.96,
+    "currency": "USD"
+  },
+  "open_orders": [],
+  "same_day_fill_summary": {
+    "fill_count": 2,
+    "symbols": [
+      "RGTI"
+    ],
+    "note": "same-day fills exist only for earlier RGTI trim, so AVGO remained duplicate-free for sell side."
+  },
+  "live_quotes": {
+    "AVGO": {
+      "bid": 403.0,
+      "ask": 403.66,
+      "spread_pct": 0.1636,
+      "quote_timestamp": "2026-06-09T13:54:12.038089368Z"
+    },
+    "RGTI": {
+      "bid": 22.13,
+      "ask": 22.15,
+      "spread_pct": 0.0903,
+      "quote_timestamp": "2026-06-09T13:54:12.129421840Z"
+    },
+    "SO": {
+      "bid": 91.28,
+      "ask": 91.32,
+      "spread_pct": 0.0438,
+      "quote_timestamp": "2026-06-09T13:54:11.120638695Z"
+    },
+    "BAC": {
+      "bid": 54.41,
+      "ask": 54.42,
+      "spread_pct": 0.0184,
+      "quote_timestamp": "2026-06-09T13:54:11.277577526Z"
+    },
+    "SPY": {
+      "bid": 745.79,
+      "ask": 745.82,
+      "spread_pct": 0.004,
+      "quote_timestamp": "2026-06-09T13:54:12.139618323Z"
+    },
+    "QQQ": {
+      "bid": 723.78,
+      "ask": 724.34,
+      "spread_pct": 0.0773,
+      "quote_timestamp": "2026-06-09T13:54:12.140256244Z"
+    }
+  },
+  "candidate_ranking": [
+    {
+      "symbol": "AVGO",
+      "decision": "submit_ready",
+      "reason": "duplicate-free active trim with normalized spread"
+    },
+    {
+      "symbol": "RGTI",
+      "decision": "blocked",
+      "reason": "same-day duplicate symbol/side conflict after earlier sell fill"
+    },
+    {
+      "symbol": "SO",
+      "decision": "blocked",
+      "reason": "decision-grade metric gap"
+    },
+    {
+      "symbol": "BAC",
+      "decision": "fallback_buy_only",
+      "reason": "sell-first workflow prefers eligible trim before new buy"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-09-2251-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-09-2251-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-2251-hourly-autopilot-research-mcp-preflight.json"
+  ]
+}
