@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-10 01:20 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-10 01:40 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -12,7 +12,7 @@
 - [[AAPL]] - 2026-05-26 validation buy 1D review 양호; 2026-06-05 00:31 KST hourly-autopilot 1주 추가 buy와 2026-06-06 00:19 KST 1주 추가 validation buy가 모두 체결.
 - [[NVDA]] - 2026-05-22 stock-only 5D 회고 양호, 20D 대기. 2026-06-06 00:59 KST hourly-autopilot에서 1주 추가 validation buy가 `status=new` open order로 생성됐다.
 - [[AMD]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
-- [[AVGO]] - 2026-05-22 stock-only 5D 회고 강함; 2026-06-06 03:43 KST hourly-autopilot에서 earnings-event drawdown과 semiconductor warning band를 근거로 4주 trim이 `389.25 USD`에 체결됐고, 2026-06-08 09:20 KST와 09:38 KST after-hours-autopilot에서 각각 추가 1주 trim이 `391.27 USD`, `392.80 USD`에 체결됐다. 2026-06-09 23:00 KST hourly-autopilot에서는 spread 정상화 후 2주 trim sell이 `403.00 USD` day limit로 `status=new` open order 생성 상태였고, 2026-06-09 23:11 KST cycle에서도 같은 open order가 unresolved 상태로 재확인돼 추가 submit 없이 lifecycle 모니터링으로 유지됐다.
+- [[AVGO]] - 2026-05-22 stock-only 5D 회고 강함; 2026-06-06 03:43 KST hourly-autopilot에서 earnings-event drawdown과 semiconductor warning band를 근거로 4주 trim이 `389.25 USD`에 체결됐고, 2026-06-08 09:20 KST와 09:38 KST after-hours-autopilot에서 각각 추가 1주 trim이 `391.27 USD`, `392.80 USD`에 체결됐다. 2026-06-09 23:00 KST cycle의 `403.00 USD` trim order는 이후 취소됐고, 2026-06-10 01:40 KST hourly-autopilot에서는 spread 정상화 후 2주 trim sell이 `375.32 USD` day limit로 다시 제출돼 immediate reconciliation 기준 `status=new` open order다.
 - [[LRCX]] - 2026-05-22 stock-only 5D 회고 중립 양호, 20D 대기.
 - [[TSM]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
 - [[NOK]] - 2026-05-22 stock-only 5D 회고 강함이나 변동성 큼, 20D 대기.
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-10-0131-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0131` stale cleanup/core/research preflight와 live Alpaca MCP submit-boundary check를 결합했고 fresh `PFE` buy open order 1건은 다른 symbol sell을 막지 않는 것으로 재분류했다. sell-first 재평가에서 `AVGO`는 live spread `0.0852%`로 trim hard gate를 통과했고, `RGTI`는 same-day sell duplicate, `SO`는 trim metric gap으로 blocked였다. user learning directive에 따라 `AVGO` 2주 trim sell을 `375.32 USD` day limit로 direct Alpaca MCP 제출했고 immediate reconciliation 기준 `status=new` open order다.
 - [[2026-06-10-0111-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0111` stale cleanup/core/research preflight와 runtime Alpaca MCP submit-boundary check를 결합했고 stale open-order lifecycle block이 해소된 상태에서 sell-first 재평가를 수행했다. `AVGO`는 live spread `6.0276%`로 trim hard gate fail, `RGTI`는 same-day sell duplicate, `SO`는 trim metric gap으로 blocked였으며 `BAC/SPY/QQQ/NOK` buy fallback도 각각 duplicate, per-order cap, validation_lifecycle add-block으로 제외됐다. hard gate를 모두 통과한 `PFE` 1주 healthcare fallback buy를 `25.70 USD` day limit로 제출했고 immediate reconciliation 기준 `status=new` open order다.
 - [[2026-06-10-0051-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0051` stale cleanup/core/research preflight를 우선 사용했고 cleanup이 `SO` stale open buy는 제거했지만 `hourly-20260609-2351-buy-wmt`를 `remaining_open_orders`로 남겼다. sell-first 재평가 후 `PFE` 1주 healthcare fallback buy는 여전히 passable이었지만 workflow-required stale cleanup artifact 기준 `risk_open_order_lifecycle` first blocking gate가 유지돼 신규 submit 없이 `WMT` open buy 1건과 sell_candidate_diagnostics만 기록하고 종료했다.
 - [[2026-06-10-0031-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0031` stale cleanup/core/research preflight를 우선 사용했고 sell-first 재평가 후 `PFE` 1주 healthcare fallback buy를 계획했지만, live risk validator가 `hourly-20260609-2351-buy-wmt` open order age `32.7`분을 잡아 `risk_open_order_lifecycle` first blocking gate로 전환됐다. 따라서 신규 submit 없이 `SO/WMT` open buy 2건과 sell_candidate_diagnostics만 기록하고 종료했다.

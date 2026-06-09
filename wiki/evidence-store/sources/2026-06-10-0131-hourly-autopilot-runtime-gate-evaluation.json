@@ -1,0 +1,333 @@
+{
+  "run_id": "2026-06-10-0131-hourly-autopilot",
+  "created_at": "2026-06-09T16:33:40Z",
+  "paper": true,
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-09T12:33:37.896038687-04:00",
+    "next_close": "2026-06-09T16:00:00-04:00",
+    "next_open": "2026-06-10T09:30:00-04:00"
+  },
+  "account": {
+    "portfolio_value": 97204.08,
+    "cash": 32211.32,
+    "buying_power": 295727.5,
+    "currency": "USD",
+    "daily_realized_loss": 0.0
+  },
+  "core_preflight_source_ref": "wiki/evidence-store/sources/2026-06-10-0131-hourly-autopilot-alpaca-core-preflight.json",
+  "research_preflight_source_ref": "wiki/evidence-store/sources/2026-06-10-0131-hourly-autopilot-research-mcp-preflight.json",
+  "stale_cleanup_source_ref": "wiki/evidence-store/sources/2026-06-10-0131-hourly-autopilot-stale-order-cleanup.json",
+  "live_checks": {
+    "open_orders": [
+      {
+        "symbol": "PFE",
+        "side": "buy",
+        "status": "new",
+        "client_order_id": "hourly-20260610-0111-buy-pfe",
+        "submitted_at": "2026-06-09T16:20:05.473279962Z",
+        "age_minutes": 13.5
+      }
+    ],
+    "same_day_orders_summary": {
+      "filled_buy_symbols": [
+        "BAC"
+      ],
+      "filled_sell_symbols": [
+        "RGTI"
+      ],
+      "cancelled_symbols": [
+        "SO",
+        "WMT",
+        "AVGO"
+      ],
+      "open_symbols": [
+        "PFE"
+      ]
+    },
+    "candidate_quotes": {
+      "AVGO": {
+        "bid": 375.32,
+        "ask": 375.64,
+        "spread_pct": 0.0852,
+        "measured_at": "2026-06-09T16:33:39.940961309Z"
+      },
+      "RGTI": {
+        "bid": 18.93,
+        "ask": 18.94,
+        "spread_pct": 0.0528,
+        "measured_at": "2026-06-09T16:33:40.016390804Z"
+      },
+      "SO": {
+        "bid": 93.16,
+        "ask": 93.19,
+        "spread_pct": 0.0322,
+        "measured_at": "2026-06-09T16:33:39.797367139Z"
+      },
+      "BAC": {
+        "bid": 54.07,
+        "ask": 54.08,
+        "spread_pct": 0.0185,
+        "measured_at": "2026-06-09T16:33:39.175780343Z"
+      },
+      "PFE": {
+        "bid": 25.82,
+        "ask": 25.83,
+        "spread_pct": 0.0387,
+        "measured_at": "2026-06-09T16:33:40.016329911Z"
+      },
+      "GOOGL": {
+        "bid": 361.18,
+        "ask": 361.26,
+        "spread_pct": 0.0221,
+        "measured_at": "2026-06-09T16:33:39.940961309Z"
+      },
+      "SPY": {
+        "bid": 727.99,
+        "ask": 728.15,
+        "spread_pct": 0.022,
+        "measured_at": "2026-06-09T16:33:40.060065742Z"
+      },
+      "QQQ": {
+        "bid": 693.81,
+        "ask": 694.33,
+        "spread_pct": 0.0749,
+        "measured_at": "2026-06-09T16:33:40.069971523Z"
+      },
+      "NOK": {
+        "bid": 13.39,
+        "ask": 13.4,
+        "spread_pct": 0.0747,
+        "measured_at": "2026-06-09T16:33:40.049901245Z"
+      }
+    },
+    "asset_checks": {
+      "AVGO": {
+        "status": "active",
+        "tradable": true
+      },
+      "PFE": {
+        "status": "active",
+        "tradable": true
+      },
+      "GOOGL": {
+        "status": "active",
+        "tradable": true
+      },
+      "SPY": {
+        "status": "active",
+        "tradable": true
+      },
+      "SO": {
+        "status": "active",
+        "tradable": true
+      }
+    }
+  },
+  "selected_order_candidate": {
+    "symbol": "AVGO",
+    "side": "sell",
+    "qty": 2,
+    "limit_price": 375.32,
+    "reference_price": 375.48,
+    "spread_pct": 0.0852,
+    "quote_age_minutes": 0.0,
+    "reason": "eligible risk-reducing trim under sell-first learning directive after spread normalization"
+  },
+  "blocked_candidates": [
+    {
+      "symbol": "RGTI",
+      "held_qty": 68.0,
+      "current_weight_pct": 1.3246,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "RGTI는 speculative loss-control trim trigger를 유지하고 live quote 18.93/18.94, spread 0.0528%로 sell hard gate 자체는 통과한다. 하지만 2026-06-09 ET earlier sell fill 22주가 이미 있어 추가 same-day sell 제출은 duplicate symbol/side gate에 막힌다.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.48,
+      "relative_to_spy_20d_pct": -1.48,
+      "metric_gap_reason": "",
+      "replacement_symbol": "SPY",
+      "replacement_confidence_score": 0.6,
+      "replacement_expected_excess_margin_pct": 3.0,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-10-0131-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-10-0131-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-10-0131-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-10-0131-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/BAC.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/GOOGL.md"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "held_qty": 5.0,
+      "current_weight_pct": 0.4793,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "SO는 repeated weak-to-neutral utility validation이 누적됐고 live quote 93.16/93.19는 spread 0.0322%로 정상이다. 다만 trim을 order로 승격할 decision-grade expected-excess/replacement margin이 여전히 비어 있어 metric policy가 먼저 막는다.",
+      "skipped_gate": "decision_grade_metric_gap",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "replacement_expected_excess_margin_missing",
+      "replacement_symbol": "SPY",
+      "replacement_confidence_score": 0.6,
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-10-0131-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-10-0131-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-10-0131-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-10-0131-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/BAC.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/GOOGL.md"
+      ]
+    },
+    {
+      "symbol": "BAC",
+      "held_qty": 5.0,
+      "current_weight_pct": 0.2782,
+      "trigger_status": "sell_trigger_none",
+      "primary_reason": "BAC는 same-day duplicate-free financials diversifier buy fallback으로는 여전히 유효할 수 있지만 active sell/trim trigger는 없다. 이번 cycle은 eligible AVGO risk-reducing trim이 먼저 열려 buy fallback을 사용할 필요가 없다.",
+      "skipped_gate": "sell_trigger_none",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": 1.25,
+      "relative_to_spy_20d_pct": -0.35,
+      "metric_gap_reason": "",
+      "replacement_symbol": "SPY",
+      "replacement_confidence_score": 0.6,
+      "replacement_expected_excess_margin_pct": 0.0,
+      "recommendation": "hold_watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-10-0131-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-10-0131-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-10-0131-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-10-0131-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/BAC.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/GOOGL.md"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "side": "buy",
+      "blocked_gate": "open_buy_duplicate_same_symbol",
+      "detail": "fresh open PFE buy order already exists from 0111 cycle"
+    },
+    {
+      "symbol": "SPY",
+      "side": "buy",
+      "blocked_gate": "validation_floor_per_order_cap",
+      "detail": "1 share ask 728.15 USD exceeds validation_floor cap about 486.02 USD"
+    },
+    {
+      "symbol": "QQQ",
+      "side": "buy",
+      "blocked_gate": "validation_floor_per_order_cap",
+      "detail": "1 share ask 694.33 USD exceeds validation_floor cap about 486.02 USD"
+    },
+    {
+      "symbol": "NOK",
+      "side": "buy",
+      "blocked_gate": "validation_lifecycle_add_block",
+      "detail": "review-due-index blocked_add_symbols includes NOK"
+    }
+  ],
+  "submitted_order": {
+    "id": "d850cf67-3c44-4a63-9f44-ef53c5fe8897",
+    "client_order_id": "hourly-20260610-0131-sell-avgo",
+    "symbol": "AVGO",
+    "side": "sell",
+    "qty": "2",
+    "limit_price": "375.32",
+    "status": "new",
+    "submitted_at": "2026-06-09T16:39:38.248640731Z"
+  },
+  "reconciliation": {
+    "open_orders": [
+      {
+        "id": "d850cf67-3c44-4a63-9f44-ef53c5fe8897",
+        "client_order_id": "hourly-20260610-0131-sell-avgo",
+        "symbol": "AVGO",
+        "side": "sell",
+        "qty": "2",
+        "filled_qty": "0",
+        "limit_price": "375.32",
+        "status": "new",
+        "submitted_at": "2026-06-09T16:39:38.248640731Z"
+      },
+      {
+        "id": "df1b6130-1929-4189-9003-ad7f47add552",
+        "client_order_id": "hourly-20260610-0111-buy-pfe",
+        "symbol": "PFE",
+        "side": "buy",
+        "qty": "1",
+        "filled_qty": "0",
+        "limit_price": "25.7",
+        "status": "new",
+        "submitted_at": "2026-06-09T16:20:05.47328Z"
+      }
+    ],
+    "fills_after_submit": [],
+    "same_session_recent_fills": [
+      {
+        "symbol": "BAC",
+        "side": "buy",
+        "qty": "1",
+        "price": "54.07",
+        "transaction_time": "2026-06-09T14:45:16.076672Z"
+      },
+      {
+        "symbol": "RGTI",
+        "side": "sell",
+        "qty": "20",
+        "price": "22.3",
+        "transaction_time": "2026-06-09T13:40:55.433789Z"
+      },
+      {
+        "symbol": "RGTI",
+        "side": "sell",
+        "qty": "2",
+        "price": "22.28",
+        "transaction_time": "2026-06-09T13:40:54.991719Z"
+      }
+    ],
+    "positions_count": 32,
+    "avgo_qty_available_after_submit": "8",
+    "account": {
+      "portfolio_value": 96473.09,
+      "cash": 32211.32,
+      "buying_power": 293877.73,
+      "currency": "USD"
+    }
+  }
+}
