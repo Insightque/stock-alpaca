@@ -51,6 +51,8 @@ RGTI는 핵심 포트폴리오 보유 종목이라기보다 고모멘텀 이벤�
 ## 거래 기록
 
 - 2026-05-22: paper 매수 120주가 평균 25.569584 USD에 체결됐다.
+- 2026-06-08: scheduled hourly-autopilot에서 regular-session trim 30주가 `21.48 USD`에 체결됐다.
+- 2026-06-09: scheduled hourly-autopilot에서 regular-session trim 22주가 `22.298182 USD`에 체결됐다.
 - 주문/체결 출처: [[2026-05-22-paper-order-submission]]
 
 ## 2026-05-25 현재 추천 메모
@@ -73,3 +75,9 @@ RGTI는 오늘 신규 매수 후보에서 제외했다. 2026-05-22 종가 26.41 
 `2026-06-08 ET` trim 30주는 `21.48 USD`에 체결됐고 same-day close는 `21.77 USD`였다. trimmed lot 기준 원진입 `25.569583 USD` 대비 `-15.99%` loss realization이지만, close-after-trim rebound는 `+1.35%`에 그쳐 speculative sleeve 축소 의사결정 자체를 뒤집지는 않는다. 판단은 `양호`이며 남은 90주는 20D review와 별도로 계속 monitor한다.
 
 출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]
+
+### 2026-06-10 analyst review cycle
+
+`2026-06-08 ET` trim 30주의 다음 regular close는 `19.69 USD`로 fill `21.48 USD`보다 `-8.33%` 낮았다. hindsight 기준으로도 de-risking timing이 더 나빠지기 전에 실행된 셈이다. 새로 `2026-06-09 ET` trim 22주가 `22.298182 USD`에 체결돼 잔여 수량은 `68주`가 됐고, current `19.75 USD` 기준 포지션 전체 미실현은 여전히 `-22.76%`라 추가 defensive monitor를 유지한다.
+
+출처: [[2026-06-10-portfolio-review]], [[2026-06-10-0622-analyst-review-cycle-sources]]

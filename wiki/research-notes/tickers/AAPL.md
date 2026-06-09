@@ -24,3 +24,9 @@ Apple paper validation 후보. 2026-05-26 hourly autopilot에서 mega-cap qualit
 `2026-06-05 ET` fill 1D는 `313.27 USD -> 301.57 USD`로 `-3.73%`였다. `SPY` 대비 `-3.98%p`, `QQQ` 대비 `-5.25%p`라 mega-cap quality add의 immediate timing은 좋지 않았다. 판단은 `약함`이며, broad tech dip에서 quality label만으로 추가 진입 cadence를 높이면 안 된다는 표본으로 남긴다.
 
 출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]
+
+### 2026-06-10 analyst review cycle
+
+current Alpaca snapshot상 `AAPL`은 `3주`, 평균단가 `310.93 USD`, current `290.913 USD`로 미실현 `-6.44%`다. `2026-06-05 ET` add 1D의 `약함` 판단 뒤에도 하루 더 밀렸기 때문에, mega-cap quality label만으로 add cadence를 높이지 않는다는 해석이 더 강화됐다. `2026-06-12 ET` 5D review 전까지는 recovery confirmation이 필요하다.
+
+출처: [[2026-06-10-portfolio-review]], [[2026-06-10-0622-analyst-review-cycle-sources]]

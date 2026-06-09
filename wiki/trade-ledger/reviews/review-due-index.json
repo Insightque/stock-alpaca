@@ -1,7 +1,7 @@
 {
-  "updated_at": "2026-06-08T21:23:17Z",
-  "source_review": "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
-  "pending_1d_count": 0,
+  "updated_at": "2026-06-09T21:22:00Z",
+  "source_review": "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+  "pending_1d_count": 9,
   "pending_5d_count": 13,
   "pending_20d_count": 1,
   "blocked_add_symbols": [
@@ -11,6 +11,105 @@
     "NOK"
   ],
   "due_reviews": [
+    {
+      "symbol": "BAC",
+      "horizon": "1D",
+      "decision_due": false,
+      "current_decision": "pending",
+      "due_after": "2026-06-10 US regular-session close",
+      "source_refs": [
+        "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+        "wiki/current-runs/daily/2026-06-09-2331-hourly-autopilot.md"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "horizon": "1D",
+      "decision_due": false,
+      "current_decision": "pending",
+      "due_after": "2026-06-10 US regular-session close",
+      "source_refs": [
+        "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+        "wiki/current-runs/daily/2026-06-10-0151-hourly-autopilot.md"
+      ]
+    },
+    {
+      "symbol": "WMT",
+      "horizon": "1D",
+      "decision_due": false,
+      "current_decision": "pending",
+      "due_after": "2026-06-10 US regular-session close",
+      "source_refs": [
+        "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+        "wiki/current-runs/daily/2026-06-10-0211-hourly-autopilot.md"
+      ]
+    },
+    {
+      "symbol": "SLB",
+      "horizon": "1D",
+      "decision_due": false,
+      "current_decision": "pending",
+      "due_after": "2026-06-10 US regular-session close",
+      "source_refs": [
+        "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+        "wiki/current-runs/daily/2026-06-10-0231-hourly-autopilot.md"
+      ]
+    },
+    {
+      "symbol": "COP",
+      "horizon": "1D",
+      "decision_due": false,
+      "current_decision": "pending",
+      "due_after": "2026-06-10 US regular-session close",
+      "source_refs": [
+        "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+        "wiki/current-runs/daily/2026-06-10-0251-hourly-autopilot.md"
+      ]
+    },
+    {
+      "symbol": "AMZN",
+      "horizon": "1D",
+      "decision_due": false,
+      "current_decision": "pending",
+      "due_after": "2026-06-10 US regular-session close",
+      "source_refs": [
+        "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+        "wiki/current-runs/daily/2026-06-10-0331-hourly-autopilot.md"
+      ]
+    },
+    {
+      "symbol": "JNJ",
+      "horizon": "1D",
+      "decision_due": false,
+      "current_decision": "pending",
+      "due_after": "2026-06-10 US regular-session close",
+      "source_refs": [
+        "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+        "wiki/current-runs/daily/2026-06-10-0351-hourly-autopilot.md"
+      ]
+    },
+    {
+      "symbol": "FCX",
+      "horizon": "1D",
+      "decision_due": false,
+      "current_decision": "pending",
+      "due_after": "2026-06-10 US regular-session close",
+      "source_refs": [
+        "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+        "wiki/current-runs/daily/2026-06-10-0411-hourly-autopilot.md"
+      ]
+    },
+    {
+      "symbol": "XOM",
+      "horizon": "1D",
+      "decision_due": false,
+      "current_decision": "pending",
+      "due_after": "2026-06-10 US regular-session close",
+      "source_refs": [
+        "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+        "wiki/current-runs/daily/2026-06-10-0431-hourly-autopilot.md"
+      ]
+    },
     {
       "symbol": "NOK",
       "horizon": "20D",
@@ -167,8 +266,8 @@
     }
   ],
   "notes": [
-    "2026-06-09 analyst review는 2026-06-05 ET fill cohort 13건의 1D backlog를 closeout했다.",
-    "validation buy review backlog는 1D 기준 해소됐고 다음 핵심 due horizon은 2026-06-12 ET 5D cohort다.",
+    "2026-06-10 analyst review는 2026-06-08 ET sell/trim follow-up을 닫고 2026-06-09 ET 신규 buy 9건을 1D 대기열로 등록했다.",
+    "validation buy review backlog는 다시 pending_1d_count=9가 됐고, 다음 핵심 due horizon은 2026-06-10 ET 1D cohort와 2026-06-12 ET 5D cohort다.",
     "AVGO/RGTI/TSLA sell follow-up은 별도 monitor로 유지하지만 buy backlog count에는 포함하지 않는다.",
     "NOK add-block은 2026-06-18 ET 20D review까지 유지한다."
   ]

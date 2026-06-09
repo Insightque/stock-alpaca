@@ -90,3 +90,9 @@ validation add 관점에서는 신호가 여전히 엇갈린다. `2026-05-26` ad
 `2026-06-08 ET` close/current `14.595 USD`는 평균단가 `15.044527 USD` 대비 `-2.99%`다. Yahoo와 Alpaca news 모두 AI infrastructure 기대와 valuation 논쟁이 공존했지만, add-block을 해제할 정도의 가격 구조 회복은 없다. 이번 run에서도 `existing-position-breakout-add-penalty`를 유지하고 `2026-06-18 ET` 20D review를 기다린다.
 
 출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]
+
+### 2026-06-10 analyst review cycle
+
+`2026-06-09 ET` close/current `13.86 USD`는 평균단가 `15.044527 USD` 대비 `-7.87%`이고 하루 변동도 `14.595 -> 13.86`으로 `-5.03%`다. Yahoo 기사에는 AI networking 성장과 Nvidia backing narrative가 남아 있지만 tape는 다시 unwind 쪽이라 `existing-position-breakout-add-penalty` add-block을 유지한다. `2026-06-18 ET` 20D review 전까지는 해제 근거가 없다.
+
+출처: [[2026-06-10-portfolio-review]], [[2026-06-10-0622-analyst-review-cycle-sources]]

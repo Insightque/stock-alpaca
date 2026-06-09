@@ -1,0 +1,143 @@
+{
+  "id": "2026-06-10-0622-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-06-09T21:22:00Z",
+  "timezone": "Asia/Seoul",
+  "paper": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "alpaca_reconciliation": {
+    "clock_is_open": false,
+    "account_status": "ACTIVE",
+    "portfolio_value": 98985.02,
+    "cash": 31951.54,
+    "buying_power": 299921.59,
+    "long_market_value": 67033.48,
+    "open_us_equity_orders": 0,
+    "position_count": 33,
+    "recent_fill_scope_after": "2026-06-04T00:00:00Z",
+    "direct_fill_activity": {
+      "outcome": "usable",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    "portfolio_history": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 2,
+      "gap_reason": "get_portfolio_history initial plus 2 retries all cancelled"
+    }
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "symbol_reviews": [],
+    "reviewed_horizons": [
+      "2026-06-08 ET sell and trim follow-up 1D",
+      "2026-06-09 ET newly filled orders waiting scan",
+      "open-position monitor",
+      "skipped recommendations re-check"
+    ],
+    "symbols": [
+      "AVGO",
+      "RGTI",
+      "TSLA",
+      "AAPL",
+      "NOK",
+      "BAC",
+      "PFE",
+      "WMT",
+      "SLB",
+      "COP",
+      "AMZN",
+      "JNJ",
+      "FCX",
+      "XOM",
+      "QQQ",
+      "SPY",
+      "INTC",
+      "SO"
+    ],
+    "due_now": true,
+    "next_due": "2026-06-10 ET regular-session close for 2026-06-09 ET fill cohort 1D and 2026-06-12 ET regular-session close for 2026-06-05 ET fill cohort 5D"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-10-0622-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-10-0622-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "analyze_form4_transactions(AVGO,30) cancelled",
+      "gap_category": "cancelled",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-10-0622-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-10-0622-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-10-0622-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-10-0622-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "sell-follow-up and open-position evidence strengthened existing hypotheses but did not meet the repeated-pattern threshold for recommendation-policy changes"
+  }
+}

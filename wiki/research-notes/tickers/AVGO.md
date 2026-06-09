@@ -50,6 +50,7 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 - 2026-06-01: after-hours validation buy 1주가 평균 461.26 USD에 체결됐다.
 - 2026-06-06 03:37 KST: scheduled hourly-autopilot에서 risk-reducing trim 4주가 `389.25 USD`에 체결됐다.
 - 2026-06-08 09:20 KST: scheduled after-hours-autopilot에서 post-earnings risk watch와 validation add failure를 근거로 추가 1주 trim이 `391.27 USD`에 체결됐다.
+- 2026-06-10 02:00 KST: scheduled hourly-autopilot에서 regular-session trim 2주가 `375.47 USD`에 체결됐다.
 - 주문/체결 출처: [[2026-05-22-paper-order-submission]]
 
 ## 회고 기록
@@ -113,3 +114,9 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 `2026-06-08 ET` after-hours trim 2건은 `391.27 USD`, `392.80 USD`에 체결됐고 same-day close는 `396.72 USD`였다. exit 이후 `+1.39%`, `+1.00%` rebound가 있어 exact timing은 조금 이르렀지만, 평균단가 `414.940833 USD` 대비 포지션은 여전히 `-4.39%`라 post-earnings staged de-risking 자체는 타당했다. 판단은 `중립 양호`이며 core thesis를 전면 폐기하지는 않는다.
 
 출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]
+
+### 2026-06-10 analyst review cycle
+
+`2026-06-08 ET` after-hours trim 2건의 다음 regular close는 `392.765 USD`였다. `391.27 USD` trim 대비 `+0.38%`, `392.80 USD` trim 대비 `-0.01%`로 exact timing edge는 제한적이었지만 staged de-risking 해석은 유지된다. 새로 `2026-06-09 ET` regular-session trim 2주가 `375.47 USD`에 체결돼 보유수량은 `8주`로 줄었고, 이 regular-session trim의 1D horizon은 `2026-06-10 ET` close 이후 별도로 본다.
+
+출처: [[2026-06-10-portfolio-review]], [[2026-06-10-0622-analyst-review-cycle-sources]]
