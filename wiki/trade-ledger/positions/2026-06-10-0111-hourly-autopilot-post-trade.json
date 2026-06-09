@@ -1,0 +1,105 @@
+{
+  "run_id": "2026-06-10-0111-hourly-autopilot",
+  "created_at": "2026-06-09T16:20:12Z",
+  "order_submit_attempted": true,
+  "submitted_orders": [
+    {
+      "id": "df1b6130-1929-4189-9003-ad7f47add552",
+      "client_order_id": "hourly-20260610-0111-buy-pfe",
+      "symbol": "PFE",
+      "side": "buy",
+      "qty": "1",
+      "limit_price": "25.7",
+      "status": "new",
+      "submitted_at": "2026-06-09T16:20:05.473279962Z"
+    }
+  ],
+  "open_orders": [
+    {
+      "id": "df1b6130-1929-4189-9003-ad7f47add552",
+      "client_order_id": "hourly-20260610-0111-buy-pfe",
+      "created_at": "2026-06-09T16:20:05.459495527Z",
+      "updated_at": "2026-06-09T16:20:05.474359917Z",
+      "submitted_at": "2026-06-09T16:20:05.473279962Z",
+      "filled_at": null,
+      "expired_at": null,
+      "canceled_at": null,
+      "failed_at": null,
+      "replaced_at": null,
+      "replaced_by": null,
+      "replaces": null,
+      "asset_id": "b0940983-b0c6-42f1-97d5-b1b580e4431b",
+      "symbol": "PFE",
+      "asset_class": "us_equity",
+      "notional": null,
+      "qty": "1",
+      "filled_qty": "0",
+      "filled_avg_price": null,
+      "order_class": "",
+      "order_type": "limit",
+      "type": "limit",
+      "side": "buy",
+      "position_intent": "buy_to_open",
+      "time_in_force": "day",
+      "limit_price": "25.7",
+      "stop_price": null,
+      "status": "new",
+      "extended_hours": false,
+      "legs": null,
+      "trail_percent": null,
+      "trail_price": null,
+      "hwm": null,
+      "subtag": null,
+      "source": null,
+      "expires_at": "2026-06-09T20:00:00Z"
+    }
+  ],
+  "fills_after_submit": [],
+  "same_session_recent_fills": [
+    {
+      "symbol": "BAC",
+      "side": "buy",
+      "qty": "1",
+      "price": "54.07",
+      "transaction_time": "2026-06-09T14:45:16.076672Z"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": "20",
+      "price": "22.3",
+      "transaction_time": "2026-06-09T13:40:55.433789Z"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": "2",
+      "price": "22.28",
+      "transaction_time": "2026-06-09T13:40:54.991719Z"
+    }
+  ],
+  "positions_count": 32,
+  "account": {
+    "portfolio_value": 96778.03,
+    "cash": 32211.32,
+    "buying_power": 294630.25,
+    "currency": "USD"
+  },
+  "notes": [
+    "0111 cycle에서는 registered Alpaca MCP place_stock_order로 PFE buy 1주 day limit를 제출했다.",
+    "scheduler-owned stale cleanup과 runtime open-order check 모두 open order lifecycle pass를 재확인했다.",
+    "submit 직후 reconciliation 기준 신규 fill은 없고 PFE buy 1건이 status=new open order로 남아 있다."
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-0111-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-10-0111-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0111-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0111-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+    "wiki/research-notes/tickers/PFE.md"
+  ]
+}

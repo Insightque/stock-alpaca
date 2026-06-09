@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-10 00:53 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-10 01:20 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -36,7 +36,7 @@
 - [[QTEX]] - 투기적 1달러 미만 mover, 2026-05-22 업데이트.
 - [[BIYA]] - 투기적 저가 mover, 2026-05-22 업데이트.
 - [[NKE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기; 2026-06-06 05:00 KST hourly-autopilot에서 1주 validation buy를 시도했지만 actual submit timestamp가 regular close 이후로 밀려 즉시 취소됐다.
-- [[PFE]] - 2026-05-29 validation add 1D/5D 회고는 약했지만, 2026-06-06 02:20 KST hourly-autopilot에서 1주 추가 validation buy가 `status=new` open order로 생성됐다.
+- [[PFE]] - 2026-05-29 validation add 1D/5D 회고는 약했지만, 2026-06-06 02:20 KST hourly-autopilot에서 1주 추가 validation buy가 `status=new` open order로 생성됐고 2026-06-10 01:20 KST hourly-autopilot에서 healthcare fallback buy 1주가 `25.70 USD` day limit, `status=new` open order로 추가 제출됐다.
 - [[SO]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[WMT]] - 2026-05-29 validation add 5D 회고 중립 양호; 2026-06-05 01:11 KST hourly-autopilot에서 1주 추가 validation buy 체결, 2026-06-05 23:11 KST hourly-autopilot에서 1주 추가 validation buy가 `119.78 USD`에 체결.
 - [[NEE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-10-0111-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0111` stale cleanup/core/research preflight와 runtime Alpaca MCP submit-boundary check를 결합했고 stale open-order lifecycle block이 해소된 상태에서 sell-first 재평가를 수행했다. `AVGO`는 live spread `6.0276%`로 trim hard gate fail, `RGTI`는 same-day sell duplicate, `SO`는 trim metric gap으로 blocked였으며 `BAC/SPY/QQQ/NOK` buy fallback도 각각 duplicate, per-order cap, validation_lifecycle add-block으로 제외됐다. hard gate를 모두 통과한 `PFE` 1주 healthcare fallback buy를 `25.70 USD` day limit로 제출했고 immediate reconciliation 기준 `status=new` open order다.
 - [[2026-06-10-0051-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0051` stale cleanup/core/research preflight를 우선 사용했고 cleanup이 `SO` stale open buy는 제거했지만 `hourly-20260609-2351-buy-wmt`를 `remaining_open_orders`로 남겼다. sell-first 재평가 후 `PFE` 1주 healthcare fallback buy는 여전히 passable이었지만 workflow-required stale cleanup artifact 기준 `risk_open_order_lifecycle` first blocking gate가 유지돼 신규 submit 없이 `WMT` open buy 1건과 sell_candidate_diagnostics만 기록하고 종료했다.
 - [[2026-06-10-0031-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0031` stale cleanup/core/research preflight를 우선 사용했고 sell-first 재평가 후 `PFE` 1주 healthcare fallback buy를 계획했지만, live risk validator가 `hourly-20260609-2351-buy-wmt` open order age `32.7`분을 잡아 `risk_open_order_lifecycle` first blocking gate로 전환됐다. 따라서 신규 submit 없이 `SO/WMT` open buy 2건과 sell_candidate_diagnostics만 기록하고 종료했다.
 - [[2026-06-10-0011-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0011` stale cleanup/core/research preflight와 live Alpaca MCP check를 결합했고 fresh `WMT` open buy는 same symbol/side duplicate만 차단하는 상태로 재분류했다. sell-first 재평가에서 `AVGO`는 live spread `0.6251%`로 trim hard gate fail, `RGTI`는 same-day sell duplicate, `SO`는 trim metric gap이 남았지만 buy-side fallback hard gate는 통과했다. `WMT/BAC/SPY/QQQ/NOK`가 각각 open-order duplicate, same-day buy duplicate, per-order cap, validation_lifecycle add-block으로 막혀 `SO` 1주 buy @ `92.03 USD` day limit를 제출했고 immediate reconciliation 기준 `status=new` open order다.

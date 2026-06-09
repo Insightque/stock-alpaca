@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-10 00:53 KST_
+_Last updated: 2026-06-10 01:20 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-10-0111-hourly-autopilot]]
+- Open/new: `PFE` buy 1주 @ `25.70 USD` (`status=new`)
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `32` positions 유지. `PFE`는 아직 `4주` 그대로이고 신규 open order는 `PFE` 1건이다.
+- Recent reconciliation scope: scheduler-owned `0111` stale cleanup/core/research preflight를 우선 사용했고 stale cleanup과 runtime `get_orders(status=open)`가 모두 open-order lifecycle PASS를 재확인했다. sell-first 재평가 결과 `AVGO`는 live spread `6.0276%`로 trim hard gate fail, `RGTI`는 same-day sell duplicate conflict, `SO`는 trim metric gap으로 blocked였다. `BAC`는 same-day buy duplicate, `SPY/QQQ`는 per-order cap 초과, `NOK`는 add-block이라 `PFE`가 floor-size healthcare fallback buy로 direct Alpaca MCP submit됐다. immediate reconciliation 기준 `order_id=df1b6130-1929-4189-9003-ad7f47add552`, `status=new`, `filled_qty=0` open order다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-10-0111-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
