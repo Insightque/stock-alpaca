@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-10 00:35 KST_
+_Last updated: 2026-06-10 00:53 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-10-0051-hourly-autopilot]]
+- Open/new: `WMT` buy 1주 @ `118.99 USD` (`status=new`)
+- Filled: 없음
+- Cancelled: scheduler-owned stale cleanup에서 `SO` buy 1주 @ `92.03 USD` open order 제거
+- Position count observed by Alpaca MCP: scheduler-owned core preflight `get_all_positions` 기준 `32` positions 유지. `WMT`는 `6주` 그대로이고 remaining open order는 `WMT` 1건만 기록됐다.
+- Recent reconciliation scope: scheduler-owned `0051` stale cleanup/core/research preflight를 우선 사용했다. stale cleanup report가 `WMT` open buy를 cancel attempt 이후에도 `remaining_open_orders`로 남겨 `risk_open_order_lifecycle` first blocking gate가 확정됐고, sell-first 재평가에서도 `AVGO`는 spread `4.7347%`, `RGTI`는 same-day sell duplicate, `SO`는 trim metric gap으로 각각 blocked됐다. `PFE`는 floor-size healthcare fallback buy 후보로 남았지만 신규 submit 없이 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 1 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-10-0051-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-10 00:35 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-10 00:53 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-10-0051-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0051` stale cleanup/core/research preflight를 우선 사용했고 cleanup이 `SO` stale open buy는 제거했지만 `hourly-20260609-2351-buy-wmt`를 `remaining_open_orders`로 남겼다. sell-first 재평가 후 `PFE` 1주 healthcare fallback buy는 여전히 passable이었지만 workflow-required stale cleanup artifact 기준 `risk_open_order_lifecycle` first blocking gate가 유지돼 신규 submit 없이 `WMT` open buy 1건과 sell_candidate_diagnostics만 기록하고 종료했다.
 - [[2026-06-10-0031-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0031` stale cleanup/core/research preflight를 우선 사용했고 sell-first 재평가 후 `PFE` 1주 healthcare fallback buy를 계획했지만, live risk validator가 `hourly-20260609-2351-buy-wmt` open order age `32.7`분을 잡아 `risk_open_order_lifecycle` first blocking gate로 전환됐다. 따라서 신규 submit 없이 `SO/WMT` open buy 2건과 sell_candidate_diagnostics만 기록하고 종료했다.
 - [[2026-06-10-0011-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `0011` stale cleanup/core/research preflight와 live Alpaca MCP check를 결합했고 fresh `WMT` open buy는 same symbol/side duplicate만 차단하는 상태로 재분류했다. sell-first 재평가에서 `AVGO`는 live spread `0.6251%`로 trim hard gate fail, `RGTI`는 same-day sell duplicate, `SO`는 trim metric gap이 남았지만 buy-side fallback hard gate는 통과했다. `WMT/BAC/SPY/QQQ/NOK`가 각각 open-order duplicate, same-day buy duplicate, per-order cap, validation_lifecycle add-block으로 막혀 `SO` 1주 buy @ `92.03 USD` day limit를 제출했고 immediate reconciliation 기준 `status=new` open order다.
 - [[2026-06-09-2351-hourly-autopilot]] - regular-session paper autopilot 실행. scheduler-owned `2351` stale cleanup/core/research preflight를 우선 사용했고 open-order lifecycle block이 해소된 상태에서 sell-first 재평가를 수행했다. `AVGO`는 live spread `3.5054%`로 trim hard gate fail, `RGTI`는 same-day sell duplicate conflict, `SO`는 decision-grade metric gap, `BAC`는 same-day buy duplicate로 각각 blocked됐다. `SPY/QQQ`는 1주 ask가 validation floor per-order cap을 넘었고, `WMT`는 1D review `중립 양호`와 live spread `0.0420%`를 근거로 floor-size fallback buy 1주 @ `118.99 USD` day limit를 제출했다. immediate reconciliation 기준 주문은 `status=new` open order로 남아 있다.
