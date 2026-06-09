@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-09 11:11 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-09 11:31 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-09-1131-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1131` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 scheduler-owned Alpaca MCP `get_stock_latest_quote/get_stock_snapshot/get_account_info/get_all_positions/get_orders_open/get_account_activities` 기준 executable fresh two-sided quote stack을 만들지 못해 no-submit으로 종료했다.
 - [[2026-06-09-1111-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1111` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 scheduler-owned Alpaca MCP `get_stock_latest_quote/get_stock_snapshot/get_account_info/get_all_positions/get_orders_open/get_account_activities` 기준 executable fresh two-sided quote stack을 만들지 못해 no-submit으로 종료했다.
 - [[2026-06-09-1051-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1051` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 scheduler-owned Alpaca MCP `get_stock_latest_quote/get_stock_snapshot/get_account_info/get_all_positions/get_orders_open/get_account_activities` 기준 executable fresh two-sided quote stack을 만들지 못해 no-submit으로 종료했다.
 - [[2026-06-09-1031-after-hours-autopilot]] - after-hours paper autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1031` core/research preflight를 우선 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 scheduler-owned Alpaca MCP `get_stock_latest_quote/get_stock_snapshot/get_account_info/get_all_positions/get_orders_open/get_account_activities` 기준 executable fresh two-sided quote stack을 만들지 못해 no-submit으로 종료했다.
