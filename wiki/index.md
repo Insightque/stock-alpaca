@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-09 23:00 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-09 23:18 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -12,7 +12,7 @@
 - [[AAPL]] - 2026-05-26 validation buy 1D review 양호; 2026-06-05 00:31 KST hourly-autopilot 1주 추가 buy와 2026-06-06 00:19 KST 1주 추가 validation buy가 모두 체결.
 - [[NVDA]] - 2026-05-22 stock-only 5D 회고 양호, 20D 대기. 2026-06-06 00:59 KST hourly-autopilot에서 1주 추가 validation buy가 `status=new` open order로 생성됐다.
 - [[AMD]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
-- [[AVGO]] - 2026-05-22 stock-only 5D 회고 강함; 2026-06-06 03:43 KST hourly-autopilot에서 earnings-event drawdown과 semiconductor warning band를 근거로 4주 trim이 `389.25 USD`에 체결됐고, 2026-06-08 09:20 KST와 09:38 KST after-hours-autopilot에서 각각 추가 1주 trim이 `391.27 USD`, `392.80 USD`에 체결됐다. 2026-06-09 23:00 KST hourly-autopilot에서는 spread 정상화 후 2주 trim sell이 `403.00 USD` day limit로 `status=new` open order 생성 상태다.
+- [[AVGO]] - 2026-05-22 stock-only 5D 회고 강함; 2026-06-06 03:43 KST hourly-autopilot에서 earnings-event drawdown과 semiconductor warning band를 근거로 4주 trim이 `389.25 USD`에 체결됐고, 2026-06-08 09:20 KST와 09:38 KST after-hours-autopilot에서 각각 추가 1주 trim이 `391.27 USD`, `392.80 USD`에 체결됐다. 2026-06-09 23:00 KST hourly-autopilot에서는 spread 정상화 후 2주 trim sell이 `403.00 USD` day limit로 `status=new` open order 생성 상태였고, 2026-06-09 23:11 KST cycle에서도 같은 open order가 unresolved 상태로 재확인돼 추가 submit 없이 lifecycle 모니터링으로 유지됐다.
 - [[LRCX]] - 2026-05-22 stock-only 5D 회고 중립 양호, 20D 대기.
 - [[TSM]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
 - [[NOK]] - 2026-05-22 stock-only 5D 회고 강함이나 변동성 큼, 20D 대기.

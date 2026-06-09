@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-09 23:00 KST_
+_Last updated: 2026-06-09 23:18 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-09-2311-hourly-autopilot]]
+- Open/new: `AVGO` sell 2주 @ `403.00 USD` (`status=new`, 기존 `2251` cycle order 유지)
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned `2311` core preflight 기준 `32` positions 유지. `AVGO` 총 보유수량은 `10주`, `qty_available`는 `8주`로 그대로이며 open orders는 `AVGO` 1건이다.
+- Recent reconciliation scope: 이번 cycle은 신규 submit 없이 open-order lifecycle 재점검에 집중했다. scheduler-owned stale cleanup은 stale candidate 0건이었지만, core preflight는 직전 `hourly-20260609-2251-sell-avgo`가 여전히 `status=new` open order임을 보여줬다. `RGTI`는 same-day duplicate symbol/side conflict, `SO`는 decision-grade metric gap, `BAC` buy fallback은 unresolved open-order lifecycle 때문에 모두 미제출 처리했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-09-2311-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

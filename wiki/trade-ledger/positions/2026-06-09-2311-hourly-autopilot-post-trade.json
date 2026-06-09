@@ -1,0 +1,76 @@
+{
+  "run_id": "2026-06-09-2311-hourly-autopilot",
+  "created_at": "2026-06-09T14:13:04Z",
+  "paper": true,
+  "session": "regular",
+  "review_bucket": "regular_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 100294.04,
+    "cash": 32265.39,
+    "buying_power": 303597.65,
+    "long_market_value": 68028.65,
+    "currency": "USD"
+  },
+  "submitted_orders": [],
+  "lifecycle_actions": [
+    {
+      "symbol": "AVGO",
+      "action": "await_fill_or_cancel",
+      "reason": "risk_open_order_lifecycle",
+      "remaining_qty_if_filled": 8
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 2,
+      "limit_price": 403.0,
+      "status": "new",
+      "client_order_id": "hourly-20260609-2251-sell-avgo",
+      "submitted_at": "2026-06-09T13:59:46.322000156Z",
+      "order_id": "bf1247db-2054-4304-a16b-58ada7b39af7"
+    }
+  ],
+  "position_highlights": [
+    {
+      "symbol": "NVDA",
+      "qty": 38.0,
+      "market_value": 7881.01
+    },
+    {
+      "symbol": "LRCX",
+      "qty": 20.0,
+      "market_value": 6865.6
+    },
+    {
+      "symbol": "AMD",
+      "qty": 14.0,
+      "market_value": 6831.79
+    },
+    {
+      "symbol": "AVGO",
+      "qty": 10.0,
+      "market_value": 3956.6,
+      "qty_available": 8.0
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": false,
+    "session": "regular",
+    "review_bucket": "regular_validation",
+    "client_order_ids_checked": [
+      "hourly-20260609-2251-sell-avgo"
+    ],
+    "new_fills_detected": 0,
+    "position_delta": "No new submit. Existing AVGO open sell remains pending; qty 10 and qty_available 8 unchanged from 2251 immediate reconciliation.",
+    "note": "2311 cycle performed post-trade reconciliation because an hourly autopilot open order was already present. Scheduler-owned core preflight confirmed AVGO sell 2 @ 403.00 remains status=new with no new fills, and the workflow submitted nothing additional."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-09-2311-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-2311-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-2311-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-09-2311-hourly-autopilot.json"
+  ]
+}
