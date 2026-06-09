@@ -5,6 +5,12 @@ asset_type: stock
 
 # SLB
 
+## 2026-06-10 02:40 KST hourly-autopilot
+
+`SLB` 1주 regular-session day limit buy가 `55.11 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260610-0231-buy-slb`, `order_id=d225a67d-6bc2-4488-99f3-d45a48bf6f4e`가 생성됐다. immediate reconciliation 시점에는 same client id 기준 `status=new`, `filled_qty=0` open order이며 신규 fill은 아직 없다. 근거는 scheduler-owned `0231` stale cleanup/core/research preflight와 strict universe/MCP/risk gate 통과, `AVGO/RGTI` sell duplicate 및 `SO` trim metric gap 이후에도 learning_trade_directive가 최소 1건 validation order를 요구한다는 점, 그리고 `SLB`가 2026-06-09 analyst review 기준 1D `양호`, live quote `55.10/55.11` spread `0.0181%`, energy-services diversifier 역할, same-day duplicate/open-order conflict 없음으로 가장 executable했다는 점이다.
+
+출처: [[2026-06-10-0231-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-10-0231-hourly-autopilot-post-trade.json`
+
 ## 회고 기록
 
 ### 2026-05-30 analyst review cycle

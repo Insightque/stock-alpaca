@@ -1,0 +1,150 @@
+{
+  "run_id": "2026-06-10-0231-hourly-autopilot",
+  "created_at": "2026-06-09T17:40:45Z",
+  "paper": true,
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-09T13:35:39.783355115-04:00",
+    "next_close": "2026-06-09T16:00:00-04:00",
+    "next_open": "2026-06-10T09:30:00-04:00"
+  },
+  "source_of_record": {
+    "stale_cleanup": "wiki/evidence-store/sources/2026-06-10-0231-hourly-autopilot-stale-order-cleanup.json",
+    "alpaca_core": "wiki/evidence-store/sources/2026-06-10-0231-hourly-autopilot-alpaca-core-preflight.json",
+    "research_preflight": "wiki/evidence-store/sources/2026-06-10-0231-hourly-autopilot-research-mcp-preflight.json"
+  },
+  "live_submit_boundary_checks": {
+    "clock": {
+      "outcome": "pass",
+      "timestamp": "2026-06-09T13:35:39.783355115-04:00"
+    },
+    "account": {
+      "outcome": "pass",
+      "portfolio_value": 98069.21,
+      "cash": 32817.74,
+      "buying_power": 298551.65
+    },
+    "open_orders": {
+      "outcome": "pass",
+      "count": 0
+    },
+    "positions": {
+      "outcome": "pass",
+      "count": 32
+    },
+    "recent_fills": {
+      "outcome": "pass",
+      "same_day_symbols": [
+        "WMT",
+        "AVGO",
+        "PFE",
+        "BAC",
+        "RGTI"
+      ]
+    },
+    "asset": {
+      "symbol": "SLB",
+      "outcome": "pass",
+      "status": "active",
+      "tradable": true,
+      "exchange": "NYSE"
+    },
+    "quote": {
+      "symbol": "SLB",
+      "outcome": "pass",
+      "bid": 55.1,
+      "ask": 55.11,
+      "spread_pct": 0.0181,
+      "captured_at": "2026-06-09T17:36:40.872300687Z"
+    },
+    "duplicate_symbol_side_same_day": {
+      "symbol": "SLB",
+      "outcome": "pass",
+      "blocking_fill_found": false
+    }
+  },
+  "buy_stack_recheck": [
+    {
+      "symbol": "WMT",
+      "decision": "blocked",
+      "gate": "duplicate_symbol_side_same_day",
+      "detail": "2026-06-09T17:19:41Z same-day buy fill 1\uc8fc"
+    },
+    {
+      "symbol": "PFE",
+      "decision": "blocked",
+      "gate": "duplicate_symbol_side_same_day",
+      "detail": "2026-06-09T17:00:21Z same-day buy fill 1\uc8fc"
+    },
+    {
+      "symbol": "BAC",
+      "decision": "blocked",
+      "gate": "duplicate_symbol_side_same_day",
+      "detail": "2026-06-09T14:45:16Z same-day buy fill 1\uc8fc"
+    },
+    {
+      "symbol": "GOOGL",
+      "decision": "blocked",
+      "gate": "spread_within_policy",
+      "detail": "live quote 352.00/363.23 widened to \uc57d 3.1903%"
+    },
+    {
+      "symbol": "SPY",
+      "decision": "blocked",
+      "gate": "validation_floor_per_order_cap",
+      "detail": "1\uc8fc ask 731.37 USD > validation floor per-order cap"
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "blocked",
+      "gate": "validation_floor_per_order_cap",
+      "detail": "1\uc8fc ask 699.81 USD > validation floor per-order cap"
+    },
+    {
+      "symbol": "NOK",
+      "decision": "blocked",
+      "gate": "validation_lifecycle_add_block",
+      "detail": "review-due-index blocked_add_symbols \uc720\uc9c0"
+    },
+    {
+      "symbol": "SLB",
+      "decision": "selected",
+      "gate": "pass",
+      "detail": "1D review \uc591\ud638, live spread 0.0181%, duplicate/open-order \uc5c6\uc74c"
+    }
+  ],
+  "submit": {
+    "pre_submit_summary": "paper mode true; market open; universe PASS; MCP PASS; risk PASS; SLB quote freshness ~0m; spread 0.0181%; buy 1 share limit 55.11 day stock; duplicate/open-order PASS",
+    "order_request": {
+      "symbol": "SLB",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 55.11,
+      "time_in_force": "day",
+      "client_order_id": "hourly-20260610-0231-buy-slb"
+    },
+    "place_stock_order": {
+      "order_id": "d225a67d-6bc2-4488-99f3-d45a48bf6f4e",
+      "client_order_id": "hourly-20260610-0231-buy-slb",
+      "submitted_at": "2026-06-09T17:40:37.997823354Z",
+      "status": "new"
+    }
+  },
+  "reconciliation": {
+    "get_order_by_client_id": {
+      "status": "new",
+      "filled_qty": 0,
+      "filled_avg_price": null
+    },
+    "get_orders_open_symbol_count": 1,
+    "get_orders_all_symbol_count": 1,
+    "new_fills_after_submit": [],
+    "positions_count": 32,
+    "account_after_submit": {
+      "portfolio_value": 98253.83,
+      "cash": 32817.74,
+      "buying_power": 298988.03
+    },
+    "summary": "Immediate reconciliation \uae30\uc900 \uc2e0\uaddc SLB order\ub294 open/new \uc0c1\ud0dc\uc774\uba70 fill\uc740 \uc544\uc9c1 \uc5c6\ub2e4."
+  }
+}
