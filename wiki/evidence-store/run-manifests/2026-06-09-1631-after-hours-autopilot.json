@@ -1,0 +1,285 @@
+{
+  "run_id": "2026-06-09-1631-after-hours-autopilot",
+  "created_at": "2026-06-09T07:31:33Z",
+  "data_cutoff_time": "2026-06-09T07:31:33Z",
+  "market_clock_checked_at": "2026-06-09T03:31:09.733847778-04:00",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "policy_id": "recommendation-policy-v1.11",
+  "policy_version": "v1.11",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "git_commit": "42ae03d4519af22d19d10fee7403449a68eeb740",
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "risk_policy_version": "medium-risk-v1.2",
+  "schema_version": "1.3",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-09-1631-after-hours-autopilot.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+    "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+    "wiki/trade-ledger/positions/current.md"
+  ],
+  "data_manifest": {
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-research-mcp-preflight.json",
+    "after_hours_gate_evaluation": "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "research_preflight": "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-research-mcp-preflight.json",
+    "runtime_cross_checks": [
+      "scheduler_owned_alpaca_core_preflight.get_clock",
+      "scheduler_owned_alpaca_core_preflight.get_account_info",
+      "scheduler_owned_alpaca_core_preflight.get_all_positions",
+      "scheduler_owned_alpaca_core_preflight.get_orders_open",
+      "scheduler_owned_alpaca_core_preflight.get_account_activities(activity_types=FILL)",
+      "scheduler_owned_alpaca_core_preflight.get_watchlists",
+      "scheduler_owned_alpaca_core_preflight.get_asset",
+      "scheduler_owned_alpaca_core_preflight.get_stock_latest_quote(feed=iex)",
+      "scheduler_owned_alpaca_core_preflight.get_stock_snapshot(feed=iex)",
+      "scheduler_owned_alpaca_core_preflight.get_stock_latest_trade(feed=iex)"
+    ]
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist_with_runtime_submit_boundary_cross_check",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "SPY",
+      "SMH",
+      "XOM",
+      "NVDA",
+      "NKE",
+      "ADBE",
+      "AMAT"
+    ],
+    "final_candidates": [
+      "QQQ",
+      "SPY",
+      "SMH",
+      "XOM",
+      "NVDA",
+      "NKE",
+      "ADBE",
+      "AMAT"
+    ],
+    "passed": true,
+    "gap_reason": "",
+    "status": "pass",
+    "source": "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-alpaca-core-preflight.json",
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-research-mcp-preflight.json"
+    ]
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "all_research_must_be_attempted": true,
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_submit": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-09T07:31:09Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-09T07:31:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-09T07:31:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-09T03:11:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-09T07:31:33+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-09T07:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-09-1631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols."
+    }
+  ],
+  "recommendation_actionability": "blocked",
+  "first_blocking_gate": "market_closed",
+  "decision_summary": {
+    "market_open": false,
+    "invested_ratio": 0.684,
+    "open_orders": 0,
+    "planned_orders": [],
+    "submitted_orders": [],
+    "skipped_orders": [
+      "QQQ는 scheduler-owned research shortlist에서 가장 강한 fallback benchmark였지만 scheduler-owned 1631 IEX quote 714.93/715.02의 age가 669.46분으로 5분 fresh-quote cap을 넘었다.",
+      "NVDA/NKE/ADBE/AMAT/XOM/SPY/SMH/SO/WMT/GOOGL는 scheduler-owned 1631 IEX quote age가 691.51-691.55분 stale였고 spread도 after-hours cap 0.25%를 초과했다.",
+      "AVGO/PFE/BAC/RGTI는 bid-only IEX quote만 남아 있어 executable two-sided extended-hours order shape를 만들지 못했다."
+    ]
+  },
+  "reconciliation": {
+    "submit_attempted": false,
+    "reconciled_by": "scheduler_owned_1631_alpaca_core_preflight_cross_check_and_no_submit_path",
+    "open_orders_after_run": 0,
+    "new_fills_detected": 0,
+    "position_delta": "none",
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation"
+  },
+  "risk_check_result": {
+    "errors": [],
+    "path": "wiki/trade-ledger/orders/2026-06-09-1631-after-hours-autopilot.json",
+    "returncode": 0,
+    "status": "PASS",
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 45253.83150000001,
+      "max_factor_value": 50282.035,
+      "max_invested": 95535.8665,
+      "max_speculative_value": 12067.688400000001,
+      "max_theme_value": 35197.4245,
+      "max_ticker_value": 15084.6105,
+      "min_cash": 5028.2035000000005,
+      "policy_version": "medium-risk-v1.2",
+      "post_cash": 31774.85,
+      "post_invested": 68789.22000000002,
+      "review_backlog_pending_1d_count": 0,
+      "sell_notional": 0.0,
+      "speculative_value": 5278.35,
+      "target_max_cash": 10056.407000000001,
+      "target_min_invested": 90507.66300000002
+    },
+    "warnings": [
+      "orders is empty"
+    ]
+  },
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-06-09-1631-after-hours-autopilot-post-trade.json",
+  "submitted_order_ids": [],
+  "validator_results": [
+    {
+      "name": "universe_coverage",
+      "status": "PASS",
+      "path": "wiki/evidence-store/run-manifests/2026-06-09-1631-after-hours-autopilot.json"
+    },
+    {
+      "name": "mcp_coverage",
+      "status": "PASS",
+      "path": "wiki/evidence-store/run-manifests/2026-06-09-1631-after-hours-autopilot.json"
+    },
+    {
+      "name": "risk_policy",
+      "status": "PASS",
+      "path": "wiki/trade-ledger/orders/2026-06-09-1631-after-hours-autopilot.json"
+    }
+  ],
+  "prompt_file_sha": "eb7038b1bca6431bf4864c36e87cf02510f0b71caed244f1108375e176bd621c",
+  "artifacts": {
+    "daily_report": "wiki/current-runs/daily/2026-06-09-1611-after-hours-autopilot.md",
+    "gate_evaluation": "wiki/evidence-store/sources/2026-06-09-1611-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "order_plan": "wiki/trade-ledger/orders/2026-06-09-1611-after-hours-autopilot.json",
+    "post_trade_snapshot": "wiki/trade-ledger/positions/2026-06-09-1611-after-hours-autopilot-post-trade.json",
+    "run_manifest": "wiki/evidence-store/run-manifests/2026-06-09-1611-after-hours-autopilot.json"
+  },
+  "deterministic_submit": "wiki/evidence-store/sources/2026-06-09-1611-after-hours-autopilot-deterministic-submit.json",
+  "account_snapshot": null
+}
