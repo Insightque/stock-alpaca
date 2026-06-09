@@ -1,0 +1,169 @@
+{
+  "run_id": "2026-06-10-0831-after-hours-autopilot",
+  "created_at": "2026-06-09T23:31:26Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "QQQ",
+    "SMH",
+    "SPY",
+    "JNJ",
+    "BA",
+    "AAPL",
+    "INTC",
+    "WMT"
+  ],
+  "runtime_alpaca_mcp": {
+    "used_scheduler_preflight": true,
+    "source_of_record": "wiki/evidence-store/sources/2026-06-10-0831-after-hours-autopilot-alpaca-core-preflight.json",
+    "cross_checks": {
+      "get_clock": {
+        "is_open": false,
+        "timestamp": "2026-06-09T19:33:37.077326717-04:00",
+        "next_open": "2026-06-10T09:30:00-04:00",
+        "next_close": "2026-06-10T16:00:00-04:00"
+      },
+      "get_account_info": {
+        "status": "ACTIVE",
+        "portfolio_value": 98658.22,
+        "cash": 31951.54,
+        "buying_power": 299130.38,
+        "long_market_value": 66706.68,
+        "currency": "USD"
+      },
+      "get_all_positions": {
+        "count": 33
+      },
+      "get_orders(status=open)": {
+        "count": 0
+      },
+      "get_orders(status=all, after=2026-06-09T20:00:00Z)": {
+        "count": 0
+      },
+      "get_account_activities(activity_types=FILL, after=2026-06-09T20:00:00Z)": {
+        "count": 0
+      },
+      "get_watchlists": {
+        "count": 0
+      },
+      "get_stock_quotes(feed=iex)": {
+        "note": "runtime Alpaca MCP `get_stock_quotes(feed=iex)`는 recent lookback에서 shortlist 8종목과 sell-trim check 3종목 모두 빈 응답을 반환했고, explicit 2026-06-09T20:00:00Z-2026-06-10T00:00:00Z window로 재조회해도 마감 직후 stale quote만 확인돼 scheduler-owned 0831 quote source-of-record를 override하지 않았다."
+      },
+      "get_stock_quotes(feed=boats)": {
+        "note": "runtime Alpaca MCP `get_stock_quotes(feed=boats)`도 recent lookback에서 빈 응답을 반환해 executable extended-hours quote stack 복구에 실패했다."
+      }
+    },
+    "note": "Alpaca core preflight first_blocking_gate=market_closed는 after-hours expected nonblocking으로 처리했고, passing account/positions/orders/asset/quote/spread rows는 같은 0831 preflight를 source of record로 재사용했다. Runtime Alpaca MCP cross-check는 closed market, ACTIVE account, 33 positions, 0 open orders, 0 same-session orders, 0 same-session fills, and 0 watchlists를 재확인했지만 preflight quote/spread evidence를 override하지 않았다."
+  },
+  "submit_attempted": false,
+  "orders_submitted": [],
+  "review_backlog_throttle": {
+    "pending_1d_count": 9,
+    "pending_5d_count": 13,
+    "pending_20d_count": 1,
+    "status": "monitor_only_nok_add_block_persists"
+  },
+  "risk_inputs": {
+    "after_hours_new_orders_submitted_today": 0,
+    "cash_deployment_blocker": "no_candidate_passed_hard_gates",
+    "new_orders_submitted_today": 0,
+    "policy_turnover_ratio": 0.0,
+    "review_backlog_pending_1d_count": 9,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1,
+    "risk_recomputed_after_partial_fill": true,
+    "stop_triggered_orders_today": 0,
+    "weekly_turnover_ratio": 0.0
+  },
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass",
+      "detail": "ALPACA_PAPER_TRADE=true 확인"
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed",
+      "detail": "regular market closed at runtime get_clock 2026-06-09T19:33:37.077326717-04:00"
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass",
+      "detail": "session=after_hours and extended-hours policy profile retained"
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_market_closed_nonblocking_after_hours",
+      "detail": "0831 scheduler-owned core preflight first_blocking_gate=market_closed treated as expected nonblocking; passing account/positions/open-order/asset/quote/spread rows reused directly"
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass",
+      "detail": "after_hours_policy artifact tag, review bucket, order id prefix, and allowed_sides buy/sell retained"
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "pass_zero_of_two_submitted",
+      "detail": "after_hours_new_orders_submitted_today=0 and max_new_orders_per_session=2; regular validation count was not reused"
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass",
+      "detail": "broad universe 62 symbols with SPY/QQQ included and scheduler-owned research shortlist 8 symbols"
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass",
+      "detail": "sec-edgar/fred/firecrawl/yahoo-finance pass; alpha-vantage empty_response did not block because core and minimum research confirmations passed"
+    },
+    {
+      "gate": "risk_policy",
+      "status": "fail_no_eligible_order_survived_after_hours_quote_freshness_and_notional_caps",
+      "detail": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json passes once recorded, but 0831 shortlist did not yield an executable order: QQQ ask 708.11 USD exceeded per-order cap 493.33 USD, and the remaining symbols failed freshness, spread, or two-sided quote gates."
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "fail_scheduler_iex_quotes_stale_211_26_to_211_43_minutes",
+      "detail": "all 0831 scheduler-owned shortlist quotes were older than the 5 minute after-hours freshness cap; runtime IEX and boats quote tools returned either empty recent lookbacks or the same stale closing observations."
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "fail_only_qqq_inside_0_25pct_but_stale_and_over_cap",
+      "detail": "QQQ spread 0.0254% was the only shortlist spread inside the 0.25% cap. SMH/SPY/JNJ/BA/AAPL/INTC/WMT all exceeded the cap, while AVGO/RGTI/SO sell checks still failed spread or trim gates."
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "pass_no_orders_built",
+      "detail": "whole-share day limit extended-hours shape preserved, but no order survived all gates"
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "pass_no_submit",
+      "detail": "no place_stock_order call; no client_order_id generated, so there was nothing to reconcile or cancel"
+    }
+  ],
+  "candidate_notes": [
+    "QQQ quote age 211.26분, spread 0.0254%, 1주 ask 708.11 USD로 spread는 통과했지만 after-hours 5분 freshness cap과 per-order cap 493.33 USD를 동시에 넘었다.",
+    "SMH/SPY/JNJ/BA/AAPL/INTC/WMT는 모두 quote age 211.43분 stale이고 spread가 5.2738%~8.6891%로 after-hours cap 0.25%를 크게 초과했다.",
+    "AVGO sell/trim review는 수행했지만 scheduler-owned 0831 IEX quote가 stale 211.43분이고 spread 8.7260%라 two-sided executable extended-hours trim order를 만들지 못했다.",
+    "RGTI/SO는 각각 spread 27.8442% / 9.5681%와 stale quote, duplicate 또는 trim metric gap이 남아 sell side submit 후보가 되지 못했다.",
+    "Runtime quote cross-check에서는 recent IEX/boats lookback이 모두 빈 응답이었고, explicit post-close window 재조회에서도 마감 직후 stale quote만 확인됐다."
+  ],
+  "block_reasons": [
+    "fresh_quote",
+    "risk_policy"
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-0831-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0831-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0831-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-08-portfolio-review.md",
+    "wiki/trade-ledger/reviews/2026-06-09-portfolio-review.md",
+    "wiki/trade-ledger/positions/current.md"
+  ]
+}
