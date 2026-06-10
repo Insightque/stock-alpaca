@@ -1,0 +1,152 @@
+{
+  "run_id": "2026-06-11-0331-hourly-autopilot",
+  "created_at": "2026-06-10T18:34:22Z",
+  "paper": true,
+  "session": "regular",
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-10T14:31:09.959288663-04:00",
+    "next_open": "2026-06-11T09:30:00-04:00",
+    "next_close": "2026-06-10T16:00:00-04:00"
+  },
+  "gates": {
+    "paper_mode": "pass",
+    "market_clock": "pass",
+    "stale_order_lifecycle": "pass",
+    "alpaca_core_mcp": "pass",
+    "research_mcp_tiered": "pass",
+    "universe_strict": "pass",
+    "review_backlog_throttle": {
+      "status": "reduced_pass",
+      "pending_1d_count": 9,
+      "pending_5d_count": 13,
+      "pending_20d_count": 1,
+      "max_new_buy_slots": 1
+    },
+    "final_submit_path": "blocked"
+  },
+  "sell_candidates": [
+    {
+      "symbol": "AVGO",
+      "bid": 375.0,
+      "ask": 382.27,
+      "spread_pct": 1.9201,
+      "decision": "blocked_spread_fail",
+      "reason": "live spread exceeds 0.50% cap"
+    },
+    {
+      "symbol": "RGTI",
+      "bid": 19.93,
+      "ask": 19.94,
+      "spread_pct": 0.0502,
+      "decision": "blocked_duplicate_same_day",
+      "reason": "same-day regular-session trim fill exists"
+    },
+    {
+      "symbol": "SO",
+      "bid": 94.22,
+      "ask": 94.24,
+      "spread_pct": 0.0212,
+      "decision": "blocked_metric_gap",
+      "reason": "decision-grade trim metrics missing"
+    }
+  ],
+  "buy_candidates": [
+    {
+      "symbol": "FCX",
+      "bid": 62.87,
+      "ask": 62.89,
+      "spread_pct": 0.0318,
+      "decision": "blocked_duplicate_same_day"
+    },
+    {
+      "symbol": "WMT",
+      "bid": 119.84,
+      "ask": 119.85,
+      "spread_pct": 0.0083,
+      "decision": "blocked_duplicate_same_day"
+    },
+    {
+      "symbol": "SLB",
+      "bid": 56.01,
+      "ask": 56.02,
+      "spread_pct": 0.0179,
+      "decision": "blocked_duplicate_same_day"
+    },
+    {
+      "symbol": "XOM",
+      "bid": 149.98,
+      "ask": 150.85,
+      "spread_pct": 0.5784,
+      "decision": "blocked_duplicate_same_day_and_spread_fail"
+    },
+    {
+      "symbol": "NKE",
+      "bid": 44.0,
+      "ask": 44.01,
+      "spread_pct": 0.0227,
+      "decision": "blocked_duplicate_same_day"
+    },
+    {
+      "symbol": "NEE",
+      "bid": 85.07,
+      "ask": 85.08,
+      "spread_pct": 0.0118,
+      "decision": "blocked_duplicate_same_day"
+    },
+    {
+      "symbol": "COP",
+      "bid": 120.17,
+      "ask": 120.2,
+      "spread_pct": 0.025,
+      "decision": "blocked_duplicate_same_day"
+    },
+    {
+      "symbol": "AMZN",
+      "bid": 238.87,
+      "ask": 238.92,
+      "spread_pct": 0.0209,
+      "decision": "blocked_duplicate_same_day"
+    },
+    {
+      "symbol": "GOOGL",
+      "bid": 355.9,
+      "ask": 355.94,
+      "spread_pct": 0.0112,
+      "decision": "blocked_weak_review"
+    },
+    {
+      "symbol": "NVDA",
+      "bid": 202.07,
+      "ask": 202.18,
+      "spread_pct": 0.0544,
+      "decision": "blocked_same_cluster_add_block"
+    },
+    {
+      "symbol": "SPY",
+      "bid": 729.19,
+      "ask": 729.24,
+      "spread_pct": 0.0069,
+      "decision": "blocked_floor_cap"
+    },
+    {
+      "symbol": "QQQ",
+      "bid": 697.65,
+      "ask": 697.84,
+      "spread_pct": 0.0272,
+      "decision": "blocked_floor_cap"
+    }
+  ],
+  "summary": {
+    "orders_planned": 0,
+    "first_blocking_gate": "duplicate_symbol_side_same_day",
+    "note": "sell-first stack had no executable trim after AVGO spread hard-gate failure, RGTI same-day duplicate discipline, and SO metric-gap checks; buy fallback stack exhausted on same-day duplicates, XOM spread fail, weak-review rejection, same-cluster add-block, and benchmark validation-floor cap."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0331-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-0331-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0331-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md"
+  ]
+}
