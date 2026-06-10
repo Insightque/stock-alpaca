@@ -1,0 +1,228 @@
+{
+  "run_id": "2026-06-11-0851-after-hours-autopilot",
+  "created_at": "2026-06-10T23:53:10Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "source_of_record": {
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-11-0851-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-11-0851-after-hours-autopilot-research-mcp-preflight.json",
+    "first_blocking_gate": "market_closed",
+    "market_closed_nonblocking_for_after_hours": true,
+    "account_status": "ACTIVE",
+    "positions": 33,
+    "open_orders": 0
+  },
+  "runtime_cross_checks": {
+    "clock_timestamp": "2026-06-10T19:52:51.854292271-04:00",
+    "regular_market_open": false,
+    "account_status": "ACTIVE",
+    "portfolio_value": 96539.75,
+    "cash": 30865.37,
+    "buying_power": 292649.41,
+    "positions": 33,
+    "open_orders": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_today": 0,
+    "watchlists": 0,
+    "tools": [
+      "get_clock",
+      "get_account_info",
+      "get_all_positions",
+      "get_orders(status=open)",
+      "get_orders(status=all, after=2026-06-10T20:00:00Z)",
+      "get_account_activities(activity_types=FILL, after=2026-06-10T20:00:00Z)",
+      "get_watchlists",
+      "get_stock_latest_quote(feed=iex)",
+      "get_stock_latest_quote(feed=overnight)",
+      "get_stock_snapshot(feed=overnight)"
+    ]
+  },
+  "policy_limits": {
+    "max_new_orders_per_session": 2,
+    "max_new_buy_orders_per_run": 1,
+    "default_qty": 1,
+    "max_spread_pct": 0.25,
+    "max_quote_age_minutes_submit": 5.0,
+    "max_notional_pct_per_order": 0.005,
+    "limit_guardrail_ratio": 0.0025,
+    "per_order_notional_cap_usd_from_source_of_record": 482.7
+  },
+  "buy_candidate_checks": [
+    {
+      "symbol": "SPY",
+      "side": "buy",
+      "quote_feed": "iex",
+      "bid": 723.51,
+      "ask": 723.68,
+      "spread_pct": 0.0235,
+      "quote_timestamp": "2026-06-10T20:47:58.423956950Z",
+      "quote_age_minutes": 185.22,
+      "fresh_quote_pass": false,
+      "spread_pass": true,
+      "per_order_notional_pass": false,
+      "decision": "blocked"
+    },
+    {
+      "symbol": "QQQ",
+      "side": "buy",
+      "quote_feed": "iex",
+      "bid": 692.3,
+      "ask": 692.65,
+      "spread_pct": 0.0506,
+      "quote_timestamp": "2026-06-10T20:58:25.330349820Z",
+      "quote_age_minutes": 174.78,
+      "fresh_quote_pass": false,
+      "spread_pass": true,
+      "per_order_notional_pass": false,
+      "decision": "blocked"
+    },
+    {
+      "symbol": "NOK",
+      "side": "buy",
+      "quote_feed": "iex",
+      "bid": 13.38,
+      "ask": 13.4,
+      "spread_pct": 0.1495,
+      "quote_timestamp": "2026-06-10T20:01:00.056089762Z",
+      "quote_age_minutes": 232.21,
+      "fresh_quote_pass": false,
+      "spread_pass": true,
+      "validation_lifecycle_add_block": true,
+      "decision": "blocked"
+    },
+    {
+      "symbol": "ORCL",
+      "side": "buy",
+      "quote_feed": "iex",
+      "bid": 201.26,
+      "ask": 202.64,
+      "spread_pct": 0.6856,
+      "quote_timestamp": "2026-06-10T20:04:29.580308852Z",
+      "quote_age_minutes": 228.7,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "decision": "blocked"
+    },
+    {
+      "symbol": "IONQ",
+      "side": "buy",
+      "quote_feed": "iex",
+      "bid": 55.64,
+      "ask": 56.1,
+      "spread_pct": 0.8267,
+      "quote_timestamp": "2026-06-10T20:07:32.926939018Z",
+      "quote_age_minutes": 225.65,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "decision": "blocked"
+    },
+    {
+      "symbol": "SMH",
+      "side": "buy",
+      "quote_feed": "iex",
+      "bid": 557.14,
+      "ask": 587.61,
+      "spread_pct": 5.4697,
+      "quote_timestamp": "2026-06-10T20:00:00.021418851Z",
+      "quote_age_minutes": 233.21,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "per_order_notional_pass": false,
+      "decision": "blocked"
+    },
+    {
+      "symbol": "V",
+      "side": "buy",
+      "quote_feed": "iex",
+      "bid": 309.7,
+      "ask": 337.17,
+      "spread_pct": 8.8708,
+      "quote_timestamp": "2026-06-10T20:00:00.003912624Z",
+      "quote_age_minutes": 233.21,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "decision": "blocked"
+    },
+    {
+      "symbol": "CRM",
+      "side": "buy",
+      "quote_feed": "iex",
+      "bid": 165.55,
+      "ask": 180.44,
+      "spread_pct": 8.9958,
+      "quote_timestamp": "2026-06-10T20:00:02.795678029Z",
+      "quote_age_minutes": 233.16,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "decision": "blocked"
+    }
+  ],
+  "sell_candidate_checks": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "bid": 354.15,
+      "ask": 392.6,
+      "spread_pct": 10.8584,
+      "quote_timestamp": "2026-06-10T20:00:01.371882840Z",
+      "quote_age_minutes": 233.18,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "decision": "blocked"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "bid": 16.81,
+      "ask": 19.48,
+      "spread_pct": 15.8834,
+      "quote_timestamp": "2026-06-10T20:00:01.170582448Z",
+      "quote_age_minutes": 233.18,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "decision": "blocked"
+    },
+    {
+      "symbol": "SO",
+      "side": "sell",
+      "bid": 85.84,
+      "ask": 0.0,
+      "quote_timestamp": "2026-06-10T20:00:03.094133659Z",
+      "quote_age_minutes": 233.15,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "two_sided_quote_pass": false,
+      "decision": "blocked"
+    }
+  ],
+  "overnight_cross_check": {
+    "status": "non_improving",
+    "note": "Overnight quotes and snapshots returned only 2026-06-10T08:00:00Z venue-N data and did not repair the after-hours freshness gate."
+  },
+  "gate_results": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "fail_no_eligible_order_survived_after_hours_quote_freshness_and_spread_caps",
+    "fresh_quote": "fail_scheduler_and_runtime_quotes_stale_174_78_to_233_21_minutes",
+    "spread_within_after_hours_policy": "fail_only_spy_qqq_nok_inside_0_25pct_but_not_executable",
+    "whole_share_day_limit_extended_hours_order": "pass_no_orders_built",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit"
+  },
+  "decision": {
+    "action": "no_submit",
+    "reason": "No buy or sell candidate survived the after-hours hard gates because every executable candidate had stale quotes, wide spreads, a missing two-sided quote, a lifecycle add-block, or the per-order notional cap.",
+    "submit_attempted": false,
+    "client_order_ids_checked": []
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0851-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0851-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
