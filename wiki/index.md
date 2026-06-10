@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-11 05:00 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-11 06:11 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -53,6 +53,7 @@
 
 ## Current Runs
 
+- [[2026-06-11-0611-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0611` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP cross-check 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours orders/fills `0`, watchlists `0`이었다. shortlist `SPY/QQQ/NOK/ORCL/IONQ/SMH/V/CRM` 중 `SPY/QQQ/NOK`만 spread cap 이내였지만 모두 fresh-quote 5분 cap을 넘겼고 `SPY/QQQ`는 1주 ask도 per-order cap을 초과했으며 `AVGO/RGTI/SO` sell-first 재평가도 stale/wide-spread 또는 bid-only quote에 막혀 no-submit으로 종료했다.
 - [[2026-06-11-0431-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0431` stale cleanup/core/research preflight를 source-of-record로 사용했고 stale cleanup/open-order rows 모두 `0`건으로 유지됐다. sell-first에서는 `AVGO`가 spread `0.7981%` + same-day sell duplicate, `RGTI`가 same-day sell duplicate, `SO`가 trim decision-grade metric gap으로 blocked였다. buy fallback에서는 `FCX/WMT/AMZN/BAC/NEE` same-day buy duplicate, `GOOGL` weak review, `NVDA` same-cluster add block, `PLTR` low confidence, `INTC` prior weak exit-thesis, `SPY/QQQ` validation floor per-order cap이 남아 `MSFT` 1주 floor-size validation buy가 `398.38 USD` day limit, `client_order_id=hourly-20260611-0431-buy-msft`로 제출됐고 immediate reconciliation 기준 `status=new` open order다.
 - [[2026-06-11-0451-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0451` stale cleanup/core/research preflight를 source-of-record로 사용했고, `0431`에서 open/new였던 `MSFT` buy 1주는 recent fills 기준 `2026-06-10T19:47:34.876997Z`, `398.38 USD`에 체결되어 `MSFT 1주 -> 2주`, `avg_entry_price=412.58`로 반영됐다. sell-first에서는 `AVGO`가 spread `0.6118%` + same-day sell duplicate, `RGTI`가 same-day sell duplicate, `SO`가 trim metric gap으로 blocked였고, buy fallback에서는 `UNH`가 최종 floor-size defensive healthcare 후보였지만 live Alpaca clock `2026-06-10T16:00:30.547773652-04:00`로 regular market close가 확인되어 `market_open` hard gate에서 no-submit으로 종료했다.
 - [[2026-06-11-0411-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0411` stale cleanup/core/research preflight를 source-of-record로 사용했고 stale cleanup/open-order rows 모두 `0`건으로 유지됐다. sell-first에서는 `AVGO`와 `RGTI`가 spread 정상화 이후에도 `2026-06-10 ET` same-day sell duplicate, `SO`가 trim decision-grade metric gap으로 blocked였고, buy fallback에서는 `FCX/WMT/SLB/NKE/NEE/COP/AMZN/XOM` same-day buy duplicate, `MCD` spread `1.2599%` + thesis evidence 부족, `GOOGL` weak review, `NVDA` same-cluster add block, `SPY/QQQ` validation floor per-order cap이 남아 no-submit으로 종료했다.
