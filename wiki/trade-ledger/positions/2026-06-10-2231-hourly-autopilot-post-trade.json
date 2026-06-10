@@ -1,0 +1,51 @@
+{
+  "run_id": "2026-06-10-2231-hourly-autopilot",
+  "recorded_at": "2026-06-10T13:43:16Z",
+  "paper": true,
+  "market_session": "regular",
+  "orders_submitted": [
+    {
+      "symbol": "WMT",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 118.79,
+      "client_order_id": "hourly-20260610-2231-buy-wmt",
+      "order_id": "8b189213-3d70-40a4-8957-2fcdd8b454fd",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 118.49,
+      "submitted_at": "2026-06-10T13:43:15.468507632Z",
+      "filled_at": "2026-06-10T13:43:16.375780655Z"
+    }
+  ],
+  "open_orders": [],
+  "account_snapshot": {
+    "portfolio_value": 98755.5,
+    "cash": 31250.14,
+    "buying_power": 298482.29,
+    "status": "ACTIVE"
+  },
+  "positions_summary": {
+    "position_count": 33,
+    "wmt_qty": 8,
+    "wmt_avg_entry_price": 118.20625,
+    "wmt_qty_available": 8,
+    "wmt_market_value": 948.616
+  },
+  "fill_activity": [
+    {
+      "symbol": "WMT",
+      "side": "buy",
+      "qty": 1,
+      "price": 118.49,
+      "transaction_time": "2026-06-10T13:43:16.375781Z",
+      "order_id": "8b189213-3d70-40a4-8957-2fcdd8b454fd"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-2231-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-10-2231-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-2231-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-2231-hourly-autopilot-stale-order-cleanup.json"
+  ]
+}

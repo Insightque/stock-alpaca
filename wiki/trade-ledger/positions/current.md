@@ -1,6 +1,6 @@
 # portfolio-current
 
-_Last updated: 2026-06-10 10:35 KST_
+_Last updated: 2026-06-10 22:44 KST_
 
 ## 최신 after-hours-autopilot reconciliation
 
@@ -23,6 +23,17 @@ _Last updated: 2026-06-10 10:35 KST_
 - Recent reconciliation scope: scheduler-owned `1011` core/research preflight를 우선 사용했고 live Alpaca MCP submit-boundary check에서 regular market closed, ACTIVE account, open orders 0건, same-session after-hours fills 0건을 먼저 재확인했다. 후보 재평가에서는 `QQQ/SPY/SMH`가 per-order cap 초과, `AVGO`는 spread cap 초과, `RGTI`는 same-day sell duplicate, `SO`는 quote gap으로 제외됐고 `AAPL`은 fresh overnight quote `291.13/291.68`, spread `0.1886%`로 모든 after-hours hard gate를 통과했다. direct Alpaca MCP submit 뒤 immediate same-client-id reconciliation 기준 `order_id=cd79b8db-51e1-4eab-8903-7da2614d2bcd`, `filled_avg_price=291.40 USD`로 즉시 체결됐다.
 - Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 1.
 - Source note: `wiki/trade-ledger/positions/2026-06-10-1011-after-hours-autopilot-post-trade.json`
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-10-2231-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `WMT` buy 1주 @ `118.49 USD`
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `33` positions 유지. `WMT`는 `7주 -> 8주`, `avg_entry_price=118.20625`, `qty_available=8`로 증가했다.
+- Recent reconciliation scope: scheduler-owned `2231` stale cleanup/core/research preflight를 우선 사용했고 live Alpaca MCP submit-boundary check에서 regular market open, ACTIVE account, open orders 0건, same-day fills `AAPL/AAPL`, `WMT` live quote `118.75/118.79`를 재확인했다. sell-first 재평가에서는 `RGTI`가 spread `0.5063%`로 cap을 소폭 초과했고 `AVGO/SO`도 각각 spread hard gate에 막혀 executable trim이 남지 않았다. buy fallback에서는 `SPY/QQQ` per-order cap, `NOK` add-block, `BAC/PFE/PLTR` lower-rank가 남아 `WMT`를 floor-size defensive fallback으로 direct Alpaca MCP submit했고 immediate same-order-id reconciliation 기준 `order_id=8b189213-3d70-40a4-8957-2fcdd8b454fd`, `filled_avg_price=118.49 USD`로 즉시 체결됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-06-10-2231-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

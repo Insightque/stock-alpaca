@@ -1,0 +1,225 @@
+{
+  "run_id": "2026-06-10-2231-hourly-autopilot",
+  "recorded_at": "2026-06-10T13:36:01Z",
+  "paper": true,
+  "market_session": "regular",
+  "core_preflight_hard_gate": {
+    "status": "pass",
+    "checks": {
+      "clock": true,
+      "market_open": true,
+      "account": true,
+      "positions": true,
+      "open_orders": true,
+      "recent_activities": true,
+      "quotes": true
+    },
+    "first_blocking_gate": "",
+    "gap_category": "not_applicable",
+    "gap_reason": "",
+    "max_retry_count": 2
+  },
+  "stale_cleanup": {
+    "run_id": "2026-06-10-2231-hourly-autopilot",
+    "created_at": "2026-06-10T13:31:07Z",
+    "paper": true,
+    "source": "scheduler Alpaca MCP stale autopilot order cleanup",
+    "alpaca_mcp_only": true,
+    "dry_run": false,
+    "policy": {
+      "max_open_order_age_minutes": 30.0,
+      "cancel_stale_unfilled_orders": true,
+      "client_order_id_prefix": "hourly-"
+    },
+    "clock": {
+      "is_open": true,
+      "timestamp": "2026-06-10T09:31:09.254475882-04:00",
+      "next_open": "2026-06-11T09:30:00-04:00",
+      "next_close": "2026-06-10T16:00:00-04:00"
+    },
+    "initial_open_orders": [],
+    "stale_candidates": [],
+    "cancel_attempts": [],
+    "remaining_open_orders": [],
+    "status": "pass",
+    "gap_category": "not_applicable",
+    "gap_reason": ""
+  },
+  "live_checks": {
+    "clock": {
+      "timestamp": "2026-06-10T09:35:58.973712921-04:00",
+      "is_open": true
+    },
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 98551.91,
+      "cash": 31368.63,
+      "buying_power": 298178.14
+    },
+    "open_orders": {
+      "count": 0
+    },
+    "same_day_fills": [
+      {
+        "symbol": "AAPL",
+        "side": "buy",
+        "qty": 1,
+        "price": 291.49,
+        "transaction_time": "2026-06-10T01:35:02.497252Z"
+      },
+      {
+        "symbol": "AAPL",
+        "side": "buy",
+        "qty": 1,
+        "price": 291.4,
+        "transaction_time": "2026-06-10T01:17:49.6859Z"
+      }
+    ],
+    "candidate_quotes": {
+      "RGTI": {
+        "bid": 19.7,
+        "ask": 19.8,
+        "spread_pct": 0.5063,
+        "timestamp": "2026-06-10T13:36:00.715530727Z"
+      },
+      "AVGO": {
+        "bid": 374.0,
+        "ask": 389.0,
+        "spread_pct": 3.9322,
+        "timestamp": "2026-06-10T13:36:00.614280267Z"
+      },
+      "SO": {
+        "bid": 87.97,
+        "ask": 93.25,
+        "spread_pct": 5.8278,
+        "timestamp": "2026-06-10T13:36:00.483183079Z"
+      },
+      "WMT": {
+        "bid": 118.75,
+        "ask": 118.79,
+        "spread_pct": 0.0337,
+        "timestamp": "2026-06-10T13:36:00.725025058Z"
+      },
+      "BAC": {
+        "bid": 54.42,
+        "ask": 54.45,
+        "spread_pct": 0.0551,
+        "timestamp": "2026-06-10T13:36:00.632001805Z"
+      },
+      "PFE": {
+        "bid": 25.77,
+        "ask": 25.78,
+        "spread_pct": 0.0388,
+        "timestamp": "2026-06-10T13:36:00.688277471Z"
+      },
+      "PLTR": {
+        "bid": 129.5,
+        "ask": 129.61,
+        "spread_pct": 0.0849,
+        "timestamp": "2026-06-10T13:36:00.718529737Z"
+      },
+      "NOK": {
+        "bid": 13.68,
+        "ask": 13.69,
+        "spread_pct": 0.0731,
+        "timestamp": "2026-06-10T13:36:00.566123008Z"
+      },
+      "SPY": {
+        "bid": 732.43,
+        "ask": 733.32,
+        "spread_pct": 0.1214,
+        "timestamp": "2026-06-10T13:36:00.715337168Z"
+      },
+      "QQQ": {
+        "bid": 702.0,
+        "ask": 702.38,
+        "spread_pct": 0.0541,
+        "timestamp": "2026-06-10T13:36:00.729642562Z"
+      }
+    }
+  },
+  "candidate_evaluation": {
+    "sell_first": [
+      {
+        "symbol": "RGTI",
+        "decision": "blocked_spread",
+        "reason": "speculative loss-control trim trigger active but spread 0.5063% > 0.50% cap"
+      },
+      {
+        "symbol": "AVGO",
+        "decision": "blocked_spread",
+        "reason": "post-earnings de-risking rationale active but spread 3.9322% > 0.50% cap"
+      },
+      {
+        "symbol": "SO",
+        "decision": "blocked_metric_gap",
+        "reason": "spread 5.8278% > 0.50% cap and trim decision-grade metric gap remains"
+      }
+    ],
+    "buy_fallback": [
+      {
+        "symbol": "WMT",
+        "decision": "selected_validation_buy",
+        "reason": "existing defensive holding, no same-day duplicate, spread 0.0337%, review backlog throttle still permits 1 buy slot"
+      },
+      {
+        "symbol": "BAC",
+        "decision": "watch_lower_rank",
+        "reason": "eligible but weaker defensive diversification than WMT for current floor-size learning order"
+      },
+      {
+        "symbol": "PFE",
+        "decision": "watch_lower_rank",
+        "reason": "eligible but weaker review history than WMT"
+      },
+      {
+        "symbol": "PLTR",
+        "decision": "watch_lower_rank",
+        "reason": "eligible but not preferred over defensive existing holding under one-slot throttle"
+      },
+      {
+        "symbol": "NOK",
+        "decision": "blocked_add",
+        "reason": "validation_lifecycle add-block remains in review-due-index"
+      },
+      {
+        "symbol": "SPY",
+        "decision": "blocked_floor_cap",
+        "reason": "1-share ask exceeds validation floor per-order notional cap"
+      },
+      {
+        "symbol": "QQQ",
+        "decision": "blocked_floor_cap",
+        "reason": "1-share ask exceeds validation floor per-order notional cap"
+      }
+    ]
+  },
+  "selected_order": {
+    "symbol": "WMT",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 118.79,
+    "client_order_id": "hourly-20260610-2231-buy-wmt"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-2231-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-10-2231-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-2231-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-2231-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/WMT.md",
+    "wiki/research-notes/tickers/BAC.md",
+    "wiki/research-notes/tickers/PFE.md",
+    "wiki/research-notes/tickers/PLTR.md",
+    "wiki/research-notes/tickers/NOK.md",
+    "wiki/research-notes/tickers/SPY.md",
+    "wiki/research-notes/tickers/QQQ.md"
+  ]
+}
