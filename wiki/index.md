@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-11 03:34 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-11 03:56 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-11-0351-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0351` stale cleanup/core/research preflight를 source-of-record로 사용했고 stale cleanup/open-order rows 모두 `0`건으로 유지됐다. sell-first에서는 `AVGO`가 live spread `0.6425%`로 trim hard gate fail, `RGTI`가 same-day sell duplicate, `SO`가 trim decision-grade metric gap으로 blocked였고, buy fallback에서는 `FCX/WMT/SLB/NKE/NEE/COP/AMZN` same-day buy duplicate, `XOM` duplicate+spread fail, `MCD` thesis evidence 부족, `GOOGL` weak review, `NVDA` same-cluster add block, `SPY/QQQ` validation floor per-order cap이 남아 no-submit으로 종료했다.
 - [[2026-06-11-0331-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0331` stale cleanup/core/research preflight를 source-of-record로 사용했고 stale cleanup/open-order rows 모두 `0`건으로 유지됐다. sell-first에서는 `AVGO`가 live spread `1.9201%`로 trim hard gate fail, `RGTI`가 same-day sell duplicate, `SO`가 trim decision-grade metric gap으로 blocked였고, buy fallback에서는 `FCX/WMT/SLB/NKE/NEE/COP/AMZN` same-day buy duplicate, `XOM` duplicate+spread fail, `GOOGL` weak review, `NVDA` same-cluster add block, `SPY/QQQ` validation floor per-order cap이 남아 no-submit으로 종료했다.
 - [[2026-06-11-0311-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 stale cleanup/open-order rows 모두 `0`건으로 유지됐다. sell-first에서는 `AVGO`와 `RGTI`가 same-day sell duplicate, `SO`가 trim decision-grade metric gap으로 blocked였고, buy fallback에서는 `FCX/WMT/SLB/XOM/NKE/NEE/COP/AMZN` same-day buy duplicate, `GOOGL` weak review, `NVDA` same-cluster add block, `SPY/QQQ` validation floor per-order cap이 남아 no-submit으로 종료했다.
 - [[2026-06-11-0251-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0251` stale cleanup/core/research preflight를 source-of-record로 사용했고, `0231`에서 open/new였던 `NKE` buy 1주가 `2026-06-10T17:44:44.080648Z`에 `43.98 USD`로 체결된 것을 recent fills로 반영했다. 이번 cycle sell-first에서는 `AVGO` spread fail, `RGTI` same-day sell duplicate, `SO` trim metric gap이 남았고, buy fallback에서는 `NKE/NEE/FCX/AMZN/SLB/COP/JNJ/XOM/PFE/BAC/WMT/AAPL` same-day buy duplicate, `SPY/QQQ` per-order cap, `NOK` add-block, `INTC` no-thesis-break fail이 겹쳐 no-submit으로 종료했다.
