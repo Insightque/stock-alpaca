@@ -38,3 +38,8 @@ asset_type: stock
 ## 2026-06-05 03:31 KST hourly autopilot
 
 2026-06-05 03:31 KST hourly autopilot에서 `NKE` 1주 regular-session day limit buy를 제출했고, reconciliation 시점 상태는 `new` open order다. 근거는 scheduler research preflight shortlist 포함, runtime spread 0.0231%, same-day duplicate/open-order conflict 없음, consumer diversifier floor-size validation 목적이었다.
+
+
+## 2026-06-11 02:38 KST hourly autopilot
+
+2026-06-11 02:38 KST hourly autopilot에서 `NKE` 1주 regular-session day limit buy를 `43.99 USD`로 제출했고, immediate reconciliation 시점 상태는 `new` open order다. 근거는 scheduler research preflight shortlist 포함, live spread 0.0227%, same-day duplicate/open-order conflict 부재, consumer diversifier floor-size validation 목적이었다.

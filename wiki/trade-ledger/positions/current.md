@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-11 02:18 KST_
+_Last updated: 2026-06-11 02:39 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-11-0231-hourly-autopilot]]
+- Open/new: `NKE` buy 1주 @ `43.99 USD` (`status=new`)
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `33` positions 유지. `NKE`는 아직 `4주`, `avg_entry_price=45.5075`, `qty_available=4`로 unchanged이며 새 open order는 `NKE` 1건이다.
+- Recent reconciliation scope: scheduler-owned `0231` stale cleanup/core/research preflight를 우선 사용했고, workflow 계약상 비어 있던 Alpaca core preflight tool row는 live Alpaca MCP `get_clock/get_account_info/get_orders(status=open)/get_all_positions/get_account_activities(activity_types=FILL, after=2026-06-10)/get_watchlists/get_stock_latest_quote(feed=iex)/get_asset(NKE)`로 보강했다. submit 직전 regular market open, ACTIVE account, open orders 0건, same-day fills `NEE/FCX/AMZN/SLB/COP/JNJ/XOM/PFE/BAC/RGTI/AVGO/WMT/AAPL/AAPL`, `NKE` quote `43.98/43.99`, active tradable NYSE stock을 재확인했다. sell-first 재평가에서는 `AVGO`가 spread fail과 same-day sell duplicate, `RGTI`가 same-day sell duplicate, `SO`가 trim metric gap으로 blocked였고, buy fallback에서는 `NEE/FCX/AMZN/SLB/COP/JNJ/XOM/PFE/BAC/WMT/AAPL` same-day buy duplicate, `SPY/QQQ` per-order cap, `CVX` spread fail이 남았다. `NKE`는 preflight-covered consumer diversifier floor-size buy로 선택됐고 direct Alpaca MCP submit 뒤 same order id reconciliation 기준 `order_id=9b08f07e-f93e-47d6-b1d1-5d707abec8eb`, `status=new`, `filled_qty=0` open order다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-11-0231-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
