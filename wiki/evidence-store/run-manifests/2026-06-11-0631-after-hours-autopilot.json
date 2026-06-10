@@ -1,0 +1,264 @@
+{
+  "run_id": "2026-06-11-0631-after-hours-autopilot",
+  "created_at": "2026-06-10T21:35:44Z",
+  "data_cutoff_time": "2026-06-10T21:35:44Z",
+  "market_clock_checked_at": "2026-06-10T17:31:08.838700821-04:00",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "policy_id": "recommendation-policy-v1.11",
+  "policy_version": "v1.11",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "git_commit": "72b5f60b6a767141d3c1699efbe8b032d13cd199",
+  "prompt_file_sha": "sha256:scheduled-after-hours-0631-manual-codex",
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "risk_policy_version": "medium-risk-v1.2",
+  "schema_version": "1.3",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-11-0631-after-hours-autopilot.json",
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-06-11-0631-after-hours-autopilot-post-trade.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0631-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0631-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0631-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md"
+  ],
+  "data_manifest": {
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-11-0631-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-11-0631-after-hours-autopilot-research-mcp-preflight.json",
+    "after_hours_gate_evaluation": "wiki/evidence-store/sources/2026-06-11-0631-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "research_preflight": "wiki/evidence-store/sources/2026-06-11-0631-after-hours-autopilot-research-mcp-preflight.json",
+    "runtime_cross_checks": [
+      "scheduler_owned_alpaca_core_preflight.get_clock",
+      "scheduler_owned_alpaca_core_preflight.get_account_info",
+      "scheduler_owned_alpaca_core_preflight.get_all_positions",
+      "scheduler_owned_alpaca_core_preflight.get_orders_open",
+      "scheduler_owned_alpaca_core_preflight.get_account_activities(activity_types=FILL)",
+      "scheduler_owned_alpaca_core_preflight.get_watchlists",
+      "scheduler_owned_alpaca_core_preflight.get_asset",
+      "scheduler_owned_alpaca_core_preflight.get_stock_latest_quote(feed=iex)",
+      "runtime_alpaca_mcp.get_clock",
+      "runtime_alpaca_mcp.get_account_info",
+      "runtime_alpaca_mcp.get_all_positions",
+      "runtime_alpaca_mcp.get_orders(status=open)",
+      "runtime_alpaca_mcp.get_orders(status=all, after=2026-06-10T20:00:00Z)",
+      "runtime_alpaca_mcp.get_account_activities(activity_types=FILL, after=2026-06-10T20:00:00Z)",
+      "runtime_alpaca_mcp.get_watchlists",
+      "runtime_alpaca_mcp.get_stock_latest_quote(feed=iex)",
+      "runtime_alpaca_mcp.get_stock_latest_quote(feed=overnight)"
+    ]
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist_with_runtime_submit_boundary_cross_check",
+    "pre_mcp_shortlist": [
+      "SPY",
+      "QQQ",
+      "NOK",
+      "ORCL",
+      "IONQ",
+      "SMH",
+      "V",
+      "CRM"
+    ],
+    "final_candidates": [
+      "SPY",
+      "QQQ",
+      "NOK",
+      "ORCL",
+      "IONQ",
+      "SMH",
+      "V",
+      "CRM"
+    ],
+    "passed": true,
+    "gap_reason": "",
+    "status": "pass",
+    "source": "wiki/evidence-store/sources/2026-06-11-0631-after-hours-autopilot-alpaca-core-preflight.json",
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-06-11-0631-after-hours-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-06-11-0631-after-hours-autopilot-research-mcp-preflight.json"
+    ]
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "all_research_must_be_attempted": true,
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_submit": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T21:31:28Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0631-after-hours-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": "market_closed"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T21:11:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-10T21:11:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T21:11:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T21:11:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T21:11:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols."
+    }
+  ],
+  "recommendation_actionability": {
+    "status": "blocked_hard_gate",
+    "blocking_gates": [
+      "fresh_quote",
+      "risk_policy"
+    ],
+    "detail": "0631 scheduler-owned shortlist 8종목 중 SPY/QQQ만 spread는 after-hours cap 0.25% 이내였지만 각각 quote age 43.49분, 33.04분으로 5분 freshness cap을 넘겼고 1주 ask도 484.46 USD per-order cap을 초과했다. NOK은 spread 0.1494%로 정상 범위였지만 quote age 90.47분 stale이며 validation_lifecycle add-block이 유지됐고, 나머지는 spread 또는 two-sided quote gate에서 탈락했다."
+  },
+  "first_blocking_gate": "fresh_quote",
+  "decision_summary": {
+    "action": "no_submit",
+    "reason": "shortlist 8종목 중 SPY/QQQ만 spread는 양호했지만 모두 after-hours 5분 freshness cap을 넘겼고 1주 ask가 per-order cap을 초과했으며, 나머지는 stale/wide-spread/bid-only quote 또는 validation_lifecycle add-block에 막혔다",
+    "eligible_sell_trim_found": false,
+    "eligible_buy_fallback_found": false,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "separate_session_budget_remaining": 2
+  },
+  "reconciliation": {
+    "submit_attempted": false,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "client_order_ids_checked": [],
+    "new_fills_detected": 0,
+    "position_delta": "none",
+    "note": "No submit path. Scheduler-owned 0631 Alpaca core preflight confirmed 0 open orders and provided the source-of-record account/position/asset/quote rows; runtime Alpaca MCP cross-checks matched closed market, ACTIVE account, 33 positions, 0 open orders, 0 same-session orders since 2026-06-10T20:00:00Z, 0 same-session fills, and 0 watchlists."
+  },
+  "risk_check_result": {
+    "status": "PASS",
+    "path": "wiki/trade-ledger/orders/2026-06-11-0631-after-hours-autopilot.json",
+    "order_count": 0,
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 43601.1975,
+      "max_factor_value": 48445.775,
+      "max_invested": 92046.9725,
+      "max_speculative_value": 11626.986,
+      "max_theme_value": 33912.042499999996,
+      "max_ticker_value": 14533.7325,
+      "min_cash": 4844.5775,
+      "policy_version": "medium-risk-v1.2",
+      "post_cash": 30865.37,
+      "post_invested": 66026.1759,
+      "review_backlog_pending_1d_count": 14,
+      "sell_notional": 0.0,
+      "speculative_value": 3880.02,
+      "target_max_cash": 9689.155,
+      "target_min_invested": 87202.395
+    }
+  }
+}
