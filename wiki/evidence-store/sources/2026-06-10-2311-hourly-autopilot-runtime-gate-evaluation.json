@@ -1,0 +1,122 @@
+{
+  "run_id": "2026-06-10-2311-hourly-autopilot",
+  "recorded_at": "2026-06-10T14:15:10Z",
+  "paper": true,
+  "market_session": "regular",
+  "core_preflight_hard_gate": {
+    "status": "pass",
+    "checks": {
+      "clock": true,
+      "market_open": true,
+      "account": true,
+      "positions": true,
+      "open_orders": true,
+      "recent_activities": true,
+      "quotes": true
+    },
+    "first_blocking_gate": "",
+    "gap_category": "not_applicable",
+    "gap_reason": "",
+    "max_retry_count": 2
+  },
+  "stale_cleanup": {
+    "run_id": "2026-06-10-2311-hourly-autopilot",
+    "created_at": "2026-06-10T14:11:06Z",
+    "paper": true,
+    "source": "scheduler Alpaca MCP stale autopilot order cleanup",
+    "alpaca_mcp_only": true,
+    "dry_run": false,
+    "policy": {
+      "max_open_order_age_minutes": 30.0,
+      "cancel_stale_unfilled_orders": true,
+      "client_order_id_prefix": "hourly-"
+    },
+    "clock": {
+      "is_open": true,
+      "timestamp": "2026-06-10T10:11:07.915045508-04:00",
+      "next_open": "2026-06-11T09:30:00-04:00",
+      "next_close": "2026-06-10T16:00:00-04:00"
+    },
+    "initial_open_orders": [],
+    "stale_candidates": [],
+    "cancel_attempts": [],
+    "remaining_open_orders": [],
+    "status": "pass",
+    "gap_category": "not_applicable",
+    "gap_reason": ""
+  },
+  "live_checks": {
+    "clock": {
+      "timestamp": "2026-06-10T10:13:52.694604269-04:00",
+      "is_open": true
+    },
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 99158.77,
+      "cash": 31996.64,
+      "buying_power": 300490.35
+    },
+    "open_orders": {
+      "count": 0
+    },
+    "same_day_fills": [
+      {"symbol": "AVGO", "side": "sell", "qty": 1, "price": 373.25, "transaction_time": "2026-06-10T14:01:38.378996Z"},
+      {"symbol": "AVGO", "side": "sell", "qty": 1, "price": 373.25, "transaction_time": "2026-06-10T14:01:38.109735Z"},
+      {"symbol": "WMT", "side": "buy", "qty": 1, "price": 118.49, "transaction_time": "2026-06-10T13:43:16.375781Z"},
+      {"symbol": "AAPL", "side": "buy", "qty": 1, "price": 291.49, "transaction_time": "2026-06-10T01:35:02.497252Z"},
+      {"symbol": "AAPL", "side": "buy", "qty": 1, "price": 291.4, "transaction_time": "2026-06-10T01:17:49.6859Z"}
+    ],
+    "candidate_quotes": {
+      "RGTI": {"bid": 20.38, "ask": 20.39, "spread_pct": 0.0491, "timestamp": "2026-06-10T14:13:54.683634699Z"},
+      "AVGO": {"bid": 374.5, "ask": 375.61, "spread_pct": 0.2960, "timestamp": "2026-06-10T14:13:54.193838295Z"},
+      "SO": {"bid": 93.14, "ask": 93.25, "spread_pct": 0.1180, "timestamp": "2026-06-10T14:13:54.168139768Z"},
+      "BAC": {"bid": 54.92, "ask": 54.94, "spread_pct": 0.0364, "timestamp": "2026-06-10T14:13:54.572741202Z"},
+      "PFE": {"bid": 25.66, "ask": 25.67, "spread_pct": 0.0390, "timestamp": "2026-06-10T14:13:54.226373845Z"},
+      "WMT": {"bid": 119.02, "ask": 119.06, "spread_pct": 0.0336, "timestamp": "2026-06-10T14:13:54.687295648Z"},
+      "SPY": {"bid": 737.08, "ask": 737.27, "spread_pct": 0.0258, "timestamp": "2026-06-10T14:13:54.735999127Z"},
+      "QQQ": {"bid": 707.76, "ask": 708.44, "spread_pct": 0.0960, "timestamp": "2026-06-10T14:13:54.648632545Z"},
+      "NVDA": {"bid": 205.94, "ask": 206.0, "spread_pct": 0.0291, "timestamp": "2026-06-10T14:13:54.721925415Z"},
+      "AAPL": {"bid": 290.84, "ask": 290.91, "spread_pct": 0.0241, "timestamp": "2026-06-10T14:13:54.734679063Z"}
+    }
+  },
+  "candidate_evaluation": {
+    "sell_first": [
+      {"symbol": "RGTI", "decision": "selected_trim", "reason": "speculative loss-control trim gate passes, spread 0.0491% within cap, 25% trim executable, no same-day sell duplicate"},
+      {"symbol": "AVGO", "decision": "blocked_duplicate_same_day", "reason": "2251 cycle same-day filled trim exists so duplicate symbol/side discipline blocks additional sell"},
+      {"symbol": "SO", "decision": "blocked_metric_gap", "reason": "spread normalized but trim decision-grade metric gap remains"}
+    ],
+    "buy_fallback": [
+      {"symbol": "BAC", "decision": "watch_fallback", "reason": "eligible buy fallback이지만 eligible RGTI trim이 우선"},
+      {"symbol": "PFE", "decision": "watch_fallback", "reason": "eligible buy fallback이지만 eligible RGTI trim이 우선"},
+      {"symbol": "WMT", "decision": "blocked_duplicate_same_day", "reason": "same-day WMT buy fill already exists at 2231 cycle"},
+      {"symbol": "SPY", "decision": "blocked_floor_cap", "reason": "1-share ask exceeds validation floor per-order notional cap"},
+      {"symbol": "QQQ", "decision": "blocked_floor_cap", "reason": "1-share ask exceeds validation floor per-order notional cap"}
+    ]
+  },
+  "selected_order": {
+    "symbol": "RGTI",
+    "side": "sell",
+    "qty": 17,
+    "limit_price": 20.38,
+    "client_order_id": "hourly-20260610-2311-sell-rgti"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-2311-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-10-2311-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-2311-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-2311-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/BAC.md",
+    "wiki/research-notes/tickers/PFE.md",
+    "wiki/research-notes/tickers/WMT.md",
+    "wiki/research-notes/tickers/SPY.md",
+    "wiki/research-notes/tickers/QQQ.md"
+  ]
+}

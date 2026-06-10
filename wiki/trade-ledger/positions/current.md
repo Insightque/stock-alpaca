@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-10 23:01 KST_
+_Last updated: 2026-06-10 23:15 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-10-2311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `RGTI` sell 17주 @ `20.38 USD`
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `33` positions 유지. `RGTI`는 `68주 -> 51주`, `avg_entry_price=25.569583`, `qty_available=51`로 감소했다.
+- Recent reconciliation scope: scheduler-owned `2311` stale cleanup/core/research preflight를 우선 사용했고 live Alpaca MCP submit-boundary check에서 regular market open, ACTIVE account, open orders 0건, same-day fills `AVGO/AVGO/WMT/AAPL/AAPL`, `RGTI` live quote `20.38/20.39`를 재확인했다. sell-first 재평가에서는 `RGTI`가 speculative loss-control trim trigger, 큰 미실현 손실, spread `0.0491%` 조건을 모두 만족했고 `AVGO`는 same-day sell duplicate, `SO`는 trim metric gap으로 blocked였다. direct Alpaca MCP submit 뒤 immediate same-order-id reconciliation 기준 `order_id=b9253931-4e50-45ec-a30b-972a4a76903e`, `filled_avg_price=20.38 USD`로 즉시 전량 체결됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-06-10-2311-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

@@ -53,6 +53,7 @@ RGTI는 핵심 포트폴리오 보유 종목이라기보다 고모멘텀 이벤�
 - 2026-05-22: paper 매수 120주가 평균 25.569584 USD에 체결됐다.
 - 2026-06-08: scheduled hourly-autopilot에서 regular-session trim 30주가 `21.48 USD`에 체결됐다.
 - 2026-06-09: scheduled hourly-autopilot에서 regular-session trim 22주가 `22.298182 USD`에 체결됐다.
+- 2026-06-10 23:15 KST: scheduled hourly-autopilot에서 speculative loss-control trim 17주가 `20.38 USD`에 체결됐다.
 - 주문/체결 출처: [[2026-05-22-paper-order-submission]]
 
 ## 2026-05-25 현재 추천 메모
@@ -81,3 +82,9 @@ RGTI는 오늘 신규 매수 후보에서 제외했다. 2026-05-22 종가 26.41 
 `2026-06-08 ET` trim 30주의 다음 regular close는 `19.69 USD`로 fill `21.48 USD`보다 `-8.33%` 낮았다. hindsight 기준으로도 de-risking timing이 더 나빠지기 전에 실행된 셈이다. 새로 `2026-06-09 ET` trim 22주가 `22.298182 USD`에 체결돼 잔여 수량은 `68주`가 됐고, current `19.75 USD` 기준 포지션 전체 미실현은 여전히 `-22.76%`라 추가 defensive monitor를 유지한다.
 
 출처: [[2026-06-10-portfolio-review]], [[2026-06-10-0622-analyst-review-cycle-sources]]
+
+### 2026-06-10 23:15 KST hourly-autopilot trim
+
+`2311` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight와 live Alpaca MCP submit-boundary check를 함께 사용했다. `RGTI`는 live IEX quote `20.38/20.39`, spread `0.0491%`, held qty `68`, speculative loss-control trim trigger, 큰 미실현 손실, active/tradable NASDAQ stock 조건에서 25% trim 경로를 통과했고 `client_order_id=hourly-20260610-2311-sell-rgti`로 17주 sell을 제출했다. same order id reconciliation 기준 주문은 `2026-06-10T14:14:43.88079Z`에 `20.38 USD`로 전량 체결됐고 보유수량은 `68주 -> 51주`로 감소했다. 해석은 `speculative sleeve staged de-risking 지속`이다.
+
+출처: [[2026-06-10-2311-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-10-2311-hourly-autopilot-post-trade.json`
