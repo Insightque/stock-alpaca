@@ -1,0 +1,216 @@
+{
+  "run_id": "2026-06-10-2031-after-hours-autopilot",
+  "created_at": "2026-06-10T11:33:51Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "QQQ",
+    "SMH",
+    "SPY",
+    "JNJ",
+    "BA",
+    "AAPL",
+    "INTC",
+    "WMT"
+  ],
+  "runtime_alpaca_mcp": {
+    "used_scheduler_preflight": true,
+    "source_of_record": "wiki/evidence-store/sources/2026-06-10-2031-after-hours-autopilot-alpaca-core-preflight.json",
+    "cross_checks": {
+      "scheduler_preflight.get_clock": {
+        "is_open": false,
+        "next_open": "2026-06-10T09:30:00-04:00",
+        "timestamp": "2026-06-10T07:31:08.823511342-04:00"
+      },
+      "scheduler_preflight.get_account_info": {
+        "status": "ACTIVE",
+        "portfolio_value": 97684.43,
+        "cash": 31368.63,
+        "buying_power": 295873.22,
+        "long_market_value": 66315.8,
+        "currency": "USD"
+      },
+      "scheduler_preflight.get_all_positions": {
+        "count": 33
+      },
+      "scheduler_preflight.get_orders(status=open)": {
+        "count": 0
+      },
+      "scheduler_preflight.get_account_activities": {
+        "count": 20
+      },
+      "scheduler_preflight.get_asset": {
+        "count": 62
+      },
+      "scheduler_preflight.get_stock_latest_quote(feed=iex)": {
+        "symbols_requested": 62,
+        "symbols_passed": 62
+      },
+      "scheduler_preflight.get_stock_snapshot(feed=iex)": {
+        "symbols_requested": 62,
+        "symbols_passed": 62
+      },
+      "runtime.get_clock": {
+        "is_open": false,
+        "next_open": "2026-06-10T09:30:00-04:00",
+        "timestamp": "2026-06-10T07:32:27.409097465-04:00"
+      },
+      "runtime.get_account_info": {
+        "status": "ACTIVE",
+        "portfolio_value": 97650.31,
+        "cash": 31368.63,
+        "buying_power": 295788.82,
+        "long_market_value": 66281.68,
+        "currency": "USD"
+      },
+      "runtime.get_all_positions": {
+        "count": 33
+      },
+      "runtime.get_orders(status=open)": {
+        "count": 0
+      },
+      "runtime.get_orders(status=all, after=2026-06-09T20:00:00Z)": {
+        "count": 2,
+        "client_order_ids": [
+          "ah-20260610-1031-aapl-buy-01",
+          "ah-20260610-1011-aapl-buy-01"
+        ]
+      },
+      "runtime.get_account_activities(activity_types=FILL, after=2026-06-09T20:00:00Z)": {
+        "count": 2,
+        "symbols": [
+          "AAPL",
+          "AAPL"
+        ]
+      },
+      "runtime.get_watchlists": {
+        "count": 0
+      },
+      "reconciled_client_order_ids": [
+        {
+          "client_order_id": "ah-20260610-1011-aapl-buy-01",
+          "symbol": "AAPL",
+          "status": "filled",
+          "filled_qty": 1,
+          "filled_avg_price": 291.4,
+          "extended_hours": true
+        },
+        {
+          "client_order_id": "ah-20260610-1031-aapl-buy-01",
+          "symbol": "AAPL",
+          "status": "filled",
+          "filled_qty": 1,
+          "filled_avg_price": 291.49,
+          "extended_hours": true
+        }
+      ]
+    },
+    "note": "2031 Alpaca core preflight first_blocking_gate=market_closed was treated as expected nonblocking for after-hours. Scheduler-owned 2031 clock/account/position/open-order/asset/quote/spread rows remained the source of record, and runtime Alpaca MCP cross-checks reconfirmed regular market closed, ACTIVE account, positions 33, open orders 0, same-session after-hours orders 2, same-session fills 2, watchlists 0, and the same-session AAPL client_order_ids remained filled."
+  },
+  "submit_attempted": false,
+  "orders_submitted": [],
+  "review_backlog_throttle": {
+    "pending_1d_count": 9,
+    "pending_5d_count": 13,
+    "pending_20d_count": 1,
+    "status": "monitor_only_budget_blocked"
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 9,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1,
+    "risk_recomputed_after_partial_fill": true,
+    "cash_deployment_blocker": "after_hours_session_budget_exhausted"
+  },
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass",
+      "detail": "ALPACA_PAPER_TRADE=true confirmed via workflow environment and scheduler-owned paper preflight"
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed",
+      "detail": "regular market remained closed in scheduler-owned 2031 preflight and runtime Alpaca MCP clock cross-checks"
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass",
+      "detail": "session=after_hours and extended-hours policy profile retained"
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_runtime_core_and_scheduler_preflight",
+      "detail": "2031 scheduler-owned core preflight first_blocking_gate=market_closed treated as expected nonblocking; passing account, positions, orders, asset, quote, and spread rows stayed usable and runtime Alpaca MCP revalidated clock/account/positions/orders/activities/watchlists/client_order_ids"
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass",
+      "detail": "after_hours_policy artifact tag, review bucket, order id prefix, and allowed_sides buy/sell retained"
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "block_after_hours_session_budget_exhausted",
+      "detail": "after_hours_new_orders_submitted_today=2 equals max_new_orders_per_session=2 before submit; regular validation count was not reused"
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass",
+      "detail": "broad universe 62 symbols with SPY/QQQ included and scheduler-owned research shortlist 8 symbols"
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass",
+      "detail": "sec-edgar/fred/firecrawl/yahoo-finance pass; alpha-vantage empty_response did not block because core and minimum research confirmations passed"
+    },
+    {
+      "gate": "risk_policy",
+      "status": "pass_empty_order_plan",
+      "detail": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-06-10-2031-after-hours-autopilot.json PASS with expected orders is empty warning"
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "not_actionable_budget_exhausted_before_submit_path",
+      "detail": "submit path stopped at separate session budget before quote selection"
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "not_actionable_budget_exhausted_before_submit_path",
+      "detail": "submit path stopped at separate session budget before spread selection"
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "not_applicable_no_order",
+      "detail": "no order was planned after budget block"
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "not_applicable_no_submit",
+      "detail": "no new client_order_id and no place_stock_order call were made"
+    }
+  ],
+  "candidate_notes": [
+    "This cycle did not evaluate a new executable buy or sell candidate because the separate after-hours session budget remained exhausted by two earlier AAPL fills.",
+    "Scheduler-owned 2031 research preflight still preserved the usual shortlist QQQ/SMH/SPY/JNJ/BA/AAPL/INTC/WMT for universe and MCP strict validation.",
+    "Scheduler-owned 2031 preflight already supplied passing asset/quote/spread rows for the 8-symbol shortlist, but that evidence remained secondary because the separate_after_hours_order_budget hard gate blocked both buy and sell paths first.",
+    "No pre-submit gate summary was emitted because no place_stock_order call was eligible."
+  ],
+  "block_reasons": [
+    "after_hours_new_orders_submitted_today=2 equals after_hours_policy.max_new_orders_per_session=2",
+    "prior same-session client_order_ids: ah-20260610-1011-aapl-buy-01, ah-20260610-1031-aapl-buy-01"
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-2031-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-2031-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-10-2031-after-hours-autopilot.json"
+  ]
+}
