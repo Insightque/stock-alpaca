@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-10 23:54 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-11 00:58 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -48,10 +48,11 @@
 - [[CVX]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기.
 - [[GOOGL]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기; 2026-06-05 02:21 KST hourly-autopilot에서 1주 추가 validation buy 체결.
 - [[SLB]] - 2026-05-29 validation add 5D 회고 양호; 2026-06-05 00:11 KST와 2026-06-06 01:15 KST hourly-autopilot에서 각각 1주 추가 validation buy 체결.
-- [[COP]] - 2026-05-28 validation buy 5D 회고 양호. 2026-06-06 01:37 KST hourly-autopilot에서 1주 추가 validation buy가 positions reconciliation 기준 체결로 기록됐다.
+- [[COP]] - 2026-05-28 validation buy 5D 회고 양호. 2026-06-06 01:37 KST hourly-autopilot에서 1주 추가 validation buy가 positions reconciliation 기준 체결로 기록됐고, 2026-06-11 00:58 KST hourly-autopilot에서는 `121.20 USD` day limit buy 1주가 `filled_avg_price=121.05 USD`로 즉시 체결됐다.
 
 ## Current Runs
 
+- [[2026-06-11-0051-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0051` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca MCP `get_clock/get_account_info/get_orders(status=open)/get_all_positions/get_account_activities(activity_types=FILL, after=2026-06-10)/get_watchlists/get_stock_latest_quote(feed=iex)/get_asset(COP)`로 regular market open, ACTIVE account, open orders `0`, same-day fills `JNJ/XOM/PFE/BAC/RGTI/AVGO/WMT/AAPL/AAPL`, positions `33`을 재확인했다. sell-first에서는 `AVGO`와 `RGTI`가 same-day sell duplicate, `SO`가 trim metric gap으로 blocked였고, buy fallback에서는 `SPY/QQQ` per-order cap과 `BAC/PFE/WMT/XOM/JNJ` same-day buy duplicate가 남아 `COP`가 선택됐다. `COP` buy 1주가 `121.20 USD` day limit, `client_order_id=hourly-20260611-0051-buy-cop`로 제출된 뒤 `filled_avg_price=121.05 USD`로 즉시 체결됐다.
 - [[2026-06-11-0031-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0031` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca MCP `get_clock/get_account_info/get_orders(status=open)/get_all_positions/get_account_activities(activity_types=FILL, after=2026-06-10)/get_watchlists/get_stock_latest_quote/get_asset(JNJ)`로 regular market open, ACTIVE account, open orders `0`, same-day fills `XOM/PFE/BAC/RGTI/AVGO/WMT/AAPL/AAPL`, positions `33`을 재확인했다. sell-first에서는 `AVGO`와 `RGTI`가 same-day sell duplicate, `SO`가 trim metric gap으로 blocked였고, buy fallback에서는 `SPY/QQQ` per-order cap과 `BAC/WMT/XOM` same-day buy duplicate가 남아 `JNJ`가 선택됐다. `JNJ` buy 1주가 `239.35 USD` day limit, `client_order_id=hourly-20260611-0031-buy-jnj`로 제출된 뒤 `filled_avg_price=239.23 USD`로 즉시 체결됐다.
 - [[2026-06-11-0011-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0011` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca MCP `get_clock/get_account_info/get_orders(status=open)/get_all_positions/get_account_activities(activity_types=FILL, after=2026-06-10)/get_watchlists/get_stock_latest_quote/get_asset(XOM)`로 regular market open, ACTIVE account, open orders `0`, same-day fills `PFE/BAC/RGTI/AVGO/WMT/AAPL/AAPL`, positions `33`을 재확인했다. sell-first에서는 `AVGO`와 `RGTI`가 same-day sell duplicate, `SO`가 trim metric gap으로 blocked였고, buy fallback에서는 `SPY/QQQ` per-order cap과 `COP` spread fail이 남아 `XOM`이 선택됐다. `XOM` buy 1주가 `151.66 USD` day limit, `client_order_id=hourly-20260611-0011-buy-xom`으로 제출된 뒤 `filled_avg_price=151.41 USD`로 즉시 체결됐다.
 - [[2026-06-10-2351-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2351` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca MCP `get_clock/get_account_info/get_orders(status=open)/get_all_positions/get_account_activities(activity_types=FILL, after=2026-06-10)/get_watchlists/get_stock_latest_quote`로 regular market open, ACTIVE account, open orders `0`, same-day fills `BAC/RGTI/AVGO/WMT/AAPL/AAPL`, positions `33`을 재확인했다. sell-first에서는 `RGTI`와 `AVGO`가 same-day sell duplicate, `SO`가 trim metric gap으로 blocked였고, buy fallback에서는 `BAC/WMT` same-day duplicate와 `SPY/QQQ` per-order cap 초과가 남아 `PFE`가 선택됐다. `PFE` buy 1주가 `25.72 USD` day limit, `client_order_id=hourly-20260610-2351-buy-pfe`로 제출된 뒤 `filled_avg_price=25.70 USD`로 즉시 체결됐다.

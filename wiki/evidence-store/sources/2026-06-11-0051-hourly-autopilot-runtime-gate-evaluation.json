@@ -1,0 +1,147 @@
+{
+  "run_id": "2026-06-11-0051-hourly-autopilot",
+  "created_at": "2026-06-10T15:56:30Z",
+  "paper": true,
+  "session": "regular",
+  "scheduler_sources": [
+    "wiki/evidence-store/sources/2026-06-11-0051-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-0051-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0051-hourly-autopilot-research-mcp-preflight.json"
+  ],
+  "live_alpaca_checks": {
+    "clock": {
+      "outcome": "pass",
+      "timestamp": "2026-06-10T11:53:09.541387668-04:00",
+      "is_open": true
+    },
+    "account": {
+      "outcome": "pass",
+      "status": "ACTIVE",
+      "portfolio_value": 97491.36,
+      "cash": 31871.99,
+      "buying_power": 296037.86
+    },
+    "open_orders": {
+      "outcome": "pass",
+      "count": 0
+    },
+    "positions": {
+      "outcome": "pass",
+      "count": 33
+    },
+    "recent_fills": {
+      "outcome": "pass",
+      "symbols": [
+        "JNJ",
+        "XOM",
+        "PFE",
+        "BAC",
+        "RGTI",
+        "AVGO",
+        "WMT",
+        "AAPL",
+        "AAPL"
+      ]
+    },
+    "watchlists": {
+      "outcome": "pass",
+      "count": 0
+    }
+  },
+  "candidate_quotes": {
+    "AVGO": {
+      "bid": 371.0,
+      "ask": 375.25,
+      "spread_pct": 1.1326,
+      "measured_at": "2026-06-10T15:53:38.594299258Z",
+      "status": "blocked_duplicate_same_day_sell"
+    },
+    "RGTI": {
+      "bid": 19.95,
+      "ask": 19.97,
+      "spread_pct": 0.1002,
+      "measured_at": "2026-06-10T15:53:39.478994605Z",
+      "status": "blocked_duplicate_same_day_sell"
+    },
+    "SO": {
+      "bid": 93.88,
+      "ask": 93.91,
+      "spread_pct": 0.0319,
+      "measured_at": "2026-06-10T15:53:38.737000243Z",
+      "status": "blocked_metric_gap"
+    },
+    "COP": {
+      "bid": 121.15,
+      "ask": 121.2,
+      "spread_pct": 0.0413,
+      "measured_at": "2026-06-10T15:53:39.446952738Z",
+      "status": "selected_buy"
+    },
+    "SLB": {
+      "bid": 56.28,
+      "ask": 56.29,
+      "spread_pct": 0.0178,
+      "measured_at": "2026-06-10T15:53:39.366872188Z",
+      "status": "backup_buy"
+    },
+    "NEE": {
+      "bid": 84.66,
+      "ask": 84.72,
+      "spread_pct": 0.0708,
+      "measured_at": "2026-06-10T15:53:38.405495974Z",
+      "status": "lower_rank_backup"
+    },
+    "SPY": {
+      "bid": 730.28,
+      "ask": 730.32,
+      "spread_pct": 0.0055,
+      "measured_at": "2026-06-10T15:53:39.488644260Z",
+      "status": "blocked_floor_cap"
+    },
+    "QQQ": {
+      "bid": 698.78,
+      "ask": 698.95,
+      "spread_pct": 0.0243,
+      "measured_at": "2026-06-10T15:53:39.487489152Z",
+      "status": "blocked_floor_cap"
+    },
+    "NVDA": {
+      "bid": 202.61,
+      "ask": 202.69,
+      "spread_pct": 0.0395,
+      "measured_at": "2026-06-10T15:53:39.487913632Z",
+      "status": "same_cluster_lower_rank"
+    },
+    "TSLA": {
+      "bid": 384.19,
+      "ask": 384.41,
+      "spread_pct": 0.0572,
+      "measured_at": "2026-06-10T15:53:39.477685333Z",
+      "status": "speculative_lower_rank"
+    }
+  },
+  "selected_candidate": {
+    "symbol": "COP",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 121.2,
+    "quote_age_minutes": 2.85,
+    "spread_pct": 0.0413,
+    "asset_check": "pass",
+    "duplicate_check": "pass",
+    "review_backlog_slot_count": 1
+  },
+  "first_blocking_gate": "",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0051-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-0051-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0051-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0051-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/research-notes/tickers/COP.md"
+  ]
+}

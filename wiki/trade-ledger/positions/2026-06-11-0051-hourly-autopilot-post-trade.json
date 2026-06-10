@@ -1,0 +1,58 @@
+{
+  "run_id": "2026-06-11-0051-hourly-autopilot",
+  "created_at": "2026-06-10T15:58:03Z",
+  "paper": true,
+  "source": "live Alpaca MCP post-trade reconciliation",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0051-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-11-0051-hourly-autopilot.json",
+    "wiki/evidence-store/run-manifests/2026-06-11-0051-hourly-autopilot.json",
+    "wiki/evidence-store/sources/2026-06-11-0051-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-0051-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0051-hourly-autopilot-research-mcp-preflight.json"
+  ],
+  "account": {
+    "status": "ACTIVE",
+    "cash": 31750.94,
+    "portfolio_value": 97962.15,
+    "buying_power": 297081.37,
+    "position_market_value": 66211.21
+  },
+  "order": {
+    "order_id": "998a7e94-7e3c-4737-bdd6-2bdc37dccfea",
+    "client_order_id": "hourly-20260611-0051-buy-cop",
+    "symbol": "COP",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 121.2,
+    "status": "filled",
+    "filled_qty": 1,
+    "filled_avg_price": 121.05,
+    "submitted_at": "2026-06-10T15:57:59.954522414Z",
+    "filled_at": "2026-06-10T15:58:00.532764086Z"
+  },
+  "open_orders": [],
+  "positions_count": 33,
+  "touched_positions": {
+    "COP": {
+      "qty_before": 4,
+      "qty_after": 5,
+      "avg_entry_price_after": 117.728,
+      "qty_available_after": 5,
+      "market_value_after": 605.05,
+      "current_price_after": 121.01
+    }
+  },
+  "same_day_fills": [
+    "COP",
+    "JNJ",
+    "XOM",
+    "PFE",
+    "BAC",
+    "RGTI",
+    "AVGO",
+    "WMT",
+    "AAPL",
+    "AAPL"
+  ]
+}

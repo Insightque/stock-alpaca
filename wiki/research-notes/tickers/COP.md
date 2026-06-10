@@ -5,6 +5,12 @@ asset_type: stock
 
 # COP
 
+## 2026-06-11 00:58 KST hourly-autopilot
+
+`COP` 1주 regular-session day limit buy가 `121.20 USD` limit으로 제출됐고, direct Alpaca MCP reconciliation 기준 `client_order_id=hourly-20260611-0051-buy-cop`, `order_id=998a7e94-7e3c-4737-bdd6-2bdc37dccfea`가 `2026-06-10T15:58:00.532764086Z`에 `121.05 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0051` stale cleanup/core/research preflight 재사용, regular market open과 open orders `0`건 재확인, `AVGO/RGTI` same-day sell duplicate 및 `SO` trim metric gap 이후에도 learning_trade_directive가 최소 1건 validation order를 요구한다는 점, 그리고 `COP`가 2026-06-09 analyst review 기준 `2026-06-05 ET` fill 1D `+1.28%`, `SPY` 대비 `+1.04%p`, live IEX quote `121.15/121.20` spread `0.0413%`, same-day duplicate/open-order conflict 부재를 보여 existing energy/value sleeve add로 가장 executable했다는 점이다. 체결 후 보유수량은 `4주 -> 5주`, 평균단가는 `117.728 USD`로 갱신됐다.
+
+출처: [[2026-06-11-0051-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-11-0051-hourly-autopilot-post-trade.json`
+
 ## 2026-06-10 03:01 KST hourly-autopilot
 
 `COP` 1주 regular-session day limit buy가 `116.14 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260610-0251-buy-cop`, `order_id=34da84fa-1653-4852-a955-6a1e0efd3fa8`가 생성된 뒤 same client id reconciliation에서 `2026-06-09T18:00:39.436794108Z`에 `116.05 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0251` stale cleanup/core/research preflight와 strict universe/MCP/risk gate 통과, `AVGO/RGTI` sell duplicate 및 `SO` trim metric gap 이후에도 learning_trade_directive가 최소 1건 validation order를 요구한다는 점, 그리고 `COP`가 2026-06-09 analyst review 기준 `2026-06-05 ET` fill 1D `+1.28%`, `SPY` 대비 `+1.04%p`, live IEX quote `116.09/116.14` spread `0.0431%`, same-day duplicate/open-order conflict 부재를 보여 energy/value diversifier fallback으로 가장 executable했다는 점이다.
