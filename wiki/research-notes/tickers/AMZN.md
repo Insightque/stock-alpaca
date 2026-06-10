@@ -5,6 +5,12 @@ asset_type: stock
 
 # AMZN
 
+## 2026-06-11 01:41 KST hourly autopilot
+
+`AMZN` 1주 regular-session day limit buy가 `239.33 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260611-0131-buy-amzn`, `order_id=d23787d5-be1a-4b35-a08e-b43670b24265`가 생성됐다. same client/order id reconciliation 시점 상태는 `new` open order이며 `filled_qty=0`이다. 근거는 scheduler-owned `0131` stale cleanup/core/research preflight와 live Alpaca MCP submit-boundary check 기준 paper mode/market open/universe strict/MCP strict/risk strict 모두 통과했고, sell-first 재평가에서 `AVGO/RGTI` same-day sell duplicate와 `SO` trim metric gap 이후에도 learning_trade_directive가 최소 1건 validation order를 요구한다는 점, 그리고 `AMZN`이 same-day duplicate/open-order conflict 없이 live quote `239.00/239.33` spread `0.1379%`, research preflight coverage 유지, mega-cap AI/cloud different-cluster fallback 역할을 제공했다는 점이다.
+
+출처: [[2026-06-11-0131-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-11-0131-hourly-autopilot-post-trade.json`
+
 ## 2026-06-10 03:38 KST hourly autopilot
 
 `AMZN` 1주 regular-session day limit buy가 `245.48 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260610-0331-buy-amzn`, `order_id=7a783061-253f-4c53-8c0e-377e194c469e`가 생성된 뒤 same client id reconciliation에서 `2026-06-09T18:38:03.133912338Z`에 `245.40 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0331` stale cleanup/core/research preflight와 strict universe/MCP/risk gate 통과, fresh `NVDA` open buy가 같은 AI cluster 추가만 차단하고 다른 cluster buy는 막지 않았다는 점, `AVGO/RGTI` sell duplicate 및 `SO` trim metric gap 이후에도 learning_trade_directive가 최소 1건 validation order를 요구한다는 점, 그리고 `AMZN`이 preflight research coverage를 유지하면서 same-day duplicate/open-order conflict 없이 live quote `245.43/245.48` spread `0.0204%`를 보여 different-cluster mega-cap AI/cloud fallback으로 가장 executable했다는 점이다.

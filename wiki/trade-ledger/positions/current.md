@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-11 01:19 KST_
+_Last updated: 2026-06-11 01:41 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-11-0131-hourly-autopilot]]
+- Open/new: `AMZN` buy 1주 @ `239.33 USD` (`status=new`)
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `33` positions 유지. `AMZN`은 아직 `5주`, `avg_entry_price=262.386`, `qty_available=5`로 unchanged이며 새 open order는 `AMZN` 1건이다.
+- Recent reconciliation scope: scheduler-owned `0131` stale cleanup/core/research preflight를 우선 사용했고 live Alpaca MCP submit-boundary check에서 regular market open, ACTIVE account, open orders 0건, same-day fills `SLB/COP/JNJ/XOM/PFE/BAC/RGTI/AVGO/WMT/AAPL/AAPL`, `AMZN` quote `239.00/239.33`, active tradable NASDAQ stock을 재확인했다. sell-first 재평가에서는 `AVGO`와 `RGTI`가 same-day sell duplicate, `SO`가 trim metric gap으로 blocked였고, `SPY/QQQ`는 per-order cap, `COP/JNJ/XOM/PFE/BAC/WMT/SLB`는 same-day buy duplicate가 남았다. `CVX`는 spread는 정상화됐지만 same-day energy sleeve buy 누적으로 different-cluster fallback보다 우선순위가 낮아졌고, `AMZN`이 research-covered mega-cap AI/cloud floor-size buy로 선택됐다. direct Alpaca MCP submit 뒤 same client/order id reconciliation 기준 `order_id=d23787d5-be1a-4b35-a08e-b43670b24265`, `status=new`, `filled_qty=0` open order다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-11-0131-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

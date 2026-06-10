@@ -1,0 +1,110 @@
+{
+  "run_id": "2026-06-11-0131-hourly-autopilot",
+  "created_at": "2026-06-10T16:37:20Z",
+  "paper": true,
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-10T12:37:07.385153891-04:00",
+    "next_open": "2026-06-11T09:30:00-04:00",
+    "next_close": "2026-06-10T16:00:00-04:00",
+    "session": "regular"
+  },
+  "account_snapshot": {
+    "portfolio_value": 97669.46,
+    "cash": 31694.49,
+    "buying_power": 296306.65,
+    "currency": "USD",
+    "daily_realized_loss": 0.0
+  },
+  "open_orders": [],
+  "same_day_fills": [
+    "SLB",
+    "COP",
+    "JNJ",
+    "XOM",
+    "PFE",
+    "BAC",
+    "RGTI",
+    "AVGO",
+    "WMT",
+    "AAPL",
+    "AAPL"
+  ],
+  "watchlists_count": 0,
+  "candidate_quotes": {
+    "AMZN": {
+      "bid": 239.0,
+      "ask": 239.33,
+      "spread_pct": 0.1379,
+      "quote_timestamp": "2026-06-10T16:36:24.000625882Z"
+    },
+    "CVX": {
+      "bid": 191.57,
+      "ask": 192.0,
+      "spread_pct": 0.224,
+      "quote_timestamp": "2026-06-10T16:34:18.715528039Z"
+    },
+    "GOOGL": {
+      "bid": 358.17,
+      "ask": 358.25,
+      "spread_pct": 0.0223,
+      "quote_timestamp": "2026-06-10T16:34:18.725656690Z"
+    },
+    "NKE": {
+      "bid": 44.23,
+      "ask": 44.24,
+      "spread_pct": 0.0226,
+      "quote_timestamp": "2026-06-10T16:34:18.684277278Z"
+    },
+    "SLB": {
+      "bid": 56.38,
+      "ask": 56.39,
+      "spread_pct": 0.0177,
+      "quote_timestamp": "2026-06-10T16:34:18.605968725Z"
+    },
+    "AVGO": {
+      "bid": 373.0,
+      "ask": 377.5,
+      "spread_pct": 1.1921,
+      "quote_timestamp": "2026-06-10T16:34:16.619639272Z"
+    },
+    "RGTI": {
+      "bid": 19.89,
+      "ask": 19.9,
+      "spread_pct": 0.0503,
+      "quote_timestamp": "2026-06-10T16:34:18.776800167Z"
+    },
+    "SO": {
+      "bid": 94.07,
+      "ask": 94.09,
+      "spread_pct": 0.0213,
+      "quote_timestamp": "2026-06-10T16:34:17.738151434Z"
+    },
+    "SPY": {
+      "bid": 730.61,
+      "ask": 730.65,
+      "spread_pct": 0.0055,
+      "quote_timestamp": "2026-06-10T16:34:18.806594541Z"
+    },
+    "QQQ": {
+      "bid": 698.9,
+      "ask": 698.97,
+      "spread_pct": 0.01,
+      "quote_timestamp": "2026-06-10T16:34:18.796488034Z"
+    }
+  },
+  "selected_candidate": "AMZN",
+  "selection_reason": "SPY/QQQ는 validation floor per-order cap을 넘고, AVGO/RGTI는 same-day sell duplicate, SO는 sell metric gap, COP/JNJ/XOM/PFE/BAC/WMT/SLB는 same-day buy duplicate라 제외됐다. CVX는 spread가 정상화됐지만 같은 energy sleeve에 이미 same-day buy가 누적돼 different-cluster mega-cap fallback인 AMZN이 portfolio construction 측면에서 우선이었다.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0131-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-0131-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0131-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0131-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/research-notes/tickers/AMZN.md"
+  ]
+}
