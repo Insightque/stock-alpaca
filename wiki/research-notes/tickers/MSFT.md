@@ -13,6 +13,6 @@ asset_type: stock
 
 ## 2026-06-11 04:39 KST hourly autopilot
 
-2026-06-11 04:39 KST hourly autopilot에서 `MSFT` 1주 regular-session day limit add를 `398.38 USD` limit으로 제출했다. 근거는 scheduler-owned `0431` stale cleanup/core/research preflight 기준 hard gate pass, same-day duplicate/open-order conflict 부재, quote `398.32/398.38` spread `0.0151%`, active tradable NASDAQ stock, 그리고 `2026-06-06` portfolio review의 1D `중립` 이후 아직 `2026-06-11 ET` close 전이라 validation_lifecycle add-block이 없다는 점이다. immediate reconciliation 시점 주문 상태는 `new`, `filled_qty=0` open order다.
+2026-06-11 04:39 KST hourly autopilot에서 `MSFT` 1주 regular-session day limit add를 `398.38 USD` limit으로 제출했고, `2026-06-11 04:47 KST`(`2026-06-10T19:47:34.876997Z`)에 `398.38 USD`로 체결됐다. 근거는 scheduler-owned `0431` stale cleanup/core/research preflight 기준 hard gate pass, same-day duplicate/open-order conflict 부재, quote `398.32/398.38` spread `0.0151%`, active tradable NASDAQ stock, 그리고 `2026-06-06` portfolio review의 1D `중립` 이후 아직 `2026-06-11 ET` close 전이라 validation_lifecycle add-block이 없다는 점이다. `0451` close-boundary reconciliation 기준 보유 수량은 `1주 -> 2주`, `avg_entry_price=412.58`, open orders는 `0`건으로 정리됐다.
 
-출처: [[2026-06-11-0431-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-11-0431-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-11-0431-hourly-autopilot-post-trade.json`
+출처: [[2026-06-11-0431-hourly-autopilot]], [[2026-06-11-0451-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-11-0431-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-11-0431-hourly-autopilot-post-trade.json`, `wiki/trade-ledger/positions/2026-06-11-0451-hourly-autopilot-post-trade.json`

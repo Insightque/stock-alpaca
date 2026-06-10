@@ -1,0 +1,126 @@
+{
+  "run_id": "2026-06-11-0451-hourly-autopilot",
+  "created_at": "2026-06-10T20:00:31Z",
+  "paper": true,
+  "market_clock": {
+    "is_open": false,
+    "timestamp": "2026-06-10T16:00:30.547773652-04:00",
+    "next_open": "2026-06-11T09:30:00-04:00",
+    "next_close": "2026-06-11T16:00:00-04:00",
+    "session": "regular"
+  },
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "cash": 30865.37,
+    "portfolio_value": 97098.83,
+    "buying_power": 293832.13,
+    "position_count": 33
+  },
+  "open_orders": [],
+  "same_day_fills": [
+    "MSFT",
+    "NKE",
+    "NEE",
+    "FCX",
+    "AMZN",
+    "SLB",
+    "COP",
+    "JNJ",
+    "XOM",
+    "PFE",
+    "BAC",
+    "RGTI",
+    "RGTI",
+    "AVGO",
+    "AVGO",
+    "WMT",
+    "AAPL",
+    "AAPL",
+    "XOM",
+    "FCX"
+  ],
+  "watchlists_count": 0,
+  "selected_candidate": "UNH",
+  "selection_reason": "UNH remained the highest-ranked research-covered non-duplicate floor-size buy, but the live Alpaca clock crossed to regular-session closed at submit boundary before place_stock_order could be called.",
+  "candidate_quotes": {
+    "AVGO": {
+      "bid": 372.01,
+      "ask": 374.3,
+      "spread_pct": 0.6118,
+      "quote_time": "2026-06-10T19:51:30.170140038Z"
+    },
+    "RGTI": {
+      "bid": 19.73,
+      "ask": 19.75,
+      "spread_pct": 0.1013,
+      "quote_time": "2026-06-10T19:51:30.626664184Z"
+    },
+    "SO": {
+      "bid": 94.08,
+      "ask": 94.11,
+      "spread_pct": 0.0319,
+      "quote_time": "2026-06-10T19:51:30.742973382Z"
+    },
+    "UNH": {
+      "bid": 406.81,
+      "ask": 406.9,
+      "spread_pct": 0.0221,
+      "quote_time": "2026-06-10T19:51:27.304827434Z"
+    },
+    "GOOGL": {
+      "bid": 355.77,
+      "ask": 355.84,
+      "spread_pct": 0.0197,
+      "quote_time": "2026-06-10T19:51:30.515714685Z"
+    },
+    "NVDA": {
+      "bid": 201.69,
+      "ask": 201.72,
+      "spread_pct": 0.0149,
+      "quote_time": "2026-06-10T19:51:30.733013131Z"
+    },
+    "PLTR": {
+      "bid": 130.31,
+      "ask": 130.33,
+      "spread_pct": 0.0153,
+      "quote_time": "2026-06-10T19:51:30.719080016Z"
+    },
+    "SPY": {
+      "bid": 727.16,
+      "ask": 727.28,
+      "spread_pct": 0.0165,
+      "quote_time": "2026-06-10T19:51:31.027182157Z"
+    },
+    "QQQ": {
+      "bid": 696.07,
+      "ask": 696.21,
+      "spread_pct": 0.0201,
+      "quote_time": "2026-06-10T19:51:30.752651246Z"
+    },
+    "MSFT": {
+      "bid": 397.6,
+      "ask": 398.05,
+      "spread_pct": 0.1131,
+      "quote_time": "2026-06-10T19:51:30.718933864Z"
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0451-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-0451-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0451-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0451-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/research-notes/tickers/UNH.md"
+  ],
+  "submit_boundary_clock": {
+    "is_open": false,
+    "timestamp": "2026-06-10T16:00:30.547773652-04:00",
+    "next_open": "2026-06-11T09:30:00-04:00",
+    "next_close": "2026-06-11T16:00:00-04:00"
+  },
+  "submit_blocker": "market_open"
+}
