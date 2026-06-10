@@ -40,3 +40,10 @@ asset_type: stock
 `NEE` 1주 regular-session day limit buy가 `85.47 USD` limit으로 제출됐다. 첫 `place_stock_order`는 safety cancellation으로 반환됐지만, 동일 `client_order_id=hourly-20260606-0231-buy-nee` 기준 `get_order_by_client_id` 404와 symbol-scoped `get_orders(status=all)` 0건을 확인한 뒤 1회만 재시도해 Alpaca order id `202d7a0d-c061-4385-a693-b91f403a2b4f`를 생성했다. immediate reconciliation 기준 `get_order_by_client_id`, `get_order_by_id`, `get_orders(status=all, symbols=NEE, after=2026-06-05T17:40:00Z)`는 동일 주문을 `status=new`, `filled_qty=0` open order로 확인했다. 근거는 scheduler-owned `0231` core/research preflight와 strict universe/MCP/risk gate 통과, FRED macro confirmation 유지, same-day duplicate/open-order conflict 없음, Yahoo recommendations breadth usable, utilities diversifier floor-size validation 목적이었다.
 
 출처: [[2026-06-06-0231-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-06-0231-hourly-autopilot-post-trade.json`
+
+
+## 2026-06-11 02:18 KST hourly-autopilot
+
+`NEE` 1주 regular-session day limit buy가 `85.29 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260611-0211-buy-nee`, `order_id=7fd2a9cf-bde9-454e-83f0-64a8a722409d`가 생성된 뒤 same client id reconciliation에서 `2026-06-10T17:18:05.301779Z`에 `85.22 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0211` stale cleanup/core/research preflight와 live Alpaca MCP submit-boundary check 기준 paper mode/market open/universe strict/MCP strict/risk strict 모두 통과했고, sell-first 재평가 뒤 same-day duplicate가 없는 utilities/rate-sensitive diversifier 중 `NEE`가 FRED macro confirmation을 유지한 가장 보수적인 floor-size learning buy였다는 점이다.
+
+출처: [[2026-06-11-0211-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-11-0211-hourly-autopilot-post-trade.json`

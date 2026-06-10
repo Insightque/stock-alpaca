@@ -1,0 +1,118 @@
+{
+  "run_id": "2026-06-11-0211-hourly-autopilot",
+  "created_at": "2026-06-10T17:14:30Z",
+  "paper": true,
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-10T13:13:27.721752232-04:00",
+    "next_open": "2026-06-11T09:30:00-04:00",
+    "next_close": "2026-06-10T16:00:00-04:00",
+    "session": "regular"
+  },
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "cash": 31392.95,
+    "portfolio_value": 97473.59,
+    "buying_power": 295514.55,
+    "position_count": 33
+  },
+  "open_orders": [],
+  "same_day_fills": [
+    "FCX",
+    "AMZN",
+    "SLB",
+    "COP",
+    "JNJ",
+    "XOM",
+    "PFE",
+    "BAC",
+    "RGTI",
+    "AVGO",
+    "WMT",
+    "AAPL",
+    "AAPL"
+  ],
+  "watchlists_count": 0,
+  "selected_candidate": "NEE",
+  "selection_reason": "sell-first diagnostics still left no executable trim; NEE remained the highest-ranked preflight-covered non-duplicate floor-size buy with existing ticker thesis evidence, FRED-confirmed rate-sensitive macro support, fresh quote, normal spread, active tradable asset status, and a distinct utilities diversifier role.",
+  "candidate_quotes": {
+    "AVGO": {
+      "bid": 371.74,
+      "ask": 377.5,
+      "spread_pct": 1.5265,
+      "quote_time": "2026-06-10T17:13:27.872201868Z"
+    },
+    "RGTI": {
+      "bid": 19.95,
+      "ask": 19.96,
+      "spread_pct": 0.0501,
+      "quote_time": "2026-06-10T17:13:29.364073609Z"
+    },
+    "SO": {
+      "bid": 94.34,
+      "ask": 94.37,
+      "spread_pct": 0.0318,
+      "quote_time": "2026-06-10T17:13:29.221650157Z"
+    },
+    "NEE": {
+      "bid": 85.27,
+      "ask": 85.29,
+      "spread_pct": 0.0235,
+      "quote_time": "2026-06-10T17:13:27.037680002Z"
+    },
+    "GOOGL": {
+      "bid": 356.94,
+      "ask": 357.09,
+      "spread_pct": 0.042,
+      "quote_time": "2026-06-10T17:13:29.526315364Z"
+    },
+    "NKE": {
+      "bid": 44.07,
+      "ask": 44.08,
+      "spread_pct": 0.0227,
+      "quote_time": "2026-06-10T17:13:29.585126005Z"
+    },
+    "CVX": {
+      "bid": 182.73,
+      "ask": 198.43,
+      "spread_pct": 7.9111,
+      "quote_time": "2026-06-10T17:13:28.633374354Z"
+    },
+    "SPY": {
+      "bid": 729.34,
+      "ask": 729.37,
+      "spread_pct": 0.0041,
+      "quote_time": "2026-06-10T17:13:29.666074919Z"
+    },
+    "QQQ": {
+      "bid": 697.0,
+      "ask": 697.05,
+      "spread_pct": 0.0072,
+      "quote_time": "2026-06-10T17:13:29.673577091Z"
+    },
+    "MCD": {
+      "bid": 284.29,
+      "ask": 287.9,
+      "spread_pct": 1.254,
+      "quote_time": "2026-06-10T17:13:29.082522130Z"
+    },
+    "HOOD": {
+      "bid": 88.6,
+      "ask": 88.63,
+      "spread_pct": 0.0339,
+      "quote_time": "2026-06-10T17:13:29.631654507Z"
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/research-notes/tickers/NEE.md"
+  ]
+}

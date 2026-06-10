@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-11 02:00 KST_
+_Last updated: 2026-06-11 02:18 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-11-0211-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `NEE` buy 1주 @ `85.22 USD`
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `33` positions 유지. `NEE`는 `4주 -> 5주`, `avg_entry_price=86.44`, `qty_available=5`로 증가했다.
+- Recent reconciliation scope: scheduler-owned `0211` stale cleanup/core/research preflight를 우선 사용했고 live Alpaca MCP submit-boundary check에서 regular market open, ACTIVE account, open orders 0건, same-day fills `FCX/AMZN/SLB/COP/JNJ/XOM/PFE/BAC/RGTI/AVGO/WMT/AAPL/AAPL`, `NEE` quote `85.27/85.29`, active tradable NYSE stock을 재확인했다. sell-first 재평가에서는 `AVGO`가 spread fail과 same-day sell duplicate, `RGTI`가 same-day sell duplicate, `SO`가 trim metric gap으로 blocked였고, buy fallback에서는 `FCX/AMZN/SLB/COP/JNJ/XOM/PFE/BAC/WMT/AAPL` same-day buy duplicate, `SPY/QQQ` per-order cap, `CVX/MCD` spread fail, `HOOD` thesis evidence 부족이 남았다. `NEE`는 FRED-confirmed utilities diversifier floor-size buy로 선택됐고 direct Alpaca MCP submit 뒤 same order/client id reconciliation 기준 `order_id=7fd2a9cf-bde9-454e-83f0-64a8a722409d`, `filled_avg_price=85.22 USD`로 즉시 전량 체결됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-06-11-0211-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

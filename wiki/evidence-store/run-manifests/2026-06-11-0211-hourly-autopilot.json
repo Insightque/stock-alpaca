@@ -1,0 +1,318 @@
+{
+  "schema_version": "1.3",
+  "run_id": "2026-06-11-0211-hourly-autopilot",
+  "created_at": "2026-06-10T17:14:30Z",
+  "data_cutoff_time": "2026-06-10T17:13:29.673577091Z",
+  "market_clock_checked_at": "2026-06-10T13:13:27.721752232-04:00",
+  "paper": true,
+  "mode": "submit",
+  "first_blocking_gate": "",
+  "recommendation_actionability": {
+    "actionable": true,
+    "submit_mode": true,
+    "minimum_learning_orders_required": 1,
+    "minimum_learning_orders_planned": 1,
+    "hard_gates_passed": true,
+    "exception": ""
+  },
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "risk_policy_version": "medium-risk-v1.2",
+  "report_path": "wiki/current-runs/daily/2026-06-11-0211-hourly-autopilot.md",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-11-0211-hourly-autopilot.json",
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-06-11-0211-hourly-autopilot-post-trade.json",
+  "risk_inputs": {
+    "policy_turnover_ratio": 0,
+    "weekly_turnover_ratio": 0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 9,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 9,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + scheduler Alpaca preflight universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad metadata universe screen with scheduler-owned stale cleanup/core/research preflight reuse, sell-first diagnostics, live Alpaca clock/account/orders/positions/fills/watchlists/quotes/asset recheck, review-backlog throttle, same-day duplicate filter, and utilities diversifier fallback reselection toward NEE.",
+    "pre_mcp_shortlist": [
+      "AVGO",
+      "RGTI",
+      "SO",
+      "NEE",
+      "GOOGL",
+      "NKE",
+      "CVX",
+      "SPY",
+      "QQQ",
+      "HOOD"
+    ],
+    "final_candidates": [
+      "AVGO",
+      "RGTI",
+      "SO",
+      "NEE",
+      "GOOGL"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T17:11:31Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T17:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-10T17:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T13:31:32+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T17:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T17:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_actionable": 3,
+    "min_research_confirmations_for_submit": 3,
+    "all_research_must_be_attempted": true,
+    "provider_gap_blocks_order": false,
+    "critical_source_rules": {
+      "earnings_signal": {
+        "require_any": [
+          "sec-edgar",
+          "alpha-vantage",
+          "firecrawl_company_ir"
+        ],
+        "missing_behavior": "downgrade_to_watch"
+      },
+      "macro_rate_sensitive_signal": {
+        "require_any": [
+          "fred",
+          "explicit_macro_source"
+        ],
+        "missing_behavior": "downgrade_to_watch"
+      },
+      "filing_risk_signal": {
+        "require_any": [
+          "sec-edgar_acceptance_time"
+        ],
+        "missing_behavior": "block_new_buy"
+      },
+      "analyst_only_signal": {
+        "allowed_use": "thesis_confirmation_only",
+        "missing_behavior": "no_positive_score_delta"
+      }
+    }
+  },
+  "open_order_lifecycle": {
+    "stale_cleanup_source_ref": "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-stale-order-cleanup.json",
+    "cleanup_status": "pass",
+    "open_orders_seen": 0,
+    "remaining_blocking_open_orders": [],
+    "passed": true,
+    "note": "Scheduler-owned stale cleanup\uacfc live Alpaca get_orders(status=open) \ubaa8\ub450 open orders 0\uac74\uc744 \ubcf4\uc5ec lifecycle blocker\uac00 \uc5c6\uace0, 0131 AMZN buy\ub294 16:41:37Z fill\ub85c \uc815\ub9ac\ub410\ub2e4."
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "AVGO",
+      "held_qty": 6,
+      "current_weight_pct": 2.2976,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "AVGO\ub294 ai_semiconductor warning band\uc640 post-earnings staged de-risking rationale\uac00 \uc720\uc9c0\ub418\uc9c0\ub9cc live spread\uac00 1.5265%\ub85c policy cap\uc744 \ub118\uace0, 2251 cycle same-day sell duplicate\ub3c4 \ub0a8\uc544 \ucd94\uac00 trim\uc774 \ucc28\ub2e8\ub41c\ub2e4.",
+      "skipped_gate": "spread_within_policy",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -3.55,
+      "relative_to_spy_20d_pct": -4.33,
+      "metric_gap_reason": "",
+      "replacement_symbol": "NEE",
+      "replacement_expected_excess_margin_pct": 3.55,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+        "wiki/research-notes/tickers/NEE.md"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "held_qty": 51,
+      "current_weight_pct": 1.0438,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "RGTI\ub294 speculative loss-control trim trigger\uc640 \ud070 \ubbf8\uc2e4\ud604 \uc190\uc2e4\uc774 \uc5ec\uc804\ud788 active\uc9c0\ub9cc, 2311 cycle same-day filled trim\uc774 \ub0a8\uc544 duplicate sell discipline\uc774 \uc774\ubc88 cycle \ucd94\uac00 trim\uc744 \ub9c9\ub294\ub2e4.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.98,
+      "relative_to_spy_20d_pct": -2.76,
+      "metric_gap_reason": "",
+      "replacement_symbol": "NEE",
+      "replacement_expected_excess_margin_pct": 1.98,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+        "wiki/research-notes/tickers/NEE.md"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "held_qty": 5,
+      "current_weight_pct": 0.484,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "SO\ub294 utilities defensive sleeve\uc758 weak review \ub204\uc801\uacfc 5D due review \ub300\uae30\ub97c \uadfc\uac70\ub85c trim \uc7ac\uc810\uac80 \ub300\uc0c1\uc774\uc9c0\ub9cc, replacement margin\uacfc decision-grade expected-excess evidence \uacf5\ubc31\uc774 \uc774\ubc88 cycle\uc5d0\ub3c4 \ub0a8\uc544 \uc788\ub2e4.",
+      "skipped_gate": "sell_metric_gap",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": 0,
+      "relative_to_spy_20d_pct": 0,
+      "metric_gap_reason": "SO\ub294 quote/spread gate\ub294 \ud1b5\uacfc\ud588\uc9c0\ub9cc trim justification\uc5d0 \ud544\uc694\ud55c decision-grade expected-excess\uc640 replacement margin evidence\uac00 \uc774\ubc88 cycle scheduler/live evidence\uc5d0 \uc5c6\ub2e4.",
+      "replacement_symbol": "NEE",
+      "replacement_expected_excess_margin_pct": 0,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+        "wiki/research-notes/tickers/NEE.md"
+      ]
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/research-notes/tickers/NEE.md"
+  ],
+  "submitted_orders": [
+    {
+      "symbol": "NEE",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 85.29,
+      "order_id": "7fd2a9cf-bde9-454e-83f0-64a8a722409d",
+      "client_order_id": "hourly-20260611-0211-buy-nee",
+      "status": "filled",
+      "filled_avg_price": 85.22,
+      "submitted_at": "2026-06-10T17:18:04.956061832Z",
+      "filled_at": "2026-06-10T17:18:05.301778612Z"
+    }
+  ]
+}

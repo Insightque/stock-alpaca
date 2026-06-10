@@ -1,0 +1,59 @@
+{
+  "run_id": "2026-06-11-0211-hourly-autopilot",
+  "created_at": "2026-06-10T17:18:40Z",
+  "paper": true,
+  "source": "post-trade reconciliation via Alpaca MCP only",
+  "order": {
+    "symbol": "NEE",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 85.29,
+    "order_id": "7fd2a9cf-bde9-454e-83f0-64a8a722409d",
+    "client_order_id": "hourly-20260611-0211-buy-nee",
+    "status": "filled",
+    "filled_avg_price": 85.22,
+    "submitted_at": "2026-06-10T17:18:04.956061832Z",
+    "filled_at": "2026-06-10T17:18:05.301778612Z"
+  },
+  "open_orders": [],
+  "positions_count": 33,
+  "position_changes": {
+    "NEE": {
+      "qty_before": 4,
+      "qty_after": 5,
+      "avg_entry_price_after": 86.44,
+      "qty_available_after": 5,
+      "market_value_after": 426.1,
+      "current_price_after": 85.22
+    }
+  },
+  "account": {
+    "portfolio_value": 97402.72,
+    "cash": 31307.73,
+    "buying_power": 295236.48,
+    "status": "ACTIVE"
+  },
+  "fills_after_submit": [
+    {
+      "symbol": "NEE",
+      "side": "buy",
+      "qty": 1,
+      "price": 85.22,
+      "transaction_time": "2026-06-10T17:18:05.301779Z",
+      "order_id": "7fd2a9cf-bde9-454e-83f0-64a8a722409d"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/research-notes/tickers/NEE.md",
+    "wiki/evidence-store/sources/2026-06-11-0211-hourly-autopilot-deterministic-submit.json"
+  ]
+}
