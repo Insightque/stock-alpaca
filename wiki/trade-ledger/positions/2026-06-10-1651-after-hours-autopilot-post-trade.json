@@ -1,0 +1,53 @@
+{
+  "run_id": "2026-06-10-1651-after-hours-autopilot",
+  "created_at": "2026-06-10T07:53:57Z",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 98385.09,
+    "cash": 31368.65,
+    "buying_power": 297891.27,
+    "long_market_value": 67016.44,
+    "currency": "USD"
+  },
+  "submitted_orders": [],
+  "lifecycle_actions": [],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "NVDA",
+      "qty": 38,
+      "market_value": 7825.34
+    },
+    {
+      "symbol": "AMD",
+      "qty": 14,
+      "market_value": 6531.42
+    },
+    {
+      "symbol": "LRCX",
+      "qty": 20,
+      "market_value": 6463.4
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": false,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "client_order_ids_checked": [
+      "ah-20260610-1011-aapl-buy-01",
+      "ah-20260610-1031-aapl-buy-01"
+    ],
+    "new_fills_detected": 0,
+    "position_delta": "none",
+    "note": "No new after-hours order was submitted. Reconciliation confirmed the two earlier same-session AAPL client_order_ids remained filled, runtime open orders stayed at 0, runtime positions remained 33, and scheduler-owned 1651 quote/spread rows did not matter because the 1651 cycle was already blocked by the separate after-hours session budget."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-1651-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-1651-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-1651-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-10-1651-after-hours-autopilot.json"
+  ]
+}
