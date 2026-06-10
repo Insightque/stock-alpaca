@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-11 02:39 KST_
+_Last updated: 2026-06-11 02:57 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-11-0251-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `NKE` buy 1주 @ `43.98 USD`
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned `0251` core preflight 기준 `33` positions 유지. `NKE`는 `4주 -> 5주`, `avg_entry_price=45.202`, `qty_available=5`로 증가했고 open orders는 `0`건이다.
+- Recent reconciliation scope: scheduler-owned `0251` stale cleanup/core/research preflight를 source-of-record로 사용했다. stale cleanup과 core preflight open-order row 모두 `0`건이었고, `hourly-20260611-0231-buy-nke`는 `2026-06-10T17:44:44.080648Z`에 `43.98 USD`로 체결된 것이 recent fills에 반영됐다. sell-first 재평가에서는 `AVGO`가 spread fail과 same-day sell duplicate, `RGTI`가 same-day sell duplicate, `SO`가 trim metric gap으로 blocked였고, buy fallback에서는 `NKE/NEE/FCX/AMZN/SLB/COP/JNJ/XOM/PFE/BAC/WMT/AAPL` same-day buy duplicate, `SPY/QQQ` per-order cap, `NOK` add-block, `INTC` recent weak exit-thesis가 남아 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-11-0251-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
