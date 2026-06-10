@@ -1,0 +1,192 @@
+{
+  "run_id": "2026-06-10-1031-after-hours-autopilot",
+  "created_at": "2026-06-10T01:35:15Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "QQQ",
+    "SMH",
+    "SPY",
+    "JNJ",
+    "BA",
+    "AAPL",
+    "INTC",
+    "WMT"
+  ],
+  "runtime_alpaca_mcp": {
+    "used_scheduler_preflight": true,
+    "source_of_record": "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-alpaca-core-preflight.json",
+    "cross_checks": {
+      "get_clock": {
+        "is_open": false,
+        "timestamp": "2026-06-09T21:35:15.188535451-04:00",
+        "next_open": "2026-06-10T09:30:00-04:00",
+        "next_close": "2026-06-10T16:00:00-04:00"
+      },
+      "get_account_info": {
+        "status": "ACTIVE",
+        "portfolio_value": 98845.9,
+        "cash": 31368.65,
+        "buying_power": 298877.61,
+        "long_market_value": 67477.25,
+        "currency": "USD"
+      },
+      "get_all_positions": {
+        "count": 33
+      },
+      "get_orders(status=open)": {
+        "count": 0
+      },
+      "get_orders(status=all, after=2026-06-09T20:00:00Z)": {
+        "count": 2
+      },
+      "get_account_activities(activity_types=FILL, after=2026-06-09T20:00:00Z)": {
+        "count": 2
+      },
+      "get_watchlists": {
+        "count": 0
+      },
+      "get_stock_latest_quote(feed=overnight)": {
+        "selected_symbol": "AAPL",
+        "selected_timestamp": "2026-06-10T01:32:38.798117626Z",
+        "symbols_with_fresh_quotes": [
+          "QQQ",
+          "SMH",
+          "SPY",
+          "JNJ",
+          "BA",
+          "AAPL",
+          "INTC",
+          "WMT",
+          "AVGO",
+          "RGTI",
+          "PFE"
+        ],
+        "symbols_missing_fresh_quotes": [
+          "SO"
+        ]
+      }
+    },
+    "note": "1031 Alpaca core preflight first_blocking_gate=market_closed는 after-hours expected nonblocking으로 처리했고, runtime Alpaca MCP cross-check는 ACTIVE account, positions 33, open orders 0, same-session after-hours orders 1, same-session after-hours fills 1, watchlists 0, same-day RGTI sell duplicate, and fresh overnight quote rows까지 보강했다. 이 cycle에서는 AAPL overnight quote가 freshness/spread/notional cap을 모두 통과했고 separate after-hours budget의 마지막 슬롯으로 1주를 추가 제출해 즉시 체결됐다."
+  },
+  "submit_attempted": true,
+  "orders_submitted": [
+    {
+      "symbol": "AAPL",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 291.54,
+      "client_order_id": "ah-20260610-1031-aapl-buy-01",
+      "order_id": "49e4052f-3e00-44ad-9296-4d1c41033e01",
+      "status": "filled",
+      "filled_avg_price": 291.49,
+      "filled_at": "2026-06-10T01:35:02.497251991Z"
+    }
+  ],
+  "review_backlog_throttle": {
+    "pending_1d_count": 9,
+    "pending_5d_count": 13,
+    "pending_20d_count": 1,
+    "status": "monitor_only_nok_add_block_persists"
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "after_hours_new_orders_submitted_today": 1,
+    "review_backlog_pending_1d_count": 9,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1,
+    "risk_recomputed_after_partial_fill": true
+  },
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass",
+      "detail": "ALPACA_PAPER_TRADE=true 확인"
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed",
+      "detail": "regular market closed at runtime get_clock 2026-06-09T21:35:15.188535451-04:00"
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass",
+      "detail": "session=after_hours and extended-hours policy profile retained"
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_runtime_core_backfill_after_sparse_preflight",
+      "detail": "1031 scheduler-owned core preflight first_blocking_gate=market_closed treated as expected nonblocking; runtime Alpaca MCP cross-checks revalidated account/positions/orders/asset/quote/spread and same-day sell duplicate context."
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass",
+      "detail": "after_hours_policy artifact tag, review bucket, order id prefix, and allowed_sides buy/sell retained"
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "pass_one_remaining_then_exhausted",
+      "detail": "after_hours_new_orders_submitted_today=1 and max_new_orders_per_session=2 before submit; this run used the final available after-hours slot without reusing regular validation count"
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass",
+      "detail": "broad universe 62 symbols with SPY/QQQ included and scheduler-owned research shortlist 8 symbols"
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass",
+      "detail": "sec-edgar/fred/firecrawl/yahoo-finance pass; alpha-vantage provider_error did not block because core and minimum research confirmations passed"
+    },
+    {
+      "gate": "risk_policy",
+      "status": "pass",
+      "detail": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-06-10-1031-after-hours-autopilot.json PASS"
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "pass_runtime_overnight_quote_under_5_minutes",
+      "detail": "AAPL overnight quote timestamp 2026-06-10T01:32:38.798117626Z stayed under the 5 minute submit freshness cap"
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "pass_runtime_overnight_spread_0_0206pct",
+      "detail": "AAPL overnight spread 0.0206% stayed under the 0.25% after-hours cap"
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "pass",
+      "detail": "planned order keeps whole-share day limit stock order with extended_hours=true and session=after_hours"
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "pass_reconciled_filled_by_client_order_id",
+      "detail": "single place_stock_order call reconciled filled by matching client_order_id ah-20260610-1031-aapl-buy-01; no alternate client id used and no cancel was needed"
+    }
+  ],
+  "candidate_notes": [
+    "AAPL buy는 overnight quote 291.48/291.54, spread 0.0206%, quote age 약 0.0분으로 after_hours_policy cap을 모두 통과했고 1주 notional도 per-order cap 494.05 USD 아래였다.",
+    "QQQ, SPY, SMH는 fresh and liquid였지만 1주 ask가 after-hours per-order cap 494.05 USD를 초과했다.",
+    "AVGO는 sell side 허용 정책에 따라 재평가했지만 fresh overnight spread가 0.3318%로 after_hours cap 0.25%를 넘었다.",
+    "RGTI는 fresh overnight quote와 spread는 통과했지만 2026-06-09 regular-session filled sell이 있어 same-day sell duplicate discipline이 유지됐다.",
+    "WMT와 BA, JNJ는 fresh quote는 있었지만 spread가 after-hours cap을 넘었고, INTC는 spread 0.2330%로 cap 안이었지만 AAPL보다 순위와 유동성 질이 낮았다.",
+    "SO는 fresh two-sided overnight quote가 없어 제외됐다."
+  ],
+  "block_reasons": [],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/trade-ledger/positions/current.md",
+    "wiki/research-notes/tickers/AAPL.md"
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "run_id": "2026-06-10-1031-after-hours-autopilot",
+  "created_at": "2026-06-10T01:35:15Z",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 98845.9,
+    "cash": 31368.65,
+    "buying_power": 298877.61,
+    "long_market_value": 67477.25,
+    "currency": "USD"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "AAPL",
+      "side": "buy",
+      "qty": "1",
+      "limit_price": "291.54",
+      "client_order_id": "ah-20260610-1031-aapl-buy-01",
+      "order_id": "49e4052f-3e00-44ad-9296-4d1c41033e01",
+      "status": "filled",
+      "filled_qty": "1",
+      "filled_avg_price": "291.49",
+      "filled_at": "2026-06-10T01:35:02.497251991Z",
+      "extended_hours": true
+    }
+  ],
+  "lifecycle_actions": [],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "NVDA",
+      "qty": 38.0,
+      "market_value": 7849.28
+    },
+    {
+      "symbol": "AMD",
+      "qty": 14.0,
+      "market_value": 6580.0
+    },
+    {
+      "symbol": "LRCX",
+      "qty": 20.0,
+      "market_value": 6548.0
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": true,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "client_order_ids_checked": [
+      "ah-20260610-1031-aapl-buy-01"
+    ],
+    "new_fills_detected": 1,
+    "position_delta": "AAPL qty 4 -> 5, avg_entry_price 306.0475 -> 303.136",
+    "note": "Single after-hours AAPL buy was submitted once and reconciled by matching client_order_id ah-20260610-1031-aapl-buy-01. It filled immediately at 291.49 USD; open orders stayed at 0 and no cancel path was needed."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-10-1031-after-hours-autopilot.json"
+  ]
+}

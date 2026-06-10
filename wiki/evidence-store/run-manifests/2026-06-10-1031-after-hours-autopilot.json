@@ -1,0 +1,362 @@
+{
+  "run_id": "2026-06-10-1031-after-hours-autopilot",
+  "created_at": "2026-06-10T01:35:15Z",
+  "data_cutoff_time": "2026-06-10T01:35:15Z",
+  "market_clock_checked_at": "2026-06-09T21:35:15.188535451-04:00",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "policy_id": "recommendation-policy-v1.11",
+  "policy_version": "v1.11",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "git_commit": "6885c3be290611dce170e36ec48407cd7b9a3c9a",
+  "prompt_file_sha": "sha256:scheduled-after-hours-1031-manual-codex",
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "risk_policy_version": "medium-risk-v1.2",
+  "schema_version": "1.3",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-10-1031-after-hours-autopilot.json",
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-06-10-1031-after-hours-autopilot-post-trade.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/trade-ledger/positions/current.md",
+    "wiki/research-notes/tickers/AAPL.md"
+  ],
+  "data_manifest": {
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-research-mcp-preflight.json",
+    "after_hours_gate_evaluation": "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "research_preflight": "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-research-mcp-preflight.json",
+    "runtime_cross_checks": [
+      "scheduler_owned_alpaca_core_preflight.get_clock",
+      "scheduler_owned_alpaca_core_preflight.get_account_info",
+      "scheduler_owned_alpaca_core_preflight.get_all_positions",
+      "scheduler_owned_alpaca_core_preflight.get_orders_open",
+      "scheduler_owned_alpaca_core_preflight.get_account_activities(activity_types=FILL)",
+      "scheduler_owned_alpaca_core_preflight.get_watchlists",
+      "runtime_alpaca_mcp.get_clock",
+      "runtime_alpaca_mcp.get_account_info",
+      "runtime_alpaca_mcp.get_all_positions",
+      "runtime_alpaca_mcp.get_orders(status=open)",
+      "runtime_alpaca_mcp.get_orders(status=all, after=2026-06-09T20:00:00Z)",
+      "runtime_alpaca_mcp.get_account_activities(activity_types=FILL, after=2026-06-09T20:00:00Z)",
+      "runtime_alpaca_mcp.get_watchlists",
+      "runtime_alpaca_mcp.get_orders(status=all, symbols=RGTI,AVGO,AAPL, after=2026-06-09T00:00:00Z)",
+      "runtime_alpaca_mcp.get_asset(AVGO,RGTI,SO,QQQ,AAPL,INTC)",
+      "runtime_alpaca_mcp.get_stock_quotes(feed=boats)",
+      "runtime_alpaca_mcp.get_stock_latest_quote(feed=overnight)"
+    ]
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist_with_runtime_submit_boundary_cross_check",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "SMH",
+      "SPY",
+      "JNJ",
+      "BA",
+      "AAPL",
+      "INTC",
+      "WMT"
+    ],
+    "final_candidates": [
+      "QQQ",
+      "SMH",
+      "SPY",
+      "JNJ",
+      "BA",
+      "AAPL",
+      "INTC",
+      "WMT"
+    ],
+    "passed": true,
+    "gap_reason": "",
+    "status": "pass",
+    "source": "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-alpaca-core-preflight.json",
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-research-mcp-preflight.json"
+    ]
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "all_research_must_be_attempted": true,
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_submit": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T01:31:27Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ],
+      "gap_reason": "Scheduler-owned 1031 Alpaca core preflight recorded only market_closed as the first regular-session gate. For this after-hours run, market_closed stayed expected and nonblocking, and runtime Alpaca MCP cross-checks reconfirmed ACTIVE account, positions 33, open orders 0, same-session after-hours orders 1 before submit, active/tradable AAPL asset evidence, and fresh overnight quote/spread rows used for the second AAPL submit decision.",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T00:51:24+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-10T00:51:24+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-09T21:11:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T00:51:24+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T01:11:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-10-1031-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "reason": "Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable."
+    }
+  ],
+  "recommendation_actionability": "submitted_filled",
+  "first_blocking_gate": "",
+  "decision_summary": {
+    "action": "submitted_aapl_buy_filled",
+    "reason": "AAPL overnight quote at 2026-06-10T01:32:38.798117626Z stayed fresh with bid/ask 291.48/291.54 and spread 0.0206%, keeping 1-share notional under the after-hours per-order cap while selected sell trims remained blocked by duplicate, stale-quote, or spread gates.",
+    "eligible_sell_trim_found": false,
+    "eligible_buy_fallback_found": true,
+    "same_session_after_hours_orders_submitted_today": 2,
+    "separate_session_budget_remaining": 0
+  },
+  "reconciliation": {
+    "client_order_id": "ah-20260610-1031-aapl-buy-01",
+    "order_id": "49e4052f-3e00-44ad-9296-4d1c41033e01",
+    "symbol": "AAPL",
+    "side": "buy",
+    "qty": "1",
+    "limit_price": "291.54",
+    "time_in_force": "day",
+    "extended_hours": true,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "submit_status": "pending_new",
+    "reconciled_status": "filled",
+    "filled_qty": "1",
+    "filled_avg_price": "291.49",
+    "submitted_at": "2026-06-10T01:35:02.474741713Z",
+    "filled_at": "2026-06-10T01:35:02.497251991Z",
+    "reconciled_by": "client_order_id",
+    "retry_attempted": false,
+    "alternate_client_order_id_used": false,
+    "lifecycle_action": "filled_no_cancel_needed"
+  },
+  "risk_check_result": {
+    "status": "PASS",
+    "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-06-10-1031-after-hours-autopilot.json",
+    "warnings": [
+      "post-order cash 31368.60 remains above target maximum 9881.07; continue staged deployment on later runs when hard gates pass"
+    ]
+  },
+  "submitted_order_ids": [
+    "49e4052f-3e00-44ad-9296-4d1c41033e01"
+  ],
+  "validator_results": [
+    {
+      "name": "universe_coverage",
+      "status": "PASS",
+      "path": "wiki/evidence-store/run-manifests/2026-06-10-1031-after-hours-autopilot.json",
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-06-10-1031-after-hours-autopilot.json"
+    },
+    {
+      "name": "mcp_coverage",
+      "status": "PASS",
+      "path": "wiki/evidence-store/run-manifests/2026-06-10-1031-after-hours-autopilot.json",
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-06-10-1031-after-hours-autopilot.json"
+    },
+    {
+      "name": "risk_policy",
+      "status": "PASS",
+      "path": "wiki/trade-ledger/orders/2026-06-10-1031-after-hours-autopilot.json",
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-06-10-1031-after-hours-autopilot.json"
+    }
+  ],
+  "after_hours_gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_with_market_closed_expected_nonblocking",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass",
+    "fresh_quote": "pass",
+    "spread_within_after_hours_policy": "pass",
+    "whole_share_day_limit_extended_hours_order": "pass",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_reconciled_filled_by_client_order_id"
+  },
+  "quote_gate": {
+    "selected_symbol": "AAPL",
+    "status": "pass",
+    "runtime_overnight_quote_timestamp": "2026-06-10T01:32:38.798117626Z",
+    "runtime_overnight_quote_age_minutes": 0.0,
+    "runtime_overnight_spread_pct": 0.0206,
+    "runtime_overnight_bid": 291.48,
+    "runtime_overnight_ask": 291.54,
+    "max_quote_age_minutes_submit": 5.0,
+    "max_spread_pct": 0.25,
+    "excluded_candidates": [
+      {
+        "symbol": "QQQ",
+        "reason": "fresh and liquid but 1-share notional exceeded after_hours_policy.max_notional_pct_per_order 494.05 USD"
+      },
+      {
+        "symbol": "SPY",
+        "reason": "fresh and liquid but 1-share notional exceeded after_hours_policy.max_notional_pct_per_order 494.05 USD"
+      },
+      {
+        "symbol": "SMH",
+        "reason": "fresh and liquid but 1-share notional exceeded after_hours_policy.max_notional_pct_per_order 494.05 USD"
+      },
+      {
+        "symbol": "AVGO",
+        "reason": "fresh overnight quote still exceeded after_hours_policy.max_spread_pct"
+      },
+      {
+        "symbol": "RGTI",
+        "reason": "sell side allowed but same-day regular-session sell duplicate remained active"
+      },
+      {
+        "symbol": "WMT",
+        "reason": "fresh quote existed but spread remained above after_hours_policy.max_spread_pct"
+      },
+      {
+        "symbol": "BA",
+        "reason": "fresh quote existed but spread remained above after_hours_policy.max_spread_pct"
+      },
+      {
+        "symbol": "JNJ",
+        "reason": "fresh quote existed but spread remained above after_hours_policy.max_spread_pct"
+      },
+      {
+        "symbol": "INTC",
+        "reason": "fresh quote existed and spread passed, but it remained lower-ranked than the selected existing actionable holding AAPL"
+      }
+    ],
+    "checked_at": "2026-06-10T01:35:15Z"
+  },
+  "order_plan": {
+    "path": "wiki/trade-ledger/orders/2026-06-10-1031-after-hours-autopilot.json",
+    "orders": [
+      {
+        "symbol": "AAPL",
+        "side": "buy",
+        "qty": 1,
+        "client_order_id": "ah-20260610-1031-aapl-buy-01",
+        "status": "filled",
+        "filled_qty": "1"
+      }
+    ],
+    "market_session": "after_hours",
+    "review_bucket": "after_hours_validation"
+  },
+  "orders_submitted": 1,
+  "submit_attempted": true,
+  "client_order_ids": [
+    "ah-20260610-1031-aapl-buy-01"
+  ]
+}

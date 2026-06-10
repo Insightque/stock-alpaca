@@ -36,3 +36,9 @@ current Alpaca snapshot상 `AAPL`은 `3주`, 평균단가 `310.93 USD`, current 
 `AAPL` 1주 after-hours day limit buy가 `291.68 USD` limit으로 제출됐고, Alpaca MCP 기준 `2026-06-10T01:17:49.685900178Z`에 `291.40 USD`로 즉시 체결됐다. 근거는 scheduler-owned `1011` core/research preflight와 strict universe/MCP/risk gate 통과, runtime overnight quote `291.13/291.68`에서 spread `0.1886%`, per-order notional cap 통과, same-day duplicate/open-order conflict 부재, 그리고 `QQQ/SPY/SMH` per-order cap 초과 및 `AVGO/RGTI/SO` sell-side gate 실패 이후 남은 가장 보수적인 mega-cap quality floor-size add였다는 점이다. 이 체결 후 runtime `get_all_positions` 기준 `AAPL` 보유수량은 4주, 평균단가는 `306.0475 USD`로 낮아졌다.
 
 출처: [[2026-06-10-1011-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-10-1011-after-hours-autopilot-post-trade.json`
+
+## 2026-06-10 10:35 KST after-hours-autopilot
+
+`AAPL` 1주 after-hours day limit buy가 `291.54 USD` limit으로 제출됐고, Alpaca MCP 기준 `2026-06-10T01:35:02.497251991Z`에 `291.49 USD`로 즉시 체결됐다. 근거는 scheduler-owned `1031` core/research preflight와 strict universe/MCP/risk gate 통과, runtime overnight quote `291.48/291.54`에서 spread `0.0206%`, separate after-hours order budget의 마지막 슬롯 사용, same-day duplicate/open-order conflict 부재, 그리고 `QQQ/SPY/SMH` per-order cap 초과 및 `AVGO/RGTI/SO` sell-side gate 실패 이후 남은 가장 보수적인 mega-cap quality floor-size add였다는 점이다. `INTC`도 cap 안이었지만 shortlist 우선순위와 liquidity quality에서 `AAPL`이 앞섰다. 이 체결 후 runtime `get_all_positions` 기준 `AAPL` 보유수량은 5주, 평균단가는 `303.136 USD`로 더 낮아졌다.
+
+출처: [[2026-06-10-1031-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-10-1031-after-hours-autopilot-post-trade.json`
