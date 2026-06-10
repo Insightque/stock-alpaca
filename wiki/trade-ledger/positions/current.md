@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-10 23:54 KST_
+_Last updated: 2026-06-11 00:21 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-11-0011-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `XOM` buy 1주 @ `151.41 USD`
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `33` positions 유지. `XOM`은 `4주 -> 5주`, `avg_entry_price=149.692`, `qty_available=5`로 증가했다.
+- Recent reconciliation scope: scheduler-owned `0011` stale cleanup/core/research preflight를 우선 사용했고 live Alpaca MCP submit-boundary check에서 regular market open, ACTIVE account, open orders 0건, same-day fills `PFE/BAC/RGTI/AVGO/WMT/AAPL/AAPL`, `XOM` quote `151.45/151.66`를 재확인했다. sell-first 재평가에서는 `AVGO`와 `RGTI`가 same-day sell duplicate, `SO`가 trim metric gap으로 blocked였고, `SPY/QQQ`는 per-order cap, `COP`는 spread fail이 남았다. `XOM`은 existing energy diversifier floor-size validation buy로 선택됐고 direct Alpaca MCP submit 뒤 immediate same-order-id reconciliation 기준 `order_id=1878c01b-3d57-400d-a66c-b9cbbce4d237`, `filled_avg_price=151.41 USD`로 즉시 전량 체결됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-06-11-0011-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
