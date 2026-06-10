@@ -1,0 +1,113 @@
+{
+  "run_id": "2026-06-11-0431-hourly-autopilot",
+  "created_at": "2026-06-10T19:31:30Z",
+  "paper": true,
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-10T15:31:10.527821336-04:00",
+    "next_open": "2026-06-11T09:30:00-04:00",
+    "next_close": "2026-06-10T16:00:00-04:00",
+    "session": "regular"
+  },
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "cash": 31263.75,
+    "portfolio_value": 97189.76,
+    "buying_power": 294576.03,
+    "position_count": 33
+  },
+  "open_orders": [],
+  "same_day_fills": [
+    "NKE",
+    "NEE",
+    "FCX",
+    "AMZN",
+    "SLB",
+    "COP",
+    "JNJ",
+    "XOM",
+    "PFE",
+    "BAC",
+    "RGTI",
+    "RGTI",
+    "AVGO",
+    "AVGO",
+    "WMT",
+    "AAPL",
+    "AAPL",
+    "XOM",
+    "FCX",
+    "JNJ"
+  ],
+  "watchlists_count": 0,
+  "selected_candidate": "MSFT",
+  "selection_reason": "sell-first diagnostics left no executable trim; MSFT remained the highest-ranked preflight-covered non-duplicate floor-size buy with reusable thesis evidence, neutral interim review, fresh quote, normal spread, active tradable asset status, and an existing mega-cap quality diversifier role.",
+  "candidate_quotes": {
+    "AVGO": {
+      "bid": 372.02,
+      "ask": 375.0,
+      "spread_pct": 0.7947,
+      "quote_time": "2026-06-10T19:31:27.952559386Z"
+    },
+    "RGTI": {
+      "bid": 19.61,
+      "ask": 19.63,
+      "spread_pct": 0.1019,
+      "quote_time": "2026-06-10T19:31:28.331960662Z"
+    },
+    "SO": {
+      "bid": 94.41,
+      "ask": 94.5,
+      "spread_pct": 0.0952,
+      "quote_time": "2026-06-10T19:31:28.01544795Z"
+    },
+    "MSFT": {
+      "bid": 398.32,
+      "ask": 398.38,
+      "spread_pct": 0.0151,
+      "quote_time": "2026-06-10T19:31:26.815667919Z"
+    },
+    "GOOGL": {
+      "bid": 356.56,
+      "ask": 356.61,
+      "spread_pct": 0.014,
+      "quote_time": "2026-06-10T19:31:28.001489871Z"
+    },
+    "PLTR": {
+      "bid": 130.15,
+      "ask": 130.18,
+      "spread_pct": 0.023,
+      "quote_time": "2026-06-10T19:31:28.250560712Z"
+    },
+    "INTC": {
+      "bid": 106.91,
+      "ask": 106.94,
+      "spread_pct": 0.0281,
+      "quote_time": "2026-06-10T19:31:27.930638979Z"
+    },
+    "SPY": {
+      "bid": 726.44,
+      "ask": 726.63,
+      "spread_pct": 0.0261,
+      "quote_time": "2026-06-10T19:31:28.542070981Z"
+    },
+    "QQQ": {
+      "bid": 694.97,
+      "ask": 695.06,
+      "spread_pct": 0.0129,
+      "quote_time": "2026-06-10T19:31:28.326743005Z"
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0431-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-0431-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0431-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0431-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/research-notes/tickers/MSFT.md"
+  ]
+}

@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-11 04:14 KST_
+_Last updated: 2026-06-11 04:39 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-11-0431-hourly-autopilot]]
+- Open/new: `MSFT` buy 1주 @ `398.38 USD` (`status=new`)
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: reconciliation 기준 `33` positions 유지. `MSFT`는 아직 `1주`, `avg_entry_price=426.78`, `qty_available=1`로 unchanged이며 새 open order는 `MSFT` 1건이다.
+- Recent reconciliation scope: scheduler-owned `0431` stale cleanup/core/research preflight를 source-of-record로 사용했고 submit 직후 Alpaca MCP `get_order_by_client_id`, `get_orders(status=open)`, `get_orders(status=all, symbols=MSFT, after=2026-06-10T19:30:00Z)`, `get_all_positions`, `get_account_info`로 open-order/position/account 상태를 재확인했다. sell-first 재평가에서는 `AVGO`가 spread `0.7981%` + same-day sell duplicate, `RGTI`가 same-day sell duplicate, `SO`가 trim metric gap으로 blocked였고, buy fallback에서는 `FCX/WMT/AMZN/BAC/NEE` same-day buy duplicate, `GOOGL` weak review, `NVDA` same-cluster add block, `PLTR` low confidence, `INTC` prior weak exit-thesis, `SPY/QQQ` per-order cap이 남아 `MSFT`가 선택됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-11-0431-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
