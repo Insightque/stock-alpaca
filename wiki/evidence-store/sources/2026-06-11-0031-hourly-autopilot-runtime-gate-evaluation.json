@@ -1,0 +1,243 @@
+{
+  "run_id": "2026-06-11-0031-hourly-autopilot",
+  "created_at": "2026-06-10T15:37:07Z",
+  "paper_mode_confirmed": true,
+  "market_clock": {
+    "timestamp": "2026-06-10T11:37:20.342891003-04:00",
+    "is_open": true,
+    "next_close": "2026-06-10T16:00:00-04:00",
+    "next_open": "2026-06-11T09:30:00-04:00"
+  },
+  "preflight_reuse": {
+    "stale_cleanup_source_ref": "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-stale-order-cleanup.json",
+    "alpaca_core_source_ref": "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-alpaca-core-preflight.json",
+    "research_mcp_source_ref": "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-research-mcp-preflight.json",
+    "alpaca_core_hard_gate_status": "pass",
+    "research_confirmation_count": 4,
+    "alpha_gap": {
+      "outcome": "failed",
+      "gap_category": "provider_error",
+      "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-10T14:51:35+00:00, retry after ~1205s."
+    }
+  },
+  "live_alpaca_cross_check": {
+    "clock_timestamp": "2026-06-10T11:37:20.342891003-04:00",
+    "account_status": "ACTIVE",
+    "cash": 32111.22,
+    "portfolio_value": 97872.18,
+    "buying_power": 297312.44,
+    "position_market_value": 65760.96,
+    "open_orders": 0,
+    "positions_count": 33,
+    "same_day_fills": [
+      "XOM",
+      "PFE",
+      "BAC",
+      "RGTI",
+      "AVGO",
+      "WMT",
+      "AAPL",
+      "AAPL"
+    ],
+    "watchlists_count": 0
+  },
+  "review_backlog_throttle": {
+    "review_backlog_pending_1d_count": 9,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1,
+    "reduced_buy_slots_to": 1,
+    "blocked_new_buys": false
+  },
+  "sell_first_result": [
+    {
+      "symbol": "AVGO",
+      "held_qty": 6,
+      "current_weight_pct": 2.3058,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "AVGO는 ai_semiconductor warning band와 post-earnings de-risking rationale가 여전히 active지만, 2251 cycle same-day filled trim이 이미 있어 duplicate sell discipline이 이번 cycle 추가 trim을 막는다.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -3.55,
+      "relative_to_spy_20d_pct": -4.33,
+      "metric_gap_reason": "",
+      "replacement_symbol": "JNJ",
+      "replacement_expected_excess_margin_pct": 3.55,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+        "wiki/research-notes/tickers/JNJ.md"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "held_qty": 51,
+      "current_weight_pct": 1.0484,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "RGTI는 speculative loss-control trim trigger와 큰 미실현 손실이 계속 active지만, 2311 cycle same-day filled trim이 이미 있어 duplicate sell discipline이 이번 cycle 추가 trim을 막는다.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.48,
+      "relative_to_spy_20d_pct": -1.48,
+      "metric_gap_reason": "",
+      "replacement_symbol": "JNJ",
+      "replacement_expected_excess_margin_pct": 1.48,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+        "wiki/research-notes/tickers/JNJ.md"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "held_qty": 5,
+      "current_weight_pct": 0.4797,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "SO는 defensive/utilities validation review 약세와 rate-sensitive 부담으로 trim 재점검 대상이지만, live quote/spread 정상화 이후에도 decision-grade expected-excess와 replacement margin 공백이 남아 있다.",
+      "skipped_gate": "sell_metric_gap",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "SO는 quote/spread gate는 통과했지만 trim justification에 필요한 decision-grade expected-excess와 replacement margin evidence가 이번 cycle scheduler evidence에 없다.",
+      "replacement_symbol": "JNJ",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+        "wiki/research-notes/tickers/JNJ.md"
+      ]
+    }
+  ],
+  "buy_candidate_stack": [
+    {
+      "symbol": "JNJ",
+      "decision": "selected_buy",
+      "spread_pct": 0.0251,
+      "reason": "healthcare defensive diversifier, research preflight 포함, same-day duplicate/open-order conflict 없음, 1주 floor size 허용"
+    },
+    {
+      "symbol": "SLB",
+      "decision": "watch_backup",
+      "spread_pct": 0.0178,
+      "reason": "energy-services backup candidate지만 JNJ가 sector diversification과 replacement rank에서 우선"
+    },
+    {
+      "symbol": "COP",
+      "decision": "watch_backup",
+      "spread_pct": 0.0249,
+      "reason": "energy/value diversifier backup candidate지만 JNJ가 non-energy diversification 측면에서 우선"
+    },
+    {
+      "symbol": "SPY",
+      "decision": "blocked_floor_cap",
+      "spread_pct": 0.0096,
+      "reason": "1주 ask가 validation floor per-order cap 초과"
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "blocked_floor_cap",
+      "spread_pct": 0.0257,
+      "reason": "1주 ask가 validation floor per-order cap 초과"
+    }
+  ],
+  "selected_order_candidate": {
+    "symbol": "JNJ",
+    "asset_type": "stock",
+    "asset_status": "active",
+    "asset_tradable": true,
+    "side": "buy",
+    "order_type": "limit",
+    "time_in_force": "day",
+    "extended_hours": false,
+    "session": "regular",
+    "review_bucket": "regular_validation",
+    "qty": 1,
+    "limit_price": 239.35,
+    "reference_price": 239.35,
+    "quote_age_minutes": 3.42,
+    "quote_captured_at": "2026-06-10T15:33:42.652373650Z",
+    "asset_checked_at": "2026-06-10T15:33:00Z",
+    "theme": "healthcare_pharma",
+    "factor": "defensive_healthcare",
+    "volatility_bucket": "low",
+    "speculative_flag": false,
+    "liquidity_bucket": "large",
+    "source_confidence": "high",
+    "correlated_cluster": "healthcare",
+    "strategy_id": "long_term_quality_momentum_v1",
+    "strategy_version": "recommendation-policy-v1.11",
+    "policy_status": "auto_eligible_paper",
+    "expected_excess_return_20d_pct": 0.0,
+    "expected_adverse_move_20d_pct": -2.5,
+    "confidence_score": 0.5,
+    "sizing_basis": "validation_floor_1_share_healthcare_diversifier_with_clean_research_preflight_and_no_same_day_duplicate",
+    "entry_style": "staged",
+    "max_additional_entry_count": 0,
+    "liquidity": {
+      "bid": 239.29,
+      "ask": 239.35,
+      "spread_pct": 0.0251,
+      "avg_daily_dollar_volume": 50000000,
+      "quote_source": "alpaca",
+      "measured_at": "2026-06-10T15:33:42.652373650Z"
+    },
+    "client_order_id": "hourly-20260611-0031-buy-jnj",
+    "decision_id": "2026-06-11-0031-hourly-autopilot-JNJ-buy-validation",
+    "review_horizons": [
+      "1D",
+      "5D",
+      "20D"
+    ],
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-stale-order-cleanup.json",
+      "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-research-mcp-preflight.json",
+      "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-runtime-gate-evaluation.json",
+      "harness/recommendation-policy.yaml",
+      "harness/risk-policy.yaml",
+      "harness/symbol-metadata.yaml",
+      "wiki/trade-ledger/reviews/review-due-index.json",
+      "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+      "wiki/research-notes/tickers/JNJ.md"
+    ],
+    "rationale": "JNJ 1주 validation buy. 0031 cycle은 scheduler-owned stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca submit-boundary check에서 regular market open, ACTIVE account, open orders 0건, same-day fills `XOM/PFE/BAC/RGTI/AVGO/WMT/AAPL/AAPL`, fresh JNJ quote 239.29/239.35를 재확인했다. sell-first 평가에서는 AVGO와 RGTI가 same-day filled sell duplicate로 추가 trim이 막혔고 SO는 trim decision-grade metric gap이 남았다. buy fallback에서는 SPY/QQQ는 validation floor per-order cap 초과, BAC/WMT/XOM은 same-day buy duplicate, COP/SLB는 executable backup이지만 JNJ가 healthcare defensive diversifier로 기존 포트폴리오의 AI/반도체·성장주 편중 완화 효과가 더 크다. scheduler research shortlist 포함, SEC/FRED/Firecrawl/Yahoo positive confirmation 유지, active tradable NYSE stock, same-day duplicate/open-order conflict 부재, review backlog throttle 하에서 허용된 단일 buy slot, ticker/cluster/theme cap 여유를 모두 충족해 learning_trade_directive의 floor-size buy로 승격됐다."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/research-notes/tickers/JNJ.md"
+  ]
+}

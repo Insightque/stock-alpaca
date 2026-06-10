@@ -1,0 +1,57 @@
+{
+  "run_id": "2026-06-11-0031-hourly-autopilot",
+  "created_at": "2026-06-10T15:40:01Z",
+  "paper": true,
+  "source": "live Alpaca MCP post-trade reconciliation",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-11-0031-hourly-autopilot.json",
+    "wiki/evidence-store/run-manifests/2026-06-11-0031-hourly-autopilot.json",
+    "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0031-hourly-autopilot-research-mcp-preflight.json"
+  ],
+  "account": {
+    "status": "ACTIVE",
+    "cash": 31871.99,
+    "portfolio_value": 97745.31,
+    "buying_power": 296720.77,
+    "position_market_value": 65873.32
+  },
+  "order": {
+    "order_id": "c1075d80-4584-4f06-8e39-9182570e9f19",
+    "client_order_id": "hourly-20260611-0031-buy-jnj",
+    "symbol": "JNJ",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 239.35,
+    "status": "filled",
+    "filled_qty": 1,
+    "filled_avg_price": 239.23,
+    "submitted_at": "2026-06-10T15:37:41.309261010Z",
+    "filled_at": "2026-06-10T15:37:41.909402288Z"
+  },
+  "open_orders": [],
+  "positions_count": 33,
+  "touched_positions": {
+    "JNJ": {
+      "qty_before": 1,
+      "qty_after": 2,
+      "avg_entry_price_after": 238.385,
+      "qty_available_after": 2,
+      "market_value_after": 478.38,
+      "current_price_after": 239.19
+    }
+  },
+  "same_day_fills": [
+    "JNJ",
+    "XOM",
+    "PFE",
+    "BAC",
+    "RGTI",
+    "AVGO",
+    "WMT",
+    "AAPL",
+    "AAPL"
+  ]
+}

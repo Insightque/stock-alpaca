@@ -57,3 +57,10 @@ JNJ는 healthcare/pharma 성격의 대형 방어주로, 이번 regular-session v
 `JNJ` 1주 regular-session day limit buy가 `237.55 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260610-0351-buy-jnj`, `order_id=6f39a832-aec9-4c63-96bb-491a32b8864b`가 생성된 뒤 same client id reconciliation에서 `2026-06-09T18:59:06.623080055Z`에 `237.54 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0351` stale cleanup/core/research preflight와 live Alpaca MCP submit-boundary check 기준 paper mode/market open/universe strict/MCP strict/risk strict 모두 통과했고, sell-first 재평가에서 executable risk-reducing sell이 남지 않은 뒤 healthcare defensive diversifier floor-size validation fallback이 learning_trade_directive를 가장 깔끔하게 충족했다는 점이다.
 
 출처: [[2026-06-10-0351-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-10-0351-hourly-autopilot-post-trade.json`
+
+
+## 2026-06-11 00:38 KST hourly autopilot
+
+`JNJ` 1주 regular-session day limit buy가 `239.35 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260611-0031-buy-jnj`, `order_id=c1075d80-4584-4f06-8e39-9182570e9f19`가 생성된 뒤 same client id reconciliation에서 `2026-06-10T15:37:41.909402288Z`에 `239.23 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0031` stale cleanup/core/research preflight와 live Alpaca MCP submit-boundary check 기준 paper mode/market open/universe strict/MCP strict/risk strict 모두 통과했고, sell-first 재평가에서 executable risk-reducing sell이 남지 않은 뒤 healthcare defensive diversifier floor-size validation fallback이 learning_trade_directive를 가장 깔끔하게 충족했다는 점이다.
+
+출처: [[2026-06-11-0031-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-11-0031-hourly-autopilot-post-trade.json`
