@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-10 04:39 KST_
+_Last updated: 2026-06-10 10:18 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-10-1011-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: `AAPL` buy 1주 @ `291.40 USD`
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `33` positions 유지. `AAPL`은 `3주 -> 4주`, `avg_entry_price=306.0475`, `qty_available=4`로 증가했다.
+- Recent reconciliation scope: scheduler-owned `1011` core/research preflight를 우선 사용했고 live Alpaca MCP submit-boundary check에서 regular market closed, ACTIVE account, open orders 0건, same-session after-hours fills 0건을 먼저 재확인했다. 후보 재평가에서는 `QQQ/SPY/SMH`가 per-order cap 초과, `AVGO`는 spread cap 초과, `RGTI`는 same-day sell duplicate, `SO`는 quote gap으로 제외됐고 `AAPL`은 fresh overnight quote `291.13/291.68`, spread `0.1886%`로 모든 after-hours hard gate를 통과했다. direct Alpaca MCP submit 뒤 immediate same-client-id reconciliation 기준 `order_id=cd79b8db-51e1-4eab-8903-7da2614d2bcd`, `filled_avg_price=291.40 USD`로 즉시 체결됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-06-10-1011-after-hours-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

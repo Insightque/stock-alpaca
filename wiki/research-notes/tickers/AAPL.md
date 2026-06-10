@@ -30,3 +30,9 @@ Apple paper validation 후보. 2026-05-26 hourly autopilot에서 mega-cap qualit
 current Alpaca snapshot상 `AAPL`은 `3주`, 평균단가 `310.93 USD`, current `290.913 USD`로 미실현 `-6.44%`다. `2026-06-05 ET` add 1D의 `약함` 판단 뒤에도 하루 더 밀렸기 때문에, mega-cap quality label만으로 add cadence를 높이지 않는다는 해석이 더 강화됐다. `2026-06-12 ET` 5D review 전까지는 recovery confirmation이 필요하다.
 
 출처: [[2026-06-10-portfolio-review]], [[2026-06-10-0622-analyst-review-cycle-sources]]
+
+## 2026-06-10 10:17 KST after-hours-autopilot
+
+`AAPL` 1주 after-hours day limit buy가 `291.68 USD` limit으로 제출됐고, Alpaca MCP 기준 `2026-06-10T01:17:49.685900178Z`에 `291.40 USD`로 즉시 체결됐다. 근거는 scheduler-owned `1011` core/research preflight와 strict universe/MCP/risk gate 통과, runtime overnight quote `291.13/291.68`에서 spread `0.1886%`, per-order notional cap 통과, same-day duplicate/open-order conflict 부재, 그리고 `QQQ/SPY/SMH` per-order cap 초과 및 `AVGO/RGTI/SO` sell-side gate 실패 이후 남은 가장 보수적인 mega-cap quality floor-size add였다는 점이다. 이 체결 후 runtime `get_all_positions` 기준 `AAPL` 보유수량은 4주, 평균단가는 `306.0475 USD`로 낮아졌다.
+
+출처: [[2026-06-10-1011-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-10-1011-after-hours-autopilot-post-trade.json`

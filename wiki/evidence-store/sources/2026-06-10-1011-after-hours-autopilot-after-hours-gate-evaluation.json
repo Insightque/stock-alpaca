@@ -1,0 +1,192 @@
+{
+  "run_id": "2026-06-10-1011-after-hours-autopilot",
+  "created_at": "2026-06-10T01:18:10Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "QQQ",
+    "SMH",
+    "SPY",
+    "JNJ",
+    "BA",
+    "AAPL",
+    "INTC",
+    "WMT"
+  ],
+  "runtime_alpaca_mcp": {
+    "used_scheduler_preflight": true,
+    "source_of_record": "wiki/evidence-store/sources/2026-06-10-1011-after-hours-autopilot-alpaca-core-preflight.json",
+    "cross_checks": {
+      "get_clock": {
+        "is_open": false,
+        "timestamp": "2026-06-09T21:12:59.805962421-04:00",
+        "next_open": "2026-06-10T09:30:00-04:00",
+        "next_close": "2026-06-10T16:00:00-04:00"
+      },
+      "get_account_info": {
+        "status": "ACTIVE",
+        "portfolio_value": 98927.32,
+        "cash": 31951.54,
+        "buying_power": 299760.03,
+        "long_market_value": 66975.78,
+        "currency": "USD"
+      },
+      "get_all_positions": {
+        "count": 33
+      },
+      "get_orders(status=open)": {
+        "count": 0
+      },
+      "get_orders(status=all, after=2026-06-09T20:00:00Z)": {
+        "count": 0
+      },
+      "get_account_activities(activity_types=FILL, after=2026-06-09T20:00:00Z)": {
+        "count": 0
+      },
+      "get_watchlists": {
+        "count": 0
+      },
+      "get_stock_latest_quote(feed=overnight)": {
+        "selected_symbol": "AAPL",
+        "selected_timestamp": "2026-06-10T01:13:26.880347909Z",
+        "symbols_with_fresh_quotes": [
+          "QQQ",
+          "SMH",
+          "SPY",
+          "JNJ",
+          "BA",
+          "AAPL",
+          "INTC",
+          "WMT",
+          "AVGO",
+          "RGTI",
+          "PFE"
+        ],
+        "symbols_missing_fresh_quotes": [
+          "SO"
+        ]
+      }
+    },
+    "note": "1011 Alpaca core preflight first_blocking_gate=market_closed\ub294 after-hours expected nonblocking\uc73c\ub85c \ucc98\ub9ac\ud588\uace0, runtime Alpaca MCP cross-check\ub294 ACTIVE account, positions 33, open orders 0, same-session after-hours orders 0, same-session fills 0, watchlists 0, same-day RGTI sell duplicate, and fresh overnight quote rows\uae4c\uc9c0 \ubcf4\uac15\ud588\ub2e4. \uc774 cycle\uc5d0\uc11c\ub294 AAPL overnight quote\uac00 freshness/spread/notional cap\uc744 \ubaa8\ub450 \ud1b5\uacfc\ud588\ub2e4."
+  },
+  "submit_attempted": true,
+  "orders_submitted": [
+    {
+      "symbol": "AAPL",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 291.68,
+      "client_order_id": "ah-20260610-1011-aapl-buy-01",
+      "order_id": "cd79b8db-51e1-4eab-8903-7da2614d2bcd",
+      "status": "filled",
+      "filled_avg_price": 291.4,
+      "filled_at": "2026-06-10T01:17:49.685900178Z"
+    }
+  ],
+  "review_backlog_throttle": {
+    "pending_1d_count": 9,
+    "pending_5d_count": 13,
+    "pending_20d_count": 1,
+    "status": "monitor_only_nok_add_block_persists"
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "after_hours_new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 9,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1,
+    "risk_recomputed_after_partial_fill": true
+  },
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass",
+      "detail": "ALPACA_PAPER_TRADE=true \ud655\uc778"
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed",
+      "detail": "regular market closed at runtime get_clock 2026-06-09T21:12:59.805962421-04:00"
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass",
+      "detail": "session=after_hours and extended-hours policy profile retained"
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_runtime_core_backfill_after_sparse_preflight",
+      "detail": "1011 scheduler-owned core preflight first_blocking_gate=market_closed treated as expected nonblocking; runtime Alpaca MCP cross-checks revalidated account/positions/orders/asset/quote/spread and same-day sell duplicate context."
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass",
+      "detail": "after_hours_policy artifact tag, review bucket, order id prefix, and allowed_sides buy/sell retained"
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "pass_zero_of_two_submitted",
+      "detail": "after_hours_new_orders_submitted_today=0 and max_new_orders_per_session=2; regular validation count was not reused"
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass",
+      "detail": "broad universe 62 symbols with SPY/QQQ included and scheduler-owned research shortlist 8 symbols"
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass",
+      "detail": "sec-edgar/fred/firecrawl/yahoo-finance pass; alpha-vantage provider_error did not block because core and minimum research confirmations passed"
+    },
+    {
+      "gate": "risk_policy",
+      "status": "pass",
+      "detail": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-06-10-1011-after-hours-autopilot.json PASS"
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "pass_runtime_overnight_quote_under_5_minutes",
+      "detail": "AAPL overnight quote timestamp 2026-06-10T01:13:26.880347909Z stayed under the 5 minute submit freshness cap"
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "pass_runtime_overnight_spread_0_0343pct",
+      "detail": "AAPL overnight spread 0.0343% stayed under the 0.25% after-hours cap"
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "pass",
+      "detail": "planned order keeps whole-share day limit stock order with extended_hours=true and session=after_hours"
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "pass_reconciled_filled_by_client_order_id",
+      "detail": "single place_stock_order call reconciled filled by matching client_order_id ah-20260610-1011-aapl-buy-01; no alternate client id used and no cancel was needed"
+    }
+  ],
+  "candidate_notes": [
+    "AAPL buy\ub294 overnight quote 291.13/291.68, spread 0.1886%, quote age \uc57d 0.1\ubd84\uc73c\ub85c after_hours_policy cap\uc744 \ubaa8\ub450 \ud1b5\uacfc\ud588\uace0 1\uc8fc notional\ub3c4 per-order cap \uc544\ub798\uc600\ub2e4.",
+    "QQQ, SPY, SMH\ub294 fresh and liquid\uc600\uc9c0\ub9cc 1\uc8fc ask\uac00 after-hours per-order cap 494.64 USD\ub97c \ucd08\uacfc\ud588\ub2e4.",
+    "WMT, BA, JNJ\ub294 fresh overnight quote\uac00 \uc788\uc5c8\uc9c0\ub9cc spread\uac00 after_hours_policy.max_spread_pct 0.25%\ub97c \ub118\uc5c8\ub2e4.",
+    "AVGO\ub294 sell side \ud5c8\uc6a9 \uc815\ucc45\uc5d0 \ub530\ub77c \uc7ac\ud3c9\uac00\ud588\uc9c0\ub9cc fresh overnight spread\uac00 0.25% cap\uc744 \ub118\uc5c8\ub2e4.",
+    "RGTI\ub294 fresh overnight quote\uc640 spread\ub294 \ud1b5\uacfc\ud588\uc9c0\ub9cc 2026-06-09 regular-session filled sell\uc774 \uc788\uc5b4 same-day sell duplicate discipline\uc774 \uc720\uc9c0\ub410\ub2e4.",
+    "SO\ub294 fresh two-sided overnight quote\uac00 \uc5c6\uc5c8\ub2e4."
+  ],
+  "block_reasons": [],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-1011-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-1011-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-1011-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/trade-ledger/positions/current.md",
+    "wiki/research-notes/tickers/AAPL.md"
+  ]
+}
