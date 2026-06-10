@@ -1,0 +1,111 @@
+{
+  "run_id": "2026-06-11-0151-hourly-autopilot",
+  "created_at": "2026-06-10T16:59:29Z",
+  "paper": true,
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-10T12:59:27.277345873-04:00",
+    "next_open": "2026-06-11T09:30:00-04:00",
+    "next_close": "2026-06-10T16:00:00-04:00",
+    "session": "regular"
+  },
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "cash": 31455.16,
+    "portfolio_value": 97713.98,
+    "buying_power": 296151.3,
+    "position_count": 33
+  },
+  "open_orders": [],
+  "same_day_fills": [
+    "AMZN",
+    "SLB",
+    "COP",
+    "JNJ",
+    "XOM",
+    "PFE",
+    "BAC",
+    "RGTI",
+    "AVGO",
+    "WMT",
+    "AAPL",
+    "AAPL"
+  ],
+  "watchlists_count": 0,
+  "selected_candidate": "FCX",
+  "selection_reason": "sell-first diagnostics left no executable trim; FCX remained the highest-ranked preflight-covered different-session non-duplicate floor-size buy with fresh quote, normal spread, active tradable asset status, and clean open-order state.",
+  "candidate_quotes": {
+    "AVGO": {
+      "bid": 371.74,
+      "ask": 377.5,
+      "spread_pct": 1.5258,
+      "quote_time": "2026-06-10T16:53:47.809382512Z"
+    },
+    "RGTI": {
+      "bid": 19.96,
+      "ask": 19.98,
+      "spread_pct": 0.1002,
+      "quote_time": "2026-06-10T16:53:48.239993707Z"
+    },
+    "SO": {
+      "bid": 94.21,
+      "ask": 94.5,
+      "spread_pct": 0.3069,
+      "quote_time": "2026-06-10T16:53:46.591648161Z"
+    },
+    "FCX": {
+      "bid": 62.19,
+      "ask": 62.22,
+      "spread_pct": 0.0482,
+      "quote_time": "2026-06-10T16:59:22.022344232Z"
+    },
+    "CVX": {
+      "bid": 191.59,
+      "ask": 191.63,
+      "spread_pct": 0.0209,
+      "quote_time": "2026-06-10T16:53:47.403252411Z"
+    },
+    "NEE": {
+      "bid": 85.16,
+      "ask": 85.19,
+      "spread_pct": 0.0352,
+      "quote_time": "2026-06-10T16:53:47.797567895Z"
+    },
+    "GOOGL": {
+      "bid": 358.28,
+      "ask": 358.94,
+      "spread_pct": 0.1839,
+      "quote_time": "2026-06-10T16:53:48.288900667Z"
+    },
+    "SPY": {
+      "bid": 730.43,
+      "ask": 730.52,
+      "spread_pct": 0.0123,
+      "quote_time": "2026-06-10T16:53:48.289863555Z"
+    },
+    "QQQ": {
+      "bid": 698.21,
+      "ask": 698.54,
+      "spread_pct": 0.0472,
+      "quote_time": "2026-06-10T16:53:48.311846291Z"
+    },
+    "NKE": {
+      "bid": 44.14,
+      "ask": 44.15,
+      "spread_pct": 0.0226,
+      "quote_time": "2026-06-10T16:53:48.098973866Z"
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0151-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-0151-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0151-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0151-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/research-notes/tickers/FCX.md"
+  ]
+}
