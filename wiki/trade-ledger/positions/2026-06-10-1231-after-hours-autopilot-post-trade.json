@@ -1,0 +1,53 @@
+{
+  "run_id": "2026-06-10-1231-after-hours-autopilot",
+  "created_at": "2026-06-10T03:33:29Z",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 98594,
+    "cash": 31368.65,
+    "buying_power": 298374.9,
+    "long_market_value": 67225.35,
+    "currency": "USD"
+  },
+  "submitted_orders": [],
+  "lifecycle_actions": [],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "NVDA",
+      "qty": 38,
+      "market_value": 7829.9
+    },
+    {
+      "symbol": "AMD",
+      "qty": 14,
+      "market_value": 6547.8
+    },
+    {
+      "symbol": "LRCX",
+      "qty": 20,
+      "market_value": 6523.6
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": false,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "client_order_ids_checked": [
+      "ah-20260610-1011-aapl-buy-01",
+      "ah-20260610-1031-aapl-buy-01"
+    ],
+    "new_fills_detected": 0,
+    "position_delta": "none",
+    "note": "No new after-hours order was submitted. Reconciliation only confirmed that the two earlier same-session AAPL client_order_ids were already filled, open orders stayed at 0, and position counts were unchanged during the 1231 cycle."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-1231-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-1231-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-1231-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-10-1231-after-hours-autopilot.json"
+  ]
+}
