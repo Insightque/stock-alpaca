@@ -1,0 +1,50 @@
+{
+  "run_id": "2026-06-10-0951-after-hours-autopilot",
+  "created_at": "2026-06-10T00:55:17Z",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 98690.3,
+    "cash": 31951.54,
+    "buying_power": 299276.47,
+    "long_market_value": 66738.76,
+    "currency": "USD"
+  },
+  "submitted_orders": [],
+  "lifecycle_actions": [],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "NVDA",
+      "qty": 38.0,
+      "market_value": 7824.96
+    },
+    {
+      "symbol": "AMD",
+      "qty": 14.0,
+      "market_value": 6553.82
+    },
+    {
+      "symbol": "TSM",
+      "qty": 15.0,
+      "market_value": 6372.6
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": false,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "client_order_ids_checked": [],
+    "new_fills_detected": 0,
+    "position_delta": "none",
+    "note": "No submit path. Scheduler-owned 0951 Alpaca core preflight left market_closed as the expected regular-session blocker, and runtime Alpaca MCP reconfirmed closed market, ACTIVE account, 33 positions, 0 open orders, 0 same-session orders since 2026-06-09T20:00:00Z, 0 same-session fills, 0 watchlists, same-day sell duplicate context for RGTI, and still-stale boats quote evidence for the shortlist and sell candidates."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-0951-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0951-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0951-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-10-0951-after-hours-autopilot.json"
+  ]
+}
