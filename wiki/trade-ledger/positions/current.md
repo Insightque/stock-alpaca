@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-11 02:57 KST_
+_Last updated: 2026-06-11 03:16 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-11-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned `0311` core preflight 기준 `33` positions 유지, open orders `0`건 유지.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했다. sell-first 재평가에서는 `AVGO`와 `RGTI`가 모두 spread는 정상 범위였지만 `2026-06-10 ET` same-day sell duplicate로 blocked였고, `SO`는 trim metric gap이 유지됐다. buy fallback에서는 `FCX/WMT/SLB/XOM/NKE/NEE/COP/AMZN` same-day buy duplicate, `GOOGL` weak review, `NVDA` same-cluster add block, `SPY/QQQ` per-order cap이 남아 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-11-0311-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
