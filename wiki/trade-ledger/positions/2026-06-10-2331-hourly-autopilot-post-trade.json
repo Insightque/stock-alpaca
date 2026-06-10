@@ -1,0 +1,51 @@
+{
+  "run_id": "2026-06-10-2331-hourly-autopilot",
+  "created_at": "2026-06-10T14:39:08Z",
+  "paper": true,
+  "source": "post-trade reconciliation via Alpaca MCP",
+  "order": {
+    "order_id": "544dec18-dc40-499f-9085-e5ad37b50fef",
+    "client_order_id": "hourly-20260610-2331-buy-bac",
+    "symbol": "BAC",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 54.85,
+    "status": "filled",
+    "filled_qty": 1,
+    "filled_avg_price": 54.77,
+    "submitted_at": "2026-06-10T14:39:02.405605158Z",
+    "filled_at": "2026-06-10T14:39:03.058660726Z"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "cash": 32288.33,
+    "portfolio_value": 99159.77,
+    "buying_power": 300860.07,
+    "position_market_value": 66871.44
+  },
+  "open_orders": [],
+  "positions_count": 33,
+  "touched_positions": {
+    "BAC": {
+      "qty_before": 5,
+      "qty_after": 6,
+      "avg_entry_price_after": 53.315,
+      "qty_available_after": 6,
+      "market_value_after": 328.53,
+      "current_price_after": 54.755
+    }
+  },
+  "same_day_fills": [
+    "BAC",
+    "RGTI",
+    "AVGO",
+    "WMT",
+    "AAPL",
+    "AAPL"
+  ],
+  "source_refs": [
+    "wiki/trade-ledger/orders/2026-06-10-2331-hourly-autopilot.json",
+    "wiki/evidence-store/run-manifests/2026-06-10-2331-hourly-autopilot.json",
+    "wiki/evidence-store/sources/2026-06-10-2331-hourly-autopilot-runtime-gate-evaluation.json"
+  ]
+}

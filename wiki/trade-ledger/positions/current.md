@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-10 23:15 KST_
+_Last updated: 2026-06-10 23:39 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-10-2331-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `BAC` buy 1주 @ `54.77 USD`
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `33` positions 유지. `BAC`는 `5주 -> 6주`, `avg_entry_price=53.315`, `qty_available=6`으로 증가했다.
+- Recent reconciliation scope: scheduler-owned `2331` stale cleanup/core/research preflight를 우선 사용했고 live Alpaca MCP submit-boundary check에서 regular market open, ACTIVE account, open orders 0건, same-day fills `RGTI/AVGO/WMT/AAPL`, `BAC` live quote `54.84/54.85`를 재확인했다. sell-first 재평가에서는 `RGTI`와 `AVGO`가 same-day sell duplicate, `SO`가 trim metric gap으로 blocked였고, `WMT`는 same-day buy duplicate, `SPY/QQQ`는 per-order cap을 넘었다. `BAC`는 financials diversifier floor-size validation buy로 선택됐고 direct Alpaca MCP submit 뒤 immediate same-order-id reconciliation 기준 `order_id=544dec18-dc40-499f-9085-e5ad37b50fef`, `filled_avg_price=54.77 USD`로 즉시 전량 체결됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-06-10-2331-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
