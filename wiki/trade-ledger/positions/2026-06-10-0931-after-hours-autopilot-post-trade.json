@@ -1,0 +1,50 @@
+{
+  "run_id": "2026-06-10-0931-after-hours-autopilot",
+  "created_at": "2026-06-10T00:36:24Z",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 98794.61,
+    "cash": 31951.54,
+    "buying_power": 299433.47,
+    "long_market_value": 66843.07,
+    "currency": "USD"
+  },
+  "submitted_orders": [],
+  "lifecycle_actions": [],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "NVDA",
+      "qty": 38.0,
+      "market_value": 7837.12
+    },
+    {
+      "symbol": "AMD",
+      "qty": 14.0,
+      "market_value": 6622.0
+    },
+    {
+      "symbol": "TSM",
+      "qty": 15.0,
+      "market_value": 6412.2
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": false,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "client_order_ids_checked": [],
+    "new_fills_detected": 0,
+    "position_delta": "none",
+    "note": "No submit path. Scheduler-owned 0931 Alpaca core preflight left only the regular-market-closed gate row, so runtime Alpaca MCP backfilled closed market, ACTIVE account, 33 positions, 0 open orders, 0 same-session orders since 2026-06-09T20:00:00Z, 0 same-session fills, 0 watchlists, and stale boats quote evidence for the shortlist and sell candidates."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-0931-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0931-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0931-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-10-0931-after-hours-autopilot.json"
+  ]
+}

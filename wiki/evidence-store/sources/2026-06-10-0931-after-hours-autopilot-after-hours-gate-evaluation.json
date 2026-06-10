@@ -1,0 +1,180 @@
+{
+  "run_id": "2026-06-10-0931-after-hours-autopilot",
+  "created_at": "2026-06-10T00:36:24Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "QQQ",
+    "SMH",
+    "SPY",
+    "JNJ",
+    "BA",
+    "AAPL",
+    "INTC",
+    "WMT"
+  ],
+  "runtime_alpaca_mcp": {
+    "used_scheduler_preflight": true,
+    "source_of_record": "wiki/evidence-store/sources/2026-06-10-0931-after-hours-autopilot-alpaca-core-preflight.json",
+    "cross_checks": {
+      "get_clock": {
+        "is_open": false,
+        "timestamp": "2026-06-09T20:33:01.45157813-04:00",
+        "next_open": "2026-06-10T09:30:00-04:00",
+        "next_close": "2026-06-10T16:00:00-04:00"
+      },
+      "get_account_info": {
+        "status": "ACTIVE",
+        "portfolio_value": 98794.61,
+        "cash": 31951.54,
+        "buying_power": 299433.47,
+        "long_market_value": 66843.07,
+        "currency": "USD"
+      },
+      "get_all_positions": {
+        "count": 33
+      },
+      "get_orders(status=open)": {
+        "count": 0
+      },
+      "get_orders(status=all, after=2026-06-09T20:00:00Z)": {
+        "count": 0
+      },
+      "get_account_activities(activity_types=FILL, after=2026-06-09T20:00:00Z)": {
+        "count": 0
+      },
+      "get_watchlists": {
+        "count": 0
+      },
+      "get_stock_quotes(feed=boats)": {
+        "freshest_timestamp": "2026-06-10T00:18:36.640249383Z",
+        "symbols_with_two_sided_quotes": [
+          "QQQ",
+          "SMH",
+          "SPY",
+          "JNJ",
+          "BA",
+          "AAPL",
+          "INTC",
+          "WMT",
+          "AVGO",
+          "RGTI"
+        ],
+        "symbols_missing_two_sided_quotes": [
+          "SO"
+        ]
+      }
+    },
+    "note": "0931 Alpaca core preflight first_blocking_gate=market_closed는 after-hours expected nonblocking으로 처리했고, account/positions/orders/asset/quote rows가 비어 있어 runtime Alpaca MCP로 보강했다. 다만 runtime boats quote도 freshest row가 current clock 대비 약 17.8-18.9분 stale라 fresh_quote hard gate를 열지 못했다."
+  },
+  "submit_attempted": false,
+  "orders_submitted": [],
+  "review_backlog_throttle": {
+    "pending_1d_count": 9,
+    "pending_5d_count": 13,
+    "pending_20d_count": 1,
+    "status": "monitor_only_nok_add_block_persists"
+  },
+  "risk_inputs": {
+    "after_hours_new_orders_submitted_today": 0,
+    "cash_deployment_blocker": "fresh_after_hours_quotes_missing",
+    "new_orders_submitted_today": 0,
+    "policy_turnover_ratio": 0.0,
+    "review_backlog_pending_1d_count": 9,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1,
+    "risk_recomputed_after_partial_fill": true,
+    "stop_triggered_orders_today": 0,
+    "weekly_turnover_ratio": 0.0
+  },
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass",
+      "detail": "ALPACA_PAPER_TRADE=true 확인"
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed",
+      "detail": "regular market closed at runtime get_clock 2026-06-09T20:33:01.45157813-04:00"
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass",
+      "detail": "session=after_hours and extended-hours policy profile retained"
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_runtime_core_backfill_after_sparse_preflight",
+      "detail": "0931 scheduler-owned core preflight first_blocking_gate=market_closed treated as expected nonblocking; missing account/positions/orders/asset/quote/spread rows were backfilled through runtime Alpaca MCP."
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass",
+      "detail": "after_hours_policy artifact tag, review bucket, order id prefix, and allowed_sides buy/sell retained"
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "pass_zero_of_two_submitted",
+      "detail": "after_hours_new_orders_submitted_today=0 and max_new_orders_per_session=2; regular validation count was not reused"
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass",
+      "detail": "broad universe 62 symbols with SPY/QQQ included and scheduler-owned research shortlist 8 symbols"
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass",
+      "detail": "sec-edgar/fred/firecrawl/yahoo-finance pass; alpha-vantage empty_response did not block because core and minimum research confirmations passed"
+    },
+    {
+      "gate": "risk_policy",
+      "status": "fail_no_eligible_order_survived_after_hours_freshness_caps",
+      "detail": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json passes once recorded, but no candidate survived the after-hours 5 minute freshness cap together with per-order notional and duplicate/metric gates."
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "fail_runtime_boats_quotes_stale_17_8_to_18_9_minutes",
+      "detail": "runtime boats latest quotes for QQQ/SMH/SPY/JNJ/BA/AAPL/INTC/WMT/AVGO/RGTI were all older than the 5 minute after-hours freshness cap by the time of the 0931 decision."
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "mixed_pass_spread_not_enough_without_fresh_quotes",
+      "detail": "QQQ, SPY, AAPL, INTC, WMT, AVGO, and RGTI were inside the 0.25% spread cap on runtime boats quotes, but fresh-quote and per-order/duplicate gates still blocked submit. SMH and JNJ/BA remained wide, and SO had no two-sided quote."
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "pass_no_orders_built",
+      "detail": "whole-share day limit extended-hours shape preserved, but no order survived all gates"
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "pass_no_submit",
+      "detail": "no place_stock_order call; no client_order_id generated, so there was nothing to reconcile or cancel"
+    }
+  ],
+  "candidate_notes": [
+    "QQQ와 SPY는 runtime boats spread가 각각 약 0.0156%, 0.0177%로 양호했지만 1주 ask가 after-hours per-order 0.5% cap을 초과했고 quote age도 약 17.8분 stale였다.",
+    "AAPL, INTC, WMT는 runtime boats spread가 각각 약 0.0550%, 0.0744%, 0.2431%로 cap 안에 들어왔지만 latest quote timestamp가 2026-06-10T00:18Z 부근에서 멈춰 fresh_quote gate를 통과하지 못했다.",
+    "AVGO sell/trim review는 runtime boats quote 389.00/389.90, spread 0.2311%로 executable shape에 가까워졌지만 quote age가 약 17.8분 stale라 floor-size trim submit으로 승격하지 못했다.",
+    "RGTI는 runtime boats quote 19.78/19.81, spread 0.1515%에도 불구하고 same-day sell duplicate discipline과 stale quote가 함께 남았다.",
+    "SO는 runtime boats quote가 비어 있었고 trim decision-grade metric gap도 지속됐다."
+  ],
+  "block_reasons": [
+    "fresh_quote",
+    "risk_policy"
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-0931-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0931-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-0931-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/trade-ledger/positions/current.md"
+  ]
+}
