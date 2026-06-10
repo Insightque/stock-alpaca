@@ -1,0 +1,50 @@
+{
+  "run_id": "2026-06-11-0411-hourly-autopilot",
+  "created_at": "2026-06-10T19:11:34Z",
+  "paper": true,
+  "session": "regular",
+  "review_bucket": "regular_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 97261.58,
+    "cash": 31263.75,
+    "buying_power": 294771.5,
+    "long_market_value": 65997.83,
+    "currency": "USD"
+  },
+  "submitted_orders": [],
+  "lifecycle_actions": [],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "NVDA",
+      "qty": 38,
+      "market_value": 7630.4
+    },
+    {
+      "symbol": "LRCX",
+      "qty": 20,
+      "market_value": 6424.8
+    },
+    {
+      "symbol": "AMD",
+      "qty": 14,
+      "market_value": 6323.17
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": false,
+    "session": "regular",
+    "review_bucket": "regular_validation",
+    "client_order_ids_checked": [],
+    "new_fills_detected": 0,
+    "position_delta": "none, open orders 0",
+    "note": "No new 0411 order was submitted. Scheduler-owned 0411 stale cleanup/core/research preflight confirmed open orders stayed at 0, positions remained 33, and the buy/sell fallback stack ended no-submit because every remaining candidate hit an explicit hard gate."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0411-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0411-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0411-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-11-0411-hourly-autopilot.json"
+  ]
+}
