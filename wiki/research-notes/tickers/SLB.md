@@ -5,6 +5,12 @@ asset_type: stock
 
 # SLB
 
+## 2026-06-11 01:19 KST hourly-autopilot
+
+`SLB` 1주 regular-session day limit buy가 `56.55 USD` limit으로 제출됐고, Alpaca MCP `get_order_by_client_id`와 `get_order_by_id` 기준 `client_order_id=hourly-20260611-0111-buy-slb`, `order_id=14d20183-5063-4025-9114-5e82cbcf6386`, `filled_avg_price=56.45 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0111` stale cleanup/core/research preflight와 strict universe/MCP/risk gate 통과, same-day `COP/JNJ/XOM/PFE/BAC/WMT` buy duplicate 및 `AVGO/RGTI` sell duplicate 이후에도 learning_trade_directive가 최소 1건 validation order를 요구한다는 점, 그리고 `SLB`가 2026-06-09 analyst review 기준 1D `양호`, live quote `56.54/56.55` spread `0.0177%`, energy-services diversifier 역할, same-day duplicate/open-order conflict 없음으로 가장 executable했다는 점이다. 이 fill은 새 validation lifecycle 표본으로 기록하며 1D/5D/20D review를 추적한다.
+
+출처: [[2026-06-11-0111-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-11-0111-hourly-autopilot-post-trade.json`
+
 ## 2026-06-10 02:40 KST hourly-autopilot
 
 `SLB` 1주 regular-session day limit buy가 `55.11 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260610-0231-buy-slb`, `order_id=d225a67d-6bc2-4488-99f3-d45a48bf6f4e`가 생성됐다. immediate reconciliation 시점에는 same client id 기준 `status=new`, `filled_qty=0` open order이며 신규 fill은 아직 없다. 근거는 scheduler-owned `0231` stale cleanup/core/research preflight와 strict universe/MCP/risk gate 통과, `AVGO/RGTI` sell duplicate 및 `SO` trim metric gap 이후에도 learning_trade_directive가 최소 1건 validation order를 요구한다는 점, 그리고 `SLB`가 2026-06-09 analyst review 기준 1D `양호`, live quote `55.10/55.11` spread `0.0181%`, energy-services diversifier 역할, same-day duplicate/open-order conflict 없음으로 가장 executable했다는 점이다.

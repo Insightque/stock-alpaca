@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-11 00:58 KST_
+_Last updated: 2026-06-11 01:19 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-11-0111-hourly-autopilot]]
+- Open/new: 없음
+- Filled: `SLB` buy 1주 @ `56.45 USD`
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 `33` positions 유지. `SLB`는 `5주 -> 6주`, `avg_entry_price=55.858333`, `qty_available=6`으로 증가했다.
+- Recent reconciliation scope: scheduler-owned `0111` stale cleanup/core/research preflight를 우선 사용했고 live Alpaca MCP submit-boundary check에서 regular market open, ACTIVE account, open orders 0건, same-day fills `COP/JNJ/XOM/PFE/BAC/RGTI/AVGO/WMT/AAPL/AAPL`, `SLB` quote `56.54/56.55`, active tradable NYSE stock을 재확인했다. sell-first 재평가에서는 `AVGO`와 `RGTI`가 same-day sell duplicate, `SO`가 trim metric gap으로 blocked였고, `SPY/QQQ`는 per-order cap, `COP/JNJ/XOM/PFE/BAC/WMT`는 same-day buy duplicate, `CVX`는 spread fail이 남았다. `SLB`는 positive recent review를 가진 energy-services existing diversifier floor-size add로 선택됐고 direct Alpaca MCP submit 뒤 immediate same-order-id reconciliation 기준 `order_id=14d20183-5063-4025-9114-5e82cbcf6386`, `filled_avg_price=56.45 USD`로 즉시 전량 체결됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-06-11-0111-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

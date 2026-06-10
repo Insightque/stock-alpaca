@@ -1,0 +1,97 @@
+{
+  "run_id": "2026-06-11-0111-hourly-autopilot",
+  "created_at": "2026-06-10T16:15:05Z",
+  "paper": true,
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-10T12:13:20.935556205-04:00",
+    "next_open": "2026-06-11T09:30:00-04:00",
+    "next_close": "2026-06-10T16:00:00-04:00",
+    "session": "regular"
+  },
+  "account_snapshot": {
+    "portfolio_value": 97721.01,
+    "cash": 31750.94,
+    "buying_power": 296496.22,
+    "currency": "USD",
+    "daily_realized_loss": 0.0
+  },
+  "open_orders": [],
+  "same_day_fills": [
+    "COP",
+    "JNJ",
+    "XOM",
+    "PFE",
+    "BAC",
+    "RGTI",
+    "AVGO",
+    "WMT",
+    "AAPL",
+    "AAPL"
+  ],
+  "watchlists_count": 0,
+  "candidate_quotes": {
+    "SLB": {
+      "bid": 56.54,
+      "ask": 56.55,
+      "spread_pct": 0.0177,
+      "quote_timestamp": "2026-06-10T16:13:22.030225679Z"
+    },
+    "CVX": {
+      "bid": 178.88,
+      "ask": 191.88,
+      "spread_pct": 6.7751,
+      "quote_timestamp": "2026-06-10T16:13:21.936486936Z"
+    },
+    "NEE": {
+      "bid": 85.09,
+      "ask": 85.12,
+      "spread_pct": 0.0352,
+      "quote_timestamp": "2026-06-10T16:13:22.638066672Z"
+    },
+    "NKE": {
+      "bid": 44.3,
+      "ask": 44.31,
+      "spread_pct": 0.0226,
+      "quote_timestamp": "2026-06-10T16:13:21.733979158Z"
+    },
+    "PLTR": {
+      "bid": 131.8,
+      "ask": 131.86,
+      "spread_pct": 0.0455,
+      "quote_timestamp": "2026-06-10T16:13:22.557269393Z"
+    },
+    "AVGO": {
+      "bid": 371.0,
+      "ask": 373.54,
+      "spread_pct": 0.68,
+      "quote_timestamp": "2026-06-10T16:13:22.541369358Z"
+    },
+    "RGTI": {
+      "bid": 19.92,
+      "ask": 19.94,
+      "spread_pct": 0.1003,
+      "quote_timestamp": "2026-06-10T16:13:22.556041429Z"
+    },
+    "SO": {
+      "bid": 94.03,
+      "ask": 94.05,
+      "spread_pct": 0.0213,
+      "quote_timestamp": "2026-06-10T16:13:22.732459410Z"
+    }
+  },
+  "selected_candidate": "SLB",
+  "selection_reason": "Positive recent review, clean research preflight, same-day duplicate/open-order conflict 없음, and better replacement rank than NEE/NKE/PLTR while CVX failed the live spread gate.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0111-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-0111-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0111-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0111-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/research-notes/tickers/SLB.md"
+  ]
+}
