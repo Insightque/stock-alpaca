@@ -1,0 +1,219 @@
+{
+  "run_id": "2026-06-10-2351-hourly-autopilot",
+  "created_at": "2026-06-10T14:54:35Z",
+  "paper": true,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md"
+  ],
+  "core_gate": {
+    "paper_mode": true,
+    "market_open": true,
+    "clock_timestamp": "2026-06-10T10:53:16.865053926-04:00",
+    "alpaca_preflight_status": "pass",
+    "live_account_status": "ACTIVE",
+    "live_open_orders": 0,
+    "first_blocking_gate": ""
+  },
+  "research_gate": {
+    "min_research_confirmations_for_submit": 3,
+    "positive_confirmations": 4,
+    "provider_gaps": [
+      {
+        "server": "alpha-vantage",
+        "gap_category": "empty_response",
+        "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+        "retry_count": 0
+      }
+    ],
+    "passed": true
+  },
+  "quotes": {
+    "PFE": {
+      "bid": 25.71,
+      "ask": 25.72,
+      "spread_pct": 0.0389,
+      "measured_at": "2026-06-10T14:53:30.294448317Z"
+    },
+    "BAC": {
+      "bid": 54.67,
+      "ask": 54.68,
+      "spread_pct": 0.0183,
+      "measured_at": "2026-06-10T14:53:30.773249756Z"
+    },
+    "AVGO": {
+      "bid": 375.0,
+      "ask": 380.0,
+      "spread_pct": 1.3158,
+      "measured_at": "2026-06-10T14:53:29.842339173Z"
+    },
+    "RGTI": {
+      "bid": 20.48,
+      "ask": 20.5,
+      "spread_pct": 0.0976,
+      "measured_at": "2026-06-10T14:53:30.706935373Z"
+    },
+    "SO": {
+      "bid": 93.67,
+      "ask": 93.7,
+      "spread_pct": 0.032,
+      "measured_at": "2026-06-10T14:53:30.577879366Z"
+    },
+    "WMT": {
+      "bid": 118.92,
+      "ask": 118.96,
+      "spread_pct": 0.0336,
+      "measured_at": "2026-06-10T14:53:30.853451358Z"
+    },
+    "SPY": {
+      "bid": 734.81,
+      "ask": 734.85,
+      "spread_pct": 0.0054,
+      "measured_at": "2026-06-10T14:53:30.946915975Z"
+    },
+    "QQQ": {
+      "bid": 705.94,
+      "ask": 706.57,
+      "spread_pct": 0.0892,
+      "measured_at": "2026-06-10T14:53:30.875675563Z"
+    }
+  },
+  "candidate_stack": {
+    "sell_first": [
+      {
+        "symbol": "RGTI",
+        "held_qty": 51,
+        "current_weight_pct": 1.0592,
+        "trigger_status": "blocked_by_gate",
+        "primary_reason": "RGTI는 speculative loss-control trim trigger와 큰 미실현 손실이 계속 active지만, 2311 cycle same-day filled trim이 이미 있어 duplicate sell discipline이 이번 cycle 추가 trim을 막는다.",
+        "skipped_gate": "duplicate_symbol_side_same_day",
+        "metric_status": "fallback",
+        "expected_excess_return_20d_pct": -1.48,
+        "relative_to_spy_20d_pct": -1.48,
+        "metric_gap_reason": "",
+        "replacement_symbol": "PFE",
+        "replacement_expected_excess_margin_pct": 1.48,
+        "recommendation": "watch",
+        "blocked_sell_recheck": "blocked_sell_candidate",
+        "source_refs": [
+          "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-stale-order-cleanup.json",
+          "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-alpaca-core-preflight.json",
+          "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-research-mcp-preflight.json",
+          "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-runtime-gate-evaluation.json",
+          "harness/recommendation-policy.yaml",
+          "harness/risk-policy.yaml",
+          "harness/symbol-metadata.yaml",
+          "wiki/trade-ledger/reviews/review-due-index.json",
+          "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+          "wiki/research-notes/tickers/PFE.md",
+          "wiki/research-notes/tickers/RGTI.md"
+        ]
+      },
+      {
+        "symbol": "AVGO",
+        "held_qty": 6,
+        "current_weight_pct": 2.2901,
+        "trigger_status": "blocked_by_gate",
+        "primary_reason": "AVGO는 ai_semiconductor warning band와 post-earnings de-risking rationale가 여전히 active지만, 2251 cycle same-day filled trim이 이미 있어 duplicate sell discipline이 이번 cycle 추가 trim을 막는다.",
+        "skipped_gate": "duplicate_symbol_side_same_day",
+        "metric_status": "fallback",
+        "expected_excess_return_20d_pct": -3.55,
+        "relative_to_spy_20d_pct": -4.33,
+        "metric_gap_reason": "",
+        "replacement_symbol": "PFE",
+        "replacement_expected_excess_margin_pct": 3.55,
+        "recommendation": "watch",
+        "blocked_sell_recheck": "blocked_sell_candidate",
+        "source_refs": [
+          "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-stale-order-cleanup.json",
+          "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-alpaca-core-preflight.json",
+          "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-research-mcp-preflight.json",
+          "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-runtime-gate-evaluation.json",
+          "harness/recommendation-policy.yaml",
+          "harness/risk-policy.yaml",
+          "harness/symbol-metadata.yaml",
+          "wiki/trade-ledger/reviews/review-due-index.json",
+          "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+          "wiki/research-notes/tickers/PFE.md",
+          "wiki/research-notes/tickers/AVGO.md"
+        ]
+      },
+      {
+        "symbol": "SO",
+        "held_qty": 5,
+        "current_weight_pct": 0.4749,
+        "trigger_status": "blocked_by_gate",
+        "primary_reason": "SO는 defensive/utilities validation review 약세와 rate-sensitive 부담으로 trim 재점검 대상이지만, live quote/spread 정상화 이후에도 decision-grade expected-excess와 replacement margin 공백이 남아 있다.",
+        "skipped_gate": "sell_metric_gap",
+        "metric_status": "gap",
+        "expected_excess_return_20d_pct": null,
+        "relative_to_spy_20d_pct": null,
+        "metric_gap_reason": "SO는 quote/spread gate는 통과했지만 trim justification에 필요한 decision-grade expected-excess와 replacement margin evidence가 이번 cycle scheduler evidence에 없다.",
+        "replacement_symbol": "PFE",
+        "replacement_expected_excess_margin_pct": null,
+        "recommendation": "watch",
+        "blocked_sell_recheck": "blocked_sell_candidate",
+        "source_refs": [
+          "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-stale-order-cleanup.json",
+          "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-alpaca-core-preflight.json",
+          "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-research-mcp-preflight.json",
+          "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-runtime-gate-evaluation.json",
+          "harness/recommendation-policy.yaml",
+          "harness/risk-policy.yaml",
+          "harness/symbol-metadata.yaml",
+          "wiki/trade-ledger/reviews/review-due-index.json",
+          "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md",
+          "wiki/research-notes/tickers/PFE.md",
+          "wiki/research-notes/tickers/SO.md"
+        ]
+      }
+    ],
+    "buy_fallback_selected": {
+      "symbol": "PFE",
+      "reason": "existing healthcare diversifier, positive scheduler research confirmations, fresh quote/spread, same-day duplicate 없음, validation floor size 적합",
+      "blocked_alternatives": [
+        {
+          "symbol": "BAC",
+          "gate": "duplicate_symbol_side_same_day"
+        },
+        {
+          "symbol": "WMT",
+          "gate": "duplicate_symbol_side_same_day"
+        },
+        {
+          "symbol": "SPY",
+          "gate": "validation_floor_per_order_cap"
+        },
+        {
+          "symbol": "QQQ",
+          "gate": "validation_floor_per_order_cap"
+        },
+        {
+          "symbol": "PLTR",
+          "gate": "lower_rank"
+        }
+      ]
+    }
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 2,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 9,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1
+  }
+}

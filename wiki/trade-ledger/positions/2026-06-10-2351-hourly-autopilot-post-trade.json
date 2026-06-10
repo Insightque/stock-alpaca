@@ -1,0 +1,52 @@
+{
+  "run_id": "2026-06-10-2351-hourly-autopilot",
+  "created_at": "2026-06-10T14:54:44Z",
+  "paper": true,
+  "source": "post-trade reconciliation via Alpaca MCP",
+  "order": {
+    "order_id": "e010464f-f482-491e-bc31-76dcffb1730c",
+    "client_order_id": "hourly-20260610-2351-buy-pfe",
+    "symbol": "PFE",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 25.72,
+    "status": "filled",
+    "filled_qty": 1,
+    "filled_avg_price": 25.7,
+    "submitted_at": "2026-06-10T14:54:43.148652312Z",
+    "filled_at": "2026-06-10T14:54:43.720622336Z"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "cash": 32262.63,
+    "portfolio_value": 98606.28,
+    "buying_power": 299380.66,
+    "position_market_value": 66343.65
+  },
+  "open_orders": [],
+  "positions_count": 33,
+  "touched_positions": {
+    "PFE": {
+      "qty_before": 5,
+      "qty_after": 6,
+      "avg_entry_price_after": 26.033333,
+      "qty_available_after": 6,
+      "market_value_after": 154.23,
+      "current_price_after": 25.705
+    }
+  },
+  "same_day_fills": [
+    "PFE",
+    "BAC",
+    "RGTI",
+    "AVGO",
+    "WMT",
+    "AAPL",
+    "AAPL"
+  ],
+  "source_refs": [
+    "wiki/trade-ledger/orders/2026-06-10-2351-hourly-autopilot.json",
+    "wiki/evidence-store/run-manifests/2026-06-10-2351-hourly-autopilot.json",
+    "wiki/evidence-store/sources/2026-06-10-2351-hourly-autopilot-runtime-gate-evaluation.json"
+  ]
+}

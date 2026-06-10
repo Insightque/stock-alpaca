@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-10 23:39 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-10 23:54 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -36,7 +36,7 @@
 - [[QTEX]] - 투기적 1달러 미만 mover, 2026-05-22 업데이트.
 - [[BIYA]] - 투기적 저가 mover, 2026-05-22 업데이트.
 - [[NKE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기; 2026-06-06 05:00 KST hourly-autopilot에서 1주 validation buy를 시도했지만 actual submit timestamp가 regular close 이후로 밀려 즉시 취소됐다.
-- [[PFE]] - 2026-05-29 validation add 1D/5D 회고는 약했지만, 2026-06-06 02:20 KST hourly-autopilot에서 1주 추가 validation buy가 `status=new` open order로 생성됐고 2026-06-10 01:20 KST hourly-autopilot에서 healthcare fallback buy 1주가 `25.70 USD` day limit로 제출된 뒤 stale cleanup에서 취소됐다. 2026-06-10 02:00 KST hourly-autopilot에서는 healthcare fallback buy 1주가 `25.82 USD`에 즉시 체결됐다.
+- [[PFE]] - 2026-05-29 validation add 1D/5D 회고는 약했지만, 2026-06-06 02:20 KST hourly-autopilot에서 1주 추가 validation buy가 `status=new` open order로 생성됐고 2026-06-10 01:20 KST hourly-autopilot에서 healthcare fallback buy 1주가 `25.70 USD` day limit로 제출된 뒤 stale cleanup에서 취소됐다. 2026-06-10 02:00 KST hourly-autopilot에서는 healthcare fallback buy 1주가 `25.82 USD`에 즉시 체결됐고, 2026-06-10 23:54 KST hourly-autopilot에서는 `25.72 USD` day limit buy 1주가 `filled_avg_price=25.70 USD`로 즉시 체결됐다.
 - [[SO]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[WMT]] - 2026-05-29 validation add 5D 회고 중립 양호; 2026-06-05 01:11 KST hourly-autopilot에서 1주 추가 validation buy 체결, 2026-06-05 23:11 KST hourly-autopilot에서 1주 추가 validation buy가 `119.78 USD`에 체결, 2026-06-10 02:19 KST hourly-autopilot에서 floor-size defensive fallback buy 1주가 `118.70 USD`에 즉시 체결.
 - [[NEE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
@@ -52,6 +52,7 @@
 
 ## Current Runs
 
+- [[2026-06-10-2351-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2351` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca MCP `get_clock/get_account_info/get_orders(status=open)/get_all_positions/get_account_activities(activity_types=FILL, after=2026-06-10)/get_watchlists/get_stock_latest_quote`로 regular market open, ACTIVE account, open orders `0`, same-day fills `BAC/RGTI/AVGO/WMT/AAPL/AAPL`, positions `33`을 재확인했다. sell-first에서는 `RGTI`와 `AVGO`가 same-day sell duplicate, `SO`가 trim metric gap으로 blocked였고, buy fallback에서는 `BAC/WMT` same-day duplicate와 `SPY/QQQ` per-order cap 초과가 남아 `PFE`가 선택됐다. `PFE` buy 1주가 `25.72 USD` day limit, `client_order_id=hourly-20260610-2351-buy-pfe`로 제출된 뒤 `filled_avg_price=25.70 USD`로 즉시 체결됐다.
 - [[2026-06-10-2331-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2331` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca MCP `get_clock/get_account_info/get_orders(status=open)/get_all_positions/get_account_activities(activity_types=FILL, after=2026-06-10)/get_watchlists/get_stock_latest_quote`로 regular market open, ACTIVE account, open orders `0`, same-day fills `RGTI/AVGO/WMT/AAPL/AAPL`, positions `33`을 재확인했다. sell-first에서는 `RGTI`와 `AVGO`가 same-day sell duplicate, `SO`가 trim metric gap으로 blocked였고, buy fallback에서는 `BAC`가 fresh spread `0.0182%`, positive research confirmations, duplicate/open-order conflict 부재를 바탕으로 선택됐다. `BAC` buy 1주가 `54.85 USD` day limit, `client_order_id=hourly-20260610-2331-buy-bac`로 제출된 뒤 `filled_avg_price=54.77 USD`로 즉시 체결됐다.
 - [[2026-06-10-2311-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2311` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca MCP `get_clock/get_account_info/get_orders(status=open)/get_all_positions/get_account_activities(activity_types=FILL, after=2026-06-10)/get_watchlists/get_stock_latest_quote`로 regular market open, ACTIVE account, open orders `0`, same-day fills `AVGO/AVGO/WMT/AAPL/AAPL`, positions `33`을 재확인했다. sell-first에서는 `RGTI`가 speculative loss-control trim trigger, 큰 미실현 손실, live spread `0.0491%` 조건을 모두 만족해 우선 trim으로 선택됐고 `RGTI` sell 17주가 `20.38 USD` day limit, `client_order_id=hourly-20260610-2311-sell-rgti`로 제출된 뒤 `filled_avg_price=20.38 USD`로 즉시 체결됐다.
 - [[2026-06-10-2251-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2251` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca MCP `get_clock/get_account_info/get_orders(status=open)/get_all_positions/get_account_activities(activity_types=FILL, after=2026-06-10)/get_stock_latest_quote`로 regular market open, ACTIVE account, open orders `0`, same-day fills `WMT/AAPL/AAPL`, positions `33`을 재확인했다. sell-first에서는 `AVGO`와 `RGTI`가 모두 spread gate를 통과했지만 target-band de-risking과 replacement margin이 더 강한 `AVGO`가 우선 trim으로 선택됐고, `AVGO` sell 2주가 `373.21 USD` day limit, `client_order_id=hourly-20260610-2251-sell-avgo`로 제출된 뒤 `filled_avg_price=373.25 USD`로 즉시 체결됐다.
