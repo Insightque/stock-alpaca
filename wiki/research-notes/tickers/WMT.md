@@ -58,3 +58,9 @@ asset_type: stock
 `2026-06-05 ET` fill 1D는 `119.78 USD -> 119.83 USD`로 `+0.04%`였다. 절대수익은 거의 없지만 `SPY` 대비 `-0.20%p`, `QQQ` 대비 `-1.47%p`로 defensive retail 특유의 downside control은 유지됐다. 판단은 `중립 양호`이며 stronger alpha는 5D에서 다시 확인한다.
 
 출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]
+
+### 2026-06-11 analyst review cycle
+
+`2026-06-09 ET` buy 1주는 `118.70 USD` 진입 대비 `2026-06-10 ET` close `120.56 USD`로 `+1.57%`였다. `SPY` 대비 `+3.13%p`, `QQQ` 대비 `+3.57%p`로 defensive retail validation은 이번 1D에서 분명히 양호했다. 다만 `2026-06-10 ET` regular-session 추가 fill `118.49 USD`가 새로 생겨 다음 1D horizon을 별도로 추적한다.
+
+출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]

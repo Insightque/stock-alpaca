@@ -58,3 +58,9 @@ asset_type: stock
 `2026-06-05 ET` fill 1D는 `55.67 USD -> 56.55 USD`로 `+1.58%`였다. `SPY` 대비 `+1.34%p`, `QQQ` 대비 `+0.07%p`라 절대수익과 상대수익이 모두 양호했다. 에너지 서비스 validation add는 이번 1D에서는 `양호`이며, oil headline 의존성이 여전히 큰지만 5D에서 다시 본다.
 
 출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]
+
+### 2026-06-11 analyst review cycle
+
+`2026-06-09 ET` buy 1주는 `55.11 USD` 진입 대비 `2026-06-10 ET` close `55.52 USD`로 `+0.74%`였다. `SPY` 대비 `+2.30%p`, `QQQ` 대비 `+2.74%p`로 energy-services validation은 여전히 benchmark relative가 견조하다. 다만 oil/energy headline 의존성이 큰 점은 유지되며, `2026-06-10 ET` 추가 fill `56.45 USD`는 새 1D 대기 표본이다.
+
+출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]

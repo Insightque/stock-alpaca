@@ -52,3 +52,9 @@ asset_type: stock
 `2026-06-05 ET` fill 1D는 `26.09 USD -> 25.61 USD`로 `-1.84%`였다. 절대 손실과 `SPY/QQQ` 대비 부진이 동시에 남아 defensive healthcare 분산 thesis의 개선 증거가 되지 못했다. 판단은 `약함`이며 5D close 전까지 추가 승격 근거로 쓰지 않는다.
 
 출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]
+
+### 2026-06-11 analyst review cycle
+
+`2026-06-09 ET` buy 1주는 `25.82 USD` 진입 대비 `2026-06-10 ET` close `25.61 USD`로 `-0.81%`였다. 절대수익은 음수지만 `SPY` 대비 `+0.75%p`, `QQQ` 대비 `+1.19%p`라 broad selloff 대비 방어는 있었다. 다만 prior weak review가 누적돼 defensive healthcare add의 edge가 확인됐다고 보긴 어렵고, `2026-06-10 ET` 추가 fill `25.70 USD`도 별도 1D 대기로 둔다.
+
+출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]

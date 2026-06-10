@@ -44,3 +44,9 @@ asset_type: stock
 `BAC` 1주 regular-session day limit buy가 `54.85 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260610-2331-buy-bac`, `order_id=544dec18-dc40-499f-9085-e5ad37b50fef`가 생성된 뒤 same order id reconciliation에서 `2026-06-10T14:39:03.058660726Z`에 `54.77 USD`로 즉시 체결됐다. 근거는 scheduler-owned `2331` stale cleanup/core/research preflight와 strict universe/MCP/risk gate 통과, sell-first 평가에서 `RGTI/AVGO` same-day sell duplicate와 `SO` trim metric gap으로 executable trim이 남지 않았다는 점, `WMT` same-day buy duplicate와 `SPY/QQQ` per-order cap 초과 이후에도 learning_trade_directive가 최소 1건 validation order를 요구한다는 점, 그리고 `BAC`가 기존 financials diversifier holding으로서 Yahoo recommendation breadth 우호, SEC/FRED/Firecrawl/Yahoo positive confirmation 유지, live quote `54.84/54.85` spread `0.0182%`, same-day duplicate/open-order conflict 부재를 보여 가장 executable했다는 점이다. 이 체결은 새 validation lifecycle 표본으로 기록하며 `1D/5D/20D` review를 추적한다.
 
 출처: [[2026-06-10-2331-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-10-2331-hourly-autopilot-post-trade.json`
+
+### 2026-06-11 analyst review cycle
+
+`2026-06-09 ET` buy 1주는 `54.07 USD` 진입 대비 `2026-06-10 ET` close `54.54 USD`로 `+0.87%`였다. `SPY` 대비 `+2.43%p`, `QQQ` 대비 `+2.87%p`라 financials diversifier validation은 down tape에서 오히려 양호했다. 단일 1D 표본이라 정책 승격은 없지만, `2026-06-10 ET` 추가 fill `54.77 USD`는 다음 1D horizon 대기로 넘긴다.
+
+출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]

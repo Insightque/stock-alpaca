@@ -984,6 +984,7 @@
 - [[2026-06-08-portfolio-review]] - 2026-06-07 ET close 기준 새 due review 없음. waiting review scan, open-position monitor, skipped recommendation 재점검만 수행. 정책 변경 없음.
 - [[2026-06-09-portfolio-review]] - 2026-06-05 ET validation buy 13건의 1D review, 2026-06-08 ET sell/trim review, skipped recommendation 재점검. 정책 변경 없음.
 - [[2026-06-10-portfolio-review]] - 2026-06-08 ET sell/trim follow-up 1D, 2026-06-09 ET 신규 fill 11건 대기 등록, open-position monitor, skipped recommendation 재점검. 정책 변경 없음.
+- [[2026-06-11-portfolio-review]] - 2026-06-09 ET fill 13건(regular 11 + AAPL after-hours 2)의 1D review, 2026-06-10 ET 신규 fill 14건 대기 등록, open-position monitor, skipped recommendation 재점검. 정책 변경 없음.
 - `wiki/evidence-store/run-manifests/2026-05-29-0625-analyst-review-cycle.json` - 2026-05-29 analyst review cycle MCP coverage와 due-review manifest.
 - `wiki/evidence-store/run-manifests/2026-06-02-0624-analyst-review-cycle.json` - 2026-06-02 analyst review cycle MCP coverage와 due-review manifest.
 - `wiki/evidence-store/run-manifests/2026-06-04-0624-analyst-review-cycle.json` - 2026-06-04 analyst review cycle MCP coverage와 due-review manifest.
@@ -992,6 +993,7 @@
 - `wiki/evidence-store/run-manifests/2026-06-07-0623-analyst-review-cycle.json` - 2026-06-07 analyst review cycle MCP coverage, waiting review scan, open-position monitor manifest.
 - `wiki/evidence-store/run-manifests/2026-06-08-0622-analyst-review-cycle.json` - 2026-06-08 analyst review cycle MCP coverage, waiting review scan, open-position monitor manifest.
 - `wiki/evidence-store/run-manifests/2026-06-10-0622-analyst-review-cycle.json` - 2026-06-10 analyst review cycle MCP coverage, sell follow-up closeout, new fill waiting-scan manifest.
+- `wiki/evidence-store/run-manifests/2026-06-11-0622-analyst-review-cycle.json` - 2026-06-11 analyst review cycle MCP coverage, 2026-06-09 ET 1D closeout, 2026-06-10 ET new fill waiting-scan manifest.
 - `wiki/trade-ledger/orders/2026-05-26-1853-hourly-autopilot.json` - 2026-05-26 18:53 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2011-hourly-autopilot.json` - 2026-05-26 20:11 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
 - `wiki/trade-ledger/orders/2026-05-26-2124-hourly-autopilot.json` - 2026-05-26 21:24 KST hourly autopilot empty-order plan, risk-check PASS, MCP strict FAIL.
@@ -1147,6 +1149,7 @@
 - [[2026-06-07-0623-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/Yahoo reconciliation, SEC cancelled gap, Alpha provider-error, FRED/Firecrawl wrapper gap, 2026-06-06 ET waiting review scan 원천.
 - [[2026-06-08-0622-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/Alpha/Yahoo reconciliation, SEC cancelled gap, FRED/Firecrawl wrapper gap, 2026-06-07 ET waiting review scan 원천.
 - [[2026-06-10-0622-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/Alpha/Yahoo reconciliation, SEC cancelled gap, FRED/Firecrawl wrapper gap, 2026-06-08 ET sell follow-up과 2026-06-09 ET 신규 fill 대기 원천.
+- [[2026-06-11-0622-analyst-review-cycle-sources]] - scheduled analyst review cycle용 Alpaca/SEC/Alpha/Yahoo reconciliation, FRED/Firecrawl wrapper gap, 2026-06-09 ET 1D closeout과 2026-06-10 ET 신규 fill 대기 원천.
 - [[2026-05-30-overnight-trade-review-alpaca-readonly]] - 지난 밤 거래 회고용 Alpaca MCP read-only 계좌, FILL 10건, MRK 미체결 취소 확인.
 - `wiki/evidence-store/sources/2026-05-25-one-year-hourly-bars.json` - 62개 심볼 2025-05-23~2026-05-22 adjusted IEX 1시간봉 원자료.
 - `wiki/evidence-store/sources/2026-05-25-one-year-hourly-alpaca-news.json` - 1년 1시간봉 보강용 Alpaca MCP 뉴스 원자료.

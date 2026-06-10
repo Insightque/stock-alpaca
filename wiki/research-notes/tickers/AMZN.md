@@ -56,3 +56,9 @@ asset_type: stock
 `2026-06-05 ET` fill 1D는 `253.17 USD -> 245.21 USD`로 `-3.14%`였다. `SPY` 대비 `-3.39%p`, `QQQ` 대비 `-4.66%p`라 mega-cap quality/AI cloud thesis의 immediate follow-through는 약했다. 판단은 `약함`이며 기존 quality label만으로 add cadence를 빠르게 가져가면 안 된다는 표본으로 남긴다.
 
 출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]
+
+### 2026-06-11 analyst review cycle
+
+`2026-06-09 ET` buy 1주는 `245.40 USD` 진입 대비 `2026-06-10 ET` close `237.97 USD`로 `-3.03%`였다. `SPY` 대비 `-1.47%p`, `QQQ` 대비 `-1.03%p`로 benchmark보다는 약간 덜 나빴지만 absolute loss가 여전히 크다. mega-cap quality/cloud add cadence는 보수적으로 유지하고, `2026-06-10 ET` 추가 fill `239.33 USD`도 새 1D 대기 표본으로 남긴다.
+
+출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]

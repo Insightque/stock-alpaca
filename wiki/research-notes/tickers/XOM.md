@@ -36,3 +36,9 @@ asset_type: stock
 2026-05-28 validation buy 1주는 148.37 USD 진입 대비 2026-05-29 close/current 145.38 USD로 -2.02%, SPY 대비 -2.21%p였다. 에너지/인플레이션 헤지 thesis는 1D에서 약했고, Iran/Hormuz headline에 따른 risk premium 변화가 주요 불확실성으로 남았다.
 
 출처: [[2026-05-30-portfolio-review]], [[2026-05-30-0625-analyst-review-cycle-sources]]
+
+### 2026-06-11 analyst review cycle
+
+`2026-06-09 ET` buy 1주는 `148.35 USD` 진입 대비 `2026-06-10 ET` close `150.68 USD`로 `+1.57%`였다. `SPY` 대비 `+3.13%p`, `QQQ` 대비 `+3.57%p`로 energy diversifier validation은 `WMT/COP`와 함께 이번 1D cohort에서 양호했다. 다만 `2026-06-10 ET` 추가 fill `151.41 USD`는 새 1D horizon으로 넘긴다.
+
+출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]

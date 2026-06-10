@@ -88,3 +88,9 @@ RGTI는 오늘 신규 매수 후보에서 제외했다. 2026-05-22 종가 26.41 
 `2311` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight와 live Alpaca MCP submit-boundary check를 함께 사용했다. `RGTI`는 live IEX quote `20.38/20.39`, spread `0.0491%`, held qty `68`, speculative loss-control trim trigger, 큰 미실현 손실, active/tradable NASDAQ stock 조건에서 25% trim 경로를 통과했고 `client_order_id=hourly-20260610-2311-sell-rgti`로 17주 sell을 제출했다. same order id reconciliation 기준 주문은 `2026-06-10T14:14:43.88079Z`에 `20.38 USD`로 전량 체결됐고 보유수량은 `68주 -> 51주`로 감소했다. 해석은 `speculative sleeve staged de-risking 지속`이다.
 
 출처: [[2026-06-10-2311-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-10-2311-hourly-autopilot-post-trade.json`
+
+### 2026-06-11 analyst review cycle
+
+`2026-06-09 ET` trim 22주는 `22.298182 USD` 체결 대비 `2026-06-10 ET` close `19.445 USD`로 `-12.80%`였다. `2026-06-10 ET` 추가 trim 17주도 이미 `20.38 USD`에 체결돼 staged de-risking이 이어졌고, current Alpaca snapshot 기준 잔여 `51주`의 평균단가 `25.569583 USD` 대비 미실현은 여전히 `-24.52%`다. speculative sleeve reduction은 계속 타당했고, 남은 포지션은 residual monitor로만 본다.
+
+출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]

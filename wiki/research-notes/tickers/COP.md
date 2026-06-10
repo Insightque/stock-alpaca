@@ -34,3 +34,9 @@ asset_type: stock
 `2026-06-05 ET` fill 1D는 `117.42 USD -> 118.92 USD`로 `+1.28%`였다. `SPY` 대비 `+1.04%p`, `QQQ` 대비 `-0.24%p`라 broad risk-on을 거의 따라가면서 energy/value hedge 역할도 유지했다. 판단은 `양호`이며 5D에서도 energy sleeve가 계속 버티는지 확인한다.
 
 출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]
+
+### 2026-06-11 analyst review cycle
+
+`2026-06-09 ET` buy 1주는 `116.05 USD` 진입 대비 `2026-06-10 ET` close `119.91 USD`로 `+3.33%`였다. `SPY` 대비 `+4.89%p`, `QQQ` 대비 `+5.33%p`로 이번 1D cohort에서 가장 강한 follow-through 중 하나였다. energy/value sleeve의 selection value는 강화됐지만, `2026-06-10 ET` 추가 fill `121.05 USD`는 별도 1D horizon으로 다시 본다.
+
+출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]
