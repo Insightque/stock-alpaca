@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-11 07:54 KST_
+_Last updated: 2026-06-11 08:18 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-11-0811-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned `0811` core preflight 기준 `33` positions 유지, open orders `0`건 유지.
+- Recent reconciliation scope: scheduler-owned `0811` core/research preflight를 source-of-record로 사용했고 runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-10T20:00:00Z)/get_watchlists/get_stock_latest_quote(feed=iex)/get_stock_latest_quote(feed=overnight)`로 장외 submit boundary를 재확인했다. `SPY/QQQ/NOK`는 spread는 정책 cap 이내였지만 모두 freshness cap을 넘겼고 `SPY/QQQ`는 per-order cap도 초과했다. `AVGO/RGTI/SO` sell-first 재평가 역시 stale/wide-spread 또는 bid-only quote 때문에 executable extended-hours sell로 전환되지 못했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-11-0811-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 
