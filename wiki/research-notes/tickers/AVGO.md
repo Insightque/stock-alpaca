@@ -51,6 +51,7 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 - 2026-06-06 03:37 KST: scheduled hourly-autopilot에서 risk-reducing trim 4주가 `389.25 USD`에 체결됐다.
 - 2026-06-08 09:20 KST: scheduled after-hours-autopilot에서 post-earnings risk watch와 validation add failure를 근거로 추가 1주 trim이 `391.27 USD`에 체결됐다.
 - 2026-06-10 02:00 KST: scheduled hourly-autopilot에서 regular-session trim 2주가 `375.47 USD`에 체결됐다.
+- 2026-06-10 23:01 KST: scheduled hourly-autopilot에서 ai_semiconductor warning band와 post-earnings de-risking rationale를 근거로 추가 2주 trim이 `373.25 USD`에 체결됐다.
 - 주문/체결 출처: [[2026-05-22-paper-order-submission]]
 
 ## 회고 기록
@@ -120,3 +121,10 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 `2026-06-08 ET` after-hours trim 2건의 다음 regular close는 `392.765 USD`였다. `391.27 USD` trim 대비 `+0.38%`, `392.80 USD` trim 대비 `-0.01%`로 exact timing edge는 제한적이었지만 staged de-risking 해석은 유지된다. 새로 `2026-06-09 ET` regular-session trim 2주가 `375.47 USD`에 체결돼 보유수량은 `8주`로 줄었고, 이 regular-session trim의 1D horizon은 `2026-06-10 ET` close 이후 별도로 본다.
 
 출처: [[2026-06-10-portfolio-review]], [[2026-06-10-0622-analyst-review-cycle-sources]]
+
+
+### 2026-06-10 23:01 KST hourly-autopilot trim
+
+`2251` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight와 live Alpaca MCP submit-boundary check를 함께 사용했다. `AVGO`는 live IEX quote `373.21/374.78`, spread `0.4191%`, held qty `8`, ai_semiconductor warning band, post-earnings de-risking rationale 조건에서 25% trim 경로를 통과했고 `client_order_id=hourly-20260610-2251-sell-avgo`로 2주 sell을 제출했다. same order id reconciliation 기준 주문은 `2026-06-10T14:01:38.378996Z`에 `373.25 USD`로 전량 체결됐고 보유수량은 `8주 -> 6주`로 감소했다. 해석은 `core thesis 전면 폐기 아님 + staged de-risking 지속`이다.
+
+출처: [[2026-06-10-2251-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-10-2251-hourly-autopilot-post-trade.json`
