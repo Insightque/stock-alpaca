@@ -1,0 +1,212 @@
+{
+  "run_id": "2026-06-11-1411-after-hours-autopilot",
+  "created_at": "2026-06-11T05:14:05Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "SPY",
+    "QQQ",
+    "NOK",
+    "ORCL",
+    "IONQ",
+    "SMH",
+    "V",
+    "CRM",
+    "AVGO",
+    "RGTI"
+  ],
+  "runtime_alpaca_mcp": {
+    "used_scheduler_preflight": true,
+    "source_of_record": "wiki/evidence-store/sources/2026-06-11-1411-after-hours-autopilot-alpaca-core-preflight.json",
+    "cross_checks": {
+      "scheduler_preflight.get_clock": {
+        "is_open": false,
+        "next_close": "2026-06-11T16:00:00-04:00",
+        "next_open": "2026-06-11T09:30:00-04:00",
+        "timestamp": "2026-06-11T01:11:07.594960461-04:00"
+      },
+      "scheduler_preflight.get_account_info": {
+        "status": "ACTIVE",
+        "portfolio_value": 97556.38,
+        "cash": 30904.65,
+        "buying_power": 295272.96,
+        "long_market_value": 66651.73,
+        "currency": "USD"
+      },
+      "scheduler_preflight.get_all_positions": {
+        "count": 33
+      },
+      "scheduler_preflight.get_orders(status=open)": {
+        "count": 0
+      },
+      "scheduler_preflight.get_account_activities(activity_types=FILL)": {
+        "count": 20
+      },
+      "scheduler_preflight.get_watchlists": {
+        "count": 0
+      },
+      "runtime.get_clock": {
+        "is_open": false,
+        "timestamp": "2026-06-11T01:13:10.130801797-04:00",
+        "next_open": "2026-06-11T09:30:00-04:00",
+        "next_close": "2026-06-11T16:00:00-04:00"
+      },
+      "runtime.get_account_info": {
+        "status": "ACTIVE",
+        "portfolio_value": 97559.42,
+        "cash": 30904.65,
+        "buying_power": 295270.22,
+        "long_market_value": 66654.77,
+        "currency": "USD"
+      },
+      "runtime.get_all_positions": {
+        "count": 33,
+        "rgti_qty": 49
+      },
+      "runtime.get_orders(status=open)": {
+        "count": 0
+      },
+      "runtime.get_orders(status=all,after=2026-06-10T20:00:00Z)": {
+        "count": 2,
+        "client_order_ids": [
+          "ah-20260611-0951-sell-rgti",
+          "ah-20260611-1011-sell-rgti"
+        ]
+      },
+      "runtime.get_account_activities(activity_types=FILL,after=2026-06-10T20:00:00Z)": {
+        "count": 2,
+        "symbols": [
+          "RGTI",
+          "RGTI"
+        ]
+      },
+      "runtime.get_watchlists": {
+        "count": 0
+      },
+      "reconciled_client_order_ids": [
+        {
+          "client_order_id": "ah-20260611-0951-sell-rgti",
+          "symbol": "RGTI",
+          "status": "filled",
+          "filled_qty": 1,
+          "filled_avg_price": 19.5,
+          "extended_hours": true
+        },
+        {
+          "client_order_id": "ah-20260611-1011-sell-rgti",
+          "symbol": "RGTI",
+          "status": "filled",
+          "filled_qty": 1,
+          "filled_avg_price": 19.78,
+          "extended_hours": true
+        }
+      ]
+    },
+    "note": "1411 Alpaca core preflight first_blocking_gate=market_closed was treated as expected nonblocking for after-hours. Scheduler-owned clock/account/position/open-order/recent-fill rows stayed usable, and runtime Alpaca MCP cross-checks reconfirmed regular market closed, ACTIVE account, 33 positions, 0 open orders, 0 watchlists, and same-session after-hours client_order_ids ah-20260611-0951-sell-rgti plus ah-20260611-1011-sell-rgti both filled before any 1411 submit path could start."
+  },
+  "submit_attempted": false,
+  "orders_submitted": [],
+  "review_backlog_throttle": {
+    "pending_1d_count": 14,
+    "pending_5d_count": 13,
+    "pending_20d_count": 1,
+    "status": "monitor_only_budget_blocked"
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 14,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1,
+    "risk_recomputed_after_partial_fill": true,
+    "cash_deployment_blocker": "risk_gate_failed"
+  },
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass",
+      "detail": "ALPACA_PAPER_TRADE=true confirmed via workflow environment and scheduler-owned paper preflight."
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed",
+      "detail": "regular market remained closed: scheduler preflight clock timestamp 2026-06-11T01:11:07.594960461-04:00 and runtime Alpaca MCP clock timestamp 2026-06-11T01:13:10.130801797-04:00 both stayed before next_open 2026-06-11T09:30:00-04:00."
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass",
+      "detail": "session=after_hours and after_hours_policy profile remained active."
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_runtime_core_and_scheduler_preflight",
+      "detail": "1411 scheduler-owned core preflight first_blocking_gate=market_closed was treated as expected nonblocking; runtime Alpaca MCP revalidated clock, account, positions, open orders, fills, watchlists, and same-session order state."
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass",
+      "detail": "after_hours_policy artifact tag, review bucket, order id prefix, max order cap, and allowed_sides buy/sell retained."
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "block_after_hours_session_budget_exhausted",
+      "detail": "after_hours_new_orders_submitted_today=2 equals max_new_orders_per_session=2 before submit; regular-session validation count was not reused."
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass",
+      "detail": "broad metadata universe 62 symbols with SPY/QQQ included; research shortlist plus sell-side holdings recheck preserved after-hours screening coverage."
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass",
+      "detail": "alpaca/sec-edgar/fred/firecrawl/yahoo-finance had usable evidence and alpha-vantage remained a nonblocking empty_response gap under the tiered policy."
+    },
+    {
+      "gate": "risk_policy",
+      "status": "pass_empty_order_plan",
+      "detail": "check-risk-policy.py --json passed with the expected orders-is-empty warning while preserving session=after_hours and separate risk_inputs.after_hours_new_orders_submitted_today=2."
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "not_actionable_budget_exhausted_before_submit_path",
+      "detail": "No 1411 submit path was entered because the separate after-hours budget hard gate blocked before quote selection."
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "not_actionable_budget_exhausted_before_submit_path",
+      "detail": "No 1411 submit path was entered because the separate after-hours budget hard gate blocked before spread selection."
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "not_applicable_no_order",
+      "detail": "No new order was staged in this cycle."
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "not_applicable_no_submit",
+      "detail": "Reconciliation only rechecked the two earlier same-session RGTI client_order_ids; no new submit occurred."
+    }
+  ],
+  "decision": {
+    "action": "no_submit_after_hours_budget_exhausted",
+    "reason": "Same-session after-hours fills were already 2/2 from the earlier RGTI trims, so the 1411 cycle remained blocked at the separate after-hours budget gate."
+  },
+  "separate_budget": {
+    "submitted_today": 2,
+    "session_limit": 2,
+    "remaining": 0,
+    "status": "exhausted"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-1411-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-1411-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
