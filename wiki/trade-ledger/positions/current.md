@@ -1,8 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-12 02:53 KST_
+_Last updated: 2026-06-12 03:11 KST_
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-12-0251-hourly-autopilot]]
 - Open/new: 없음
@@ -627,6 +636,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-11-0451-hourly-autopilot]]
 - Open/new: 없음
 - Filled: `MSFT` buy 1주 @ `398.38 USD` (`0431` cycle open order fill observed)
@@ -649,6 +667,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-11-0411-hourly-autopilot]]
 - Open/new: 없음
 - Filled: 없음
@@ -659,6 +686,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-11-0411-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-11-0351-hourly-autopilot]]
 - Open/new: 없음
@@ -671,6 +707,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-11-0331-hourly-autopilot]]
 - Open/new: 없음
 - Filled: 없음
@@ -681,6 +726,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-11-0331-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-11-0311-hourly-autopilot]]
 - Open/new: 없음
@@ -693,6 +747,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-11-0251-hourly-autopilot]]
 - Open/new: 없음
 - Filled: `NKE` buy 1주 @ `43.98 USD`
@@ -703,6 +766,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-11-0251-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-11-0231-hourly-autopilot]]
 - Open/new: `NKE` buy 1주 @ `43.99 USD` (`status=new`)
@@ -715,6 +787,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-11-0211-hourly-autopilot]]
 - Open/new: 없음
 - Filled: `NEE` buy 1주 @ `85.22 USD`
@@ -725,6 +806,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-11-0211-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-11-0151-hourly-autopilot]]
 - Open/new: 없음
@@ -737,6 +827,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-11-0131-hourly-autopilot]]
 - Open/new: `AMZN` buy 1주 @ `239.33 USD` (`status=new`)
 - Filled: 없음
@@ -747,6 +846,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-11-0131-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-11-0111-hourly-autopilot]]
 - Open/new: 없음
@@ -759,6 +867,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-11-0051-hourly-autopilot]]
 - Open/new: 없음
 - Filled: `COP` buy 1주 @ `121.05 USD`
@@ -769,6 +886,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-11-0051-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-11-0031-hourly-autopilot]]
 - Open/new: 없음
@@ -781,6 +907,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-11-0011-hourly-autopilot]]
 - Open/new: 없음
 - Filled: `XOM` buy 1주 @ `151.41 USD`
@@ -791,6 +926,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-11-0011-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-10-2351-hourly-autopilot]]
 - Open/new: 없음
@@ -803,6 +947,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-10-2331-hourly-autopilot]]
 - Open/new: 없음
 - Filled: `BAC` buy 1주 @ `54.77 USD`
@@ -814,6 +967,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-10-2311-hourly-autopilot]]
 - Open/new: 없음
 - Filled: `RGTI` sell 17주 @ `20.38 USD`
@@ -824,6 +986,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-10-2311-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-10-2251-hourly-autopilot]]
 - Open/new: 없음
@@ -859,6 +1030,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-10-2231-hourly-autopilot]]
 - Open/new: 없음
 - Filled: `WMT` buy 1주 @ `118.49 USD`
@@ -869,6 +1049,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-10-2231-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-10-0431-hourly-autopilot]]
 - Open/new: 없음
@@ -881,6 +1070,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-10-0411-hourly-autopilot]]
 - Open/new: 없음
 - Filled: `FCX` buy 1주 @ `63.75 USD`
@@ -891,6 +1089,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-10-0411-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-10-0351-hourly-autopilot]]
 - Open/new: 없음
@@ -903,6 +1110,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-10-0311-hourly-autopilot]]
 - Open/new: `NVDA` buy 1주 @ `205.40 USD` (`status=new`)
 - Filled: 없음
@@ -913,6 +1129,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-10-0311-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-10-0251-hourly-autopilot]]
 - Open/new: 없음
@@ -925,6 +1150,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-10-0231-hourly-autopilot]]
 - Open/new: `SLB` buy 1주 @ `55.11 USD` (`status=new`)
 - Filled: 없음
@@ -935,6 +1169,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-10-0231-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-10-0211-hourly-autopilot]]
 - Open/new: 없음
@@ -947,6 +1190,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-10-0151-hourly-autopilot]]
 - Open/new: 기존 `AVGO` sell 2주 @ `375.32 USD` (`status=new`)
 - Filled: `PFE` buy 1주 @ `25.82 USD`
@@ -957,6 +1209,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-10-0151-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-10-0131-hourly-autopilot]]
 - Open/new: `AVGO` sell 2주 @ `375.32 USD` (`status=new`), 기존 `PFE` buy 1주 @ `25.70 USD` (`status=new`)
@@ -969,6 +1230,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-10-0111-hourly-autopilot]]
 - Open/new: `PFE` buy 1주 @ `25.70 USD` (`status=new`)
 - Filled: 없음
@@ -980,6 +1250,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-10-0051-hourly-autopilot]]
 - Open/new: `WMT` buy 1주 @ `118.99 USD` (`status=new`)
 - Filled: 없음
@@ -990,6 +1269,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-10-0051-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-10-0031-hourly-autopilot]]
 - Open/new: `SO` buy 1주 @ `92.03 USD` (`status=new`), `WMT` buy 1주 @ `118.99 USD` (`status=new`)
@@ -1003,6 +1291,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-10-0011-hourly-autopilot]]
 - Open/new: `SO` buy 1주 @ `92.03 USD` (`status=new`), 기존 `WMT` buy 1주 @ `118.99 USD` (`status=new`)
 - Filled: 없음
@@ -1013,6 +1310,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-10-0011-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-09-2351-hourly-autopilot]]
 - Open/new: `WMT` buy 1주 @ `118.99 USD` (`status=new`)
@@ -1025,6 +1331,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-09-2311-hourly-autopilot]]
 - Open/new: `AVGO` sell 2주 @ `403.00 USD` (`status=new`, 기존 `2251` cycle order 유지)
 - Filled: 없음
@@ -1036,6 +1351,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-09-2251-hourly-autopilot]]
 - Open/new: `AVGO` sell 2주 @ `403.00 USD` (`status=new`)
 - Filled: 없음
@@ -1046,6 +1370,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-09-2251-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-09-2231-hourly-autopilot]]
 - Open/new: 없음
@@ -1575,6 +1908,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-09-0431-hourly-autopilot]]
 - Open/new: 없음
 - Filled: 없음
@@ -1585,6 +1927,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-09-0431-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-09-0411-hourly-autopilot]]
 - Open/new: 없음
@@ -1597,6 +1948,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-09-0351-hourly-autopilot]]
 - Open/new: 없음
 - Filled: 없음
@@ -1607,6 +1967,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-09-0351-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-09-0311-hourly-autopilot]]
 - Open/new: 없음
@@ -1619,6 +1988,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-09-0251-hourly-autopilot]]
 - Open/new: 없음
 - Filled: 없음
@@ -1629,6 +2007,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-09-0251-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-09-0231-hourly-autopilot]]
 - Open/new: 없음
@@ -1641,6 +2028,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-09-0211-hourly-autopilot]]
 - Open/new: 없음
 - Filled: 없음
@@ -1651,6 +2047,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-09-0211-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-09-0151-hourly-autopilot]]
 - Open/new: 없음
@@ -1663,6 +2068,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-09-0131-hourly-autopilot]]
 - Open/new: 없음
 - Filled: 없음
@@ -1673,6 +2087,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-09-0131-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-09-0111-hourly-autopilot]]
 - Open/new: 없음
@@ -1685,6 +2108,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-09-0011-hourly-autopilot]]
 - Open/new: 없음
 - Filled: 없음
@@ -1695,6 +2127,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-09-0011-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-08-2351-hourly-autopilot]]
 - Open/new: 없음
@@ -1707,6 +2148,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-08-2331-hourly-autopilot]]
 - Open/new: 없음
 - Filled: 없음
@@ -1717,6 +2167,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-08-2331-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-08-2311-hourly-autopilot]]
 - Open/new: 없음
@@ -1729,6 +2188,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-08-2251-hourly-autopilot]]
 - Open/new: 없음
 - Filled: `RGTI` sell 30 @ `21.48` (`client_order_id=hourly-20260608-2251-sell-rgti`)가 regular-session runtime reconciliation 기준 전량 체결됐다.
@@ -1739,6 +2207,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-08-2251-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-08-2231-hourly-autopilot]]
 - Open/new: 없음
@@ -1751,6 +2228,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-06-0451-hourly-autopilot]]
 - Open/new: 없음
 - Filled: 없음
@@ -1762,6 +2248,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-06-0431-hourly-autopilot]]
 - Open/new: 없음
 - Filled: `INTC` sell 1 @ `99.93` (`client_order_id=hourly-20260606-0411-sell-intc`)가 0431 core preflight recent activities에서 confirmed fill로 확인됐다.
@@ -1772,6 +2267,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-06-0431-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-06-0411-hourly-autopilot]]
 - Open/new: `INTC` sell 1 @ `99.93` (`client_order_id=hourly-20260606-0411-sell-intc`, `status=new`)
@@ -1792,6 +2296,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-06-0351-hourly-autopilot]]
 - Open/new: 없음
 - Filled: `JPM` buy 1 @ `311.81` (`client_order_id=hourly-20260606-0351-buy-jpm`)
@@ -1802,6 +2315,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-06-0351-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-06-0331-hourly-autopilot]]
 - Open/new: 없음
@@ -1814,6 +2336,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-06-0311-hourly-autopilot]]
 - Open/new: `NEE` buy 1 @ `85.47` (`client_order_id=hourly-20260606-0231-buy-nee`, `status=new`), `CVX` buy 1 @ `187.68` (`client_order_id=hourly-20260606-0251-buy-cvx`, `status=new`), `SO` buy 1 @ `93.32` (`client_order_id=hourly-20260606-0311-buy-so`, `status=new`)
 - Filled: 없음
@@ -1824,6 +2355,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-06-0311-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-06-0251-hourly-autopilot]]
 - Open/new: `NEE` buy 1 @ `85.47` (`client_order_id=hourly-20260606-0231-buy-nee`, `status=new`), `CVX` buy 1 @ `187.68` (`client_order_id=hourly-20260606-0251-buy-cvx`, `status=new`)
@@ -1836,6 +2376,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-06-0231-hourly-autopilot]]
 - Open/new: `NEE` buy 1 @ `85.47` (`client_order_id=hourly-20260606-0231-buy-nee`, `status=new`)
 - Filled: 없음
@@ -1846,6 +2395,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-06-0231-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-06-0211-hourly-autopilot]]
 - Open/new: `PFE` buy 1 @ `26.09` (`client_order_id=hourly-20260606-0211-buy-pfe`, `status=new`)
@@ -1866,6 +2424,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-06-0151-hourly-autopilot]]
 - Open/new: 없음
 - Filled: `AMZN` buy 1 @ `253.17` (`client_order_id=hourly-20260606-0151-buy-amzn`)
@@ -1876,6 +2443,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-06-0151-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-06-0131-hourly-autopilot]]
 - Open/new: 없음
@@ -1899,6 +2475,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-06-0051-hourly-autopilot]]
 - Open/new: `NVDA` buy 1 @ `208.80` (`client_order_id=hourly-20260606-0051-buy-nvda`, `status=new`)
 - Filled: 없음
@@ -1909,6 +2494,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-06-0051-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-06-0031-hourly-autopilot]]
 - Open/new: 없음
@@ -1921,6 +2515,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-06-0011-hourly-autopilot]]
 - Open/new: 없음
 - Filled: `AAPL` buy 1 @ `313.27` (`client_order_id=hourly-20260606-0011-buy-aapl`)
@@ -1931,6 +2534,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-06-0011-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-05-2351-hourly-autopilot]]
 - Open/new: `PLTR` buy 1 @ `138.56` (`client_order_id=hourly-20260605-2351-buy-pltr`, `status=new`)
@@ -1943,6 +2555,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-05-2331-hourly-autopilot]]
 - Open/new: 없음
 - Filled: `FCX` buy 1 @ `65.15` (`client_order_id=hourly-20260605-2331-buy-fcx`)
@@ -1953,6 +2574,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-05-2331-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-05-2311-hourly-autopilot]]
 - Open/new: 없음
@@ -1965,6 +2595,15 @@ _Last updated: 2026-06-12 02:53 KST_
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
+
 - Run: [[2026-06-05-2251-hourly-autopilot]]
 - Open/new: 없음
 - Filled: 없음
@@ -1975,6 +2614,15 @@ _Last updated: 2026-06-12 02:53 KST_
 - Source note: `wiki/trade-ledger/positions/2026-06-05-2251-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-0311-hourly-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 scheduler-owned Alpaca core `get_clock/get_account_info/get_orders_open/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot` rows로 same-day fill discipline과 submit-boundary quote/spread를 재확인했다. same-day regular-session `AVGO` trim 1건과 after-hours `RGTI` trim fills 2건은 그대로 유지됐고, `AVGO`는 spread `1.8672%`가 policy cap을 크게 넘겨 trim hard gate fail, `RGTI`는 duplicate sell discipline, `SO`는 spread 회복 후에도 trim metric gap, 신규 buy path는 `review_backlog_pending_1d_count=14`와 benchmark floor cap에 막혀 이번 `0311` cycle도 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0311-hourly-autopilot-post-trade.json`
 
 - Run: [[2026-06-05-2231-hourly-autopilot]]
 - Open/new: 없음
