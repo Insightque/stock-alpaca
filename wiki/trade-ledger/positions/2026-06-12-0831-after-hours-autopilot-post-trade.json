@@ -1,0 +1,28 @@
+{
+  "run_id": "2026-06-12-0831-after-hours-autopilot",
+  "created_at": "2026-06-11T23:34:19Z",
+  "session": "after_hours",
+  "paper": true,
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "orders_open": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_detected": 0,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 99920.2,
+    "cash": 31285.06,
+    "buying_power": 301132.49,
+    "long_market_value": 68635.14,
+    "currency": "USD"
+  },
+  "positions_count": 33,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "review_bucket": "after_hours_validation",
+  "note": "No after-hours submit. Scheduler-owned 0831 Alpaca core preflight remained the source of record for closed regular market, ACTIVE account, 33 positions, 0 open orders, and runtime Alpaca MCP reconfirmed 0 watchlists and no after-hours fills since 2026-06-11T20:00:00Z.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-12-0831-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-0831-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ]
+}
