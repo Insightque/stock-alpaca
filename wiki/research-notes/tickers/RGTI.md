@@ -96,6 +96,12 @@ RGTI는 오늘 신규 매수 후보에서 제외했다. 2026-05-22 종가 26.41 
 
 출처: [[2026-06-11-0951-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-11-0951-after-hours-autopilot-post-trade.json`
 
+### 2026-06-11 10:19 KST after-hours-autopilot trim submit
+
+`scheduler-owned 1011` 장외 preflight와 runtime Alpaca MCP submit-boundary check를 함께 사용했다. `AVGO`는 submit 직전 spread가 cap을 다시 넘겨 탈락했고, `RGTI`는 runtime overnight quote `19.77/19.78`, spread 약 `0.0506%`, held qty `50`, residual speculative sleeve de-risking rationale를 충족해 `client_order_id=ah-20260611-1011-sell-rgti` 1주 sell을 제출했다. same client id immediate reconciliation 기준 주문은 아직 `status=new` open order이며 fill은 없고, 보유수량은 `50주`로 unchanged, `qty_available=49`만 예약 상태다. 해석은 `staged de-risking 지속, open order lifecycle 추적 필요`다.
+
+출처: [[2026-06-11-1011-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-11-1011-after-hours-autopilot-post-trade.json`
+
 ### 2026-06-11 analyst review cycle
 
 `2026-06-09 ET` trim 22주는 `22.298182 USD` 체결 대비 `2026-06-10 ET` close `19.445 USD`로 `-12.80%`였다. `2026-06-10 ET` 추가 trim 17주도 이미 `20.38 USD`에 체결돼 staged de-risking이 이어졌고, current Alpaca snapshot 기준 잔여 `51주`의 평균단가 `25.569583 USD` 대비 미실현은 여전히 `-24.52%`다. speculative sleeve reduction은 계속 타당했고, 남은 포지션은 residual monitor로만 본다.

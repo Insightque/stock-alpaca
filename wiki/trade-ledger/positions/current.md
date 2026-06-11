@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-11 10:00 KST_
+_Last updated: 2026-06-11 10:19 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-11-1011-after-hours-autopilot]]
+- Open/new: `RGTI` sell 1주 @ `19.77 USD` (`status=new`)
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime account/positions reconciliation 기준 `33` positions 유지, open orders `1`건이다. `RGTI`는 총 `50주`로 unchanged이며 `qty_available=49`로 1주가 open sell order에 예약됐다.
+- Recent reconciliation scope: scheduler-owned `1011` core/research preflight를 source-of-record로 사용했고 runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-10T20:00:00Z)/get_watchlists/get_stock_latest_quote(feed=overnight)/get_stock_snapshot(feed=overnight)/place_stock_order/get_order_by_client_id`로 장외 submit boundary를 재확인했다. submit 직전 `AVGO` spread가 다시 cap을 넘겨 탈락했고 `RGTI`가 fresh overnight quote `19.77/19.78`와 residual speculative trim rationale를 충족해 `client_order_id=ah-20260611-1011-sell-rgti` 1주 sell이 제출됐다. same client id reconciliation 기준 주문은 아직 `status=new` open order이며 fill은 없었다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-11-1011-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 

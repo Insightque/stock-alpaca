@@ -1,0 +1,70 @@
+{
+  "run_id": "2026-06-11-1011-after-hours-autopilot",
+  "created_at": "2026-06-11T10:19:34+09:00",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 97622.11,
+    "cash": 30884.87,
+    "buying_power": 295320.71,
+    "currency": "USD"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1,
+      "limit_price": 19.77,
+      "extended_hours": true,
+      "client_order_id": "ah-20260611-1011-sell-rgti",
+      "order_id": "e725c081-8287-4484-9323-15349194c375",
+      "status": "new"
+    }
+  ],
+  "lifecycle_actions": [
+    {
+      "action": "record_open_after_hours_order",
+      "reason": "Immediate reconciliation kept the same client_order_id open with no fill, so the order remains a lifecycle-tracked extended-hours validation sell."
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1,
+      "limit_price": 19.77,
+      "status": "new",
+      "client_order_id": "ah-20260611-1011-sell-rgti",
+      "order_id": "e725c081-8287-4484-9323-15349194c375"
+    }
+  ],
+  "position_highlights": [
+    {
+      "symbol": "RGTI",
+      "qty": 50,
+      "qty_available": 49,
+      "avg_entry_price": 25.569583,
+      "market_value": 988.0,
+      "current_price": 19.76
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": true,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "client_order_ids_checked": [
+      "ah-20260611-1011-sell-rgti"
+    ],
+    "new_fills_detected": 0,
+    "position_delta": "RGTI qty 50 unchanged, qty_available 49 reserved by open order",
+    "note": "RGTI after-hours sell 1 share was submitted through Alpaca MCP and immediately reconciled by client_order_id via get_order_by_client_id plus get_orders(status=open/all). The order remained status=new with no fill; post-trade get_all_positions showed RGTI quantity unchanged at 50 and qty_available reduced to 49, so the order is left open for lifecycle tracking under after-hours policy."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-1011-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-1011-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-1011-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-11-1011-after-hours-autopilot.json"
+  ]
+}

@@ -1,0 +1,174 @@
+{
+  "run_id": "2026-06-11-1011-after-hours-autopilot",
+  "created_at": "2026-06-11T10:19:34+09:00",
+  "session": "after_hours",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "SPY",
+    "QQQ",
+    "NOK",
+    "ORCL",
+    "IONQ",
+    "SMH",
+    "V",
+    "AVGO",
+    "RGTI",
+    "SO"
+  ],
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass"
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed"
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass"
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_market_closed_nonblocking_after_hours"
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass"
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "pass_one_of_two_submitted_one_remaining"
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass"
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass"
+    },
+    {
+      "gate": "risk_policy",
+      "status": "pass_rgti_sell_trim_candidate_ready"
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "pass_runtime_overnight_quotes_fresh_for_rgti_orcl_ionq_nok_and_benchmark_cross_check"
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "pass_rgti_orcl_ionq_nok_runtime_spreads_within_cap_avgo_so_fail"
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "pass_avgo_sell_order_shape"
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "pass_reconciled_open_order_lifecycle_recorded"
+    }
+  ],
+  "block_reasons": [],
+  "candidate_diagnostics": [
+    {
+      "symbol": "RGTI",
+      "decision": "selected_sell_trim",
+      "reason": "Runtime overnight quote 19.77/19.78 at 2026-06-11T01:17:54Z implied about 0.0506% spread and 1-share notional 19.77 USD, both inside after-hours submit caps. Review context keeps RGTI in residual speculative de-risking mode, so the remaining session slot stays executable on the sell side.",
+      "source_refs": [
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/trade-ledger/reviews/2026-06-11-portfolio-review.md",
+        "wiki/evidence-store/sources/2026-06-11-1011-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "AVGO",
+      "decision": "skip_sell_spread_fail_at_submit_boundary",
+      "reason": "Immediate pre-submit overnight quote 375.17/376.53 implied spread about 0.3625%, above the after-hours cap 0.25%, so AVGO lost executable status at the submit boundary.",
+      "source_refs": [
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/evidence-store/sources/2026-06-11-1011-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "decision": "skip_sell_stale_asymmetric_quote",
+      "reason": "Runtime overnight quote 84.95/95.07 was stale and highly asymmetric, so no executable two-sided trim order was eligible.",
+      "source_refs": [
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/evidence-store/sources/2026-06-11-1011-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "ORCL",
+      "decision": "blocked_buy_review_backlog_throttle_sell_priority",
+      "reason": "ORCL remained a buy fallback candidate with runtime overnight quote 180.93/181.24, but review backlog throttle still blocks incremental after-hours buys at pending 1D review count 14 and sell-first policy already produced an executable trim candidate.",
+      "source_refs": [
+        "wiki/research-notes/tickers/ORCL.md",
+        "wiki/evidence-store/sources/2026-06-11-1011-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-11-1011-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    }
+  ],
+  "risk_inputs": {
+    "after_hours_new_orders_submitted_today": 1,
+    "new_orders_submitted_today": 0,
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "review_backlog_pending_1d_count": 14,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1
+  },
+  "review_backlog_throttle": {
+    "pending_1d_count": 14,
+    "pending_5d_count": 13,
+    "pending_20d_count": 1,
+    "effect_on_new_buys": "block_new_after_hours_buy_slots",
+    "effect_on_risk_reducing_sells": "no_block"
+  },
+  "orders_submitted": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1,
+      "limit_price": 19.77,
+      "client_order_id": "ah-20260611-1011-sell-rgti",
+      "order_id": "e725c081-8287-4484-9323-15349194c375",
+      "status": "new",
+      "extended_hours": true,
+      "session": "after_hours",
+      "review_bucket": "after_hours_validation"
+    }
+  ],
+  "submit_attempted": true,
+  "runtime_alpaca_mcp": {
+    "clock_timestamp": "2026-06-10T21:13:26.542395845-04:00",
+    "account_status": "ACTIVE",
+    "portfolio_value": 97622.11,
+    "cash": 30884.87,
+    "buying_power": 295320.71,
+    "positions": 33,
+    "open_orders": 0,
+    "same_session_after_hours_orders": 2,
+    "watchlists": 0,
+    "quote_feed": "overnight"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-1011-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-1011-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/trade-ledger/reviews/2026-06-11-portfolio-review.md"
+  ]
+}
