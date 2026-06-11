@@ -1,0 +1,53 @@
+{
+  "run_id": "2026-06-11-1031-after-hours-autopilot",
+  "created_at": "2026-06-11T01:36:27Z",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 97637.81,
+    "cash": 30904.65,
+    "buying_power": 295422.18,
+    "long_market_value": 66733.16,
+    "currency": "USD"
+  },
+  "submitted_orders": [],
+  "lifecycle_actions": [],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "NVDA",
+      "qty": 38.0,
+      "market_value": 7684.74
+    },
+    {
+      "symbol": "LRCX",
+      "qty": 20.0,
+      "market_value": 6540.0
+    },
+    {
+      "symbol": "AMD",
+      "qty": 14.0,
+      "market_value": 6387.5
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": false,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "client_order_ids_checked": [
+      "ah-20260611-0951-sell-rgti",
+      "ah-20260611-1011-sell-rgti"
+    ],
+    "new_fills_detected": 1,
+    "position_delta": "RGTI qty 50 -> 49 after the previously open 1011 after-hours sell filled at 19.78 USD; no new 1031 submit.",
+    "note": "No new after-hours order was submitted. Reconciliation confirmed both same-session RGTI client_order_ids were filled, runtime open orders stayed at 0, runtime positions remained 33, and the 1031 cycle ended because the separate after-hours session budget was already exhausted."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-1031-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-1031-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-1031-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-11-1031-after-hours-autopilot.json"
+  ]
+}
