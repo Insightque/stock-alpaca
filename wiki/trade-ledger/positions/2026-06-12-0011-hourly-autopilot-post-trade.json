@@ -1,0 +1,60 @@
+{
+  "run_id": "2026-06-12-0011-hourly-autopilot",
+  "recorded_at": "2026-06-11T15:14:43Z",
+  "paper": true,
+  "market_session": "regular",
+  "orders_submitted": [],
+  "open_orders": [],
+  "account_snapshot": {
+    "portfolio_value": 98175.98,
+    "cash": 31285.06,
+    "buying_power": 297127.44,
+    "status": "ACTIVE"
+  },
+  "positions_summary": {
+    "position_count": 33,
+    "avgo_qty": 5,
+    "avgo_avg_entry_price": 419.151667,
+    "avgo_qty_available": 5,
+    "avgo_market_value": 1878.0,
+    "rgti_qty": 49,
+    "rgti_qty_available": 49,
+    "so_qty": 5,
+    "so_qty_available": 5
+  },
+  "fill_activity": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1,
+      "price": 380.43,
+      "transaction_time": "2026-06-11T14:00:59.058708Z",
+      "order_id": "a4414ccd-c32c-48bb-97ec-189dc42f6cb8",
+      "type": "prior_same_day_fill"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1,
+      "price": 19.78,
+      "transaction_time": "2026-06-11T01:20:06.981355Z",
+      "order_id": "e725c081-8287-4484-9323-15349194c375",
+      "type": "prior_same_day_fill"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1,
+      "price": 19.5,
+      "transaction_time": "2026-06-11T00:59:35.159665Z",
+      "order_id": "95488df8-9d09-4f7a-a39c-06cd0243e1d2",
+      "type": "prior_same_day_fill"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-stale-order-cleanup.json"
+  ]
+}

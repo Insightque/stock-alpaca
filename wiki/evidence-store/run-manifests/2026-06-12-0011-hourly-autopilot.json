@@ -1,0 +1,315 @@
+{
+  "run_id": "2026-06-12-0011-hourly-autopilot",
+  "mode": "submit",
+  "paper": true,
+  "created_at": "2026-06-11T15:14:43Z",
+  "schema_version": "1.3",
+  "risk_policy_version": "medium-risk-v1.2",
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "first_blocking_gate": "review_backlog_throttle",
+  "recommendation_actionability": {
+    "actionable": false,
+    "submit_mode": true,
+    "minimum_learning_orders_required": 1,
+    "minimum_learning_orders_planned": 0,
+    "hard_gates_passed": false,
+    "exception": "AVGO는 live IEX quote 372.00/376.66의 spread 1.2372%가 policy cap 0.50%를 초과하고 same-day filled trim 1건도 남아 있다. RGTI는 live spread 0.0500%로 정상 범위지만 same-day after-hours trim fills 2건 때문에 duplicate_symbol_side_same_day가 유지된다. SO는 live quote 94.10/95.99의 spread 1.9689%가 policy cap 0.50%를 크게 초과하고 trim decision-grade metric gap도 남아 있다. 신규 buy path는 review_backlog_pending_1d_count=14가 stop threshold 12를 초과해 review_backlog_throttle에 막혔고, SPY/QQQ는 validation_floor_per_order_cap까지 초과하며 MSFT는 same-day buy duplicate와 spread fail이 겹친다."
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 1,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 14,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1,
+    "cash_deployment_blocker": "review_backlog_throttle"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-11T15:11:30Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-11T15:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-11T15:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-11T14:51:33+00:00, retry after ~2402s.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-11T15:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-11T15:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-11T15:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_actionable": 3,
+    "min_research_confirmations_for_submit": 3,
+    "all_research_must_be_attempted": true,
+    "provider_gap_blocks_order": false,
+    "critical_source_rules": {
+      "earnings_signal": {
+        "require_any": [
+          "sec-edgar",
+          "alpha-vantage",
+          "firecrawl_company_ir"
+        ],
+        "missing_behavior": "downgrade_to_watch"
+      },
+      "macro_rate_sensitive_signal": {
+        "require_any": [
+          "fred",
+          "explicit_macro_source"
+        ],
+        "missing_behavior": "downgrade_to_watch"
+      },
+      "filing_risk_signal": {
+        "require_any": [
+          "sec-edgar_acceptance_time"
+        ],
+        "missing_behavior": "block_new_buy"
+      },
+      "analyst_only_signal": {
+        "allowed_use": "thesis_confirmation_only",
+        "missing_behavior": "no_positive_score_delta"
+      }
+    }
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + scheduler Alpaca preflight universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad metadata universe screen with scheduler-owned 0011 stale cleanup/core/research preflight reuse, sell-first risk-trim evaluation, live Alpaca submit-boundary quote/asset/activity checks, and review-backlog stop-throttle enforcement for validation buys.",
+    "pre_mcp_shortlist": [
+      "AVGO",
+      "RGTI",
+      "SO",
+      "MSFT",
+      "SPY",
+      "QQQ"
+    ],
+    "final_candidates": [
+      "AVGO",
+      "RGTI",
+      "SO",
+      "MSFT",
+      "SPY",
+      "QQQ"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "data_cutoff_time": "2026-06-11T15:14:43Z",
+  "market_clock_checked_at": "2026-06-11T15:13:27Z",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-11-portfolio-review.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/MSFT.md",
+    "wiki/research-notes/tickers/SPY.md",
+    "wiki/research-notes/tickers/QQQ.md"
+  ],
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-12-0011-hourly-autopilot.json",
+  "report_path": "wiki/current-runs/daily/2026-06-12-0011-hourly-autopilot.md",
+  "recommendation_shortlist": [
+    {
+      "symbol": "AVGO",
+      "decision": "blocked_spread_and_duplicate_same_day"
+    },
+    {
+      "symbol": "RGTI",
+      "decision": "blocked_duplicate_same_day"
+    },
+    {
+      "symbol": "SO",
+      "decision": "blocked_spread_and_metric_gap"
+    },
+    {
+      "symbol": "MSFT",
+      "decision": "blocked_same_day_duplicate_spread_review_backlog"
+    },
+    {
+      "symbol": "SPY",
+      "decision": "blocked_floor_cap_and_review_backlog"
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "blocked_floor_cap_and_review_backlog"
+    }
+  ],
+  "open_order_lifecycle": {
+    "stale_cleanup_source_ref": "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-stale-order-cleanup.json",
+    "cleanup_status": "pass",
+    "open_orders_seen": 0,
+    "remaining_blocking_open_orders": [],
+    "passed": true,
+    "note": "Scheduler-owned stale cleanup과 live Alpaca get_orders(status=open) 모두 open orders 0건을 보여 lifecycle blocker가 없다."
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "AVGO",
+      "held_qty": 5.0,
+      "current_weight_pct": 1.9129,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "AVGO는 ai_semiconductor warning band와 post-earnings staged de-risking rationale가 유지되지만 live IEX quote 372.00/376.66의 spread 1.2372%가 policy cap 0.50%를 초과한다. 같은 거래일 trim fill 1건도 남아 있어 duplicate sell discipline recheck가 필요하다.",
+      "skipped_gate": "spread_within_policy",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -3.55,
+      "relative_to_spy_20d_pct": -4.33,
+      "metric_gap_reason": "",
+      "replacement_symbol": "SPY",
+      "replacement_expected_excess_margin_pct": 0.0,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-runtime-gate-evaluation.json",
+        "wiki/research-notes/tickers/AVGO.md"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "held_qty": 49.0,
+      "current_weight_pct": 0.9977,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "RGTI는 speculative-loss control 및 residual speculative sleeve de-risking rationale가 유지되지만 same-day sell fills 2건이 duplicate_symbol_side_same_day를 유지해 추가 trim을 막는다. live IEX quote 19.99/20.00 spread 0.0500%는 policy cap 이내다.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -8.71,
+      "relative_to_spy_20d_pct": -9.49,
+      "metric_gap_reason": "",
+      "replacement_symbol": "SPY",
+      "replacement_expected_excess_margin_pct": 0.0,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-runtime-gate-evaluation.json",
+        "wiki/research-notes/tickers/RGTI.md"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "held_qty": 5.0,
+      "current_weight_pct": 0.4826,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "SO는 defensive utility sleeve 유지 대비 replacement-quality 검토 대상으로 남아 있지만 live IEX quote 94.10/95.99의 spread 1.9689%가 policy cap 0.50%를 크게 초과하고 trim decision-grade expected-excess/replacement margin metric gap도 여전히 해소되지 않았다.",
+      "skipped_gate": "spread_within_policy",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": 0.0,
+      "relative_to_spy_20d_pct": 0.0,
+      "metric_gap_reason": "decision_grade_trim_metric_missing",
+      "replacement_symbol": "SPY",
+      "replacement_expected_excess_margin_pct": 0.0,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-12-0011-hourly-autopilot-runtime-gate-evaluation.json",
+        "wiki/research-notes/tickers/SO.md"
+      ]
+    }
+  ],
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-06-12-0011-hourly-autopilot-post-trade.json"
+}
