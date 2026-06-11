@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-11-0951-after-hours-autopilot",
+  "created_at": "2026-06-11T10:00:14+09:00",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 97095.67,
+    "cash": 30884.87,
+    "buying_power": 294071.79,
+    "long_market_value": 66210.8,
+    "currency": "USD"
+  },
+  "submitted_orders": [
+    {
+      "order_id": "95488df8-9d09-4f7a-a39c-06cd0243e1d2",
+      "client_order_id": "ah-20260611-0951-sell-rgti",
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1,
+      "limit_price": 19.47,
+      "filled_qty": 1,
+      "filled_avg_price": 19.5,
+      "status": "filled",
+      "extended_hours": true,
+      "submitted_at": "2026-06-11T00:59:35.139838383Z",
+      "filled_at": "2026-06-11T00:59:35.159665043Z"
+    }
+  ],
+  "lifecycle_actions": [],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "RGTI",
+      "qty": 50.0,
+      "market_value": 976.5
+    },
+    {
+      "symbol": "NOK",
+      "qty": 402.0,
+      "market_value": 5306.4
+    },
+    {
+      "symbol": "AVGO",
+      "qty": 6.0,
+      "market_value": 2227.74
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": true,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "client_order_ids_checked": [
+      "ah-20260611-0951-sell-rgti"
+    ],
+    "new_fills_detected": 1,
+    "position_delta": "RGTI 51 -> 50",
+    "note": "RGTI after-hours sell 1 share was submitted through Alpaca MCP and immediately reconciled by client_order_id via get_order_by_client_id, get_orders(status=all, symbols=RGTI, after=2026-06-10T20:00:00Z), and get_account_activities(FILL). Post-trade get_account_info showed cash 30884.87 USD and buying_power 294071.79 USD, and get_all_positions confirmed RGTI quantity fell to 50 with no remaining open RGTI order."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-11-0951-after-hours-autopilot.json"
+  ]
+}

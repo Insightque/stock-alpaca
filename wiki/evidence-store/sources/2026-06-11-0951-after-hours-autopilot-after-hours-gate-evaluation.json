@@ -1,0 +1,142 @@
+{
+  "run_id": "2026-06-11-0951-after-hours-autopilot",
+  "created_at": "2026-06-11T09:55:20+09:00",
+  "session": "after_hours",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "SPY",
+    "QQQ",
+    "NOK",
+    "ORCL",
+    "IONQ",
+    "SMH",
+    "V",
+    "CRM",
+    "AVGO",
+    "RGTI",
+    "SO"
+  ],
+  "gate_results": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_sell_trim_candidate_ready",
+    "fresh_quote": "pass_runtime_overnight_quotes_fresh_for_rgti_orcl_ionq_nok_and_benchmark_cross_check",
+    "spread_within_after_hours_policy": "pass_rgti_ionq_nok_runtime_spreads_within_cap_avgo_so_fail",
+    "whole_share_day_limit_extended_hours_order": "pass_rgti_sell_order_shape",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_reconciled_filled"
+  },
+  "block_reasons": [],
+  "candidate_diagnostics": [
+    {
+      "symbol": "RGTI",
+      "decision": "selected_sell_trim",
+      "reason": "Runtime overnight quote 19.47/19.48 at 2026-06-11T00:52:52.849802708Z implied about 0.0513% spread and 1-share notional 19.47 USD, both inside after-hours submit caps. Research and review context keeps RGTI in speculative residual monitor mode, so a floor-size sell trim is the executable allowed-side observation for this cycle.",
+      "source_refs": [
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/trade-ledger/reviews/2026-06-11-portfolio-review.md",
+        "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "AVGO",
+      "decision": "skip_sell_spread_fail",
+      "reason": "Runtime overnight quote 370.08/371.80 implied spread about 0.4663%, above the after-hours cap 0.25%.",
+      "source_refs": [
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "decision": "skip_sell_stale_asymmetric_quote",
+      "reason": "Runtime overnight quote 85.01/95.04 was stale and highly asymmetric, so no executable two-sided trim order was eligible.",
+      "source_refs": [
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "ORCL",
+      "decision": "blocked_buy_review_backlog_and_spread_priority",
+      "reason": "ORCL remained a buy fallback candidate but runtime spread widened to roughly 0.3554%, above the after-hours spread cap, while review backlog throttle still blocked new buys at pending 1D review count 14.",
+      "source_refs": [
+        "wiki/research-notes/tickers/ORCL.md",
+        "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    }
+  ],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 14,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1
+  },
+  "review_backlog_throttle": {
+    "enabled": true,
+    "review_backlog_pending_1d_count": 14,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1,
+    "max_new_buy_slots_before_throttle": 1,
+    "max_new_buy_slots_after_throttle": 0,
+    "result": "review backlog throttle blocks new after-hours buys at pending 1D review count 14, but allowed sell-side trim evaluation remains open and selected RGTI for this cycle."
+  },
+  "orders_submitted": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1,
+      "limit_price": 19.47,
+      "filled_avg_price": 19.5,
+      "filled_at": "2026-06-11T00:59:35.159665043Z",
+      "extended_hours": true,
+      "session": "after_hours",
+      "review_bucket": "after_hours_validation",
+      "client_order_id": "ah-20260611-0951-sell-rgti",
+      "order_id": "95488df8-9d09-4f7a-a39c-06cd0243e1d2",
+      "status": "filled"
+    }
+  ],
+  "submit_attempted": true,
+  "runtime_alpaca_mcp": {
+    "clock_is_open": false,
+    "clock_timestamp": "2026-06-10T20:52:29.047038396-04:00",
+    "account_status": "ACTIVE",
+    "portfolio_value": 97095.67,
+    "cash": 30884.87,
+    "buying_power": 294071.79,
+    "positions_count": 33,
+    "open_orders": 0,
+    "same_session_after_hours_orders": 1,
+    "same_session_after_hours_fills": 1,
+    "watchlists": 0
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/trade-ledger/orders/2026-06-11-0951-after-hours-autopilot.json",
+    "wiki/trade-ledger/positions/2026-06-11-0951-after-hours-autopilot-post-trade.json"
+  ]
+}

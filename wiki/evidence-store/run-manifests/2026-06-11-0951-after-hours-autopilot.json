@@ -1,0 +1,261 @@
+{
+  "run_id": "2026-06-11-0951-after-hours-autopilot",
+  "created_at": "2026-06-11T09:55:20+09:00",
+  "data_cutoff_time": "2026-06-11T00:55:20+00:00",
+  "market_clock_checked_at": "2026-06-11T00:55:20+00:00",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "policy_id": "recommendation-policy-v1.11",
+  "policy_version": "v1.11",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "git_commit": "f2844e97fae71f388edef78a8d596dea2ec12b3e",
+  "prompt_file_sha": "sha256:scheduled-after-hours-0951-manual-codex",
+  "recommendation_policy_sha": "8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "risk_policy_version": "medium-risk-v1.2",
+  "schema_version": "1.3",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-11-0951-after-hours-autopilot.json",
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-06-11-0951-after-hours-autopilot-post-trade.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-11-0951-after-hours-autopilot.json",
+    "wiki/trade-ledger/positions/2026-06-11-0951-after-hours-autopilot-post-trade.json",
+    "wiki/current-runs/daily/2026-06-11-0951-after-hours-autopilot.md"
+  ],
+  "data_manifest": {
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_preflight": "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-research-mcp-preflight.json",
+    "gate_evaluation": "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "order_plan": "wiki/trade-ledger/orders/2026-06-11-0951-after-hours-autopilot.json",
+    "post_trade": "wiki/trade-ledger/positions/2026-06-11-0951-after-hours-autopilot-post-trade.json"
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist",
+    "pre_mcp_shortlist": [
+      "SPY",
+      "QQQ",
+      "NOK",
+      "ORCL",
+      "IONQ",
+      "SMH",
+      "V",
+      "CRM"
+    ],
+    "final_candidates": [
+      "ORCL",
+      "IONQ",
+      "NOK"
+    ],
+    "passed": true,
+    "gap_reason": "",
+    "status": "pass",
+    "source": "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-alpaca-core-preflight.json",
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-alpaca-core-preflight.json"
+    ]
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "all_research_must_be_attempted": true,
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_submit": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-11T00:51:30Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": "market_closed"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T23:51:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-10T23:31:27+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T21:11:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-10T23:31:27+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-11T00:31:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-0951-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols."
+    }
+  ],
+  "recommendation_actionability": "submitted_filled",
+  "first_blocking_gate": null,
+  "decision_summary": {
+    "market_open": false,
+    "invested_ratio": 0.6814,
+    "open_orders": 0,
+    "planned_orders": [
+      {
+        "symbol": "RGTI",
+        "side": "sell",
+        "qty": 1,
+        "limit_price": 19.47,
+        "extended_hours": true,
+        "session": "after_hours",
+        "review_bucket": "after_hours_validation",
+        "client_order_id": "ah-20260611-0951-sell-rgti"
+      }
+    ],
+    "submitted_orders": [
+      {
+        "symbol": "RGTI",
+        "side": "sell",
+        "qty": 1,
+        "limit_price": 19.47,
+        "filled_avg_price": 19.5,
+        "filled_at": "2026-06-11T00:59:35.159665043Z",
+        "extended_hours": true,
+        "session": "after_hours",
+        "review_bucket": "after_hours_validation",
+        "client_order_id": "ah-20260611-0951-sell-rgti",
+        "order_id": "95488df8-9d09-4f7a-a39c-06cd0243e1d2",
+        "status": "filled"
+      }
+    ],
+    "skipped_orders": [
+      "RGTI\uac00 fresh overnight quote 19.47/19.48, spread \uc57d 0.0513%, held qty 51, speculative loss-control residual monitor \uc870\uac74\uc744 \ucda9\uc871\ud574 \uc774\ubc88 cycle\uc758 \uc6b0\uc120 after-hours trim \ud6c4\ubcf4\ub85c \uc2b9\uaca9\ub410\ub2e4.",
+      "AVGO\ub294 runtime overnight spread\uac00 \uc57d 0.4663%\ub85c after_hours_policy.max_spread_pct 0.25%\ub97c \ub118\uc5c8\uace0, SO\ub294 stale \ube44\ub300\uce6d quote 85.01/95.04\ub85c trim gate\ub97c \ud1b5\uacfc\ud558\uc9c0 \ubabb\ud588\ub2e4.",
+      "ORCL\uacfc IONQ\ub294 buy fallback\uc73c\ub85c\ub294 executable\ud588\uc9c0\ub9cc review_backlog_pending_1d_count=14\uac00 \uc2e0\uaddc after-hours buy\ub97c \ub9c9\uc73c\ubbc0\ub85c \ud5c8\uc6a9 sell side\uc778 RGTI trim\uc774 \uc6b0\uc120\uc774\ub2e4."
+    ]
+  },
+  "reconciliation": {
+    "submit_attempted": true,
+    "reconciled_by": "place_stock_order_plus_get_order_by_client_id_plus_get_orders(status=all,symbols=RGTI,after=2026-06-10T20:00:00Z)_plus_get_account_activities(FILL)_plus_post_trade_account_position_snapshots",
+    "open_orders_after_run": 0,
+    "new_fills_detected": 1,
+    "position_delta": "RGTI 51 -> 50",
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation"
+  },
+  "risk_check_result": {
+    "errors": [],
+    "path": "wiki/trade-ledger/orders/2026-06-11-0951-after-hours-autopilot.json",
+    "status": "PASS",
+    "summary": {
+      "buy_notional": 0.0,
+      "sell_notional": 19.47,
+      "post_cash": 30884.84,
+      "post_invested": 65890.067,
+      "target_max_cash": 9691.664,
+      "target_min_invested": 87224.976,
+      "max_invested": 92070.80799999999,
+      "min_cash": 4845.832,
+      "max_ticker_value": 14537.496,
+      "max_theme_value": 33920.824,
+      "max_factor_value": 48458.32,
+      "max_cluster_value": 43612.488,
+      "speculative_value": 3889.0800000000004,
+      "max_speculative_value": 11629.996799999999,
+      "review_backlog_pending_1d_count": 14,
+      "policy_version": "medium-risk-v1.2"
+    },
+    "warnings": []
+  }
+}

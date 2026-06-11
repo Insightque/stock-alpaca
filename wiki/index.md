@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-11 08:53 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-11 10:00 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -28,7 +28,7 @@
 - [[SPY]] - 2026-05-28 validation buy 1D 회고 양호, 벤치마크 기준점.
 - [[QQQ]] - 2026-05-28 validation buy 1D 회고 양호, 벤치마크 기준점.
 - [[SMH]] - 반도체 ETF 후보, 2026-05-22 업데이트.
-- [[RGTI]] - 2026-05-22 stock-only 5D 회고 약함, 20D 대기. 2026-06-09 22:40 KST hourly-autopilot에서 speculative-loss control 근거로 22주 trim이 `22.298182 USD`에 체결됐고, 2026-06-10 23:15 KST hourly-autopilot에서는 추가 17주 trim이 `20.38 USD`에 즉시 체결됐다.
+- [[RGTI]] - 2026-05-22 stock-only 5D 회고 약함, 20D 대기. 2026-06-09 22:40 KST hourly-autopilot에서 speculative-loss control 근거로 22주 trim이 `22.298182 USD`에 체결됐고, 2026-06-10 23:15 KST hourly-autopilot에서는 추가 17주 trim이 `20.38 USD`에 즉시 체결됐다. 2026-06-11 09:59 KST after-hours-autopilot에서는 residual speculative sleeve de-risking 근거로 추가 1주 trim sell이 `19.47 USD` day limit로 제출돼 `filled_avg_price=19.50 USD`로 즉시 체결됐다.
 - [[SOXS]] - 레버리지 인버스 반도체 ETF, 핵심 롱 후보로 회피, 2026-05-22 업데이트.
 - [[FUTU]] - 갭다운 ADR 브로커 관찰 종목, 2026-05-22 업데이트.
 - [[TIGR]] - 갭다운 ADR 브로커 관찰 종목, 2026-05-22 업데이트.
@@ -54,6 +54,7 @@
 
 ## Current Runs
 
+- [[2026-06-11-0951-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0951` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime overnight quote 재평가에서 `RGTI`가 `19.47/19.48`, spread 약 `0.0513%`, held qty `51` 조건으로 최상위 executable sell/trim 후보가 됐고 `check-risk-policy.py --json`도 PASS했다. `client_order_id=ah-20260611-0951-sell-rgti` 1주 sell은 same client id reconciliation 기준 `filled_avg_price=19.50 USD`로 즉시 체결돼 `RGTI 51주 -> 50주`로 감소했다.
 - [[2026-06-11-0931-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0931` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP cross-check 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours orders/fills `0`, watchlists `0`이었다. `ORCL`은 fresh overnight quote `181.28/181.51`로 다시 최상위 executable buy fallback이 됐지만 `check-risk-policy.py --json`가 `review_backlog_pending_1d_count=14`에서 신규 after-hours buy 슬롯을 `0`으로 계산해 no-submit으로 종료했다. `AVGO` sell-first 재평가는 spread `0.2506%`로 cap을 근소 초과했고 `RGTI/SO`도 여전히 장외 sell gate를 통과하지 못했다.
 - [[2026-06-11-0911-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0911` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime overnight quote가 개선되어 `ORCL`이 fresh quote/spread/notional 기준 최상위 executable buy fallback으로 올라왔지만 `check-risk-policy.py --json`가 `review_backlog_pending_1d_count=14`에서 신규 after-hours buy 슬롯을 `0`으로 계산해 no-submit으로 종료했다. `AVGO/RGTI/SO` sell-first 재평가는 여전히 spread 또는 two-sided quote gate에서 막혔다.
 - [[2026-06-11-0851-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0851` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP cross-check 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours orders/fills `0`, watchlists `0`이었다. shortlist `SPY/QQQ/NOK/ORCL/IONQ/SMH/V/CRM` 중 `SPY/QQQ/NOK`만 spread cap 이내였지만 모두 fresh-quote 5분 cap을 넘겼고 `SPY/QQQ`는 1주 ask도 per-order cap `482.70 USD`를 초과했으며 `AVGO/RGTI/SO` sell-first 재평가도 stale/wide-spread 또는 bid-only quote에 막혀 no-submit으로 종료했다.

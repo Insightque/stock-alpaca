@@ -54,6 +54,7 @@ RGTI는 핵심 포트폴리오 보유 종목이라기보다 고모멘텀 이벤�
 - 2026-06-08: scheduled hourly-autopilot에서 regular-session trim 30주가 `21.48 USD`에 체결됐다.
 - 2026-06-09: scheduled hourly-autopilot에서 regular-session trim 22주가 `22.298182 USD`에 체결됐다.
 - 2026-06-10 23:15 KST: scheduled hourly-autopilot에서 speculative loss-control trim 17주가 `20.38 USD`에 체결됐다.
+- 2026-06-11 09:59 KST: scheduled after-hours-autopilot에서 residual speculative sleeve de-risking 근거로 1주 trim sell이 `19.50 USD`에 체결됐다.
 - 주문/체결 출처: [[2026-05-22-paper-order-submission]]
 
 ## 2026-05-25 현재 추천 메모
@@ -88,6 +89,12 @@ RGTI는 오늘 신규 매수 후보에서 제외했다. 2026-05-22 종가 26.41 
 `2311` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight와 live Alpaca MCP submit-boundary check를 함께 사용했다. `RGTI`는 live IEX quote `20.38/20.39`, spread `0.0491%`, held qty `68`, speculative loss-control trim trigger, 큰 미실현 손실, active/tradable NASDAQ stock 조건에서 25% trim 경로를 통과했고 `client_order_id=hourly-20260610-2311-sell-rgti`로 17주 sell을 제출했다. same order id reconciliation 기준 주문은 `2026-06-10T14:14:43.88079Z`에 `20.38 USD`로 전량 체결됐고 보유수량은 `68주 -> 51주`로 감소했다. 해석은 `speculative sleeve staged de-risking 지속`이다.
 
 출처: [[2026-06-10-2311-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-10-2311-hourly-autopilot-post-trade.json`
+
+### 2026-06-11 09:59 KST after-hours-autopilot trim
+
+`scheduler-owned 0951` 장외 preflight와 runtime Alpaca MCP submit-boundary check를 함께 사용했다. `RGTI`는 runtime overnight quote `19.47/19.48`, spread 약 `0.0513%`, held qty `51`, residual speculative sleeve de-risking rationale를 충족해 `client_order_id=ah-20260611-0951-sell-rgti` 1주 sell을 제출했고, same client id reconciliation 기준 `2026-06-11T00:59:35.159665043Z`에 `19.50 USD`로 즉시 체결됐다. 보유수량은 `51주 -> 50주`로 감소했고 해석은 `staged de-risking 지속`이다.
+
+출처: [[2026-06-11-0951-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-11-0951-after-hours-autopilot-post-trade.json`
 
 ### 2026-06-11 analyst review cycle
 
