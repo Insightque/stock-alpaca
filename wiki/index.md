@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-11 14:14 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-11 14:32 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -54,6 +54,7 @@
 
 ## Current Runs
 
+- [[2026-06-11-1431-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1431` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP cross-check 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours filled orders `2`, watchlists `0`이었다. separate session budget `2/2`가 이미 소진돼 no-submit으로 종료했다.
 - [[2026-06-11-1411-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1411` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP cross-check 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours filled orders `2`, watchlists `0`이었다. separate session budget `2/2`가 이미 소진돼 no-submit으로 종료했다.
 - [[2026-06-11-1351-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1351` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP cross-check 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours filled orders `2`, watchlists `0`이었다. separate session budget `2/2`가 이미 소진돼 no-submit으로 종료했다.
 - [[2026-06-11-1331-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1331` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP cross-check 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours filled orders `2`, watchlists `0`이었다. separate session budget `2/2`가 이미 소진돼 no-submit으로 종료했다.
