@@ -1,0 +1,272 @@
+{
+  "run_id": "2026-06-11-1451-after-hours-autopilot",
+  "created_at": "2026-06-11T14:58:50+09:00",
+  "data_cutoff_time": "2026-06-11T01:51:09.043773682-04:00",
+  "market_clock_checked_at": "2026-06-11T01:51:09.043773682-04:00",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "policy_id": "recommendation-policy-v1.11",
+  "policy_version": "v1.11",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "git_commit": "a133b8c9fd2e798bce6c70d6991396ff8d9e41b1",
+  "prompt_file_sha": "scheduled-after-hours-autopilot-manual-run",
+  "recommendation_policy_sha": "8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "risk_policy_version": "medium-risk-v1.2",
+  "schema_version": "run-manifest-v1.2",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-11-1451-after-hours-autopilot.json",
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-06-11-1451-after-hours-autopilot-post-trade.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/positions/current.md"
+  ],
+  "data_manifest": {
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-research-mcp-preflight.json",
+    "after_hours_gate_evaluation": "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "research_preflight": "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-research-mcp-preflight.json",
+    "runtime_cross_checks": [
+      "scheduler_owned_alpaca_core_preflight.get_clock",
+      "scheduler_owned_alpaca_core_preflight.get_account_info",
+      "scheduler_owned_alpaca_core_preflight.get_all_positions",
+      "scheduler_owned_alpaca_core_preflight.get_orders_open",
+      "scheduler_owned_alpaca_core_preflight.get_account_activities",
+      "scheduler_owned_alpaca_core_preflight.get_watchlists",
+      "local_runtime_attempt.get_clock.dns_gap",
+      "local_runtime_attempt.get_account_info.dns_gap",
+      "local_runtime_attempt.get_all_positions.dns_gap",
+      "local_runtime_attempt.get_orders_open.dns_gap",
+      "local_runtime_attempt.get_orders_recent.dns_gap",
+      "local_runtime_attempt.get_account_activities.dns_gap",
+      "local_runtime_attempt.get_watchlists.dns_gap",
+      "local_runtime_attempt.get_order_by_client_id.ah-20260611-0951-sell-rgti.dns_gap",
+      "local_runtime_attempt.get_order_by_client_id.ah-20260611-1011-sell-rgti.dns_gap"
+    ]
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist_with_runtime_sell_trim_recheck",
+    "pre_mcp_shortlist": [
+      "SPY",
+      "QQQ",
+      "NOK",
+      "ORCL",
+      "IONQ",
+      "SMH",
+      "V",
+      "CRM",
+      "AVGO",
+      "RGTI"
+    ],
+    "final_candidates": [
+      "ORCL",
+      "IONQ",
+      "QQQ",
+      "SPY",
+      "AVGO",
+      "RGTI"
+    ],
+    "passed": true,
+    "gap_reason": "",
+    "status": "pass",
+    "source": "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-alpaca-core-preflight.json",
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-research-mcp-preflight.json",
+      "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-after-hours-gate-evaluation.json"
+    ]
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "all_research_must_be_attempted": true,
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_submit": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-11T05:58:50Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ],
+      "gap_reason": "Scheduler-owned 1451 Alpaca core preflight recorded only market_closed as the first regular-session blocker. For this after-hours run, market_closed remained expected and nonblocking, and scheduler-owned passing account/positions/open-orders/recent-fill/watchlist/asset/quote/spread rows remained authoritative. Local runtime read-only Alpaca MCP cross-check attempts from this executor returned gap_category=dns, so the 1451 preflight itself served as the source of record for same-session fills=2, open orders=0, positions=33, and watchlists=0.",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-11T04:51:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-11T04:51:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-11T03:11:29+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-11T04:51:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-11T05:51:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-11-1451-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "gap_category": "empty_response",
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "retry_count": 0,
+      "blocking": false
+    },
+    {
+      "server": "alpaca",
+      "scope": "runtime_cross_check",
+      "gap_category": "dns",
+      "gap_reason": "Runtime read-only Alpaca MCP attempts from the local executor returned ConnectError [Errno 8] nodename nor servname provided, or not known. Scheduler-owned 1451 core preflight remained authoritative for required after-hours rows.",
+      "retry_count": 0,
+      "blocking": false
+    }
+  ],
+  "recommendation_actionability": "not_actionable_after_hours_session_budget_exhausted",
+  "first_blocking_gate": "separate_after_hours_order_budget",
+  "decision_summary": {
+    "action": "no_submit_after_hours_budget_exhausted",
+    "reason": "The after-hours session budget remained exhausted by the two earlier RGTI fills, so this 1451 cycle did not enter quote selection or submit. Local runtime read-only Alpaca MCP attempts failed with dns, but scheduler-owned 1451 preflight already covered the required after-hours rows.",
+    "eligible_sell_trim_found": false,
+    "eligible_buy_fallback_found": false,
+    "same_session_after_hours_orders_submitted_today": 2,
+    "separate_session_budget_remaining": 0
+  },
+  "reconciliation": {
+    "submit_attempted": false,
+    "same_session_client_order_ids": [
+      "ah-20260611-0951-sell-rgti",
+      "ah-20260611-1011-sell-rgti"
+    ],
+    "open_orders_count": 0,
+    "same_session_fill_count": 2,
+    "positions_count": 33,
+    "watchlists_count": 0,
+    "note": "No new after-hours order was submitted. Scheduler-owned 1451 preflight recent-fill rows confirmed two same-session RGTI fills and open orders remained 0; local runtime read-only cross-check attempts failed with dns and did not change the no-submit outcome."
+  },
+  "risk_check_result": {
+    "status": "PASS",
+    "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-06-11-1451-after-hours-autopilot.json",
+    "warnings": [
+      "orders is empty"
+    ]
+  },
+  "submitted_order_ids": [],
+  "validator_results": [
+    {
+      "name": "universe_coverage",
+      "status": "PASS",
+      "path": "wiki/evidence-store/run-manifests/2026-06-11-1451-after-hours-autopilot.json",
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-06-11-1451-after-hours-autopilot.json"
+    },
+    {
+      "name": "mcp_coverage",
+      "status": "PASS",
+      "path": "wiki/evidence-store/run-manifests/2026-06-11-1451-after-hours-autopilot.json",
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-06-11-1451-after-hours-autopilot.json"
+    },
+    {
+      "name": "risk_policy",
+      "status": "PASS",
+      "path": "wiki/trade-ledger/orders/2026-06-11-1451-after-hours-autopilot.json",
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-06-11-1451-after-hours-autopilot.json"
+    }
+  ]
+}
