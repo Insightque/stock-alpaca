@@ -1,0 +1,628 @@
+{
+  "run_id": "2026-06-11-1851-after-hours-autopilot",
+  "created_at": "2026-06-11T09:53:00Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "SPY",
+    "QQQ",
+    "NOK",
+    "ORCL",
+    "IONQ",
+    "SMH",
+    "V",
+    "CRM",
+    "AVGO",
+    "RGTI"
+  ],
+  "runtime_alpaca_mcp": {
+    "used_scheduler_preflight": true,
+    "source_of_record": "wiki/evidence-store/sources/2026-06-11-1851-after-hours-autopilot-alpaca-core-preflight.json",
+    "cross_checks": {
+      "scheduler_preflight.get_clock": {
+        "is_open": false,
+        "next_close": "2026-06-11T16:00:00-04:00",
+        "next_open": "2026-06-11T09:30:00-04:00",
+        "timestamp": "2026-06-11T05:51:09.578335529-04:00"
+      },
+      "scheduler_preflight.get_account_info": {
+        "portfolio_value": 98163.98,
+        "cash": 30904.63,
+        "buying_power": 296748.87,
+        "long_market_value": 67259.35,
+        "currency": "USD",
+        "status": "ACTIVE"
+      },
+      "scheduler_preflight.get_all_positions": {
+        "count": 33
+      },
+      "scheduler_preflight.get_orders(status=open)": {
+        "count": 0
+      },
+      "scheduler_preflight.get_account_activities(activity_types=FILL)": {
+        "count": 20
+      },
+      "scheduler_preflight.get_watchlists": {
+        "count": 0
+      },
+      "scheduler_preflight.same_session_after_hours_fills": {
+        "count": 20,
+        "symbols": [
+          "RGTI",
+          "RGTI",
+          "MSFT",
+          "NKE",
+          "NEE",
+          "FCX",
+          "AMZN",
+          "SLB",
+          "COP",
+          "JNJ",
+          "XOM",
+          "PFE",
+          "BAC",
+          "RGTI",
+          "RGTI",
+          "AVGO",
+          "AVGO",
+          "WMT",
+          "AAPL",
+          "AAPL"
+        ],
+        "details": [
+          {
+            "symbol": "RGTI",
+            "side": "sell",
+            "qty": 1.0,
+            "price": 19.78,
+            "transaction_time": "2026-06-11T01:20:06.981355Z",
+            "order_id": "e725c081-8287-4484-9323-15349194c375",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "RGTI",
+            "side": "sell",
+            "qty": 1.0,
+            "price": 19.5,
+            "transaction_time": "2026-06-11T00:59:35.159665Z",
+            "order_id": "95488df8-9d09-4f7a-a39c-06cd0243e1d2",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "MSFT",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 398.38,
+            "transaction_time": "2026-06-10T19:47:34.876997Z",
+            "order_id": "bbaadb29-91e7-4507-a59f-218c0cefc5ea",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "NKE",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 43.98,
+            "transaction_time": "2026-06-10T17:44:44.080648Z",
+            "order_id": "9b08f07e-f93e-47d6-b1d1-5d707abec8eb",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "NEE",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 85.22,
+            "transaction_time": "2026-06-10T17:18:05.301779Z",
+            "order_id": "7fd2a9cf-bde9-454e-83f0-64a8a722409d",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "FCX",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 62.21,
+            "transaction_time": "2026-06-10T17:00:01.715974Z",
+            "order_id": "dc2dd11d-89ef-4664-a300-65a801ee30e7",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "AMZN",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 239.33,
+            "transaction_time": "2026-06-10T16:41:37.562873Z",
+            "order_id": "d23787d5-be1a-4b35-a08e-b43670b24265",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "SLB",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 56.45,
+            "transaction_time": "2026-06-10T16:18:56.713207Z",
+            "order_id": "14d20183-5063-4025-9114-5e82cbcf6386",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "COP",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 121.05,
+            "transaction_time": "2026-06-10T15:58:00.532764Z",
+            "order_id": "998a7e94-7e3c-4737-bdd6-2bdc37dccfea",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "JNJ",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 239.23,
+            "transaction_time": "2026-06-10T15:37:41.909402Z",
+            "order_id": "c1075d80-4584-4f06-8e39-9182570e9f19",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "XOM",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 151.41,
+            "transaction_time": "2026-06-10T15:20:38.69174Z",
+            "order_id": "1878c01b-3d57-400d-a66c-b9cbbce4d237",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "PFE",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 25.7,
+            "transaction_time": "2026-06-10T14:54:43.720622Z",
+            "order_id": "e010464f-f482-491e-bc31-76dcffb1730c",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "BAC",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 54.77,
+            "transaction_time": "2026-06-10T14:39:03.058661Z",
+            "order_id": "544dec18-dc40-499f-9085-e5ad37b50fef",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "RGTI",
+            "side": "sell",
+            "qty": 6.0,
+            "price": 20.38,
+            "transaction_time": "2026-06-10T14:14:43.88079Z",
+            "order_id": "b9253931-4e50-45ec-a30b-972a4a76903e",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "RGTI",
+            "side": "sell",
+            "qty": 11.0,
+            "price": 20.38,
+            "transaction_time": "2026-06-10T14:14:42.612808Z",
+            "order_id": "b9253931-4e50-45ec-a30b-972a4a76903e",
+            "order_status": "partially_filled"
+          },
+          {
+            "symbol": "AVGO",
+            "side": "sell",
+            "qty": 1.0,
+            "price": 373.25,
+            "transaction_time": "2026-06-10T14:01:38.378996Z",
+            "order_id": "155edaa1-e527-4c67-b43a-07e2cea9ad40",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "AVGO",
+            "side": "sell",
+            "qty": 1.0,
+            "price": 373.25,
+            "transaction_time": "2026-06-10T14:01:38.109735Z",
+            "order_id": "155edaa1-e527-4c67-b43a-07e2cea9ad40",
+            "order_status": "partially_filled"
+          },
+          {
+            "symbol": "WMT",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 118.49,
+            "transaction_time": "2026-06-10T13:43:16.375781Z",
+            "order_id": "8b189213-3d70-40a4-8957-2fcdd8b454fd",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "AAPL",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 291.49,
+            "transaction_time": "2026-06-10T01:35:02.497252Z",
+            "order_id": "49e4052f-3e00-44ad-9296-4d1c41033e01",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "AAPL",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 291.4,
+            "transaction_time": "2026-06-10T01:17:49.6859Z",
+            "order_id": "cd79b8db-51e1-4eab-8903-7da2614d2bcd",
+            "order_status": "filled"
+          }
+        ]
+      },
+      "runtime_alpaca_mcp.get_clock": {
+        "is_open": false,
+        "next_close": "2026-06-11T16:00:00-04:00",
+        "next_open": "2026-06-11T09:30:00-04:00",
+        "timestamp": "2026-06-11T05:52:38.640430891-04:00"
+      },
+      "runtime_alpaca_mcp.get_account_info": {
+        "status": "ACTIVE",
+        "portfolio_value": 98174.14,
+        "cash": 30904.63,
+        "buying_power": 296766.29,
+        "long_market_value": 67269.51,
+        "currency": "USD"
+      },
+      "runtime_alpaca_mcp.get_all_positions": {
+        "count": 33
+      },
+      "runtime_alpaca_mcp.get_orders(status=open)": {
+        "count": 0
+      },
+      "runtime_alpaca_mcp.get_account_activities(activity_types=FILL, after=2026-06-10T20:00:00Z)": {
+        "count": 20,
+        "symbols": [
+          "RGTI",
+          "RGTI",
+          "MSFT",
+          "NKE",
+          "NEE",
+          "FCX",
+          "AMZN",
+          "SLB",
+          "COP",
+          "JNJ",
+          "XOM",
+          "PFE",
+          "BAC",
+          "RGTI",
+          "RGTI",
+          "AVGO",
+          "AVGO",
+          "WMT",
+          "AAPL",
+          "AAPL"
+        ],
+        "details": [
+          {
+            "symbol": "RGTI",
+            "side": "sell",
+            "qty": 1.0,
+            "price": 19.78,
+            "transaction_time": "2026-06-11T01:20:06.981355Z",
+            "order_id": "e725c081-8287-4484-9323-15349194c375",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "RGTI",
+            "side": "sell",
+            "qty": 1.0,
+            "price": 19.5,
+            "transaction_time": "2026-06-11T00:59:35.159665Z",
+            "order_id": "95488df8-9d09-4f7a-a39c-06cd0243e1d2",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "MSFT",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 398.38,
+            "transaction_time": "2026-06-10T19:47:34.876997Z",
+            "order_id": "bbaadb29-91e7-4507-a59f-218c0cefc5ea",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "NKE",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 43.98,
+            "transaction_time": "2026-06-10T17:44:44.080648Z",
+            "order_id": "9b08f07e-f93e-47d6-b1d1-5d707abec8eb",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "NEE",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 85.22,
+            "transaction_time": "2026-06-10T17:18:05.301779Z",
+            "order_id": "7fd2a9cf-bde9-454e-83f0-64a8a722409d",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "FCX",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 62.21,
+            "transaction_time": "2026-06-10T17:00:01.715974Z",
+            "order_id": "dc2dd11d-89ef-4664-a300-65a801ee30e7",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "AMZN",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 239.33,
+            "transaction_time": "2026-06-10T16:41:37.562873Z",
+            "order_id": "d23787d5-be1a-4b35-a08e-b43670b24265",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "SLB",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 56.45,
+            "transaction_time": "2026-06-10T16:18:56.713207Z",
+            "order_id": "14d20183-5063-4025-9114-5e82cbcf6386",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "COP",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 121.05,
+            "transaction_time": "2026-06-10T15:58:00.532764Z",
+            "order_id": "998a7e94-7e3c-4737-bdd6-2bdc37dccfea",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "JNJ",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 239.23,
+            "transaction_time": "2026-06-10T15:37:41.909402Z",
+            "order_id": "c1075d80-4584-4f06-8e39-9182570e9f19",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "XOM",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 151.41,
+            "transaction_time": "2026-06-10T15:20:38.69174Z",
+            "order_id": "1878c01b-3d57-400d-a66c-b9cbbce4d237",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "PFE",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 25.7,
+            "transaction_time": "2026-06-10T14:54:43.720622Z",
+            "order_id": "e010464f-f482-491e-bc31-76dcffb1730c",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "BAC",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 54.77,
+            "transaction_time": "2026-06-10T14:39:03.058661Z",
+            "order_id": "544dec18-dc40-499f-9085-e5ad37b50fef",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "RGTI",
+            "side": "sell",
+            "qty": 6.0,
+            "price": 20.38,
+            "transaction_time": "2026-06-10T14:14:43.88079Z",
+            "order_id": "b9253931-4e50-45ec-a30b-972a4a76903e",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "RGTI",
+            "side": "sell",
+            "qty": 11.0,
+            "price": 20.38,
+            "transaction_time": "2026-06-10T14:14:42.612808Z",
+            "order_id": "b9253931-4e50-45ec-a30b-972a4a76903e",
+            "order_status": "partially_filled"
+          },
+          {
+            "symbol": "AVGO",
+            "side": "sell",
+            "qty": 1.0,
+            "price": 373.25,
+            "transaction_time": "2026-06-10T14:01:38.378996Z",
+            "order_id": "155edaa1-e527-4c67-b43a-07e2cea9ad40",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "AVGO",
+            "side": "sell",
+            "qty": 1.0,
+            "price": 373.25,
+            "transaction_time": "2026-06-10T14:01:38.109735Z",
+            "order_id": "155edaa1-e527-4c67-b43a-07e2cea9ad40",
+            "order_status": "partially_filled"
+          },
+          {
+            "symbol": "WMT",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 118.49,
+            "transaction_time": "2026-06-10T13:43:16.375781Z",
+            "order_id": "8b189213-3d70-40a4-8957-2fcdd8b454fd",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "AAPL",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 291.49,
+            "transaction_time": "2026-06-10T01:35:02.497252Z",
+            "order_id": "49e4052f-3e00-44ad-9296-4d1c41033e01",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "AAPL",
+            "side": "buy",
+            "qty": 1.0,
+            "price": 291.4,
+            "transaction_time": "2026-06-10T01:17:49.6859Z",
+            "order_id": "cd79b8db-51e1-4eab-8903-7da2614d2bcd",
+            "order_status": "filled"
+          }
+        ]
+      },
+      "runtime_alpaca_mcp.get_watchlists": {
+        "count": 0
+      },
+      "runtime_alpaca_mcp.get_order_by_client_id(ah-20260611-0951-sell-rgti)": {
+        "status": "filled",
+        "filled_avg_price": 19.5,
+        "extended_hours": true
+      },
+      "runtime_alpaca_mcp.get_order_by_client_id(ah-20260611-1011-sell-rgti)": {
+        "status": "filled",
+        "filled_avg_price": 19.78,
+        "extended_hours": true
+      },
+      "runtime_alpaca_mcp.get_asset(ORCL)": {
+        "status": "active",
+        "tradable": true,
+        "exchange": "NYSE",
+        "attributes": [
+          "fractional_eh_enabled",
+          "has_options",
+          "overnight_tradable"
+        ]
+      },
+      "runtime_alpaca_mcp.get_stock_latest_quote(feed=overnight)": {
+        "checked_symbols": [
+          "ORCL"
+        ],
+        "quote_timestamp": "2026-06-11T08:00:00.37547251Z",
+        "bid_price": 170.17,
+        "ask_price": 181.03
+      },
+      "runtime_alpaca_mcp.get_stock_snapshot(feed=overnight)": {
+        "checked_symbols": [
+          "ORCL"
+        ],
+        "snapshot_timestamp": "2026-06-11T08:00:00.37547251Z",
+        "latest_trade_price": 179.45
+      }
+    },
+    "note": "1851 Alpaca core preflight first_blocking_gate=market_closed was treated as expected nonblocking for after-hours. Scheduler-owned passing account/positions/open-order/recent-fill/watchlist/asset/quote/spread rows remained authoritative. Runtime Alpaca MCP cross-checks at 05:52 ET confirmed market closed, account ACTIVE, positions=33, open orders=0, watchlists=0, same-session client-order lifecycle unchanged, and overnight quotes available on sampled symbols, but the separate after-hours session budget blocked before any pre-submit gate summary or order staging."
+  },
+  "submit_attempted": false,
+  "orders_submitted": [],
+  "review_backlog_throttle": {
+    "pending_1d_count": 14,
+    "pending_5d_count": 13,
+    "pending_20d_count": 1,
+    "status": "monitor_only_budget_blocked"
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 14,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1,
+    "risk_recomputed_after_partial_fill": true,
+    "cash_deployment_blocker": "daily_buy_cap_exhausted"
+  },
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass",
+      "detail": "ALPACA_PAPER_TRADE=true confirmed via workflow environment and scheduler-owned paper preflight."
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed",
+      "detail": "regular market remained closed: runtime clock timestamp 2026-06-11T05:52:38.640430891-04:00 stayed before next_open 2026-06-11T09:30:00-04:00."
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass",
+      "detail": "session=after_hours and after_hours_policy profile remained active."
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_scheduler_preflight_plus_runtime_cross_check",
+      "detail": "1851 scheduler-owned core preflight first_blocking_gate=market_closed was treated as expected nonblocking; passing account/positions/open-order/recent-fill/watchlist/asset/quote/spread rows remained usable, and runtime Alpaca MCP cross-checks confirmed market closed, account ACTIVE, positions=33, open orders=0, watchlists=0, same-session client ids filled, ORCL active/tradable/overnight_tradable, and overnight quotes available on sampled symbols."
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass",
+      "detail": "after_hours_policy artifact tag, review bucket, order id prefix, max order cap, and allowed_sides buy/sell retained."
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "block_after_hours_session_budget_exhausted",
+      "detail": "after_hours_new_orders_submitted_today=2 equals max_new_orders_per_session=2 before submit; regular-session validation count was not reused."
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass",
+      "detail": "broad metadata universe 62 symbols with SPY/QQQ included; research shortlist plus sell-side holdings recheck preserved after-hours screening coverage."
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass",
+      "detail": "alpaca/sec-edgar/fred/firecrawl/yahoo-finance had usable evidence and alpha-vantage remained a nonblocking empty_response gap under the tiered policy."
+    },
+    {
+      "gate": "risk_policy",
+      "status": "pass_empty_order_plan",
+      "detail": "check-risk-policy.py --json passed with the expected orders-is-empty warning while preserving session=after_hours and separate risk_inputs.after_hours_new_orders_submitted_today=2."
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "not_actionable_budget_exhausted_before_submit_path",
+      "detail": "No 1851 submit path was entered because the separate after-hours budget hard gate blocked before quote/spread selection."
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "not_actionable_budget_exhausted_before_submit_path",
+      "detail": "No 1851 submit path was entered because the separate after-hours budget hard gate blocked before quote/spread selection."
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "not_applicable_no_order",
+      "detail": "No new order was staged in this cycle."
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "not_applicable_no_submit",
+      "detail": "No new submit occurred, so reconciliation remained limited to scheduler-owned same-session fill evidence plus runtime client-order verification."
+    }
+  ],
+  "decision": {
+    "action": "no_submit_after_hours_budget_exhausted",
+    "reason": "Same-session after-hours fills remained 2/2 from the earlier RGTI trims, so the 1851 cycle remained blocked at the separate after-hours budget gate."
+  },
+  "separate_budget": {
+    "submitted_today": 2,
+    "session_limit": 2,
+    "remaining": 0,
+    "status": "exhausted"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-1851-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-1851-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "run_id": "2026-06-11-1851-after-hours-autopilot",
+  "created_at": "2026-06-11T09:53:00Z",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 98174.14,
+    "cash": 30904.63,
+    "buying_power": 296766.29,
+    "long_market_value": 67269.51,
+    "currency": "USD"
+  },
+  "submitted_orders": [],
+  "lifecycle_actions": [],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "NVDA",
+      "qty": 38.0,
+      "market_value": 7702.6
+    },
+    {
+      "symbol": "LRCX",
+      "qty": 20.0,
+      "market_value": 6740.0
+    },
+    {
+      "symbol": "AMD",
+      "qty": 14.0,
+      "market_value": 6453.16
+    },
+    {
+      "symbol": "TSM",
+      "qty": 15.0,
+      "market_value": 6274.65
+    },
+    {
+      "symbol": "UNH",
+      "qty": 15.0,
+      "market_value": 6103.5
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": false,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "client_order_ids_checked": [
+      "ah-20260611-0951-sell-rgti",
+      "ah-20260611-1011-sell-rgti"
+    ],
+    "new_fills_detected": 0,
+    "position_delta": "No position change in the 1851 cycle; RGTI remained 49 shares with no new submit attempt.",
+    "note": "No new after-hours order was submitted. Scheduler-owned 1851 Alpaca core preflight remained the source-of-record, and runtime Alpaca MCP checks confirmed market closed, watchlists stayed at 0, the two earlier same-session RGTI fills remained filled, open orders stayed at 0, positions remained 33, and the cycle ended because the separate after-hours session budget was already exhausted."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-1851-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-1851-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-1851-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/run-manifests/2026-06-11-1851-after-hours-autopilot.json"
+  ]
+}
