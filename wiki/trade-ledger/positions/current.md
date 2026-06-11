@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-11 17:18 KST_
+_Last updated: 2026-06-11 17:34 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-11-1731-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned account/positions reconciliation 기준 `33` positions 유지, open orders `0`건이다. `RGTI`는 `49주`, `qty_available=49`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `1731` core/research preflight를 source-of-record로 사용했고 `get_account_info/get_all_positions/get_orders_open/get_account_activities/get_watchlists/get_asset/get_stock_latest_quote/get_stock_snapshot` 기준 same-session after-hours fills `2건`, open orders `0`건, watchlists `0`건을 유지했다. local Alpaca MCP `get_watchlists/get_order_by_client_id(ah-20260611-0951-sell-rgti)/get_order_by_client_id(ah-20260611-1011-sell-rgti)/get_stock_latest_quote(feed=overnight)/get_stock_snapshot(feed=overnight)` 교차 확인도 일치했고 separate budget `2/2` exhausted 상태가 unchanged라 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-11-1731-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 
