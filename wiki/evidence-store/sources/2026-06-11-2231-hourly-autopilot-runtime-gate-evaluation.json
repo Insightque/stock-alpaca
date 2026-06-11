@@ -1,0 +1,157 @@
+{
+  "run_id": "2026-06-11-2231-hourly-autopilot",
+  "created_at": "2026-06-11T13:36:05Z",
+  "paper_mode": true,
+  "session": "regular",
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-11T09:35:25.257724947-04:00",
+    "next_open": "2026-06-12T09:30:00-04:00",
+    "next_close": "2026-06-11T16:00:00-04:00"
+  },
+  "account": {
+    "portfolio_value": 97940.37,
+    "cash": 30904.63,
+    "buying_power": 296076.85,
+    "currency": "USD",
+    "daily_realized_loss": 0.0
+  },
+  "open_orders": [],
+  "positions_count": 33,
+  "review_backlog": {
+    "pending_1d_count": 14,
+    "pending_5d_count": 13,
+    "pending_20d_count": 1,
+    "stop_new_buys_at_pending_1d": 12,
+    "max_new_buy_slots_when_reduced": 1,
+    "buy_blocked": true
+  },
+  "same_day_fill_rows": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1,
+      "price": 19.5,
+      "transaction_time": "2026-06-11T00:59:35.159665Z"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1,
+      "price": 19.78,
+      "transaction_time": "2026-06-11T01:20:06.981355Z"
+    }
+  ],
+  "candidate_quotes": {
+    "AVGO": {
+      "bid": 355.0,
+      "ask": 379.54,
+      "spread_pct": 6.4657,
+      "quote_timestamp": "2026-06-11T13:35:58.657719337Z",
+      "quote_age_minutes": 0.0
+    },
+    "RGTI": {
+      "bid": 19.57,
+      "ask": 19.59,
+      "spread_pct": 0.1021,
+      "quote_timestamp": "2026-06-11T13:35:41.401212810Z",
+      "quote_age_minutes": 0.0
+    },
+    "SO": {
+      "bid": 94.51,
+      "ask": 94.7,
+      "spread_pct": 0.2006,
+      "quote_timestamp": "2026-06-11T13:36:00.052384042Z",
+      "quote_age_minutes": 0.0
+    },
+    "MSFT": {
+      "bid": 384.01,
+      "ask": 392.18,
+      "spread_pct": 2.0832,
+      "quote_timestamp": "2026-06-11T13:35:41.251622501Z",
+      "quote_age_minutes": 0.0
+    },
+    "SPY": {
+      "bid": 726.92,
+      "ask": 726.98,
+      "spread_pct": 0.0083,
+      "quote_timestamp": "2026-06-11T13:35:41.702247247Z",
+      "quote_age_minutes": 0.0
+    },
+    "QQQ": {
+      "bid": 697.45,
+      "ask": 697.98,
+      "spread_pct": 0.0759,
+      "quote_timestamp": "2026-06-11T13:35:41.489171164Z",
+      "quote_age_minutes": 0.0
+    },
+    "UNH": {
+      "bid": 385.03,
+      "ask": 410.05,
+      "spread_pct": 6.1017,
+      "quote_timestamp": "2026-06-11T13:35:40.994632866Z",
+      "quote_age_minutes": 0.0
+    }
+  },
+  "candidate_assets": {
+    "AVGO": {
+      "status": "active",
+      "tradable": true,
+      "exchange": "NASDAQ",
+      "class": "us_equity"
+    },
+    "RGTI": {
+      "status": "active",
+      "tradable": true,
+      "exchange": "NASDAQ",
+      "class": "us_equity"
+    },
+    "SO": {
+      "status": "active",
+      "tradable": true,
+      "exchange": "NYSE",
+      "class": "us_equity"
+    }
+  },
+  "sell_gate_results": {
+    "AVGO": {
+      "eligible": false,
+      "first_blocking_gate": "spread_within_policy",
+      "reason": "spread 6.4666% > 0.50% cap"
+    },
+    "RGTI": {
+      "eligible": false,
+      "first_blocking_gate": "duplicate_symbol_side_same_day",
+      "reason": "same-day after-hours trim fills already observed"
+    },
+    "SO": {
+      "eligible": false,
+      "first_blocking_gate": "sell_metric_gap",
+      "reason": "decision-grade expected-excess/replacement margin evidence missing"
+    }
+  },
+  "buy_gate_results": {
+    "blocked_by_review_backlog": true,
+    "first_blocking_gate": "review_backlog_throttle",
+    "notes": [
+      "review_backlog_pending_1d_count=14가 stop threshold 12를 초과해 신규 validation buy를 차단한다.",
+      "SPY 1주 ask 726.98 USD와 QQQ 1주 ask 697.98 USD는 validation floor per-order cap 489.70 USD를 초과한다.",
+      "MSFT는 2026-06-10T19:47:34.876997Z same-day buy fill이 남고 live spread 2.0832%도 policy cap을 초과한다."
+    ]
+  },
+  "final_decision": {
+    "submit_orders": false,
+    "first_blocking_gate": "review_backlog_throttle",
+    "submit_attempted": false,
+    "reason": "sell path는 AVGO/RGTI/SO 각 hard gate에 막혔고, buy path는 review backlog throttle이 stop 상태라 no-submit으로 종료한다."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-2231-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-2231-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-2231-hourly-autopilot-research-mcp-preflight.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-10-portfolio-review.md"
+  ]
+}
