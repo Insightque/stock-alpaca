@@ -1,0 +1,63 @@
+{
+  "run_id": "2026-06-11-1351-after-hours-autopilot",
+  "created_at": "2026-06-11T04:53:42Z",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 97615.82,
+    "cash": 30904.65,
+    "buying_power": 295439.4,
+    "long_market_value": 66711.17,
+    "currency": "USD"
+  },
+  "submitted_orders": [],
+  "lifecycle_actions": [],
+  "open_orders": [],
+  "position_highlights": [
+    {
+      "symbol": "NVDA",
+      "qty": 38.0,
+      "market_value": 7681.7
+    },
+    {
+      "symbol": "LRCX",
+      "qty": 20.0,
+      "market_value": 6540.0
+    },
+    {
+      "symbol": "AMD",
+      "qty": 14.0,
+      "market_value": 6404.02
+    },
+    {
+      "symbol": "TSM",
+      "qty": 15.0,
+      "market_value": 6215.7
+    },
+    {
+      "symbol": "UNH",
+      "qty": 15.0,
+      "market_value": 6094.05
+    }
+  ],
+  "reconciliation": {
+    "submit_attempted": false,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "client_order_ids_checked": [
+      "ah-20260611-0951-sell-rgti",
+      "ah-20260611-1011-sell-rgti"
+    ],
+    "new_fills_detected": 0,
+    "position_delta": "No position change in the 1351 cycle; RGTI remained 49 shares with no new submit attempt.",
+    "note": "No new after-hours order was submitted. Reconciliation confirmed both same-session RGTI client_order_ids remained filled, runtime open orders stayed at 0, runtime positions remained 33, and the 1351 cycle ended because the separate after-hours session budget was already exhausted."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-1351-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-1351-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-1351-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/run-manifests/2026-06-11-1351-after-hours-autopilot.json"
+  ]
+}
