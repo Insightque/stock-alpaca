@@ -1,0 +1,119 @@
+{
+  "run_id": "2026-06-11-0911-after-hours-autopilot",
+  "created_at": "2026-06-11T09:24:00+09:00",
+  "session": "after_hours",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "SPY",
+    "QQQ",
+    "NOK",
+    "ORCL",
+    "IONQ",
+    "SMH",
+    "V",
+    "CRM",
+    "AVGO",
+    "RGTI",
+    "SO"
+  ],
+  "gate_results": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "fail_review_backlog_throttle_zero_new_buy_slots",
+    "fresh_quote": "pass_runtime_overnight_quotes_fresh_for_orcl_ionq_and_benchmark_cross_check",
+    "spread_within_after_hours_policy": "pass_orcl_and_ionq_runtime_spreads_within_cap_sell_candidates_still_fail",
+    "whole_share_day_limit_extended_hours_order": "pass_orcl_order_shape_but_removed_before_submit",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit"
+  },
+  "block_reasons": [
+    "AVGO/RGTI/SO sell-first candidate review ran before any buy decision, but AVGO and RGTI still exceeded the 0.25% after-hours spread cap and SO still lacked an executable two-sided quote.",
+    "ORCL overnight quote 181.15/181.50 at 2026-06-11T00:16:29.878352802Z made it the highest-ranked executable buy fallback on quote/spread/notional terms, but check-risk-policy.py reduced new after-hours buy slots to 0 because review_backlog_pending_1d_count stayed at 14.",
+    "SPY/QQQ remained above the whole-share per-order cap, NOK remained under validation lifecycle add-block, and IONQ stayed a lower-priority speculative fallback."
+  ],
+  "candidate_diagnostics": [
+    {
+      "symbol": "AVGO",
+      "decision": "skip_sell_spread_fail",
+      "reason": "Runtime overnight quote 369.88/371.99 was fresh but implied spread about 0.5704%, above after_hours_policy.max_spread_pct 0.25%, so no executable trim order was built.",
+      "source_refs": [
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/evidence-store/sources/2026-06-11-0911-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "decision": "skip_sell_spread_fail",
+      "reason": "Runtime overnight quote 19.32/19.39 was fresh but spread about 0.3623% stayed above the after-hours cap, so speculative trim remained diagnostic only.",
+      "source_refs": [
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/evidence-store/sources/2026-06-11-0911-after-hours-autopilot-alpaca-core-preflight.json",
+        "harness/recommendation-policy.yaml"
+      ]
+    },
+    {
+      "symbol": "ORCL",
+      "decision": "blocked_by_risk_review_backlog_throttle",
+      "reason": "Runtime overnight quote 181.15/181.50 at 2026-06-11T00:16:29.878352802Z implied about 0.1932% spread and 1-share notional 181.50 USD, both inside after-hours submit caps. Research preflight kept SEC EDGAR, FRED, Firecrawl, and Yahoo confirmations available, and preflight asset rows showed ORCL active/tradable/overnight_tradable. The order was removed only because check-risk-policy.py computed 0 buy slots at pending_1d_count 14.",
+      "source_refs": [
+        "wiki/research-notes/tickers/ORCL.md",
+        "wiki/evidence-store/sources/2026-06-11-0911-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-11-0911-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml"
+      ]
+    }
+  ],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 14,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1
+  },
+  "review_backlog_throttle": {
+    "enabled": true,
+    "review_backlog_pending_1d_count": 14,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1,
+    "max_new_buy_slots_before_throttle": 1,
+    "max_new_buy_slots_after_throttle": 0,
+    "result": "review backlog throttle blocked new after-hours buys at pending 1D review count 14; risk-reducing sells remained eligible in principle but none passed spread/two-sided quote gates."
+  },
+  "orders_submitted": [],
+  "submit_attempted": false,
+  "runtime_alpaca_mcp": {
+    "clock_is_open": false,
+    "clock_timestamp": "2026-06-10T20:16:25.926257033-04:00",
+    "account_status": "ACTIVE",
+    "portfolio_value": 96477.16,
+    "cash": 30865.37,
+    "buying_power": 292406.61,
+    "positions_count": 33,
+    "open_orders": 0,
+    "same_session_after_hours_orders": 0,
+    "same_session_after_hours_fills": 0,
+    "watchlists": 0
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-0911-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-0911-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/research-notes/tickers/ORCL.md"
+  ]
+}
