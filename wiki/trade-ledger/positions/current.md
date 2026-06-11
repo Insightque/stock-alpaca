@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-11 09:24 KST_
+_Last updated: 2026-06-11 09:35 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-11-0931-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned `0931` core preflight와 runtime account/positions reconciliation 기준 `33` positions 유지, open orders `0`건 유지.
+- Recent reconciliation scope: scheduler-owned `0931` core/research preflight를 source-of-record로 사용했고 runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-10T20:00:00Z)/get_account_activities(activity_types=FILL, after=2026-06-10T20:00:00Z)/get_watchlists/get_stock_latest_quote(feed=overnight)`로 장외 submit boundary를 재확인했다. `ORCL`은 fresh overnight quote `181.28/181.51`로 다시 executable buy fallback까지 올라왔지만 `review_backlog_pending_1d_count=14` 때문에 `check-risk-policy.py`가 신규 buy 슬롯을 `0`으로 계산했고, `AVGO/RGTI/SO` sell-first 재평가는 spread 또는 stale/two-sided quote 문제로 막혔다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-11-0931-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 
