@@ -1,0 +1,178 @@
+{
+  "run_id": "2026-06-11-2311-hourly-autopilot",
+  "recorded_at": "2026-06-11T14:18:17Z",
+  "paper": true,
+  "market_session": "regular",
+  "core_preflight_hard_gate": {
+    "status": "pass",
+    "checks": {
+      "clock": true,
+      "market_open": true,
+      "account": true,
+      "positions": true,
+      "open_orders": true,
+      "recent_activities": true,
+      "quotes": true
+    },
+    "first_blocking_gate": "",
+    "gap_category": "not_applicable",
+    "gap_reason": "",
+    "max_retry_count": 2
+  },
+  "stale_cleanup": {
+    "run_id": "2026-06-11-2311-hourly-autopilot",
+    "created_at": "2026-06-11T14:11:05Z",
+    "paper": true,
+    "source": "scheduler Alpaca MCP stale autopilot order cleanup",
+    "alpaca_mcp_only": true,
+    "dry_run": false,
+    "policy": {
+      "max_open_order_age_minutes": 30.0,
+      "cancel_stale_unfilled_orders": true,
+      "client_order_id_prefix": "hourly-"
+    },
+    "clock": {
+      "is_open": true,
+      "timestamp": "2026-06-11T10:11:06.622757484-04:00",
+      "next_open": "2026-06-12T09:30:00-04:00",
+      "next_close": "2026-06-11T16:00:00-04:00"
+    },
+    "initial_open_orders": [],
+    "stale_candidates": [],
+    "cancel_attempts": [],
+    "remaining_open_orders": [],
+    "status": "pass",
+    "gap_category": "not_applicable",
+    "gap_reason": ""
+  },
+  "live_checks": {
+    "clock": {
+      "timestamp": "2026-06-11T10:13:10.966945368-04:00",
+      "is_open": true
+    },
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 98249.03,
+      "cash": 31285.06,
+      "buying_power": 297342.44
+    },
+    "open_orders": {
+      "count": 0
+    },
+    "same_day_fills": [
+      {
+        "symbol": "AVGO",
+        "side": "sell",
+        "qty": 1,
+        "price": 380.43,
+        "transaction_time": "2026-06-11T14:00:59.058708Z"
+      },
+      {
+        "symbol": "RGTI",
+        "side": "sell",
+        "qty": 1,
+        "price": 19.78,
+        "transaction_time": "2026-06-11T01:20:06.981355Z"
+      },
+      {
+        "symbol": "RGTI",
+        "side": "sell",
+        "qty": 1,
+        "price": 19.5,
+        "transaction_time": "2026-06-11T00:59:35.159665Z"
+      }
+    ],
+    "candidate_quotes": {
+      "AVGO": {
+        "bid": 376.52,
+        "ask": 384.84,
+        "spread_pct": 2.2097,
+        "timestamp": "2026-06-11T14:13:35.769057178Z"
+      },
+      "RGTI": {
+        "bid": 19.63,
+        "ask": 19.65,
+        "spread_pct": 0.1019,
+        "timestamp": "2026-06-11T14:13:36.618147574Z"
+      },
+      "SO": {
+        "bid": 94.61,
+        "ask": 94.65,
+        "spread_pct": 0.0423,
+        "timestamp": "2026-06-11T14:13:36.405497614Z"
+      },
+      "MSFT": {
+        "bid": 388.0,
+        "ask": 390.0,
+        "spread_pct": 0.5155,
+        "timestamp": "2026-06-11T14:13:35.658842095Z"
+      },
+      "SPY": {
+        "bid": 728.39,
+        "ask": 728.46,
+        "spread_pct": 0.0096,
+        "timestamp": "2026-06-11T14:13:36.616829819Z"
+      },
+      "QQQ": {
+        "bid": 702.14,
+        "ask": 702.5,
+        "spread_pct": 0.0513,
+        "timestamp": "2026-06-11T14:13:36.611274715Z"
+      }
+    }
+  },
+  "candidate_evaluation": {
+    "sell_first": [
+      {
+        "symbol": "AVGO",
+        "decision": "blocked_spread_fail",
+        "reason": "ai_semiconductor warning-band / post-earnings de-risking rationale는 유지되지만 live IEX quote 376.52/384.84 spread 2.2097%가 policy cap 0.50%를 크게 초과한다"
+      },
+      {
+        "symbol": "RGTI",
+        "decision": "blocked_duplicate_same_day",
+        "reason": "same-day after-hours trim fills 2건 때문에 duplicate sell discipline이 추가 trim을 막는다"
+      },
+      {
+        "symbol": "SO",
+        "decision": "blocked_metric_gap",
+        "reason": "spread normalized but trim decision-grade metric gap remains"
+      }
+    ],
+    "buy_fallback": [
+      {
+        "symbol": "MSFT",
+        "decision": "blocked_same_day_duplicate_and_spread",
+        "reason": "same-day buy fill이 남고 live spread 0.5155%도 policy cap 0.50%를 소폭 초과하며 review backlog throttle이 신규 buy를 0으로 막는다"
+      },
+      {
+        "symbol": "SPY",
+        "decision": "blocked_floor_cap_and_review_backlog",
+        "reason": "1-share ask 728.46 USD가 validation floor per-order cap 약 491.25 USD를 초과하고 신규 buy는 backlog throttle에 막힌다"
+      },
+      {
+        "symbol": "QQQ",
+        "decision": "blocked_floor_cap_and_review_backlog",
+        "reason": "1-share ask 702.50 USD가 validation floor per-order cap 약 491.25 USD를 초과하고 신규 buy는 backlog throttle에 막힌다"
+      }
+    ]
+  },
+  "selected_order": null,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-2311-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-2311-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-2311-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-2311-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-11-portfolio-review.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/MSFT.md",
+    "wiki/research-notes/tickers/SPY.md",
+    "wiki/research-notes/tickers/QQQ.md"
+  ]
+}
