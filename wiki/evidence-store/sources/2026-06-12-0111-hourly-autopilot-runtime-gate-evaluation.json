@@ -1,0 +1,234 @@
+{
+  "run_id": "2026-06-12-0111-hourly-autopilot",
+  "recorded_at": "2026-06-11T16:11:31Z",
+  "paper": true,
+  "market_session": "regular",
+  "core_preflight_hard_gate": {
+    "status": "pass",
+    "checks": {
+      "clock": true,
+      "market_open": true,
+      "account": true,
+      "positions": true,
+      "open_orders": true,
+      "recent_activities": true,
+      "quotes": true
+    },
+    "first_blocking_gate": "",
+    "gap_category": "not_applicable",
+    "gap_reason": "",
+    "max_retry_count": 2
+  },
+  "stale_cleanup": {
+    "run_id": "2026-06-12-0111-hourly-autopilot",
+    "created_at": "2026-06-11T16:11:05Z",
+    "paper": true,
+    "source": "scheduler Alpaca MCP stale autopilot order cleanup",
+    "alpaca_mcp_only": true,
+    "dry_run": false,
+    "policy": {
+      "max_open_order_age_minutes": 30.0,
+      "cancel_stale_unfilled_orders": true,
+      "client_order_id_prefix": "hourly-"
+    },
+    "clock": {
+      "is_open": true,
+      "timestamp": "2026-06-11T12:11:07.046374413-04:00",
+      "next_open": "2026-06-12T09:30:00-04:00",
+      "next_close": "2026-06-11T16:00:00-04:00"
+    },
+    "initial_open_orders": [],
+    "stale_candidates": [],
+    "cancel_attempts": [],
+    "remaining_open_orders": [],
+    "status": "pass",
+    "gap_category": "not_applicable",
+    "gap_reason": ""
+  },
+  "live_checks": {
+    "clock": {
+      "timestamp": "2026-06-11T12:11:09.234830016-04:00",
+      "is_open": true
+    },
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 98329.56,
+      "cash": 31285.06,
+      "buying_power": 297596.08
+    },
+    "open_orders": {
+      "count": 0
+    },
+    "same_day_fills": [
+      {
+        "symbol": "AVGO",
+        "side": "sell",
+        "qty": 1,
+        "price": 380.43,
+        "transaction_time": "2026-06-11T14:00:59.058708Z"
+      },
+      {
+        "symbol": "RGTI",
+        "side": "sell",
+        "qty": 1,
+        "price": 19.78,
+        "transaction_time": "2026-06-11T01:20:06.981355Z"
+      },
+      {
+        "symbol": "RGTI",
+        "side": "sell",
+        "qty": 1,
+        "price": 19.5,
+        "transaction_time": "2026-06-11T00:59:35.159665Z"
+      },
+      {
+        "symbol": "MSFT",
+        "side": "buy",
+        "qty": 1,
+        "price": 398.38,
+        "transaction_time": "2026-06-10T19:47:34.876997Z"
+      },
+      {
+        "symbol": "NKE",
+        "side": "buy",
+        "qty": 1,
+        "price": 43.98,
+        "transaction_time": "2026-06-10T17:44:44.080648Z"
+      },
+      {
+        "symbol": "NEE",
+        "side": "buy",
+        "qty": 1,
+        "price": 85.22,
+        "transaction_time": "2026-06-10T17:18:05.301779Z"
+      },
+      {
+        "symbol": "FCX",
+        "side": "buy",
+        "qty": 1,
+        "price": 62.21,
+        "transaction_time": "2026-06-10T17:00:01.715974Z"
+      },
+      {
+        "symbol": "AMZN",
+        "side": "buy",
+        "qty": 1,
+        "price": 239.33,
+        "transaction_time": "2026-06-10T16:41:37.562873Z"
+      }
+    ],
+    "candidate_quotes": {
+      "AVGO": {
+        "bid": 378.23,
+        "ask": 379.05,
+        "spread_pct": 0.2166,
+        "timestamp": "2026-06-11T16:11:29.484295708Z"
+      },
+      "RGTI": {
+        "bid": 19.98,
+        "ask": 19.99,
+        "spread_pct": 0.05,
+        "timestamp": "2026-06-11T16:11:29.877546748Z"
+      },
+      "SO": {
+        "bid": 94.23,
+        "ask": 94.25,
+        "spread_pct": 0.0212,
+        "timestamp": "2026-06-11T16:11:29.874386056Z"
+      },
+      "WMT": {
+        "bid": 121.04,
+        "ask": 121.07,
+        "spread_pct": 0.0248,
+        "timestamp": "2026-06-11T16:11:30.046301864Z"
+      },
+      "NEE": {
+        "bid": 84.97,
+        "ask": 84.99,
+        "spread_pct": 0.0235,
+        "timestamp": "2026-06-11T16:11:27.629870037Z"
+      },
+      "SPY": {
+        "bid": 729.53,
+        "ask": 729.6,
+        "spread_pct": 0.0096,
+        "timestamp": "2026-06-11T16:11:30.102593001Z"
+      },
+      "QQQ": {
+        "bid": 703.41,
+        "ask": 703.54,
+        "spread_pct": 0.0185,
+        "timestamp": "2026-06-11T16:11:29.876679807Z"
+      }
+    }
+  },
+  "candidate_evaluation": {
+    "sell_first": [
+      {
+        "symbol": "AVGO",
+        "decision": "blocked_duplicate_same_day",
+        "reason": "scheduler-owned IEX quote 378.23/379.05 spread 0.2166%는 policy cap 0.50% 이내지만 same-day regular-session trim fill 1건이 duplicate sell discipline을 유지해 추가 trim을 막는다."
+      },
+      {
+        "symbol": "RGTI",
+        "decision": "blocked_duplicate_same_day",
+        "reason": "same-day after-hours trim fills 2건 때문에 duplicate sell discipline이 추가 trim을 막는다. scheduler-owned spread 0.0500%는 policy cap 이내다."
+      },
+      {
+        "symbol": "SO",
+        "decision": "blocked_metric_gap_only",
+        "reason": "scheduler-owned IEX quote 94.23/94.25 spread 0.0212%는 cap 이내지만 trim decision-grade metric gap이 남아 있다."
+      }
+    ],
+    "buy_fallback": [
+      {
+        "symbol": "WMT",
+        "decision": "blocked_review_backlog_only",
+        "reason": "scheduler-owned spread 0.0248%와 1-share ask 121.07 USD는 floor cap 약 491.65 USD 이내지만 review backlog throttle이 신규 add를 막는다."
+      },
+      {
+        "symbol": "SPY",
+        "decision": "blocked_floor_cap_and_review_backlog",
+        "reason": "1-share ask 729.60 USD가 validation floor per-order cap 약 491.65 USD를 초과하고 신규 buy는 backlog throttle에 막힌다."
+      },
+      {
+        "symbol": "QQQ",
+        "decision": "blocked_floor_cap_and_review_backlog",
+        "reason": "1-share ask 703.54 USD가 validation floor per-order cap 약 491.65 USD를 초과하고 신규 buy는 backlog throttle에 막힌다."
+      }
+    ],
+    "next_relaxation_candidates_if_backlog_cleared": [
+      {
+        "symbol": "WMT",
+        "decision": "quote_and_cap_pass_but_blocked_by_review_backlog",
+        "spread_pct": 0.0248,
+        "ask": 121.07
+      },
+      {
+        "symbol": "NEE",
+        "decision": "quote_and_cap_pass_but_blocked_by_review_backlog",
+        "spread_pct": 0.0235,
+        "ask": 84.99
+      }
+    ]
+  },
+  "selected_order": null,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-12-0111-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-12-0111-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-0111-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-0111-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-11-portfolio-review.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/WMT.md",
+    "wiki/research-notes/tickers/NEE.md",
+    "wiki/research-notes/tickers/SPY.md",
+    "wiki/research-notes/tickers/QQQ.md"
+  ]
+}
