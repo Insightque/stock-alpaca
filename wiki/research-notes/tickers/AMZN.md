@@ -62,3 +62,9 @@ asset_type: stock
 `2026-06-09 ET` buy 1주는 `245.40 USD` 진입 대비 `2026-06-10 ET` close `237.97 USD`로 `-3.03%`였다. `SPY` 대비 `-1.47%p`, `QQQ` 대비 `-1.03%p`로 benchmark보다는 약간 덜 나빴지만 absolute loss가 여전히 크다. mega-cap quality/cloud add cadence는 보수적으로 유지하고, `2026-06-10 ET` 추가 fill `239.33 USD`도 새 1D 대기 표본으로 남긴다.
 
 출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]
+
+### 2026-06-12 analyst review cycle
+
+`2026-06-10 ET` add 1주는 `239.33 USD` 대비 `2026-06-11 ET` close/current `241.49 USD`로 `+0.90%`였지만 `QQQ +3.27%` 급반등을 크게 밑돌았다. 동시에 `2026-06-05 ET` fill 5D도 `253.17 USD -> 241.49 USD`로 `-4.61%`라, mega-cap quality/cloud add cadence는 여전히 약한 쪽 증거가 더 많다.
+
+출처: [[2026-06-12-portfolio-review]], [[2026-06-12-0632-analyst-review-cycle-sources]]

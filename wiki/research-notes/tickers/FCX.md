@@ -35,3 +35,9 @@ Freeport-McMoRan paper validation 후보. 2026-05-26 hourly autopilot에서 mate
 `2026-06-09 ET` buy 1주는 `63.75 USD` 진입 대비 `2026-06-10 ET` close `62.07 USD`로 `-2.64%`였다. `SPY` 대비 `-1.08%p`, `QQQ` 대비 `-0.63%p`로 broad market보단 약간 덜 약했지만 commodity/materials diversifier의 clear edge는 아니었다. 판단은 `중립 약함` 유지이며 `2026-06-10 ET` 추가 fill `62.21 USD`도 별도 1D 대기 표본이다.
 
 출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]
+
+### 2026-06-12 analyst review cycle
+
+`2026-06-10 ET` add 1주는 `62.21 USD` 대비 `2026-06-11 ET` close/current `66.24 USD`로 `+6.48%`였고, `2026-06-05 ET` fill 5D도 `65.15 USD -> 66.24 USD`로 `+1.67%`였다. 이번 cycle에서는 materials/mining diversifier가 가장 선명한 회복 표본이었다. 다만 commodity sleeve 특성상 변동성이 큰 만큼 즉시 정책 승격까지는 가지 않는다.
+
+출처: [[2026-06-12-portfolio-review]], [[2026-06-12-0632-analyst-review-cycle-sources]]

@@ -141,3 +141,9 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 `2251` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight와 live Alpaca MCP submit-boundary check를 함께 사용했다. `review_backlog_pending_1d_count=14`로 신규 validation buy는 stop됐지만 sell-first path는 유지됐고, `AVGO`는 live IEX quote `379.93/380.06`, spread `0.0342%`, held qty `6`, ai_semiconductor warning band, post-earnings staged de-risking rationale 조건에서 whole-share floor 1주 trim 경로를 통과했다. `client_order_id=hourly-20260611-2251-sell-avgo` 주문은 `2026-06-11T14:00:59.058708Z`에 `380.43 USD`로 즉시 체결됐고 보유수량은 `6주 -> 5주`로 감소했다. 해석은 여전히 `core thesis 전면 폐기 아님 + staged de-risking 지속`이다.
 
 출처: [[2026-06-11-2251-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-11-2251-hourly-autopilot-post-trade.json`
+
+### 2026-06-12 analyst review cycle
+
+`2026-06-10 ET` regular-session trim 2주는 `373.25 USD` 체결 대비 `2026-06-11 ET` close/current `384.25 USD`로 `+2.95%` rebound가 나왔다. 이번 1D만 보면 exact timing edge는 전일 trim보다 약했지만, current Alpaca snapshot 기준 포지션은 여전히 `5주`, 평균단가 `419.151667 USD`, 미실현 약 `-8.33%`라 staged de-risking 해석을 뒤집지는 않는다. 다음 cycle에서는 `2026-06-11 ET` trim 1주의 1D horizon을 따로 본다.
+
+출처: [[2026-06-12-portfolio-review]], [[2026-06-12-0632-analyst-review-cycle-sources]]

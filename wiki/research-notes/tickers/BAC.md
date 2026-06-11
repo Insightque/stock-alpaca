@@ -50,3 +50,9 @@ asset_type: stock
 `2026-06-09 ET` buy 1주는 `54.07 USD` 진입 대비 `2026-06-10 ET` close `54.54 USD`로 `+0.87%`였다. `SPY` 대비 `+2.43%p`, `QQQ` 대비 `+2.87%p`라 financials diversifier validation은 down tape에서 오히려 양호했다. 단일 1D 표본이라 정책 승격은 없지만, `2026-06-10 ET` 추가 fill `54.77 USD`는 다음 1D horizon 대기로 넘긴다.
 
 출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]
+
+### 2026-06-12 analyst review cycle
+
+`2026-06-10 ET` add 1주는 `54.77 USD` 진입 대비 `2026-06-11 ET` close/current `55.20 USD`로 `+0.79%`였다. broad rebound 장세에서는 `SPY/QQQ`를 이기지 못했지만, `2026-06-05 ET` fill 5D `+2.55%`와 합치면 financials diversifier 표본은 여전히 가장 안정적인 축에 속한다. 공격적 승격 근거는 아니어도 hold-quality는 유지된다.
+
+출처: [[2026-06-12-portfolio-review]], [[2026-06-12-0632-analyst-review-cycle-sources]]

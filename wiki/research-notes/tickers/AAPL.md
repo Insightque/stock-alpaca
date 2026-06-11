@@ -48,3 +48,9 @@ current Alpaca snapshot상 `AAPL`은 `3주`, 평균단가 `310.93 USD`, current 
 `2026-06-09 ET` after-hours add 2건은 `291.40 USD`, `291.49 USD` 체결 대비 `2026-06-10 ET` close `291.48 USD`로 각각 `+0.03%`, `-0.00%`였다. 절대성과는 flat이지만 `SPY -1.56%`, `QQQ -2.00%` 하락일에 benchmark relative는 방어적이었다. 다만 기존 `2026-06-05 ET` regular-session add 1D `약함` 이력은 그대로라, cost-basis 개선과 `quality dip-buy cadence` 검증은 분리해서 봐야 한다.
 
 출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]
+
+### 2026-06-12 analyst review cycle
+
+`2026-06-05 ET` regular-session add 1주는 `313.27 USD` 진입 대비 `2026-06-11 ET` close/current `295.5 USD`로 `-5.67%`였다. `SPY` 대비 `-5.73%p`, `QQQ` 대비 `-7.23%p`라 5D 기준으로도 mega-cap quality averaging-down cadence는 약했다. after-hours add로 평균단가를 낮춘 효과는 별개지만, 새로운 add 근거로 쓰기에는 아직 회복 증거가 부족하다.
+
+출처: [[2026-06-12-portfolio-review]], [[2026-06-12-0632-analyst-review-cycle-sources]]

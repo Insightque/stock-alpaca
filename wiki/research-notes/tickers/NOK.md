@@ -102,3 +102,9 @@ validation add 관점에서는 신호가 여전히 엇갈린다. `2026-05-26` ad
 current Alpaca snapshot 기준 `NOK`는 `402주`, 평균단가 `15.044527 USD`, current `13.2408 USD`, 미실현 `-11.99%`다. Yahoo Finance 기사에는 AI networking 성장과 Nvidia backing narrative가 남지만, price는 `2026-06-10 ET` close `13.38 USD`와 snapshot current 모두 add-block 해제 근거를 주지 못한다. 이번 run에서도 `existing-position-breakout-add-penalty`를 유지하고 `2026-06-18 ET` 20D review를 기다린다.
 
 출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]
+
+### 2026-06-12 analyst review cycle
+
+current Alpaca snapshot 기준 `NOK`는 `402주`, 평균단가 `15.044527 USD`, current `14.205 USD`, 미실현 약 `-5.58%`다. 전일 대비는 반등했지만 Yahoo Finance 기준 AI networking 성장 narrative와 별개로 add-block을 풀 만큼의 구조적 회복은 아직 없다. 이번 cycle에서도 `existing-position-breakout-add-penalty`를 유지하고 `2026-06-18 ET` 20D review를 기다린다.
+
+출처: [[2026-06-12-portfolio-review]], [[2026-06-12-0632-analyst-review-cycle-sources]]

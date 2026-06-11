@@ -1,0 +1,153 @@
+{
+  "id": "2026-06-12-0632-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-06-11T21:32:08Z",
+  "timezone": "Asia/Seoul",
+  "paper": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "alpaca_reconciliation": {
+    "clock_is_open": false,
+    "account_status": "ACTIVE",
+    "portfolio_value": 99643.36,
+    "cash": 31285.06,
+    "buying_power": 300548.92,
+    "long_market_value": 68358.30,
+    "open_us_equity_orders": 0,
+    "position_count": 33,
+    "recent_fill_scope_after": "2026-06-05T00:00:00Z",
+    "direct_fill_activity": {
+      "outcome": "usable",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-06-12-portfolio-review.md",
+    "symbol_reviews": [
+      "wiki/research-notes/tickers/AAPL.md",
+      "wiki/research-notes/tickers/AVGO.md",
+      "wiki/research-notes/tickers/BAC.md",
+      "wiki/research-notes/tickers/AMZN.md",
+      "wiki/research-notes/tickers/FCX.md",
+      "wiki/research-notes/tickers/NKE.md",
+      "wiki/research-notes/tickers/COP.md",
+      "wiki/research-notes/tickers/RGTI.md",
+      "wiki/research-notes/tickers/NOK.md"
+    ],
+    "reviewed_horizons": [
+      "2026-06-10 ET fill cohort 1D",
+      "2026-06-05 ET fill cohort 5D",
+      "open-position monitor",
+      "skipped recommendations re-check",
+      "20D due scan"
+    ],
+    "symbols": [
+      "AAPL",
+      "AMZN",
+      "AVGO",
+      "BAC",
+      "COP",
+      "FCX",
+      "JNJ",
+      "JPM",
+      "MSFT",
+      "NEE",
+      "NKE",
+      "NOK",
+      "NVDA",
+      "PFE",
+      "PLTR",
+      "QQQ",
+      "RGTI",
+      "SLB",
+      "SO",
+      "SPY",
+      "V",
+      "WMT",
+      "XOM"
+    ],
+    "due_now": true,
+    "next_due": "2026-06-11 ET AVGO trim 1D and 2026-06-10 ET fill cohort 5D on the next scheduled analyst review cycle; 2026-06-05 ET 20D horizons remain pending"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-0632-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-0632-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-0632-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "required_TOOL_CALL_entrypoint_not_exposed_in_runtime",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-0632-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-0632-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-0632-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "2026-06-10 ET 1D and 2026-06-05 ET 5D evidence stayed mixed, so de-risking and averaging-down hypotheses did not meet the repeated-pattern threshold for recommendation-policy changes"
+  }
+}

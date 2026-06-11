@@ -43,3 +43,9 @@ asset_type: stock
 ## 2026-06-11 02:38 KST hourly autopilot
 
 2026-06-11 02:38 KST hourly autopilot에서 `NKE` 1주 regular-session day limit buy를 `43.99 USD`로 제출했고, immediate reconciliation 시점 상태는 `new` open order다. 근거는 scheduler research preflight shortlist 포함, live spread 0.0227%, same-day duplicate/open-order conflict 부재, consumer diversifier floor-size validation 목적이었다.
+
+### 2026-06-12 analyst review cycle
+
+`2026-06-10 ET` add 1주는 direct fill ledger 기준 `43.98 USD`에 체결됐고 `2026-06-11 ET` close/current `45.625 USD`로 `+3.74%`였다. `SPY` 대비 `+2.02%p`, `QQQ` 대비 `+0.47%p`라 consumer rebound 표본으로는 양호하다. 다만 기존 `2026-05-29` validation add 1D/5D가 약했던 이력이 있어 active rule 승격 전에는 더 많은 반복 표본이 필요하다.
+
+출처: [[2026-06-12-portfolio-review]], [[2026-06-12-0632-analyst-review-cycle-sources]]
