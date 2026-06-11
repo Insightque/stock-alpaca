@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-11 10:19 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-11 10:55 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -54,6 +54,7 @@
 
 ## Current Runs
 
+- [[2026-06-11-1051-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1051` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP cross-check 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours filled orders `2`, watchlists `0`이었다. separate session budget `2/2`가 이미 소진돼 no-submit으로 종료했다.
 - [[2026-06-11-1031-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1031` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP cross-check에서 `ah-20260611-1011-sell-rgti`가 `19.78 USD`로 이미 체결된 것이 확인되어 same-session after-hours fills가 `2건`이 됐고 separate session budget `2/2`가 닫혔다. `ORCL`은 runtime overnight quote `181.15/181.29`, spread 약 `0.0772%`로 최상위 executable buy fallback이었지만 budget gate 때문에 no-submit으로 종료했다.
 - [[2026-06-11-1011-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1011` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. submit 직전 `AVGO` overnight spread가 `375.17/376.53`, 약 `0.3625%`로 cap을 다시 넘겨 탈락했고, `RGTI`가 `19.77/19.78`, spread 약 `0.0506%`, held qty `50` 조건으로 최종 executable sell/trim 후보가 됐다. `check-risk-policy.py --json`와 strict universe/MCP validators는 모두 PASS했고 `client_order_id=ah-20260611-1011-sell-rgti` 1주 sell이 제출됐지만 same client id immediate reconciliation 기준 `status=new` open order로 남아 `RGTI qty=50`, `qty_available=49` 상태에서 lifecycle tracking 대상으로 기록됐다.
 - [[2026-06-11-0951-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0951` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime overnight quote 재평가에서 `RGTI`가 `19.47/19.48`, spread 약 `0.0513%`, held qty `51` 조건으로 최상위 executable sell/trim 후보가 됐고 `check-risk-policy.py --json`도 PASS했다. `client_order_id=ah-20260611-0951-sell-rgti` 1주 sell은 same client id reconciliation 기준 `filled_avg_price=19.50 USD`로 즉시 체결돼 `RGTI 51주 -> 50주`로 감소했다.
