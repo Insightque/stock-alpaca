@@ -1,0 +1,177 @@
+{
+  "run_id": "2026-06-11-2251-hourly-autopilot",
+  "recorded_at": "2026-06-11T13:55:00Z",
+  "paper": true,
+  "market_session": "regular",
+  "core_preflight_hard_gate": {
+    "status": "pass",
+    "checks": {
+      "clock": true,
+      "market_open": true,
+      "account": true,
+      "positions": true,
+      "open_orders": true,
+      "recent_activities": true,
+      "quotes": true
+    },
+    "first_blocking_gate": "",
+    "gap_category": "not_applicable",
+    "gap_reason": "",
+    "max_retry_count": 2
+  },
+  "stale_cleanup": {
+    "run_id": "2026-06-11-2251-hourly-autopilot",
+    "created_at": "2026-06-11T13:51:06Z",
+    "paper": true,
+    "source": "scheduler Alpaca MCP stale autopilot order cleanup",
+    "alpaca_mcp_only": true,
+    "dry_run": false,
+    "policy": {
+      "max_open_order_age_minutes": 30.0,
+      "cancel_stale_unfilled_orders": true,
+      "client_order_id_prefix": "hourly-"
+    },
+    "clock": {
+      "is_open": true,
+      "timestamp": "2026-06-11T09:51:08.115162362-04:00",
+      "next_open": "2026-06-12T09:30:00-04:00",
+      "next_close": "2026-06-11T16:00:00-04:00"
+    },
+    "initial_open_orders": [],
+    "stale_candidates": [],
+    "cancel_attempts": [],
+    "remaining_open_orders": [],
+    "status": "pass",
+    "gap_category": "not_applicable",
+    "gap_reason": ""
+  },
+  "live_checks": {
+    "clock": {
+      "timestamp": "2026-06-11T09:53:39.707140969-04:00",
+      "is_open": true
+    },
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 98601.75,
+      "cash": 30904.63,
+      "buying_power": 297762.89
+    },
+    "open_orders": {
+      "count": 0
+    },
+    "same_day_fills": [
+      {
+        "symbol": "RGTI",
+        "side": "sell",
+        "qty": 1,
+        "price": 19.78,
+        "transaction_time": "2026-06-11T01:20:06.981355Z"
+      },
+      {
+        "symbol": "RGTI",
+        "side": "sell",
+        "qty": 1,
+        "price": 19.5,
+        "transaction_time": "2026-06-11T00:59:35.159665Z"
+      }
+    ],
+    "candidate_quotes": {
+      "AVGO": {
+        "bid": 379.93,
+        "ask": 380.06,
+        "spread_pct": 0.0342,
+        "timestamp": "2026-06-11T13:53:55.183245367Z"
+      },
+      "RGTI": {
+        "bid": 20.16,
+        "ask": 20.18,
+        "spread_pct": 0.0991,
+        "timestamp": "2026-06-11T13:53:56.080207502Z"
+      },
+      "SO": {
+        "bid": 94.59,
+        "ask": 94.64,
+        "spread_pct": 0.0528,
+        "timestamp": "2026-06-11T13:53:55.434710767Z"
+      },
+      "MSFT": {
+        "bid": 390.97,
+        "ask": 395.0,
+        "spread_pct": 1.0203,
+        "timestamp": "2026-06-11T13:53:56.084758698Z"
+      },
+      "SPY": {
+        "bid": 731.29,
+        "ask": 731.33,
+        "spread_pct": 0.0055,
+        "timestamp": "2026-06-11T13:53:56.104389328Z"
+      },
+      "QQQ": {
+        "bid": 705.02,
+        "ask": 705.49,
+        "spread_pct": 0.0666,
+        "timestamp": "2026-06-11T13:53:56.101429329Z"
+      }
+    }
+  },
+  "candidate_evaluation": {
+    "sell_first": [
+      {
+        "symbol": "AVGO",
+        "decision": "selected_trim",
+        "reason": "ai_semiconductor warning-band / post-earnings de-risking rationale active, spread 0.0342% within cap, 1-share trim executable after whole-share rounding"
+      },
+      {
+        "symbol": "RGTI",
+        "decision": "blocked_duplicate_same_day",
+        "reason": "same-day after-hours trim fills 2건 때문에 duplicate sell discipline 유지"
+      },
+      {
+        "symbol": "SO",
+        "decision": "blocked_metric_gap",
+        "reason": "spread normalized but trim decision-grade metric gap remains"
+      }
+    ],
+    "buy_fallback": [
+      {
+        "symbol": "MSFT",
+        "decision": "blocked_spread_and_review_backlog",
+        "reason": "spread 1.0203% > 0.50% cap and review_backlog_pending_1d_count=14 exceeds stop threshold 12"
+      },
+      {
+        "symbol": "SPY",
+        "decision": "blocked_floor_cap_and_review_backlog",
+        "reason": "1-share ask exceeds validation floor per-order cap and new buys are already stopped by backlog throttle"
+      },
+      {
+        "symbol": "QQQ",
+        "decision": "blocked_floor_cap_and_review_backlog",
+        "reason": "1-share ask exceeds validation floor per-order cap and new buys are already stopped by backlog throttle"
+      }
+    ]
+  },
+  "selected_order": {
+    "symbol": "AVGO",
+    "side": "sell",
+    "qty": 1,
+    "limit_price": 379.93,
+    "client_order_id": "hourly-20260611-2251-sell-avgo"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-2251-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-11-2251-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-2251-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-2251-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-11-portfolio-review.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/MSFT.md",
+    "wiki/research-notes/tickers/SPY.md",
+    "wiki/research-notes/tickers/QQQ.md"
+  ]
+}

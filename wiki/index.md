@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-11 21:53 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-11 23:01 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -12,7 +12,7 @@
 - [[AAPL]] - 2026-05-26 validation buy 1D review 양호; 2026-06-05 00:31 KST hourly-autopilot 1주 추가 buy와 2026-06-06 00:19 KST 1주 추가 validation buy가 모두 체결됐고, 2026-06-10 10:17 KST after-hours-autopilot에서 `291.40 USD`, 10:35 KST after-hours-autopilot에서 `291.49 USD`로 각각 1주 추가 buy가 즉시 체결됐다.
 - [[NVDA]] - 2026-05-22 stock-only 5D 회고 양호, 20D 대기. 2026-06-10 03:11 KST hourly-autopilot에서 AI core holding floor-size add 1주가 `205.40 USD` day limit로 제출됐고 immediate reconciliation 기준 `status=new` open order다.
 - [[AMD]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
-- [[AVGO]] - 2026-05-22 stock-only 5D 회고 강함; 2026-06-06 03:43 KST hourly-autopilot에서 earnings-event drawdown과 semiconductor warning band를 근거로 4주 trim이 `389.25 USD`에 체결됐고, 2026-06-08 09:20 KST와 09:38 KST after-hours-autopilot에서 각각 추가 1주 trim이 `391.27 USD`, `392.80 USD`에 체결됐다. 2026-06-10 01:40 KST hourly-autopilot에서는 spread 정상화 후 2주 trim sell이 `375.47 USD`에 체결됐고, 2026-06-10 23:01 KST hourly-autopilot에서는 ai_semiconductor warning band와 post-earnings de-risking rationale를 근거로 추가 2주 trim이 `373.25 USD`에 즉시 체결됐다.
+- [[AVGO]] - 2026-05-22 stock-only 5D 회고 강함; 2026-06-06 03:43 KST hourly-autopilot에서 earnings-event drawdown과 semiconductor warning band를 근거로 4주 trim이 `389.25 USD`에 체결됐고, 2026-06-08 09:20 KST와 09:38 KST after-hours-autopilot에서 각각 추가 1주 trim이 `391.27 USD`, `392.80 USD`에 체결됐다. 2026-06-10 01:40 KST hourly-autopilot에서는 spread 정상화 후 2주 trim sell이 `375.47 USD`에 체결됐고, 2026-06-10 23:01 KST hourly-autopilot에서는 ai_semiconductor warning band와 post-earnings de-risking rationale를 근거로 추가 2주 trim이 `373.25 USD`에 즉시 체결됐다. 2026-06-11 23:00 KST hourly-autopilot에서는 `review_backlog_pending_1d_count=14`로 신규 buy가 차단된 가운데 sell-first 경로를 유지해 추가 1주 trim이 `380.43 USD`에 즉시 체결됐다.
 - [[LRCX]] - 2026-05-22 stock-only 5D 회고 중립 양호, 20D 대기.
 - [[TSM]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
 - [[NOK]] - 2026-05-22 stock-only 5D 회고 강함이나 변동성 큼, 20D 대기.
@@ -54,6 +54,7 @@
 
 ## Current Runs
 
+- [[2026-06-11-2251-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2251` stale cleanup/core/research preflight를 source-of-record로 사용했고 submit boundary에서는 live Alpaca MCP `get_clock/get_account_info/get_orders(status=open)/get_all_positions/get_account_activities(activity_types=FILL, after=2026-06-11T00:00:00Z)/get_stock_latest_quote/get_stock_snapshot/get_asset`로 교차 확인했다. regular market은 open, account `ACTIVE`, positions `33`, open orders `0`였고 `review_backlog_pending_1d_count=14`는 신규 buy만 막았지만 sell-first path에서 `AVGO` spread가 `0.0342%`로 정상화돼 `379.93 USD` day limit trim 1주가 `filled_avg_price=380.43 USD`로 즉시 체결됐다.
 - [[2026-06-11-2231-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2231` stale cleanup/core/research preflight를 source-of-record로 사용했고 submit boundary에서는 live Alpaca MCP `get_clock/get_account_info/get_orders(status=open)/get_all_positions/get_account_activities/get_stock_latest_quote/get_stock_snapshot/get_asset`로 교차 확인했다. regular market은 open, account `ACTIVE`, positions `33`, open orders `0`였지만 `AVGO`는 spread fail, `RGTI`는 same-day duplicate sell, `SO`는 trim metric gap이 남았고 `review_backlog_pending_1d_count=14`가 buy stop threshold를 넘어 no-submit으로 종료했다.
 - [[2026-06-11-2151-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `2151` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_watchlists/get_order_by_client_id(ah-20260611-0951-sell-rgti)/get_order_by_client_id(ah-20260611-1011-sell-rgti)/get_asset(ORCL)/get_stock_latest_quote(feed=overnight)/get_stock_snapshot(feed=overnight)` 교차 확인 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours filled orders `2`, watchlists `0`이었다. separate session budget `2/2`가 이미 소진돼 no-submit으로 종료했다.
 - [[2026-06-11-2131-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `2131` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_watchlists/get_order_by_client_id(ah-20260611-0951-sell-rgti)/get_order_by_client_id(ah-20260611-1011-sell-rgti)/get_asset(ORCL)/get_stock_latest_quote(feed=overnight)/get_stock_snapshot(feed=overnight)` 교차 확인 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours filled orders `2`, watchlists `0`이었다. separate session budget `2/2`가 이미 소진돼 no-submit으로 종료했다.

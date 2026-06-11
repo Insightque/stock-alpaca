@@ -1,0 +1,70 @@
+{
+  "run_id": "2026-06-11-2251-hourly-autopilot",
+  "recorded_at": "2026-06-11T14:01:05Z",
+  "paper": true,
+  "market_session": "regular",
+  "orders_submitted": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1,
+      "limit_price": 379.93,
+      "client_order_id": "hourly-20260611-2251-sell-avgo",
+      "order_id": "a4414ccd-c32c-48bb-97ec-189dc42f6cb8",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 380.43,
+      "submitted_at": "2026-06-11T14:00:56.572874754Z",
+      "filled_at": "2026-06-11T14:00:59.058708415Z"
+    }
+  ],
+  "open_orders": [],
+  "account_snapshot": {
+    "portfolio_value": 98618.81,
+    "cash": 31285.06,
+    "buying_power": 298242.76,
+    "status": "ACTIVE"
+  },
+  "positions_summary": {
+    "position_count": 33,
+    "avgo_qty": 5,
+    "avgo_avg_entry_price": 419.151667,
+    "avgo_qty_available": 5,
+    "avgo_market_value": 1901.7
+  },
+  "fill_activity": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1,
+      "price": 380.43,
+      "transaction_time": "2026-06-11T14:00:59.058708Z",
+      "order_id": "a4414ccd-c32c-48bb-97ec-189dc42f6cb8",
+      "type": "fill"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1,
+      "price": 19.78,
+      "transaction_time": "2026-06-11T01:20:06.981355Z",
+      "order_id": "e725c081-8287-4484-9323-15349194c375",
+      "type": "prior_same_day_fill"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1,
+      "price": 19.5,
+      "transaction_time": "2026-06-11T00:59:35.159665Z",
+      "order_id": "95488df8-9d09-4f7a-a39c-06cd0243e1d2",
+      "type": "prior_same_day_fill"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-2251-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-11-2251-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-2251-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-2251-hourly-autopilot-stale-order-cleanup.json"
+  ]
+}
