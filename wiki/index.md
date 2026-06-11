@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-12 04:53 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-12 06:14 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -54,6 +54,7 @@
 
 ## Current Runs
 
+- [[2026-06-12-0611-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0611` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-11T20:00:00Z)/get_watchlists/get_asset(RGTI/ADBE/PLTR)/get_stock_latest_quote(feed=iex)/get_stock_snapshot(feed=iex)/get_stock_latest_quote(feed=overnight)` 교차 확인 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours orders `0`, watchlists `0`이었다. separate session budget `0/2`는 열려 있었지만 freshest IEX quotes조차 `19.91-74.98`분 stale라 fresh-quote hard gate가 닫혀 no-submit으로 종료했다.
 - [[2026-06-12-0451-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0451` stale cleanup/core/research preflight를 source-of-record로 사용했고 Alpaca core preflight hard gate `pass`와 fresh quote rows를 submit-boundary 증거로 재사용했다. regular market은 `2026-06-11T15:51:08.91025192-04:00` 기준 open, account `ACTIVE`, positions `33`, open orders `0`이었다. `AVGO`와 `RGTI`는 same-day duplicate sell discipline, `SO`는 spread `6.2780%` fail + trim metric gap, `WMT/NEE`는 executable quote에도 불구하고 `review_backlog_pending_1d_count=14`가 buy stop threshold를 넘어 no-submit으로 종료했다.
 - [[2026-06-12-0431-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0431` stale cleanup/core/research preflight를 source-of-record로 사용했고 Alpaca core preflight hard gate `pass`와 fresh quote rows를 submit-boundary 증거로 재사용했다. regular market은 `2026-06-11T15:31:10.60134051-04:00` 기준 open, account `ACTIVE`, positions `33`, open orders `0`이었다. `AVGO`와 `RGTI`는 same-day duplicate sell discipline, `SO`는 trim metric gap, `WMT/NEE`는 executable quote에도 불구하고 `review_backlog_pending_1d_count=14`가 buy stop threshold를 넘어 no-submit으로 종료했다.
 - [[2026-06-12-0411-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0411` stale cleanup/core/research preflight를 source-of-record로 사용했고 Alpaca core preflight hard gate `pass`와 fresh quote rows를 submit-boundary 증거로 재사용했다. regular market은 `2026-06-11T15:11:10.783050619-04:00` 기준 open, account `ACTIVE`, positions `33`, open orders `0`이었다. `AVGO`와 `RGTI`는 same-day duplicate sell discipline, `SO`는 trim metric gap, `WMT/NEE`는 executable quote에도 불구하고 `review_backlog_pending_1d_count=14`가 buy stop threshold를 넘어 no-submit으로 종료했다.
