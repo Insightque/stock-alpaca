@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-12 00:14 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-12 00:33 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -54,6 +54,7 @@
 
 ## Current Runs
 
+- [[2026-06-12-0031-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0031` stale cleanup/core/research preflight를 source-of-record로 사용했고 Alpaca core preflight fresh quote rows를 그대로 submit-boundary 증거로 재사용했다. regular market은 `2026-06-11T11:31:09.067555478-04:00` 기준 open, account `ACTIVE`, positions `33`, open orders `0`이었다. `AVGO`는 spread `1.8952%` fail + same-day duplicate sell, `RGTI`는 same-day duplicate sell, `SO`는 spread 회복 후에도 trim metric gap이 남았고 `review_backlog_pending_1d_count=14`가 buy stop threshold를 넘어 no-submit으로 종료했다.
 - [[2026-06-12-0011-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0011` stale cleanup/core/research preflight를 source-of-record로 사용했고 submit boundary에서는 live Alpaca MCP `get_clock/get_account_info/get_orders(status=open)/get_all_positions/get_account_activities(activity_types=FILL, after=2026-06-11T00:00:00Z)/get_asset/get_stock_latest_quote/get_stock_snapshot`로 교차 확인했다. regular market은 `2026-06-11T11:13:27.04760535-04:00` 기준 open, account `ACTIVE`, positions `33`, open orders `0`였다. `AVGO`는 spread `1.2372%` fail + same-day duplicate recheck, `RGTI`는 same-day duplicate sell, `SO`는 spread `1.9689%` fail + trim metric gap이 남았고 `review_backlog_pending_1d_count=14`가 buy stop threshold를 넘어 no-submit으로 종료했다.
 - [[2026-06-11-2351-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2351` stale cleanup/core/research preflight를 source-of-record로 사용했고 submit boundary에서는 live Alpaca MCP `get_clock/get_account_info/get_orders(status=open)/get_all_positions/get_account_activities(activity_types=FILL, after=2026-06-11T00:00:00Z)/get_asset/get_stock_latest_quote/get_stock_snapshot`로 교차 확인했다. regular market은 open, account `ACTIVE`, positions `33`, open orders `0`였고 `AVGO`/`RGTI`는 same-day duplicate sell discipline, `SO`는 spread `2.9231%` + trim metric gap, `review_backlog_pending_1d_count=14`는 buy stop threshold를 넘어 no-submit으로 종료했다.
 - [[2026-06-11-2331-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2331` stale cleanup/core/research preflight를 source-of-record로 사용했고 submit boundary에서는 live Alpaca MCP `get_clock/get_account_info/get_orders(status=open)/get_all_positions/get_account_activities(activity_types=FILL, after=2026-06-11T00:00:00Z)/get_asset/get_stock_latest_quote/get_stock_snapshot`로 교차 확인했다. regular market은 open, account `ACTIVE`, positions `33`, open orders `0`였지만 `AVGO`는 spread fail, `RGTI`는 same-day duplicate sell, `SO`는 trim metric gap이 남았고 `review_backlog_pending_1d_count=14`가 buy stop threshold를 넘어 no-submit으로 종료했다.
