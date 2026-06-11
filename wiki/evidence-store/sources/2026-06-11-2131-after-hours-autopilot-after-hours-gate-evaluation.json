@@ -1,0 +1,250 @@
+{
+  "run_id": "2026-06-11-2131-after-hours-autopilot",
+  "created_at": "2026-06-11T12:32:40Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "SPY",
+    "QQQ",
+    "NOK",
+    "ORCL",
+    "IONQ",
+    "SMH",
+    "V",
+    "CRM",
+    "AVGO",
+    "RGTI"
+  ],
+  "runtime_alpaca_mcp": {
+    "used_scheduler_preflight": true,
+    "source_of_record": "wiki/evidence-store/sources/2026-06-11-2131-after-hours-autopilot-alpaca-core-preflight.json",
+    "cross_checks": {
+      "scheduler_preflight.get_clock": {
+        "is_open": false,
+        "timestamp": "2026-06-11T08:31:09.417727087-04:00",
+        "next_open": "2026-06-11T09:30:00-04:00",
+        "next_close": "2026-06-11T16:00:00-04:00"
+      },
+      "scheduler_preflight.get_account_info": {
+        "portfolio_value": 97876.34,
+        "cash": 30904.63,
+        "buying_power": 295988.73,
+        "long_market_value": 66971.71,
+        "currency": "USD",
+        "status": "ACTIVE"
+      },
+      "scheduler_preflight.get_all_positions": {
+        "count": 33
+      },
+      "scheduler_preflight.get_orders(status=open)": {
+        "count": 0
+      },
+      "scheduler_preflight.get_account_activities(activity_types=FILL)": {
+        "count": 20
+      },
+      "scheduler_preflight.get_watchlists": {
+        "count": 0
+      },
+      "runtime_alpaca_mcp.get_clock": {
+        "is_open": false,
+        "next_close": "2026-06-11T16:00:00-04:00",
+        "next_open": "2026-06-11T09:30:00-04:00",
+        "timestamp": "2026-06-11T08:32:40.017658579-04:00"
+      },
+      "runtime_alpaca_mcp.get_account_info": {
+        "portfolio_value": 97759.69,
+        "cash": 30904.63,
+        "buying_power": 295684.63,
+        "currency": "USD",
+        "status": "ACTIVE",
+        "long_market_value": 66855.06
+      },
+      "runtime_alpaca_mcp.get_all_positions": {
+        "count": 33
+      },
+      "runtime_alpaca_mcp.get_orders(status=open)": {
+        "count": 0
+      },
+      "runtime_alpaca_mcp.get_watchlists": {
+        "count": 0
+      },
+      "runtime_alpaca_mcp.get_order_by_client_id(ah-20260611-0951-sell-rgti)": {
+        "status": "filled",
+        "filled_avg_price": 19.5,
+        "filled_qty": 1.0,
+        "extended_hours": true
+      },
+      "runtime_alpaca_mcp.get_order_by_client_id(ah-20260611-1011-sell-rgti)": {
+        "status": "filled",
+        "filled_avg_price": 19.78,
+        "filled_qty": 1.0,
+        "extended_hours": true
+      },
+      "runtime_alpaca_mcp.get_asset(ORCL)": {
+        "symbol": "ORCL",
+        "status": "active",
+        "tradable": true,
+        "class": "us_equity",
+        "exchange": "NYSE",
+        "overnight_tradable": true
+      },
+      "runtime_alpaca_mcp.get_stock_latest_quote(feed=overnight)": {
+        "ap": 181.03,
+        "as": 28,
+        "ax": "B",
+        "bp": 170.17,
+        "bs": 51,
+        "bx": "B",
+        "c": [],
+        "t": "2026-06-11T08:00:00.37547251Z",
+        "z": "N"
+      },
+      "runtime_alpaca_mcp.get_stock_snapshot(feed=overnight)": {
+        "symbol": "ORCL",
+        "latestTrade": {
+          "c": [
+            "@"
+          ],
+          "i": 1008806316531047280,
+          "p": 179.45,
+          "s": 100,
+          "t": "2026-06-11T07:57:49.491402319Z",
+          "x": "B",
+          "z": "N"
+        },
+        "latestQuote": {
+          "ap": 181.03,
+          "as": 28,
+          "ax": "B",
+          "bp": 170.17,
+          "bs": 51,
+          "bx": "B",
+          "c": [],
+          "t": "2026-06-11T08:00:00.37547251Z",
+          "z": "N"
+        },
+        "minuteBar": {
+          "c": 179.45,
+          "h": 179.53,
+          "l": 179.45,
+          "n": 22,
+          "o": 179.53,
+          "t": "2026-06-11T07:57:00Z",
+          "v": 996,
+          "vw": 179.497037
+        }
+      },
+      "same_session_after_hours_fills": {
+        "count": 2,
+        "symbols": [
+          "RGTI",
+          "RGTI"
+        ],
+        "details": [
+          {
+            "symbol": "RGTI",
+            "side": "sell",
+            "qty": 11.0,
+            "price": 20.38,
+            "transaction_time": "2026-06-10T14:14:42.612808Z",
+            "order_id": "b9253931-4e50-45ec-a30b-972a4a76903e",
+            "client_order_id": "ah-20260611-0951-sell-rgti",
+            "order_status": "partially_filled"
+          },
+          {
+            "symbol": "RGTI",
+            "side": "sell",
+            "qty": 6.0,
+            "price": 20.38,
+            "transaction_time": "2026-06-10T14:14:43.88079Z",
+            "order_id": "b9253931-4e50-45ec-a30b-972a4a76903e",
+            "client_order_id": "ah-20260611-0951-sell-rgti",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "RGTI",
+            "side": "sell",
+            "qty": 1.0,
+            "price": 19.5,
+            "transaction_time": "2026-06-11T00:59:35.159665Z",
+            "order_id": "95488df8-9d09-4f7a-a39c-06cd0243e1d2",
+            "client_order_id": "ah-20260611-0951-sell-rgti",
+            "order_status": "filled"
+          },
+          {
+            "symbol": "RGTI",
+            "side": "sell",
+            "qty": 1.0,
+            "price": 19.78,
+            "transaction_time": "2026-06-11T01:20:06.981355Z",
+            "order_id": "e725c081-8287-4484-9323-15349194c375",
+            "client_order_id": "ah-20260611-1011-sell-rgti",
+            "order_status": "filled"
+          }
+        ]
+      }
+    },
+    "note": "2131 Alpaca core preflight first_blocking_gate=market_closed was treated as expected nonblocking for after-hours. Scheduler-owned passing account/positions/open-order/recent-fill/watchlist rows remained authoritative. Runtime Alpaca MCP cross-checks at 08:32 ET confirmed market closed, account ACTIVE, positions=33, open orders=0, watchlists=0, same-session client-order lifecycle unchanged, ORCL remained active/tradable for overnight trading, and overnight quotes remained available, but the separate after-hours session budget blocked before any pre-submit gate summary or order staging."
+  },
+  "submit_attempted": false,
+  "orders_submitted": [],
+  "review_backlog_throttle": {
+    "pending_1d_count": 14,
+    "pending_5d_count": 13,
+    "pending_20d_count": 1,
+    "status": "monitor_only_budget_blocked"
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 14,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1,
+    "risk_recomputed_after_partial_fill": true,
+    "cash_deployment_blocker": "daily_buy_cap_exhausted"
+  },
+  "gate_results": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_scheduler_preflight_plus_runtime_cross_check",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "block_after_hours_session_budget_exhausted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_empty_order_plan",
+    "fresh_quote": "not_actionable_budget_exhausted_before_submit_path",
+    "spread_within_after_hours_policy": "not_actionable_budget_exhausted_before_submit_path",
+    "whole_share_day_limit_extended_hours_order": "not_applicable_no_order",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "not_applicable_no_submit"
+  },
+  "decision": {
+    "action": "no_submit_after_hours_budget_exhausted",
+    "reason": "Same-session after-hours fills remained 2/2 from the earlier RGTI trims, so the 2131 cycle remained blocked at the separate after-hours budget gate."
+  },
+  "separate_budget": {
+    "submitted_today": 2,
+    "session_limit": 2,
+    "remaining": 0,
+    "status": "exhausted"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-11-2131-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-11-2131-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "decision_summary": {
+    "action": "no_submit_after_hours_budget_exhausted",
+    "reason": "The after-hours session budget remained exhausted by the two earlier RGTI fills, so this 2131 cycle did not enter the submit path.",
+    "eligible_sell_trim_found": false,
+    "eligible_buy_fallback_found": false,
+    "same_session_after_hours_orders_submitted_today": 2,
+    "separate_session_budget_remaining": 0
+  }
+}
