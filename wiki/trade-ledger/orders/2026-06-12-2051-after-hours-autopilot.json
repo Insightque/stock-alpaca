@@ -1,0 +1,417 @@
+{
+  "schema_version": "1.2",
+  "run_id": "2026-06-12-2051-after-hours-autopilot",
+  "created_at": "2026-06-12T11:53:34Z",
+  "mode": "submit",
+  "paper": true,
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "risk_policy_version": "medium-risk-v1.2",
+  "manifest_path": "wiki/evidence-store/run-manifests/2026-06-12-2051-after-hours-autopilot.json",
+  "market": {
+    "is_open": false,
+    "checked_at": "2026-06-12T07:53:07.642181487-04:00",
+    "next_open": "2026-06-12T09:30:00-04:00",
+    "next_close": "2026-06-12T16:00:00-04:00",
+    "session": "after_hours"
+  },
+  "account": {
+    "portfolio_value": 100175.37,
+    "cash": 31698.23,
+    "buying_power": 302365.3,
+    "currency": "USD",
+    "daily_realized_loss": 0.0
+  },
+  "positions": [
+    {
+      "symbol": "AAPL",
+      "qty": 5.0,
+      "market_value": 1482.2,
+      "theme": "mega_cap_tech",
+      "factor": "growth_quality",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "ADBE",
+      "qty": 1.0,
+      "market_value": 202.8596,
+      "theme": "software",
+      "factor": "growth_quality",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "AMD",
+      "qty": 14.0,
+      "market_value": 6995.5564,
+      "theme": "ai_semiconductor",
+      "factor": "ai_semiconductor",
+      "volatility_bucket": "high",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "AMZN",
+      "qty": 6.0,
+      "market_value": 1467.6918,
+      "theme": "mega_cap_tech",
+      "factor": "growth_quality",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "AVGO",
+      "qty": 4.0,
+      "market_value": 1549.0,
+      "theme": "ai_semiconductor",
+      "factor": "ai_semiconductor",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "BAC",
+      "qty": 6.0,
+      "market_value": 332.64,
+      "theme": "financials",
+      "factor": "bank_rate_sensitive",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "COP",
+      "qty": 5.0,
+      "market_value": 571.0,
+      "theme": "energy",
+      "factor": "commodity_cyclical",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "CVX",
+      "qty": 1.0,
+      "market_value": 184.15,
+      "theme": "energy",
+      "factor": "commodity_cyclical",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "ETN",
+      "qty": 15.0,
+      "market_value": 5954.1,
+      "theme": "power_infrastructure",
+      "factor": "industrial_power",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "FCX",
+      "qty": 5.0,
+      "market_value": 338.25,
+      "theme": "materials_mining",
+      "factor": "commodity_cyclical",
+      "volatility_bucket": "high",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "GOOGL",
+      "qty": 3.0,
+      "market_value": 1093.11,
+      "theme": "mega_cap_tech",
+      "factor": "growth_quality",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "IONQ",
+      "qty": 45.0,
+      "market_value": 2653.137,
+      "theme": "quantum_speculative",
+      "factor": "speculative_growth",
+      "volatility_bucket": "high",
+      "speculative_flag": true,
+      "liquidity_bucket": "medium",
+      "source_confidence": "medium"
+    },
+    {
+      "symbol": "JNJ",
+      "qty": 2.0,
+      "market_value": 476.44,
+      "theme": "healthcare_pharma",
+      "factor": "defensive_healthcare",
+      "volatility_bucket": "low",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "JPM",
+      "qty": 1.0,
+      "market_value": 315.4637,
+      "theme": "financials",
+      "factor": "bank_rate_sensitive",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "LLY",
+      "qty": 1.0,
+      "market_value": 1165.35,
+      "theme": "healthcare_pharma",
+      "factor": "healthcare_growth",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "LRCX",
+      "qty": 20.0,
+      "market_value": 7202.4,
+      "theme": "semicap_equipment",
+      "factor": "ai_semiconductor",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "MSFT",
+      "qty": 2.0,
+      "market_value": 788.0,
+      "theme": "mega_cap_tech",
+      "factor": "growth_quality",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "NEE",
+      "qty": 5.0,
+      "market_value": 425.75,
+      "theme": "utilities",
+      "factor": "defensive_utility",
+      "volatility_bucket": "low",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "NKE",
+      "qty": 5.0,
+      "market_value": 230.89,
+      "theme": "consumer_discretionary",
+      "factor": "consumer_brand",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "NOK",
+      "qty": 402.0,
+      "market_value": 5772.72,
+      "theme": "telecom",
+      "factor": "value_turnaround",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "NVDA",
+      "qty": 38.0,
+      "market_value": 7831.04,
+      "theme": "ai_semiconductor",
+      "factor": "ai_semiconductor",
+      "volatility_bucket": "high",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "PFE",
+      "qty": 5.0,
+      "market_value": 131.0495,
+      "theme": "healthcare_pharma",
+      "factor": "defensive_healthcare",
+      "volatility_bucket": "low",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "PLTR",
+      "qty": 3.0,
+      "market_value": 396.66,
+      "theme": "software",
+      "factor": "growth_quality",
+      "volatility_bucket": "high",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "QQQ",
+      "qty": 3.0,
+      "market_value": 2163.63,
+      "theme": "broad_market",
+      "factor": "broad_index",
+      "volatility_bucket": "low",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "RGTI",
+      "qty": 49.0,
+      "market_value": 1031.94,
+      "theme": "quantum_speculative",
+      "factor": "speculative_growth",
+      "volatility_bucket": "high",
+      "speculative_flag": true,
+      "liquidity_bucket": "medium",
+      "source_confidence": "medium"
+    },
+    {
+      "symbol": "SLB",
+      "qty": 6.0,
+      "market_value": 334.8,
+      "theme": "energy_services",
+      "factor": "commodity_cyclical",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "SO",
+      "qty": 5.0,
+      "market_value": 462.238,
+      "theme": "utilities",
+      "factor": "defensive_utility",
+      "volatility_bucket": "low",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "SPY",
+      "qty": 2.0,
+      "market_value": 1485.28,
+      "theme": "broad_market",
+      "factor": "broad_index",
+      "volatility_bucket": "low",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "TSM",
+      "qty": 15.0,
+      "market_value": 6352.5,
+      "theme": "ai_semiconductor",
+      "factor": "ai_semiconductor",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "UNH",
+      "qty": 15.0,
+      "market_value": 6079.6125,
+      "theme": "healthcare",
+      "factor": "defensive_healthcare",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "V",
+      "qty": 4.0,
+      "market_value": 1282.2,
+      "theme": "payments",
+      "factor": "growth_quality",
+      "volatility_bucket": "low",
+      "speculative_flag": false,
+      "liquidity_bucket": "large",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "WMT",
+      "qty": 8.0,
+      "market_value": 964.88,
+      "theme": "consumer_defensive",
+      "factor": "defensive_quality",
+      "volatility_bucket": "low",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high"
+    },
+    {
+      "symbol": "XOM",
+      "qty": 5.0,
+      "market_value": 727.3,
+      "theme": "energy",
+      "factor": "commodity_cyclical",
+      "volatility_bucket": "medium",
+      "speculative_flag": false,
+      "liquidity_bucket": "mega",
+      "source_confidence": "high"
+    }
+  ],
+  "open_orders": [],
+  "orders": [],
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 14,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1,
+    "risk_recomputed_after_partial_fill": true,
+    "cash_deployment_blocker": "no_candidate_passed_hard_gates"
+  },
+  "sell_candidate_diagnostics": [],
+  "validation_lifecycle": {
+    "status": "after_hours_session_budget_exhausted_reconciliation_only",
+    "source_refs": [
+      "wiki/trade-ledger/reviews/review-due-index.json",
+      "wiki/trade-ledger/reviews/2026-06-12-portfolio-review.md",
+      "harness/recommendation-policy.yaml"
+    ]
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-12-2051-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-2051-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-2051-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ]
+}
