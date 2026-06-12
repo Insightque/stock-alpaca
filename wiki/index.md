@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-12 11:34 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-12 12:19 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -54,6 +54,7 @@
 
 ## Current Runs
 
+- [[2026-06-12-1211-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1211` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours fills `1`(`PFE`)이라 separate session budget은 `1/2`가 남아 있었지만, submit-boundary IEX quote 기준 freshest `ADBE/RGTI`조차 약 `376`분 stale였고 `PFE/AVGO/RGTI/SO/ORCL`은 spread도 실패해 no-submit으로 종료했다.
 - [[2026-06-12-1151-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1151` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours fills `1`(`PFE`)이라 separate session budget은 `1/2`가 남아 있었지만, submit-boundary IEX quote 기준 freshest `ADBE/RGTI`조차 약 `356`분 stale였고 `PFE/AVGO/RGTI/SO/ORCL`은 spread도 실패해 no-submit으로 종료했다.
 - [[2026-06-12-1131-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1131` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours fill `1`(`PFE`)이라 separate session budget은 `1/2`가 남아 있었지만, submit-boundary IEX quote 기준 freshest `ADBE/RGTI`조차 약 `336`분 stale였고 `PFE/AVGO/RGTI/SO/ORCL`은 spread도 실패해 no-submit으로 종료했다.
 - [[2026-06-12-1111-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1111` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours fill `1`(`PFE`)이라 separate session budget은 `1/2`가 남아 있었지만, submit-boundary IEX quote 기준 freshest `ADBE/RGTI`조차 약 `316`분 stale였고 `PFE/AVGO/RGTI/SO/ORCL`은 spread도 실패해 no-submit으로 종료했다.

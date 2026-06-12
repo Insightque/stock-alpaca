@@ -1,0 +1,164 @@
+{
+  "run_id": "2026-06-12-1211-after-hours-autopilot",
+  "created_at": "2026-06-12T03:11:28Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "QQQ",
+    "ADBE",
+    "PLTR",
+    "SPY",
+    "KLAC",
+    "TSLA",
+    "SMH",
+    "RGTI"
+  ],
+  "runtime_alpaca_mcp": {
+    "used_scheduler_preflight": true,
+    "source_of_record": "wiki/evidence-store/sources/2026-06-12-1211-after-hours-autopilot-alpaca-core-preflight.json",
+    "cross_checks": {
+      "get_clock": {
+        "is_open": false,
+        "timestamp": "2026-06-11T23:11:09.322925415-04:00",
+        "next_open": "2026-06-12T09:30:00-04:00",
+        "next_close": "2026-06-12T16:00:00-04:00"
+      },
+      "get_account_info": {
+        "status": "ACTIVE",
+        "portfolio_value": 100025.68,
+        "cash": 31311.19,
+        "buying_power": 301380.42,
+        "long_market_value": 68714.49,
+        "currency": "USD"
+      },
+      "get_all_positions": {
+        "count": 33
+      },
+      "get_orders(status=open)": {
+        "count": 0
+      },
+      "get_account_activities(activity_types=FILL, after=2026-06-11T20:00:00Z)": {
+        "count": 1,
+        "symbols": [
+          "PFE"
+        ]
+      },
+      "get_watchlists": {
+        "count": 0
+      }
+    },
+    "note": "Scheduler-owned 1211 core preflight first_blocking_gate=market_closed remained expected and nonblocking for this after-hours run. The same preflight carried the authoritative account/positions/open-order/asset/quote/spread rows, and same-session FILL activity confirmed the earlier 1011 PFE trim remained the only after-hours fill since 2026-06-11T20:00:00Z without opening a new submit path."
+  },
+  "submit_attempted": false,
+  "orders_submitted": [],
+  "review_backlog_throttle": {
+    "pending_1d_count": 14,
+    "pending_5d_count": 13,
+    "pending_20d_count": 1,
+    "status": "monitor_only_after_hours_sell_first_path"
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 1,
+    "review_backlog_pending_1d_count": 14,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1,
+    "cash_deployment_blocker": "quote_or_spread_gate_failed"
+  },
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass",
+      "detail": "ALPACA_PAPER_TRADE=true 확인"
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed",
+      "detail": "regular market closed at scheduler-owned get_clock 2026-06-11T23:11:09.322925415-04:00"
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass",
+      "detail": "session=after_hours and after_hours_policy profile retained"
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_market_closed_nonblocking_after_hours",
+      "detail": "1211 scheduler-owned core preflight first_blocking_gate=market_closed treated as expected nonblocking; passing account/positions/open-order/asset/quote/spread rows reused directly"
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass",
+      "detail": "after_hours_policy artifact tag, review bucket, order id prefix, and allowed_sides buy/sell retained"
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "pass_one_of_two_submitted",
+      "detail": "after_hours_new_orders_submitted_today=1 and max_new_orders_per_session=2; earlier 1011 PFE trim fill consumed one separate-session slot and regular validation count was not reused"
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass",
+      "detail": "broad universe 62 symbols with SPY/QQQ included and research shortlist 8 symbols"
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass",
+      "detail": "sec-edgar/fred/firecrawl/yahoo-finance pass; alpha-vantage provider_error did not block because core and minimum research confirmations passed"
+    },
+    {
+      "gate": "risk_policy",
+      "status": "fail_no_eligible_order_survived_after_hours_fresh_quote_gate",
+      "detail": "Risk validator can pass the empty submit-mode plan, but no candidate order survived after-hours freshness plus spread/per-order-notional constraints, so no executable order could be built."
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "fail_scheduler_preflight_quotes_stale_376.41_to_431.47_minutes",
+      "detail": "freshest checked IEX quote was ADBE at 2026-06-11T20:55:03.360834505Z and RGTI at 2026-06-11T20:54:49.65776938Z, already about 376.41 and 376.64 minutes old at the 1211 data cutoff versus the 5 minute cap. The rest were about 384.89-431.47 minutes old."
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "fail_only_adbe_pltr_qqq_spy_tight_but_stale",
+      "detail": "ADBE 0.0529%, PLTR 0.0761%, QQQ 0.0349%, SPY 0.1707% only; PFE 9.8260%, ORCL 9.6739%, RGTI 6.0482%, AVGO 11.1689%, SO 10.7528%, KLAC 0.4713%, TSLA 0.5410%, SMH 5.7702% all failed the 0.25% after-hours spread cap or combined with stale quote blockers."
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "pass_no_orders_built",
+      "detail": "Any hypothetical after-hours order would still need whole-share day limit + extended_hours=true, but no order candidate survived hard gates."
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "pass_no_submit",
+      "detail": "No place_stock_order call occurred, so no new client_order_id reconciliation or cancel path was needed."
+    }
+  ],
+  "candidate_notes": [
+    "ADBE는 scheduler-owned IEX quote 207.77/207.88, spread 0.0529%, 1주 ask 207.88 USD로 notional cap 이내였지만 quote age가 이미 376.41분이라 fresh-quote gate를 통과하지 못했다.",
+    "PLTR는 scheduler-owned IEX quote 131.39/131.49, spread 0.0761%, 1주 ask 131.49 USD로 fallback buy shape는 가능했지만 quote age 384.89분으로 stale였다.",
+    "QQQ와 SPY는 spread는 각각 0.0349%, 0.1707%로 양호했지만 1주 ask 715.38 USD, 738.09 USD가 after-hours per-order cap 약 500.13 USD를 넘었고 quote도 stale였다.",
+    "PFE는 earlier 1011 trim fill로 same-session budget 1/2가 이미 사용된 상태에서 1211 preflight quote가 24.87/27.58로 벌어져 spread 9.8260%, age 431.44분이 동시에 blocker였다.",
+    "RGTI sell/trim은 allowed sell side 재평가 대상이었지만 spread 6.0482%와 quote age 376.64분이 동시에 blocker였다.",
+    "AVGO sell/trim은 asset은 overnight_tradable이지만 scheduler-owned IEX quote 361.8/407.29, spread 11.1689%, quote age 431.43분으로 hard gate를 통과하지 못했다.",
+    "SO sell/trim도 asset은 overnight_tradable이지만 scheduler-owned IEX quote 88.56/99.23, spread 10.7528%, quote age 431.47분으로 hard gate를 통과하지 못했다.",
+    "ORCL/KLAC/TSLA/SMH도 각각 spread 9.6739%, 0.4713%, 0.5410%, 5.7702% 또는 stale quote 때문에 executable fallback이 되지 못했다."
+  ],
+  "block_reasons": [
+    "fresh_quote",
+    "spread_within_after_hours_policy",
+    "per_order_notional_cap"
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-12-1211-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-1211-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/research-notes/tickers/PFE.md"
+  ]
+}
