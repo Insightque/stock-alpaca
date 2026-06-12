@@ -1,0 +1,46 @@
+{
+  "run_id": "2026-06-13-0431-hourly-autopilot",
+  "created_at": "2026-06-12T19:31:30Z",
+  "paper": true,
+  "source": "scheduled hourly-autopilot post-trade reconciliation snapshot",
+  "submit_attempted": false,
+  "orders_submitted": [],
+  "orders_reconciled": [],
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 100495.3,
+    "cash": 31950.36,
+    "buying_power": 302882.66,
+    "long_market_value": 68544.94,
+    "currency": "USD"
+  },
+  "positions_count": 33,
+  "open_orders_count": 0,
+  "watchlists_count": 0,
+  "same_day_fills_seen": [
+    {
+      "symbol": "RGTI",
+      "filled_qty": 12,
+      "filled_avg_price": 21.0108,
+      "filled_at": "2026-06-12T14:10:47.740608Z"
+    },
+    {
+      "symbol": "AVGO",
+      "filled_qty": 1,
+      "filled_avg_price": 387.06,
+      "filled_at": "2026-06-12T05:18:34.148553Z"
+    },
+    {
+      "symbol": "PFE",
+      "filled_qty": 1,
+      "filled_avg_price": 26.13,
+      "filled_at": "2026-06-12T01:21:39.341022Z"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-13-0431-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-13-0431-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-13-0431-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-13-0431-hourly-autopilot-runtime-gate-evaluation.json"
+  ]
+}
