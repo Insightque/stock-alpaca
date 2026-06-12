@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-12 09:34 KST_
+_Last updated: 2026-06-12 09:53 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-12-0951-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned account + runtime positions reconciliation 기준 `33` positions 유지, open orders `0`건이다. `AVGO`는 `5주`, `qty_available=5`, `RGTI`는 `49주`, `qty_available=49`, `SO`는 `5주`, `qty_available=5`로 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `0951` core/research preflight를 source-of-record로 사용했고 runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-11T20:00:00Z)/get_account_activities(activity_types=FILL, after=2026-06-11T20:00:00Z)/get_watchlists/get_stock_latest_quote(feed=iex)/get_stock_snapshot(feed=iex)`로 same-session order budget과 submit-boundary quote freshness를 재확인했다. regular market은 closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours orders `0`, same-session fills `0`, watchlists `0`이었다. separate session budget `0/2`는 열려 있었지만 freshest IEX quote도 `ADBE 20:55:03Z`, `RGTI 20:54:49Z`로 이미 약 `238분` stale였고 `PLTR/QQQ/SPY`도 모두 5분 cap을 넘겨 이번 `0951` cycle은 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-0951-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 
