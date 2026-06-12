@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-12 09:53 KST_
+_Last updated: 2026-06-12 10:22 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-12-1011-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: `PFE` 1주 sell @ `26.13 USD`
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime account/positions reconciliation 기준 `33` positions 유지, open orders `0`건이다. `PFE`는 `6주 -> 5주`, `qty_available=5`로 감소했고 `AVGO 5주`, `RGTI 49주`, `SO 5주`는 unchanged였다.
+- Recent reconciliation scope: scheduler-owned `1011` core/research preflight를 source-of-record로 사용했고 runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-11T20:00:00Z)/get_account_activities(activity_types=FILL, after=2026-06-11T20:00:00Z)/get_watchlists/get_stock_latest_quote(feed=iex)/get_stock_snapshot(feed=iex)/get_stock_latest_quote(feed=overnight)`로 same-session order budget과 submit-boundary quote freshness를 재확인했다. regular market은 closed, account `ACTIVE`, positions `33`, open orders `0`, watchlists `0`이었다. buy path는 `review_backlog_pending_1d_count=14`로 차단됐지만 sell-first 재평가에서 `PFE`가 repeated weak-review evidence와 overnight quote `26.12/26.16`, spread `0.1529%`를 충족해 1주 trim sell이 즉시 체결됐다. separate session budget은 `0/2 -> 1/2`가 됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-1011-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 

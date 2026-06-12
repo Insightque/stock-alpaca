@@ -5,6 +5,12 @@ asset_type: stock
 
 # PFE
 
+## 2026-06-12 10:21 KST after-hours-autopilot
+
+`PFE` 1주 after-hours day limit trim sell이 `26.12 USD` limit, `extended_hours=true`, `client_order_id=ah-20260612-1011-sell-pfe-01`로 제출됐고 same client id reconciliation 기준 `filled_avg_price=26.13 USD`로 즉시 체결됐다. buy fallback은 `review_backlog_pending_1d_count=14`에 따른 risk backlog throttle로 차단됐지만, `2026-06-09`, `2026-06-05`, `2026-06-04` portfolio review에 반복 약세로 남아 있던 defensive-diversification validation holding이라는 점, runtime overnight quote `26.12/26.16` spread `0.1529%`, open-order duplicate 없음이 확인돼 sell-first floor-size trim으로 승격됐다. post-trade `get_all_positions` 기준 보유수량은 `6주 -> 5주`, `avg_entry_price=26.033333`, `qty_available=5`로 감소했고 review bucket은 `after_hours_validation`을 유지한다.
+
+출처: [[2026-06-12-1011-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-12-1011-after-hours-autopilot-post-trade.json`
+
 ## 2026-06-10 23:54 KST hourly-autopilot
 
 `PFE` 1주 regular-session day limit buy가 `25.72 USD` limit으로 제출됐고 immediate reconciliation 기준 `filled_avg_price=25.70 USD`로 즉시 체결됐다. scheduler-owned `2351` stale cleanup/core/research preflight와 strict universe/MCP/risk gate가 모두 통과했고, sell-first에서는 `RGTI`와 `AVGO`가 same-day sell duplicate, `SO`가 trim metric gap으로 blocked였다. buy fallback에서는 `BAC/WMT` same-day duplicate, `SPY/QQQ` per-order cap 초과가 남아 `PFE`가 healthcare diversifier floor-size learning order로 승격됐다. post-trade `get_all_positions` 기준 보유수량은 `5주 -> 6주`, `avg_entry_price=26.033333`, `qty_available=6`으로 증가했고 review status는 `회고 대기(1D/5D/20D)`다.
