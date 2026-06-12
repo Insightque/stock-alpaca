@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-12 22:41 KST_
+_Last updated: 2026-06-12 22:51 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-2251-hourly-autopilot]]
+- Open/new: 기존 `RGTI` sell 12주 limit `21.01 USD`, `client_order_id=hourly-20260612-2231-sell-rgti`, `status=new`가 유지됐다.
+- Filled: 이번 cycle 신규 체결 없음. same-day earlier fills는 `AVGO` sell 1주 `387.06 USD`, `PFE` sell 1주 `26.13 USD`다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned `2251` core preflight current snapshot 기준 positions `33`건, open orders `1`건, `RGTI 49주`와 `qty_available=37`, `AVGO 4주`, `PFE 5주`였다.
+- Recent reconciliation scope: scheduler-owned `2251` stale cleanup/core/research preflight를 source-of-record로 사용했다. stale cleanup은 `RGTI` open sell age 약 `9.9분`이라 stale candidate 없이 pass했고, core preflight는 regular market open, account `ACTIVE`, portfolio value `99,943.63 USD`, cash `31,698.23 USD`, buying power `301,286.79 USD`, watchlists `0`를 재확인했다. 이번 cycle은 신규 submit 없이 exact gate blockers만 기록했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-2251-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

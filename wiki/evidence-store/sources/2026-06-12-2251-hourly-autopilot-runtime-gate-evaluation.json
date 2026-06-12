@@ -1,0 +1,296 @@
+{
+  "run_id": "2026-06-12-2251-hourly-autopilot",
+  "recorded_at": "2026-06-12T13:51:28Z",
+  "paper": true,
+  "market_session": "regular",
+  "core_preflight_hard_gate": {
+    "status": "pass",
+    "checks": {
+      "clock": true,
+      "market_open": true,
+      "account": true,
+      "positions": true,
+      "open_orders": true,
+      "recent_activities": true,
+      "quotes": true
+    },
+    "first_blocking_gate": "",
+    "gap_category": "not_applicable",
+    "gap_reason": "",
+    "max_retry_count": 2
+  },
+  "stale_cleanup": {
+    "run_id": "2026-06-12-2251-hourly-autopilot",
+    "created_at": "2026-06-12T13:51:03Z",
+    "paper": true,
+    "source": "scheduler Alpaca MCP stale autopilot order cleanup",
+    "alpaca_mcp_only": true,
+    "dry_run": false,
+    "policy": {
+      "max_open_order_age_minutes": 30.0,
+      "cancel_stale_unfilled_orders": true,
+      "client_order_id_prefix": "hourly-"
+    },
+    "clock": {
+      "is_open": true,
+      "timestamp": "2026-06-12T09:51:05.079714231-04:00",
+      "next_open": "2026-06-15T09:30:00-04:00",
+      "next_close": "2026-06-12T16:00:00-04:00"
+    },
+    "initial_open_orders": [
+      {
+        "id": "1f49ece2-83b5-4136-bf38-e3794c1184fb",
+        "client_order_id": "hourly-20260612-2231-sell-rgti",
+        "created_at": "2026-06-12T13:41:09.288731522Z",
+        "updated_at": "2026-06-12T13:41:09.303499942Z",
+        "submitted_at": "2026-06-12T13:41:09.3025829Z",
+        "filled_at": null,
+        "expired_at": null,
+        "canceled_at": null,
+        "failed_at": null,
+        "replaced_at": null,
+        "replaced_by": null,
+        "replaces": null,
+        "asset_id": "96f02726-cdd4-4333-b56a-b3e1bfbb26d9",
+        "symbol": "RGTI",
+        "asset_class": "us_equity",
+        "notional": null,
+        "qty": "12",
+        "filled_qty": "0",
+        "filled_avg_price": null,
+        "order_class": "",
+        "order_type": "limit",
+        "type": "limit",
+        "side": "sell",
+        "position_intent": "sell_to_close",
+        "time_in_force": "day",
+        "limit_price": "21.01",
+        "stop_price": null,
+        "status": "new",
+        "extended_hours": false,
+        "legs": null,
+        "trail_percent": null,
+        "trail_price": null,
+        "hwm": null,
+        "subtag": null,
+        "source": null,
+        "expires_at": "2026-06-12T20:00:00Z"
+      }
+    ],
+    "stale_candidates": [],
+    "cancel_attempts": [],
+    "remaining_open_orders": [
+      {
+        "id": "1f49ece2-83b5-4136-bf38-e3794c1184fb",
+        "client_order_id": "hourly-20260612-2231-sell-rgti",
+        "created_at": "2026-06-12T13:41:09.288731522Z",
+        "updated_at": "2026-06-12T13:41:09.303499942Z",
+        "submitted_at": "2026-06-12T13:41:09.3025829Z",
+        "filled_at": null,
+        "expired_at": null,
+        "canceled_at": null,
+        "failed_at": null,
+        "replaced_at": null,
+        "replaced_by": null,
+        "replaces": null,
+        "asset_id": "96f02726-cdd4-4333-b56a-b3e1bfbb26d9",
+        "symbol": "RGTI",
+        "asset_class": "us_equity",
+        "notional": null,
+        "qty": "12",
+        "filled_qty": "0",
+        "filled_avg_price": null,
+        "order_class": "",
+        "order_type": "limit",
+        "type": "limit",
+        "side": "sell",
+        "position_intent": "sell_to_close",
+        "time_in_force": "day",
+        "limit_price": "21.01",
+        "stop_price": null,
+        "status": "new",
+        "extended_hours": false,
+        "legs": null,
+        "trail_percent": null,
+        "trail_price": null,
+        "hwm": null,
+        "subtag": null,
+        "source": null,
+        "expires_at": "2026-06-12T20:00:00Z"
+      }
+    ],
+    "status": "pass",
+    "gap_category": "not_applicable",
+    "gap_reason": ""
+  },
+  "live_checks": {
+    "clock": {
+      "timestamp": "2026-06-12T09:51:07.544358301-04:00",
+      "is_open": true
+    },
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 99943.63,
+      "cash": 31698.23,
+      "buying_power": 301286.79
+    },
+    "open_orders": {
+      "count": 1,
+      "items": [
+        {
+          "symbol": "RGTI",
+          "side": "sell",
+          "qty": 12,
+          "limit_price": 21.01,
+          "status": "new",
+          "client_order_id": "hourly-20260612-2231-sell-rgti",
+          "submitted_at": "2026-06-12T13:41:09.3025829Z"
+        }
+      ]
+    },
+    "same_day_fills": [
+      {
+        "symbol": "AVGO",
+        "side": "sell",
+        "qty": 1,
+        "price": 387.06,
+        "transaction_time": "2026-06-12T05:18:34.148553Z",
+        "order_id": "ecdd85cb-0b94-410c-b9f8-5e29f4a8ee2b",
+        "type": "prior_same_day_fill"
+      },
+      {
+        "symbol": "PFE",
+        "side": "sell",
+        "qty": 1,
+        "price": 26.13,
+        "transaction_time": "2026-06-12T01:21:39.341022Z",
+        "order_id": "55c86822-6b9f-4a2d-9e6d-68da31517381",
+        "type": "prior_same_day_fill"
+      }
+    ],
+    "candidate_quotes": {
+      "RGTI": {
+        "bid": 20.6,
+        "ask": 20.61,
+        "spread_pct": 0.0485,
+        "timestamp": "2026-06-12T13:51:25.789503803Z"
+      },
+      "AVGO": {
+        "bid": 379.86,
+        "ask": 380.39,
+        "spread_pct": 0.1394,
+        "timestamp": "2026-06-12T13:51:25.376061318Z"
+      },
+      "SO": {
+        "bid": 93.99,
+        "ask": 94.15,
+        "spread_pct": 0.1701,
+        "timestamp": "2026-06-12T13:51:26.143752806Z"
+      },
+      "WMT": {
+        "bid": 120.88,
+        "ask": 120.95,
+        "spread_pct": 0.0579,
+        "timestamp": "2026-06-12T13:51:26.335623757Z"
+      },
+      "NEE": {
+        "bid": 85.16,
+        "ask": 85.19,
+        "spread_pct": 0.0352,
+        "timestamp": "2026-06-12T13:51:25.076379175Z"
+      },
+      "SPY": {
+        "bid": 735.47,
+        "ask": 735.92,
+        "spread_pct": 0.0612,
+        "timestamp": "2026-06-12T13:51:26.371481935Z"
+      },
+      "QQQ": {
+        "bid": 712.94,
+        "ask": 713.02,
+        "spread_pct": 0.0112,
+        "timestamp": "2026-06-12T13:51:26.107350018Z"
+      }
+    }
+  },
+  "candidate_evaluation": {
+    "sell_first": [
+      {
+        "symbol": "RGTI",
+        "decision": "blocked_open_order_duplicate",
+        "reason": "fresh spread 0.0485% and held qty 49 are still trim-eligible, but 2231 cycle open sell 12주가 same symbol/side open-order duplicate gate를 유지한다"
+      },
+      {
+        "symbol": "AVGO",
+        "decision": "blocked_same_day_duplicate_sell",
+        "reason": "fresh spread 0.1394%로 정상화됐지만 2026-06-12T05:18:34Z same-day sell fill 1주가 duplicate sell discipline을 유지한다"
+      },
+      {
+        "symbol": "SO",
+        "decision": "blocked_metric_gap",
+        "reason": "fresh spread 0.1701%는 통과했지만 trim decision-grade metric gap persists"
+      }
+    ],
+    "buy_fallback": [
+      {
+        "symbol": "WMT",
+        "decision": "blocked_review_backlog_only",
+        "reason": "spread 0.0579% and 1-share ask 120.95 USD are executable but review_backlog_pending_1d_count=14 exceeds stop threshold 12"
+      },
+      {
+        "symbol": "NEE",
+        "decision": "blocked_review_backlog_only",
+        "reason": "spread 0.0352% and 1-share ask 85.19 USD are executable but review_backlog_pending_1d_count=14 exceeds stop threshold 12"
+      },
+      {
+        "symbol": "SPY",
+        "decision": "blocked_floor_cap_and_review_backlog",
+        "reason": "1-share ask 735.92 USD exceeds validation floor per-order cap about 499.72 USD and buy backlog stop is active"
+      },
+      {
+        "symbol": "QQQ",
+        "decision": "blocked_floor_cap_and_review_backlog",
+        "reason": "1-share ask 713.02 USD exceeds validation floor per-order cap about 499.72 USD and buy backlog stop is active"
+      },
+      {
+        "symbol": "NOK",
+        "decision": "blocked_validation_lifecycle_add_block",
+        "reason": "review-due-index lists NOK in blocked_add_symbols until due validation review is written"
+      }
+    ]
+  },
+  "selected_order": null,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-12-2251-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-12-2251-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-2251-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-2251-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-12-portfolio-review.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/PFE.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/WMT.md",
+    "wiki/research-notes/tickers/NEE.md",
+    "wiki/research-notes/tickers/SPY.md",
+    "wiki/research-notes/tickers/QQQ.md",
+    "wiki/research-notes/tickers/NOK.md"
+  ],
+  "submitted_order_result": null,
+  "post_trade_reconciliation": {
+    "status": "preexisting_open_order_pending",
+    "checked_via": [
+      "scheduler-owned stale cleanup",
+      "scheduler-owned Alpaca core preflight get_orders_open",
+      "scheduler-owned Alpaca core preflight get_all_positions"
+    ],
+    "order_status": "new",
+    "filled_qty": 0,
+    "filled_avg_price": null,
+    "note": "이번 2251 cycle에는 새 submit attempt가 없었다. 다만 2231 cycle `hourly-20260612-2231-sell-rgti`가 여전히 `status=new` open order이며 `qty_available=37`로 예약 상태가 유지된 것을 scheduler-owned stale cleanup/core preflight가 재확인했다."
+  }
+}
