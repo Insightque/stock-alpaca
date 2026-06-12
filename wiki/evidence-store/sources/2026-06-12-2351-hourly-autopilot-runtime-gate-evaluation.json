@@ -1,0 +1,107 @@
+{
+  "run_id": "2026-06-12-2351-hourly-autopilot",
+  "created_at": "2026-06-12T14:51:31Z",
+  "paper": true,
+  "source": "scheduled hourly-autopilot runtime gate evaluation",
+  "workflow": "harness/workflows/hourly-autopilot.md",
+  "market_clock_timestamp": "2026-06-12T10:51:11.313002467-04:00",
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "portfolio_value": 100202.02,
+    "cash": 31950.36,
+    "buying_power": 302247.54,
+    "long_market_value": 68251.66,
+    "position_count": 33,
+    "open_orders": 0,
+    "watchlists": 0
+  },
+  "hard_gates": {
+    "paper_mode": "pass",
+    "market_open": "pass",
+    "stale_order_lifecycle": "pass",
+    "alpaca_core": "pass",
+    "research_mcp_tiered": "pass",
+    "universe_strict": "pass",
+    "risk_validator": "pass",
+    "submit_path": "blocked_no_submit"
+  },
+  "candidate_blockers": {
+    "sell_first": [
+      {
+        "symbol": "RGTI",
+        "decision": "blocked_spread_and_same_day_duplicate_sell",
+        "reason": "fresh spread 2.7965%가 policy cap 0.50%를 크게 초과하고 2231 cycle sell 12주가 2026-06-12T14:10:47.740608Z에 filled 처리돼 same-day duplicate sell discipline도 유지된다"
+      },
+      {
+        "symbol": "AVGO",
+        "decision": "blocked_spread_and_same_day_duplicate_sell",
+        "reason": "fresh spread 1.3441%가 policy cap 0.50%를 크게 초과하고 2026-06-12T05:18:34.148553Z same-day sell fill 1주도 남아 있다"
+      },
+      {
+        "symbol": "SO",
+        "decision": "blocked_metric_gap",
+        "reason": "fresh spread 0.0426%는 통과했지만 trim decision-grade metric gap persists"
+      }
+    ],
+    "buy_fallback": [
+      {
+        "symbol": "WMT",
+        "decision": "blocked_review_backlog_only",
+        "reason": "spread 0.0501% and 1-share ask 119.81 USD are executable but review_backlog_pending_1d_count=14 exceeds stop threshold 12"
+      },
+      {
+        "symbol": "NEE",
+        "decision": "blocked_review_backlog_only",
+        "reason": "spread 0.0234% and 1-share ask 85.60 USD are executable but review_backlog_pending_1d_count=14 exceeds stop threshold 12"
+      },
+      {
+        "symbol": "SPY",
+        "decision": "blocked_floor_cap_and_review_backlog",
+        "reason": "1-share ask 738.11 USD exceeds validation floor per-order cap about 501.01 USD and buy backlog stop is active"
+      },
+      {
+        "symbol": "QQQ",
+        "decision": "blocked_floor_cap_and_review_backlog",
+        "reason": "1-share ask 715.84 USD exceeds validation floor per-order cap about 501.01 USD and buy backlog stop is active"
+      },
+      {
+        "symbol": "NOK",
+        "decision": "blocked_validation_lifecycle_add_block",
+        "reason": "review-due-index lists NOK in blocked_add_symbols until due validation review is written"
+      }
+    ]
+  },
+  "first_blocking_gate": "spread_within_policy",
+  "same_day_fills_seen": [
+    {
+      "symbol": "RGTI",
+      "filled_qty": 12,
+      "filled_avg_price": 21.010833,
+      "filled_at": "2026-06-12T14:10:47.740608Z"
+    },
+    {
+      "symbol": "AVGO",
+      "filled_qty": 1,
+      "filled_avg_price": 387.06,
+      "filled_at": "2026-06-12T05:18:34.148553Z"
+    },
+    {
+      "symbol": "PFE",
+      "filled_qty": 1,
+      "filled_avg_price": 26.13,
+      "filled_at": "2026-06-12T01:21:39.341022Z"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-12-2351-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-12-2351-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-2351-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-12-portfolio-review.md"
+  ],
+  "validators": {
+    "universe_strict": "PASS",
+    "mcp_strict": "PASS",
+    "risk_policy": "PASS"
+  }
+}

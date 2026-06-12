@@ -1,0 +1,54 @@
+{
+  "run_id": "2026-06-12-2351-hourly-autopilot",
+  "created_at": "2026-06-12T14:51:31Z",
+  "paper": true,
+  "submit_attempted": false,
+  "reconciliation_reason": "scheduler_preflight_no_submit_snapshot",
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "portfolio_value": 100202.02,
+    "cash": 31950.36,
+    "buying_power": 302247.54,
+    "long_market_value": 68251.66,
+    "currency": "USD"
+  },
+  "positions_summary": {
+    "position_count": 33,
+    "open_orders": 0,
+    "focus_positions": [
+      {
+        "symbol": "RGTI",
+        "qty": 37,
+        "qty_available": 37,
+        "avg_entry_price": 25.569583,
+        "current_price": 21.0699
+      },
+      {
+        "symbol": "AVGO",
+        "qty": 4,
+        "qty_available": 4,
+        "avg_entry_price": 420.836,
+        "current_price": 377.96
+      },
+      {
+        "symbol": "PFE",
+        "qty": 5,
+        "qty_available": 5,
+        "avg_entry_price": 26.033333,
+        "current_price": 26.26
+      }
+    ]
+  },
+  "checked_via": [
+    "scheduler-owned stale cleanup",
+    "scheduler-owned Alpaca core preflight get_orders_open",
+    "scheduler-owned Alpaca core preflight get_account_activities",
+    "scheduler-owned Alpaca core preflight get_account_info",
+    "scheduler-owned Alpaca core preflight get_all_positions"
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-12-2351-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-12-2351-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/current-runs/daily/2026-06-12-2351-hourly-autopilot.md"
+  ]
+}
