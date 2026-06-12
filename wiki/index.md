@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-12 23:11 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-12 23:31 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -54,6 +54,7 @@
 
 ## Current Runs
 
+- [[2026-06-12-2331-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2331` stale cleanup/core/research preflight를 source-of-record로 사용했고 Alpaca core hard gate, universe strict, MCP strict, risk validator가 모두 PASS했다. 다만 `RGTI`는 same-day duplicate sell discipline, `AVGO`는 spread `2.0442%` fail plus same-day sell duplicate, `SO`는 trim decision-grade metric gap, `WMT/NEE`는 `review_backlog_pending_1d_count=14` buy stop, `SPY/QQQ`는 validation floor per-order cap, `NOK`는 validation_lifecycle add-block에 각각 막혀 submit-mode no-op로 종료했다.
 - [[2026-06-12-2311-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2311` stale cleanup/core/research preflight를 source-of-record로 사용했고 Alpaca core hard gate, universe strict, MCP strict, risk validator가 모두 PASS했다. 다만 `2231` cycle `RGTI` sell 12주가 `2026-06-12T14:10:47.740608Z`에 `filled_avg_price=21.010833 USD`로 체결되면서 same-day duplicate sell discipline으로 전환됐고, `AVGO`는 spread `2.7850%` fail plus same-day sell duplicate, `SO`는 trim decision-grade metric gap, `WMT/NEE`는 `review_backlog_pending_1d_count=14` buy stop, `SPY/QQQ`는 validation floor per-order cap, `NOK`는 validation_lifecycle add-block에 각각 막혀 submit-mode no-op로 종료했다.
 - [[2026-06-12-2251-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2251` stale cleanup/core/research preflight를 source-of-record로 사용했고 Alpaca core hard gate, universe strict, MCP strict, risk validator가 모두 PASS했다. 다만 직전 `2231`의 `RGTI` open sell 12주가 same symbol/side duplicate gate를 유지했고, `AVGO`는 same-day sell duplicate, `SO`는 trim decision-grade metric gap, `WMT/NEE`는 `review_backlog_pending_1d_count=14` buy stop, `SPY/QQQ`는 validation floor per-order cap, `NOK`는 validation_lifecycle add-block에 각각 막혀 submit-mode no-op로 종료했다.
 - [[2026-06-12-2231-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2231` stale cleanup/core/research preflight를 source-of-record로 사용했고 Alpaca core hard gate, universe strict, MCP strict, risk validator가 모두 PASS했다. `review_backlog_pending_1d_count=14`로 신규 buy는 계속 차단됐지만 sell-first 재평가에서 `RGTI`가 spread `0.1427%`, duplicate/open-order clear, speculative-loss control trigger 조건을 충족해 12주 trim sell을 제출했다. immediate Alpaca readback 기준 `client_order_id=hourly-20260612-2231-sell-rgti`는 `status=new` open order이며 post-submit positions/account refresh는 다음 reconciliation cycle로 이월됐다.

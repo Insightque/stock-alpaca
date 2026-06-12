@@ -1,0 +1,137 @@
+{
+  "run_id": "2026-06-12-2331-hourly-autopilot",
+  "created_at": "2026-06-12T14:31:31Z",
+  "paper": true,
+  "mode": "submit",
+  "session": "regular",
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-12T10:31:09.684987682-04:00",
+    "next_open": "2026-06-15T09:30:00-04:00",
+    "next_close": "2026-06-12T16:00:00-04:00"
+  },
+  "hard_gates": {
+    "paper_mode": "pass",
+    "market_open": "pass",
+    "alpaca_core": "pass",
+    "research_mcp_tiered": "pass",
+    "universe_strict": "pass",
+    "risk_policy": "pass",
+    "review_backlog_throttle": "buy_block_only"
+  },
+  "sell_first": [
+    {
+      "symbol": "RGTI",
+      "decision": "blocked_same_day_duplicate_sell",
+      "bid": 21.32,
+      "ask": 21.38,
+      "spread_pct": 0.281,
+      "held_qty": 37,
+      "note": "2231 cycle sell 12주가 2026-06-12T14:10:47.740608Z에 filled 처리되어 same-day duplicate sell discipline이 추가 trim을 막는다."
+    },
+    {
+      "symbol": "AVGO",
+      "decision": "blocked_spread_and_same_day_duplicate_sell",
+      "bid": 375.25,
+      "ask": 383.0,
+      "spread_pct": 2.0442,
+      "held_qty": 4,
+      "note": "spread가 policy cap 0.50%를 크게 초과했고 2026-06-12T05:18:34.148553Z same-day sell fill 1주도 남아 있다."
+    },
+    {
+      "symbol": "SO",
+      "decision": "blocked_metric_gap",
+      "bid": 94.55,
+      "ask": 94.61,
+      "spread_pct": 0.0634,
+      "held_qty": 5,
+      "note": "quote/spread는 통과했지만 trim decision-grade metric gap이 해소되지 않았다."
+    }
+  ],
+  "buy_fallback": [
+    {
+      "symbol": "WMT",
+      "decision": "blocked_review_backlog_only",
+      "ask": 120.29,
+      "spread_pct": 0.0416
+    },
+    {
+      "symbol": "NEE",
+      "decision": "blocked_review_backlog_only",
+      "ask": 85.93,
+      "spread_pct": 0.0233
+    },
+    {
+      "symbol": "SPY",
+      "decision": "blocked_floor_cap_and_review_backlog",
+      "ask": 740.3,
+      "spread_pct": 0.0446,
+      "validation_floor_cap_usd": 502.52
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "blocked_floor_cap_and_review_backlog",
+      "ask": 718.91,
+      "spread_pct": 0.0737,
+      "validation_floor_cap_usd": 502.52
+    },
+    {
+      "symbol": "NOK",
+      "decision": "blocked_validation_lifecycle_add_block",
+      "ask": 14.86,
+      "spread_pct": 0.0673
+    }
+  ],
+  "alpaca_reconciliation": {
+    "checked_via": [
+      "scheduler-owned stale cleanup",
+      "scheduler-owned Alpaca core preflight"
+    ],
+    "same_day_fills_seen": [
+      {
+        "symbol": "RGTI",
+        "side": "sell",
+        "filled_qty": 12,
+        "filled_at": "2026-06-12T14:10:47.740608Z",
+        "filled_avg_price": 21.010833
+      },
+      {
+        "symbol": "AVGO",
+        "side": "sell",
+        "filled_qty": 1,
+        "filled_at": "2026-06-12T05:18:34.148553Z",
+        "filled_avg_price": 387.06
+      },
+      {
+        "symbol": "PFE",
+        "side": "sell",
+        "filled_qty": 1,
+        "filled_at": "2026-06-12T01:21:39.341022Z",
+        "filled_avg_price": 26.13
+      }
+    ],
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 100503.29,
+      "cash": 31950.36,
+      "buying_power": 303028.86,
+      "long_market_value": 68552.93
+    },
+    "open_orders": 0,
+    "position_count": 33,
+    "rgti_qty_available": 37
+  },
+  "final_submit_path": {
+    "result": "no_submit",
+    "first_blocking_gate": "duplicate_symbol_side_same_day",
+    "minimum_learning_orders_required": 1,
+    "minimum_learning_orders_planned": 0
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-12-2331-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-12-2331-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-2331-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/reviews/2026-06-11-portfolio-review.md",
+    "wiki/trade-ledger/reviews/review-due-index.json"
+  ]
+}
