@@ -1,0 +1,38 @@
+{
+  "run_id": "2026-06-13-0051-hourly-autopilot",
+  "created_at": "2026-06-12T15:51:31Z",
+  "paper": true,
+  "source": "scheduled hourly-autopilot no-submit reconciliation",
+  "status": "no_submit",
+  "account": {
+    "portfolio_value": 100325.65,
+    "cash": 31950.36,
+    "buying_power": 302542.71,
+    "currency": "USD"
+  },
+  "positions_count": 33,
+  "open_orders": 0,
+  "planned_orders": [],
+  "submitted_orders": [],
+  "note": "이번 cycle은 신규 submit attempt가 없었다. scheduler-owned stale cleanup/core preflight 기준 open orders 0, positions 33, account ACTIVE 상태를 source-of-record로 유지한다.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-13-0051-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-13-0051-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-13-0051-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-13-0051-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-12-portfolio-review.md",
+    "wiki/research-notes/tickers/FCX.md",
+    "wiki/research-notes/tickers/WMT.md",
+    "wiki/research-notes/tickers/NEE.md",
+    "wiki/research-notes/tickers/SPY.md",
+    "wiki/research-notes/tickers/QQQ.md",
+    "wiki/research-notes/tickers/NOK.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md"
+  ]
+}
