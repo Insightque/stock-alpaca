@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-13 06:42 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-13 06:53 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -54,6 +54,7 @@
 
 ## Current Runs
 
+- [[2026-06-13-0651-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0651` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-12T20:00:00Z)/get_watchlists` cross-check 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours orders `0`, watchlists `0`였다. separate after-hours session budget은 `0/2`로 열려 있었지만 `QQQ` freshest shortlist quote조차 runtime clock 대비 약 `55.52`분 stale이었고 `MSFT/SMH`도 58~71분 stale, `SPY/AVGO/SO/INTC/MU`는 113분 stale 또는 spread/notional cap fail이라 no-submit으로 종료했다.
 - [[2026-06-13-0631-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0631` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-12T20:00:00Z)/get_watchlists` cross-check 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours orders `0`, watchlists `0`였다. separate after-hours session budget은 `0/2`로 열려 있었지만 `QQQ` freshest shortlist quote조차 runtime clock 대비 약 `33.54`분 stale이었고 `MSFT/SMH`도 36~49분 stale, `SPY/AVGO/SO/INTC/MU`는 91분 stale 또는 spread/notional cap fail이라 no-submit으로 종료했다.
 - [[2026-06-13-portfolio-review]] - scheduled analyst review cycle 실행. Alpaca read-only reconciliation 기준 `2026-06-12 17:22 ET` market closed, account `ACTIVE`, portfolio value `100,506.96 USD`, cash `31,950.36 USD`, positions `33`, open orders `0`였다. 이번 cycle은 `2026-06-11 ET` after-hours trim 1D(`PFE/AVGO`)와 `2026-06-05 ET` fill cohort 5D(`JPM/SO/PFE/AMZN/COP/SLB/NVDA/V/AAPL/PLTR/FCX/WMT/BAC`)를 닫았고, `AVGO` trim은 양호했으며 `AAPL/PLTR/AMZN` 5D 약세가 계속 확인됐다. `portfolio_history`는 3회 cancelled, `sec-edgar` insider summary는 cancelled, `fred/firecrawl`은 namespace 미노출이라 policy-book은 바꾸지 않았다.
 - [[2026-06-13-0611-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0611` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-12T20:00:00Z)/get_watchlists` cross-check 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours orders `0`, watchlists `0`였다. separate after-hours session budget은 `0/2`로 열려 있었지만 `QQQ`를 포함한 shortlisted quotes가 모두 fresh-quote 5분 cap을 넘거나 spread/notional cap을 동시에 위반해 no-submit으로 종료했다.
