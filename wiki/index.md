@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-12 14:33 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-12 14:53 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -54,6 +54,7 @@
 
 ## Current Runs
 
+- [[2026-06-12-1451-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1451` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP `get_orders(status=all, after=2026-06-11T20:00:00Z)` readback 기준 same-session after-hours fills가 여전히 `PFE`, `AVGO` 두 건이라 separate after-hours session budget이 `2/2`로 계속 닫혀 있었고, 이번 `1451` cycle도 no-submit으로 종료했다.
 - [[2026-06-12-1431-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1431` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP `get_orders(status=all, after=2026-06-11T20:00:00Z)` readback 기준 same-session after-hours fills가 `PFE`, `AVGO` 두 건으로 확인되어 separate after-hours session budget이 `2/2`로 닫혔다. `AVGO` prior fill은 exact `filled_avg_price=387.06 USD`로 보강됐고, 이번 `1431` cycle 자체는 no-submit으로 종료했다.
 - [[2026-06-12-1411-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1411` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 earlier `1011` `PFE` trim fill 이후 `1/2`가 남아 있었고, runtime `overnight` quote `AVGO 386.79/387.61` spread `0.2119%`가 5분 freshness cap과 0.25% spread cap을 통과해 `client_order_id=ah-20260612-1411-sell-avgo-01` 1주 trim sell submit path를 열었다. `place_stock_order`는 `order_id=ecdd85cb-0b94-410c-b9f8-5e29f4a8ee2b`, `status=pending_new`를 반환했고 immediate `get_all_positions`에서 `AVGO 5주 -> 4주`가 확인돼 filled reconciliation으로 기록했다. exposed runtime surface에는 post-submit `get_order_by_client_id`/`get_orders` readback이 없어 exact `filled_avg_price`는 비어 있다.
 - [[2026-06-12-1351-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1351` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. direct Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-11T20:00:00Z)/get_watchlists` cross-check도 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours fill `1`(`PFE`), watchlists `0`를 유지했다. separate after-hours order budget `1/2`는 남아 있었지만 submit-boundary IEX quote 기준 freshest `ADBE/RGTI`조차 약 `476`분 stale였고 `PFE/AVGO/RGTI/SO/ORCL`은 spread도 실패해 no-submit으로 종료했다.
