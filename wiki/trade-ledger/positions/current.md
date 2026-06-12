@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-12 14:18 KST_
+_Last updated: 2026-06-12 14:33 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-12-1431-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 이번 cycle 신규 체결 없음. same-session earlier fills `PFE`, `AVGO`는 유지됐고 `AVGO` readback exact `filled_avg_price=387.06 USD`를 확인했다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: runtime `get_all_positions` 기준 positions `33`건 유지, `AVGO 4주`, `PFE 5주`, open orders `0`건이다.
+- Recent reconciliation scope: scheduler-owned `1431` core/research preflight를 source-of-record로 사용했다. runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-11T20:00:00Z)/get_watchlists` cross-check 기준 regular market closed, account `ACTIVE`, cash `31,698.25 USD`, portfolio value `99,939.70 USD`, long market value `68,241.45 USD`, watchlists `0`이었다. same-session after-hours fills는 `PFE` 1건과 `AVGO` 1건으로 `2/2`가 되어 separate session budget이 닫혔고, 이번 `1431` cycle은 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-1431-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 
