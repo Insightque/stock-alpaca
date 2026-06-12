@@ -1,0 +1,65 @@
+{
+  "run_id": "2026-06-12-1751-after-hours-autopilot",
+  "created_at": "2026-06-12T08:53:32Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "artifact_tag": "after-hours",
+  "order_id_prefix": "ah-",
+  "paper": true,
+  "regular_market_closed": true,
+  "same_session_after_hours_orders_submitted_today": 2,
+  "same_session_after_hours_fills_detected": 2,
+  "filled_order_readback": [
+    {
+      "client_order_id": "ah-20260612-1011-sell-pfe-01",
+      "order_id": "55c86822-6b9f-4a2d-9e6d-68da31517381",
+      "symbol": "PFE",
+      "side": "sell",
+      "qty": 1,
+      "limit_price": 26.12,
+      "filled_avg_price": 26.13,
+      "filled_at": "2026-06-12T01:21:39.341022Z",
+      "status": "filled",
+      "extended_hours": true
+    },
+    {
+      "client_order_id": "ah-20260612-1411-sell-avgo-01",
+      "order_id": "ecdd85cb-0b94-410c-b9f8-5e29f4a8ee2b",
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1,
+      "limit_price": 386.79,
+      "filled_avg_price": 387.06,
+      "filled_at": "2026-06-12T05:18:34.148553Z",
+      "status": "filled",
+      "extended_hours": true
+    }
+  ],
+  "gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_scheduler_preflight_rows_plus_runtime_reconciliation",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "block_after_hours_session_budget_exhausted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_empty_order_plan",
+    "fresh_quote": "not_actionable_budget_exhausted_before_submit_path",
+    "spread_within_after_hours_policy": "not_actionable_budget_exhausted_before_submit_path",
+    "whole_share_day_limit_extended_hours_order": "not_applicable_no_order",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "not_applicable_no_submit"
+  },
+  "decision_summary": {
+    "action": "no_submit_session_budget_exhausted",
+    "reason": "The 1751 after-hours workflow kept paper mode, expected regular-market-closed handling, universe strict, MCP strict, and risk validation available. The scheduler-owned 1751 Alpaca core preflight already contained passing account, positions, open-order, activity, watchlist, asset, quote, and trade rows, and runtime Alpaca MCP readback reconfirmed the same two same-session after-hours fills had already consumed the separate policy budget: PFE at 1011 and AVGO at 1411. The 1751 cycle therefore recorded reconciliation only and did not open a new submit boundary.",
+    "eligible_sell_trim_found": "not_evaluated_budget_closed",
+    "eligible_buy_fallback_found": "not_evaluated_budget_closed",
+    "separate_session_budget_remaining": 0
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-12-1751-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-1751-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
