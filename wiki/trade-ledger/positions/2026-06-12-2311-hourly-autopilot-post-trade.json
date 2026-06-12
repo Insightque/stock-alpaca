@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-12-2311-hourly-autopilot",
+  "created_at": "2026-06-12T14:11:30Z",
+  "paper": true,
+  "submit_attempted": false,
+  "reconciliation_reason": "same_day_fill_reconciliation_without_new_submit",
+  "prior_order": {
+    "client_order_id": "hourly-20260612-2231-sell-rgti",
+    "order_id": "1f49ece2-83b5-4136-bf38-e3794c1184fb",
+    "symbol": "RGTI",
+    "side": "sell",
+    "qty": 12,
+    "limit_price": 21.01,
+    "status": "filled",
+    "filled_qty": 12,
+    "filled_avg_price": 21.010833,
+    "filled_at": "2026-06-12T14:10:47.740608Z"
+  },
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "portfolio_value": 100469.09,
+    "cash": 31950.36,
+    "buying_power": 302893.71,
+    "long_market_value": 68518.73,
+    "currency": "USD"
+  },
+  "positions_summary": {
+    "position_count": 33,
+    "open_orders": 0,
+    "focus_positions": [
+      {
+        "symbol": "RGTI",
+        "qty": 37,
+        "qty_available": 37,
+        "avg_entry_price": 25.569583,
+        "current_price": 21.17
+      },
+      {
+        "symbol": "AVGO",
+        "qty": 4,
+        "qty_available": 4,
+        "avg_entry_price": 420.836,
+        "current_price": 381.44
+      },
+      {
+        "symbol": "PFE",
+        "qty": 5,
+        "qty_available": 5,
+        "avg_entry_price": 26.033333,
+        "current_price": 26.3283
+      }
+    ]
+  },
+  "checked_via": [
+    "scheduler-owned stale cleanup",
+    "scheduler-owned Alpaca core preflight get_orders_open",
+    "scheduler-owned Alpaca core preflight get_account_activities",
+    "runtime Alpaca MCP get_orders(status=all, symbols=RGTI)",
+    "runtime Alpaca MCP get_account_info",
+    "runtime Alpaca MCP get_all_positions"
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/current-runs/daily/2026-06-12-2311-hourly-autopilot.md"
+  ]
+}

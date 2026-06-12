@@ -1,0 +1,417 @@
+{
+  "run_id": "2026-06-12-2311-hourly-autopilot",
+  "schema_version": "1.0",
+  "created_at": "2026-06-12T14:11:30Z",
+  "mode": "submit",
+  "paper": true,
+  "git_commit": "f3e3a779d63492ae131a648aa5faba72e86de260",
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "risk_policy_version": "medium-risk-v1.2",
+  "market_clock_checked_at": "2026-06-12T10:11:11.463686549-04:00",
+  "data_cutoff_time": "2026-06-12T14:11:30Z",
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_actionable": 3,
+    "min_research_confirmations_for_submit": 3,
+    "all_research_must_be_attempted": true,
+    "provider_gap_blocks_order": false,
+    "critical_source_rules": {
+      "earnings_signal": {
+        "require_any": [
+          "sec-edgar",
+          "alpha-vantage",
+          "firecrawl_company_ir"
+        ],
+        "missing_behavior": "downgrade_to_watch"
+      },
+      "macro_rate_sensitive_signal": {
+        "require_any": [
+          "fred",
+          "explicit_macro_source"
+        ],
+        "missing_behavior": "downgrade_to_watch"
+      },
+      "filing_risk_signal": {
+        "require_any": [
+          "sec-edgar_acceptance_time"
+        ],
+        "missing_behavior": "block_new_buy"
+      },
+      "analyst_only_signal": {
+        "allowed_use": "thesis_confirmation_only",
+        "missing_behavior": "no_positive_score_delta"
+      }
+    }
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-12T14:11:30Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-12T14:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-12T14:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-12T13:31:35+00:00, retry after ~1204s.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-12T13:31:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-12T14:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-12T14:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-12T14:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-12T13:31:35+00:00, retry after ~1204s.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    }
+  ],
+  "open_order_lifecycle": {
+    "stale_cleanup_source_ref": "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-stale-order-cleanup.json",
+    "cleanup_status": "pass",
+    "open_orders_seen": 0,
+    "remaining_blocking_open_orders": [],
+    "passed": true,
+    "note": "Scheduler-owned stale cleanup은 lifecycle failure 없이 pass했고 initial/remaining open orders 모두 0건이었다. 직전 2231 cycle `RGTI` sell은 2311 decision 직전 filled로 정리돼 global open-order lifecycle blocker는 없다."
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + scheduler Alpaca preflight universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad metadata universe screen with scheduler-owned 2311 stale cleanup/core/research preflight reuse, sell-first risk-trim reevaluation, same-day duplicate sell discipline, and review-backlog throttle applied only to new buys",
+    "pre_mcp_shortlist": [
+      "RGTI",
+      "AVGO",
+      "SO",
+      "WMT",
+      "NEE",
+      "SPY",
+      "QQQ",
+      "NOK"
+    ],
+    "final_candidates": [
+      "RGTI",
+      "AVGO",
+      "SO",
+      "WMT",
+      "NEE",
+      "SPY",
+      "QQQ",
+      "NOK"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "recommendation_shortlist": [
+    {
+      "symbol": "RGTI",
+      "decision": "blocked_same_day_duplicate_sell"
+    },
+    {
+      "symbol": "AVGO",
+      "decision": "blocked_spread_and_same_day_duplicate_sell"
+    },
+    {
+      "symbol": "SO",
+      "decision": "blocked_metric_gap"
+    },
+    {
+      "symbol": "WMT",
+      "decision": "blocked_review_backlog_only"
+    },
+    {
+      "symbol": "NEE",
+      "decision": "blocked_review_backlog_only"
+    },
+    {
+      "symbol": "SPY",
+      "decision": "blocked_floor_cap_and_review_backlog"
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "blocked_floor_cap_and_review_backlog"
+    },
+    {
+      "symbol": "NOK",
+      "decision": "blocked_validation_lifecycle_add_block"
+    }
+  ],
+  "candidate_evaluation": {
+    "sell_first": [
+      {
+        "symbol": "RGTI",
+        "decision": "blocked_same_day_duplicate_sell",
+        "reason": "fresh spread 0.0476% and residual speculative-loss trim trigger remain, but 2231 cycle sell 12주가 2026-06-12T14:10:47.740608Z에 filled 처리돼 same-day duplicate sell discipline이 추가 trim을 막는다"
+      },
+      {
+        "symbol": "AVGO",
+        "decision": "blocked_spread_and_same_day_duplicate_sell",
+        "reason": "fresh spread 2.7850%가 policy cap 0.50%를 크게 초과하고 2026-06-12T05:18:34.148553Z same-day sell fill 1주도 남아 있다"
+      },
+      {
+        "symbol": "SO",
+        "decision": "blocked_metric_gap",
+        "reason": "fresh spread 0.0742%는 통과했지만 trim decision-grade metric gap persists"
+      }
+    ],
+    "buy_fallback": [
+      {
+        "symbol": "WMT",
+        "decision": "blocked_review_backlog_only",
+        "reason": "spread 0.0499% and 1-share ask 120.16 USD are executable but review_backlog_pending_1d_count=14 exceeds stop threshold 12"
+      },
+      {
+        "symbol": "NEE",
+        "decision": "blocked_review_backlog_only",
+        "reason": "spread 0.0233% and 1-share ask 85.68 USD are executable but review_backlog_pending_1d_count=14 exceeds stop threshold 12"
+      },
+      {
+        "symbol": "SPY",
+        "decision": "blocked_floor_cap_and_review_backlog",
+        "reason": "1-share ask 740.40 USD exceeds validation floor per-order cap about 502.85 USD and buy backlog stop is active"
+      },
+      {
+        "symbol": "QQQ",
+        "decision": "blocked_floor_cap_and_review_backlog",
+        "reason": "1-share ask 719.74 USD exceeds validation floor per-order cap about 502.85 USD and buy backlog stop is active"
+      },
+      {
+        "symbol": "NOK",
+        "decision": "blocked_validation_lifecycle_add_block",
+        "reason": "review-due-index lists NOK in blocked_add_symbols until due validation review is written"
+      }
+    ]
+  },
+  "recommendation_actionability": {
+    "actionable": true,
+    "submit_mode": true,
+    "minimum_learning_orders_required": 1,
+    "minimum_learning_orders_planned": 0,
+    "hard_gates_passed": true,
+    "exception": "RGTI는 fresh spread 0.0476%와 held qty 37에도 2026-06-12T14:10:47.740608Z same-day filled sell 12주가 duplicate sell discipline을 유지한다. AVGO는 spread 2.7850%가 policy cap을 크게 초과하고 same-day sell fill 1주도 남아 있다. SO는 spread 0.0742%로 정상 범위지만 trim decision-grade metric gap이 남아 있다. 신규 buy path는 review_backlog_pending_1d_count=14가 stop threshold 12를 초과해 review_backlog_throttle에 막혔고, SPY/QQQ는 validation floor per-order cap을 초과하며, NOK는 validation_lifecycle add-block이 유지된다."
+  },
+  "first_blocking_gate": "duplicate_symbol_side_same_day",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-12-2311-hourly-autopilot.json",
+  "report_path": "wiki/current-runs/daily/2026-06-12-2311-hourly-autopilot.md",
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.002525,
+    "weekly_turnover_ratio": 0.002525,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 14,
+    "review_backlog_pending_5d_count": 13,
+    "review_backlog_pending_20d_count": 1,
+    "cash_deployment_blocker": "review_backlog_throttle"
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "RGTI",
+      "held_qty": 37,
+      "current_weight_pct": 0.7722,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "RGTI는 speculative-loss control과 residual speculative sleeve staged de-risking rationale가 유지되고 scheduler-owned fresh IEX quote 21.02/21.03 spread 0.0476%도 policy cap 이내지만, 2026-06-12T14:10:47.740608Z에 직전 `hourly-20260612-2231-sell-rgti` 12주가 filled 처리돼 same-day duplicate sell discipline이 추가 trim을 막는다.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -8.71,
+      "relative_to_spy_20d_pct": -9.49,
+      "metric_gap_reason": "",
+      "replacement_symbol": "SPY",
+      "replacement_expected_excess_margin_pct": 0,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-runtime-gate-evaluation.json",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/trade-ledger/reviews/2026-06-12-portfolio-review.md"
+      ]
+    },
+    {
+      "symbol": "AVGO",
+      "held_qty": 4,
+      "current_weight_pct": 1.5247,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "AVGO는 ai_semiconductor warning-band와 post-earnings staged de-risking rationale가 유지되지만 scheduler-owned fresh IEX quote 375.25/386.00 spread 2.7850%가 policy cap 0.50%를 크게 초과한다. recent activities에는 2026-06-12T05:18:34.148553Z same-day sell fill 1주도 남아 있어 duplicate sell discipline 역시 해소되지 않았다.",
+      "skipped_gate": "spread_within_policy",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -3.55,
+      "relative_to_spy_20d_pct": -4.33,
+      "metric_gap_reason": "",
+      "replacement_symbol": "SPY",
+      "replacement_expected_excess_margin_pct": 0,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-runtime-gate-evaluation.json",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/trade-ledger/reviews/2026-06-12-portfolio-review.md"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "held_qty": 5,
+      "current_weight_pct": 0.4689,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "SO는 defensive utility sleeve replacement review 대상이고 scheduler-owned fresh IEX quote 94.27/94.34 spread 0.0742%는 정상 범위지만, trim decision-grade expected-excess/replacement margin metric gap이 그대로라 submit-grade trim으로 승격되지 못한다.",
+      "skipped_gate": "decision_grade_metric_gap",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": 0,
+      "relative_to_spy_20d_pct": 0,
+      "metric_gap_reason": "decision_grade_trim_metric_missing",
+      "replacement_symbol": "SPY",
+      "replacement_expected_excess_margin_pct": 0,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-runtime-gate-evaluation.json",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/trade-ledger/reviews/2026-06-12-portfolio-review.md"
+      ]
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-2311-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-12-portfolio-review.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/WMT.md",
+    "wiki/research-notes/tickers/NEE.md",
+    "wiki/research-notes/tickers/SPY.md",
+    "wiki/research-notes/tickers/QQQ.md",
+    "wiki/research-notes/tickers/NOK.md"
+  ],
+  "submitted_orders": [],
+  "post_trade_reconciliation": {
+    "status": "previous_cycle_fill_reconciled",
+    "checked_via": [
+      "scheduler-owned stale cleanup",
+      "scheduler-owned Alpaca core preflight get_orders_open",
+      "scheduler-owned Alpaca core preflight get_account_activities",
+      "runtime Alpaca MCP get_orders(status=all, symbols=RGTI)",
+      "runtime Alpaca MCP get_all_positions"
+    ],
+    "order_status": "filled",
+    "filled_qty": 12,
+    "filled_avg_price": 21.010833,
+    "note": "이번 2311 cycle에는 새 submit attempt가 없었다. 다만 2231 cycle `hourly-20260612-2231-sell-rgti`가 2026-06-12T14:10:47.740608Z에 `filled_qty=12`, `filled_avg_price=21.010833 USD`로 체결됐고, current reconciliation 기준 open orders 0건과 `RGTI qty_available=37`가 확인됐다."
+  },
+  "submitted_order_ids": [],
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-06-12-2311-hourly-autopilot-post-trade.json"
+}

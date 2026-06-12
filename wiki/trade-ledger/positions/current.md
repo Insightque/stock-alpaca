@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-12 22:51 KST_
+_Last updated: 2026-06-12 23:11 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-12-2311-hourly-autopilot]]
+- Open/new: 없음. `2231` cycle의 `RGTI` sell open order는 더 이상 남아 있지 않다.
+- Filled: prior `RGTI` sell 12주 `limit 21.01 USD`, `client_order_id=hourly-20260612-2231-sell-rgti`가 `filled_avg_price=21.010833 USD`, `filled_at=2026-06-12T14:10:47.740608Z`로 체결된 것을 이번 cycle에서 재확인했다. same-day earlier fills `AVGO` sell 1주 `387.06 USD`, `PFE` sell 1주 `26.13 USD`도 유지됐다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned `2311` core preflight decision snapshot 기준 positions `33`건, open orders `0`건, `RGTI 37주`, `AVGO 4주`, `PFE 5주`였다. runtime reconciliation 기준도 positions `33`, open orders `0`이 유지됐다.
+- Recent reconciliation scope: scheduler-owned `2311` stale cleanup/core/research preflight를 source-of-record로 사용했고, runtime Alpaca MCP `get_orders(status=all, symbols=RGTI, after=2026-06-12T13:30:00Z)`, `get_account_info`, `get_all_positions` readback을 추가해 prior `RGTI` trim fill과 현재 계좌 상태를 재확인했다. runtime account 기준 portfolio value `100,469.09 USD`, cash `31,950.36 USD`, buying power `302,893.71 USD`, long market value `68,518.73 USD`, watchlists `0`이었다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-2311-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
