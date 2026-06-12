@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-13 07:16 KST_
+_Last updated: 2026-06-13 07:35 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-13-0731-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 이번 cycle 신규 체결 없음. same-session after-hours order history도 `0`건이었다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned `0731` `get_all_positions` 기준 positions `33`건, open orders `0`건, `AVGO 4주`, `RGTI 37주`, `PFE 5주`였다.
+- Recent reconciliation scope: scheduler-owned `0731` after-hours core/research preflight를 source-of-record로 사용했다. regular market closed, account `ACTIVE`, cash `31,950.36 USD`, portfolio value `100,545.98 USD`, buying power `303,120.24 USD`, long market value `68,595.62 USD`, watchlists `0`였다. 별도 after-hours order budget은 `0/2`로 열려 있었지만 freshest shortlisted quote `QQQ 722.00/722.21`도 약 `93.53`분 stale이라 submit path에 진입하지 못했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-13-0731-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 
