@@ -1,6 +1,6 @@
 ---
 id: AVGO
-updated_at: 2026-06-11T14:01:05Z
+updated_at: 2026-06-12T05:18:39Z
 symbol: AVGO
 asset_type: stock
 ---
@@ -53,6 +53,7 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 - 2026-06-10 02:00 KST: scheduled hourly-autopilot에서 regular-session trim 2주가 `375.47 USD`에 체결됐다.
 - 2026-06-10 23:01 KST: scheduled hourly-autopilot에서 ai_semiconductor warning band와 post-earnings de-risking rationale를 근거로 추가 2주 trim이 `373.25 USD`에 체결됐다.
 - 2026-06-11 23:00 KST: scheduled hourly-autopilot에서 review backlog가 신규 buy를 막는 동안 sell-first 경로를 유지했고, live IEX quote `379.93/380.06`과 spread 정상화를 근거로 추가 1주 trim이 `380.43 USD`에 체결됐다.
+- 2026-06-12 14:18 KST: scheduled after-hours-autopilot에서 runtime overnight quote `386.79/387.61`, spread `0.2119%`, held qty `5`, staged de-risking rationale를 근거로 추가 1주 trim sell을 `client_order_id=ah-20260612-1411-sell-avgo-01`로 제출했다. exposed runtime surface에는 post-submit `get_order_by_client_id` readback이 없었지만 immediate Alpaca MCP `get_all_positions`에서 보유수량이 `5주 -> 4주`로 감소해 filled reconciliation으로 기록했다.
 - 주문/체결 출처: [[2026-05-22-paper-order-submission]]
 
 ## 회고 기록
@@ -147,3 +148,9 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 `2026-06-10 ET` regular-session trim 2주는 `373.25 USD` 체결 대비 `2026-06-11 ET` close/current `384.25 USD`로 `+2.95%` rebound가 나왔다. 이번 1D만 보면 exact timing edge는 전일 trim보다 약했지만, current Alpaca snapshot 기준 포지션은 여전히 `5주`, 평균단가 `419.151667 USD`, 미실현 약 `-8.33%`라 staged de-risking 해석을 뒤집지는 않는다. 다음 cycle에서는 `2026-06-11 ET` trim 1주의 1D horizon을 따로 본다.
 
 출처: [[2026-06-12-portfolio-review]], [[2026-06-12-0632-analyst-review-cycle-sources]]
+
+### 2026-06-12 after-hours-autopilot trim
+
+`1411` scheduled after-hours-autopilot은 scheduler-owned `1411` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. `review_backlog_pending_1d_count=14`로 신규 buy는 계속 막혔지만 sell-first path는 유지됐고, `AVGO`는 runtime overnight quote `386.79/387.61`, spread `0.2119%`, quote age 약 `0.51`분, held qty `5` 조건에서 whole-share floor 1주 trim 경로를 통과했다. `client_order_id=ah-20260612-1411-sell-avgo-01` 주문은 Alpaca MCP `place_stock_order`에서 `order_id=ecdd85cb-0b94-410c-b9f8-5e29f4a8ee2b`, `status=pending_new`로 생성됐고, exposed runtime surface에는 post-submit `get_order_by_client_id` readback이 없었지만 immediate `get_all_positions` 기준 보유수량이 `5주 -> 4주`로 감소해 filled reconciliation으로 기록했다. 해석은 여전히 `validation add 실패 + core thesis 완전 폐기 아님 + staged de-risking 지속`이다.
+
+출처: [[2026-06-12-1411-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-12-1411-after-hours-autopilot-post-trade.json`

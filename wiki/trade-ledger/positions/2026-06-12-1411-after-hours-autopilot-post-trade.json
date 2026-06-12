@@ -1,0 +1,30 @@
+{
+  "run_id": "2026-06-12-1411-after-hours-autopilot",
+  "created_at": "2026-06-12T05:15:44Z",
+  "session": "after_hours",
+  "paper": true,
+  "submit_attempted": true,
+  "orders_submitted": 1,
+  "orders_open": 0,
+  "same_session_after_hours_orders_submitted_today": 2,
+  "same_session_after_hours_fills_detected": 2,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 99971.25,
+    "cash": 31697.98,
+    "buying_power": 301682.34,
+    "long_market_value": 68273.27,
+    "currency": "USD",
+    "daily_realized_loss": 0.0,
+    "estimation_note": "cash/buying_power/long_market_value inferred from limit price fill and immediate position delta because exposed Alpaca MCP readback surface in this runtime did not provide post-submit account query tools."
+  },
+  "positions_count": 33,
+  "positions_unchanged": false,
+  "watchlists_count": 0,
+  "review_bucket": "after_hours_validation",
+  "note": "AVGO after-hours trim was submitted once with client_order_id ah-20260612-1411-sell-avgo-01. place_stock_order returned order_id ecdd85cb-0b94-410c-b9f8-5e29f4a8ee2b with status pending_new, and immediate post-trade Alpaca MCP get_all_positions showed AVGO qty 5 -> 4 with no retry. Exposed readback tools for exact filled_avg_price were not available in this runtime, so cash/buying_power deltas are inferred using the limit price 386.79 USD.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-12-1411-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-1411-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ]
+}

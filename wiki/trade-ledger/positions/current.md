@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-12 13:55 KST_
+_Last updated: 2026-06-12 14:18 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-12-1411-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: `AVGO` 1주 trim. `client_order_id=ah-20260612-1411-sell-avgo-01`, `order_id=ecdd85cb-0b94-410c-b9f8-5e29f4a8ee2b`
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: immediate post-trade `get_all_positions` 기준 positions `33`건을 유지했고 `AVGO`는 `5주 -> 4주`, `qty_available=4`로 감소했다.
+- Recent reconciliation scope: scheduler-owned `1411` core/research preflight를 source-of-record로 사용했다. regular market은 closed, pre-submit account는 `ACTIVE`, cash `31,311.19 USD`, portfolio value `99,971.25 USD`, long market value `68,660.06 USD`, watchlists `0`이었다. submit는 planned `client_order_id`로 1회만 수행했고 exposed runtime surface에는 post-submit `get_order_by_client_id`/`get_orders` readback이 없어 exact `filled_avg_price`는 확인하지 못했지만, immediate Alpaca MCP `get_all_positions`에서 `AVGO 5 -> 4`가 확인돼 filled reconciliation으로 기록한다. same-session after-hours fills는 earlier `PFE` 1건과 이번 `AVGO` 1건으로 `2/2`가 됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-1411-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 

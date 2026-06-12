@@ -1,0 +1,149 @@
+{
+  "run_id": "2026-06-12-1411-after-hours-autopilot",
+  "created_at": "2026-06-12T05:15:44Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "paper": true,
+  "scheduler_preflight_refs": [
+    "wiki/evidence-store/sources/2026-06-12-1411-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-1411-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "runtime_cross_checks": [
+    "scheduler_owned_alpaca_core_preflight_rows",
+    "mcp__alpaca.get_all_positions",
+    "mcp__alpaca.get_watchlists",
+    "mcp__alpaca.get_stock_latest_quote(feed=overnight)",
+    "mcp__alpaca.get_stock_latest_quote(feed=iex)"
+  ],
+  "clock": {
+    "is_open": false,
+    "timestamp": "2026-06-12T05:15:44Z",
+    "next_open": "2026-06-12T09:30:00-04:00",
+    "next_close": "2026-06-12T16:00:00-04:00"
+  },
+  "account_snapshot": {
+    "portfolio_value": 99971.25,
+    "cash": 31311.19,
+    "buying_power": 301295.55,
+    "currency": "USD",
+    "daily_realized_loss": 0.0
+  },
+  "same_session_after_hours_orders_submitted_today": 2,
+  "same_session_after_hours_fills_today": 2,
+  "watchlists_count": 0,
+  "review_backlog": {
+    "pending_1d_count": 14,
+    "pending_5d_count": 13,
+    "pending_20d_count": 1
+  },
+  "candidates": {
+    "selected": {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1,
+      "limit_price": 386.79,
+      "reference_price": 386.79,
+      "quote_source": "overnight",
+      "quote_timestamp": "2026-06-12T05:15:13.558341079Z",
+      "quote_age_minutes": 0.51,
+      "bid": 386.79,
+      "ask": 387.61,
+      "spread_pct": 0.2118,
+      "notional": 386.79,
+      "max_after_hours_notional": 499.86,
+      "asset_status": "active",
+      "asset_tradable": true,
+      "overnight_tradable": true,
+      "risk_reason": "validation_lifecycle_review"
+    },
+    "excluded": [
+      {
+        "symbol": "ADBE",
+        "reason": "fresh overnight quote passed price/spread but buy path stayed blocked by review backlog throttle at pending_1d_count=14"
+      },
+      {
+        "symbol": "PLTR",
+        "reason": "fresh overnight quote passed price/spread but buy path stayed blocked by review backlog throttle at pending_1d_count=14"
+      },
+      {
+        "symbol": "QQQ",
+        "reason": "fresh and liquid but 1-share notional exceeded after_hours_policy.max_notional_pct_per_order 499.86 USD"
+      },
+      {
+        "symbol": "SPY",
+        "reason": "fresh and liquid but 1-share notional exceeded after_hours_policy.max_notional_pct_per_order 499.86 USD"
+      },
+      {
+        "symbol": "RGTI",
+        "reason": "fresh overnight quote still exceeded after_hours_policy.max_spread_pct at 0.1906% previously but duplicate same-session after-hours sell evidence and weaker trim quality kept it secondary"
+      },
+      {
+        "symbol": "SO",
+        "reason": "overnight quote remained decision-grade weak with very wide spread and trim metric gap"
+      },
+      {
+        "symbol": "PFE",
+        "reason": "same-session after-hours trim was already filled at 1011; 1411 cycle prefers a different eligible trim candidate over repeating the same symbol-side within the same session"
+      }
+    ],
+    "sell_trim_evaluation": [
+      {
+        "symbol": "AVGO",
+        "status": "selected",
+        "reason": "post-earnings staged de-risking plus fresh overnight spread 0.2118% inside 0.25% cap"
+      },
+      {
+        "symbol": "PFE",
+        "status": "skipped",
+        "reason": "same-session 1011 trim already provided PFE learning observation; AVGO remains eligible and diversifies sell-side evidence"
+      },
+      {
+        "symbol": "RGTI",
+        "status": "blocked",
+        "reason": "trim evidence remains weaker than AVGO and same-session after-hours sell history is already dense"
+      },
+      {
+        "symbol": "SO",
+        "status": "blocked",
+        "reason": "decision-grade trim metric gap remains open"
+      }
+    ]
+  },
+  "gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_one_of_two_submitted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_sell_trim_candidate_ready",
+    "fresh_quote": "pass_runtime_overnight_quote_under_5_minutes",
+    "spread_within_after_hours_policy": "pass_runtime_overnight_spread_0.2118pct",
+    "whole_share_day_limit_extended_hours_order": "pass_avgo_sell_order_shape",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_reconciled_by_client_order_id_submit_record_plus_position_delta"
+  },
+  "reconciliation": {
+    "client_order_id": "ah-20260612-1411-sell-avgo-01",
+    "order_id": "ecdd85cb-0b94-410c-b9f8-5e29f4a8ee2b",
+    "symbol": "AVGO",
+    "side": "sell",
+    "qty": "1",
+    "limit_price": "386.79",
+    "time_in_force": "day",
+    "extended_hours": true,
+    "session": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "submit_status": "pending_new",
+    "reconciled_status": "filled_inferred_from_position_delta",
+    "filled_qty": "1",
+    "filled_avg_price": null,
+    "submitted_at": "2026-06-12T05:18:34.074577545Z",
+    "filled_at": null,
+    "reconciled_by": "planned_client_order_id on submit response plus immediate Alpaca MCP position delta",
+    "retry_attempted": false,
+    "alternate_client_order_id_used": false,
+    "lifecycle_action": "filled_no_cancel_needed"
+  }
+}
