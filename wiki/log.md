@@ -1,4 +1,13 @@
 
+## [2026-06-13 02:32 KST] hourly-autopilot | 2026-06-13-0231-hourly-autopilot scheduled paper autopilot
+
+- Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; scheduler-owned `0231` stale cleanup/core/research preflight를 source-of-record로 사용했고 Alpaca core hard gate, universe strict, MCP strict, risk validator가 모두 PASS했다.
+- Gates: sell-first에서는 `AVGO`가 fresh IEX quote `380.60/383.90` 기준 spread `0.8633%`로 policy cap `0.50%`를 다시 넘겨 trim hard gate fail로 남았고 same-day sell discipline도 유지됐다. `RGTI`는 spread `0.0470%` pass에도 same-day sell fill 12주가 남아 duplicate sell discipline에 막혔고, `SO`는 spread `0.0428%` pass에도 trim decision-grade metric gap이 지속됐다. buy path는 `review_backlog_pending_1d_count=14`가 stop threshold `12`를 초과해 `FCX/WMT/NEE` 신규 buy를 차단했고, `SPY/QQQ`는 validation floor per-order cap 약 `503.47 USD`, `NOK`는 validation_lifecycle add-block에 각각 막혔다.
+- Orders: 없음. `place_stock_order`, `cancel_order_by_id`는 호출하지 않았고 신규 `client_order_id`, retry, alternate client id도 없었다.
+- Reconciliation: submit attempt는 없었다. scheduler-owned `0231` stale cleanup/core preflight가 open orders `0`, positions `33`, account `ACTIVE`, portfolio value `100,693.91 USD`, cash `31,950.36 USD`, buying power `303,427.51 USD`, long market value `68,743.55 USD`, same-day fills `RGTI/AVGO/PFE`를 재확인했다.
+- Artifacts: `wiki/current-runs/daily/2026-06-13-0231-hourly-autopilot.md`, `wiki/evidence-store/run-manifests/2026-06-13-0231-hourly-autopilot.json`, `wiki/trade-ledger/orders/2026-06-13-0231-hourly-autopilot.json`, `wiki/evidence-store/sources/2026-06-13-0231-hourly-autopilot-runtime-gate-evaluation.json`, `wiki/trade-ledger/positions/2026-06-13-0231-hourly-autopilot-post-trade.json`, updated `wiki/trade-ledger/positions/current.md`, `wiki/index.md`, `wiki/log.md`.
+- Validators: `PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-06-13-0231-hourly-autopilot.json` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-06-13-0231-hourly-autopilot.json` PASS; `PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-06-13-0231-hourly-autopilot.json` PASS with expected `orders is empty` warning.
+
 ## [2026-06-13 02:14 KST] hourly-autopilot | 2026-06-13-0211-hourly-autopilot scheduled paper autopilot
 
 - Workflow: `harness/workflows/hourly-autopilot.md`. Paper mode `ALPACA_PAPER_TRADE=true`; scheduler-owned `0211` stale cleanup/core/research preflight를 source-of-record로 사용했고 Alpaca core hard gate, universe strict, MCP strict, risk validator가 모두 PASS했다.
