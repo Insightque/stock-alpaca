@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-12 10:22 KST_
+_Last updated: 2026-06-12 10:34 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-12-1031-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 이번 cycle 신규 체결 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned `1031` core preflight 기준 `33` positions 유지, open orders `0`건이다. `PFE`는 `5주`, `qty_available=5`를 유지했고 earlier `1011` fill `ah-20260612-1011-sell-pfe-01`은 `get_order_by_client_id` 기준 여전히 `filled`였다.
+- Recent reconciliation scope: scheduler-owned `1031` core/research preflight를 source-of-record로 사용했다. regular market은 closed, account `ACTIVE`, cash `31,311.19 USD`, portfolio value `99,821.57 USD`, long market value `68,510.38 USD`, watchlists `0`이었다. same-session after-hours fill은 `PFE` 1건이라 separate session budget은 `1/2`가 남아 있었지만, submit-boundary IEX quote stack은 freshest `ADBE 20:55:03Z`, `RGTI 20:54:49Z`조차 약 `276`분 stale였고 `PFE/AVGO/RGTI/SO/ORCL`은 spread도 실패해 이번 `1031` cycle은 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-12-1031-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 
