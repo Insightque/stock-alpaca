@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-12-2231-hourly-autopilot",
+  "recorded_at": "2026-06-12T13:43:18Z",
+  "paper": true,
+  "market_session": "regular",
+  "orders_submitted": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 12,
+      "limit_price": 21.01,
+      "client_order_id": "hourly-20260612-2231-sell-rgti",
+      "order_id": "1f49ece2-83b5-4136-bf38-e3794c1184fb",
+      "status": "new",
+      "filled_qty": 0,
+      "filled_avg_price": null,
+      "submitted_at": "2026-06-12T13:41:09.3025829Z",
+      "filled_at": null
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 12,
+      "limit_price": 21.01,
+      "client_order_id": "hourly-20260612-2231-sell-rgti",
+      "order_id": "1f49ece2-83b5-4136-bf38-e3794c1184fb",
+      "status": "new",
+      "filled_qty": 0,
+      "filled_avg_price": null,
+      "submitted_at": "2026-06-12T13:41:09.3025829Z",
+      "filled_at": null
+    }
+  ],
+  "account_snapshot": {
+    "portfolio_value": 99844.98,
+    "cash": 31698.23,
+    "buying_power": 301400.81,
+    "status": "ACTIVE",
+    "source": "scheduler core preflight pre-submit snapshot"
+  },
+  "positions_summary": {
+    "position_count": 33,
+    "rgti_qty_before_submit": 49,
+    "rgti_limit_sell_qty_open": 12,
+    "rgti_fill_observed": 0,
+    "position_refresh_pending": true
+  },
+  "fill_activity": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1,
+      "price": 387.06,
+      "transaction_time": "2026-06-12T05:18:34.148553Z",
+      "order_id": "ecdd85cb-0b94-410c-b9f8-5e29f4a8ee2b",
+      "type": "prior_same_day_fill"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-12-2231-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-12-2231-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-2231-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-2231-hourly-autopilot-stale-order-cleanup.json"
+  ]
+}
