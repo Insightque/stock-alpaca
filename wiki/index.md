@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-12 16:13 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-12 16:33 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -54,6 +54,7 @@
 
 ## Current Runs
 
+- [[2026-06-12-1631-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1631` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. same preflight의 passing account/positions/open-order/activity/watchlist/asset/quote/snapshot/trade rows와 runtime Alpaca MCP `get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-11T20:00:00Z)/get_watchlists/get_order_by_client_id` reconciliation 모두 same-session after-hours fills `PFE`, `AVGO` 두 건과 open orders `0`을 유지했고, separate after-hours session budget이 계속 `2/2`라 이번 cycle도 no-submit으로 종료했다.
 - [[2026-06-12-1611-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1611` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-11T20:00:00Z)/get_watchlists` cross-check도 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours fills `2`, watchlists `0`를 재확인했다. separate after-hours session budget이 계속 `2/2`라 이번 cycle도 no-submit으로 종료했다.
 - [[2026-06-12-1551-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1551` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. 이번 `1551` preflight는 passing account/positions/open-order/activity/watchlist/asset/quote/snapshot/trade rows를 함께 제공했고, runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-11T20:00:00Z)/get_account_activities(activity_types=FILL, after=2026-06-11T20:00:00Z)/get_watchlists` cross-check도 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours fills `2`, watchlists `0`를 재확인했다. separate after-hours order budget이 계속 `2/2`라 이번 cycle도 no-submit으로 종료했다.
 - [[2026-06-12-1531-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1531` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. same preflight의 passing account/positions/orders/activity/asset/quote rows와 runtime Alpaca MCP reconciliation 모두 same-session after-hours fills `PFE`, `AVGO` 두 건과 open orders `0`을 유지했고, separate after-hours session budget이 계속 `2/2`라 이번 cycle도 no-submit으로 종료했다.
