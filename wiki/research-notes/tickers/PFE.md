@@ -64,3 +64,9 @@ asset_type: stock
 `2026-06-09 ET` buy 1주는 `25.82 USD` 진입 대비 `2026-06-10 ET` close `25.61 USD`로 `-0.81%`였다. 절대수익은 음수지만 `SPY` 대비 `+0.75%p`, `QQQ` 대비 `+1.19%p`라 broad selloff 대비 방어는 있었다. 다만 prior weak review가 누적돼 defensive healthcare add의 edge가 확인됐다고 보긴 어렵고, `2026-06-10 ET` 추가 fill `25.70 USD`도 별도 1D 대기로 둔다.
 
 출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]
+
+### 2026-06-13 analyst review cycle
+
+`2026-06-11 ET` after-hours trim 1주는 `26.13 USD` 체결 대비 `2026-06-12 ET` close/current `26.21 USD`로 `+0.31%`였다. sell 뒤 소폭 반등이 나와 exact timing edge는 제한적이지만, upside 규모가 작고 기존 반복 약세 review를 감안하면 trim 해석을 뒤집을 정도는 아니다. 다음 lifecycle closeout은 `2026-06-19` 미국 정규장 close의 5D horizon이다.
+
+출처: [[2026-06-13-portfolio-review]], [[2026-06-13-0622-analyst-review-cycle-sources]]

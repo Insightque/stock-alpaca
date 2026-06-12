@@ -59,3 +59,9 @@ asset_type: stock
 `2026-06-05 ET` fill 1D는 `311.81 USD -> 311.11 USD`로 `-0.22%`였다. 절대수익은 소폭 음수지만 `SPY +0.24%`, `QQQ +1.51%`와 비교한 underperformance보다 `XLF -0.59%` 대비 상대방어가 더 중요했다. financials diversifier floor-size validation으로는 `중립 양호`이며 5D는 `2026-06-12 ET` close 이후 다시 본다.
 
 출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]
+
+### 2026-06-13 analyst review cycle
+
+`2026-06-05 ET` fill 5D는 `311.81 USD -> 320.71 USD`로 `+2.85%`였다. `SPY` 대비 `+2.28%p`, `QQQ` 대비 `+0.59%p`라 이번 cycle에서는 financials diversifier 표본 중 가장 깔끔한 쪽에 속한다. 공격적 승격 근거까지는 아니어도 hold-quality는 `양호`로 한 단계 더 명확해졌다.
+
+출처: [[2026-06-13-portfolio-review]], [[2026-06-13-0622-analyst-review-cycle-sources]]

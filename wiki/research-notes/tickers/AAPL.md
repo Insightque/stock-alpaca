@@ -54,3 +54,9 @@ current Alpaca snapshot상 `AAPL`은 `3주`, 평균단가 `310.93 USD`, current 
 `2026-06-05 ET` regular-session add 1주는 `313.27 USD` 진입 대비 `2026-06-11 ET` close/current `295.5 USD`로 `-5.67%`였다. `SPY` 대비 `-5.73%p`, `QQQ` 대비 `-7.23%p`라 5D 기준으로도 mega-cap quality averaging-down cadence는 약했다. after-hours add로 평균단가를 낮춘 효과는 별개지만, 새로운 add 근거로 쓰기에는 아직 회복 증거가 부족하다.
 
 출처: [[2026-06-12-portfolio-review]], [[2026-06-12-0632-analyst-review-cycle-sources]]
+
+### 2026-06-13 analyst review cycle
+
+current Alpaca snapshot 기준 `AAPL`은 `5주`, 평균단가 `303.136 USD`, current `291.37 USD`로 미실현 약 `-3.88%`다. Yahoo Finance 기사에는 AI memory cost와 pricing dilemma, WWDC 이후 devices/services refocus narrative가 함께 잡혔고, analyst action도 `2026-06-09` target raise 다수와 `Rosenblatt Neutral`, `Needham Hold`가 병존한다. 따라서 이번 cycle에서도 `mega-cap quality averaging-down`은 관찰 가설로만 남긴다.
+
+출처: [[2026-06-13-portfolio-review]], [[2026-06-13-0622-analyst-review-cycle-sources]]

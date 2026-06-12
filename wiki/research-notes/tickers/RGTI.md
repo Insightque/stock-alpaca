@@ -120,3 +120,9 @@ RGTI는 오늘 신규 매수 후보에서 제외했다. 2026-05-22 종가 26.41 
 `2026-06-10 ET` regular-session trim 17주는 `20.38 USD` 체결 대비 `2026-06-11 ET` close/current `20.72 USD`로 `+1.67%` rebound가 있었다. 전일 trim만큼 깔끔한 hindsight 우위는 아니지만, after-hours `19.50/19.78` 추가 trim까지 포함하면 speculative sleeve staged de-risking 방향은 유지된다. current snapshot 기준 잔여 `49주`는 여전히 residual monitor 포지션이다.
 
 출처: [[2026-06-12-portfolio-review]], [[2026-06-12-0632-analyst-review-cycle-sources]]
+
+### 2026-06-13 analyst review cycle
+
+`2026-06-12 ET` regular-session trim 12주는 `21.010833 USD`로 체결돼 보유수량이 `49주 -> 37주`로 감소했다. current Alpaca snapshot 기준 잔여 포지션은 평균단가 `25.569583 USD`, current `21.01 USD`, 미실현 약 `-17.83%`이며 residual speculative sleeve 해석은 유지된다. 이 trim의 첫 1D horizon은 주말을 건너 `2026-06-15` 미국 정규장 close에 닫힌다.
+
+출처: [[2026-06-13-portfolio-review]], [[2026-06-13-0622-analyst-review-cycle-sources]]

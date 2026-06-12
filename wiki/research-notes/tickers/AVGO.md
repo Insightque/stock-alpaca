@@ -154,3 +154,9 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 `1411` scheduled after-hours-autopilot은 scheduler-owned `1411` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. `review_backlog_pending_1d_count=14`로 신규 buy는 계속 막혔지만 sell-first path는 유지됐고, `AVGO`는 runtime overnight quote `386.79/387.61`, spread `0.2119%`, quote age 약 `0.51`분, held qty `5` 조건에서 whole-share floor 1주 trim 경로를 통과했다. `client_order_id=ah-20260612-1411-sell-avgo-01` 주문은 Alpaca MCP `place_stock_order`에서 `order_id=ecdd85cb-0b94-410c-b9f8-5e29f4a8ee2b`, `status=pending_new`로 생성됐고, exposed runtime surface에는 post-submit `get_order_by_client_id` readback이 없었지만 immediate `get_all_positions` 기준 보유수량이 `5주 -> 4주`로 감소해 filled reconciliation으로 기록했다. 해석은 여전히 `validation add 실패 + core thesis 완전 폐기 아님 + staged de-risking 지속`이다.
 
 출처: [[2026-06-12-1411-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-12-1411-after-hours-autopilot-post-trade.json`
+
+### 2026-06-13 analyst review cycle
+
+`2026-06-11 ET` after-hours trim 1주는 `387.06 USD` 체결 대비 `2026-06-12 ET` close/current `381.95 USD`로 `-1.32%`였다. trim 뒤 다음 정규장 close가 더 낮아져 staged de-risking 판단은 다시 타당했다. Alpha Vantage `EARNINGS` 기준 latest quarter는 `reportedDate=2026-06-03`, `reportedEPS=2.44`, `estimatedEPS=2.39`, `surprisePercentage=2.0921`로 beat였지만, current Alpaca snapshot 기준 포지션은 `4주`, 평균단가 `420.836 USD`, 미실현 약 `-9.28%`라 recovery confirmation은 여전히 부족하다.
+
+출처: [[2026-06-13-portfolio-review]], [[2026-06-13-0622-analyst-review-cycle-sources]]

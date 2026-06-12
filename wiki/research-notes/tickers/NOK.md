@@ -108,3 +108,9 @@ current Alpaca snapshot 기준 `NOK`는 `402주`, 평균단가 `15.044527 USD`, 
 current Alpaca snapshot 기준 `NOK`는 `402주`, 평균단가 `15.044527 USD`, current `14.205 USD`, 미실현 약 `-5.58%`다. 전일 대비는 반등했지만 Yahoo Finance 기준 AI networking 성장 narrative와 별개로 add-block을 풀 만큼의 구조적 회복은 아직 없다. 이번 cycle에서도 `existing-position-breakout-add-penalty`를 유지하고 `2026-06-18 ET` 20D review를 기다린다.
 
 출처: [[2026-06-12-portfolio-review]], [[2026-06-12-0632-analyst-review-cycle-sources]]
+
+### 2026-06-13 analyst review cycle
+
+current Alpaca snapshot 기준 `NOK`는 `402주`, 평균단가 `15.044527 USD`, current `14.86 USD`로 미실현 약 `-1.23%`까지 회복했다. Yahoo Finance 뉴스와 `2026-06-12 JP Morgan Overweight / PT 21`는 우호적이지만, 아직 `2026-06-18` 미국 정규장 close의 20D add-block review 전이다. 이번 cycle에서도 `existing-position-breakout-add-penalty` block을 유지한다.
+
+출처: [[2026-06-13-portfolio-review]], [[2026-06-13-0622-analyst-review-cycle-sources]]
