@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-13 03:31 KST_
+_Last updated: 2026-06-13 03:52 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-13-0351-hourly-autopilot]]
+- Open/new: 없음. scheduler-owned `0351` stale cleanup과 core preflight 모두 open orders `0`을 반환했다.
+- Filled: 이번 cycle 신규 체결 없음. same-day fill history로 `RGTI` sell 12주 `filled_avg_price=21.0108 USD`, `AVGO` sell 1주 `387.06 USD`, `PFE` sell 1주 `26.13 USD`가 계속 확인됐다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned `0351` core preflight decision snapshot 기준 positions `33`건, open orders `0`건, `RGTI 37주`, `AVGO 4주`, `PFE 5주`였다.
+- Recent reconciliation scope: scheduler-owned `0351` stale cleanup/core/research preflight를 source-of-record로 사용했다. live Alpaca readback 추가 호출은 필요하지 않았고, passing core preflight rows만으로 regular market open, account `ACTIVE`, cash `31,950.36 USD`, portfolio value `100,590.03 USD`, buying power `303,142.28 USD`, long market value `68,639.67 USD`, watchlists `0`, same-day fills 상태를 재확인했다. sell-first path는 `AVGO/RGTI` same-day duplicate sell discipline과 `SO` trim metric gap 때문에 막혔고, buy path는 `FCX/WMT/NEE` review backlog throttle, `SPY/QQQ` floor cap, `NOK` add-block 때문에 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-13-0351-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
