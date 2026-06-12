@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-12 08:54 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-12 09:14 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -54,6 +54,7 @@
 
 ## Current Runs
 
+- [[2026-06-12-0911-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0911` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-11T20:00:00Z)/get_account_activities(activity_types=FILL, after=2026-06-11T20:00:00Z)/get_watchlists/get_stock_latest_quote(feed=iex)/get_stock_snapshot(feed=iex)` 교차 확인 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours fills `0`, watchlists `0`이었다. separate after-hours order budget `0/2`는 열려 있었지만 scheduler-owned submit-boundary IEX quote와 runtime cross-check 모두 freshest `ADBE/RGTI`조차 약 `197`분 stale라 fresh-quote hard gate가 닫혀 no-submit으로 종료했다.
 - [[2026-06-12-0851-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0851` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-11T20:00:00Z)/get_account_activities(activity_types=FILL, after=2026-06-11T20:00:00Z)/get_asset/get_stock_latest_quote(feed=iex)/get_stock_snapshot(feed=iex)` 교차 확인 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours fills `0`이었다. separate after-hours order budget `0/2`는 열려 있었지만 scheduler-owned submit-boundary IEX quote와 runtime cross-check 모두 freshest `ADBE/RGTI`조차 약 `178`분 stale라 fresh-quote hard gate가 닫혀 no-submit으로 종료했다.
 - [[2026-06-12-0831-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0831` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. runtime Alpaca MCP `get_all_positions/get_watchlists/get_account_activities(activity_types=FILL, after=2026-06-11T20:00:00Z)/get_asset/get_stock_latest_quote(feed=iex)/get_stock_snapshot(feed=iex)` 교차 확인 기준 positions `33`, watchlists `0`, same-session after-hours fills `0`이었다. separate session budget `0/2`는 열려 있었지만 scheduler-owned asset/quote/spread rows 기준 freshest IEX quote도 `156.38-211.43`분 stale라 fresh-quote hard gate가 닫혀 no-submit으로 종료했다.
 
