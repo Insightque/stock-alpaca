@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-13 00:51 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-13 01:15 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -54,6 +54,7 @@
 
 ## Current Runs
 
+- [[2026-06-13-0111-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0111` stale cleanup/core/research preflight를 source-of-record로 사용했고 Alpaca core hard gate, universe strict, MCP strict, risk validator가 모두 PASS했다. 다만 `AVGO`는 spread `1.2107%` fail과 same-day sell discipline이 함께 남아 trim이 차단됐고, `RGTI`는 spread `0.0945%` pass에도 same-day duplicate sell, `SO`는 spread `0.4136%` pass에도 trim decision-grade metric gap이 지속됐다. 신규 buy path는 `review_backlog_pending_1d_count=14`가 stop threshold `12`를 초과해 `FCX/WMT/NEE`를 계속 차단했고, `SPY/QQQ`는 validation floor per-order cap 약 `501.52 USD`, `NOK`는 validation_lifecycle add-block에 각각 막혀 submit-mode no-op로 종료했다.
 - [[2026-06-13-0051-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0051` stale cleanup/core/research preflight를 source-of-record로 사용했고 Alpaca core hard gate, universe strict, MCP strict, risk validator가 모두 PASS했다. 다만 `AVGO`와 `RGTI`는 spread 정상화 뒤에도 same-day sell discipline이 trim을 막았고, `SO`는 spread `0.0426%` pass에도 trim decision-grade metric gap이 남았다. 신규 buy path는 `review_backlog_pending_1d_count=14`가 stop threshold `12`를 초과해 `FCX/WMT/NEE`를 차단했고, `SPY/QQQ`는 validation floor per-order cap, `NOK`는 validation_lifecycle add-block에 막혀 submit-mode no-op로 종료했다.
 - [[2026-06-13-0031-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0031` stale cleanup/core/research preflight를 source-of-record로 사용했고 Alpaca core hard gate, universe strict, MCP strict, risk validator가 모두 PASS했다. 다만 `review_backlog_pending_1d_count=14`가 stop threshold `12`를 초과해 `FCX/WMT/NEE` 신규 buy가 review_backlog_throttle에 막혔고, `AVGO`는 spread `1.0159%` fail plus same-day sell discipline, `RGTI`는 same-day sell discipline, `SO`는 spread `0.5926%` fail plus metric gap으로 sell-first executable order가 남지 않아 submit-mode no-op로 종료했다.
 - [[2026-06-12-2351-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2351` stale cleanup/core/research preflight를 source-of-record로 사용했고 Alpaca core hard gate, universe strict, MCP strict, risk validator가 모두 PASS했다. 다만 `RGTI`는 spread `2.7965%` fail plus same-day sell duplicate, `AVGO`는 spread `1.3441%` fail plus same-day sell duplicate, `SO`는 trim decision-grade metric gap, `WMT/NEE`는 `review_backlog_pending_1d_count=14` buy stop, `SPY/QQQ`는 validation floor per-order cap 약 `501.01 USD`, `NOK`는 validation_lifecycle add-block에 각각 막혀 submit-mode no-op로 종료했다.
