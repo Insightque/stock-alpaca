@@ -1,0 +1,30 @@
+{
+  "run_id": "2026-06-12-2111-after-hours-autopilot",
+  "created_at": "2026-06-12T12:13:47Z",
+  "session": "after_hours",
+  "paper": true,
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "orders_open": 0,
+  "same_session_after_hours_orders_submitted_today": 2,
+  "same_session_after_hours_fills_detected": 2,
+  "account": {
+    "portfolio_value": 100077.64,
+    "cash": 31698.23,
+    "buying_power": 302125.42,
+    "long_market_value": 68379.41,
+    "status": "ACTIVE",
+    "currency": "USD",
+    "daily_realized_loss": 0.0
+  },
+  "positions_count": 33,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "review_bucket": "after_hours_validation",
+  "note": "Scheduler-owned 2111 core/research preflight remained the source-of-record. Runtime Alpaca MCP get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-11T20:00:00Z)/get_watchlists/get_order_by_client_id reconfirmed the regular market stayed closed, account ACTIVE, positions 33, open orders 0, watchlists 0, and the same earlier same-session after-hours fills PFE and AVGO kept the separate 2111 session budget closed at 2/2.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-12-2111-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-2111-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-12-2111-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ]
+}
