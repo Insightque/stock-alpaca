@@ -160,3 +160,9 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 `2026-06-11 ET` after-hours trim 1주는 `387.06 USD` 체결 대비 `2026-06-12 ET` close/current `381.95 USD`로 `-1.32%`였다. trim 뒤 다음 정규장 close가 더 낮아져 staged de-risking 판단은 다시 타당했다. Alpha Vantage `EARNINGS` 기준 latest quarter는 `reportedDate=2026-06-03`, `reportedEPS=2.44`, `estimatedEPS=2.39`, `surprisePercentage=2.0921`로 beat였지만, current Alpaca snapshot 기준 포지션은 `4주`, 평균단가 `420.836 USD`, 미실현 약 `-9.28%`라 recovery confirmation은 여전히 부족하다.
 
 출처: [[2026-06-13-portfolio-review]], [[2026-06-13-0622-analyst-review-cycle-sources]]
+
+### 2026-06-14 analyst review cycle
+
+live Alpaca clock이 `2026-06-13 17:22 ET` 토요일 closed 상태라 새 regular-session closeout은 추가되지 않았다. current Alpaca snapshot 기준 `AVGO`는 `4주`, 평균단가 `423.3625 USD`, current `382.07 USD`, 미실현 약 `-9.75%`이고, staged de-risking 뒤에도 recovery confirmation이 부족해 `post-earnings staged de-risking 지속` 해석을 유지한다.
+
+출처: [[2026-06-14-portfolio-review]], [[2026-06-14-0623-analyst-review-cycle-sources]]

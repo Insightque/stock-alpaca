@@ -47,3 +47,9 @@ Freeport-McMoRan paper validation 후보. 2026-05-26 hourly autopilot에서 mate
 `2026-06-05 ET` fill 5D는 `65.15 USD -> 68.40 USD`로 `+4.99%`까지 확장됐다. `SPY` 대비 `+4.42%p`, `QQQ` 대비 `+2.73%p`라 기존 materials/copper diversifier 가설을 가장 강하게 지지한 표본이다. 다만 review backlog 아래에서 hindsight 강세 표본이 된 만큼, 다음 cycle에서는 selection alpha와 backlog throttle 비용을 함께 추적한다.
 
 출처: [[2026-06-13-portfolio-review]], [[2026-06-13-0622-analyst-review-cycle-sources]]
+
+### 2026-06-14 analyst review cycle
+
+토요일 Alpaca clock 기준 새 미국 정규장 close가 없어 `FCX` hindsight 강세 표본 해석만 유지했다. current snapshot 기준 `FCX`는 `5주`, 평균단가 `64.912 USD`, current `68.41 USD`, 미실현 약 `+5.39%`로 backlog throttle의 missed-upside 비용을 계속 보여주지만, 단일 추가 표본만으로 throttle policy를 완화하지는 않는다.
+
+출처: [[2026-06-14-portfolio-review]], [[2026-06-14-0623-analyst-review-cycle-sources]]

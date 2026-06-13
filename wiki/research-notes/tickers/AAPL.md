@@ -60,3 +60,9 @@ current Alpaca snapshot상 `AAPL`은 `3주`, 평균단가 `310.93 USD`, current 
 current Alpaca snapshot 기준 `AAPL`은 `5주`, 평균단가 `303.136 USD`, current `291.37 USD`로 미실현 약 `-3.88%`다. Yahoo Finance 기사에는 AI memory cost와 pricing dilemma, WWDC 이후 devices/services refocus narrative가 함께 잡혔고, analyst action도 `2026-06-09` target raise 다수와 `Rosenblatt Neutral`, `Needham Hold`가 병존한다. 따라서 이번 cycle에서도 `mega-cap quality averaging-down`은 관찰 가설로만 남긴다.
 
 출처: [[2026-06-13-portfolio-review]], [[2026-06-13-0622-analyst-review-cycle-sources]]
+
+### 2026-06-14 analyst review cycle
+
+live Alpaca clock이 `2026-06-13 17:22 ET` 토요일 closed 상태라 지난 cycle 이후 새 미국 정규장 close가 없었다. current snapshot 기준 `AAPL`은 `5주`, 평균단가 `303.136 USD`, current `291.13 USD`, 미실현 약 `-3.96%`이며, Alpha Vantage latest quarter EPS beat(`2026-04-30`, `2.01 vs 1.94`)에도 불구하고 `mega-cap quality averaging-down`을 강화할 새 tape confirmation은 생기지 않았다.
+
+출처: [[2026-06-14-portfolio-review]], [[2026-06-14-0623-analyst-review-cycle-sources]]
