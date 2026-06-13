@@ -1,0 +1,28 @@
+{
+  "run_id": "2026-06-13-1151-after-hours-autopilot",
+  "created_at": "2026-06-13T02:51:28Z",
+  "session": "after_hours",
+  "paper": true,
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "orders_open": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_detected": 0,
+  "account": {
+    "portfolio_value": 100415.14,
+    "cash": 31950.36,
+    "buying_power": 302843.94,
+    "long_market_value": 68464.78,
+    "currency": "USD",
+    "status": "ACTIVE"
+  },
+  "positions_count": 33,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "review_bucket": "after_hours_validation",
+  "note": "No after-hours submit. Scheduler-owned 1151 Alpaca core preflight confirmed closed regular market, ACTIVE account, 33 positions, 0 open orders, 0 watchlists, and no same-session after-hours order object before closeout. The same scheduler-owned submit-boundary quote rows still left the freshest candidate stale by 353.52 minutes, so no client_order_id reconciliation path was needed.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-13-1151-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-13-1151-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ]
+}
