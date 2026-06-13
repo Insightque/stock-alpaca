@@ -1,0 +1,367 @@
+{
+  "run_id": "2026-06-13-1351-after-hours-autopilot",
+  "created_at": "2026-06-13T04:53:37Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "paper": true,
+  "scheduler_preflights": {
+    "alpaca_core": "wiki/evidence-store/sources/2026-06-13-1351-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp": "wiki/evidence-store/sources/2026-06-13-1351-after-hours-autopilot-research-mcp-preflight.json"
+  },
+  "runtime_cross_checks": {
+    "clock": {
+      "is_open": false,
+      "next_close": "2026-06-15T16:00:00-04:00",
+      "next_open": "2026-06-15T09:30:00-04:00",
+      "timestamp": "2026-06-13T00:52:39.28948045-04:00"
+    },
+    "account": {
+      "portfolio_value": 100415.14,
+      "cash": 31950.36,
+      "buying_power": 302843.94,
+      "long_market_value": 68464.78,
+      "currency": "USD",
+      "status": "ACTIVE",
+      "source": "scheduler-owned 1351 Alpaca core preflight get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_watchlists snapshot plus live Alpaca continuity readback"
+    },
+    "positions_count": 33,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "watchlists_count": 0,
+    "quote_feeds_checked": [
+      "scheduler-owned IEX preflight rows used as after-hours submit-boundary quote/spread evidence",
+      "live Alpaca continuity readback confirmed clock/positions/open orders/same-session order count/watchlists only; it did not replace the scheduler-owned submit-boundary quote rows",
+      "the scheduler-owned 1351 quote rows already failed the fresh-quote gate by 475.03 to 532.65 minutes"
+    ]
+  },
+  "review_backlog": {
+    "updated_at": "2026-06-12T21:22:12Z",
+    "source_review": "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+    "pending_1d_count": 1,
+    "pending_5d_count": 16,
+    "pending_20d_count": 1,
+    "blocked_add_symbols": [
+      "NOK"
+    ],
+    "due_reviews_blocking_adds": [
+      "NOK"
+    ],
+    "due_reviews": [
+      {
+        "symbol": "RGTI",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-15 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-12-2231-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "NOK",
+        "horizon": "20D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-18 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+          "wiki/trade-ledger/reviews/2026-06-04-portfolio-review.md"
+        ]
+      },
+      {
+        "symbol": "PFE",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-19 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-12-1011-after-hours-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "AVGO",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-19 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-12-1411-after-hours-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "WMT",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-12-2231-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "AVGO",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-10-2251-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "RGTI",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-10-2311-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "BAC",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-10-2331-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "PFE",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-10-2351-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "XOM",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0011-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "JNJ",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0031-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "COP",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0051-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "SLB",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0111-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "AMZN",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0131-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "FCX",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0151-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "NEE",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0211-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "NKE",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0251-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "MSFT",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0431-hourly-autopilot.md"
+        ]
+      }
+    ]
+  },
+  "candidate_evaluations": [
+    {
+      "symbol": "QQQ",
+      "quote_timestamp": "2026-06-12T20:57:37.534220888Z",
+      "bid": 722,
+      "ask": 722.21,
+      "spread_pct": 0.0291,
+      "quote_age_minutes_vs_runtime_clock": 475.03,
+      "role": "benchmark_fallback_buy",
+      "result": "blocked",
+      "reason": "fresh_quote fail and 1-share ask 722.21 USD exceeds after-hours per-order cap ~502.08 USD",
+      "notional_cap_check": "fail_per_order_cap"
+    },
+    {
+      "symbol": "MSFT",
+      "quote_timestamp": "2026-06-12T20:42:33.3236562Z",
+      "bid": 390.76,
+      "ask": 390.99,
+      "spread_pct": 0.0588,
+      "quote_age_minutes_vs_runtime_clock": 490.1,
+      "role": "existing_actionable_holding_buy_fallback",
+      "result": "blocked",
+      "reason": "fresh_quote fail despite acceptable spread and per-order notional",
+      "notional_cap_check": "pass"
+    },
+    {
+      "symbol": "SMH",
+      "quote_timestamp": "2026-06-12T20:54:37.797642448Z",
+      "bid": 619.72,
+      "ask": 624.79,
+      "spread_pct": 0.8148,
+      "quote_age_minutes_vs_runtime_clock": 459.6,
+      "role": "semiconductor_benchmark_buy_fallback",
+      "result": "blocked",
+      "reason": "spread cap fail, fresh_quote fail, and 1-share ask 624.79 USD exceeds per-order cap",
+      "notional_cap_check": "fail_per_order_cap"
+    },
+    {
+      "symbol": "SPY",
+      "quote_timestamp": "2026-06-12T20:00:00.00478112Z",
+      "bid": 718.43,
+      "ask": 762.94,
+      "spread_pct": 6.0093,
+      "quote_age_minutes_vs_runtime_clock": 532.65,
+      "role": "benchmark_fallback_buy",
+      "result": "blocked",
+      "reason": "stale quote, spread cap fail, and 1-share ask 762.94 USD exceeds after-hours per-order cap ~502.08 USD",
+      "notional_cap_check": "fail_per_order_cap"
+    },
+    {
+      "symbol": "AVGO",
+      "quote_timestamp": "2026-06-12T20:00:00.013616581Z",
+      "bid": 364.15,
+      "ask": 397.47,
+      "spread_pct": 8.7498,
+      "quote_age_minutes_vs_runtime_clock": 532.65,
+      "role": "sell_trim_candidate",
+      "result": "blocked",
+      "reason": "spread and fresh_quote hard gates failed before sell-trim submit path"
+    },
+    {
+      "symbol": "SO",
+      "quote_timestamp": "2026-06-12T20:00:00.005356648Z",
+      "bid": 89.83,
+      "ask": 98.54,
+      "spread_pct": 9.2478,
+      "quote_age_minutes_vs_runtime_clock": 532.65,
+      "role": "sell_trim_candidate",
+      "result": "blocked",
+      "reason": "spread cap fail plus existing trim decision-grade metric gap"
+    },
+    {
+      "symbol": "INTC",
+      "quote_timestamp": "2026-06-12T20:00:00.013145928Z",
+      "bid": 118.84,
+      "ask": 130.92,
+      "spread_pct": 9.6733,
+      "quote_age_minutes_vs_runtime_clock": 532.65,
+      "role": "software_chip_diversifier_buy_fallback",
+      "result": "blocked",
+      "reason": "spread and fresh_quote hard gates failed"
+    },
+    {
+      "symbol": "MU",
+      "quote_timestamp": "2026-06-12T20:00:01.277902268Z",
+      "bid": 943.01,
+      "ask": 1040.42,
+      "spread_pct": 9.8224,
+      "quote_age_minutes_vs_runtime_clock": 532.63,
+      "role": "existing_actionable_holding_buy_fallback",
+      "result": "blocked",
+      "reason": "spread cap fail, fresh_quote fail, and 1-share ask 1040.42 USD exceeds per-order cap",
+      "notional_cap_check": "fail_per_order_cap"
+    }
+  ],
+  "after_hours_gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "fail_no_eligible_order_survived_after_hours_fresh_quote_gate",
+    "fresh_quote": "fail_scheduler_iex_quotes_stale_475.03_to_532.65_minutes",
+    "spread_within_after_hours_policy": "fail_only_qqq_msft_inside_spread_cap_but_stale_or_over_notional",
+    "whole_share_day_limit_extended_hours_order": "pass_no_orders_built",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-13-1351-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-13-1351-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md",
+    "wiki/current-runs/daily/2026-06-13-1351-after-hours-autopilot.md"
+  ]
+}
