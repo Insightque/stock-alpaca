@@ -1,0 +1,229 @@
+{
+  "run_id": "2026-06-14-0811-after-hours-autopilot",
+  "mode": "submit",
+  "paper": true,
+  "created_at": "2026-06-13T23:20:35Z",
+  "git_commit": "ca024f36d3e5c13422153291ed58c65f5d9b428f",
+  "prompt_file_sha": "manual-after-hours-autopilot-run",
+  "risk_policy_version": "medium-risk-v1.2",
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "schema_version": "1.3",
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-13T22:31:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    }
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-13T23:20:35Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ],
+      "gap_reason": "Scheduler-owned 0811 Alpaca core preflight recorded market_closed as the first regular-session blocker, which is expected and nonblocking for after-hours. The same preflight supplied passing account, positions, open-order, asset, quote, spread, snapshot, and trade rows required by this workflow. Live Alpaca MCP continuity check reconfirmed regular market closed, account ACTIVE, positions 33, open orders 0, watchlists 0, and only older overnight quote timestamps near 2026-06-12T08:00:00Z for QQQ/MSFT/SMH/SPY/AVGO/SO/INTC/MU, so the scheduler-owned 0811 preflight remained the source-of-record for submit-boundary IEX quote/spread evidence.",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-13T22:31:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-13T22:31:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-13T21:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-13T22:31:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-13T23:11:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "all_research_must_be_attempted": true,
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_submit": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "recommendation_actionability": {
+    "status": "blocked",
+    "blocking_gates": [
+      "fresh_quote",
+      "risk_policy"
+    ],
+    "detail": "Scheduler-owned 0811 IEX quotes left the freshest shortlisted candidate QQQ at 2026-06-12T20:57:37.534220888Z, which was about 1573.49 minutes old by the 0811 scheduler clock 2026-06-13T19:11:07.238214632-04:00. MSFT and SMH were 1588.57 and 1576.49 minutes stale, while SPY/AVGO/SO/INTC/MU were about 1631.12 to 1631.10 minutes old or wider than the 0.25% spread cap."
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_research_preflight_shortlist_with_scheduler_preflight_submit_boundary_evidence",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "MSFT",
+      "SMH",
+      "SPY",
+      "AVGO",
+      "SO",
+      "INTC",
+      "MU"
+    ],
+    "final_candidates": [
+      "QQQ",
+      "MSFT",
+      "SMH",
+      "SPY",
+      "AVGO",
+      "SO",
+      "INTC",
+      "MU"
+    ],
+    "passed": true,
+    "gap_reason": "",
+    "status": "pass",
+    "source": "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-research-mcp-preflight.json",
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-research-mcp-preflight.json",
+      "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-after-hours-gate-evaluation.json",
+      "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-runtime-alpaca-spot-check.json",
+      "wiki/trade-ledger/reviews/review-due-index.json",
+      "wiki/trade-ledger/positions/current.md"
+    ]
+  },
+  "data_cutoff_time": "2026-06-13T19:11:07.238214632-04:00",
+  "market_clock_checked_at": "2026-06-13T19:11:07.238214632-04:00",
+  "risk_check_result": {
+    "status": "PASS",
+    "path": "wiki/trade-ledger/orders/2026-06-14-0811-after-hours-autopilot.json",
+    "order_count": 0,
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": "PASS with orders is empty warning only",
+    "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-06-14-0811-after-hours-autopilot.json"
+  },
+  "data_manifest": {
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-research-mcp-preflight.json",
+    "after_hours_gate_evaluation": "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "runtime_alpaca_spot_check": "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "scheduler_preflights": {
+      "alpaca_core": "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-alpaca-core-preflight.json",
+      "research_mcp": "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-research-mcp-preflight.json"
+    },
+    "runtime_cross_checks": [
+      "scheduler-owned 0811 Alpaca core preflight rows used as source-of-record for regular-market clock, account, positions, open orders, assets, quotes, spreads, and recent fills required by this workflow",
+      "live Alpaca MCP continuity check reconfirmed regular market closed, account ACTIVE, positions 33, open orders 0, watchlists 0, and no same-session after-hours orders from get_orders(status=all, after=2026-06-12T20:00:00Z)",
+      "live overnight quote readback was older than the scheduler submit-boundary quotes for every shortlisted symbol, so the scheduler-owned 0811 preflight remained authoritative for the fresh-quote and spread gates",
+      "research MCP coverage used scheduler-owned 0811 research preflight only; alpha-vantage remained an empty_response gap while sec-edgar/fred/firecrawl/yahoo-finance passed"
+    ]
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-14-0811-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md"
+  ]
+}
