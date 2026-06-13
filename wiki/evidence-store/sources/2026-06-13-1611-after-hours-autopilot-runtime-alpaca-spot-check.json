@@ -1,0 +1,79 @@
+{
+  "run_id": "2026-06-13-1611-after-hours-autopilot",
+  "created_at": "2026-06-13T07:13:53Z",
+  "paper": true,
+  "read_only": true,
+  "source": "live Alpaca MCP read-only continuity check from nested after-hours run",
+  "checks": {
+    "get_watchlists": {
+      "result_count": 0
+    },
+    "get_orders_open": {
+      "result_count": 0
+    },
+    "get_orders_all_after_session_start": {
+      "after": "2026-06-12T20:00:00Z",
+      "result_count": 0
+    },
+    "get_stock_latest_quote_overnight_shortlist": {
+      "feed": "overnight",
+      "symbols": [
+        "QQQ",
+        "MSFT",
+        "SMH",
+        "SPY",
+        "AVGO",
+        "SO",
+        "INTC",
+        "MU"
+      ],
+      "quotes": {
+        "QQQ": {
+          "bid": 714.35,
+          "ask": 725.22,
+          "timestamp": "2026-06-12T08:00:00.360979385Z"
+        },
+        "MSFT": {
+          "bid": 391.75,
+          "ask": 398.23,
+          "timestamp": "2026-06-12T08:00:00.367143696Z"
+        },
+        "SMH": {
+          "bid": 604.8,
+          "ask": 616.26,
+          "timestamp": "2026-06-12T08:00:00.349645383Z"
+        },
+        "SPY": {
+          "bid": 738.16,
+          "ask": 738.48,
+          "timestamp": "2026-06-12T08:00:00.021471012Z"
+        },
+        "AVGO": {
+          "bid": 360.36,
+          "ask": 429.98,
+          "timestamp": "2026-06-12T08:00:00.360673017Z"
+        },
+        "SO": {
+          "bid": 88.07,
+          "ask": 99.37,
+          "timestamp": "2026-06-12T08:00:00.241648023Z"
+        },
+        "INTC": {
+          "bid": 108.38,
+          "ask": 121.09,
+          "timestamp": "2026-06-12T08:00:00.367213389Z"
+        },
+        "MU": {
+          "bid": 955.56,
+          "ask": 978.17,
+          "timestamp": "2026-06-12T08:00:00.370637658Z"
+        }
+      },
+      "note": "Runtime overnight quotes were materially older than the scheduler-owned 1611 IEX submit-boundary quotes and did not reopen the fresh-quote gate."
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-13-1611-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-13-1611-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
