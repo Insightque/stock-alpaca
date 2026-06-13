@@ -1,0 +1,102 @@
+{
+  "run_id": "2026-06-13-2031-after-hours-autopilot",
+  "created_at": "2026-06-13T11:36:09Z",
+  "session": "after_hours",
+  "source": "live Alpaca MCP continuity check",
+  "paper": true,
+  "market_clock": {
+    "is_open": false,
+    "timestamp": "2026-06-13T07:32:45.857232302-04:00",
+    "next_open": "2026-06-15T09:30:00-04:00",
+    "next_close": "2026-06-15T16:00:00-04:00"
+  },
+  "continuity_check": {
+    "positions_count": 33,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "watchlists_count": 0,
+    "scope": [
+      "get_clock",
+      "get_account_info",
+      "get_all_positions",
+      "get_orders(status=open)",
+      "get_orders(status=all, after=2026-06-12T20:00:00Z)",
+      "get_watchlists",
+      "get_stock_latest_quote(feed=overnight)"
+    ]
+  },
+  "live_overnight_quote_readback": {
+    "shortlist": [
+      "QQQ",
+      "MSFT",
+      "SMH",
+      "SPY",
+      "AVGO",
+      "SO",
+      "INTC",
+      "MU"
+    ],
+    "note": "Live overnight quote readback returned timestamps older than the scheduler-owned 2031 IEX submit-boundary quotes, so scheduler preflight quote/spread rows remained the source-of-record.",
+    "QQQ": {
+      "quote_timestamp": "2026-06-12T08:00:00.360979385Z",
+      "quote_age_minutes_vs_live_clock": 1652.76,
+      "bid": 714.35,
+      "ask": 725.22,
+      "spread_pct": 1.5102
+    },
+    "MSFT": {
+      "quote_timestamp": "2026-06-12T08:00:00.367143696Z",
+      "quote_age_minutes_vs_live_clock": 1652.76,
+      "bid": 391.75,
+      "ask": 398.23,
+      "spread_pct": 1.6405
+    },
+    "SMH": {
+      "quote_timestamp": "2026-06-12T08:00:00.349645383Z",
+      "quote_age_minutes_vs_live_clock": 1652.76,
+      "bid": 604.8,
+      "ask": 616.26,
+      "spread_pct": 1.8771
+    },
+    "SPY": {
+      "quote_timestamp": "2026-06-12T08:00:00.021471012Z",
+      "quote_age_minutes_vs_live_clock": 1652.76,
+      "bid": 738.16,
+      "ask": 738.48,
+      "spread_pct": 0.0433
+    },
+    "AVGO": {
+      "quote_timestamp": "2026-06-12T08:00:00.360673017Z",
+      "quote_age_minutes_vs_live_clock": 1652.76,
+      "bid": 360.36,
+      "ask": 429.98,
+      "spread_pct": 17.6177
+    },
+    "SO": {
+      "quote_timestamp": "2026-06-12T08:00:00.241648023Z",
+      "quote_age_minutes_vs_live_clock": 1652.76,
+      "bid": 88.07,
+      "ask": 99.37,
+      "spread_pct": 12.0572
+    },
+    "INTC": {
+      "quote_timestamp": "2026-06-12T08:00:00.367213389Z",
+      "quote_age_minutes_vs_live_clock": 1652.76,
+      "bid": 108.38,
+      "ask": 121.09,
+      "spread_pct": 11.0777
+    },
+    "MU": {
+      "quote_timestamp": "2026-06-12T08:00:00.370637658Z",
+      "quote_age_minutes_vs_live_clock": 1652.76,
+      "bid": 955.56,
+      "ask": 978.17,
+      "spread_pct": 2.3385
+    }
+  },
+  "note": "Live Alpaca MCP continuity check matched the scheduler-owned 2031 core preflight on closed regular market, ACTIVE account state, 33 positions, no open orders, no same-session after-hours orders after 2026-06-12T20:00:00Z, and no watchlists. Live overnight quote readback was older than the scheduler-owned submit-boundary quotes and did not reopen a submit path.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-13-2031-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-13-2031-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
