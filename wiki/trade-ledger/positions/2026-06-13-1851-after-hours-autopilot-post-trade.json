@@ -1,0 +1,39 @@
+{
+  "run_id": "2026-06-13-1851-after-hours-autopilot",
+  "created_at": "2026-06-13T09:51:25Z",
+  "session": "after_hours",
+  "paper": true,
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "orders_open": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_detected": 0,
+  "account": {
+    "portfolio_value": 100415.12,
+    "cash": 31950.34,
+    "buying_power": 302843.86,
+    "long_market_value": 68464.78,
+    "currency": "USD",
+    "status": "ACTIVE"
+  },
+  "positions_count": 33,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "review_bucket": "after_hours_validation",
+  "note": "No after-hours submit. Scheduler-owned 1851 Alpaca core preflight confirmed closed regular market, ACTIVE account, 33 positions, 0 open orders, 0 watchlists, and no same-session after-hours order or fill after 2026-06-12T20:00:00Z. The same scheduler-owned submit-boundary quote rows still left the freshest candidate stale by 773.50 minutes, so no client_order_id reconciliation path was needed.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-13-1851-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-13-1851-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-13-1851-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md"
+  ],
+  "submit_status": "no_submit",
+  "client_order_ids_checked": [],
+  "new_orders": [],
+  "filled_orders": [],
+  "cancelled_orders": [],
+  "open_orders": [],
+  "open_order_count": 0,
+  "reconciliation_note": "No submit path. Scheduler-owned 1851 preflight confirmed closed regular market, 0 open orders, and unchanged positions."
+}
