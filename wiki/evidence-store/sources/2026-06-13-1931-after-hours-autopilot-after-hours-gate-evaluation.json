@@ -1,0 +1,192 @@
+{
+  "run_id": "2026-06-13-1931-after-hours-autopilot",
+  "created_at": "2026-06-13T10:31:27Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "artifact_tag": "after-hours",
+  "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-13-1931-after-hours-autopilot-alpaca-core-preflight.json",
+  "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-13-1931-after-hours-autopilot-research-mcp-preflight.json",
+  "runtime_alpaca_spot_check": "wiki/evidence-store/sources/2026-06-13-1931-after-hours-autopilot-runtime-alpaca-spot-check.json",
+  "market_clock": {
+    "is_open": false,
+    "timestamp": "2026-06-13T06:31:07.811630649-04:00",
+    "next_open": "2026-06-15T09:30:00-04:00",
+    "next_close": "2026-06-15T16:00:00-04:00"
+  },
+  "account_summary": {
+    "status": "ACTIVE",
+    "portfolio_value": 100415.12,
+    "cash": 31950.34,
+    "buying_power": 302843.86,
+    "long_market_value": 68464.78,
+    "positions_count": 33,
+    "open_orders_count": 0,
+    "watchlists_count": 0
+  },
+  "risk_inputs": {
+    "after_hours_new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 1,
+    "review_backlog_pending_5d_count": 16,
+    "review_backlog_pending_20d_count": 1
+  },
+  "shortlist": [
+    "QQQ",
+    "MSFT",
+    "SMH",
+    "SPY",
+    "AVGO",
+    "SO",
+    "INTC",
+    "MU"
+  ],
+  "candidate_evaluation": {
+    "QQQ": {
+      "bid": 722.0,
+      "ask": 722.21,
+      "quote_timestamp": "2026-06-12T20:57:37.534220888Z",
+      "quote_age_minutes": 813.5,
+      "spread_pct": 0.0291,
+      "after_hours_notional_cap_usd": 502.08,
+      "one_share_notional_usd": 722.21,
+      "fresh_quote_pass": false,
+      "spread_pass": true,
+      "notional_cap_pass": false,
+      "two_sided_quote_pass": true
+    },
+    "MSFT": {
+      "bid": 390.76,
+      "ask": 390.99,
+      "quote_timestamp": "2026-06-12T20:42:33.3236562Z",
+      "quote_age_minutes": 828.57,
+      "spread_pct": 0.0588,
+      "after_hours_notional_cap_usd": 502.08,
+      "one_share_notional_usd": 390.99,
+      "fresh_quote_pass": false,
+      "spread_pass": true,
+      "notional_cap_pass": true,
+      "two_sided_quote_pass": true
+    },
+    "SMH": {
+      "bid": 619.72,
+      "ask": 624.79,
+      "quote_timestamp": "2026-06-12T20:54:37.797642448Z",
+      "quote_age_minutes": 816.5,
+      "spread_pct": 0.8148,
+      "after_hours_notional_cap_usd": 502.08,
+      "one_share_notional_usd": 624.79,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "notional_cap_pass": false,
+      "two_sided_quote_pass": true
+    },
+    "SPY": {
+      "bid": 718.43,
+      "ask": 762.94,
+      "quote_timestamp": "2026-06-12T20:00:00.00478112Z",
+      "quote_age_minutes": 871.13,
+      "spread_pct": 6.0093,
+      "after_hours_notional_cap_usd": 502.08,
+      "one_share_notional_usd": 762.94,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "notional_cap_pass": false,
+      "two_sided_quote_pass": true
+    },
+    "AVGO": {
+      "bid": 364.15,
+      "ask": 397.47,
+      "quote_timestamp": "2026-06-12T20:00:00.013616581Z",
+      "quote_age_minutes": 871.13,
+      "spread_pct": 8.7498,
+      "after_hours_notional_cap_usd": 502.08,
+      "one_share_notional_usd": 397.47,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "notional_cap_pass": true,
+      "two_sided_quote_pass": true
+    },
+    "SO": {
+      "bid": 89.83,
+      "ask": 98.54,
+      "quote_timestamp": "2026-06-12T20:00:00.005356648Z",
+      "quote_age_minutes": 871.13,
+      "spread_pct": 9.2478,
+      "after_hours_notional_cap_usd": 502.08,
+      "one_share_notional_usd": 98.54,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "notional_cap_pass": true,
+      "two_sided_quote_pass": true
+    },
+    "INTC": {
+      "bid": 118.84,
+      "ask": 130.92,
+      "quote_timestamp": "2026-06-12T20:00:00.013145928Z",
+      "quote_age_minutes": 871.13,
+      "spread_pct": 9.6733,
+      "after_hours_notional_cap_usd": 502.08,
+      "one_share_notional_usd": 130.92,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "notional_cap_pass": true,
+      "two_sided_quote_pass": true
+    },
+    "MU": {
+      "bid": 943.01,
+      "ask": 1040.42,
+      "quote_timestamp": "2026-06-12T20:00:01.277902268Z",
+      "quote_age_minutes": 871.11,
+      "spread_pct": 9.8224,
+      "after_hours_notional_cap_usd": 502.08,
+      "one_share_notional_usd": 1040.42,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "notional_cap_pass": false,
+      "two_sided_quote_pass": true
+    }
+  },
+  "gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "risk_policy": "fail_no_eligible_order_survived_after_hours_fresh_quote_gate",
+    "fresh_quote": "fail_scheduler_iex_quotes_stale_813.50_to_871.13_minutes",
+    "spread_within_after_hours_policy": "fail_only_qqq_msft_inside_spread_cap_but_stale_or_over_notional",
+    "whole_share_day_limit_extended_hours_order": "pass_no_orders_built",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit"
+  },
+  "blocking_reasons": [
+    "QQQ freshest shortlisted quote stayed stale by 813.50 minutes and still exceeded the after-hours per-order notional cap at 722.21 USD vs 502.08 USD.",
+    "MSFT and SMH stayed stale by 828.57 and 816.50 minutes, while SPY/AVGO/SO/INTC/MU remained about 871.13/871.13/871.13/871.13/871.11 minutes old or wider than the 0.25% spread cap.",
+    "The policy requirement to submit at least one floor-size after-hours order when all hard gates pass did not trigger because no sell trim or fallback buy survived the hard gates."
+  ],
+  "decision": {
+    "action": "no_submit",
+    "reason": "No eligible sell trim or fallback buy survived the after-hours hard gates at 1931.",
+    "eligible_sell_trim_found": false,
+    "eligible_buy_fallback_found": false,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "separate_session_budget_remaining": 2
+  },
+  "continuity_check": {
+    "runtime_used": true,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "watchlists_count": 0,
+    "source": "wiki/evidence-store/sources/2026-06-13-1931-after-hours-autopilot-runtime-alpaca-spot-check.json"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-13-1931-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-13-1931-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-13-1931-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-13-1931-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md"
+  ]
+}
