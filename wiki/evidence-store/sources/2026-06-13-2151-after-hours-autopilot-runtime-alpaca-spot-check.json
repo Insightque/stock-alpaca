@@ -1,0 +1,90 @@
+{
+  "run_id": "2026-06-13-2151-after-hours-autopilot",
+  "created_at": "2026-06-13T12:54:10Z",
+  "session": "after_hours",
+  "source": "live Alpaca MCP continuity check",
+  "paper": true,
+  "market_clock": {
+    "is_open": false,
+    "timestamp": "2026-06-13T08:52:52.553969592-04:00",
+    "next_open": "2026-06-15T09:30:00-04:00",
+    "next_close": "2026-06-15T16:00:00-04:00"
+  },
+  "continuity_check": {
+    "positions_count": 33,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "watchlists_count": 0,
+    "scope": [
+      "get_clock",
+      "get_account_info",
+      "get_all_positions",
+      "get_orders(status=open)",
+      "get_orders(status=all, after=2026-06-12T20:00:00Z)",
+      "get_watchlists",
+      "get_stock_latest_quote(feed=overnight)",
+      "scheduler-owned 2151 Alpaca core preflight: get_stock_latest_quote(feed=iex)"
+    ]
+  },
+  "live_overnight_quote_readback": {
+    "shortlist": [
+      "QQQ",
+      "MSFT",
+      "SMH",
+      "SPY",
+      "AVGO",
+      "SO",
+      "INTC",
+      "MU"
+    ],
+    "feed": "overnight",
+    "quotes": {
+      "QQQ": {
+        "bid": 714.35,
+        "ask": 725.22,
+        "timestamp": "2026-06-12T08:00:00.360979385Z"
+      },
+      "MSFT": {
+        "bid": 391.75,
+        "ask": 398.23,
+        "timestamp": "2026-06-12T08:00:00.367143696Z"
+      },
+      "SMH": {
+        "bid": 604.8,
+        "ask": 616.26,
+        "timestamp": "2026-06-12T08:00:00.349645383Z"
+      },
+      "SPY": {
+        "bid": 738.16,
+        "ask": 738.48,
+        "timestamp": "2026-06-12T08:00:00.021471012Z"
+      },
+      "AVGO": {
+        "bid": 360.36,
+        "ask": 429.98,
+        "timestamp": "2026-06-12T08:00:00.360673017Z"
+      },
+      "SO": {
+        "bid": 88.07,
+        "ask": 99.37,
+        "timestamp": "2026-06-12T08:00:00.241648023Z"
+      },
+      "INTC": {
+        "bid": 108.38,
+        "ask": 121.09,
+        "timestamp": "2026-06-12T08:00:00.367213389Z"
+      },
+      "MU": {
+        "bid": 955.56,
+        "ask": 978.17,
+        "timestamp": "2026-06-12T08:00:00.370637658Z"
+      }
+    },
+    "note": "Direct live overnight quote readback returned only older 2026-06-12T08:00:00Z-era timestamps. This session therefore kept the scheduler-owned 2151 IEX submit-boundary quotes as source-of-record for freshness and spread gating."
+  },
+  "note": "Live Alpaca MCP continuity check reconfirmed closed regular market, ACTIVE account state, 33 positions, 0 open orders, 0 same-session after-hours submitted orders, and 0 watchlists. Scheduler-owned 2151 Alpaca core preflight remained the source-of-record for submit-boundary quote/spread evidence because every shortlisted candidate still failed freshness and most also failed spread or notional caps.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-13-2151-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-13-2151-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
