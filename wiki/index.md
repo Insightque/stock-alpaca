@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-13 08:32 KST after-hours-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-13 09:13 KST after-hours-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -54,6 +54,7 @@
 
 ## Current Runs
 
+- [[2026-06-13-0911-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0911` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours session budget은 `0/2`로 열려 있었지만 freshest shortlisted quote `QQQ 722.00/722.21`조차 runtime clock 기준 약 `195.39`분 stale이었고 `MSFT/SMH`도 `210.46/198.39`분 stale, `SPY/AVGO/SO/INTC/MU`는 약 `253.02`분 stale 또는 spread/notional cap fail이었다. live Alpaca MCP continuity check는 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours orders `0`, watchlists `0`를 재확인했고 `overnight` quote feed도 `08:00Z` snapshot만 반환해 no-submit으로 종료했다.
 - [[2026-06-13-0851-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0851` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours session budget은 `0/2`로 열려 있었지만 freshest shortlisted quote `QQQ 722.00/722.21`조차 scheduler clock 기준 약 `173.52`분 stale이었고 `MSFT/SMH`도 `188.59/176.51`분 stale, `SPY/AVGO/SO/INTC/MU`는 약 `231`분 stale 또는 spread/notional cap fail이었다. live Alpaca MCP continuity check는 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours orders `0`, watchlists `0`를 재확인했고 `overnight` quote feed도 `08:00Z` snapshot만 반환해 no-submit으로 종료했다.
 - [[2026-06-13-0831-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0831` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours session budget은 `0/2`로 열려 있었지만 freshest shortlisted quote `QQQ 722.00/722.21`조차 scheduler clock 기준 약 `153.53`분 stale이었고 `MSFT/SMH`도 `168.60/156.52`분 stale, `SPY/AVGO/SO/INTC/MU`는 약 `211`분 stale 또는 spread/notional cap fail이라 no-submit으로 종료했다. live Alpaca MCP continuity check는 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours orders `0`, watchlists `0`를 재확인했다.
 - [[2026-06-13-0811-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `0811` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours session budget은 `0/2`로 열려 있었지만 freshest shortlisted quote `QQQ 722.00/722.21`조차 scheduler clock 기준 약 `133.52`분 stale이었고 `MSFT/SMH`도 `148.59/136.51`분 stale, `SPY/AVGO/SO/INTC/MU`는 약 `191`분 stale 또는 spread/notional cap fail이라 no-submit으로 종료했다. live Alpaca MCP continuity check는 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, same-session after-hours orders `0`, watchlists `0`를 재확인했다.
