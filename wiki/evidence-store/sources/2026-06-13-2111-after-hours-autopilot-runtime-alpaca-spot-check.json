@@ -1,0 +1,45 @@
+{
+  "run_id": "2026-06-13-2111-after-hours-autopilot",
+  "created_at": "2026-06-13T12:14:30Z",
+  "session": "after_hours",
+  "source": "live Alpaca MCP continuity check",
+  "paper": true,
+  "market_clock": {
+    "is_open": false,
+    "timestamp": "2026-06-13T08:13:21.699327484-04:00",
+    "next_open": "2026-06-15T09:30:00-04:00",
+    "next_close": "2026-06-15T16:00:00-04:00"
+  },
+  "continuity_check": {
+    "positions_count": 33,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "watchlists_count": 0,
+    "scope": [
+      "get_clock",
+      "get_watchlists",
+      "scheduler-owned 2111 Alpaca core preflight: get_account_info",
+      "scheduler-owned 2111 Alpaca core preflight: get_all_positions",
+      "scheduler-owned 2111 Alpaca core preflight: get_orders(status=open)",
+      "scheduler-owned 2111 Alpaca core preflight: get_stock_latest_quote(feed=iex)"
+    ]
+  },
+  "live_overnight_quote_readback": {
+    "shortlist": [
+      "QQQ",
+      "MSFT",
+      "SMH",
+      "SPY",
+      "AVGO",
+      "SO",
+      "INTC",
+      "MU"
+    ],
+    "note": "This session kept the scheduler-owned 2111 IEX submit-boundary quotes as source-of-record. Direct live Alpaca MCP continuity reconfirmed regular market closed and watchlists 0, while the scheduler-owned 2111 Alpaca core preflight supplied the passing account, positions, open-order, asset, quote, spread, snapshot, and trade rows required by the after-hours workflow."
+  },
+  "note": "Live Alpaca MCP continuity check reconfirmed closed regular market and 0 watchlists. Scheduler-owned 2111 Alpaca core preflight remained the source-of-record for ACTIVE account state, 33 positions, 0 open orders, 0 same-session after-hours submitted orders, and the submit-boundary quote/spread rows because it already contained the required Alpaca MCP account/position/order/asset/quote evidence for this scheduled cycle.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-13-2111-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-13-2111-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
