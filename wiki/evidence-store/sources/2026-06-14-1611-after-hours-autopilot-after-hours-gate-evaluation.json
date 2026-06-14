@@ -1,0 +1,396 @@
+{
+  "run_id": "2026-06-14-1611-after-hours-autopilot",
+  "created_at": "2026-06-14T07:16:01Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "artifact_tag": "after-hours",
+  "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-alpaca-core-preflight.json",
+  "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-research-mcp-preflight.json",
+  "runtime_alpaca_spot_check": "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-runtime-alpaca-spot-check.json",
+  "market_clock": {
+    "is_open": false,
+    "timestamp": "2026-06-14T03:11:07.195593521-04:00",
+    "next_open": "2026-06-15T09:30:00-04:00",
+    "next_close": "2026-06-15T16:00:00-04:00"
+  },
+  "account_summary": {
+    "status": "ACTIVE",
+    "portfolio_value": 100415.12,
+    "cash": 31950.34,
+    "buying_power": 302843.86,
+    "long_market_value": 68464.78,
+    "currency": "USD"
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 1,
+    "review_backlog_pending_5d_count": 16,
+    "review_backlog_pending_20d_count": 1,
+    "cash_deployment_blocker": "quote_or_spread_gate_failed"
+  },
+  "shortlist": [
+    "QQQ",
+    "MSFT",
+    "SMH",
+    "SPY",
+    "AVGO",
+    "SO",
+    "INTC",
+    "MU"
+  ],
+  "candidate_evaluation": [
+    {
+      "symbol": "QQQ",
+      "side": "buy",
+      "role": "benchmark_fallback",
+      "feed": "iex",
+      "bid": 722.0,
+      "ask": 722.21,
+      "spread_pct": 0.0291,
+      "quote_timestamp": "2026-06-12T20:57:37.534220888Z",
+      "quote_age_minutes": 2053.49,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ],
+      "per_order_notional": 722.21,
+      "per_order_cap": 502.08,
+      "spread_gate": "pass",
+      "fresh_quote_gate": "fail",
+      "notional_gate": "fail",
+      "decision": "blocked",
+      "blocking_reasons": [
+        "quote_age_minutes=2053.49",
+        "ask_notional_exceeds_cap=502.08"
+      ]
+    },
+    {
+      "symbol": "MSFT",
+      "side": "buy",
+      "role": "existing_actionable_holding",
+      "feed": "iex",
+      "bid": 390.76,
+      "ask": 390.99,
+      "spread_pct": 0.0588,
+      "quote_timestamp": "2026-06-12T20:42:33.3236562Z",
+      "quote_age_minutes": 2068.56,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ],
+      "per_order_notional": 390.99,
+      "per_order_cap": 502.08,
+      "spread_gate": "pass",
+      "fresh_quote_gate": "fail",
+      "notional_gate": "pass",
+      "decision": "blocked",
+      "blocking_reasons": [
+        "quote_age_minutes=2068.56"
+      ]
+    },
+    {
+      "symbol": "SMH",
+      "side": "buy",
+      "role": "semiconductor_diversifier",
+      "feed": "iex",
+      "bid": 619.72,
+      "ask": 624.79,
+      "spread_pct": 0.8148,
+      "quote_timestamp": "2026-06-12T20:54:37.797642448Z",
+      "quote_age_minutes": 2056.49,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ],
+      "per_order_notional": 624.79,
+      "per_order_cap": 502.08,
+      "spread_gate": "fail",
+      "fresh_quote_gate": "fail",
+      "notional_gate": "fail",
+      "decision": "blocked",
+      "blocking_reasons": [
+        "quote_age_minutes=2056.49",
+        "ask_notional_exceeds_cap=502.08",
+        "spread_pct=0.8148"
+      ]
+    },
+    {
+      "symbol": "SPY",
+      "side": "buy",
+      "role": "benchmark_fallback",
+      "feed": "iex",
+      "bid": 718.43,
+      "ask": 762.94,
+      "spread_pct": 6.0093,
+      "quote_timestamp": "2026-06-12T20:00:00.00478112Z",
+      "quote_age_minutes": 2111.12,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ],
+      "per_order_notional": 762.94,
+      "per_order_cap": 502.08,
+      "spread_gate": "fail",
+      "fresh_quote_gate": "fail",
+      "notional_gate": "fail",
+      "decision": "blocked",
+      "blocking_reasons": [
+        "quote_age_minutes=2111.12",
+        "ask_notional_exceeds_cap=502.08",
+        "spread_pct=6.0093"
+      ]
+    },
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "role": "existing_position_trim_candidate",
+      "feed": "iex",
+      "bid": 364.15,
+      "ask": 397.47,
+      "spread_pct": 8.7498,
+      "quote_timestamp": "2026-06-12T20:00:00.013616581Z",
+      "quote_age_minutes": 2111.12,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ],
+      "per_order_notional": 364.15,
+      "per_order_cap": 502.08,
+      "spread_gate": "fail",
+      "fresh_quote_gate": "fail",
+      "notional_gate": "pass",
+      "decision": "blocked",
+      "blocking_reasons": [
+        "quote_age_minutes=2111.12",
+        "spread_pct=8.7498"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "side": "sell",
+      "role": "existing_position_trim_candidate",
+      "feed": "iex",
+      "bid": 89.83,
+      "ask": 98.54,
+      "spread_pct": 9.2478,
+      "quote_timestamp": "2026-06-12T20:00:00.005356648Z",
+      "quote_age_minutes": 2111.12,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ],
+      "per_order_notional": 89.83,
+      "per_order_cap": 502.08,
+      "spread_gate": "fail",
+      "fresh_quote_gate": "fail",
+      "notional_gate": "pass",
+      "decision": "blocked",
+      "blocking_reasons": [
+        "quote_age_minutes=2111.12",
+        "spread_pct=9.2478"
+      ]
+    },
+    {
+      "symbol": "INTC",
+      "side": "sell",
+      "role": "sell_recheck_without_position",
+      "feed": "iex",
+      "bid": 118.84,
+      "ask": 130.92,
+      "spread_pct": 9.6733,
+      "quote_timestamp": "2026-06-12T20:00:00.013145928Z",
+      "quote_age_minutes": 2111.12,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ],
+      "per_order_notional": 118.84,
+      "per_order_cap": 502.08,
+      "spread_gate": "fail",
+      "fresh_quote_gate": "fail",
+      "notional_gate": "pass",
+      "decision": "blocked",
+      "blocking_reasons": [
+        "quote_age_minutes=2111.12",
+        "spread_pct=9.6733",
+        "no_open_position_for_sell_trim"
+      ]
+    },
+    {
+      "symbol": "MU",
+      "side": "buy",
+      "role": "existing_actionable_holding",
+      "feed": "iex",
+      "bid": 943.01,
+      "ask": 1040.42,
+      "spread_pct": 9.8224,
+      "quote_timestamp": "2026-06-12T20:00:01.277902268Z",
+      "quote_age_minutes": 2111.1,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ],
+      "per_order_notional": 1040.42,
+      "per_order_cap": 502.08,
+      "spread_gate": "fail",
+      "fresh_quote_gate": "fail",
+      "notional_gate": "fail",
+      "decision": "blocked",
+      "blocking_reasons": [
+        "quote_age_minutes=2111.10",
+        "ask_notional_exceeds_cap=502.08",
+        "spread_pct=9.8224"
+      ]
+    }
+  ],
+  "gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "risk_policy": "PASS_empty_order_plan_warning_only",
+    "fresh_quote": "fail_scheduler_quotes_stale_2053.49_to_2111.12_minutes",
+    "spread_within_after_hours_policy": "fail_only_qqq_msft_inside_spread_cap_but_stale_or_over_notional",
+    "whole_share_day_limit_extended_hours_order": "pass_no_orders_built",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit"
+  },
+  "blocking_reasons": [
+    "freshest shortlist quote QQQ age 2053.49 minutes exceeds after_hours_policy.max_quote_age_minutes_submit=5.0",
+    "QQQ also exceeds after-hours per-order cap with ask 722.21 USD versus 502.08 USD cap",
+    "MSFT age 2068.56 minutes exceeds fresh quote cap despite acceptable spread and notional",
+    "SMH spread 0.8148% and ask 624.79 USD both fail after-hours caps before freshness recovery",
+    "SPY/AVGO/SO/INTC/MU remain older than 2111.12-2111.10 minutes and above spread and-or notional limits, so neither sell-first nor benchmark fallback paths reopened",
+    "Live Alpaca MCP continuity re-check showed IEX quote parity with the scheduler-owned 1611 submit-boundary rows, while overnight quote/snapshot readback remained older than that boundary."
+  ],
+  "decision": {
+    "action": "no_submit",
+    "first_blocking_gate": "fresh_quote",
+    "session_budget_remaining": 2,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "submit_attempted": false,
+    "note": "Scheduler-owned 1611 quote rows remained stale at the source-of-record boundary, and live Alpaca MCP parity checks did not reopen either sell-first or buy fallback paths. No order mutation occurred.",
+    "reason": null
+  },
+  "continuity_check": {
+    "clock_source": "scheduler-owned Alpaca core preflight get_clock + live mcp__alpaca.get_clock parity",
+    "positions_count_source": "mcp__alpaca.get_all_positions",
+    "positions_count": 33,
+    "open_orders_count_source": "mcp__alpaca.get_orders(status=open)",
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today_source": "mcp__alpaca.get_orders(status=all, after=2026-06-13T20:00:00Z)",
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_detected_source": "mcp__alpaca.get_account_activities(activity_types=FILL, after=2026-06-13T20:00:00Z)",
+    "same_session_after_hours_fills_detected": 0,
+    "watchlists_count_source": "mcp__alpaca.get_watchlists",
+    "watchlists_count": 0,
+    "runtime_used": true,
+    "gap_category": "not_applicable",
+    "gap_reason": "",
+    "scope": [
+      "get_clock",
+      "get_account_info",
+      "get_all_positions",
+      "get_orders(status=open)",
+      "get_orders(status=all, after=2026-06-13T20:00:00Z)",
+      "get_account_activities(activity_types=FILL, after=2026-06-13T20:00:00Z)",
+      "get_watchlists",
+      "get_stock_latest_quote(feed=iex)",
+      "get_stock_latest_quote(feed=overnight)",
+      "get_stock_snapshot(feed=overnight)"
+    ],
+    "live_iex_quote_matches_scheduler_submit_boundary": true,
+    "live_overnight_quote_readback_is_older_than_scheduler_submit_boundary": true,
+    "fills_inference_note": "Live get_orders(status=all, after=2026-06-13T20:00:00Z) and live get_account_activities(FILL, after=2026-06-13T20:00:00Z) both returned empty results, so same-session after-hours order/fill continuity remained explicitly zero in this turn.",
+    "watchlists_note": "Live get_watchlists returned an empty result.",
+    "live_clock_timestamp": "2026-06-14T03:12:59.871263339-04:00"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-14-1611-after-hours-autopilot-runtime-alpaca-spot-check.json"
+  ],
+  "gate_results": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "risk_policy": "PASS_empty_order_plan_warning_only",
+    "fresh_quote": "fail_scheduler_quotes_stale_2033.52_to_2091.14_minutes",
+    "spread_within_after_hours_policy": "fail_only_qqq_msft_inside_spread_cap_but_stale_or_over_notional",
+    "whole_share_day_limit_extended_hours_order": "pass_no_orders_built",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit"
+  },
+  "decision_summary": {
+    "action": "no_submit",
+    "reason": "Separate after-hours session budget remained open at 0/2, but no eligible sell trim or fallback buy survived the after-hours fresh-quote gate at 1611. The hard-gate requirement to submit a real paper observation did not trigger because the hard gates did not pass.",
+    "eligible_sell_trim_found": false,
+    "eligible_buy_fallback_found": false,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "separate_session_budget_remaining": 2,
+    "note": "Scheduler-owned 1611 quote rows remained stale at the source-of-record boundary, and live Alpaca MCP parity checks did not reopen either sell-first or buy fallback paths. No order mutation occurred."
+  },
+  "runtime_continuity": {
+    "clock_source": "scheduler-owned Alpaca core preflight get_clock + live mcp__alpaca.get_clock parity",
+    "positions_count_source": "mcp__alpaca.get_all_positions",
+    "positions_count": 33,
+    "open_orders_count_source": "mcp__alpaca.get_orders(status=open)",
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today_source": "mcp__alpaca.get_orders(status=all, after=2026-06-13T20:00:00Z)",
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_detected_source": "mcp__alpaca.get_account_activities(activity_types=FILL, after=2026-06-13T20:00:00Z)",
+    "same_session_after_hours_fills_detected": 0,
+    "watchlists_count_source": "mcp__alpaca.get_watchlists",
+    "watchlists_count": 0,
+    "runtime_used": true,
+    "gap_category": "not_applicable",
+    "gap_reason": "",
+    "scope": [
+      "get_clock",
+      "get_account_info",
+      "get_all_positions",
+      "get_orders(status=open)",
+      "get_orders(status=all, after=2026-06-13T20:00:00Z)",
+      "get_account_activities(activity_types=FILL, after=2026-06-13T20:00:00Z)",
+      "get_watchlists",
+      "get_stock_latest_quote(feed=iex)",
+      "get_stock_latest_quote(feed=overnight)",
+      "get_stock_snapshot(feed=overnight)"
+    ],
+    "live_iex_quote_matches_scheduler_submit_boundary": true,
+    "live_overnight_quote_readback_is_older_than_scheduler_submit_boundary": true,
+    "fills_inference_note": "Live get_orders(status=all, after=2026-06-13T20:00:00Z) and live get_account_activities(FILL, after=2026-06-13T20:00:00Z) both returned empty results, so same-session after-hours order/fill continuity remained explicitly zero in this turn.",
+    "watchlists_note": "Live get_watchlists returned an empty result.",
+    "live_clock_timestamp": "2026-06-14T03:12:59.871263339-04:00"
+  }
+}
