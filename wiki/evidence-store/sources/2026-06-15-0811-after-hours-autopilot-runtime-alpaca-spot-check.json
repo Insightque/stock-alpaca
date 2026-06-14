@@ -1,0 +1,116 @@
+{
+  "run_id": "2026-06-15-0811-after-hours-autopilot",
+  "created_at": "2026-06-14T23:13:08Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "artifact_tag": "after-hours",
+  "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-15-0811-after-hours-autopilot-alpaca-core-preflight.json",
+  "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-15-0811-after-hours-autopilot-research-mcp-preflight.json",
+  "runtime_alpaca_spot_check": "wiki/evidence-store/sources/2026-06-15-0811-after-hours-autopilot-runtime-alpaca-spot-check.json",
+  "market_clock": {
+    "is_open": false,
+    "next_close": "2026-06-15T16:00:00-04:00",
+    "next_open": "2026-06-15T09:30:00-04:00",
+    "timestamp": "2026-06-14T19:13:08.069463552-04:00"
+  },
+  "account_summary": {
+    "status": "ACTIVE",
+    "portfolio_value": 100415.12,
+    "cash": 31950.34,
+    "buying_power": 302843.86,
+    "long_market_value": 68464.78,
+    "currency": "USD"
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 1,
+    "review_backlog_pending_5d_count": 16,
+    "review_backlog_pending_20d_count": 1,
+    "cash_deployment_blocker": "quote_or_spread_gate_failed"
+  },
+  "shortlist": [
+    "QQQ",
+    "MSFT",
+    "SMH",
+    "SPY",
+    "AVGO",
+    "SO",
+    "INTC",
+    "MU"
+  ],
+  "live_iex_quotes": {
+    "QQQ": {
+      "bid": 722.0,
+      "ask": 722.21,
+      "timestamp": "2026-06-12T20:57:37.534220888Z",
+      "quote_age_minutes": 3015.51
+    },
+    "MSFT": {
+      "bid": 390.76,
+      "ask": 390.99,
+      "timestamp": "2026-06-12T20:42:33.3236562Z",
+      "quote_age_minutes": 3030.58
+    },
+    "SMH": {
+      "bid": 619.72,
+      "ask": 624.79,
+      "timestamp": "2026-06-12T20:54:37.797642448Z",
+      "quote_age_minutes": 3018.5
+    },
+    "SPY": {
+      "bid": 718.43,
+      "ask": 762.94,
+      "timestamp": "2026-06-12T20:00:00.00478112Z",
+      "quote_age_minutes": 3073.13
+    },
+    "AVGO": {
+      "bid": 364.15,
+      "ask": 397.47,
+      "timestamp": "2026-06-12T20:00:00.013616581Z",
+      "quote_age_minutes": 3073.13
+    },
+    "SO": {
+      "bid": 89.83,
+      "ask": 98.54,
+      "timestamp": "2026-06-12T20:00:00.005356648Z",
+      "quote_age_minutes": 3073.13
+    },
+    "INTC": {
+      "bid": 118.84,
+      "ask": 130.92,
+      "timestamp": "2026-06-12T20:00:00.013145928Z",
+      "quote_age_minutes": 3073.13
+    },
+    "MU": {
+      "bid": 943.01,
+      "ask": 1040.42,
+      "timestamp": "2026-06-12T20:00:01.277902268Z",
+      "quote_age_minutes": 3073.11
+    }
+  },
+  "overnight_snapshots": {
+    "QQQ": "2026-06-12T08:00:00.360979385Z",
+    "MSFT": "2026-06-12T08:00:00.367143696Z",
+    "SMH": "2026-06-12T08:00:00.349645383Z",
+    "SPY": "2026-06-12T08:00:00.021471012Z",
+    "AVGO": "2026-06-12T08:00:00.360673017Z",
+    "SO": "2026-06-12T08:00:00.241648023Z",
+    "INTC": "2026-06-12T08:00:00.367213389Z",
+    "MU": "2026-06-12T08:00:00.370637658Z"
+  },
+  "open_orders": [],
+  "recent_orders": [],
+  "recent_fills": [],
+  "watchlists": [],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-15-0811-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-0811-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "note": "This turn's direct live Alpaca MCP continuity re-confirmed regular market closed via get_clock, account ACTIVE via get_account_info, positions 33 via get_all_positions, open orders 0 via get_orders(status=open), same-session after-hours orders 0 via get_orders(status=all, after=2026-06-14T20:00:00Z), same-session fills 0 via get_account_activities(activity_types=FILL, after=2026-06-14T20:00:00Z), watchlists 0 via get_watchlists, and IEX/overnight quote parity for the shortlisted symbols. Scheduler-owned 0811 core preflight remained the source-of-record for the expected after-hours market_closed exception and submit-boundary gating rows because overnight readback was older than the stale IEX quotes."
+}
