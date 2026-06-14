@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-14 09:13 KST_
+_Last updated: 2026-06-14 09:33 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-14-0931-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 이번 cycle 신규 체결 없음. scheduler-owned `0931` `orders_submitted=0`, `get_orders_open=0`, `get_watchlists=0` 기준 same-session after-hours order/fill history도 추가되지 않았다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned `0931` `get_all_positions` 기준 positions `33`건, open orders `0`건, watchlists `0`건이었다.
+- Recent reconciliation scope: scheduler-owned `0931` after-hours core/research preflight를 source-of-record로 사용했다. regular market closed, account `ACTIVE`, cash `31950.34 USD`, portfolio value `100415.12 USD`, buying power `302843.86 USD`, long market value `68464.78 USD`였다. 별도 after-hours order budget은 `0/2`로 열려 있었지만 scheduler-owned submit-boundary quote rows 기준 `QQQ`가 약 `1653.52`분 stale, `MSFT/SMH`가 `1668.59/1656.52`분 stale, `SPY/AVGO/SO/INTC/MU`는 약 `1711.15-1711.13`분 stale 또는 spread/notional cap fail이라 submit path에 진입하지 못했다. 이번 turn의 local sandbox `python3` 환경에는 `mcp` 모듈이 없어 별도 live Alpaca MCP continuity spot check는 재실행하지 않았다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-14-0931-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 

@@ -1,0 +1,45 @@
+{
+  "run_id": "2026-06-14-0931-after-hours-autopilot",
+  "created_at": "2026-06-14T00:31:30Z",
+  "session": "after_hours",
+  "source": "scheduler-owned Alpaca core preflight continuity fallback",
+  "paper": true,
+  "market_clock_source": "scheduler-owned 0931 Alpaca core preflight get_clock",
+  "market_clock": {
+    "is_open": false,
+    "timestamp": "2026-06-13T20:31:08.845360761-04:00",
+    "next_open": "2026-06-15T09:30:00-04:00",
+    "next_close": "2026-06-15T16:00:00-04:00"
+  },
+  "account_source": "scheduler-owned 0931 Alpaca core preflight get_account_info",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 100415.12,
+    "cash": 31950.34,
+    "buying_power": 302843.86,
+    "long_market_value": 68464.78,
+    "currency": "USD"
+  },
+  "continuity_check": {
+    "positions_count_source": "scheduler-owned 0931 Alpaca core preflight get_all_positions",
+    "positions_count": 33,
+    "open_orders_count_source": "scheduler-owned 0931 Alpaca core preflight get_orders_open",
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today_source": "scheduler-owned 0931 Alpaca core preflight orders_submitted",
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_detected_source": "scheduler-owned 0931 Alpaca core preflight same-session after-hours fill summary",
+    "same_session_after_hours_fills_detected": 0,
+    "watchlists_count_source": "scheduler-owned 0931 Alpaca core preflight get_watchlists",
+    "watchlists_count": 0,
+    "runtime_used": false,
+    "gap_category": "wrapper_error",
+    "gap_reason": "This Codex turn could not re-open the local Alpaca MCP runtime because the sandbox Python environment lacked the mcp module; the scheduler-owned 0931 preflight remained sufficient source-of-record for required after-hours gates.",
+    "scope": [],
+    "live_overnight_quote_readback_is_older_than_scheduler_submit_boundary": null
+  },
+  "note": "No new live Alpaca MCP continuity probe was run in this Codex turn. The scheduler-owned 0931 Alpaca core preflight already supplied passing account, positions, open-order, activity, watchlist, asset, quote, and spread rows, and first_blocking_gate=market_closed remained expected nonblocking context for after-hours automation.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-14-0931-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-14-0931-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
