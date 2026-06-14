@@ -1,0 +1,57 @@
+{
+  "run_id": "2026-06-14-1051-after-hours-autopilot",
+  "created_at": "2026-06-14T01:51:26Z",
+  "session": "after_hours",
+  "source": "direct Alpaca MCP continuity partial + scheduler-owned core preflight fallback",
+  "paper": true,
+  "market_clock_source": "direct Alpaca MCP get_clock + scheduler-owned 1051 Alpaca core preflight parity",
+  "market_clock": {
+    "is_open": false,
+    "timestamp": "2026-06-13T21:53:18.5824145-04:00",
+    "next_open": "2026-06-15T09:30:00-04:00",
+    "next_close": "2026-06-15T16:00:00-04:00"
+  },
+  "account_source": "direct Alpaca MCP get_account_info + scheduler-owned 1051 Alpaca core preflight parity",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 100415.12,
+    "cash": 31950.34,
+    "buying_power": 302843.86,
+    "long_market_value": 68464.78,
+    "currency": "USD"
+  },
+  "continuity_check": {
+    "positions_count_source": "direct Alpaca MCP get_all_positions + scheduler-owned 1051 parity",
+    "positions_count": 33,
+    "open_orders_count_source": "direct Alpaca MCP get_orders(status=open) + scheduler-owned 1051 parity",
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today_source": "direct Alpaca MCP get_orders(status=all, after=2026-06-12T20:00:00Z) + scheduler-owned 1051 orders_submitted parity",
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_detected_source": "direct Alpaca MCP get_account_activities(activity_types=FILL, after=2026-06-12T20:00:00Z) + scheduler-owned 1051 parity",
+    "same_session_after_hours_fills_detected": 0,
+    "watchlists_count_source": "direct Alpaca MCP get_watchlists + scheduler-owned 1051 parity",
+    "watchlists_count": 0,
+    "runtime_used": true,
+    "gap_category": "not_applicable",
+    "gap_reason": "",
+    "scope": [
+      "get_clock",
+      "get_account_info",
+      "get_all_positions",
+      "get_orders(status=open)",
+      "get_orders(status=all, after=2026-06-12T20:00:00Z)",
+      "get_account_activities(activity_types=FILL, after=2026-06-12T20:00:00Z)",
+      "get_watchlists",
+      "get_stock_latest_quote(feed=overnight)",
+      "get_stock_latest_quote(feed=iex)",
+      "get_stock_snapshot(feed=overnight)"
+    ],
+    "live_iex_quote_matches_scheduler_submit_boundary": true,
+    "live_overnight_quote_readback_is_older_than_scheduler_submit_boundary": true
+  },
+  "note": "Direct Alpaca MCP continuity checks in this Codex turn reconfirmed regular market closed, account ACTIVE, positions_count=33, open_orders_count=0, same-session after-hours orders/fills=0, and watchlists_count=0, matching the scheduler-owned 1051 Alpaca core preflight. Live IEX quote readback for QQQ/MSFT/SMH/SPY/AVGO/SO/INTC/MU matched the scheduler-owned 1051 submit-boundary quotes, while overnight quote and snapshot readback returned only 2026-06-12T08:00:00Z-area timestamps, which were older than the scheduler-owned 1051 IEX submit-boundary quotes and did not reopen the fresh-quote gate.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-14-1051-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-14-1051-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
