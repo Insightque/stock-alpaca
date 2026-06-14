@@ -132,3 +132,9 @@ RGTI는 오늘 신규 매수 후보에서 제외했다. 2026-05-22 종가 26.41 
 새 regular-session close가 아직 없어서 `2026-06-12 ET` trim 12주의 `1D` closeout은 여전히 대기 상태다. current Alpaca snapshot 기준 `RGTI`는 `37주`, 평균단가 `25.569583 USD`, current `20.98 USD`, 미실현 약 `-17.95%`이며 residual speculative sleeve 해석은 유지한다. 첫 `1D` 판단 시점은 그대로 `2026-06-15` 미국 정규장 close 이후다.
 
 출처: [[2026-06-14-portfolio-review]], [[2026-06-14-0623-analyst-review-cycle-sources]]
+
+### 2026-06-15 analyst review cycle
+
+일요일 closed clock 기준 새 regular-session close가 없어서 `2026-06-12 ET` trim 12주의 `1D` closeout은 계속 대기 상태다. current Alpaca snapshot 기준 `RGTI`는 `37주`, 평균단가 `25.569583 USD`, current `20.98 USD`, 미실현 약 `-17.95%`이며, Alpaca IEX daily bar는 전일 대비 `+1.75%` 반등했지만 residual speculative sleeve 해석을 바꾸지는 않는다. 첫 `1D` 판단 시점은 그대로 `2026-06-15` 미국 정규장 close 이후다.
+
+출처: [[2026-06-15-portfolio-review]], [[2026-06-15-0624-analyst-review-cycle-sources]]

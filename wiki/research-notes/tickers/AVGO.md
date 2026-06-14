@@ -166,3 +166,9 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 live Alpaca clock이 `2026-06-13 17:22 ET` 토요일 closed 상태라 새 regular-session closeout은 추가되지 않았다. current Alpaca snapshot 기준 `AVGO`는 `4주`, 평균단가 `423.3625 USD`, current `382.07 USD`, 미실현 약 `-9.75%`이고, staged de-risking 뒤에도 recovery confirmation이 부족해 `post-earnings staged de-risking 지속` 해석을 유지한다.
 
 출처: [[2026-06-14-portfolio-review]], [[2026-06-14-0623-analyst-review-cycle-sources]]
+
+### 2026-06-15 analyst review cycle
+
+live Alpaca clock이 `2026-06-14 17:21 ET` 일요일 closed 상태라 새 regular-session closeout은 여전히 없다. current Alpaca snapshot 기준 `AVGO`는 `4주`, 평균단가 `423.3625 USD`, current `382.07 USD`, 미실현 약 `-9.75%`이며 Alpaca IEX daily bar는 전일 대비 `-0.79%`였다. 이번 cycle SEC EDGAR recent filings에서 `2026-06-11` 8-K와 `2026-06-09` 10-Q가 바로 확인됐지만, price recovery confirmation이 부족해 `post-earnings staged de-risking 지속` 해석을 유지한다.
+
+출처: [[2026-06-15-portfolio-review]], [[2026-06-15-0624-analyst-review-cycle-sources]]

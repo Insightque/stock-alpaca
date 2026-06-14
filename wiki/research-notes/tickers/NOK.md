@@ -120,3 +120,9 @@ current Alpaca snapshot 기준 `NOK`는 `402주`, 평균단가 `15.044527 USD`, 
 live Alpaca clock이 `2026-06-13 17:22 ET` 토요일 closed 상태라 지난 cycle 이후 새 미국 정규장 close가 없었다. current snapshot 기준 `NOK`는 `402주`, 평균단가 `15.044527 USD`, current `14.80 USD`, 미실현 약 `-1.63%`이고, Yahoo Finance recommendation summary의 `2026-06-12 JP Morgan Overweight / PT 21`에도 불구하고 `2026-06-18` 미국 정규장 close 전 add-block을 해제할 근거는 아직 없다.
 
 출처: [[2026-06-14-portfolio-review]], [[2026-06-14-0623-analyst-review-cycle-sources]]
+
+### 2026-06-15 analyst review cycle
+
+live Alpaca clock이 `2026-06-14 17:21 ET` 일요일 closed 상태라 새 미국 정규장 close는 추가되지 않았다. current snapshot 기준 `NOK`는 `402주`, 평균단가 `15.044527 USD`, current `14.80 USD`, 미실현 약 `-1.63%`이며 Alpaca IEX daily bar는 전일 대비 `+4.82%`였다. Yahoo Finance recommendation summary의 `2026-06-12 JP Morgan Overweight / PT 21`는 여전히 우호적이지만 `2026-06-18` 미국 정규장 close의 20D add-block review 전에는 해제 근거로 쓰지 않는다.
+
+출처: [[2026-06-15-portfolio-review]], [[2026-06-15-0624-analyst-review-cycle-sources]]

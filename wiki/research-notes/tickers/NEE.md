@@ -53,3 +53,9 @@ asset_type: stock
 토요일 Alpaca clock 기준 새 미국 정규장 close가 없어 skipped recommendation 재점검만 수행했다. current snapshot 기준 `NEE`는 `5주`, 평균단가 `86.44 USD`, current `85.99 USD`, 미실현 약 `-0.52%`로 급한 missed upside는 아니며, `2026-06-13` cycle의 backlog throttle 해석을 뒤집을 새 근거는 없다.
 
 출처: [[2026-06-14-portfolio-review]], [[2026-06-14-0623-analyst-review-cycle-sources]]
+
+### 2026-06-15 analyst review cycle
+
+일요일 closed clock 기준 새 미국 정규장 close는 없고, skipped recommendation 재점검만 carry-forward했다. current snapshot 기준 `NEE`는 `5주`, 평균단가 `86.44 USD`, current `85.99 USD`, 미실현 약 `-0.52%`이며 Alpaca IEX daily bar는 전일 대비 `+1.30%`였다. defensive tape는 안정적이지만 backlog throttle 우선순위를 뒤집을 정도의 missed-upside는 아니어서 기존 해석을 유지한다.
+
+출처: [[2026-06-15-portfolio-review]], [[2026-06-15-0624-analyst-review-cycle-sources]]
