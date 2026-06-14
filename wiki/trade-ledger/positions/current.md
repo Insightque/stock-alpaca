@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-14 15:12 KST_
+_Last updated: 2026-06-14 15:33 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-14-1531-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 이번 cycle 신규 체결 없음. 이번 turn에는 live `get_orders`/`get_account_activities` 도구가 노출되지 않아 same-session after-hours order/fill continuity는 scheduler-owned `1531` preflight `orders_submitted=0` 및 passing `recent_activities` row를 source-of-record로 유지했다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned `1531` `get_clock/get_account_info/get_orders_open/get_asset` rows를 source-of-record로 유지했고, live `get_clock`, `get_all_positions`, `get_watchlists`는 regular market closed, positions `33`건, watchlists `0`건을 재확인했다.
+- Recent reconciliation scope: scheduler-owned `1531` after-hours core/research preflight를 source-of-record로 사용했고 live Alpaca MCP continuity check는 shortlist `QQQ/MSFT/SMH/SPY/AVGO/SO/INTC/MU`의 live IEX quote parity와 `feed=overnight` quote/snapshot stale 상태를 재확인했다. separate after-hours order budget은 `0/2`로 열려 있었지만 scheduler-owned submit-boundary quote rows 기준 `QQQ`가 약 `2013.54`분 stale, `MSFT/SMH`가 `2028.61/2016.53`분 stale, `SPY/AVGO/SO/INTC/MU`는 약 `2071.16-2071.14`분 stale 또는 spread/notional cap fail이라 submit path에 진입하지 못했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-14-1531-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 
