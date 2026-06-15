@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-15 09:59 KST_
+_Last updated: 2026-06-15 10:19 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-15-1011-after-hours-autopilot]]
+- Open/new: `MSFT` buy `1주`, `limit_price=395.96 USD`, `client_order_id=ah-20260615-1011-buy-msft-01`, immediate readback `status=new`
+- Filled: direct `get_account_activities(activity_types=FILL, after=2026-06-14T20:00:00Z)` 기준 이번 cycle 신규 fill 없음. same-session fill은 `0951` `AVGO` sell `1주`(`391.92 USD`)만 유지됐다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: direct `get_clock`, `get_account_info`, `get_all_positions`, `get_orders(status=open)`, `get_watchlists` 기준 regular market closed, account `ACTIVE`, positions `33`건, open orders `1`건, watchlists `0`건이었다. immediate post-submit에도 `MSFT total qty=2`, `qty_available=2`가 유지돼 아직 fill이 없음을 재확인했다.
+- Recent reconciliation scope: scheduler-owned `1011` after-hours core/research preflight를 source-of-record로 사용했고 direct live Alpaca MCP continuity는 same-session after-hours orders `2`, same-session fills `1`, shortlist `QQQ/MSFT/SMH/SPY/AVGO/SO/INTC/MU`의 fresh overnight quote를 재확인했다. strict universe/MCP/risk validator가 모두 PASS했고, `AVGO` sell-first path는 `0951` same-day filled trim 때문에 duplicate-side discipline으로 제외했다. remaining session budget `1/2`를 `MSFT` buy fallback 1주에 사용했고 immediate readback은 `status=new`, `filled_qty=0`였다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-15-1011-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 
