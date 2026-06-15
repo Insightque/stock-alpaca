@@ -1,0 +1,48 @@
+{
+  "run_id": "2026-06-16-0431-hourly-autopilot",
+  "created_at": "2026-06-15T19:39:23Z",
+  "paper": true,
+  "session": "regular",
+  "submit_attempted": true,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-0431-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-16-0431-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0431-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0431-hourly-autopilot-deterministic-submit.json"
+  ],
+  "pre_submit_account_snapshot": {
+    "status": "ACTIVE",
+    "portfolio_value": 102635.04,
+    "cash": 30106.46,
+    "buying_power": 306914.53
+  },
+  "submitted_orders": [
+    {
+      "symbol": "AAPL",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 296.15,
+      "client_order_id": "hourly-20260616-0431-buy-aapl",
+      "order_id": "caf65604-ebeb-4d36-8ecd-a039e689487d",
+      "status": "filled",
+      "filled_avg_price": 296.11,
+      "filled_at": "2026-06-15T19:39:22.121175974Z"
+    }
+  ],
+  "open_orders": [],
+  "positions_reconciliation": {
+    "account_status": "ACTIVE",
+    "cash": 29810.35,
+    "portfolio_value": 102628.45,
+    "positions_count": 33,
+    "position_deltas": [
+      {
+        "symbol": "AAPL",
+        "qty_before": 5,
+        "qty_after": 6,
+        "avg_entry_price_before": 303.136,
+        "avg_entry_price_after": 301.965
+      }
+    ]
+  }
+}

@@ -43,6 +43,12 @@ current Alpaca snapshot상 `AAPL`은 `3주`, 평균단가 `310.93 USD`, current 
 
 출처: [[2026-06-10-1031-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-10-1031-after-hours-autopilot-post-trade.json`
 
+## 2026-06-16 04:39 KST hourly-autopilot
+
+`AAPL` 1주 regular-session day limit add가 `296.15 USD` limit으로 제출됐고, Alpaca MCP 기준 `2026-06-15T19:39:22.121175974Z`에 `296.11 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0431` stale cleanup/core/research preflight와 strict universe/MCP/risk gate 통과, direct quote `296.12/296.15`에서 spread `0.0101%`, same-day duplicate/open-order conflict 부재, 그리고 `AMZN/GOOGL/MSFT/SO/V/COP/NKE/XOM/SLB/FCX/JPM/NEE/WMT/BAC` duplicate buy, `SPY/QQQ` per-order cap 초과, `NVDA` cluster warning 이후 남은 가장 보수적인 mega-cap quality floor-size add였다는 점이다. repeated weak-review history는 ranking note로만 남기고 hard gate를 막지는 않았다. 이 체결 후 runtime `get_all_positions` 기준 `AAPL` 보유수량은 `5주 -> 6주`, 평균단가는 `303.136 USD -> 301.965 USD`로 낮아졌다.
+
+출처: [[2026-06-16-0431-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-16-0431-hourly-autopilot-post-trade.json`
+
 ### 2026-06-11 analyst review cycle
 
 `2026-06-09 ET` after-hours add 2건은 `291.40 USD`, `291.49 USD` 체결 대비 `2026-06-10 ET` close `291.48 USD`로 각각 `+0.03%`, `-0.00%`였다. 절대성과는 flat이지만 `SPY -1.56%`, `QQQ -2.00%` 하락일에 benchmark relative는 방어적이었다. 다만 기존 `2026-06-05 ET` regular-session add 1D `약함` 이력은 그대로라, cost-basis 개선과 `quality dip-buy cadence` 검증은 분리해서 봐야 한다.

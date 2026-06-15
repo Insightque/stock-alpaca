@@ -4,12 +4,12 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 04:19 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 04:39 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
 
-- [[AAPL]] - 2026-05-26 validation buy 1D review 양호; 2026-06-05 00:31 KST hourly-autopilot 1주 추가 buy와 2026-06-06 00:19 KST 1주 추가 validation buy가 모두 체결됐고, 2026-06-10 10:17 KST after-hours-autopilot에서 `291.40 USD`, 10:35 KST after-hours-autopilot에서 `291.49 USD`로 각각 1주 추가 buy가 즉시 체결됐다.
+- [[AAPL]] - 2026-05-26 validation buy 1D review 양호; 2026-06-05 00:31 KST hourly-autopilot 1주 추가 buy와 2026-06-06 00:19 KST 1주 추가 validation buy가 모두 체결됐고, 2026-06-10 10:17 KST after-hours-autopilot에서 `291.40 USD`, 10:35 KST after-hours-autopilot에서 `291.49 USD`로 각각 1주 추가 buy가 즉시 체결됐다. 2026-06-16 04:39 KST hourly-autopilot에서는 `296.15 USD` day limit buy 1주가 `filled_avg_price=296.11 USD`로 즉시 체결되어 보유 수량이 `5주 -> 6주`, `avg_entry_price=301.965 USD`로 갱신됐다.
 - [[NVDA]] - 2026-05-22 stock-only 5D 회고 양호, 20D 대기. 2026-06-10 03:11 KST hourly-autopilot에서 AI core holding floor-size add 1주가 `205.40 USD` day limit로 제출됐고 immediate reconciliation 기준 `status=new` open order다.
 - [[AMD]] - 2026-05-22 stock-only 5D 회고 강함, 20D 대기.
 - [[AVGO]] - 2026-05-22 stock-only 5D 회고 강함; 2026-06-06 03:43 KST hourly-autopilot에서 earnings-event drawdown과 semiconductor warning band를 근거로 4주 trim이 `389.25 USD`에 체결됐고, 2026-06-08 09:20 KST와 09:38 KST after-hours-autopilot에서 각각 추가 1주 trim이 `391.27 USD`, `392.80 USD`에 체결됐다. 2026-06-10 01:40 KST hourly-autopilot에서는 spread 정상화 후 2주 trim sell이 `375.47 USD`에 체결됐고, 2026-06-10 23:01 KST hourly-autopilot에서는 ai_semiconductor warning band와 post-earnings de-risking rationale를 근거로 추가 2주 trim이 `373.25 USD`에 즉시 체결됐다. 2026-06-11 23:00 KST hourly-autopilot에서는 `review_backlog_pending_1d_count=14`로 신규 buy가 차단된 가운데 sell-first 경로를 유지해 추가 1주 trim이 `380.43 USD`에 즉시 체결됐다. 2026-06-12 14:18 KST after-hours-autopilot에서는 fresh overnight quote `386.79/387.61`과 staged de-risking rationale를 근거로 1주 trim sell을 제출했고, `2026-06-12 14:33 KST` reconciliation에서는 same `client_order_id=ah-20260612-1411-sell-avgo-01`의 `filled_avg_price=387.06 USD`와 보유수량 `5주 -> 4주`를 재확인했다. 2026-06-15 23:02 KST hourly-autopilot에서는 direct quote `394.90/395.07` 기준 추가 1주 trim sell을 제출했고 immediate reconciliation 시점 상태는 `new` open order다. 2026-06-16 00:18 KST hourly-autopilot에서는 scheduler-owned `0011` preflight를 재사용해 추가 1주 trim sell이 `filled_avg_price=392.14 USD`로 즉시 체결되어 보유 수량이 `3주 -> 2주`로 감소했다.
@@ -54,6 +54,8 @@
 - [[ORCL]] - 2026-06-11 09:11 KST after-hours-autopilot에서 fresh overnight quote 기준 최상위 executable software diversifier fallback으로 승격됐지만 `review_backlog_pending_1d_count=14`에 따른 risk backlog throttle 때문에 no-submit으로 종료했다.
 
 ## Current Runs
+
+- [[2026-06-16-0431-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0431` stale cleanup/core/research preflight를 source-of-record로 사용했고 direct Alpaca submit-boundary check 기준 regular market open, ACTIVE account, open orders `0`, same-day `AAPL` duplicate `0`를 재확인했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day duplicate sell gate, `SO`는 trim metric gap에 막혔고 buy fallback에서는 `AMZN/GOOGL/MSFT/SO/V/COP/NKE/XOM/SLB/FCX/JPM/NEE/WMT/BAC` same-day duplicate buy, `SPY/QQQ` validation floor per-order cap, `NVDA` ai_semiconductor cluster warning, `TSLA` low-thesis-quality note에 막혀 `AAPL`이 executable mega-cap quality floor-size buy로 승격됐다. `AAPL` 1주 buy는 `filled_avg_price=296.11 USD`로 즉시 체결됐고 보유 수량은 `5주 -> 6주`, `avg_entry_price=301.965`로 갱신됐다.
 
 - [[2026-06-16-0411-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0411` stale cleanup/core/research preflight를 source-of-record로 사용했고 direct Alpaca submit-boundary check 기준 regular market open, ACTIVE account, open orders `0`, same-day `AMZN` duplicate `0`를 재확인했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day duplicate sell gate, `SO`는 trim metric gap에 막혔고 buy fallback에서는 `BAC/WMT/NEE/JPM/FCX/SLB/XOM/NKE/COP/V/SO/MSFT/GOOGL` same-day duplicate buy, `SPY/QQQ` validation floor per-order cap, `NVDA` ai_semiconductor cluster warning, `AAPL` 반복 weak-review history, `PLTR` speculative valuation noise에 막혀 `AMZN`이 executable mega-cap quality floor-size buy로 승격됐다. `AMZN` 1주 buy는 `filled_avg_price=246.19 USD`로 즉시 체결됐고 보유 수량은 `6주 -> 7주`, `avg_entry_price=256.778571`로 갱신됐다.
 
