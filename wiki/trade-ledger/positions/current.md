@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-15 10:52 KST_
+_Last updated: 2026-06-15 11:12 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-15-1111-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: direct `get_order_by_client_id` readback 기준 earlier same-session fills `AVGO` sell `1주`(`391.92 USD`), `MSFT` buy `1주`(`395.87 USD`)가 모두 유지됐다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned `1111` `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_watchlists` passing rows 기준 regular market closed, account `ACTIVE`, positions `33`건, open orders `0`건, watchlists `0`건이었다.
+- Recent reconciliation scope: scheduler-owned `1111` after-hours core/research preflight를 source-of-record로 사용했고 direct `get_order_by_client_id` readback은 same-session after-hours client order ids `ah-20260615-0951-sell-avgo-01`, `ah-20260615-1011-buy-msft-01`가 모두 filled임을 재확인하는 데만 사용했다. separate after-hours session budget은 `2/2`로 닫혀 있어 이번 cycle은 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-15-1111-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 
