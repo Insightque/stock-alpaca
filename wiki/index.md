@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 03:18 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 03:39 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -48,7 +48,7 @@
 - [[INTC]] - 2026-05-28 after-hours validation buy 5D 회고 약함. 2026-06-06 04:11 KST hourly-autopilot에서 weak lifecycle review를 근거로 1주 exit sell이 `status=new` open order로 생성됐다.
 - [[CVX]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기.
 - [[GOOGL]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기; 2026-06-05 02:21 KST hourly-autopilot에서 1주 추가 validation buy 체결.
-- [[MSFT]] - 2026-06-05 hourly-autopilot에서 1주 validation buy가 `426.78 USD`에 즉시 체결됐고, 2026-06-11 04:39 KST hourly-autopilot에서 제출한 `398.38 USD` day limit add 1주는 `2026-06-11 04:47 KST`에 `398.38 USD`로 체결되어 보유 수량이 `1주 -> 2주`, `avg_entry_price=412.58`로 갱신됐다.
+- [[MSFT]] - 2026-06-05 hourly-autopilot에서 1주 validation buy가 `426.78 USD`에 즉시 체결됐고, 2026-06-11 04:39 KST hourly-autopilot에서 제출한 `398.38 USD` day limit add 1주는 `2026-06-11 04:47 KST`에 `398.38 USD`로 체결되어 보유 수량이 `1주 -> 2주`, `avg_entry_price=412.58`로 갱신됐다. 2026-06-16 03:39 KST hourly-autopilot에서는 `399.55 USD` day limit buy 1주가 `filled_avg_price=398.71 USD`로 즉시 체결되어 보유 수량이 `3주 -> 4주`, `avg_entry_price=404.935 USD`로 갱신됐다.
 - [[SLB]] - 2026-05-29 validation add 5D 회고 양호; 2026-06-05 00:11 KST와 2026-06-06 01:15 KST hourly-autopilot에서 각각 1주 추가 validation buy 체결, 2026-06-11 01:19 KST hourly-autopilot에서는 `56.55 USD` day limit buy 1주가 `filled_avg_price=56.45 USD`로 즉시 체결됐고, 2026-06-16 01:42 KST hourly-autopilot에서는 current research-preflight symbol 기반 energy-services diversifier floor-size add 1주가 `filled_avg_price=54.03 USD`로 즉시 체결되어 보유 수량이 `6주 -> 7주`, `avg_entry_price=55.597143 USD`로 갱신됐다.
 - [[COP]] - 2026-05-28 validation buy 5D 회고 양호. 2026-06-06 01:37 KST hourly-autopilot에서 1주 추가 validation buy가 positions reconciliation 기준 체결로 기록됐고, 2026-06-11 00:58 KST hourly-autopilot에서는 `121.20 USD` day limit buy 1주가 `filled_avg_price=121.05 USD`로 즉시 체결됐다. 2026-06-16 02:39 KST hourly-autopilot에서는 `112.81 USD` day limit buy 1주가 `filled_avg_price=112.62 USD`로 즉시 체결되어 보유 수량이 `5주 -> 6주`, `avg_entry_price=116.876667 USD`로 갱신됐다.
 - [[ORCL]] - 2026-06-11 09:11 KST after-hours-autopilot에서 fresh overnight quote 기준 최상위 executable software diversifier fallback으로 승격됐지만 `review_backlog_pending_1d_count=14`에 따른 risk backlog throttle 때문에 no-submit으로 종료했다.
