@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 06:54 KST after-hours-autopilot no-submit reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 07:14 KST after-hours-autopilot no-submit reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -55,6 +55,7 @@
 
 ## Current Runs
 
+- [[2026-06-16-0711-after-hours-autopilot]] - after-hours scheduled autopilot 실행. scheduler-owned `0711` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 direct Alpaca continuity quote check 기준 freshest `QQQ`도 약 `83.15`분 stale였고 `RGTI/NOK`는 spread cap 초과, `SLB/AVGO/PFE/MSFT/TSLA/GE/SMH`는 stale+wide spread, `SPY`는 bid-only quote로 executable stack을 만들지 못해 no-submit으로 종료했다.
 - [[2026-06-16-0651-after-hours-autopilot]] - after-hours scheduled autopilot 실행. scheduler-owned `0651` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 direct Alpaca continuity quote check 기준 freshest `QQQ`도 약 `62.84`분 stale였고 `RGTI/NOK`는 spread cap 초과, `SLB/AVGO/PFE/MSFT/TSLA/GE/SMH`는 stale+wide spread로 executable stack을 만들지 못해 no-submit으로 종료했다.
 
 - [[2026-06-16-0631-after-hours-autopilot]] - after-hours scheduled autopilot 실행. scheduler-owned `0631` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 direct Alpaca continuity quote check 기준 freshest `QQQ`도 약 `42.29`분 stale였고 `RGTI/NOK`는 spread cap 초과, `SLB/AVGO/PFE/MSFT/TSLA/GE/SMH`는 stale+wide spread로 executable stack을 만들지 못해 no-submit으로 종료했다.
