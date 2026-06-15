@@ -5,6 +5,12 @@ asset_type: stock
 
 # V
 
+## 2026-06-16 02:55 KST hourly-autopilot
+
+`V` 1주 regular-session day limit buy가 `325.01 USD` limit으로 제출됐고, direct Alpaca MCP reconciliation 기준 `client_order_id=hourly-20260616-0251-buy-v`, `order_id=f62ee7ea-b0a4-4765-88e7-630ff20bf0e8`가 `2026-06-15T17:55:48.922618101Z`에 `324.83 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0251` stale cleanup/core/research preflight 재사용, direct Alpaca submit-boundary check 기준 regular market open, open orders `0`, same-day `V` duplicate `0`, quote `324.89/325.01`, spread `0.0369%`, active tradable NYSE stock, 그리고 `[[V]]`의 `2026-06-09` analyst review에서 `2026-06-05 ET` fill 1D가 `중립 양호`였다는 점이다. sell-first 평가에서는 `AVGO/RGTI` same-day sell duplicate와 `SO` trim metric gap이 유지돼 executable risk-reducing sell이 남지 않았고, buy fallback에서는 `COP/XOM/SLB/FCX/JPM/NEE/BAC/WMT/NKE` same-day duplicate, `SPY/QQQ` per-order cap, `NVDA` cluster warning이 차례로 막혀 `V`가 가장 실행 가능한 existing payments diversifier floor-size add로 승격됐다. 이 fill 후 `get_all_positions` 기준 `V qty=4 -> 5`, `avg_entry_price=325.514`로 갱신됐다.
+
+출처: [[2026-06-16-0251-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-16-0251-hourly-autopilot-post-trade.json`
+
 ## 회고 기록
 
 ### 2026-05-29 analyst review cycle

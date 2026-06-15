@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 02:39 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 02:56 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -44,7 +44,7 @@
 - [[BAC]] - 2026-05-28 validation buy 1D 회고 양호, 5D/20D 대기; 2026-06-05 04:21 KST hourly-autopilot에서 1주 추가 validation buy 체결; 2026-06-05 22:39 KST hourly-autopilot에서 1주 추가 validation buy가 `53.83 USD`에 체결됐고, 2026-06-10 23:39 KST hourly-autopilot에서는 financials diversifier floor-size add 1주가 `54.77 USD`에 즉시 체결됐다.
 - [[FCX]] - materials/copper diversifier 후보. 2026-06-16 01:21 KST hourly-autopilot에서는 `69.49 USD` day limit buy 1주가 제출됐고 immediate reconciliation 기준 `status=new` open order로 남아 next cycle fill/open-order lifecycle 추적이 필요하다.
 - [[XOM]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기; 2026-06-05 00:51 KST hourly-autopilot에서 1주 추가 validation buy 체결, 2026-06-10 04:39 KST hourly-autopilot에서는 `148.40 USD` day limit buy 1주가 `filled_avg_price=148.35 USD`로 즉시 체결됐다.
-- [[V]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기. 2026-06-06 00:39 KST hourly-autopilot에서 1주 추가 validation buy가 `321.90 USD`에 체결.
+- [[V]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기. 2026-06-06 00:39 KST hourly-autopilot에서 1주 추가 validation buy가 `321.90 USD`에 체결됐고, 2026-06-16 02:55 KST hourly-autopilot에서는 `325.01 USD` day limit buy 1주가 `filled_avg_price=324.83 USD`로 즉시 체결되어 보유 수량이 `4주 -> 5주`, `avg_entry_price=325.514 USD`로 갱신됐다.
 - [[INTC]] - 2026-05-28 after-hours validation buy 5D 회고 약함. 2026-06-06 04:11 KST hourly-autopilot에서 weak lifecycle review를 근거로 1주 exit sell이 `status=new` open order로 생성됐다.
 - [[CVX]] - 2026-05-28 validation buy 1D 회고 약함, 5D/20D 대기.
 - [[GOOGL]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기; 2026-06-05 02:21 KST hourly-autopilot에서 1주 추가 validation buy 체결.
@@ -54,6 +54,8 @@
 - [[ORCL]] - 2026-06-11 09:11 KST after-hours-autopilot에서 fresh overnight quote 기준 최상위 executable software diversifier fallback으로 승격됐지만 `review_backlog_pending_1d_count=14`에 따른 risk backlog throttle 때문에 no-submit으로 종료했다.
 
 ## Current Runs
+
+- [[2026-06-16-0251-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0251` stale cleanup/core/research preflight를 source-of-record로 사용했고 direct Alpaca submit-boundary check 기준 regular market open, ACTIVE account, open orders `0`, same-day `V` duplicate `0`를 재확인했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day duplicate sell discipline에, `SO`는 decision-grade trim metric gap에 막혔고 buy fallback으로 전환됐다. `COP/XOM/SLB/FCX/JPM/NEE/BAC/WMT/NKE`는 same-day duplicate buy 규율, `SPY/QQQ`는 validation floor per-order cap, `NVDA`는 ai_semiconductor cluster warning, `AAPL`은 반복 weak-review history에 막혀 `V`가 최상위 executable payments diversifier fallback으로 승격됐다. `V`는 direct quote `324.89/325.01`, spread `0.0369%`, current research-preflight symbol, `2026-06-09` analyst review의 `2026-06-05 ET` fill 1D `중립 양호` 조건을 충족해 1주 validation buy가 `client_order_id=hourly-20260616-0251-buy-v`로 제출됐고 immediate reconciliation 기준 `filled_avg_price=324.83 USD`로 즉시 체결됐다.
 
 - [[2026-06-16-0231-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0231` stale cleanup/core/research preflight를 source-of-record로 사용했고 direct Alpaca submit-boundary check 기준 regular market open, ACTIVE account, open orders `0`, same-day `COP` duplicate `0`를 재확인했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day duplicate sell discipline에, `SO`는 decision-grade trim metric gap에 막혔고 buy fallback으로 전환됐다. `XOM/SLB/FCX/JPM/NEE/BAC/WMT/NKE`는 same-day duplicate buy 규율, `SPY/QQQ`는 validation floor per-order cap, `NVDA`는 ai_semiconductor cluster warning, `AAPL`은 반복 weak-review history, `TSLA`는 event-narrative 저신뢰 thesis에 막혀 `COP`가 최상위 executable energy/value diversifier fallback으로 승격됐다. `COP`는 direct quote `112.78/112.81`, spread `0.0266%`, current research-preflight symbol, `2026-06-15` portfolio review의 `2026-06-10 ET` fill 1D 양호 조건을 충족해 1주 validation buy가 `client_order_id=hourly-20260616-0231-buy-cop`로 제출됐고 immediate reconciliation 기준 `filled_avg_price=112.62 USD`로 즉시 체결됐다.
 - [[2026-06-16-0131-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0131` stale cleanup/core/research preflight를 source-of-record로 사용했고 Alpaca core, universe strict, MCP strict, risk validator가 모두 PASS했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day duplicate sell discipline에, `SO`는 decision-grade trim metric gap에 막혔고 buy fallback으로 전환됐다. `SLB`는 direct quote `54.03/54.04`, spread `0.0185%`, same-day duplicate/open-order 0, current research-preflight symbol, 2026-06-09 analyst review 1D 양호 조건을 충족해 1주 validation buy가 `client_order_id=hourly-20260616-0131-buy-slb`로 제출됐고 immediate reconciliation 기준 `filled_avg_price=54.03 USD`로 즉시 체결됐다.
