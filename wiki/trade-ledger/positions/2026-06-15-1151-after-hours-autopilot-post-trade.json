@@ -1,0 +1,57 @@
+{
+  "run_id": "2026-06-15-1151-after-hours-autopilot",
+  "created_at": "2026-06-15T02:54:16Z",
+  "session": "after_hours",
+  "paper": true,
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "orders_open": 0,
+  "same_session_after_hours_orders_submitted_today": 2,
+  "same_session_after_hours_fills_detected": 2,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102070.87,
+    "cash": 31946.39,
+    "buying_power": 306754.84,
+    "currency": "USD",
+    "long_market_value": 70124.48,
+    "daily_realized_loss": 0.0
+  },
+  "positions_count": 33,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "review_bucket": "after_hours_validation",
+  "note": "Scheduler-owned 1151 core/research preflight remained the source-of-record. The same core preflight already contained passing account, positions, open-order, recent-activity, watchlist, asset, quote, snapshot, and trade rows while marking market_closed as the expected regular-session blocker. Direct client_order_id reconciliation confirmed the same earlier AVGO and MSFT fills, leaving the separate 1151 after-hours session budget closed at 2/2 with no open orders.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-15-1151-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-1151-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-1151-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-15-1151-after-hours-autopilot-runtime-alpaca-spot-check.json"
+  ],
+  "submit_status": "no_submit",
+  "client_order_ids_checked": [
+    "ah-20260615-0951-sell-avgo-01",
+    "ah-20260615-1011-buy-msft-01"
+  ],
+  "new_orders": [],
+  "filled_orders": [
+    {
+      "client_order_id": "ah-20260615-0951-sell-avgo-01",
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1,
+      "filled_avg_price": 391.92
+    },
+    {
+      "client_order_id": "ah-20260615-1011-buy-msft-01",
+      "symbol": "MSFT",
+      "side": "buy",
+      "qty": 1,
+      "filled_avg_price": 395.87
+    }
+  ],
+  "cancelled_orders": [],
+  "open_orders": [],
+  "open_order_count": 0,
+  "reconciliation_note": "No new client_order_id reconciliation was required because no new submit path opened. Prior same-session AVGO/MSFT client_order_ids were re-read only to prove the session budget stayed exhausted and both orders remained filled."
+}

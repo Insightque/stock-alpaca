@@ -1,0 +1,174 @@
+{
+  "run_id": "2026-06-15-1151-after-hours-autopilot",
+  "created_at": "2026-06-15T02:54:16Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "QQQ",
+    "MSFT",
+    "SMH",
+    "SPY",
+    "AVGO",
+    "SO",
+    "INTC",
+    "MU"
+  ],
+  "runtime_alpaca_mcp": {
+    "used_scheduler_preflight": true,
+    "source_of_record": "wiki/evidence-store/sources/2026-06-15-1151-after-hours-autopilot-alpaca-core-preflight.json",
+    "cross_checks": {
+      "scheduler_preflight.get_clock": {
+        "is_open": false,
+        "timestamp": "2026-06-14T22:51:09.594966013-04:00",
+        "next_open": "2026-06-15T09:30:00-04:00",
+        "next_close": "2026-06-15T16:00:00-04:00"
+      },
+      "scheduler_preflight.get_account_info": {
+        "status": "ACTIVE",
+        "portfolio_value": 102070.87,
+        "cash": 31946.39,
+        "buying_power": 306754.84,
+        "long_market_value": 70124.48,
+        "currency": "USD"
+      },
+      "scheduler_preflight.get_all_positions": {
+        "count": 33,
+        "msft_qty": 3,
+        "avgo_qty": 3
+      },
+      "scheduler_preflight.get_orders(status=open)": {
+        "count": 0
+      },
+      "scheduler_preflight.get_watchlists": {
+        "count": 0
+      },
+      "reconciled_client_order_ids": [
+        {
+          "client_order_id": "ah-20260615-0951-sell-avgo-01",
+          "symbol": "AVGO",
+          "status": "filled",
+          "filled_qty": 1,
+          "filled_avg_price": 391.92,
+          "extended_hours": true
+        },
+        {
+          "client_order_id": "ah-20260615-1011-buy-msft-01",
+          "symbol": "MSFT",
+          "status": "filled",
+          "filled_qty": 1,
+          "filled_avg_price": 395.87,
+          "extended_hours": true
+        }
+      ]
+    },
+    "note": "1151 Alpaca core preflight first_blocking_gate=market_closed was treated as expected nonblocking for after-hours. The same preflight supplied passing account, positions, open-order, recent-activity, watchlist, asset, quote, snapshot, and trade rows, and direct client_order_id reconciliation confirmed the earlier same-session AVGO and MSFT fills before any new 1151 submit path could start."
+  },
+  "submit_attempted": false,
+  "orders_submitted": [],
+  "review_backlog_throttle": {
+    "pending_1d_count": 1,
+    "pending_5d_count": 16,
+    "pending_20d_count": 1,
+    "status": "monitor_only_budget_blocked"
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 1,
+    "review_backlog_pending_5d_count": 16,
+    "review_backlog_pending_20d_count": 1,
+    "risk_recomputed_after_partial_fill": true,
+    "cash_deployment_blocker": "separate_after_hours_order_budget_exhausted"
+  },
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass",
+      "detail": "ALPACA_PAPER_TRADE=true confirmed via workflow environment and scheduler-owned paper preflight."
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed",
+      "detail": "regular market remained closed at scheduler preflight clock timestamp 2026-06-14T22:51:09.594966013-04:00 and direct continuity check timestamp 2026-06-14T22:52:54.263551344-04:00."
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass",
+      "detail": "session=after_hours and after_hours_policy profile remained active."
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_scheduler_preflight_rows_plus_client_order_reconciliation",
+      "detail": "1151 scheduler-owned core preflight first_blocking_gate=market_closed was expected and nonblocking; the same preflight carried passing account/positions/orders/activity/watchlist/asset/quote rows and same-session client_order_ids were re-read as filled."
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass",
+      "detail": "after_hours_policy artifact tag, review bucket, order id prefix, max order cap, and allowed_sides buy/sell retained."
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "block_after_hours_session_budget_exhausted",
+      "detail": "after_hours_new_orders_submitted_today=2 equals max_new_orders_per_session=2 before submit; regular-session validation count was not reused."
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass",
+      "detail": "broad metadata universe 62 symbols with SPY/QQQ included; research shortlist plus sell-side holdings recheck preserved after-hours screening coverage."
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass",
+      "detail": "sec-edgar/fred/firecrawl/yahoo-finance pass; alpha-vantage provider_error did not block because core and minimum research confirmations passed."
+    },
+    {
+      "gate": "risk_policy",
+      "status": "pass_empty_order_plan",
+      "detail": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-06-15-1151-after-hours-autopilot.json PASS with expected orders is empty warning."
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "not_actionable_budget_exhausted_before_submit_path",
+      "detail": "submit path stopped at separate session budget before quote selection."
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "not_actionable_budget_exhausted_before_submit_path",
+      "detail": "submit path stopped at separate session budget before spread selection."
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "not_applicable_no_order_due_budget_block",
+      "detail": "no new order was planned after the separate after-hours session budget hard gate blocked submit."
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "not_applicable_no_submit",
+      "detail": "no new client_order_id and no place_stock_order call were made in the 1151 cycle."
+    }
+  ],
+  "candidate_notes": [
+    "Separate after-hours session budget was already exhausted by two earlier same-session observations: ah-20260615-0951-sell-avgo-01 filled 391.92 USD and ah-20260615-1011-buy-msft-01 filled 395.87 USD.",
+    "Scheduler-owned 1151 research preflight still preserved the executable-buy shortlist QQQ/MSFT/SMH/SPY and sell-side holdings AVGO/SO/INTC/MU remained in the after-hours recheck set, but the submit path stopped before fresh quote/spread selection because the separate session budget was already 2/2.",
+    "allowed_sides includes buy and sell, but separate_after_hours_order_budget is a hard gate that blocks both sides once the session cap is reached.",
+    "No pre-submit gate summary was emitted because no place_stock_order call was eligible once the separate_after_hours_order_budget hard gate stayed closed."
+  ],
+  "block_reasons": [
+    "after_hours_new_orders_submitted_today=2 equals after_hours_policy.max_new_orders_per_session=2",
+    "prior same-session client_order_ids: ah-20260615-0951-sell-avgo-01, ah-20260615-1011-buy-msft-01"
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-15-1151-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-1151-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-1151-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-15-1151-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/positions/current.md"
+  ]
+}
