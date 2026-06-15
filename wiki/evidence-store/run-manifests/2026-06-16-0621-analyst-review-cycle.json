@@ -1,0 +1,117 @@
+{
+  "id": "2026-06-16-0621-analyst-review-cycle",
+  "workflow": "analyst-review-cycle",
+  "created_at": "2026-06-15T21:21:56Z",
+  "timezone": "Asia/Seoul",
+  "paper": true,
+  "order_mutations": {
+    "submitted": 0,
+    "replaced": 0,
+    "cancelled": 0,
+    "closed": 0
+  },
+  "alpaca_reconciliation": {
+    "clock_is_open": false,
+    "account_status": "ACTIVE",
+    "portfolio_value": 102566.01,
+    "cash": 29836.36,
+    "buying_power": 306318.33,
+    "long_market_value": 72729.65,
+    "open_orders": 0,
+    "position_count": 33,
+    "watchlist_count": 0,
+    "recent_fill_scope_after": "2026-06-10T00:00:00Z",
+    "direct_fill_activity": {
+      "outcome": "usable",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    "portfolio_history": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 2
+    }
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-06-16-portfolio-review.md",
+    "symbol_reviews": [
+      "wiki/research-notes/tickers/AAPL.md",
+      "wiki/research-notes/tickers/AVGO.md",
+      "wiki/research-notes/tickers/FCX.md",
+      "wiki/research-notes/tickers/MSFT.md",
+      "wiki/research-notes/tickers/NEE.md",
+      "wiki/research-notes/tickers/NOK.md",
+      "wiki/research-notes/tickers/RGTI.md"
+    ],
+    "reviewed_horizons": [
+      "RGTI 2026-06-12 ET trim 1D closeout",
+      "AVGO 2026-06-14 ET after-hours trim 1D closeout",
+      "MSFT 2026-06-14 ET after-hours buy 1D closeout",
+      "open-position monitor",
+      "skipped recommendation re-check",
+      "2026-06-15 ET new fill queue registration"
+    ],
+    "symbols": [
+      "AAPL",
+      "AVGO",
+      "FCX",
+      "MSFT",
+      "NEE",
+      "NOK",
+      "PFE",
+      "QQQ",
+      "RGTI",
+      "SPY"
+    ],
+    "due_now": true,
+    "next_due": [
+      "2026-06-16 ET regular-session close: 2026-06-15 ET fills 18건 1D",
+      "2026-06-17 ET regular-session close: 2026-06-10 ET cohort 14건 5D",
+      "2026-06-18 ET regular-session close: NOK 20D add-block review",
+      "2026-06-19 ET regular-session close: PFE/AVGO after-hours trim 5D",
+      "2026-06-22 ET regular-session close: RGTI/AVGO/MSFT 5D"
+    ]
+  },
+  "mcp_coverage": [
+    {
+      "provider": "alpaca",
+      "status": "usable",
+      "gap_category": "not_applicable",
+      "notes": "core reconciliation usable; get_portfolio_history cancelled 3x"
+    },
+    {
+      "provider": "sec-edgar",
+      "status": "usable",
+      "gap_category": "not_applicable",
+      "notes": "AAPL/AVGO/RGTI recent filings usable"
+    },
+    {
+      "provider": "alpha-vantage",
+      "status": "usable",
+      "gap_category": "not_applicable",
+      "notes": "TOOL_LIST, PING health check, AAPL EARNINGS usable"
+    },
+    {
+      "provider": "fred",
+      "status": "gap",
+      "gap_category": "wrapper_error",
+      "notes": "registered callable tool surface not exposed"
+    },
+    {
+      "provider": "firecrawl",
+      "status": "gap",
+      "gap_category": "wrapper_error",
+      "notes": "registered callable tool surface not exposed"
+    },
+    {
+      "provider": "yahoo-finance",
+      "status": "usable",
+      "gap_category": "not_applicable",
+      "notes": "AAPL/NOK/FCX contextual data usable"
+    }
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "single-cycle trim timing weakness and one neutral-positive add follow-up do not meet evidence threshold"
+  }
+}
