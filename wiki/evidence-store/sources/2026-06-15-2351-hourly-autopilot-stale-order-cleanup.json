@@ -1,0 +1,130 @@
+{
+  "run_id": "2026-06-15-2351-hourly-autopilot",
+  "created_at": "2026-06-15T14:51:06Z",
+  "paper": true,
+  "source": "scheduler Alpaca MCP stale autopilot order cleanup",
+  "alpaca_mcp_only": true,
+  "dry_run": false,
+  "policy": {
+    "max_open_order_age_minutes": 30.0,
+    "cancel_stale_unfilled_orders": true,
+    "client_order_id_prefix": "hourly-"
+  },
+  "clock": {
+    "is_open": true,
+    "timestamp": "2026-06-15T10:51:07.404138612-04:00",
+    "next_open": "2026-06-16T09:30:00-04:00",
+    "next_close": "2026-06-15T16:00:00-04:00"
+  },
+  "initial_open_orders": [
+    {
+      "id": "f41578c0-cb41-4620-ad3d-7a6e6a87946a",
+      "client_order_id": "hourly-20260615-2251-sell-avgo",
+      "created_at": "2026-06-15T14:02:23.793160947Z",
+      "updated_at": "2026-06-15T14:02:23.823674057Z",
+      "submitted_at": "2026-06-15T14:02:23.822647971Z",
+      "filled_at": null,
+      "expired_at": null,
+      "canceled_at": null,
+      "failed_at": null,
+      "replaced_at": null,
+      "replaced_by": null,
+      "replaces": null,
+      "asset_id": "7a8b4fcf-0622-47ef-8541-de7f70ffc0c4",
+      "symbol": "AVGO",
+      "asset_class": "us_equity",
+      "notional": null,
+      "qty": "1",
+      "filled_qty": "0",
+      "filled_avg_price": null,
+      "order_class": "",
+      "order_type": "limit",
+      "type": "limit",
+      "side": "sell",
+      "position_intent": "sell_to_close",
+      "time_in_force": "day",
+      "limit_price": "394.9",
+      "stop_price": null,
+      "status": "new",
+      "extended_hours": false,
+      "legs": null,
+      "trail_percent": null,
+      "trail_price": null,
+      "hwm": null,
+      "subtag": null,
+      "source": null,
+      "expires_at": "2026-06-15T20:00:00Z"
+    }
+  ],
+  "stale_candidates": [
+    {
+      "id": "f41578c0-cb41-4620-ad3d-7a6e6a87946a",
+      "client_order_id": "hourly-20260615-2251-sell-avgo",
+      "symbol": "AVGO",
+      "side": "sell",
+      "status": "new",
+      "submitted_at": "2026-06-15T14:02:23.822647971Z",
+      "age_minutes": 48.73
+    }
+  ],
+  "cancel_attempts": [
+    {
+      "order": {
+        "id": "f41578c0-cb41-4620-ad3d-7a6e6a87946a",
+        "client_order_id": "hourly-20260615-2251-sell-avgo",
+        "symbol": "AVGO",
+        "side": "sell",
+        "status": "new",
+        "submitted_at": "2026-06-15T14:02:23.822647971Z",
+        "age_minutes": 48.73
+      },
+      "outcome": "pass",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "checked_at": "2026-06-15T14:51:07Z"
+    }
+  ],
+  "remaining_open_orders": [
+    {
+      "id": "f41578c0-cb41-4620-ad3d-7a6e6a87946a",
+      "client_order_id": "hourly-20260615-2251-sell-avgo",
+      "created_at": "2026-06-15T14:02:23.793161Z",
+      "updated_at": "2026-06-15T14:51:07.909959Z",
+      "submitted_at": "2026-06-15T14:02:23.822648Z",
+      "filled_at": null,
+      "expired_at": null,
+      "canceled_at": null,
+      "failed_at": null,
+      "replaced_at": null,
+      "replaced_by": null,
+      "replaces": null,
+      "asset_id": "7a8b4fcf-0622-47ef-8541-de7f70ffc0c4",
+      "symbol": "AVGO",
+      "asset_class": "us_equity",
+      "notional": null,
+      "qty": "1",
+      "filled_qty": "0",
+      "filled_avg_price": null,
+      "order_class": "",
+      "order_type": "limit",
+      "type": "limit",
+      "side": "sell",
+      "position_intent": "sell_to_close",
+      "time_in_force": "day",
+      "limit_price": "394.9",
+      "stop_price": null,
+      "status": "pending_cancel",
+      "extended_hours": false,
+      "legs": null,
+      "trail_percent": null,
+      "trail_price": null,
+      "hwm": null,
+      "subtag": null,
+      "source": "access_key",
+      "expires_at": "2026-06-15T20:00:00Z"
+    }
+  ],
+  "status": "pass",
+  "gap_category": "not_applicable",
+  "gap_reason": ""
+}

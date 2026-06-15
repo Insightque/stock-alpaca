@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-15 23:41 KST_
+_Last updated: 2026-06-15 23:58 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-15-2351-hourly-autopilot]]
+- Open/new: 신규 submit 없음. scheduler-owned core preflight `get_orders_open` row는 `0`건이지만, stale cleanup artifact에는 `AVGO` sell `1주`가 `status=pending_cancel` remaining open order로 남았다.
+- Filled: scheduler-owned core preflight `get_account_activities` 기준 same-session `WMT` buy `1주`(`120.20 USD`)와 `BAC` buy `1주`(`56.28 USD`) 체결이 반영됐다.
+- Cancelled: scheduler-owned stale cleanup은 `AVGO` stale sell cancel attempt를 `pass`로 기록했지만 artifact 시점에는 lifecycle 정리가 끝나지 않았다.
+- Position count observed by Alpaca MCP: scheduler-owned core preflight 기준 account `ACTIVE`, positions `33`건, open orders row `0`건, `WMT qty=9`, `BAC qty=7`, `AVGO qty=3`, cash `31,980.21 USD`였다.
+- Recent reconciliation scope: scheduler-owned `2351` stale cleanup/core/research preflight를 source-of-record로 사용했다. workflow-required stale cleanup artifact가 unresolved `pending_cancel`을 남겨 `risk_open_order_lifecycle` hard gate가 발생했고, 이번 cycle은 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-15-2351-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
