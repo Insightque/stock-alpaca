@@ -32,3 +32,9 @@ asset_type: stock
 2026-05-29 validation add 1주는 383.13 USD 진입 대비 2026-06-03 close 359.37 USD로 -6.20%였다. Alphabet capital raise/AI spend narrative가 있었지만 direct AI infrastructure leader 대비 상대성과가 크게 약했다. 판단은 `약함`, mega-cap quality 라벨만으로는 재매수 근거가 부족하다.
 
 출처: [[2026-06-04-portfolio-review]], [[2026-06-04-0624-analyst-review-cycle-sources]]
+
+### 2026-06-16 hourly-autopilot
+
+2026-06-16 03:58 KST hourly autopilot에서 `GOOGL` 1주 regular-session day limit add를 `371.26 USD` limit으로 제출했고, same `client_order_id=hourly-20260616-0351-buy-googl` reconciliation 기준 `2026-06-15T18:58:47.524255326Z`에 `371.22 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0351` stale cleanup/core/research preflight 기준 hard gate pass, same-day duplicate/open-order conflict 부재, preflight quote `371.21/371.26` spread `0.0135%`, SEC/FRED/Yahoo 3-provider positive confirmation, 그리고 `AAPL/AMZN` weak-review history와 `SPY/QQQ` per-order cap 초과 이후 남은 가장 보수적인 executable mega-cap quality floor-size add였다는 점이다. immediate reconciliation 기준 보유 수량은 `3주 -> 4주`, `avg_entry_price=378.945`로 갱신됐다.
+
+출처: [[2026-06-16-0351-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-16-0351-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-16-0351-hourly-autopilot-post-trade.json`

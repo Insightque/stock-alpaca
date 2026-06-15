@@ -1,0 +1,54 @@
+{
+  "run_id": "2026-06-16-0351-hourly-autopilot",
+  "created_at": "2026-06-15T18:59:15Z",
+  "paper": true,
+  "session": "regular",
+  "submit_attempted": true,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-0351-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-16-0351-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0351-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-16-0351-hourly-autopilot.json"
+  ],
+  "pre_submit_account_snapshot": {
+    "portfolio_value": 102792.45,
+    "cash": 30723.87,
+    "buying_power": 308060.36,
+    "long_market_value": 72068.58,
+    "currency": "USD",
+    "checked_at": "2026-06-15T18:51:11Z",
+    "source": "scheduler Alpaca core preflight get_account_info"
+  },
+  "submitted_orders": [
+    {
+      "symbol": "GOOGL",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 371.26,
+      "client_order_id": "hourly-20260616-0351-buy-googl",
+      "order_id": "80ed6d6a-d85d-4da9-973a-ecfec099420f",
+      "status": "filled",
+      "submitted_at": "2026-06-15T18:58:46.497795092Z",
+      "filled_at": "2026-06-15T18:58:47.524255326Z",
+      "filled_avg_price": 371.22
+    }
+  ],
+  "open_orders": [],
+  "positions_reconciliation": {
+    "runtime_positions_before_submit": {
+      "GOOGL_qty": 3.0,
+      "GOOGL_avg_entry_price": 381.52,
+      "GOOGL_market_value": 1113.75,
+      "position_count": 33
+    },
+    "post_submit_confirmed": {
+      "GOOGL_qty": 4.0,
+      "GOOGL_avg_entry_price": 378.945,
+      "GOOGL_market_value": 1484.78,
+      "position_count": 33,
+      "cash_estimate_after_fill": 30352.65
+    },
+    "account_refresh_after_submit": "unavailable",
+    "note": "get_order_by_client_id confirmed the same order as filled at 371.22 USD. get_all_positions confirmed GOOGL moved from 3 shares at 381.52 average entry to 4 shares at 378.945 average entry. Post-submit get_account_info is not exposed in this runtime, so cash is recorded as a pre-submit cash minus confirmed fill estimate."
+  }
+}

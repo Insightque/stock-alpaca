@@ -1,5 +1,19 @@
 # portfolio-current
 
+_Last updated: 2026-06-16 03:59 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-16-0351-hourly-autopilot]]
+- Open/new: 없음. direct Alpaca MCP `get_order_by_client_id` 최종 상태와 `get_all_positions` reconciliation 기준 신규 open order는 남지 않았다.
+- Filled: `GOOGL` buy `1주`가 `filled_avg_price=371.22 USD`로 즉시 체결됐다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned core preflight + direct `get_order_by_client_id/get_all_positions` reconciliation 기준 positions `33`건, `GOOGL qty=4`, `avg_entry_price=378.945`였다. post-submit `get_account_info`는 이 runtime에 노출되지 않아 cash는 pre-submit `30,723.87 USD`에서 fill `371.22 USD`를 차감한 `30,352.65 USD` 추정치로 기록한다.
+- Recent reconciliation scope: scheduler-owned `0351` stale cleanup/core/research preflight를 source-of-record로 사용했고 actual submit은 `2026-06-15T18:58:46.497795092Z`에 `client_order_id=hourly-20260616-0351-buy-googl`로 수행했다. direct Alpaca MCP `get_order_by_client_id` 기준 same order는 `2026-06-15T18:58:47.524255326Z`에 `status=filled`, `filled_qty=1`, `filled_avg_price=371.22 USD`로 확정됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-16-0351-hourly-autopilot-post-trade.json`
+
+
 _Last updated: 2026-06-16 03:39 KST_
 
 ## 최신 hourly-autopilot reconciliation
