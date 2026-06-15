@@ -1,0 +1,150 @@
+{
+  "run_id": "2026-06-16-0231-hourly-autopilot",
+  "created_at": "2026-06-15T17:34:23Z",
+  "paper": true,
+  "mode": "submit",
+  "source_of_record": {
+    "stale_order_cleanup": "wiki/evidence-store/sources/2026-06-16-0231-hourly-autopilot-stale-order-cleanup.json",
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-16-0231-hourly-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-16-0231-hourly-autopilot-research-mcp-preflight.json"
+  },
+  "direct_alpaca_boundary_check": {
+    "clock": {
+      "timestamp": "2026-06-15T13:34:20.935197028-04:00",
+      "is_open": true,
+      "next_close": "2026-06-15T16:00:00-04:00",
+      "next_open": "2026-06-16T09:30:00-04:00"
+    },
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 102813.05,
+      "cash": 31654.4,
+      "buying_power": 309189.1
+    },
+    "open_orders": {
+      "count": 0
+    },
+    "asset": {
+      "symbol": "COP",
+      "class": "us_equity",
+      "exchange": "NYSE",
+      "status": "active",
+      "tradable": true
+    },
+    "quote": {
+      "symbol": "COP",
+      "bid": 112.78,
+      "ask": 112.81,
+      "spread_pct": 0.0266,
+      "captured_at": "2026-06-15T17:34:22.269138274Z",
+      "feed": "iex"
+    },
+    "same_day_orders": {
+      "symbol": "COP",
+      "count": 0,
+      "after": "2026-06-15T13:00:00Z"
+    }
+  },
+  "candidate_selection": {
+    "selected_symbol": "COP",
+    "selected_side": "buy",
+    "selected_qty": 1,
+    "selected_limit_price": 112.81,
+    "sell_first_result": "no_executable_sell_after_duplicate_and_metric_gap_recheck",
+    "blocked_sell_candidates": [
+      {
+        "symbol": "AVGO",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "RGTI",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "SO",
+        "gate": "sell_metric_gap"
+      }
+    ],
+    "blocked_buy_candidates": [
+      {
+        "symbol": "XOM",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "SLB",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "FCX",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "JPM",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "NEE",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "BAC",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "WMT",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "NKE",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "SPY",
+        "gate": "validation_floor_per_order_cap"
+      },
+      {
+        "symbol": "QQQ",
+        "gate": "validation_floor_per_order_cap"
+      },
+      {
+        "symbol": "NVDA",
+        "gate": "ai_semiconductor_cluster_warning"
+      },
+      {
+        "symbol": "AAPL",
+        "gate": "repeated_weak_review_history"
+      },
+      {
+        "symbol": "TSLA",
+        "gate": "event_signal_low_thesis_quality"
+      }
+    ]
+  },
+  "hard_gates": {
+    "paper_mode": "pass",
+    "market_open": "pass",
+    "alpaca_core": "pass",
+    "research_mcp_tiered": "pass",
+    "universe_strict": "pass",
+    "quote_freshness": "pass",
+    "spread_within_policy": "pass",
+    "risk_validator": "pass"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-0231-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-16-0231-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0231-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0231-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-15-portfolio-review.md",
+    "wiki/research-notes/tickers/COP.md",
+    "wiki/research-notes/tickers/AAPL.md",
+    "wiki/research-notes/tickers/TSLA.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md"
+  ]
+}
