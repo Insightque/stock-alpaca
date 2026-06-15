@@ -5,6 +5,12 @@ asset_type: stock
 
 # SLB
 
+## 2026-06-16 01:42 KST hourly-autopilot
+
+`SLB` 1주 regular-session day limit buy가 `54.04 USD` limit으로 제출됐고, Alpaca MCP `get_order_by_client_id`와 `get_orders(status=all, symbols=SLB, after=2026-06-15T16:40:00Z)` 기준 `client_order_id=hourly-20260616-0131-buy-slb`, `order_id=a92f261b-aaee-4b4d-af16-0c1dd4c81b30`, `filled_avg_price=54.03 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0131` stale cleanup/core/research preflight와 strict universe/MCP/risk gate 통과, same-day `FCX/NEE/BAC/WMT/JPM` buy duplicate 및 `AVGO/RGTI` sell duplicate 이후에도 learning_trade_directive가 최소 1건 validation order를 요구한다는 점, 그리고 `SLB`가 current research-preflight symbol이면서 2026-06-09 analyst review 기준 1D relative outcome이 양호하고 live quote `54.03/54.04` spread `0.0185%`, energy-services diversifier 역할, same-day duplicate/open-order conflict 없음으로 가장 executable했다는 점이다. 이 fill 후 `get_all_positions` 기준 `SLB qty=6 -> 7`, `avg_entry_price=55.597143`로 갱신됐다.
+
+출처: [[2026-06-16-0131-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-16-0131-hourly-autopilot-post-trade.json`
+
 ## 2026-06-11 01:19 KST hourly-autopilot
 
 `SLB` 1주 regular-session day limit buy가 `56.55 USD` limit으로 제출됐고, Alpaca MCP `get_order_by_client_id`와 `get_order_by_id` 기준 `client_order_id=hourly-20260611-0111-buy-slb`, `order_id=14d20183-5063-4025-9114-5e82cbcf6386`, `filled_avg_price=56.45 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0111` stale cleanup/core/research preflight와 strict universe/MCP/risk gate 통과, same-day `COP/JNJ/XOM/PFE/BAC/WMT` buy duplicate 및 `AVGO/RGTI` sell duplicate 이후에도 learning_trade_directive가 최소 1건 validation order를 요구한다는 점, 그리고 `SLB`가 2026-06-09 analyst review 기준 1D `양호`, live quote `56.54/56.55` spread `0.0177%`, energy-services diversifier 역할, same-day duplicate/open-order conflict 없음으로 가장 executable했다는 점이다. 이 fill은 새 validation lifecycle 표본으로 기록하며 1D/5D/20D review를 추적한다.
