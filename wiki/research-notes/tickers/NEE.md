@@ -59,3 +59,10 @@ asset_type: stock
 일요일 closed clock 기준 새 미국 정규장 close는 없고, skipped recommendation 재점검만 carry-forward했다. current snapshot 기준 `NEE`는 `5주`, 평균단가 `86.44 USD`, current `85.99 USD`, 미실현 약 `-0.52%`이며 Alpaca IEX daily bar는 전일 대비 `+1.30%`였다. defensive tape는 안정적이지만 backlog throttle 우선순위를 뒤집을 정도의 missed-upside는 아니어서 기존 해석을 유지한다.
 
 출처: [[2026-06-15-portfolio-review]], [[2026-06-15-0624-analyst-review-cycle-sources]]
+
+
+## 2026-06-16 00:38 KST hourly-autopilot
+
+`NEE` 1주 regular-session day limit buy가 `85.81 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260616-0031-buy-nee`, `order_id=fcf11144-3fe4-427e-84ec-418a59774883`가 생성된 뒤 same client id reconciliation에서 `2026-06-15T15:37:52.982253179Z`에 `85.78 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0031` stale cleanup/core/research preflight와 submit-boundary check 기준 paper mode/market open/universe strict/MCP strict/risk strict 모두 통과했고, sell-first 재평가 뒤 same-day duplicate가 없는 utilities/rate-sensitive diversifier 중 `NEE`가 FRED macro confirmation을 유지한 가장 보수적인 floor-size learning buy였다는 점이다. post-trade 기준 보유 수량은 `5주 -> 6주`, 평균단가는 `86.33 USD`로 갱신됐다.
+
+출처: [[2026-06-16-0031-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-16-0031-hourly-autopilot-post-trade.json`

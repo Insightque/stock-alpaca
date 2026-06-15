@@ -1,0 +1,57 @@
+{
+  "run_id": "2026-06-16-0031-hourly-autopilot",
+  "created_at": "2026-06-15T15:37:52.982253179Z",
+  "submit_attempted": true,
+  "orders_submitted": [
+    {
+      "symbol": "NEE",
+      "side": "buy",
+      "qty": 1,
+      "client_order_id": "hourly-20260616-0031-buy-nee",
+      "order_id": "fcf11144-3fe4-427e-84ec-418a59774883",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 85.78,
+      "submitted_at": "2026-06-15T15:37:52.047849497Z",
+      "filled_at": "2026-06-15T15:37:52.982253179Z"
+    }
+  ],
+  "orders_open_after_submit": [],
+  "account": {
+    "portfolio_value": 102518.43,
+    "cash": 32286.57,
+    "buying_power": 309350.6,
+    "currency": "USD"
+  },
+  "positions_count": 33,
+  "position_deltas": [
+    {
+      "symbol": "NEE",
+      "before_qty": 5,
+      "after_qty": 6,
+      "filled_avg_price": 85.78,
+      "action": "validation_buy_add"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-0031-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-16-0031-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0031-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0031-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-15-portfolio-review.md",
+    "wiki/research-notes/tickers/NEE.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/NKE.md",
+    "wiki/research-notes/tickers/AAPL.md",
+    "wiki/research-notes/tickers/AMZN.md",
+    "wiki/research-notes/tickers/GOOGL.md",
+    "wiki/evidence-store/sources/2026-06-16-0031-hourly-autopilot-deterministic-submit.json"
+  ],
+  "note": "Direct Alpaca MCP get_order_by_client_id/get_orders(status=all, symbols=NEE, after=2026-06-15T15:30:00Z)/get_orders(status=open)/get_account_info/get_all_positions/get_account_activities reconciliation confirmed immediate NEE fill, open orders 0, NEE qty 5 -> 6, avg_entry_price 86.33, cash 32286.57 USD."
+}
