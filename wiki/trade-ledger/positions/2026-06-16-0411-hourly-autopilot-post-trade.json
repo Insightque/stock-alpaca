@@ -1,0 +1,48 @@
+{
+  "run_id": "2026-06-16-0411-hourly-autopilot",
+  "created_at": "2026-06-15T19:19:12Z",
+  "paper": true,
+  "session": "regular",
+  "submit_attempted": true,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-0411-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-16-0411-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0411-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0411-hourly-autopilot-deterministic-submit.json"
+  ],
+  "pre_submit_account_snapshot": {
+    "status": "ACTIVE",
+    "portfolio_value": 102672.35,
+    "cash": 30352.65,
+    "buying_power": 307314.42
+  },
+  "submitted_orders": [
+    {
+      "symbol": "AMZN",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 246.57,
+      "client_order_id": "hourly-20260616-0411-buy-amzn",
+      "order_id": "97206c00-cf52-49e5-896b-6c4365957c38",
+      "status": "filled",
+      "filled_avg_price": 246.19,
+      "filled_at": "2026-06-15T19:19:10.463829694Z"
+    }
+  ],
+  "open_orders": [],
+  "positions_reconciliation": {
+    "account_status": "ACTIVE",
+    "cash": 30106.46,
+    "portfolio_value": 102683.5,
+    "positions_count": 33,
+    "position_deltas": [
+      {
+        "symbol": "AMZN",
+        "qty_before": 6,
+        "qty_after": 7,
+        "avg_entry_price_before": 258.543333,
+        "avg_entry_price_after": 256.778571
+      }
+    ]
+  }
+}

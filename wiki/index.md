@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 03:59 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 04:19 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -54,6 +54,8 @@
 - [[ORCL]] - 2026-06-11 09:11 KST after-hours-autopilot에서 fresh overnight quote 기준 최상위 executable software diversifier fallback으로 승격됐지만 `review_backlog_pending_1d_count=14`에 따른 risk backlog throttle 때문에 no-submit으로 종료했다.
 
 ## Current Runs
+
+- [[2026-06-16-0411-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0411` stale cleanup/core/research preflight를 source-of-record로 사용했고 direct Alpaca submit-boundary check 기준 regular market open, ACTIVE account, open orders `0`, same-day `AMZN` duplicate `0`를 재확인했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day duplicate sell gate, `SO`는 trim metric gap에 막혔고 buy fallback에서는 `BAC/WMT/NEE/JPM/FCX/SLB/XOM/NKE/COP/V/SO/MSFT/GOOGL` same-day duplicate buy, `SPY/QQQ` validation floor per-order cap, `NVDA` ai_semiconductor cluster warning, `AAPL` 반복 weak-review history, `PLTR` speculative valuation noise에 막혀 `AMZN`이 executable mega-cap quality floor-size buy로 승격됐다. `AMZN` 1주 buy는 `filled_avg_price=246.19 USD`로 즉시 체결됐고 보유 수량은 `6주 -> 7주`, `avg_entry_price=256.778571`로 갱신됐다.
 
 - [[2026-06-16-0351-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0351` stale cleanup/core/research preflight를 source-of-record로 사용했고 direct Alpaca reconciliation 기준 regular market open, open orders `0`, same-day `GOOGL` duplicate `0`를 재확인했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day duplicate sell gate, `SO`는 trim metric gap에 막혔고, buy fallback에서는 `WMT/BAC/NEE/JPM/FCX/SLB/XOM/NKE/COP/V/SO/MSFT` same-day duplicate buy, `SPY/QQQ` validation floor per-order cap, `NVDA` ai_semiconductor cluster warning, `AAPL/AMZN` 반복 weak-review history, `PLTR` speculative valuation noise에 막혀 `GOOGL`이 executable mega-cap quality floor-size buy로 승격됐다. `GOOGL` 1주 buy는 `filled_avg_price=371.22 USD`로 즉시 체결됐고 보유 수량은 `3주 -> 4주`, `avg_entry_price=378.945`로 갱신됐다.
 
