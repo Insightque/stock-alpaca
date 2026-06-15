@@ -1,0 +1,303 @@
+{
+  "run_id": "2026-06-15-1351-after-hours-autopilot",
+  "created_at": "2026-06-15T04:54:27Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "QQQ",
+    "MSFT",
+    "SMH",
+    "SPY",
+    "AVGO",
+    "SO",
+    "INTC",
+    "MU"
+  ],
+  "runtime_alpaca_mcp": {
+    "used_scheduler_preflight": true,
+    "source_of_record": "wiki/evidence-store/sources/2026-06-15-1351-after-hours-autopilot-alpaca-core-preflight.json",
+    "cross_checks": {
+      "scheduler_preflight.get_clock": {
+        "is_open": false,
+        "timestamp": "2026-06-15T00:51:08.940065759-04:00",
+        "next_open": "2026-06-15T09:30:00-04:00",
+        "next_close": "2026-06-15T16:00:00-04:00"
+      },
+      "scheduler_preflight.get_account_info": {
+        "status": "ACTIVE",
+        "portfolio_value": 102147.46,
+        "cash": 31946.39,
+        "buying_power": 306980.55,
+        "long_market_value": 70201.07,
+        "currency": "USD",
+        "daily_realized_loss": 0.0
+      },
+      "scheduler_preflight.get_all_positions": {
+        "count": 33,
+        "msft_qty": 3,
+        "avgo_qty": 3
+      },
+      "scheduler_preflight.get_orders(status=open)": {
+        "count": 0
+      },
+      "direct.get_orders(status=all, after=2026-06-14T20:00:00Z)": {
+        "count": 2,
+        "filled_count": 2,
+        "client_order_ids": [
+          "ah-20260615-1011-buy-msft-01",
+          "ah-20260615-0951-sell-avgo-01"
+        ]
+      },
+      "direct.get_account_activities(activity_types=FILL, after=2026-06-14T20:00:00Z)": {
+        "count": 2,
+        "symbols": [
+          "MSFT",
+          "AVGO"
+        ]
+      },
+      "scheduler_preflight.get_watchlists": {
+        "count": 0
+      },
+      "scheduler_preflight.get_asset": {
+        "QQQ": {
+          "status": "active",
+          "tradable": true,
+          "exchange": "NASDAQ",
+          "class": "us_equity",
+          "overnight_tradable": true
+        },
+        "MSFT": {
+          "status": "active",
+          "tradable": true,
+          "exchange": "NASDAQ",
+          "class": "us_equity",
+          "overnight_tradable": true
+        },
+        "SMH": {
+          "status": "active",
+          "tradable": true,
+          "exchange": "NASDAQ",
+          "class": "us_equity",
+          "overnight_tradable": true
+        },
+        "SPY": {
+          "status": "active",
+          "tradable": true,
+          "exchange": "ARCA",
+          "class": "us_equity",
+          "overnight_tradable": true
+        },
+        "AVGO": {
+          "status": "active",
+          "tradable": true,
+          "exchange": "NASDAQ",
+          "class": "us_equity",
+          "overnight_tradable": true
+        },
+        "SO": {
+          "status": "active",
+          "tradable": true,
+          "exchange": "NYSE",
+          "class": "us_equity",
+          "overnight_tradable": true
+        },
+        "INTC": {
+          "status": "active",
+          "tradable": true,
+          "exchange": "NASDAQ",
+          "class": "us_equity",
+          "overnight_tradable": true
+        },
+        "MU": {
+          "status": "active",
+          "tradable": true,
+          "exchange": "NASDAQ",
+          "class": "us_equity",
+          "overnight_tradable": true
+        }
+      },
+      "scheduler_preflight.get_stock_snapshot(feed=iex)": {
+        "QQQ": {
+          "latest_trade_price": 722.1,
+          "latest_trade_time": "2026-06-12T20:45:47.268559776Z",
+          "quote_time": "2026-06-12T20:57:37.534220888Z",
+          "spread_pct": 0.0291
+        },
+        "MSFT": {
+          "latest_trade_price": 390.42,
+          "latest_trade_time": "2026-06-12T20:50:34.85860658Z",
+          "quote_time": "2026-06-12T20:42:33.3236562Z",
+          "spread_pct": 0.0588
+        },
+        "SMH": {
+          "latest_trade_price": 619.96,
+          "latest_trade_time": "2026-06-12T20:54:37.79528202Z",
+          "quote_time": "2026-06-12T20:54:37.797642448Z",
+          "spread_pct": 0.8148
+        },
+        "SPY": {
+          "latest_trade_price": 741.67,
+          "latest_trade_time": "2026-06-12T19:59:59.950348096Z",
+          "quote_time": "2026-06-12T20:00:00.00478112Z",
+          "spread_pct": 6.0093
+        },
+        "AVGO": {
+          "latest_trade_price": 382.31,
+          "latest_trade_time": "2026-06-12T20:10:43.397976858Z",
+          "quote_time": "2026-06-12T20:00:00.013616581Z",
+          "spread_pct": 8.7498
+        },
+        "SO": {
+          "latest_trade_price": 94.02,
+          "latest_trade_time": "2026-06-12T19:59:55.791442251Z",
+          "quote_time": "2026-06-12T20:00:00.005356648Z",
+          "spread_pct": 9.2478
+        },
+        "INTC": {
+          "latest_trade_price": 124.55,
+          "latest_trade_time": "2026-06-12T19:59:59.63911896Z",
+          "quote_time": "2026-06-12T20:00:00.013145928Z",
+          "spread_pct": 9.6733
+        },
+        "MU": {
+          "latest_trade_price": 983.88,
+          "latest_trade_time": "2026-06-12T20:59:07.010386009Z",
+          "quote_time": "2026-06-12T20:00:01.277902268Z",
+          "spread_pct": 9.8224
+        }
+      },
+      "reconciled_client_order_ids": [
+        {
+          "client_order_id": "ah-20260615-0951-sell-avgo-01",
+          "symbol": "AVGO",
+          "status": "filled",
+          "filled_qty": 1,
+          "filled_avg_price": 391.92,
+          "extended_hours": true
+        },
+        {
+          "client_order_id": "ah-20260615-1011-buy-msft-01",
+          "symbol": "MSFT",
+          "status": "filled",
+          "filled_qty": 1,
+          "filled_avg_price": 395.87,
+          "extended_hours": true
+        }
+      ],
+      "scheduler_preflight.get_account_activities(activity_types=FILL, after=2026-06-14T20:00:00Z)": {
+        "count": 2,
+        "symbols": [
+          "MSFT",
+          "AVGO"
+        ]
+      }
+    },
+    "note": "Scheduler-owned 1351 core preflight preserved the required pass rows for clock, account, positions, open orders, activities, assets, and snapshots while recording expected first_blocking_gate=market_closed. Direct Alpaca MCP continuity was limited to get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-14T20:00:00Z)/get_watchlists and both client_order_id readbacks before confirming the separate session budget remained exhausted at 2/2."
+  },
+  "submit_attempted": false,
+  "orders_submitted": [],
+  "review_backlog_throttle": {
+    "pending_1d_count": 1,
+    "pending_5d_count": 16,
+    "pending_20d_count": 1,
+    "status": "monitor_only_budget_blocked"
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 1,
+    "review_backlog_pending_5d_count": 16,
+    "review_backlog_pending_20d_count": 1,
+    "cash_deployment_blocker": "no_candidate_passed_hard_gates"
+  },
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass",
+      "detail": "ALPACA_PAPER_TRADE=true confirmed via workflow environment and scheduler-owned paper preflight."
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed",
+      "detail": "regular market remained closed at scheduler preflight clock timestamp 2026-06-15T00:51:08.940065759-04:00."
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass",
+      "detail": "session=after_hours and after_hours_policy profile remained active."
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_scheduler_rows_plus_direct_same_session_reconciliation",
+      "detail": "1351 scheduler-owned core preflight preserved passing account/positions/open-orders/recent-activities/asset/quote/spread rows, and direct Alpaca MCP continuity only re-scoped same-session after-hours orders plus both client_order_id reconciliations."
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass",
+      "detail": "after_hours_policy artifact tag, review bucket, order id prefix, max order cap, and allowed_sides buy/sell retained."
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "block_after_hours_session_budget_exhausted",
+      "detail": "after_hours_new_orders_submitted_today=2 equals max_new_orders_per_session=2 before submit; regular-session validation count was not reused."
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass",
+      "detail": "broad metadata universe 62 symbols with SPY/QQQ included; research shortlist plus sell-side holdings recheck preserved after-hours screening coverage."
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass",
+      "detail": "sec-edgar/fred/firecrawl/yahoo-finance remained pass from scheduler-owned research preflight; alpha-vantage stayed provider_error but policy allows submit continuity when core plus minimum research confirmations pass."
+    },
+    {
+      "gate": "risk_policy",
+      "status": "pass",
+      "detail": "check-risk-policy passed on empty 1351 after-hours order plan with expected orders-is-empty warning because the separate session budget was already exhausted before a new order candidate could be formed."
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "not_actionable_budget_exhausted_before_submit_path",
+      "detail": "Scheduler-owned quote and snapshot rows remained available for the shortlist, but no new order path could open after the separate session budget hit 2/2."
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "not_actionable_budget_exhausted_before_submit_path",
+      "detail": "Scheduler-owned spread rows remained available for the shortlist, but budget exhaustion blocked any new executable order selection."
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "not_applicable_no_order",
+      "detail": "No new order was constructed because the separate after-hours session budget remained exhausted before submit."
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "not_applicable_no_submit",
+      "detail": "No new submit attempt occurred. Reconciliation only re-read the same-session AVGO and MSFT client_order_ids to prove the session budget remained exhausted and both orders stayed filled."
+    }
+  ],
+  "candidate_notes": [
+    "Scheduler-owned 1351 core preflight preserved the expected market_closed blocker plus the required pass rows, so this cycle used direct Alpaca MCP continuity only for same-session orders and client-order reconciliation instead of re-fetching the full core surface.",
+    "The active after-hours policy still permits buy and sell, but the separate session budget was already exhausted by the earlier AVGO trim and MSFT buy before the 1351 selection path reopened.",
+    "Research preflight kept sec-edgar/fred/firecrawl/yahoo-finance in pass state while alpha-vantage remained a non-blocking provider_error gap."
+  ],
+  "block_reasons": [
+    "same-session after-hours order budget exhausted at 2/2",
+    "no new client_order_id may be created once the separate after-hours session budget is closed"
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-15-1351-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-1351-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-1351-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-15-1351-after-hours-autopilot-runtime-alpaca-spot-check.json"
+  ]
+}
