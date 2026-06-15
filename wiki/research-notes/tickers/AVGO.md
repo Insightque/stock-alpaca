@@ -174,6 +174,12 @@ live Alpaca clock이 `2026-06-14 17:21 ET` 일요일 closed 상태라 새 regula
 
 출처: [[2026-06-15-portfolio-review]], [[2026-06-15-0624-analyst-review-cycle-sources]]
 
+### 2026-06-16 analyst review cycle
+
+`2026-06-14 ET` after-hours trim 1주는 `391.92 USD` 체결 대비 `2026-06-15 ET` close `393.97 USD`로 `+0.52%` 반등해 trim timing은 약했다. 그래도 current snapshot 기준 잔여 포지션은 `2주`, 평균단가 `423.3625 USD`, 미실현 약 `-6.94%`라 staged de-risking 자체를 뒤집을 정도의 회복 confirmation은 아직 부족하다. 이번 cycle에서는 `2026-06-15 ET` regular-session trim 1주도 새 `1D` 대기열로 등록한다.
+
+출처: [[2026-06-16-portfolio-review]], [[2026-06-16-0621-analyst-review-cycle-sources]], [[2026-06-16-0011-hourly-autopilot]]
+
 ### 2026-06-15 23:02 KST hourly-autopilot trim submit
 
 `2251` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight를 source-of-record로 사용했고, direct Alpaca spot check로 `clock/account/positions/quotes/recent fills`를 다시 맞췄다. `AVGO`는 direct quote `394.90/395.07`, spread `0.0430%`, held qty `3`, ai_semiconductor target-band warning, post-earnings staged de-risking rationale 조건에서 1주 trim 경로를 통과했고 `client_order_id=hourly-20260615-2251-sell-avgo`로 regular-session day limit sell을 제출했다. immediate reconciliation 기준 same order는 `status=new`, `filled_qty=0`이며 `get_all_positions`는 `qty=3`, `qty_available=2`를 반환해 1주가 예약 상태임을 보여줬다. 해석은 `staged de-risking submit 완료, next cycle fill/open-order lifecycle 추적 필요`다.

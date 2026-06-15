@@ -65,3 +65,9 @@ Freeport-McMoRan paper validation 후보. 2026-05-26 hourly autopilot에서 mate
 일요일 closed clock 기준 새 미국 정규장 close는 없지만, Alpaca IEX daily bar `68.40`는 전일 대비 `+3.07%`로 hindsight 강세 표본이 유지됐다. current snapshot 기준 `FCX`는 `5주`, 평균단가 `64.912 USD`, current `68.41 USD`, 미실현 약 `+5.39%`이며, Yahoo Finance 뉴스도 copper leverage와 정책 지원 기대를 보강한다. 다만 backlog throttle 완화는 여전히 단일 missed-upside 사례만으로는 부족하다.
 
 출처: [[2026-06-15-portfolio-review]], [[2026-06-15-0624-analyst-review-cycle-sources]]
+
+### 2026-06-16 analyst review cycle
+
+current Alpaca snapshot 기준 `FCX`는 `6주`, 평균단가 `65.675 USD`, `2026-06-15 ET` close `70.10 USD`로 미실현 약 `+6.74%`다. Yahoo Finance 뉴스와 tape 모두 구리 민감주 강세를 지지해 missed-upside 사례는 더 강해졌지만, 단일 hindsight 강세 표본만으로 backlog throttle을 완화하진 않는다. 이번 cycle의 `69.49 USD` add는 새 `1D` 대기 표본으로만 등록한다.
+
+출처: [[2026-06-16-portfolio-review]], [[2026-06-16-0621-analyst-review-cycle-sources]], [[2026-06-16-0111-hourly-autopilot]]

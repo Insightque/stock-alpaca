@@ -60,6 +60,12 @@ asset_type: stock
 
 출처: [[2026-06-15-portfolio-review]], [[2026-06-15-0624-analyst-review-cycle-sources]]
 
+### 2026-06-16 analyst review cycle
+
+`NEE`는 skipped recommendation 재점검 기준에서도 여전히 급한 missed-upside 사례가 아니다. `2026-06-15 ET` close `86.115 USD`는 prior close `85.94 USD` 대비 `+0.20%`에 그쳤고, current 보유는 `6주`, 평균단가 `86.33 USD`다. defensive tape는 안정적이지만 backlog 우선순위를 뒤집을 정도는 아니며, 이번 cycle의 `85.78 USD` add는 새 `1D` 대기 표본으로만 기록한다.
+
+출처: [[2026-06-16-portfolio-review]], [[2026-06-16-0621-analyst-review-cycle-sources]], [[2026-06-16-0031-hourly-autopilot]]
+
 
 ## 2026-06-16 00:38 KST hourly-autopilot
 
