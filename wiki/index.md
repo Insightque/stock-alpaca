@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 04:59 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 06:16 KST after-hours-autopilot no-submit reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -54,6 +54,8 @@
 - [[ORCL]] - 2026-06-11 09:11 KST after-hours-autopilot에서 fresh overnight quote 기준 최상위 executable software diversifier fallback으로 승격됐지만 `review_backlog_pending_1d_count=14`에 따른 risk backlog throttle 때문에 no-submit으로 종료했다.
 
 ## Current Runs
+
+- [[2026-06-16-0611-after-hours-autopilot]] - after-hours scheduled autopilot 실행. scheduler-owned `0611` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 direct Alpaca continuity quote check 기준 freshest `QQQ`도 약 `25.67`분 stale였고 `RGTI/NOK`는 spread cap 초과, `AVGO/PFE/MSFT/TSLA/SLB/GE`는 stale+wide spread로 executable stack을 만들지 못해 no-submit으로 종료했다.
 
 - [[2026-06-16-0451-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0451` stale cleanup/core/research preflight를 source-of-record로 사용했고 direct Alpaca submit-boundary check 기준 regular market open, ACTIVE account, open orders `0`, same-day `PFE` sell duplicate `0`를 재확인했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day duplicate sell gate에 막혔고, buy fallback은 `AAPL/AMZN/BAC/COP/FCX/GOOGL/JPM/MSFT/NEE/NKE/SLB/SO/V/WMT/XOM` same-day duplicate buy, `SPY/QQQ` validation floor per-order cap, `INTC` ai_semiconductor cluster warning에 막혔다. `PFE`는 repeated weak-review trim rationale, prior trim precedent, direct quote `26.01/26.02`, spread `0.0384%`, open orders `0` 조건을 충족해 executable healthcare trim으로 승격됐고 1주 sell이 `filled_avg_price=26.01 USD`로 즉시 체결되어 보유 수량이 `5주 -> 4주`로 감소했다.
 
