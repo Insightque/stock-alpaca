@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-15 09:34 KST_
+_Last updated: 2026-06-15 09:59 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-15-0951-after-hours-autopilot]]
+- Open/new: `AVGO` sell `1주`, `limit_price=391.91 USD`, `client_order_id=ah-20260615-0951-sell-avgo-01`, immediate readback `status=new`
+- Filled: direct `get_account_activities(activity_types=FILL, after=2026-06-14T20:00:00Z)` 기준 이번 cycle 신규 fill 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: direct `get_clock`, `get_account_info`, `get_all_positions`, `get_orders(status=open)`, `get_watchlists` 기준 regular market closed, account `ACTIVE`, positions `33`건, watchlists `0`건이었다. submit 후 `AVGO` total qty는 `4주`를 유지했고 `qty_available`만 `3주`로 감소해 open sell reservation을 재확인했다.
+- Recent reconciliation scope: scheduler-owned `0951` after-hours core/research preflight를 source-of-record로 사용했다. 다만 core preflight는 expected `market_closed` 외 passing row를 비워 두어, direct Alpaca MCP continuity로 missing account/positions/open-orders/asset/quote rows를 한 번만 보강했다. direct overnight latestQuote `AVGO 391.91/392.07`은 spread `0.0408%`, quote age 약 `0.32`분으로 after-hours hard gate를 통과했고, strict universe/MCP/risk validator도 모두 PASS였다. same `client_order_id`에 대한 direct `get_order_by_client_id`와 direct `get_orders(status=all|open, symbols=AVGO)` readback은 `status=new`, `filled_qty=0`를 확인했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-15-0951-after-hours-autopilot-post-trade.json`
 
 ## 최신 after-hours-autopilot reconciliation
 

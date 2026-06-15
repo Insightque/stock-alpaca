@@ -1,0 +1,262 @@
+{
+  "run_id": "2026-06-15-0951-after-hours-autopilot",
+  "created_at": "2026-06-15T00:53:35Z",
+  "session": "after_hours",
+  "artifact_tag": "after-hours",
+  "policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "market_clock": {
+    "is_open": false,
+    "timestamp": "2026-06-14T20:53:15.380822258-04:00",
+    "next_open": "2026-06-15T09:30:00-04:00",
+    "next_close": "2026-06-15T16:00:00-04:00",
+    "regular_market_status": "closed_expected_for_after_hours"
+  },
+  "account_summary": {
+    "status": "ACTIVE",
+    "portfolio_value": 101911.69,
+    "cash": 31950.34,
+    "buying_power": 306437.69,
+    "positions_count": 33
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 1,
+    "review_backlog_pending_5d_count": 16,
+    "review_backlog_pending_20d_count": 1
+  },
+  "shortlist": [
+    "QQQ",
+    "MSFT",
+    "SMH",
+    "SPY",
+    "AVGO",
+    "SO",
+    "INTC",
+    "MU"
+  ],
+  "candidate_evaluation": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "role": "existing_position_trim_candidate",
+      "feed": "overnight",
+      "bid": 391.91,
+      "ask": 392.07,
+      "spread_pct": 0.0408,
+      "quote_timestamp": "2026-06-15T00:53:16.049662168Z",
+      "quote_age_minutes": 0.32,
+      "per_order_notional": 391.91,
+      "per_order_cap": 509.56,
+      "spread_gate": "pass",
+      "fresh_quote_gate": "pass",
+      "notional_gate": "pass",
+      "decision": "selected",
+      "blocking_reasons": [],
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ]
+    },
+    {
+      "symbol": "MSFT",
+      "side": "buy",
+      "role": "existing_actionable_holding",
+      "feed": "overnight",
+      "bid": 395.25,
+      "ask": 395.51,
+      "spread_pct": 0.0658,
+      "quote_timestamp": "2026-06-15T00:53:16.062514254Z",
+      "quote_age_minutes": 0.32,
+      "per_order_notional": 395.51,
+      "per_order_cap": 509.56,
+      "spread_gate": "pass",
+      "fresh_quote_gate": "pass",
+      "notional_gate": "pass",
+      "decision": "blocked",
+      "blocking_reasons": [
+        "prefer_sell_trim_first"
+      ],
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ]
+    },
+    {
+      "symbol": "QQQ",
+      "side": "buy",
+      "role": "benchmark_fallback",
+      "feed": "overnight",
+      "bid": 733.52,
+      "ask": 733.63,
+      "spread_pct": 0.015,
+      "quote_timestamp": "2026-06-15T00:53:17.535157965Z",
+      "quote_age_minutes": 0.29,
+      "per_order_notional": 733.63,
+      "per_order_cap": 509.56,
+      "spread_gate": "pass",
+      "fresh_quote_gate": "pass",
+      "notional_gate": "fail",
+      "decision": "blocked",
+      "blocking_reasons": [
+        "ask_notional_exceeds_cap=509.56"
+      ],
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ]
+    },
+    {
+      "symbol": "SPY",
+      "side": "buy",
+      "role": "benchmark_fallback",
+      "feed": "overnight",
+      "bid": 749.62,
+      "ask": 749.69,
+      "spread_pct": 0.0093,
+      "quote_timestamp": "2026-06-15T00:53:17.157780274Z",
+      "quote_age_minutes": 0.3,
+      "per_order_notional": 749.69,
+      "per_order_cap": 509.56,
+      "spread_gate": "pass",
+      "fresh_quote_gate": "pass",
+      "notional_gate": "fail",
+      "decision": "blocked",
+      "blocking_reasons": [
+        "ask_notional_exceeds_cap=509.56"
+      ],
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ]
+    },
+    {
+      "symbol": "SMH",
+      "side": "buy",
+      "role": "semiconductor_diversifier",
+      "feed": "overnight",
+      "bid": 638.9,
+      "ask": 640.31,
+      "spread_pct": 0.2205,
+      "quote_timestamp": "2026-06-15T00:53:17.314982527Z",
+      "quote_age_minutes": 0.29,
+      "per_order_notional": 640.31,
+      "per_order_cap": 509.56,
+      "spread_gate": "pass",
+      "fresh_quote_gate": "pass",
+      "notional_gate": "fail",
+      "decision": "blocked",
+      "blocking_reasons": [
+        "ask_notional_exceeds_cap=509.56"
+      ],
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ]
+    },
+    {
+      "symbol": "MU",
+      "side": "buy",
+      "role": "existing_actionable_holding",
+      "feed": "overnight",
+      "bid": 1026.88,
+      "ask": 1027.28,
+      "spread_pct": 0.0389,
+      "quote_timestamp": "2026-06-15T00:53:17.039170671Z",
+      "quote_age_minutes": 0.3,
+      "per_order_notional": 1027.28,
+      "per_order_cap": 509.56,
+      "spread_gate": "pass",
+      "fresh_quote_gate": "pass",
+      "notional_gate": "fail",
+      "decision": "blocked",
+      "blocking_reasons": [
+        "ask_notional_exceeds_cap=509.56"
+      ],
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "side": "sell",
+      "role": "existing_position_trim_candidate",
+      "feed": "overnight",
+      "bid": 88.06,
+      "ask": 96.14,
+      "spread_pct": 8.7764,
+      "quote_timestamp": "2026-06-15T00:48:20.020853628Z",
+      "quote_age_minutes": 5.25,
+      "per_order_notional": 88.06,
+      "per_order_cap": 509.56,
+      "spread_gate": "fail",
+      "fresh_quote_gate": "fail",
+      "notional_gate": "pass",
+      "decision": "blocked",
+      "blocking_reasons": [
+        "quote_age_minutes=5.25",
+        "spread_pct=8.7764"
+      ],
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ]
+    },
+    {
+      "symbol": "INTC",
+      "side": "sell",
+      "role": "sell_recheck_without_position",
+      "feed": "overnight",
+      "bid": 129.25,
+      "ask": 129.46,
+      "spread_pct": 0.1623,
+      "quote_timestamp": "2026-06-15T00:53:16.988343513Z",
+      "quote_age_minutes": 0.3,
+      "per_order_notional": 129.25,
+      "per_order_cap": 509.56,
+      "spread_gate": "pass",
+      "fresh_quote_gate": "pass",
+      "notional_gate": "pass",
+      "decision": "blocked",
+      "blocking_reasons": [
+        "no_open_position_for_sell_trim"
+      ],
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ]
+    }
+  ],
+  "runtime_alpaca_spot_check": "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-runtime-alpaca-spot-check.json",
+  "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-alpaca-core-preflight.json",
+  "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-research-mcp-preflight.json",
+  "note": "0951 scheduler-owned Alpaca core preflight had no passing rows beyond market_closed. The after-hours workflow therefore used one direct Alpaca MCP continuity pass to fill missing account/position/order/asset/quote evidence, then selected the sell-first AVGO trim because it was the only fresh, spread-cap, notional-cap passing executable candidate in the shortlist.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-runtime-alpaca-spot-check.json"
+  ]
+}

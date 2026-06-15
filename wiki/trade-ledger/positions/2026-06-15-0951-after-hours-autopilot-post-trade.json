@@ -1,0 +1,67 @@
+{
+  "run_id": "2026-06-15-0951-after-hours-autopilot",
+  "created_at": "2026-06-15T00:53:35Z",
+  "paper": true,
+  "session": "after_hours",
+  "review_bucket": "after_hours_validation",
+  "submit_attempted": true,
+  "submit_status": "open",
+  "orders_submitted": 1,
+  "client_order_ids_checked": [
+    "ah-20260615-0951-sell-avgo-01"
+  ],
+  "new_orders": [
+    {
+      "order_id": "b1ee30b8-92d8-4d0e-a9a1-a66c02c136a2",
+      "client_order_id": "ah-20260615-0951-sell-avgo-01",
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": "1",
+      "limit_price": "391.91",
+      "status": "new",
+      "submitted_at": "2026-06-15T00:59:05.205241183Z",
+      "extended_hours": true,
+      "session": "after_hours",
+      "review_bucket": "after_hours_validation"
+    }
+  ],
+  "filled_orders": [],
+  "cancelled_orders": [],
+  "open_orders": [
+    {
+      "order_id": "b1ee30b8-92d8-4d0e-a9a1-a66c02c136a2",
+      "client_order_id": "ah-20260615-0951-sell-avgo-01",
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": "1",
+      "filled_qty": "0",
+      "limit_price": "391.91",
+      "status": "new",
+      "submitted_at": "2026-06-15T00:59:05.205241183Z",
+      "extended_hours": true,
+      "session": "after_hours"
+    }
+  ],
+  "open_order_count": 1,
+  "orders_open": true,
+  "same_session_after_hours_orders_submitted_today": 1,
+  "same_session_after_hours_fills_detected": 0,
+  "positions_count": 33,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "account": {
+    "portfolio_value": 101911.69,
+    "cash": 31950.34,
+    "buying_power": 306437.69,
+    "currency": "USD",
+    "daily_realized_loss": 0.0
+  },
+  "note": "Submitted AVGO after-hours trim is open/new after immediate reconciliation. AVGO total qty remains 4 while qty_available decreased to 3, consistent with one reserved open sell order.",
+  "reconciliation_note": "Reconciled by client_order_id through get_order_by_client_id and get_orders(status=all|open), then cross-checked with get_all_positions qty_available delta. No retry or alternate client_order_id used.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-runtime-alpaca-spot-check.json"
+  ]
+}

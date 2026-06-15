@@ -1,0 +1,144 @@
+{
+  "run_id": "2026-06-15-0951-after-hours-autopilot",
+  "created_at": "2026-06-15T00:53:35Z",
+  "session": "after_hours",
+  "artifact_tag": "after-hours",
+  "policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "runtime_alpaca_spot_check": "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-runtime-alpaca-spot-check.json",
+  "market_clock": {
+    "is_open": false,
+    "timestamp": "2026-06-14T20:53:15.380822258-04:00",
+    "next_open": "2026-06-15T09:30:00-04:00",
+    "next_close": "2026-06-15T16:00:00-04:00",
+    "regular_market_status": "closed_expected_for_after_hours"
+  },
+  "account_summary": {
+    "status": "ACTIVE",
+    "portfolio_value": 101911.69,
+    "cash": 31950.34,
+    "buying_power": 306437.69,
+    "positions_count": 33
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 1,
+    "review_backlog_pending_5d_count": 16,
+    "review_backlog_pending_20d_count": 1
+  },
+  "open_orders": [],
+  "recent_orders": [],
+  "recent_fills": [],
+  "watchlists": {
+    "count": 0,
+    "items": []
+  },
+  "live_iex_quotes": {
+    "QQQ": {
+      "bid": 722.0,
+      "ask": 722.21,
+      "timestamp": "2026-06-12T20:57:37.534220888Z"
+    },
+    "MSFT": {
+      "bid": 390.76,
+      "ask": 390.99,
+      "timestamp": "2026-06-12T20:42:33.3236562Z"
+    },
+    "SMH": {
+      "bid": 619.72,
+      "ask": 624.79,
+      "timestamp": "2026-06-12T20:54:37.797642448Z"
+    },
+    "SPY": {
+      "bid": 718.43,
+      "ask": 762.94,
+      "timestamp": "2026-06-12T20:00:00.00478112Z"
+    },
+    "AVGO": {
+      "bid": 364.15,
+      "ask": 397.47,
+      "timestamp": "2026-06-12T20:00:00.013616581Z"
+    },
+    "SO": {
+      "bid": 89.83,
+      "ask": 98.54,
+      "timestamp": "2026-06-12T20:00:00.005356648Z"
+    },
+    "INTC": {
+      "bid": 118.84,
+      "ask": 130.92,
+      "timestamp": "2026-06-12T20:00:00.013145928Z"
+    },
+    "MU": {
+      "bid": 943.01,
+      "ask": 1040.42,
+      "timestamp": "2026-06-12T20:00:01.277902268Z"
+    }
+  },
+  "overnight_snapshots": {
+    "QQQ": {
+      "bid": 733.52,
+      "ask": 733.63,
+      "timestamp": "2026-06-15T00:53:17.535157965Z"
+    },
+    "MSFT": {
+      "bid": 395.25,
+      "ask": 395.51,
+      "timestamp": "2026-06-15T00:53:16.062514254Z"
+    },
+    "SMH": {
+      "bid": 638.9,
+      "ask": 640.31,
+      "timestamp": "2026-06-15T00:53:17.314982527Z"
+    },
+    "SPY": {
+      "bid": 749.62,
+      "ask": 749.69,
+      "timestamp": "2026-06-15T00:53:17.157780274Z"
+    },
+    "AVGO": {
+      "bid": 391.91,
+      "ask": 392.07,
+      "timestamp": "2026-06-15T00:53:16.049662168Z"
+    },
+    "SO": {
+      "bid": 88.06,
+      "ask": 96.14,
+      "timestamp": "2026-06-15T00:48:20.020853628Z"
+    },
+    "INTC": {
+      "bid": 129.25,
+      "ask": 129.46,
+      "timestamp": "2026-06-15T00:53:16.988343513Z"
+    },
+    "MU": {
+      "bid": 1026.88,
+      "ask": 1027.28,
+      "timestamp": "2026-06-15T00:53:17.039170671Z"
+    }
+  },
+  "shortlist": [
+    "QQQ",
+    "MSFT",
+    "SMH",
+    "SPY",
+    "AVGO",
+    "SO",
+    "INTC",
+    "MU"
+  ],
+  "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-alpaca-core-preflight.json",
+  "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-research-mcp-preflight.json",
+  "note": "Scheduler-owned 0951 Alpaca core preflight kept first_blocking_gate=market_closed and omitted passing rows, so this cycle supplemented only the missing after-hours-required account/position/order/asset/quote rows with direct Alpaca MCP read-only calls. Submit-boundary quote evaluation used direct overnight latestQuote because the 0951 preflight had no passing quote/spread rows to preserve.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-15-0951-after-hours-autopilot-runtime-alpaca-spot-check.json"
+  ]
+}
