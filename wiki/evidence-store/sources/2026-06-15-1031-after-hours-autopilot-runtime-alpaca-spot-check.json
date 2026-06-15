@@ -1,0 +1,124 @@
+{
+  "run_id": "2026-06-15-1031-after-hours-autopilot",
+  "captured_at": "2026-06-15T01:35:16Z",
+  "session": "after_hours",
+  "clock": {
+    "is_open": false,
+    "timestamp": "2026-06-14T21:31:11.345458172-04:00",
+    "next_open": "2026-06-15T09:30:00-04:00",
+    "next_close": "2026-06-15T16:00:00-04:00"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 101923.55,
+    "cash": 31946.39,
+    "buying_power": 306556.21,
+    "currency": "USD"
+  },
+  "positions_summary": {
+    "position_count": 33,
+    "focus_positions": {
+      "AVGO": {
+        "qty": 3,
+        "qty_available": 3,
+        "current_price": 393.7
+      },
+      "MSFT": {
+        "qty": 3,
+        "qty_available": 3,
+        "current_price": 395.8
+      },
+      "QQQ": {
+        "qty": 3,
+        "qty_available": 3,
+        "current_price": 733.63
+      },
+      "SPY": {
+        "qty": 2,
+        "qty_available": 2,
+        "current_price": 749.38
+      },
+      "SO": {
+        "qty": 5,
+        "qty_available": 5,
+        "current_price": 94.0
+      }
+    }
+  },
+  "orders": {
+    "open_count": 0,
+    "same_session_after_hours_orders_submitted_today": 2,
+    "same_session_after_hours_fills_detected": 2,
+    "same_session_order_ids": [
+      "76daf360-f7e6-443a-8af8-d61b4696267b",
+      "b1ee30b8-92d8-4d0e-a9a1-a66c02c136a2"
+    ],
+    "same_session_client_order_ids": [
+      "ah-20260615-1011-buy-msft-01",
+      "ah-20260615-0951-sell-avgo-01"
+    ]
+  },
+  "watchlists": {
+    "count": 0
+  },
+  "quotes": {
+    "MSFT": {
+      "bid": 390.76,
+      "ask": 390.99,
+      "spread_pct": 0.0588,
+      "quote_time": "2026-06-12T20:42:33.3236562Z"
+    },
+    "AVGO": {
+      "bid": 364.15,
+      "ask": 397.47,
+      "spread_pct": 8.7498,
+      "quote_time": "2026-06-12T20:00:00.013616581Z"
+    },
+    "QQQ": {
+      "bid": 722.0,
+      "ask": 722.21,
+      "spread_pct": 0.0291,
+      "quote_time": "2026-06-12T20:57:37.534220888Z"
+    },
+    "SPY": {
+      "bid": 718.43,
+      "ask": 762.94,
+      "spread_pct": 6.0093,
+      "quote_time": "2026-06-12T20:00:00.00478112Z"
+    },
+    "SMH": {
+      "bid": 619.72,
+      "ask": 624.79,
+      "spread_pct": 0.8148,
+      "quote_time": "2026-06-12T20:54:37.797642448Z"
+    },
+    "MU": {
+      "bid": 943.01,
+      "ask": 1040.42,
+      "spread_pct": 9.8224,
+      "quote_time": "2026-06-12T20:00:01.277902268Z"
+    },
+    "INTC": {
+      "bid": 118.84,
+      "ask": 130.92,
+      "spread_pct": 9.6733,
+      "quote_time": "2026-06-12T20:00:00.013145928Z"
+    },
+    "SO": {
+      "bid": 89.83,
+      "ask": 98.54,
+      "spread_pct": 9.2478,
+      "quote_time": "2026-06-12T20:00:00.005356648Z"
+    }
+  },
+  "candidate_summary": {
+    "sell_first_path": "blocked_by_budget",
+    "sell_reason": "0951 AVGO trim fill and 1011 MSFT validation buy fill already consumed the two after-hours session slots before another submit path could open.",
+    "buy_fallback": "budget_exhausted",
+    "buy_reason": "Both same-session after-hours client_order_ids reconciled as filled, leaving separate session budget 2/2 and no eligible place_stock_order call."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-15-1031-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-1031-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
