@@ -5,6 +5,12 @@ asset_type: stock
 
 # PFE
 
+## 2026-06-16 04:59 KST hourly-autopilot
+
+`PFE` 1주 regular-session day limit trim sell이 `26.01 USD` limit, `client_order_id=hourly-20260616-0451-sell-pfe`로 제출됐고 direct Alpaca MCP `get_order_by_client_id` 기준 `2026-06-15T19:59:48.06371096Z`에 `filled_avg_price=26.01 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0451` stale cleanup/core/research preflight와 direct Alpaca submit-boundary check 기준 paper mode, regular market open, open orders `0`, same-day `PFE sell` duplicate `0`, direct quote `26.01/26.02` spread `0.0384%`, active tradable NYSE stock, strict universe/MCP/risk gate 통과, 그리고 `2026-06-04` 5D review와 `2026-06-09` 1D review에 누적된 defensive-diversification 약세 해석 및 `2026-06-12` after-hours trim precedent가 유지됐다는 점이다. post-trade `get_all_positions` 기준 보유수량은 `5주 -> 4주`, `avg_entry_price=25.972`, `qty_available=4`로 감소했고 `get_account_info` 기준 cash는 `29,810.35 USD -> 29,836.36 USD`로 증가했다.
+
+출처: [[2026-06-16-0451-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-16-0451-hourly-autopilot-post-trade.json`
+
 ## 2026-06-12 10:21 KST after-hours-autopilot
 
 `PFE` 1주 after-hours day limit trim sell이 `26.12 USD` limit, `extended_hours=true`, `client_order_id=ah-20260612-1011-sell-pfe-01`로 제출됐고 same client id reconciliation 기준 `filled_avg_price=26.13 USD`로 즉시 체결됐다. buy fallback은 `review_backlog_pending_1d_count=14`에 따른 risk backlog throttle로 차단됐지만, `2026-06-09`, `2026-06-05`, `2026-06-04` portfolio review에 반복 약세로 남아 있던 defensive-diversification validation holding이라는 점, runtime overnight quote `26.12/26.16` spread `0.1529%`, open-order duplicate 없음이 확인돼 sell-first floor-size trim으로 승격됐다. post-trade `get_all_positions` 기준 보유수량은 `6주 -> 5주`, `avg_entry_price=26.033333`, `qty_available=5`로 감소했고 review bucket은 `after_hours_validation`을 유지한다.

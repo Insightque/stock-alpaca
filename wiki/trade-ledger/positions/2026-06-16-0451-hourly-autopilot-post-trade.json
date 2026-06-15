@@ -1,0 +1,54 @@
+{
+  "run_id": "2026-06-16-0451-hourly-autopilot",
+  "created_at": "2026-06-15T19:59:50Z",
+  "paper": true,
+  "source": "direct Alpaca MCP post-trade reconciliation",
+  "account": {
+    "status": "ACTIVE",
+    "cash": 29836.36,
+    "portfolio_value": 102596.6,
+    "buying_power": 306382.02
+  },
+  "orders": {
+    "submitted": 1,
+    "open": 0,
+    "filled": [
+      {
+        "symbol": "PFE",
+        "side": "sell",
+        "qty": 1,
+        "filled_avg_price": 26.01,
+        "filled_at": "2026-06-15T19:59:48.06371096Z",
+        "client_order_id": "hourly-20260616-0451-sell-pfe",
+        "order_id": "ee39d403-962f-45c1-856d-8289286d5ba8"
+      }
+    ]
+  },
+  "positions_summary": {
+    "positions_count": 33,
+    "position_deltas": [
+      {
+        "symbol": "PFE",
+        "qty_before": 5,
+        "qty_after": 4,
+        "avg_entry_price_before": 25.972,
+        "avg_entry_price_after": 25.972
+      }
+    ]
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-15-portfolio-review.md",
+    "wiki/research-notes/tickers/PFE.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-deterministic-submit.json"
+  ]
+}

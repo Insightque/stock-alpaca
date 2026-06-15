@@ -1,0 +1,198 @@
+{
+  "run_id": "2026-06-16-0451-hourly-autopilot",
+  "created_at": "2026-06-15T19:56:10Z",
+  "paper_mode": true,
+  "market_clock": {
+    "timestamp": "2026-06-15T15:58:55.814462809-04:00",
+    "is_open": true,
+    "next_open": "2026-06-16T09:30:00-04:00",
+    "next_close": "2026-06-15T16:00:00-04:00"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102653.95,
+    "cash": 29810.35,
+    "buying_power": 306493.95
+  },
+  "open_orders": {
+    "count": 0
+  },
+  "same_day_duplicate_summary": {
+    "buy_symbols": [
+      "AAPL",
+      "AMZN",
+      "BAC",
+      "COP",
+      "FCX",
+      "GOOGL",
+      "JPM",
+      "MSFT",
+      "NEE",
+      "NKE",
+      "SLB",
+      "SO",
+      "V",
+      "WMT",
+      "XOM"
+    ],
+    "sell_symbols": [
+      "AVGO",
+      "RGTI"
+    ]
+  },
+  "candidate_evaluation": [
+    {
+      "symbol": "PFE",
+      "decision": "selected_validation_trim_filled",
+      "reason": "repeated weak validation reviews, prior trim precedent, same-day sell/open-order 0, direct quote 26.01/26.02 spread 0.0384% pass, filled at 26.01"
+    },
+    {
+      "symbol": "AVGO",
+      "decision": "watch",
+      "reason": "11:18 ET same-day filled sell 이후 duplicate sell discipline 유지"
+    },
+    {
+      "symbol": "RGTI",
+      "decision": "watch",
+      "reason": "09:41 ET same-day filled sell 9주 이후 duplicate sell discipline 유지"
+    },
+    {
+      "symbol": "INTC",
+      "decision": "watch",
+      "reason": "ai_semiconductor_complex warning band와 prior weak thesis note 때문에 buy fallback보다 후순위"
+    },
+    {
+      "symbol": "SPY",
+      "decision": "watch",
+      "reason": "1주 ask 753.82 USD가 validation floor per-order cap 약 513.27 USD 초과"
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "watch",
+      "reason": "1주 ask 742.93 USD가 validation floor per-order cap 약 513.27 USD 초과"
+    }
+  ],
+  "selected_order_summary": {
+    "symbol": "PFE",
+    "side": "sell",
+    "qty": 1,
+    "limit_price": 26.01,
+    "confidence_score": 0.5,
+    "expected_excess_return_20d_pct": -1.84,
+    "spread_pct": 0.0384,
+    "quote_age_minutes": 0.0,
+    "review_backlog_pending_1d_count": 1,
+    "same_day_duplicate_conflict": false,
+    "open_order_conflict": false,
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-stale-order-cleanup.json",
+      "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-research-mcp-preflight.json",
+      "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-runtime-gate-evaluation.json",
+      "harness/recommendation-policy.yaml",
+      "harness/risk-policy.yaml",
+      "harness/symbol-metadata.yaml",
+      "wiki/trade-ledger/reviews/review-due-index.json",
+      "wiki/trade-ledger/reviews/2026-06-15-portfolio-review.md",
+      "wiki/research-notes/tickers/PFE.md",
+      "wiki/research-notes/tickers/AVGO.md",
+      "wiki/research-notes/tickers/RGTI.md"
+    ],
+    "order_id": "ee39d403-962f-45c1-856d-8289286d5ba8",
+    "status": "filled",
+    "filled_avg_price": 26.01,
+    "filled_at": "2026-06-15T19:59:48.06371096Z"
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "PFE",
+      "held_qty": 5,
+      "current_weight_pct": 0.1269,
+      "trigger_status": "active",
+      "primary_reason": "PFE는 2026-06-04 5D review와 2026-06-09 1D review에서 defensive healthcare validation edge가 약하다고 누적됐고, 2026-06-12 after-hours trim precedent 이후에도 current quote 26.02/26.03, spread 0.0384%, open orders 0, same-day sell 0 조건이 유지돼 1주 trim이 executable하다.",
+      "skipped_gate": "",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.84,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "PFE trim은 latest weak-review absolute loss와 repeated underperformance narrative를 사용했고 exact SPY excess rollup은 current note set에 수치화돼 있지 않다.",
+      "replacement_symbol": "AAPL",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "trim",
+      "blocked_sell_recheck": "",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-15-portfolio-review.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/RGTI.md"
+      ]
+    },
+    {
+      "symbol": "AVGO",
+      "held_qty": 2,
+      "current_weight_pct": 0.767,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "AVGO는 ai_semiconductor warning band와 음수 expected excess가 남아 있지만 2026-06-15 11:18 ET same-session trim fill 이후 duplicate sell discipline이 유지된다. current 0451 quote 393.75/393.82와 held qty 2주는 유지되지만 같은 날 같은 side 추가 trim은 차단된다.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -3.55,
+      "relative_to_spy_20d_pct": -4.33,
+      "metric_gap_reason": "",
+      "replacement_symbol": "AAPL",
+      "replacement_expected_excess_margin_pct": 3.55,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-15-portfolio-review.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/RGTI.md"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "held_qty": 28,
+      "current_weight_pct": 0.6194,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "RGTI는 speculative loss-control trim trigger와 음수 expected excess가 유지되지만 2026-06-15 09:41 ET same-session filled sell 9주가 이미 있어 duplicate_symbol_side_same_day 규율이 이번 cycle 추가 trim을 막는다.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.48,
+      "relative_to_spy_20d_pct": -1.48,
+      "metric_gap_reason": "",
+      "replacement_symbol": "AAPL",
+      "replacement_expected_excess_margin_pct": 1.48,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-0451-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-15-portfolio-review.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/RGTI.md"
+      ]
+    }
+  ]
+}

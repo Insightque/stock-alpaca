@@ -1,5 +1,18 @@
 # portfolio-current
 
+_Last updated: 2026-06-16 04:59 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-16-0451-hourly-autopilot]]
+- Open/new: 없음. direct Alpaca MCP `get_order_by_client_id`와 `get_orders(status=open)` reconciliation 기준 신규 open order는 남지 않았다.
+- Filled: `PFE` sell `1주`가 `filled_avg_price=26.01 USD`로 즉시 체결됐다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: direct `get_account_info/get_all_positions/get_order_by_client_id/get_orders(status=open)` reconciliation 기준 account `ACTIVE`, positions `33`건, open orders `0`건, `PFE qty=4`, `avg_entry_price=25.972`, cash `29,836.36 USD`였다.
+- Recent reconciliation scope: scheduler-owned `0451` stale cleanup/core/research preflight를 source-of-record로 사용했고 actual submit은 `2026-06-15T19:59:38.494910487Z`에 `client_order_id=hourly-20260616-0451-sell-pfe`로 수행했다. direct Alpaca MCP `get_order_by_client_id` 기준 same order는 `2026-06-15T19:59:48.06371096Z`에 `status=filled`, `filled_qty=1`, `filled_avg_price=26.01 USD`로 확정됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-16-0451-hourly-autopilot-post-trade.json`
+
 _Last updated: 2026-06-16 04:39 KST_
 
 ## 최신 hourly-autopilot reconciliation

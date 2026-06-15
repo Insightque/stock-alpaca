@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 04:39 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 04:59 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -36,7 +36,7 @@
 - [[QTEX]] - 투기적 1달러 미만 mover, 2026-05-22 업데이트.
 - [[BIYA]] - 투기적 저가 mover, 2026-05-22 업데이트.
 - [[NKE]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기; 2026-06-06 05:00 KST hourly-autopilot에서 1주 validation buy를 시도했지만 actual submit timestamp가 regular close 이후로 밀려 즉시 취소됐다. 2026-06-11 02:38 KST hourly-autopilot에서 `43.99 USD` day limit buy 1주가 제출됐고, 2026-06-11 02:57 KST `0251` reconciliation 기준 `43.98 USD`로 체결되어 보유 수량은 `4주 -> 5주`, `avg_entry_price=45.202`로 갱신됐다. 2026-06-16 02:18 KST hourly-autopilot에서는 `45.39 USD` day limit buy 1주가 `filled_avg_price=45.36 USD`로 즉시 체결되어 보유 수량이 `5주 -> 6주`, `avg_entry_price=45.228333 USD`로 갱신됐다.
-- [[PFE]] - 2026-05-29 validation add 1D/5D 회고는 약했고 defensive-diversification 반복 약세 근거가 누적됐다. 2026-06-06 02:20 KST hourly-autopilot에서 1주 추가 validation buy가 `status=new` open order로 생성됐고 2026-06-10 01:20 KST hourly-autopilot에서 healthcare fallback buy 1주가 `25.70 USD` day limit로 제출된 뒤 stale cleanup에서 취소됐다. 2026-06-10 02:00 KST hourly-autopilot에서는 healthcare fallback buy 1주가 `25.82 USD`에 즉시 체결됐고, 2026-06-10 23:54 KST hourly-autopilot에서는 `25.72 USD` day limit buy 1주가 `filled_avg_price=25.70 USD`로 즉시 체결됐다. 2026-06-12 10:21 KST after-hours-autopilot에서는 repeated weak-review trim rationale과 fresh overnight quote `26.12/26.16`을 근거로 1주 trim sell이 `filled_avg_price=26.13 USD`로 즉시 체결돼 보유 수량이 `6주 -> 5주`로 감소했다.
+- [[PFE]] - 2026-05-29 validation add 1D/5D 회고는 약했고 defensive-diversification 반복 약세 근거가 누적됐다. 2026-06-06 02:20 KST hourly-autopilot에서 1주 추가 validation buy가 `status=new` open order로 생성됐고 2026-06-10 01:20 KST hourly-autopilot에서 healthcare fallback buy 1주가 `25.70 USD` day limit로 제출된 뒤 stale cleanup에서 취소됐다. 2026-06-10 02:00 KST hourly-autopilot에서는 healthcare fallback buy 1주가 `25.82 USD`에 즉시 체결됐고, 2026-06-10 23:54 KST hourly-autopilot에서는 `25.72 USD` day limit buy 1주가 `filled_avg_price=25.70 USD`로 즉시 체결됐다. 2026-06-12 10:21 KST after-hours-autopilot에서는 repeated weak-review trim rationale과 fresh overnight quote `26.12/26.16`을 근거로 1주 trim sell이 `filled_avg_price=26.13 USD`로 즉시 체결돼 보유 수량이 `6주 -> 5주`로 감소했다. 2026-06-16 04:59 KST hourly-autopilot에서는 direct quote `26.01/26.02`와 repeated weak-review trim rationale를 근거로 추가 1주 trim sell이 `filled_avg_price=26.01 USD`로 즉시 체결되어 보유 수량이 `5주 -> 4주`로 감소했다.
 - [[SO]] - 2026-05-29 validation add 1D 회고 약함, 5D/20D 대기.
 - [[WMT]] - 2026-05-29 validation add 5D 회고 중립 양호; 2026-06-05 01:11 KST hourly-autopilot에서 1주 추가 validation buy 체결, 2026-06-05 23:11 KST hourly-autopilot에서 1주 추가 validation buy가 `119.78 USD`에 체결, 2026-06-10 02:19 KST hourly-autopilot에서 floor-size defensive fallback buy 1주가 `118.70 USD`에 즉시 체결.
 - [[NEE]] - defensive utility/renewable diversifier 후보. 2026-06-11 02:18 KST hourly-autopilot에서 `85.29 USD` day limit buy 1주가 `filled_avg_price=85.22 USD`로 즉시 체결됐고, 보유 수량은 `4주 -> 5주`, `avg_entry_price=86.44`로 갱신됐다. 2026-06-16 00:38 KST hourly-autopilot에서는 `85.81 USD` day limit buy 1주가 `filled_avg_price=85.78 USD`로 즉시 체결되어 보유 수량이 `5주 -> 6주`, `avg_entry_price=86.33`로 갱신됐다.
@@ -54,6 +54,8 @@
 - [[ORCL]] - 2026-06-11 09:11 KST after-hours-autopilot에서 fresh overnight quote 기준 최상위 executable software diversifier fallback으로 승격됐지만 `review_backlog_pending_1d_count=14`에 따른 risk backlog throttle 때문에 no-submit으로 종료했다.
 
 ## Current Runs
+
+- [[2026-06-16-0451-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0451` stale cleanup/core/research preflight를 source-of-record로 사용했고 direct Alpaca submit-boundary check 기준 regular market open, ACTIVE account, open orders `0`, same-day `PFE` sell duplicate `0`를 재확인했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day duplicate sell gate에 막혔고, buy fallback은 `AAPL/AMZN/BAC/COP/FCX/GOOGL/JPM/MSFT/NEE/NKE/SLB/SO/V/WMT/XOM` same-day duplicate buy, `SPY/QQQ` validation floor per-order cap, `INTC` ai_semiconductor cluster warning에 막혔다. `PFE`는 repeated weak-review trim rationale, prior trim precedent, direct quote `26.01/26.02`, spread `0.0384%`, open orders `0` 조건을 충족해 executable healthcare trim으로 승격됐고 1주 sell이 `filled_avg_price=26.01 USD`로 즉시 체결되어 보유 수량이 `5주 -> 4주`로 감소했다.
 
 - [[2026-06-16-0431-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0431` stale cleanup/core/research preflight를 source-of-record로 사용했고 direct Alpaca submit-boundary check 기준 regular market open, ACTIVE account, open orders `0`, same-day `AAPL` duplicate `0`를 재확인했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day duplicate sell gate, `SO`는 trim metric gap에 막혔고 buy fallback에서는 `AMZN/GOOGL/MSFT/SO/V/COP/NKE/XOM/SLB/FCX/JPM/NEE/WMT/BAC` same-day duplicate buy, `SPY/QQQ` validation floor per-order cap, `NVDA` ai_semiconductor cluster warning, `TSLA` low-thesis-quality note에 막혀 `AAPL`이 executable mega-cap quality floor-size buy로 승격됐다. `AAPL` 1주 buy는 `filled_avg_price=296.11 USD`로 즉시 체결됐고 보유 수량은 `5주 -> 6주`, `avg_entry_price=301.965`로 갱신됐다.
 
