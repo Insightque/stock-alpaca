@@ -1,0 +1,194 @@
+{
+  "run_id": "2026-06-15-2331-hourly-autopilot",
+  "created_at": "2026-06-15T14:36:20Z",
+  "paper": true,
+  "market_open": true,
+  "alpaca_core_source": "scheduler preflight + direct Alpaca submit-boundary check",
+  "clock": {
+    "timestamp": "2026-06-15T10:35:33.84384781-04:00",
+    "next_close": "2026-06-15T16:00:00-04:00"
+  },
+  "account": {
+    "portfolio_value": 102201.91,
+    "cash": 32100.41,
+    "buying_power": 308572.88,
+    "currency": "USD"
+  },
+  "open_orders": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1,
+      "status": "new",
+      "client_order_id": "hourly-20260615-2251-sell-avgo",
+      "submitted_at": "2026-06-15T14:02:23.822648Z"
+    }
+  ],
+  "same_day_orders_checked": [
+    {
+      "symbol": "BAC",
+      "side": "buy",
+      "status": "filled",
+      "filled_at": "2026-06-15T14:19:50.667927Z"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "status": "filled",
+      "filled_at": "2026-06-15T13:41:43.341983Z"
+    }
+  ],
+  "buy_candidate_quotes": {
+    "WMT": {
+      "bid": 120.17,
+      "ask": 120.2,
+      "spread_pct": 0.025,
+      "captured_at": "2026-06-15T14:35:34.844088944Z"
+    },
+    "SPY": {
+      "bid": 753.37,
+      "ask": 753.4,
+      "spread_pct": 0.004,
+      "captured_at": "2026-06-15T14:35:35.436622978Z"
+    },
+    "QQQ": {
+      "bid": 740.48,
+      "ask": 740.54,
+      "spread_pct": 0.0081,
+      "captured_at": "2026-06-15T14:35:35.432363296Z"
+    },
+    "BAC": {
+      "bid": 56.13,
+      "ask": 56.15,
+      "spread_pct": 0.0356,
+      "captured_at": "2026-06-15T14:35:35.062983785Z"
+    },
+    "NOK": {
+      "bid": 14.3,
+      "ask": 14.31,
+      "spread_pct": 0.0699,
+      "captured_at": "2026-06-15T14:35:35.304000426Z"
+    }
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "AVGO",
+      "held_qty": 3,
+      "current_weight_pct": 1.1463,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "AVGO는 ai_semiconductor target-band de-risking rationale가 유지되지만, 2251 cycle same-symbol sell 1주가 아직 status=new open order로 남아 있어 이번 cycle 추가 trim은 open_order_policy에 막힌다.",
+      "skipped_gate": "same_symbol_side_open_order_exists",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -3.55,
+      "relative_to_spy_20d_pct": -4.33,
+      "metric_gap_reason": "",
+      "replacement_symbol": "WMT",
+      "replacement_expected_excess_margin_pct": 3.55,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-15-portfolio-review.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/WMT.md",
+        "wiki/research-notes/tickers/BAC.md"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "held_qty": 28,
+      "current_weight_pct": 0.6335,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "RGTI는 speculative loss-control trim trigger와 음수 expected excess가 계속 active지만 2026-06-15T13:41:43Z same-session filled sell 9주가 이미 있어 duplicate_symbol_side_same_day 규율이 이번 cycle 추가 trim을 차단한다.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.48,
+      "relative_to_spy_20d_pct": -1.48,
+      "metric_gap_reason": "",
+      "replacement_symbol": "WMT",
+      "replacement_expected_excess_margin_pct": 1.48,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-15-portfolio-review.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/WMT.md",
+        "wiki/research-notes/tickers/BAC.md"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "held_qty": 5,
+      "current_weight_pct": 0.4603,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "SO는 반복 weak-review 관찰과 trim 재평가 대상이지만 decision-grade expected-excess/replacement margin 공백이 남아 있어 이번 cycle에서 집행형 trim reason으로 확정하지 못했다.",
+      "skipped_gate": "sell_metric_gap",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "SO는 trim decision-grade expected-excess/replacement margin 공백이 남아 있다.",
+      "replacement_symbol": "WMT",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-15-portfolio-review.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/WMT.md",
+        "wiki/research-notes/tickers/BAC.md"
+      ]
+    }
+  ],
+  "selected_order": {
+    "symbol": "WMT",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 120.2,
+    "client_order_id": "hourly-20260615-2331-buy-wmt"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-15-portfolio-review.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/WMT.md",
+    "wiki/research-notes/tickers/BAC.md"
+  ]
+}

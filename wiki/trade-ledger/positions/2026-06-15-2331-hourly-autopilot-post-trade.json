@@ -1,0 +1,69 @@
+{
+  "run_id": "2026-06-15-2331-hourly-autopilot",
+  "created_at": "2026-06-15T14:40:25Z",
+  "paper": true,
+  "submit_attempted": true,
+  "submitted_orders": [
+    {
+      "symbol": "WMT",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 120.2,
+      "client_order_id": "hourly-20260615-2331-buy-wmt",
+      "order_id": "ee4c1e0c-46cc-43cb-8ec8-59b25b2b99ba",
+      "status": "new",
+      "filled_qty": 0,
+      "filled_avg_price": null,
+      "submitted_at": "2026-06-15T14:40:08.28247584Z"
+    }
+  ],
+  "open_orders": [
+    {
+      "symbol": "WMT",
+      "side": "buy",
+      "qty": 1,
+      "status": "new",
+      "client_order_id": "hourly-20260615-2331-buy-wmt",
+      "limit_price": 120.2
+    },
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1,
+      "status": "new",
+      "client_order_id": "hourly-20260615-2251-sell-avgo",
+      "limit_price": 394.9
+    }
+  ],
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102231.1,
+    "cash": 32100.41,
+    "buying_power": 308444.36,
+    "positions_count": 33
+  },
+  "positions_focus": {
+    "WMT_qty": 8,
+    "WMT_qty_available": 8,
+    "WMT_current_price": 120.235,
+    "AVGO_qty": 3,
+    "AVGO_qty_available": 2
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-15-portfolio-review.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/WMT.md",
+    "wiki/research-notes/tickers/BAC.md",
+    "wiki/evidence-store/sources/2026-06-15-2331-hourly-autopilot-deterministic-submit.json"
+  ]
+}

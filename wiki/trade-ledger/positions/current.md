@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-15 23:20 KST_
+_Last updated: 2026-06-15 23:41 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-15-2331-hourly-autopilot]]
+- Open/new: `WMT` buy `1주`가 `status=new` open order로 생성됐고, earlier `AVGO` sell `1주` open order도 유지됐다.
+- Filled: immediate reconciliation 시점 신규 fill 없음.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: direct `get_account_info/get_all_positions/get_order_by_client_id/get_orders(status=open)` reconciliation 기준 account `ACTIVE`, positions `33`건, open orders `2`건, `WMT qty=8`, `AVGO qty=3`, `AVGO qty_available=2`, cash `32100.41 USD`였다.
+- Recent reconciliation scope: scheduler-owned `2331` stale cleanup/core/research preflight를 source-of-record로 사용했고 actual submit은 `2026-06-15T14:40:08.28247584Z`에 `client_order_id=hourly-20260615-2331-buy-wmt`로 수행했다. direct Alpaca MCP `get_order_by_client_id` 기준 same order는 immediate reconciliation 시점 `status=new`, `filled_qty=0`, `limit_price=120.20 USD`였다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-15-2331-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
