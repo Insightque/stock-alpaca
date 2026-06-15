@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-15 22:42 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-15 23:20 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -54,6 +54,7 @@
 
 ## Current Runs
 
+- [[2026-06-15-2311-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2311` stale cleanup/core/research preflight를 source-of-record로 사용했고, live Alpaca order-state readback에서 earlier `AVGO` sell open order와 `RGTI` same-session filled sell duplicate를 먼저 재확인했다. strict Alpaca core, universe, MCP, risk validator가 모두 PASS한 뒤 sell-first explicit gate blocker를 기록하고 different-cluster fallback으로 `BAC` 1주 buy를 `client_order_id=hourly-20260615-2311-buy-bac`로 제출했다. immediate reconciliation 기준 same order는 `status=new`, `filled_qty=0`, open orders는 `BAC/AVGO` 2건이라 next cycle fill/open-order lifecycle 추적이 필요하다.
  - [[2026-06-15-2251-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2251` stale cleanup/core/research preflight와 direct Alpaca spot check를 함께 사용했고 Alpaca core, universe strict, MCP strict, risk validator가 모두 PASS했다. `RGTI`는 `2231` same-session filled sell 9주 때문에 duplicate sell 규율에 막혔고, `AVGO`는 spread 정상화(`394.90/395.07`, `0.0430%`) 후 ai_semiconductor warning-band de-risking 후보로 승격돼 1주 trim sell이 `client_order_id=hourly-20260615-2251-sell-avgo`로 제출됐다. immediate reconciliation 기준 주문 상태는 `new`, `filled_qty=0`, `AVGO qty=3`, `qty_available=2`라 next cycle fill/open-order lifecycle 추적이 필요하다.
 - [[2026-06-15-2231-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `2231` stale cleanup/core/research preflight를 source-of-record로 사용했고 Alpaca core, universe strict, MCP strict, risk validator가 모두 PASS했다. sell-first 재평가에서 `RGTI`는 speculative loss-control trim trigger와 fresh quote `22.55/22.58`, spread `0.1329%`, open orders `0`, validation lifecycle due-block 없음 조건을 충족해 25% trim `9주` sell이 `2026-06-15T13:41:43Z`에 `filled_avg_price=23.366667 USD`로 즉시 체결됐다. `AVGO`는 fresh spread `0.5361%`로 hard cap을 넘겨 trim이 차단됐고, `BAC`는 executable buy fallback이었지만 eligible risk-reducing sell이 먼저 열려 사용하지 않았다.
 - [[2026-06-15-2151-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `2151` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. 같은 preflight의 passing account/positions/open-orders/recent-activities/watchlist rows 기준 regular market closed, account `ACTIVE`, positions `33`, open orders `0`, watchlists `0`였고, direct Alpaca MCP `get_clock/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-14T20:00:00Z)/get_watchlists/get_order_by_client_id/get_stock_latest_quote(feed=overnight)/get_stock_snapshot(feed=overnight)` continuity도 same-session `AVGO` sell `1주`(`391.92 USD`)와 `MSFT` buy `1주`(`395.87 USD`) filled 상태 및 overnight shortlist continuity를 재확인했다. separate after-hours session budget이 `2/2`로 닫혀 있어 이번 cycle도 submit path는 budget hard gate 전에 종료했다. research preflight에서는 `alpha-vantage`가 hourly throttle에 따른 `provider_error` gap을 기록했지만 `sec-edgar/fred/firecrawl/yahoo-finance` pass로 strict MCP gate는 유지됐다.

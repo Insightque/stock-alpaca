@@ -62,3 +62,10 @@ asset_type: stock
 `2026-06-05 ET` fill 5D는 `53.83 USD -> 55.99 USD`로 `+4.01%`였다. `SPY` 대비 `+3.44%p`, `QQQ` 대비 `+1.75%p`라 이번 cycle에서도 financials diversifier 표본은 가장 안정적인 축을 유지했다. 단일 섹터 승격보다 `hold-quality` 강화 근거로 쓰는 편이 적절하다.
 
 출처: [[2026-06-13-portfolio-review]], [[2026-06-13-0622-analyst-review-cycle-sources]]
+
+
+## 2026-06-15 23:20 KST hourly-autopilot
+
+`BAC` 1주 regular-session day limit buy가 `56.28 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260615-2311-buy-bac`, `order_id=dda6e628-c48f-48b5-891e-2bc6169bba6c`가 생성됐다. immediate reconciliation 시점 상태는 `new` open order이며 fill은 아직 없다. 근거는 scheduler-owned `2311` stale cleanup/core/research preflight와 strict universe/MCP/risk gate 통과, `AVGO` fresh open sell 1주와 `RGTI` same-session filled sell 9주 때문에 sell-first 경로가 explicit gate에 막혔다는 점, 그리고 `BAC`가 same-day duplicate/open-order conflict 없는 financials diversifier floor-size fallback으로 가장 executable했다는 점이다. 다음 cycle은 이 주문의 fill 또는 stale lifecycle을 추적한다.
+
+출처: [[2026-06-15-2311-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-15-2311-hourly-autopilot-post-trade.json`

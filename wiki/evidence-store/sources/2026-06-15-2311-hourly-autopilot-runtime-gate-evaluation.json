@@ -1,0 +1,103 @@
+{
+  "run_id": "2026-06-15-2311-hourly-autopilot",
+  "created_at": "2026-06-15T14:15:56Z",
+  "paper": true,
+  "market_session": "regular",
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-15T10:13:57.366828196-04:00",
+    "next_open": "2026-06-16T09:30:00-04:00",
+    "next_close": "2026-06-15T16:00:00-04:00"
+  },
+  "alpaca_core_preflight_ref": "wiki/evidence-store/sources/2026-06-15-2311-hourly-autopilot-alpaca-core-preflight.json",
+  "research_preflight_ref": "wiki/evidence-store/sources/2026-06-15-2311-hourly-autopilot-research-mcp-preflight.json",
+  "stale_cleanup_ref": "wiki/evidence-store/sources/2026-06-15-2311-hourly-autopilot-stale-order-cleanup.json",
+  "hard_gates": {
+    "paper_mode": "pass",
+    "market_open": "pass",
+    "open_order_lifecycle": "pass",
+    "alpaca_core": "pass",
+    "research_mcp_tiered": "pass",
+    "universe_strict": "pass",
+    "risk_policy_pre_submit": "pass",
+    "quote_freshness": "pass",
+    "spread_within_policy": "pass_for_bac_only"
+  },
+  "sell_first": [
+    {
+      "symbol": "AVGO",
+      "decision": "blocked_open_order_gate",
+      "reason": "2251 cycle same-symbol sell 1주가 아직 status=new open order이고 latest scheduler quote 390.20/391.06 spread 0.2199%여서 추가 trim 대신 lifecycle 추적이 우선이다"
+    },
+    {
+      "symbol": "RGTI",
+      "decision": "blocked_duplicate_gate",
+      "reason": "2026-06-15T13:41:43Z same-session filled sell 9주가 duplicate_symbol_side_same_day 규율을 유지한다"
+    },
+    {
+      "symbol": "BAC",
+      "decision": "sell_trigger_none",
+      "reason": "financials diversifier fallback buy는 가능하지만 active sell/trim trigger는 없다"
+    }
+  ],
+  "buy_fallback": [
+    {
+      "symbol": "BAC",
+      "decision": "submit_buy",
+      "reason": "quote 56.27/56.28 spread 0.0178%, financials diversifier, same-day BAC buy duplicate 없음, fresh AVGO open sell과 different cluster라 open_order_policy 허용"
+    },
+    {
+      "symbol": "SO",
+      "decision": "watch_only",
+      "reason": "quote 93.79/93.83 spread 0.0426%는 pass지만 반복 weak review와 trim metric gap 이력 때문에 fallback 우선순위가 BAC보다 낮다"
+    },
+    {
+      "symbol": "SPY",
+      "decision": "blocked_floor_cap",
+      "reason": "1주 ask 753.23 USD가 validation floor per-order cap을 초과한다"
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "blocked_floor_cap",
+      "reason": "1주 ask 740.46 USD가 validation floor per-order cap을 초과한다"
+    },
+    {
+      "symbol": "NOK",
+      "decision": "blocked_validation_lifecycle_add_block",
+      "reason": "quote 14.51/14.52 spread 0.0689%는 pass하지만 review-due-index add-block이 유지된다"
+    }
+  ],
+  "selected_order": {
+    "symbol": "BAC",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 56.28,
+    "client_order_id": "hourly-20260615-2311-buy-bac"
+  },
+  "review_backlog": {
+    "pending_1d_count": 1,
+    "pending_5d_count": 16,
+    "pending_20d_count": 1
+  },
+  "review_backlog_throttle": {
+    "pending_1d_count": 1,
+    "pending_5d_count": 16,
+    "pending_20d_count": 1,
+    "buy_slots_reduced": false,
+    "buy_slots_blocked": false,
+    "applies_to_sides": [
+      "buy"
+    ]
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 1,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 1,
+    "review_backlog_pending_5d_count": 16,
+    "review_backlog_pending_20d_count": 1
+  }
+}

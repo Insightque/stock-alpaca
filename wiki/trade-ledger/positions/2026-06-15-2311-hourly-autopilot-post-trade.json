@@ -1,0 +1,72 @@
+{
+  "run_id": "2026-06-15-2311-hourly-autopilot",
+  "created_at": "2026-06-15T14:20:05Z",
+  "paper": true,
+  "source": "post-trade reconciliation via Alpaca MCP",
+  "order": {
+    "order_id": "dda6e628-c48f-48b5-891e-2bc6169bba6c",
+    "client_order_id": "hourly-20260615-2311-buy-bac",
+    "symbol": "BAC",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 56.28,
+    "status": "new",
+    "filled_qty": 0,
+    "filled_avg_price": null,
+    "submitted_at": "2026-06-15T14:19:38.883379405Z",
+    "filled_at": null
+  },
+  "account": {
+    "status": "ACTIVE",
+    "cash": 32156.69,
+    "portfolio_value": 102163.48,
+    "buying_power": 308318.93,
+    "position_market_value": 70006.79
+  },
+  "open_orders": [
+    {
+      "order_id": "dda6e628-c48f-48b5-891e-2bc6169bba6c",
+      "client_order_id": "hourly-20260615-2311-buy-bac",
+      "symbol": "BAC",
+      "side": "buy",
+      "qty": 1,
+      "status": "new",
+      "limit_price": 56.28
+    },
+    {
+      "order_id": "f41578c0-cb41-4620-ad3d-7a6e6a87946a",
+      "client_order_id": "hourly-20260615-2251-sell-avgo",
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1,
+      "status": "new",
+      "limit_price": 394.9
+    }
+  ],
+  "positions_count": 33,
+  "touched_positions": {
+    "BAC": {
+      "qty_before": 6,
+      "qty_after": 6,
+      "avg_entry_price_after": 53.315,
+      "qty_available_after": 6,
+      "market_value_after": 337.71,
+      "current_price_after": 56.285
+    },
+    "AVGO": {
+      "qty_before": 3,
+      "qty_after": 3,
+      "qty_available_after": 2,
+      "market_value_after": 1175.01,
+      "current_price_after": 391.67
+    }
+  },
+  "same_day_fills": [
+    "RGTI"
+  ],
+  "source_refs": [
+    "wiki/trade-ledger/orders/2026-06-15-2311-hourly-autopilot.json",
+    "wiki/evidence-store/run-manifests/2026-06-15-2311-hourly-autopilot.json",
+    "wiki/evidence-store/sources/2026-06-15-2311-hourly-autopilot-runtime-gate-evaluation.json"
+  ]
+}
