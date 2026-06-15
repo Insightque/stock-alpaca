@@ -1,0 +1,29 @@
+{
+  "run_id": "2026-06-16-0311-hourly-autopilot",
+  "created_at": "2026-06-15T18:18:40Z",
+  "order_id": "39a326aa-6544-4ef1-9a05-319e3460bbab",
+  "client_order_id": "hourly-20260616-0311-buy-so",
+  "order_status": "new",
+  "filled_qty": 0,
+  "filled_avg_price": null,
+  "open_orders_after_submit": 1,
+  "account": {
+    "status": "ACTIVE",
+    "cash": 31216.95,
+    "portfolio_value": 102826.47,
+    "buying_power": 308592.39
+  },
+  "positions_count": 33,
+  "position_checks": {
+    "SO": {
+      "qty": 5,
+      "qty_available": 5,
+      "avg_entry_price": 92.696,
+      "note": "immediate reconciliation 기준 신규 fill 미반영"
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-0311-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-16-0311-hourly-autopilot-deterministic-submit.json"
+  ]
+}

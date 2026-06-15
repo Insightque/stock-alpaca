@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 02:56 KST hourly-autopilot reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 03:18 KST hourly-autopilot reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -54,6 +54,8 @@
 - [[ORCL]] - 2026-06-11 09:11 KST after-hours-autopilot에서 fresh overnight quote 기준 최상위 executable software diversifier fallback으로 승격됐지만 `review_backlog_pending_1d_count=14`에 따른 risk backlog throttle 때문에 no-submit으로 종료했다.
 
 ## Current Runs
+
+- [[2026-06-16-0311-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 direct Alpaca submit-boundary check 기준 regular market open, ACTIVE account, open orders `0`, same-day `SO` duplicate `0`를 재확인했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day duplicate sell discipline에, `SO`는 trim metric gap에 막혀 executable risk-reducing sell이 없었고 buy fallback으로 전환됐다. `SO`는 direct quote `94.34/94.37`, spread `0.0318%`, current research-preflight symbol, `2026-06-13` portfolio review의 `2026-06-10 ET` fill 1D `중립 양호` 조건을 충족해 1주 validation buy가 `client_order_id=hourly-20260616-0311-buy-so`로 제출됐다. immediate reconciliation 기준 same order는 `status=new`, `filled_qty=0`, open order lifecycle 추적이 필요하다.
 
 - [[2026-06-16-0251-hourly-autopilot]] - regular-session scheduled hourly-autopilot 실행. scheduler-owned `0251` stale cleanup/core/research preflight를 source-of-record로 사용했고 direct Alpaca submit-boundary check 기준 regular market open, ACTIVE account, open orders `0`, same-day `V` duplicate `0`를 재확인했다. sell-first 재평가에서 `AVGO`와 `RGTI`는 same-day duplicate sell discipline에, `SO`는 decision-grade trim metric gap에 막혔고 buy fallback으로 전환됐다. `COP/XOM/SLB/FCX/JPM/NEE/BAC/WMT/NKE`는 same-day duplicate buy 규율, `SPY/QQQ`는 validation floor per-order cap, `NVDA`는 ai_semiconductor cluster warning, `AAPL`은 반복 weak-review history에 막혀 `V`가 최상위 executable payments diversifier fallback으로 승격됐다. `V`는 direct quote `324.89/325.01`, spread `0.0369%`, current research-preflight symbol, `2026-06-09` analyst review의 `2026-06-05 ET` fill 1D `중립 양호` 조건을 충족해 1주 validation buy가 `client_order_id=hourly-20260616-0251-buy-v`로 제출됐고 immediate reconciliation 기준 `filled_avg_price=324.83 USD`로 즉시 체결됐다.
 

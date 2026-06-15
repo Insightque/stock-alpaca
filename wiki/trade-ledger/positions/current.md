@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-16 02:56 KST_
+_Last updated: 2026-06-16 03:18 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-16-0311-hourly-autopilot]]
+- Open/new: `SO` buy `1주`가 `status=new` open order로 생성됐다. direct Alpaca MCP `get_orders(status=open)` 기준 open orders `1`건이다.
+- Filled: immediate reconciliation 시점 신규 fill 없음.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: direct `get_account_info/get_all_positions/get_order_by_client_id/get_orders(status=open)` reconciliation 기준 account `ACTIVE`, positions `33`건, open orders `1`건, `SO qty=5`, `qty_available=5`, cash `31,216.95 USD`였다.
+- Recent reconciliation scope: scheduler-owned `0311` stale cleanup/core/research preflight를 source-of-record로 사용했고 actual submit은 `2026-06-15T18:18:29.236351179Z`에 `client_order_id=hourly-20260616-0311-buy-so`로 수행했다. direct Alpaca MCP `get_order_by_client_id` 기준 same order는 immediate reconciliation 시점 `status=new`, `filled_qty=0`, `limit_price=94.37 USD`였다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-16-0311-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 
