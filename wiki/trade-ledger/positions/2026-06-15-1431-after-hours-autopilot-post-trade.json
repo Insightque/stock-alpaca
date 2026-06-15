@@ -1,0 +1,52 @@
+{
+  "run_id": "2026-06-15-1431-after-hours-autopilot",
+  "created_at": "2026-06-15T05:34:00Z",
+  "session": "after_hours",
+  "paper": true,
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "orders_open": 0,
+  "same_session_after_hours_orders_submitted_today": 2,
+  "same_session_after_hours_fills_detected": 2,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102127.56,
+    "cash": 31946.39,
+    "buying_power": 307003.62,
+    "long_market_value": 70181.17,
+    "currency": "USD",
+    "daily_realized_loss": 0.0
+  },
+  "positions_count": 33,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "review_bucket": "after_hours_validation",
+  "note": "No after-hours submit at 1431. Scheduler-owned 1431 core preflight remained the source-of-record for the expected market_closed blocker and preserved the required pass rows. The same-session after-hours fills AVGO/MSFT already left the separate after-hours session budget closed at 2/2 with no open orders.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-15-1431-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-1431-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-1431-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-15-1431-after-hours-autopilot-runtime-alpaca-spot-check.json"
+  ],
+  "submit_status": "no_submit",
+  "client_order_ids_checked": [],
+  "new_orders": [],
+  "filled_orders": [
+    {
+      "symbol": "MSFT",
+      "side": "buy",
+      "qty": 1.0,
+      "filled_avg_price": 395.87
+    },
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1.0,
+      "filled_avg_price": 391.92
+    }
+  ],
+  "cancelled_orders": [],
+  "open_orders": [],
+  "open_order_count": 0,
+  "reconciliation_note": "No new client_order_id reconciliation was required because no new submit path opened in the 1431 cycle."
+}
