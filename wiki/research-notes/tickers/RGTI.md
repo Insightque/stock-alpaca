@@ -56,6 +56,7 @@ RGTI는 핵심 포트폴리오 보유 종목이라기보다 고모멘텀 이벤�
 - 2026-06-10 23:15 KST: scheduled hourly-autopilot에서 speculative loss-control trim 17주가 `20.38 USD`에 체결됐다.
 - 2026-06-11 09:59 KST: scheduled after-hours-autopilot에서 residual speculative sleeve de-risking 근거로 1주 trim sell이 `19.50 USD`에 체결됐다.
 - 2026-06-11 10:20 KST: scheduled after-hours-autopilot `1011` cycle의 추가 trim 1주가 `19.78 USD`에 체결됐고 `1031` reconciliation에서 fill이 확인됐다.
+- 2026-06-15 22:41 KST: scheduled `2231` hourly-autopilot을 scheduler-owned regular-session preflight로 실행했고, `RGTI` 9주 trim sell이 `client_order_id=hourly-20260615-2231-sell-rgti`, `filled_avg_price=23.366667 USD`로 즉시 체결돼 보유수량이 `37주 -> 28주`로 감소했다.
 - 주문/체결 출처: [[2026-05-22-paper-order-submission]]
 
 ## 2026-05-25 현재 추천 메모
@@ -138,3 +139,9 @@ RGTI는 오늘 신규 매수 후보에서 제외했다. 2026-05-22 종가 26.41 
 일요일 closed clock 기준 새 regular-session close가 없어서 `2026-06-12 ET` trim 12주의 `1D` closeout은 계속 대기 상태다. current Alpaca snapshot 기준 `RGTI`는 `37주`, 평균단가 `25.569583 USD`, current `20.98 USD`, 미실현 약 `-17.95%`이며, Alpaca IEX daily bar는 전일 대비 `+1.75%` 반등했지만 residual speculative sleeve 해석을 바꾸지는 않는다. 첫 `1D` 판단 시점은 그대로 `2026-06-15` 미국 정규장 close 이후다.
 
 출처: [[2026-06-15-portfolio-review]], [[2026-06-15-0624-analyst-review-cycle-sources]]
+
+### 2026-06-15 22:41 KST hourly-autopilot trim
+
+`2231` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight를 source-of-record로 사용했고, actual submit은 `2026-06-15T13:41:41.654523Z`에 수행됐다. `RGTI`는 fresh Alpaca quote `22.55/22.58`, spread `0.1329%`, held qty `37`, speculative loss-control trim trigger, open orders `0`, validation lifecycle due-block 없음 조건에서 25% trim `9주` 경로를 통과했고 `client_order_id=hourly-20260615-2231-sell-rgti`로 regular-session day limit sell을 제출했다. immediate reconciliation 기준 same order는 `2026-06-15T13:41:43.341983Z`에 `filled_avg_price=23.366667 USD`로 전량 체결됐고 보유수량은 `37주 -> 28주`로 감소했다. 해석은 `residual speculative sleeve staged de-risking 지속`이다.
+
+출처: [[2026-06-15-2231-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-15-2231-hourly-autopilot-post-trade.json`

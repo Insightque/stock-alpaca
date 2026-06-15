@@ -1,0 +1,49 @@
+{
+  "run_id": "2026-06-15-2231-hourly-autopilot",
+  "recorded_at": "2026-06-15T13:41:44Z",
+  "paper": true,
+  "market_session": "regular",
+  "submitted_order": {
+    "symbol": "RGTI",
+    "side": "sell",
+    "qty": 9,
+    "limit_price": 22.55,
+    "client_order_id": "hourly-20260615-2231-sell-rgti",
+    "order_id": "ae15441f-844b-47ab-8970-a37242d13421",
+    "status": "filled",
+    "filled_avg_price": 23.366667
+  },
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "portfolio_value": 102331.31,
+    "cash": 32156.69,
+    "buying_power": 308473.69
+  },
+  "open_orders": [],
+  "position_delta": {
+    "symbol": "RGTI",
+    "qty_before": 37,
+    "qty_after": 28,
+    "avg_entry_price_after": 25.569583,
+    "qty_available_after": 28,
+    "market_value_after": 653.52,
+    "current_price_after": 23.34
+  },
+  "fills": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 9,
+      "price": 23.366667,
+      "transaction_time": "2026-06-15T13:41:43.341983Z",
+      "type": "fill"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-15-2231-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-15-2231-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-2231-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-2231-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-15-2231-hourly-autopilot-deterministic-submit.json"
+  ]
+}
