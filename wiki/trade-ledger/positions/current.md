@@ -1,5 +1,18 @@
 # portfolio-current
 
+_Last updated: 2026-06-16 01:00 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-16-0051-hourly-autopilot]]
+- Open/new: 없음. direct Alpaca MCP `get_orders(status=open)` 기준 open orders `0`건이다.
+- Filled: `JPM` buy `1주`가 `filled_avg_price=321.53 USD`로 즉시 체결됐다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: direct `get_account_info/get_all_positions/get_order_by_client_id/get_orders(status=open)` reconciliation 기준 account `ACTIVE`, positions `33`건, open orders `0`건, `JPM qty=2`, cash `31,965.04 USD`였다.
+- Recent reconciliation scope: scheduler-owned `0051` stale cleanup/core/research preflight를 source-of-record로 사용했고 actual submit은 `2026-06-15T16:00:27.504281013Z`에 `client_order_id=hourly-20260616-0051-buy-jpm`로 수행했다. direct Alpaca MCP `get_order_by_client_id` 기준 same order는 `2026-06-15T16:00:28.027169137Z`에 `status=filled`, `filled_qty=1`, `filled_avg_price=321.53 USD`로 확정됐다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-16-0051-hourly-autopilot-post-trade.json`
+
 _Last updated: 2026-06-16 00:38 KST_
 
 ## 최신 hourly-autopilot reconciliation

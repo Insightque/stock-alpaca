@@ -1,0 +1,60 @@
+{
+  "run_id": "2026-06-16-0051-hourly-autopilot",
+  "created_at": "2026-06-15T16:00:28.027169137Z",
+  "submit_attempted": true,
+  "orders_submitted": [
+    {
+      "symbol": "JPM",
+      "side": "buy",
+      "qty": 1,
+      "client_order_id": "hourly-20260616-0051-buy-jpm",
+      "order_id": "c489bba3-0a3c-4623-8435-87a7bbacf894",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 321.53,
+      "submitted_at": "2026-06-15T16:00:27.539986163Z",
+      "filled_at": "2026-06-15T16:00:28.027169137Z"
+    }
+  ],
+  "orders_open_after_submit": [],
+  "account": {
+    "portfolio_value": 102662.21,
+    "cash": 31965.04,
+    "buying_power": 309339.07,
+    "currency": "USD"
+  },
+  "positions_count": 33,
+  "position_deltas": [
+    {
+      "symbol": "JPM",
+      "before_qty": 1,
+      "after_qty": 2,
+      "filled_avg_price": 321.53,
+      "action": "validation_buy_add"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-0051-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-16-0051-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0051-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0051-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-15-portfolio-review.md",
+    "wiki/research-notes/tickers/JPM.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/NEE.md",
+    "wiki/research-notes/tickers/BAC.md",
+    "wiki/research-notes/tickers/WMT.md",
+    "wiki/research-notes/tickers/NVDA.md",
+    "wiki/research-notes/tickers/AMZN.md",
+    "wiki/research-notes/tickers/GOOGL.md",
+    "wiki/research-notes/tickers/NKE.md",
+    "wiki/evidence-store/sources/2026-06-16-0051-hourly-autopilot-deterministic-submit.json"
+  ],
+  "note": "Direct Alpaca MCP get_order_by_client_id/get_orders(status=all, symbols=JPM, after=2026-06-15T15:55:00Z)/get_orders(status=open)/get_account_info/get_all_positions reconciliation confirmed immediate JPM fill, open orders 0, JPM qty 1 -> 2, avg_entry_price 316.67, cash 31965.04 USD."
+}

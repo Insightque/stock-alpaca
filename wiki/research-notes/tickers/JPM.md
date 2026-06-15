@@ -65,3 +65,10 @@ asset_type: stock
 `2026-06-05 ET` fill 5D는 `311.81 USD -> 320.71 USD`로 `+2.85%`였다. `SPY` 대비 `+2.28%p`, `QQQ` 대비 `+0.59%p`라 이번 cycle에서는 financials diversifier 표본 중 가장 깔끔한 쪽에 속한다. 공격적 승격 근거까지는 아니어도 hold-quality는 `양호`로 한 단계 더 명확해졌다.
 
 출처: [[2026-06-13-portfolio-review]], [[2026-06-13-0622-analyst-review-cycle-sources]]
+
+
+## 2026-06-16 01:00 KST hourly-autopilot
+
+`JPM` 1주 regular-session day limit buy가 `321.54 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260616-0051-buy-jpm`, `order_id=c489bba3-0a3c-4623-8435-87a7bbacf894`가 생성된 뒤 same client id reconciliation에서 `2026-06-15T16:00:28.027169137Z`에 `321.53 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0051` stale cleanup/core/research preflight와 direct Alpaca submit-boundary check 기준 paper mode/market open/universe strict/MCP strict/risk strict 모두 통과했고, sell-first 재평가에서 `AVGO/RGTI`는 same-day duplicate sell, `SO`는 trim metric gap, `NEE/BAC/WMT`는 same-day duplicate buy에 막힌 뒤 `JPM`이 existing financials diversifier 중 가장 깔끔한 floor-size learning buy로 남았다는 점이다. post-trade 기준 보유 수량은 `1주 -> 2주`, 평균단가는 `316.67 USD`로 갱신됐다.
+
+출처: [[2026-06-16-0051-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-16-0051-hourly-autopilot-post-trade.json`
