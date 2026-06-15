@@ -1,0 +1,119 @@
+{
+  "run_id": "2026-06-15-1851-after-hours-autopilot",
+  "created_at": "2026-06-15T09:51:21Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "runtime_alpaca_mcp": {
+    "used_scheduler_preflight": true,
+    "direct_runtime_calls_made": true,
+    "source_of_record": "wiki/evidence-store/sources/2026-06-15-1851-after-hours-autopilot-alpaca-core-preflight.json",
+    "cross_checks": {
+      "scheduler_preflight.hard_gate_summary": {
+        "status": "failed",
+        "first_blocking_gate": "market_closed"
+      },
+      "scheduler_preflight.get_clock": {
+        "is_open": false,
+        "timestamp": "2026-06-15T05:51:03.95403496-04:00",
+        "next_open": "2026-06-15T09:30:00-04:00",
+        "next_close": "2026-06-15T16:00:00-04:00"
+      },
+      "scheduler_preflight.get_account_info": {
+        "status": "ACTIVE",
+        "portfolio_value": 101963.6,
+        "cash": 31946.39,
+        "buying_power": 306803.42,
+        "long_market_value": 70017.21,
+        "currency": "USD",
+        "daily_realized_loss": 0.0
+      },
+      "direct.get_all_positions": {
+        "count": 33,
+        "symbols_sample": [
+          "AAPL",
+          "ADBE",
+          "AMD",
+          "AMZN",
+          "AVGO"
+        ],
+        "confirmed_symbols": {
+          "AVGO": {
+            "qty": 3.0,
+            "current_price": 395.5
+          },
+          "MSFT": {
+            "qty": 3.0,
+            "current_price": 397.25
+          }
+        }
+      },
+      "direct.get_orders(status=open)": {
+        "count": 0
+      },
+      "direct.get_watchlists": {
+        "count": 0
+      },
+      "direct.get_order_by_client_id(ah-20260615-0951-sell-avgo-01)": {
+        "status": "filled",
+        "symbol": "AVGO",
+        "side": "sell",
+        "qty": 1.0,
+        "filled_avg_price": 391.92,
+        "extended_hours": true
+      },
+      "direct.get_order_by_client_id(ah-20260615-1011-buy-msft-01)": {
+        "status": "filled",
+        "symbol": "MSFT",
+        "side": "buy",
+        "qty": 1.0,
+        "filled_avg_price": 395.87,
+        "extended_hours": true
+      }
+    },
+    "note": "The 1851 core preflight remained the after-hours source-of-record for the expected market_closed blocker and passing account/open-order/activity rows. Direct Alpaca MCP get_all_positions/get_orders(status=open)/get_watchlists/get_order_by_client_id readback reconfirmed positions=33, open_orders=0, watchlists=0, and the same AVGO/MSFT filled client_order_ids before the exhausted separate session budget stopped execution."
+  },
+  "submit_attempted": false,
+  "orders_submitted": [],
+  "review_backlog_throttle": {
+    "pending_1d_count": 1,
+    "pending_5d_count": 16,
+    "pending_20d_count": 1,
+    "status": "monitor_only_budget_blocked"
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 2,
+    "review_backlog_pending_1d_count": 1,
+    "review_backlog_pending_5d_count": 16,
+    "review_backlog_pending_20d_count": 1,
+    "cash_deployment_blocker": "no_candidate_passed_hard_gates"
+  },
+  "same_session_after_hours_fills": [
+    {
+      "symbol": "MSFT",
+      "side": "buy",
+      "qty": 1.0,
+      "filled_avg_price": 395.87,
+      "order_id": "76daf360-f7e6-443a-8af8-d61b4696267b"
+    },
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1.0,
+      "filled_avg_price": 391.92,
+      "order_id": "b1ee30b8-92d8-4d0e-a9a1-a66c02c136a2"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-15-1851-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-1851-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
