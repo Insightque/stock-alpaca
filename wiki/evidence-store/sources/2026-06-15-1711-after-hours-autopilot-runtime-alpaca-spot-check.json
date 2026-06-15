@@ -1,0 +1,52 @@
+{
+  "run_id": "2026-06-15-1711-after-hours-autopilot",
+  "created_at": "2026-06-15T08:11:22Z",
+  "session": "after_hours",
+  "paper": true,
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "orders_open": 0,
+  "same_session_after_hours_orders_submitted_today": 2,
+  "same_session_after_hours_fills_detected": 2,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102174.08,
+    "cash": 31946.39,
+    "buying_power": 307257.69,
+    "long_market_value": 70227.69,
+    "currency": "USD",
+    "daily_realized_loss": 0.0
+  },
+  "positions_count": 33,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "review_bucket": "after_hours_validation",
+  "note": "No after-hours submit at 1711. Scheduler-owned 1711 core preflight remained the source-of-record for the expected market_closed blocker and preserved the passing account/positions/open-orders/recent-activities/watchlist rows. The separate after-hours session budget remained closed at 2/2.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-15-1711-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-1711-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-1711-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-15-1711-after-hours-autopilot-runtime-alpaca-spot-check.json"
+  ],
+  "submit_status": "no_submit",
+  "client_order_ids_checked": [],
+  "new_orders": [],
+  "filled_orders": [
+    {
+      "symbol": "MSFT",
+      "side": "buy",
+      "qty": 1.0,
+      "filled_avg_price": 395.87
+    },
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1.0,
+      "filled_avg_price": 391.92
+    }
+  ],
+  "cancelled_orders": [],
+  "open_orders": [],
+  "open_order_count": 0,
+  "reconciliation_note": "Scheduler-owned get_account_activities and get_orders_open preflight rows confirmed the existing filled after-hours orders and no open orders. No new client_order_id reconciliation was required because no new submit path opened in the 1711 cycle."
+}
