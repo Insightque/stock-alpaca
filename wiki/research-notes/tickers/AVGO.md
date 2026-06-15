@@ -54,6 +54,7 @@ AVGO는 Broadcom으로, AI chip bottleneck과 AMAT partnership 뉴스가 있는 
 - 2026-06-10 23:01 KST: scheduled hourly-autopilot에서 ai_semiconductor warning band와 post-earnings de-risking rationale를 근거로 추가 2주 trim이 `373.25 USD`에 체결됐다.
 - 2026-06-11 23:00 KST: scheduled hourly-autopilot에서 review backlog가 신규 buy를 막는 동안 sell-first 경로를 유지했고, live IEX quote `379.93/380.06`과 spread 정상화를 근거로 추가 1주 trim이 `380.43 USD`에 체결됐다.
 - 2026-06-12 14:18 KST: scheduled after-hours-autopilot에서 runtime overnight quote `386.79/387.61`, spread `0.2119%`, held qty `5`, staged de-risking rationale를 근거로 추가 1주 trim sell을 `client_order_id=ah-20260612-1411-sell-avgo-01`로 제출했다. exposed runtime surface에는 post-submit `get_order_by_client_id` readback이 없었지만 immediate Alpaca MCP `get_all_positions`에서 보유수량이 `5주 -> 4주`로 감소해 filled reconciliation으로 기록했다.
+- 2026-06-15 23:02 KST: scheduled `2251` hourly-autopilot에서 direct Alpaca quote `394.90/395.07`, spread `0.0430%`, held qty `3`, ai_semiconductor warning band, post-earnings staged de-risking rationale를 근거로 `client_order_id=hourly-20260615-2251-sell-avgo` 1주 trim sell을 제출했다. immediate reconciliation 기준 주문은 `status=new` open 상태이고 `qty_available=2`로 1주가 예약됐으며 fill은 아직 없다.
 - 주문/체결 출처: [[2026-05-22-paper-order-submission]]
 
 ## 회고 기록
@@ -172,3 +173,9 @@ live Alpaca clock이 `2026-06-13 17:22 ET` 토요일 closed 상태라 새 regula
 live Alpaca clock이 `2026-06-14 17:21 ET` 일요일 closed 상태라 새 regular-session closeout은 여전히 없다. current Alpaca snapshot 기준 `AVGO`는 `4주`, 평균단가 `423.3625 USD`, current `382.07 USD`, 미실현 약 `-9.75%`이며 Alpaca IEX daily bar는 전일 대비 `-0.79%`였다. 이번 cycle SEC EDGAR recent filings에서 `2026-06-11` 8-K와 `2026-06-09` 10-Q가 바로 확인됐지만, price recovery confirmation이 부족해 `post-earnings staged de-risking 지속` 해석을 유지한다.
 
 출처: [[2026-06-15-portfolio-review]], [[2026-06-15-0624-analyst-review-cycle-sources]]
+
+### 2026-06-15 23:02 KST hourly-autopilot trim submit
+
+`2251` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight를 source-of-record로 사용했고, direct Alpaca spot check로 `clock/account/positions/quotes/recent fills`를 다시 맞췄다. `AVGO`는 direct quote `394.90/395.07`, spread `0.0430%`, held qty `3`, ai_semiconductor target-band warning, post-earnings staged de-risking rationale 조건에서 1주 trim 경로를 통과했고 `client_order_id=hourly-20260615-2251-sell-avgo`로 regular-session day limit sell을 제출했다. immediate reconciliation 기준 same order는 `status=new`, `filled_qty=0`이며 `get_all_positions`는 `qty=3`, `qty_available=2`를 반환해 1주가 예약 상태임을 보여줬다. 해석은 `staged de-risking submit 완료, next cycle fill/open-order lifecycle 추적 필요`다.
+
+출처: [[2026-06-15-2251-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-15-2251-hourly-autopilot-post-trade.json`

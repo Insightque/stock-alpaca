@@ -1,0 +1,90 @@
+{
+  "run_id": "2026-06-15-2251-hourly-autopilot",
+  "created_at": "2026-06-15T13:55:20Z",
+  "paper": true,
+  "market_session": "regular",
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-15T09:55:13.006882407-04:00",
+    "next_open": "2026-06-16T09:30:00-04:00",
+    "next_close": "2026-06-15T16:00:00-04:00"
+  },
+  "alpaca_core_preflight_ref": "wiki/evidence-store/sources/2026-06-15-2251-hourly-autopilot-alpaca-core-preflight.json",
+  "research_preflight_ref": "wiki/evidence-store/sources/2026-06-15-2251-hourly-autopilot-research-mcp-preflight.json",
+  "stale_cleanup_ref": "wiki/evidence-store/sources/2026-06-15-2251-hourly-autopilot-stale-order-cleanup.json",
+  "hard_gates": {
+    "paper_mode": "pass",
+    "market_open": "pass",
+    "open_order_lifecycle": "pass",
+    "alpaca_core": "pass",
+    "research_mcp_tiered": "pass",
+    "universe_strict": "pass",
+    "risk_policy_pre_submit": "pass",
+    "quote_freshness": "pass",
+    "spread_within_policy": "pass_for_avgo_only"
+  },
+  "sell_first": [
+    {
+      "symbol": "AVGO",
+      "decision": "submit_trim",
+      "reason": "post-earnings staged de-risking rationale 유지, direct quote 394.90/395.07 spread 0.0430% pass, same-session duplicate 없음, held qty 3 -> trim qty 1 executable"
+    },
+    {
+      "symbol": "RGTI",
+      "decision": "blocked_duplicate_gate",
+      "reason": "2026-06-15T13:41:43Z same-session filled sell 9주가 duplicate_symbol_side_same_day 규율을 유지"
+    },
+    {
+      "symbol": "BAC",
+      "decision": "sell_trigger_none",
+      "reason": "financials diversifier fallback buy는 가능하지만 active sell/trim trigger는 없음"
+    }
+  ],
+  "buy_fallback": [
+    {
+      "symbol": "BAC",
+      "decision": "executable_if_no_sell",
+      "reason": "quote 56.17/56.19 spread 0.0356%, financials diversifier, duplicate/open-order conflict none"
+    },
+    {
+      "symbol": "SO",
+      "decision": "watch_only",
+      "reason": "quote/spread는 pass지만 trim metric gap과 반복 weak review 이력이 남아 fallback 우선순위가 낮다"
+    },
+    {
+      "symbol": "SPY",
+      "decision": "blocked_floor_cap",
+      "reason": "1주 ask 753.84 USD가 validation floor per-order cap을 초과"
+    }
+  ],
+  "selected_order": {
+    "symbol": "AVGO",
+    "side": "sell",
+    "qty": 1,
+    "limit_price": 394.9,
+    "client_order_id": "hourly-20260615-2251-sell-avgo"
+  },
+  "submit_result": {
+    "id": "f41578c0-cb41-4620-ad3d-7a6e6a87946a",
+    "client_order_id": "hourly-20260615-2251-sell-avgo",
+    "status": "new",
+    "filled_avg_price": null,
+    "filled_qty": "0",
+    "submitted_at": "2026-06-15T14:02:23.822647971Z",
+    "filled_at": null,
+    "limit_price": "394.9",
+    "qty": "1",
+    "symbol": "AVGO",
+    "side": "sell"
+  },
+  "post_trade_reconciliation": {
+    "open_orders_after_submit": 1,
+    "account_status": "ACTIVE",
+    "portfolio_value_after": 102101.74,
+    "cash_after": 32156.69,
+    "position_qty_before": 3,
+    "position_qty_after": 3,
+    "qty_available_after": 2,
+    "fill_detected": false
+  }
+}

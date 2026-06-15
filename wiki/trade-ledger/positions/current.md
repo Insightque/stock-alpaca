@@ -1,6 +1,17 @@
 # portfolio-current
 
-_Last updated: 2026-06-15 22:42 KST_
+_Last updated: 2026-06-15 23:03 KST_
+
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-15-2251-hourly-autopilot]]
+- Open/new: `AVGO` sell `1주`가 `status=new` open order로 생성됐다.
+- Filled: immediate reconciliation 시점 신규 fill 없음.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: direct `get_account_info/get_all_positions/get_order_by_client_id/get_account_activities` reconciliation 기준 account `ACTIVE`, positions `33`건, `AVGO qty=3`, `qty_available=2`, cash `32156.69 USD`였다.
+- Recent reconciliation scope: scheduler-owned `2251` stale cleanup/core/research preflight를 source-of-record로 사용했고 actual submit은 `2026-06-15T14:02:23.793160947Z`에 `client_order_id=hourly-20260615-2251-sell-avgo`로 수행했다. direct Alpaca MCP `get_order_by_client_id` 기준 same order는 immediate reconciliation 시점 `status=new`, `filled_qty=0`, `limit_price=394.9 USD`였고 `get_account_activities(activity_types=FILL, after=2026-06-15T14:02:00Z)`에는 아직 새 fill row가 없었다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-15-2251-hourly-autopilot-post-trade.json`
 
 ## 최신 hourly-autopilot reconciliation
 

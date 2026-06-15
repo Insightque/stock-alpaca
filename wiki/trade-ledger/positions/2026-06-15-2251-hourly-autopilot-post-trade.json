@@ -1,0 +1,50 @@
+{
+  "run_id": "2026-06-15-2251-hourly-autopilot",
+  "recorded_at": "2026-06-15T14:02:36Z",
+  "paper": true,
+  "market_session": "regular",
+  "submitted_order": {
+    "symbol": "AVGO",
+    "side": "sell",
+    "qty": 1,
+    "limit_price": 394.9,
+    "client_order_id": "hourly-20260615-2251-sell-avgo",
+    "order_id": "f41578c0-cb41-4620-ad3d-7a6e6a87946a",
+    "status": "new",
+    "filled_avg_price": null
+  },
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "portfolio_value": 102101.74,
+    "cash": 32156.69,
+    "buying_power": 308117.93
+  },
+  "open_orders": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1,
+      "status": "new",
+      "submitted_at": "2026-06-15T14:02:23.822647971Z",
+      "client_order_id": "hourly-20260615-2251-sell-avgo",
+      "order_id": "f41578c0-cb41-4620-ad3d-7a6e6a87946a"
+    }
+  ],
+  "position_delta": {
+    "symbol": "AVGO",
+    "qty_before": 3,
+    "qty_after": 3,
+    "qty_available_after": 2,
+    "avg_entry_price_after": 423.3625,
+    "market_value_after": 1171.62,
+    "current_price_after": 390.54
+  },
+  "fills": [],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-15-2251-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-15-2251-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-2251-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-2251-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-15-2251-hourly-autopilot-deterministic-submit.json"
+  ]
+}
