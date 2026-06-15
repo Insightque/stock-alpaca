@@ -1,0 +1,52 @@
+{
+  "run_id": "2026-06-15-1951-after-hours-autopilot",
+  "created_at": "2026-06-15T10:51:26Z",
+  "session": "after_hours",
+  "paper": true,
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "orders_open": 0,
+  "same_session_after_hours_orders_submitted_today": 2,
+  "same_session_after_hours_fills_detected": 2,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 101999.26,
+    "cash": 31946.39,
+    "buying_power": 306914.52,
+    "long_market_value": 70052.87,
+    "currency": "USD",
+    "daily_realized_loss": 0.0
+  },
+  "positions_count": 33,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "review_bucket": "after_hours_validation",
+  "note": "No after-hours submit at 1951. Scheduler-owned 1951 core preflight remained the source-of-record for the expected market_closed blocker and passing account/open-order/activity rows, while direct Alpaca MCP get_all_positions/get_orders(status=open)/get_watchlists/get_order_by_client_id plus get_stock_latest_quote(feed=overnight)/get_stock_snapshot(feed=overnight) reconfirmed positions=33, open_orders=0, watchlists=0, same-session filled client_order_id continuity, and current overnight shortlist continuity. The separate after-hours session budget remained closed at 2/2.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-15-1951-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-1951-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-15-1951-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-15-1951-after-hours-autopilot-runtime-alpaca-spot-check.json"
+  ],
+  "submit_status": "no_submit",
+  "client_order_ids_checked": [],
+  "new_orders": [],
+  "filled_orders": [
+    {
+      "symbol": "MSFT",
+      "side": "buy",
+      "qty": 1.0,
+      "filled_avg_price": 395.87
+    },
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1.0,
+      "filled_avg_price": 391.92
+    }
+  ],
+  "cancelled_orders": [],
+  "open_orders": [],
+  "open_order_count": 0,
+  "reconciliation_note": "Scheduler-owned 1951 preflight preserved open-order continuity, and direct Alpaca MCP get_all_positions/get_orders(status=open)/get_watchlists/get_order_by_client_id plus get_stock_latest_quote(feed=overnight)/get_stock_snapshot(feed=overnight) reconfirmed positions=33, open_orders=0, watchlists=0, same-session filled client_order_id continuity, and current overnight shortlist continuity. No new client_order_id reconciliation was required because no new submit path opened in the 1951 cycle."
+}
