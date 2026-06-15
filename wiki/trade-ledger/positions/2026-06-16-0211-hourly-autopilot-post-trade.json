@@ -1,0 +1,93 @@
+{
+  "run_id": "2026-06-16-0211-hourly-autopilot",
+  "created_at": "2026-06-15T17:18:03.496179933Z",
+  "paper": true,
+  "submit_attempted": true,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102811.99,
+    "cash": 31654.4,
+    "buying_power": 309295.63,
+    "long_market_value": 71157.59,
+    "currency": "USD"
+  },
+  "open_orders": [],
+  "positions_count": 33,
+  "focus_positions": [
+    {
+      "symbol": "NKE",
+      "qty": 6,
+      "qty_available": 6,
+      "avg_entry_price": 45.228333,
+      "current_price": 45.355,
+      "market_value": 272.13,
+      "unrealized_plpc": 0.0028
+    },
+    {
+      "symbol": "XOM",
+      "qty": 6,
+      "qty_available": 6,
+      "avg_entry_price": 148.37,
+      "current_price": 141.71,
+      "market_value": 850.26,
+      "unrealized_plpc": -0.04489
+    },
+    {
+      "symbol": "AVGO",
+      "qty": 2,
+      "qty_available": 2,
+      "avg_entry_price": 423.3625,
+      "current_price": 392.8429,
+      "market_value": 785.6858,
+      "unrealized_plpc": -0.07209
+    },
+    {
+      "symbol": "RGTI",
+      "qty": 28,
+      "qty_available": 28,
+      "avg_entry_price": 25.569583,
+      "current_price": 23.35,
+      "market_value": 653.8,
+      "unrealized_plpc": -0.08681
+    },
+    {
+      "symbol": "SO",
+      "qty": 5,
+      "qty_available": 5,
+      "avg_entry_price": 92.696,
+      "current_price": 94.74,
+      "market_value": 473.7,
+      "unrealized_plpc": 0.02205
+    }
+  ],
+  "submitted_orders": [
+    {
+      "symbol": "NKE",
+      "side": "buy",
+      "qty": 1,
+      "client_order_id": "hourly-20260616-0211-buy-nke",
+      "order_id": "145242e1-6811-4542-af84-6df70f8b9727",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 45.36,
+      "submitted_at": "2026-06-15T17:18:02.588739065Z",
+      "filled_at": "2026-06-15T17:18:03.494379872Z"
+    }
+  ],
+  "fills": [
+    {
+      "symbol": "NKE",
+      "side": "buy",
+      "qty": 1,
+      "price": 45.36,
+      "transaction_time": "2026-06-15T17:18:03.49438Z"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-0211-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-16-0211-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0211-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0211-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-16-0211-hourly-autopilot-deterministic-submit.json"
+  ]
+}

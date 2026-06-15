@@ -5,6 +5,12 @@ asset_type: stock
 
 # XOM
 
+## 2026-06-16 02:04 KST hourly-autopilot
+
+`XOM` 1주 regular-session day limit buy가 `141.77 USD` limit으로 제출됐고, direct Alpaca MCP reconciliation 기준 `client_order_id=hourly-20260616-0151-buy-xom`, `order_id=5fc57083-5f45-432c-ad12-41bcac2f18b6`가 `2026-06-15T17:04:15.309154993Z`에 `141.76 USD`로 체결됐다. 근거는 scheduler-owned `0151` stale cleanup/core/research preflight 재사용, same-day duplicate/open-order conflict 부재, `XOM` direct quote `141.73/141.77` spread `0.0282%`, active tradable NYSE stock 확인, 그리고 `2026-06-11` portfolio review에서 energy diversifier validation 1D가 양호했다고 기록된 점이다. 이번 체결도 validation lifecycle 표본으로 `1D/5D/20D` review를 추가 추적한다.
+
+출처: [[2026-06-16-0151-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-16-0151-hourly-autopilot-post-trade.json`
+
 ## 2026-06-05 00:51 KST hourly-autopilot
 
 `XOM` 1주 regular-session day limit buy가 `153.41 USD` limit으로 제출됐고, Alpaca MCP 기준 `2026-06-04T16:02:05.40965797Z`에 `153.26 USD`로 즉시 체결됐다. 근거는 scheduler core/research preflight와 strict universe/MCP/risk gate 통과, same-day duplicate가 없는 기존 energy hedge/diversifier holding, 그리고 scheduler IEX quote `153.37/153.41` 기준 spread `0.0261%`가 policy 한도 이내였다는 점이다. 이 체결은 새 validation lifecycle 표본으로 기록하며 1D/5D/20D review를 추적한다.

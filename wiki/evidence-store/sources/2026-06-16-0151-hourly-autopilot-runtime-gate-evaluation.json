@@ -1,0 +1,127 @@
+{
+  "run_id": "2026-06-16-0151-hourly-autopilot",
+  "created_at": "2026-06-15T16:55:20Z",
+  "paper": true,
+  "mode": "submit",
+  "source_of_record": {
+    "stale_order_cleanup": "wiki/evidence-store/sources/2026-06-16-0151-hourly-autopilot-stale-order-cleanup.json",
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-16-0151-hourly-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-16-0151-hourly-autopilot-research-mcp-preflight.json"
+  },
+  "direct_alpaca_boundary_check": {
+    "clock": {
+      "timestamp": "2026-06-15T12:54:54.404421534-04:00",
+      "is_open": true,
+      "next_close": "2026-06-15T16:00:00-04:00",
+      "next_open": "2026-06-16T09:30:00-04:00"
+    },
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 102802.98,
+      "cash": 31841.52,
+      "buying_power": 309376.77
+    },
+    "open_orders": {
+      "count": 0
+    },
+    "asset": {
+      "symbol": "XOM",
+      "class": "us_equity",
+      "exchange": "NYSE",
+      "status": "active",
+      "tradable": true
+    },
+    "quote": {
+      "symbol": "XOM",
+      "bid": 141.73,
+      "ask": 141.77,
+      "spread_pct": 0.0282,
+      "captured_at": "2026-06-15T16:55:03.563988113Z",
+      "feed": "iex"
+    },
+    "same_day_orders": {
+      "symbol": "XOM",
+      "count": 0,
+      "after": "2026-06-15T00:00:00Z"
+    }
+  },
+  "candidate_selection": {
+    "selected_symbol": "XOM",
+    "selected_side": "buy",
+    "selected_qty": 1,
+    "selected_limit_price": 141.77,
+    "sell_first_result": "no_executable_sell_after_duplicate_and_metric_gap_recheck",
+    "blocked_sell_candidates": [
+      {
+        "symbol": "AVGO",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "RGTI",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "SO",
+        "gate": "sell_metric_gap"
+      }
+    ],
+    "blocked_buy_candidates": [
+      {
+        "symbol": "SLB",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "FCX",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "JPM",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "NEE",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "BAC",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "WMT",
+        "gate": "duplicate_symbol_side_same_day"
+      },
+      {
+        "symbol": "SPY",
+        "gate": "validation_floor_per_order_cap"
+      },
+      {
+        "symbol": "QQQ",
+        "gate": "validation_floor_per_order_cap"
+      },
+      {
+        "symbol": "NVDA",
+        "gate": "ai_semiconductor_cluster_warning"
+      }
+    ]
+  },
+  "hard_gates": {
+    "paper_mode": "pass",
+    "market_open": "pass",
+    "alpaca_core": "pass",
+    "research_mcp_tiered": "pass",
+    "universe_strict": "pass",
+    "quote_freshness": "pass",
+    "spread_within_policy": "pass",
+    "risk_validator": "pending"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-0151-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-16-0151-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0151-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-15-portfolio-review.md",
+    "wiki/research-notes/tickers/XOM.md",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml"
+  ]
+}

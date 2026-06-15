@@ -1,0 +1,53 @@
+{
+  "run_id": "2026-06-16-0151-hourly-autopilot",
+  "created_at": "2026-06-15T17:04:15.310918676Z",
+  "submit_attempted": true,
+  "orders_submitted": [
+    {
+      "symbol": "XOM",
+      "side": "buy",
+      "qty": 1,
+      "client_order_id": "hourly-20260616-0151-buy-xom",
+      "order_id": "5fc57083-5f45-432c-ad12-41bcac2f18b6",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 141.76,
+      "submitted_at": "2026-06-15T17:03:32.56691918Z",
+      "filled_at": "2026-06-15T17:04:15.309154993Z"
+    }
+  ],
+  "orders_open_after_submit": [],
+  "account": {
+    "portfolio_value": 102827.27,
+    "cash": 31699.76,
+    "buying_power": 309336.59,
+    "currency": "USD"
+  },
+  "positions_count": 33,
+  "position_deltas": [
+    {
+      "symbol": "XOM",
+      "before_qty": 5,
+      "after_qty": 6,
+      "filled_avg_price": 141.76,
+      "action": "validation_buy_filled"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-0151-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-16-0151-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0151-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0151-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-15-portfolio-review.md",
+    "wiki/research-notes/tickers/XOM.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/evidence-store/sources/2026-06-16-0151-hourly-autopilot-deterministic-submit.json"
+  ],
+  "note": "Direct Alpaca MCP get_order_by_id/get_orders(status=all, symbols=XOM, after=2026-06-15T16:55:00Z)/get_orders(status=open)/get_account_info/get_all_positions reconciliation confirmed XOM order filled at 141.76 USD, open orders 0, XOM qty 5 -> 6, avg_entry_price 148.37, cash 31699.76 USD."
+}

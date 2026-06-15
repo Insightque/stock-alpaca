@@ -1,0 +1,59 @@
+{
+  "alpaca_mcp_only": true,
+  "created_at": "2026-06-15T17:03:32Z",
+  "paper": true,
+  "execute": true,
+  "gap_category": "not_applicable",
+  "gap_reason": "",
+  "order_plan_path": "/Users/insightque/stock-alpaca/wiki/trade-ledger/orders/2026-06-16-0151-hourly-autopilot.json",
+  "orders": [
+    {
+      "symbol": "XOM",
+      "side": "buy",
+      "client_order_id": "hourly-20260616-0151-buy-xom",
+      "order_request": {
+        "symbol": "XOM",
+        "side": "buy",
+        "qty": "1",
+        "type": "limit",
+        "limit_price": "141.77",
+        "time_in_force": "day",
+        "extended_hours": false,
+        "client_order_id": "hourly-20260616-0151-buy-xom"
+      },
+      "submit": {
+        "order_id": "5fc57083-5f45-432c-ad12-41bcac2f18b6",
+        "submitted_at": "2026-06-15T17:03:32.56691918Z",
+        "status": "pending_new"
+      },
+      "reconcile": {
+        "order_id": "5fc57083-5f45-432c-ad12-41bcac2f18b6",
+        "status": "filled",
+        "filled_qty": "1",
+        "filled_avg_price": "141.76",
+        "filled_at": "2026-06-15T17:04:15.309154993Z"
+      }
+    }
+  ],
+  "post_reconcile": {
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 102827.27,
+      "cash": 31699.76,
+      "buying_power": 309336.59,
+      "currency": "USD"
+    },
+    "open_orders": [],
+    "positions": {
+      "count": 33,
+      "xom_qty": 6,
+      "xom_avg_entry_price": 148.37,
+      "xom_current_price": 141.79
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-0151-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-16-0151-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-0151-hourly-autopilot-research-mcp-preflight.json"
+  ]
+}
