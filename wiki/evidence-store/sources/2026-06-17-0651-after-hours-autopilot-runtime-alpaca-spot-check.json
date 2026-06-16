@@ -1,0 +1,31 @@
+{
+  "run_id": "2026-06-17-0651-after-hours-autopilot",
+  "created_at": "2026-06-16T21:51:34Z",
+  "session": "after_hours",
+  "source_of_record": "wiki/evidence-store/sources/2026-06-17-0651-after-hours-autopilot-alpaca-core-preflight.json",
+  "live_continuity": {
+    "clock": {
+      "regular_market_open": false,
+      "timestamp": "2026-06-16T17:53:00.359003898-04:00",
+      "next_open": "2026-06-17T09:30:00-04:00",
+      "next_close": "2026-06-17T16:00:00-04:00"
+    },
+    "account": {
+      "status": "ACTIVE",
+      "cash": 30344.81,
+      "portfolio_value": 100710.76,
+      "buying_power": 302611.72
+    },
+    "positions_count": 33,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_today": 0,
+    "watchlists_count": 0,
+    "session_boundary": "2026-06-16T20:00:00Z"
+  },
+  "notes": [
+    "Scheduler-owned 0651 preflight rows remained source-of-record for account, positions, open orders, asset, quote, and spread evidence.",
+    "A live Alpaca MCP continuity refresh was intentionally limited to get_clock, get_all_positions, and get_watchlists because the user required the same scheduler-owned passing quote and spread rows to remain the submit-boundary evidence set for this after-hours run.",
+    "No submit attempt occurred because those source-of-record submit-boundary quotes were already older than after_hours_policy.max_quote_age_minutes_submit 5.0."
+  ]
+}
