@@ -1,0 +1,52 @@
+{
+  "run_id": "2026-06-17-0831-after-hours-autopilot",
+  "created_at": "2026-06-16T23:31:28Z",
+  "session": "after_hours",
+  "paper": true,
+  "orders_submitted_this_run": 0,
+  "reconciliation": {
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_today": 0,
+    "positions_count": 33,
+    "watchlists_count": 0,
+    "cash": 30344.81,
+    "portfolio_value": 100706.83,
+    "buying_power": 302634.5
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-0831-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/evidence-store/sources/2026-06-17-0831-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-0831-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "notes": [
+    "No submit attempt occurred because the scheduler-owned 0831 quote rows already failed the fresh-quote hard gate across every evaluated buy and sell candidate.",
+    "Direct Alpaca MCP continuity was limited to clock/account/positions/open orders/recent orders/recent fills/watchlists and did not reopen the scheduler-owned quote/spread decision boundary."
+  ],
+  "live_continuity": {
+    "performed": true,
+    "checked_at": "2026-06-16T19:33:01.841856962-04:00",
+    "tools": [
+      "mcp__alpaca.get_clock",
+      "mcp__alpaca.get_account_info",
+      "mcp__alpaca.get_all_positions",
+      "mcp__alpaca.get_orders(status=open)",
+      "mcp__alpaca.get_orders(status=all, after=2026-06-16T20:00:00-04:00)",
+      "mcp__alpaca.get_account_activities(activity_types=[FILL], after=2026-06-16T20:00:00-04:00)",
+      "mcp__alpaca.get_watchlists"
+    ],
+    "summary": {
+      "regular_market_closed": true,
+      "account_status": "ACTIVE",
+      "positions_count": 33,
+      "open_orders_count": 0,
+      "same_session_after_hours_orders_submitted_today": 0,
+      "same_session_after_hours_fills_today": 0,
+      "watchlists_count": 0,
+      "cash": 30344.81,
+      "portfolio_value": 100706.83,
+      "buying_power": 302634.5
+    },
+    "source_of_record_note": "Submit-boundary account/positions/orders/asset/quote/spread evidence remained the scheduler-owned 0831 preflight rows; live continuity only reconfirmed no state mutation before artifact closeout."
+  }
+}
