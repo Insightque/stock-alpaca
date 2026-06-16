@@ -1,5 +1,18 @@
 # portfolio-current
 
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-16-2231-hourly-autopilot]]
+- Open/new: 없음. `client_order_id=hourly-20260616-2231-sell-avgo`는 immediate reconciliation 기준 이미 `filled`였다.
+- Filled: `AVGO` sell 1주 at `387.76 USD`
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: live `get_all_positions` 기준 positions `33`건, live `get_watchlists` baseline 기준 watchlists `0`건이었다. live `get_orders(status=open)` 기준 open orders `0`건, same-session `get_orders(status=all, after=2026-06-16T13:30:00Z)` 기준 `AVGO` sell 1건이 전부였다.
+- Recent reconciliation scope: scheduler-owned `2231` core/research preflight를 source-of-record로 사용했고 direct Alpaca submit-boundary check로 `clock/account/orders/activities/quote`를 다시 열었다. `AVGO` 주문은 `2026-06-16T13:43:57.208757279Z`에 `filled_avg_price=387.76 USD`로 즉시 체결됐고, `get_all_positions` 기준 보유수량은 `2주 -> 1주`, `get_account_info` 기준 cash는 `30,224.10 USD`로 증가했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-16-2231-hourly-autopilot-post-trade.json`
+
+_Last updated: 2026-06-16 22:44 KST_
+
 ## 최신 after-hours-autopilot reconciliation
 
 - Run: [[2026-06-16-2151-after-hours-autopilot]]

@@ -1,0 +1,192 @@
+{
+  "run_id": "2026-06-16-2231-hourly-autopilot",
+  "created_at": "2026-06-16T13:42:30Z",
+  "paper_mode": true,
+  "market_clock": {
+    "timestamp": "2026-06-16T09:42:13.129128423-04:00",
+    "is_open": true,
+    "next_open": "2026-06-17T09:30:00-04:00",
+    "next_close": "2026-06-16T16:00:00-04:00"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102171.8,
+    "cash": 29836.34,
+    "buying_power": 305580.33
+  },
+  "open_orders": {
+    "count": 0
+  },
+  "same_day_duplicate_summary": {
+    "buy_symbols": [],
+    "sell_symbols": []
+  },
+  "candidate_evaluation": [
+    {
+      "symbol": "AVGO",
+      "decision": "selected_validation_trim",
+      "reason": "ai_semiconductor target-band de-risking rationale, quote 387.00/388.50 spread 0.3868%, current-session duplicate/open-order 0"
+    },
+    {
+      "symbol": "RGTI",
+      "decision": "watch",
+      "reason": "speculative loss-control trim trigger는 유지되지만 quote 22.34/22.50 spread 0.7137%로 hard cap 초과"
+    },
+    {
+      "symbol": "PFE",
+      "decision": "watch",
+      "reason": "quote 25.91/25.92 spread 0.0386%로 trim은 가능하지만 risk-reduction priority는 AVGO보다 낮음"
+    },
+    {
+      "symbol": "SO",
+      "decision": "watch",
+      "reason": "live quote 88.70/94.16 spread 5.9691%와 trim metric gap이 함께 남음"
+    },
+    {
+      "symbol": "NOK",
+      "decision": "watch",
+      "reason": "quote 14.44/14.45 spread 0.0692% pass지만 blocked_add_symbols와 pending_1d_count=18 때문에 신규 buy 불가"
+    },
+    {
+      "symbol": "SPY",
+      "decision": "watch",
+      "reason": "benchmark fallback이지만 pending_1d_count=18 review_backlog_throttle와 1주 notional cap 때문에 buy 경로 비활성"
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "watch",
+      "reason": "benchmark fallback이지만 pending_1d_count=18 review_backlog_throttle와 1주 notional cap 때문에 buy 경로 비활성"
+    }
+  ],
+  "selected_order_summary": {
+    "symbol": "AVGO",
+    "side": "sell",
+    "qty": 1,
+    "limit_price": 387.0,
+    "confidence_score": 0.6,
+    "expected_excess_return_20d_pct": -3.55,
+    "spread_pct": 0.3868,
+    "quote_age_minutes": 0.0,
+    "review_backlog_pending_1d_count": 18,
+    "same_day_duplicate_conflict": false,
+    "open_order_conflict": false,
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-06-16-2231-hourly-autopilot-stale-order-cleanup.json",
+      "wiki/evidence-store/sources/2026-06-16-2231-hourly-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-06-16-2231-hourly-autopilot-research-mcp-preflight.json",
+      "wiki/evidence-store/sources/2026-06-16-2231-hourly-autopilot-runtime-gate-evaluation.json",
+      "harness/recommendation-policy.yaml",
+      "harness/risk-policy.yaml",
+      "harness/symbol-metadata.yaml",
+      "wiki/trade-ledger/reviews/review-due-index.json",
+      "wiki/trade-ledger/reviews/2026-06-16-portfolio-review.md",
+      "wiki/research-notes/tickers/AVGO.md",
+      "wiki/research-notes/tickers/RGTI.md",
+      "wiki/research-notes/tickers/PFE.md",
+      "wiki/research-notes/tickers/SO.md",
+      "wiki/research-notes/tickers/NOK.md"
+    ],
+    "order_id": "498ab49e-c195-4fce-a049-a4e9020e39f9",
+    "status": "filled",
+    "filled_avg_price": 387.76,
+    "filled_at": "2026-06-16T13:43:57.208757279Z"
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "AVGO",
+      "held_qty": 2,
+      "current_weight_pct": 0.7616,
+      "trigger_status": "active",
+      "primary_reason": "AVGO는 ai_semiconductor warning band와 post-earnings staged de-risking rationale, 음수 expected excess가 계속 남아 있다. 2231 direct quote 387.00/388.50 spread 0.3868%, open orders 0, current-session same-day sell 0이어서 이번 cycle 1주 trim이 executable 상태다.",
+      "skipped_gate": "",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -3.55,
+      "relative_to_spy_20d_pct": -4.33,
+      "metric_gap_reason": "",
+      "replacement_symbol": "PFE",
+      "replacement_expected_excess_margin_pct": 3.55,
+      "recommendation": "trim",
+      "blocked_sell_recheck": "",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-2231-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-16-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-2231-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-2231-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-16-portfolio-review.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/NOK.md"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "held_qty": 28,
+      "current_weight_pct": 0.6033,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "RGTI는 speculative loss-control trim trigger와 residual speculative sleeve staged de-risking rationale가 유지되지만 direct quote 22.34/22.50의 spread 0.7137%가 policy cap 0.50%를 넘어 이번 cycle 추가 trim이 hard gate에서 차단됐다.",
+      "skipped_gate": "spread_within_policy",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.48,
+      "relative_to_spy_20d_pct": -1.48,
+      "metric_gap_reason": "",
+      "replacement_symbol": "PFE",
+      "replacement_expected_excess_margin_pct": 1.48,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-2231-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-16-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-2231-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-2231-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-16-portfolio-review.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/NOK.md"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "held_qty": 4,
+      "current_weight_pct": 0.1019,
+      "trigger_status": "active",
+      "primary_reason": "PFE는 repeated weak-review trim precedent와 direct quote 25.91/25.92 spread 0.0386% 덕분에 여전히 executable trim 후보지만, 이번 cycle에서는 current weight가 더 크고 target-band de-risking rationale가 명확한 AVGO trim이 우선순위를 가져갔다.",
+      "skipped_gate": "ranked_below_selected_trim",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.84,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "PFE trim은 latest weak-review absolute loss와 repeated underperformance narrative를 사용했고 exact SPY excess rollup은 current note set에 수치화돼 있지 않다.",
+      "replacement_symbol": "AVGO",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-2231-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-16-2231-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-2231-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-2231-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-16-portfolio-review.md",
+        "wiki/research-notes/tickers/AVGO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/NOK.md"
+      ]
+    }
+  ]
+}

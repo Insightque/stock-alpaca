@@ -180,6 +180,12 @@ live Alpaca clock이 `2026-06-14 17:21 ET` 일요일 closed 상태라 새 regula
 
 출처: [[2026-06-16-portfolio-review]], [[2026-06-16-0621-analyst-review-cycle-sources]], [[2026-06-16-0011-hourly-autopilot]]
 
+### 2026-06-16 22:31 KST hourly-autopilot trim
+
+`2231` scheduled hourly-autopilot은 scheduler-owned `2231` stale cleanup/core/research preflight를 source-of-record로 사용했고, direct Alpaca submit-boundary check에서 `AVGO`가 quote `387.00/388.50`, spread `0.3868%`, held qty `2`, ai_semiconductor target-band de-risking rationale, negative expected excess, open orders `0`, current-session same-day duplicate `0` 조건을 만족해 1주 trim 경로를 통과했다. `client_order_id=hourly-20260616-2231-sell-avgo` 주문은 `2026-06-16T13:43:57.208757279Z`에 `387.76 USD`로 즉시 체결됐고 보유수량은 `2주 -> 1주`로 감소했다. 해석은 `core thesis 전면 폐기 아님 + staged de-risking 지속`이다.
+
+출처: [[2026-06-16-2231-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-16-2231-hourly-autopilot-post-trade.json`
+
 ### 2026-06-15 23:02 KST hourly-autopilot trim submit
 
 `2251` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight를 source-of-record로 사용했고, direct Alpaca spot check로 `clock/account/positions/quotes/recent fills`를 다시 맞췄다. `AVGO`는 direct quote `394.90/395.07`, spread `0.0430%`, held qty `3`, ai_semiconductor target-band warning, post-earnings staged de-risking rationale 조건에서 1주 trim 경로를 통과했고 `client_order_id=hourly-20260615-2251-sell-avgo`로 regular-session day limit sell을 제출했다. immediate reconciliation 기준 same order는 `status=new`, `filled_qty=0`이며 `get_all_positions`는 `qty=3`, `qty_available=2`를 반환해 1주가 예약 상태임을 보여줬다. 해석은 `staged de-risking submit 완료, next cycle fill/open-order lifecycle 추적 필요`다.
