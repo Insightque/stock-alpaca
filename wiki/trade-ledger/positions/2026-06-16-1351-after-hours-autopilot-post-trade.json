@@ -1,0 +1,40 @@
+{
+  "run_id": "2026-06-16-1351-after-hours-autopilot",
+  "created_at": "2026-06-16T04:54:33Z",
+  "session": "after_hours",
+  "paper": true,
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "orders_open": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_detected": 0,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102352.8,
+    "cash": 29836.36,
+    "buying_power": 305901.43,
+    "long_market_value": 72516.44,
+    "currency": "USD",
+    "daily_realized_loss": 0.0,
+    "market_clock_checked_at": "2026-06-16T00:52:53.203410978-04:00"
+  },
+  "positions_count": 33,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "review_bucket": "after_hours_validation",
+  "note": "scheduler-owned 1351 core/research preflight\ub97c source-of-record\ub85c \uc0ac\uc6a9\ud588\uace0 Alpaca core first_blocking_gate=market_closed\ub294 after-hours expected nonblocking\uc73c\ub85c \ucc98\ub9ac\ud588\ub2e4. direct overnight continuity \uae30\uc900 account ACTIVE, positions 33, watchlists 0, open orders 0, same-session after-hours orders 0\uc774\uc5c8\uace0 executable order stack\uc740 duplicate sell discipline, review backlog throttle, add-block, watch-only thesis, after-hours notional cap, spread caps \ub54c\ubb38\uc5d0 \ube44\uc5b4 \uc788\uc5c8\ub2e4.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-1351-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-1351-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-1351-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-16-1351-after-hours-autopilot.json"
+  ],
+  "submit_status": "no_submit",
+  "client_order_ids_checked": [],
+  "new_orders": [],
+  "filled_orders": [],
+  "cancelled_orders": [],
+  "open_orders": [],
+  "open_order_count": 0,
+  "reconciliation_note": "No submit occurred. Reconciliation only reconfirmed account ACTIVE, positions 33, watchlists 0, open orders 0, same-session after-hours submitted orders 0, and fills 0 by scheduler-owned 1351 preflight plus direct overnight continuity."
+}
