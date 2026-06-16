@@ -1,0 +1,261 @@
+{
+  "run_id": "2026-06-16-2111-after-hours-autopilot",
+  "created_at": "2026-06-16T12:14:15Z",
+  "market_clock_checked_at": "2026-06-16T08:11:05.373225445-04:00",
+  "session": "after_hours",
+  "paper": true,
+  "policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "summary": "scheduler-owned 2111 core/research preflight reused as source-of-record. Alpaca core first_blocking_gate=market_closed was treated as expected nonblocking for after-hours, and live continuity reopened get_account_info/get_all_positions/get_watchlists/get_orders(status=open)/get_orders(status=all, after=2026-06-15T20:00:00Z)/get_stock_latest_quote(feed=overnight)/get_stock_snapshot(feed=overnight). Overnight latestQuote timestamps for QQQ/RGTI/NOK/TSLA/SMH/SLB/AVGO/GE/SPY/MSFT/PFE still remained about 254.24 minutes stale, so fresh_quote failed and no executable after-hours order survived.",
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "portfolio_value": 102614.1,
+    "cash": 29836.34,
+    "buying_power": 306419.19,
+    "positions_count": 33,
+    "watchlists_count": 0,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_detected": 0
+  },
+  "quote_checks": {
+    "QQQ": {
+      "bid": 719.66,
+      "ask": 799.94,
+      "quote_time": "2026-06-16T08:00:00.401344591Z",
+      "quote_age_minutes": 254.24,
+      "spread_pct": 10.5659
+    },
+    "RGTI": {
+      "bid": 21.02,
+      "ask": 23.11,
+      "quote_time": "2026-06-16T08:00:00.403359841Z",
+      "quote_age_minutes": 254.24,
+      "spread_pct": 9.472
+    },
+    "NOK": {
+      "bid": 14.92,
+      "ask": 15.49,
+      "quote_time": "2026-06-16T08:00:00.411613004Z",
+      "quote_age_minutes": 254.24,
+      "spread_pct": 3.7488
+    },
+    "TSLA": {
+      "bid": 405.19,
+      "ask": 419.07,
+      "quote_time": "2026-06-16T08:00:00.411775658Z",
+      "quote_age_minutes": 254.24,
+      "spread_pct": 3.3679
+    },
+    "SMH": {
+      "bid": 644.69,
+      "ask": 645.98,
+      "quote_time": "2026-06-16T08:00:00.406002298Z",
+      "quote_age_minutes": 254.24,
+      "spread_pct": 0.1999
+    },
+    "SLB": {
+      "bid": 44.99,
+      "ask": 56.96,
+      "quote_time": "2026-06-16T08:00:00.317988473Z",
+      "quote_age_minutes": 254.24,
+      "spread_pct": 23.4821
+    },
+    "AVGO": {
+      "bid": 385.18,
+      "ask": 397.28,
+      "quote_time": "2026-06-16T08:00:00.412224033Z",
+      "quote_age_minutes": 254.24,
+      "spread_pct": 3.0928
+    },
+    "GE": {
+      "bid": 316.7,
+      "ask": 349.71,
+      "quote_time": "2026-06-16T08:00:00.365841679Z",
+      "quote_age_minutes": 254.24,
+      "spread_pct": 9.9068
+    },
+    "SPY": {
+      "bid": 753.72,
+      "ask": 754.96,
+      "quote_time": "2026-06-16T08:00:00.403286831Z",
+      "quote_age_minutes": 254.24,
+      "spread_pct": 0.1644
+    },
+    "MSFT": {
+      "bid": 399.97,
+      "ask": 400.09,
+      "quote_time": "2026-06-16T08:00:00.413891674Z",
+      "quote_age_minutes": 254.24,
+      "spread_pct": 0.03
+    },
+    "PFE": {
+      "bid": 26.04,
+      "ask": 26.82,
+      "quote_time": "2026-06-16T08:00:00.389523835Z",
+      "quote_age_minutes": 254.24,
+      "spread_pct": 2.9512
+    }
+  },
+  "after_hours_gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_scheduler_preflight_and_live_continuity",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_empty_order_plan_warning_only",
+    "fresh_quote": "fail_live_overnight_quotes_254.24_minutes_old",
+    "spread_within_after_hours_policy": "fail_only_msft_spy_and_smh_are_sub_0_25pct_while_all_others_fail",
+    "whole_share_day_limit_extended_hours_order": "fail_no_eligible_order_survived_fresh_quote_duplicate_sells_buy_backlog_add_block_watch_only_notional_or_spread_caps",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit"
+  },
+  "gate_failures": [
+    {
+      "gate": "fresh_quote",
+      "status": "fail",
+      "detail": "Live overnight latestQuote rows were about 254.24 minutes old versus the 5 minute after-hours quote-age cap."
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "fail",
+      "detail": "Sell candidates were blocked by duplicate_symbol_side_same_day and/or spread caps, while buy fallbacks were blocked by stale quotes, review backlog throttle, blocked_add_symbols, watch-only thesis, per-order notional caps, or spread caps."
+    }
+  ],
+  "candidate_diagnostics": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "result": "blocked",
+      "blocked_by": [
+        "duplicate_symbol_side_same_day",
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "Live overnight latestQuote 385.18/397.28 was about 254.24 minutes stale with 3.0928% spread, and the 2026-06-15 11:18 ET regular-session trim fill kept same-day duplicate sell discipline in place."
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "result": "blocked",
+      "blocked_by": [
+        "duplicate_symbol_side_same_day",
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "Live overnight latestQuote 21.02/23.11 was about 254.24 minutes stale with 9.4720% spread, and the 2026-06-15 09:41 ET regular-session trim fills kept duplicate sell discipline open."
+    },
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "result": "blocked",
+      "blocked_by": [
+        "duplicate_symbol_side_same_day",
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "Live overnight latestQuote 26.04/26.82 was about 254.24 minutes stale with 2.9512% spread, and the 2026-06-15 15:59 ET regular-session trim fill kept same-day duplicate sell discipline in place."
+    },
+    {
+      "symbol": "MSFT",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "same_day_duplicate_buy",
+        "review_backlog_throttle"
+      ],
+      "detail": "Live overnight latestQuote 399.97/400.09 was about 254.24 minutes stale. Spread improved to 0.0300% but the same-day regular-session buy plus pending_1d_count=18 still kept the add path closed."
+    },
+    {
+      "symbol": "NOK",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "review_backlog_throttle",
+        "validation_lifecycle_add_block",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "Live overnight latestQuote 14.92/15.49 was about 254.24 minutes stale with 3.7488% spread. review-due-index still has blocked_add_symbols=['NOK'] and pending_1d_count=18."
+    },
+    {
+      "symbol": "QQQ",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "after_hours_notional_cap",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "Live overnight latestQuote 719.66/799.94 was about 254.24 minutes stale with 10.5659% spread, and the 1-share ask remained above the after-hours per-order notional cap 513.07 USD."
+    },
+    {
+      "symbol": "SPY",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "after_hours_notional_cap"
+      ],
+      "detail": "Live overnight latestQuote 753.72/754.96 was about 254.24 minutes stale. Spread tightened to 0.1644%, but the 1-share ask remained above the after-hours per-order notional cap 513.07 USD."
+    },
+    {
+      "symbol": "SMH",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "after_hours_notional_cap"
+      ],
+      "detail": "Live overnight latestQuote 644.69/645.98 was about 254.24 minutes stale with 0.1999% spread, and the 1-share ask remained above the after-hours per-order notional cap 513.07 USD."
+    },
+    {
+      "symbol": "TSLA",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "watch_only_thesis",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "Live overnight latestQuote 405.19/419.07 was about 254.24 minutes stale with 3.3679% spread, and the thesis remained watch-only rather than actionable."
+    },
+    {
+      "symbol": "SLB",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "Live overnight latestQuote 44.99/56.96 was about 254.24 minutes stale with 23.4821% spread."
+    },
+    {
+      "symbol": "GE",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "Live overnight latestQuote 316.70/349.71 was about 254.24 minutes stale with 9.9068% spread."
+    }
+  ],
+  "executable_candidates": [],
+  "skipped_candidates": [
+    "AVGO",
+    "RGTI",
+    "PFE",
+    "MSFT",
+    "NOK",
+    "QQQ",
+    "SPY",
+    "SMH",
+    "TSLA",
+    "SLB",
+    "GE"
+  ]
+}
