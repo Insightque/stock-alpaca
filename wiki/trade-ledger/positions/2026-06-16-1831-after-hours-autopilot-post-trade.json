@@ -1,0 +1,41 @@
+{
+  "run_id": "2026-06-16-1831-after-hours-autopilot",
+  "created_at": "2026-06-16T09:31:28Z",
+  "session": "after_hours",
+  "paper": true,
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "orders_open": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_detected": 0,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102630.59,
+    "cash": 29836.34,
+    "buying_power": 306352.79,
+    "long_market_value": 72794.25,
+    "currency": "USD",
+    "daily_realized_loss": 0.0,
+    "market_clock_checked_at": "2026-06-16T05:31:08.692360829-04:00"
+  },
+  "positions_count": 33,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "review_bucket": "after_hours_validation",
+  "note": "scheduler-owned 1831 core/research preflight was used as source-of-record and Alpaca core first_blocking_gate=market_closed was treated as expected nonblocking for after-hours. The same preflight still showed account ACTIVE, positions 33, watchlists 0, open orders 0, same-session after-hours orders 0, same-session fills 0, and quote timestamps about 760.95 to 811.47 minutes stale, so no submit path opened.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-1831-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-1831-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-1831-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/orders/2026-06-16-1831-after-hours-autopilot.json"
+  ],
+  "submit_status": "no_submit",
+  "client_order_ids_checked": [],
+  "new_orders": [],
+  "filled_orders": [],
+  "cancelled_orders": [],
+  "open_orders": [],
+  "open_order_count": 0,
+  "reconciliation_note": "No submit occurred. Reconciliation was bounded to scheduler-owned 1831 preflight rows because no additional live Alpaca MCP read tools were exposed in this turn."
+}
