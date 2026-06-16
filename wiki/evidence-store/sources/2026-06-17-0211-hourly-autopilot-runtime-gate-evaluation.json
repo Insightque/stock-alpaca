@@ -1,0 +1,137 @@
+{
+  "run_id": "2026-06-17-0211-hourly-autopilot",
+  "created_at": "2026-06-16T17:12:53Z",
+  "paper": true,
+  "submit_attempted": false,
+  "reconciliation_reason": "no_submit_preflight_reuse",
+  "gate_summary": {
+    "paper_mode": "pass",
+    "market_clock": "pass",
+    "stale_order_lifecycle": "pass",
+    "alpaca_core": "pass",
+    "research_tiered": "pass",
+    "universe": "pass",
+    "risk": "pass",
+    "final_submit_path": "blocked_by_duplicate_backlog_floorcap_addblock"
+  },
+  "recommendation_shortlist": [
+    {
+      "symbol": "SO",
+      "decision": "blocked_same_day_duplicate_sell"
+    },
+    {
+      "symbol": "RGTI",
+      "decision": "blocked_same_day_duplicate_sell"
+    },
+    {
+      "symbol": "PFE",
+      "decision": "blocked_same_day_duplicate_sell"
+    },
+    {
+      "symbol": "NEE",
+      "decision": "blocked_review_backlog_throttle_buy"
+    },
+    {
+      "symbol": "WMT",
+      "decision": "blocked_review_backlog_throttle_buy"
+    },
+    {
+      "symbol": "NKE",
+      "decision": "blocked_review_backlog_throttle_buy"
+    },
+    {
+      "symbol": "SPY",
+      "decision": "blocked_floor_cap_and_review_backlog"
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "blocked_floor_cap_and_review_backlog"
+    },
+    {
+      "symbol": "NOK",
+      "decision": "blocked_validation_lifecycle_add_block"
+    }
+  ],
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "portfolio_value": 101141.71,
+    "cash": 30344.81,
+    "buying_power": 304077.27,
+    "long_market_value": 70796.9,
+    "currency": "USD"
+  },
+  "positions_summary": {
+    "position_count": 33,
+    "open_orders": 0,
+    "focus_positions": [
+      {
+        "symbol": "SO",
+        "qty": 5,
+        "qty_available": 5,
+        "avg_entry_price": 92.975,
+        "current_price": 94.305
+      },
+      {
+        "symbol": "RGTI",
+        "qty": 28,
+        "qty_available": 28,
+        "avg_entry_price": 25.569583,
+        "current_price": 21.08
+      },
+      {
+        "symbol": "PFE",
+        "qty": 3,
+        "qty_available": 3,
+        "avg_entry_price": 25.925,
+        "current_price": 26.115
+      }
+    ]
+  },
+  "same_day_fills_seen": [
+    {
+      "symbol": "SO",
+      "side": "sell",
+      "filled_qty": 1,
+      "filled_at": "2026-06-16T14:58:02.526808Z",
+      "filled_avg_price": 94.77
+    },
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "filled_qty": 1,
+      "filled_at": "2026-06-16T14:18:55.368488Z",
+      "filled_avg_price": 25.94
+    },
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "filled_qty": 1,
+      "filled_at": "2026-06-16T13:43:57.208757Z",
+      "filled_avg_price": 387.76
+    }
+  ],
+  "duplicate_side_reference": {
+    "symbol": "RGTI",
+    "prior_client_order_id": "hourly-20260616-2251-sell-rgti",
+    "reconciled_status": "canceled",
+    "reconciled_at": "2026-06-16T14:31:08.972628Z",
+    "source_ref": "wiki/current-runs/daily/2026-06-17-0011-hourly-autopilot.md"
+  },
+  "checked_via": [
+    "scheduler Alpaca stale cleanup artifact",
+    "scheduler Alpaca core preflight get_clock",
+    "scheduler Alpaca core preflight get_account_info",
+    "scheduler Alpaca core preflight get_all_positions",
+    "scheduler Alpaca core preflight get_orders(status=open)",
+    "scheduler Alpaca core preflight get_account_activities(activity_types=[FILL])",
+    "scheduler Alpaca core preflight get_stock_latest_quote(feed=iex)",
+    "scheduler Alpaca core preflight get_stock_snapshot(feed=iex)"
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-0211-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-17-0211-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-0211-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/current-runs/daily/2026-06-17-0211-hourly-autopilot.md",
+    "wiki/trade-ledger/orders/2026-06-17-0211-hourly-autopilot.json"
+  ]
+}
