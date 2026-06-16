@@ -2,6 +2,19 @@
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-16-2351-hourly-autopilot]]
+- Open/new: 없음. `client_order_id=hourly-20260616-2351-sell-so`는 same client id reconciliation 기준 즉시 `filled`였다.
+- Filled: `SO` sell 1주 at `94.77 USD`
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: live `get_all_positions` 기준 positions `33`건, live `get_orders(status=open)` 기준 open orders `0`건, live `get_account_activities(activity_types=[FILL], after=2026-06-16T13:51:00Z)` 기준 same-session fill `2`건(`PFE`, `SO`)이었다.
+- Recent reconciliation scope: scheduler-owned `2351` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca `get_clock/get_account_info/get_orders(status=open)/get_orders(status=all, after=2026-06-16T13:51:00Z)/get_account_activities(activity_types=[FILL], after=2026-06-16T13:51:00Z)/get_all_positions/get_stock_latest_quote(SO)/get_stock_snapshot(SO)`로 submit boundary를 다시 열었다. `SO` 주문은 `2026-06-16T14:58:02.526808Z`에 `filled_avg_price=94.77 USD`로 즉시 체결됐고, `get_all_positions` 기준 `SO qty 6 -> 5`, `qty_available=5`로 감소했다. `get_account_info` 기준 cash는 `30,344.81 USD`, portfolio value는 `101,432.05 USD`였다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-16-2351-hourly-autopilot-post-trade.json`
+
+_Last updated: 2026-06-16 23:58 KST_
+
+## 최신 hourly-autopilot reconciliation
+
 - Run: [[2026-06-16-2331-hourly-autopilot]]
 - Open/new: 없음. stale cleanup artifact에 남아 있던 `RGTI` sell 7주 (`client_order_id=hourly-20260616-2251-sell-rgti`)는 live Alpaca `get_orders(status=all, after=2026-06-16T13:31:00Z)` 기준 `2026-06-16T14:31:08.972628Z`에 `canceled`로 정리됐고, live `get_orders(status=open)`는 `0`건이었다.
 - Filled: 이번 cycle 신규 fill 없음. same-day regular fill history는 earlier `AVGO` sell 1건, `PFE` sell 1건만 유지됐다.

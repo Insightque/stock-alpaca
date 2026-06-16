@@ -1,0 +1,70 @@
+{
+  "run_id": "2026-06-16-2351-hourly-autopilot",
+  "created_at": "2026-06-16T14:55:18Z",
+  "paper": true,
+  "submit_attempted": true,
+  "reconciliation_reason": "live_alpaca_recheck_after_submit_fill",
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "portfolio_value": 101432.05,
+    "cash": 30344.81,
+    "buying_power": 304732.66,
+    "long_market_value": 71087.24,
+    "currency": "USD"
+  },
+  "positions_summary": {
+    "position_count": 33,
+    "open_orders": 0,
+    "focus_positions": [
+      {
+        "symbol": "SO",
+        "qty": 5,
+        "qty_available": 5,
+        "avg_entry_price": 92.975,
+        "current_price": 94.78
+      },
+      {
+        "symbol": "RGTI",
+        "qty": 28,
+        "qty_available": 28,
+        "avg_entry_price": 25.569583,
+        "current_price": 21.09
+      },
+      {
+        "symbol": "PFE",
+        "qty": 3,
+        "qty_available": 3,
+        "avg_entry_price": 25.925,
+        "current_price": 25.935
+      }
+    ]
+  },
+  "same_day_fills_seen": [
+    {
+      "symbol": "SO",
+      "side": "sell",
+      "filled_qty": 1,
+      "filled_at": "2026-06-16T14:58:02.526808Z",
+      "filled_avg_price": 94.77
+    },
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "filled_qty": 1,
+      "filled_at": "2026-06-16T14:18:55.368488Z",
+      "filled_avg_price": 25.94
+    }
+  ],
+  "checked_via": [
+    "live Alpaca get_account_info",
+    "live Alpaca get_all_positions",
+    "live Alpaca get_orders(status=open)",
+    "live Alpaca get_orders(status=all, after=2026-06-16T13:51:00Z)",
+    "live Alpaca get_account_activities(activity_types=[FILL], after=2026-06-16T13:51:00Z)"
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-2351-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/current-runs/daily/2026-06-16-2351-hourly-autopilot.md",
+    "wiki/trade-ledger/orders/2026-06-16-2351-hourly-autopilot.json"
+  ]
+}

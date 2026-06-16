@@ -70,3 +70,10 @@ current Alpaca snapshot 기준 `SO`는 `2026-06-05` close/current `92.64 USD`, �
 `SO` 1주 regular-session day limit buy가 `92.03 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260610-0011-buy-so`, `order_id=8775f764-2758-4958-9fa1-21a92e69fb91`가 생성됐다. immediate reconciliation 시점 상태는 `new` open order이며 fill은 아직 없다. 근거는 scheduler-owned `0011` core/research preflight와 runtime gate 재확인 기준 paper mode/market open/universe strict/MCP strict/risk strict 모두 통과, `SO` pre-submit quote `91.90/92.03` spread `0.1414%`, same-day duplicate/open-order conflict 없음, review backlog throttle 비차단, `WMT/BAC/SPY/QQQ/NOK`가 각각 exact hard gate에 막힌 상황에서 utilities defensive existing holding floor-size fallback이 learning_trade_directive를 충족했다는 점이다.
 
 출처: [[2026-06-10-0011-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-10-0011-hourly-autopilot-post-trade.json`
+
+
+## 2026-06-16 23:58 KST hourly autopilot
+
+`SO` 1주 regular-session validation trim이 live Alpaca submit-boundary quote `94.77/94.79` spread `0.0211%` 확인 뒤 `94.77 USD` day limit sell로 제출됐고, same client id reconciliation 기준 `2026-06-16T14:58:02.526808Z` `filled_avg_price=94.77 USD`로 즉시 체결됐다. 직전 `2331` cycle에서는 비정상 spread `11.3368%` 때문에 trim path가 막혔지만 이번 cycle에서는 quote 정상화가 확인돼 sell-first learning directive를 충족했다. 체결 후 보유 수량은 `6주 -> 5주`로 감소했고, repeated weak-review trim rationale는 유지된다.
+
+출처: [[2026-06-16-2351-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-16-2351-hourly-autopilot-post-trade.json`
