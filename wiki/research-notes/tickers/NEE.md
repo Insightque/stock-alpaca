@@ -72,3 +72,9 @@ asset_type: stock
 `NEE` 1주 regular-session day limit buy가 `85.81 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260616-0031-buy-nee`, `order_id=fcf11144-3fe4-427e-84ec-418a59774883`가 생성된 뒤 same client id reconciliation에서 `2026-06-15T15:37:52.982253179Z`에 `85.78 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0031` stale cleanup/core/research preflight와 submit-boundary check 기준 paper mode/market open/universe strict/MCP strict/risk strict 모두 통과했고, sell-first 재평가 뒤 same-day duplicate가 없는 utilities/rate-sensitive diversifier 중 `NEE`가 FRED macro confirmation을 유지한 가장 보수적인 floor-size learning buy였다는 점이다. post-trade 기준 보유 수량은 `5주 -> 6주`, 평균단가는 `86.33 USD`로 갱신됐다.
 
 출처: [[2026-06-16-0031-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-16-0031-hourly-autopilot-post-trade.json`
+
+### 2026-06-17 analyst review cycle
+
+`2026-06-15 ET` add 1주는 `85.78 USD -> 86.24 USD`로 `+0.54%`였다. absolute move는 작지만 defensive utility sleeve로서는 무난했고, skipped recommendation 관점에서도 backlog 우선순위를 뒤집을 만큼의 missed-upside는 아니다. 이번 closeout은 `중립 양호`로 두고, rate-sensitive defensive add는 backlog와 macro confirmation을 함께 보는 기존 해석을 유지한다.
+
+출처: [[2026-06-17-portfolio-review]], [[2026-06-17-0623-analyst-review-cycle-sources]]

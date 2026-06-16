@@ -71,3 +71,9 @@ Freeport-McMoRan paper validation 후보. 2026-05-26 hourly autopilot에서 mate
 current Alpaca snapshot 기준 `FCX`는 `6주`, 평균단가 `65.675 USD`, `2026-06-15 ET` close `70.10 USD`로 미실현 약 `+6.74%`다. Yahoo Finance 뉴스와 tape 모두 구리 민감주 강세를 지지해 missed-upside 사례는 더 강해졌지만, 단일 hindsight 강세 표본만으로 backlog throttle을 완화하진 않는다. 이번 cycle의 `69.49 USD` add는 새 `1D` 대기 표본으로만 등록한다.
 
 출처: [[2026-06-16-portfolio-review]], [[2026-06-16-0621-analyst-review-cycle-sources]], [[2026-06-16-0111-hourly-autopilot]]
+
+### 2026-06-17 analyst review cycle
+
+`2026-06-15 ET` add 1주는 `69.49 USD -> 70.155 USD`로 `+0.96%`였다. 절대수익은 크지 않지만 `SPY -0.55%`, `QQQ -1.87%` 하락일 대비 상대강도는 계속 양호해 materials/copper diversifier 가설은 유지된다. 다만 이미 hindsight 강세 표본이 누적된 상태라, 이번 closeout도 `양호`로 기록하되 backlog throttle을 즉시 완화할 근거로는 쓰지 않는다.
+
+출처: [[2026-06-17-portfolio-review]], [[2026-06-17-0623-analyst-review-cycle-sources]]

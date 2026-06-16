@@ -1658,3 +1658,6 @@
 
 - [[2026-05-30-2011-after-hours-autopilot]] - after-hours paper autopilot 실행. session=after_hours, review_bucket=after_hours_validation, universe/MCP/risk는 통과했지만 quote freshness gate 실패로 주문 없음.
 - `wiki/trade-ledger/orders/2026-05-30-2011-after-hours-autopilot.json` - 2026-05-30 20:11 KST after-hours autopilot empty order plan, session=after_hours, quote freshness gate 실패로 submit 없음.
+- [[2026-06-17-portfolio-review]] - scheduled analyst review cycle 실행. `2026-06-15 ET` regular fill cohort 18건의 1D closeout을 완료했고 review backlog를 `1D 0 / 5D 37 / 20D 1`로 갱신했다. Alpaca reconciliation, skipped recommendation 재점검, alpha provider-rate-limit gap, FRED/Firecrawl wrapper gap을 기록했고 추천 정책 변경은 보류했다.
+- [[2026-06-17-0623-analyst-review-cycle-sources]] - scheduled analyst review cycle의 Alpaca account/orders/fills/positions/snapshot reconciliation, due horizon 스캔, open-position monitor, SEC/Yahoo/Alpha coverage 및 MCP gap 분류 근거를 남긴 raw source note.
+- `wiki/evidence-store/run-manifests/2026-06-17-0623-analyst-review-cycle.json` - scheduled analyst review cycle manifest. no-submit review scope, MCP coverage/gap_category, review backlog `0/37/1`, policy update 없음이 포함된다.

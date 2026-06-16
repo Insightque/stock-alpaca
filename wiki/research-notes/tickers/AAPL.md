@@ -84,3 +84,9 @@ live Alpaca clock이 `2026-06-14 17:21 ET` 일요일 closed 상태라 새 미국
 current Alpaca snapshot 기준 `AAPL`은 `6주`, 평균단가 `301.965 USD`, `2026-06-15 ET` close `296.53 USD`로 미실현 약 `-1.80%`다. Alpha Vantage latest quarter는 `2026-04-30` reported EPS `2.01`로 estimate `1.94`를 상회했고, SEC EDGAR recent filings는 `2026-05-29` Form 4까지 확인됐다. 다만 Yahoo Finance 기사에서는 mega-cap valuation headwind와 공급망/메모리 비용 부담이 계속 병존해 `2026-06-15 ET` add 1주를 새 `1D` 대기 표본으로만 등록한다. 평균단가 낮추기 가설은 아직 검증 전이다.
 
 출처: [[2026-06-16-portfolio-review]], [[2026-06-16-0621-analyst-review-cycle-sources]], [[2026-06-16-0431-hourly-autopilot]]
+
+### 2026-06-17 analyst review cycle
+
+`2026-06-15 ET` regular-session add 1주는 `296.11 USD -> 299.26 USD`로 `+1.06%`였다. `QQQ -1.87%` 하락일 대비 상대강도는 양호했지만, 기존 averaging-down 표본들의 약한 이력을 뒤집을 정도는 아니다. 이번 closeout은 `중립 양호`로 기록하되 mega-cap quality라는 이유만으로 add cadence를 높이지는 않고, 다음 `5D` review(`2026-06-22 ET` close 이후)까지 회복 지속성을 본다.
+
+출처: [[2026-06-17-portfolio-review]], [[2026-06-17-0623-analyst-review-cycle-sources]]

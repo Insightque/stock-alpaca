@@ -132,3 +132,9 @@ live Alpaca clock이 `2026-06-14 17:21 ET` 일요일 closed 상태라 새 미국
 current Alpaca snapshot 기준 `NOK`는 `402주`, 평균단가 `15.044527 USD`, `2026-06-15 ET` close `14.83 USD`로 미실현 약 `-1.43%`다. Yahoo Finance recommendation summary의 `2026-06-12 JP Morgan Overweight / PT 21`은 여전히 우호적이지만, add-block을 해제할 구조적 price confirmation은 아직 없다. 따라서 `2026-06-18 ET` 20D review 전까지 `existing-position-breakout-add-penalty`를 유지한다.
 
 출처: [[2026-06-16-portfolio-review]], [[2026-06-16-0621-analyst-review-cycle-sources]]
+
+### 2026-06-17 analyst review cycle
+
+current Alpaca snapshot 기준 `NOK`는 `402주`, 평균단가 `15.044527 USD`, `2026-06-16 ET` close `13.975 USD`로 미실현 약 `-7.11%`다. `2026-06-12` JP Morgan 상향과 6-K 흐름은 우호적이지만, tape는 다시 add-block 유지 쪽에 가깝다. 따라서 `2026-06-18 ET` 20D review 전까지 `existing-position-breakout-add-penalty`를 유지하고 신규 add는 계속 차단한다.
+
+출처: [[2026-06-17-portfolio-review]], [[2026-06-17-0623-analyst-review-cycle-sources]]

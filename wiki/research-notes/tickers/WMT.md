@@ -64,3 +64,9 @@ asset_type: stock
 `2026-06-09 ET` buy 1주는 `118.70 USD` 진입 대비 `2026-06-10 ET` close `120.56 USD`로 `+1.57%`였다. `SPY` 대비 `+3.13%p`, `QQQ` 대비 `+3.57%p`로 defensive retail validation은 이번 1D에서 분명히 양호했다. 다만 `2026-06-10 ET` regular-session 추가 fill `118.49 USD`가 새로 생겨 다음 1D horizon을 별도로 추적한다.
 
 출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]
+
+### 2026-06-17 analyst review cycle
+
+`2026-06-15 ET` add 1주는 `120.20 USD -> 121.07 USD`로 `+0.72%`였다. `SPY`와 `QQQ`가 하락한 날에 defensive retail이 방어적으로 작동해 1D closeout은 `양호`다. 다만 skipped recommendation 관점에서는 급한 missed-upside 사례로 보긴 어려워, defensive backlog throttle 해석을 바꿀 정도의 새 정책 신호로는 쓰지 않는다.
+
+출처: [[2026-06-17-portfolio-review]], [[2026-06-17-0623-analyst-review-cycle-sources]]
