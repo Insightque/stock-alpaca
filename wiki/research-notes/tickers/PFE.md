@@ -5,6 +5,12 @@ asset_type: stock
 
 # PFE
 
+## 2026-06-16 23:19 KST hourly-autopilot
+
+`PFE` 1주 regular-session day limit trim sell이 `25.90 USD` limit, `client_order_id=hourly-20260616-2311-sell-pfe`로 제출됐고 direct Alpaca MCP reconciliation 기준 `2026-06-16T14:18:55.368487606Z`에 `filled_avg_price=25.94 USD`로 즉시 체결됐다. 근거는 scheduler-owned `2311` stale cleanup/core/research preflight와 direct Alpaca submit-boundary check 기준 paper mode, regular market open, existing open order는 `RGTI` trim 1건뿐이며 `PFE` same-day sell duplicate는 `0`, direct quote `25.90/25.91` spread `0.0386%`, active tradable NYSE stock, strict universe/MCP/risk gate 통과, 그리고 `2026-06-04` 5D review와 `2026-06-09` 1D review에 누적된 defensive-diversification 약세 해석이 유지됐다는 점이다. `RGTI`는 fresh same-symbol open sell 때문에 재제출 대상이 아니었고 `SO`는 live spread fail로 탈락했다. post-trade `get_all_positions` 기준 보유수량은 `4주 -> 3주`, `avg_entry_price=25.925`, `qty_available=3`으로 감소했고 `get_account_info` 기준 cash는 `30,224.10 USD -> 30,250.04 USD`로 증가했다.
+
+출처: [[2026-06-16-2311-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-16-2311-hourly-autopilot-post-trade.json`
+
 ## 2026-06-16 04:59 KST hourly-autopilot
 
 `PFE` 1주 regular-session day limit trim sell이 `26.01 USD` limit, `client_order_id=hourly-20260616-0451-sell-pfe`로 제출됐고 direct Alpaca MCP `get_order_by_client_id` 기준 `2026-06-15T19:59:48.06371096Z`에 `filled_avg_price=26.01 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0451` stale cleanup/core/research preflight와 direct Alpaca submit-boundary check 기준 paper mode, regular market open, open orders `0`, same-day `PFE sell` duplicate `0`, direct quote `26.01/26.02` spread `0.0384%`, active tradable NYSE stock, strict universe/MCP/risk gate 통과, 그리고 `2026-06-04` 5D review와 `2026-06-09` 1D review에 누적된 defensive-diversification 약세 해석 및 `2026-06-12` after-hours trim precedent가 유지됐다는 점이다. post-trade `get_all_positions` 기준 보유수량은 `5주 -> 4주`, `avg_entry_price=25.972`, `qty_available=4`로 감소했고 `get_account_info` 기준 cash는 `29,810.35 USD -> 29,836.36 USD`로 증가했다.

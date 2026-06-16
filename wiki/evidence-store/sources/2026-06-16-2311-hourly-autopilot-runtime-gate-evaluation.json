@@ -1,0 +1,103 @@
+{
+  "run_id": "2026-06-16-2311-hourly-autopilot",
+  "created_at": "2026-06-16T14:14:25Z",
+  "paper_mode": true,
+  "clock": {
+    "timestamp": "2026-06-16T10:14:19.689714377-04:00",
+    "market_open": true
+  },
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102086.24,
+    "cash": 30224.10,
+    "buying_power": 305980.43
+  },
+  "open_orders": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 7,
+      "status": "new",
+      "client_order_id": "hourly-20260616-2251-sell-rgti",
+      "limit_price": 22.07
+    }
+  ],
+  "direct_quotes": {
+    "PFE": {
+      "bid": 25.90,
+      "ask": 25.91,
+      "spread_pct": 0.0386,
+      "measured_at": "2026-06-16T14:14:20.869736458Z"
+    },
+    "SO": {
+      "bid": 88.70,
+      "ask": 94.62,
+      "spread_pct": 6.4603,
+      "measured_at": "2026-06-16T14:14:20.977052069Z"
+    },
+    "RGTI": {
+      "bid": 21.60,
+      "ask": 21.62,
+      "spread_pct": 0.0925,
+      "measured_at": "2026-06-16T14:14:20.882716475Z"
+    },
+    "SPY": {
+      "bid": 754.70,
+      "ask": 754.81,
+      "spread_pct": 0.0146,
+      "measured_at": "2026-06-16T14:14:21.086551434Z"
+    },
+    "QQQ": {
+      "bid": 742.21,
+      "ask": 742.49,
+      "spread_pct": 0.0377,
+      "measured_at": "2026-06-16T14:14:21.086696783Z"
+    }
+  },
+  "candidate_decisions": [
+    {
+      "symbol": "PFE",
+      "decision": "submit_trim",
+      "reason": "repeated_weak_review_trim_precedent"
+    },
+    {
+      "symbol": "RGTI",
+      "decision": "blocked_open_order_duplicate",
+      "reason": "fresh_existing_same_symbol_sell"
+    },
+    {
+      "symbol": "SO",
+      "decision": "blocked_spread_fail",
+      "reason": "live_spread_above_0.50pct_cap"
+    },
+    {
+      "symbol": "AVGO",
+      "decision": "blocked_min_remaining_qty",
+      "reason": "keep_minimum_remaining_qty=1 after prior trims"
+    },
+    {
+      "symbol": "NOK",
+      "decision": "blocked_validation_lifecycle_add_block",
+      "reason": "review_due_index blocked_add_symbols"
+    },
+    {
+      "symbol": "SPY",
+      "decision": "blocked_review_backlog_buy",
+      "reason": "pending_1d_count=18 >= stop_new_buys_at_pending_1d=12"
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "blocked_review_backlog_buy",
+      "reason": "pending_1d_count=18 >= stop_new_buys_at_pending_1d=12"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-2311-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-16-2311-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-2311-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/research-notes/tickers/PFE.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md"
+  ]
+}

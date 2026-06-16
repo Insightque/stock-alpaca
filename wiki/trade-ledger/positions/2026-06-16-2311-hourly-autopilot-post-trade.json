@@ -1,0 +1,64 @@
+{
+  "run_id": "2026-06-16-2311-hourly-autopilot",
+  "created_at": "2026-06-16T14:19:15Z",
+  "reconciliation_checked_at": "2026-06-16T14:19:15Z",
+  "account": {
+    "status": "ACTIVE",
+    "cash": 30250.04,
+    "portfolio_value": 101888.16,
+    "buying_power": 305618.23,
+    "currency": "USD"
+  },
+  "open_orders": [
+    {
+      "order_id": "84d82c1a-3b82-40dc-9794-78071359f629",
+      "client_order_id": "hourly-20260616-2251-sell-rgti",
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 7,
+      "filled_qty": 0,
+      "status": "new",
+      "limit_price": 22.07,
+      "submitted_at": "2026-06-16T14:00:27.247489172Z"
+    }
+  ],
+  "recent_orders": [
+    {
+      "order_id": "4eedfe47-fa78-4f51-a71b-f14c7731f516",
+      "client_order_id": "hourly-20260616-2311-sell-pfe",
+      "symbol": "PFE",
+      "side": "sell",
+      "qty": 1,
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 25.94,
+      "filled_at": "2026-06-16T14:18:55.368487606Z",
+      "limit_price": 25.90
+    }
+  ],
+  "fills": [
+    {
+      "order_id": "4eedfe47-fa78-4f51-a71b-f14c7731f516",
+      "symbol": "PFE",
+      "side": "sell",
+      "qty": 1,
+      "price": 25.94,
+      "transaction_time": "2026-06-16T14:18:55.368488Z"
+    }
+  ],
+  "positions_summary": {
+    "positions_count": 33,
+    "pfe_qty": 3,
+    "pfe_avg_entry_price": 25.925,
+    "pfe_current_price": 25.954,
+    "rgti_qty": 28,
+    "rgti_qty_available": 21
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-2311-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-16-2311-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-2311-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-2311-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-16-2311-hourly-autopilot.json"
+  ]
+}
