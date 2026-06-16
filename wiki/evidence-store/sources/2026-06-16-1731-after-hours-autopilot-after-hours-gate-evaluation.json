@@ -1,0 +1,332 @@
+{
+  "run_id": "2026-06-16-1731-after-hours-autopilot",
+  "created_at": "2026-06-16T08:34:05Z",
+  "market_clock_checked_at": "2026-06-16T04:33:24.766579418-04:00",
+  "session": "after_hours",
+  "paper": true,
+  "policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "portfolio_value": 102685.89,
+    "cash": 29836.34,
+    "buying_power": 306479.48,
+    "positions_count": 33,
+    "watchlists_count": 0,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_detected": 0
+  },
+  "runtime_quote_summary": {
+    "MSFT": {
+      "bid": 399.97,
+      "ask": 400.09,
+      "quote_time": "2026-06-16T08:00:00.413891674Z",
+      "spread_pct": "0.0300%",
+      "quote_age_minutes": 33.41
+    },
+    "SPY": {
+      "bid": 753.72,
+      "ask": 754.96,
+      "quote_time": "2026-06-16T08:00:00.403286831Z",
+      "spread_pct": "0.1644%",
+      "quote_age_minutes": 33.41
+    },
+    "SLB": {
+      "bid": 44.99,
+      "ask": 56.96,
+      "quote_time": "2026-06-16T08:00:00.317988473Z",
+      "spread_pct": "23.4821%",
+      "quote_age_minutes": 33.41
+    },
+    "PFE": {
+      "bid": 26.04,
+      "ask": 26.82,
+      "quote_time": "2026-06-16T08:00:00.389523835Z",
+      "spread_pct": "2.9512%",
+      "quote_age_minutes": 33.41
+    },
+    "GE": {
+      "bid": 316.7,
+      "ask": 349.71,
+      "quote_time": "2026-06-16T08:00:00.365841679Z",
+      "spread_pct": "9.9068%",
+      "quote_age_minutes": 33.41
+    },
+    "TSLA": {
+      "bid": 405.19,
+      "ask": 419.07,
+      "quote_time": "2026-06-16T08:00:00.411775658Z",
+      "spread_pct": "3.3679%",
+      "quote_age_minutes": 33.41
+    },
+    "RGTI": {
+      "bid": 21.02,
+      "ask": 23.11,
+      "quote_time": "2026-06-16T08:00:00.403359841Z",
+      "spread_pct": "9.4720%",
+      "quote_age_minutes": 33.41
+    },
+    "QQQ": {
+      "bid": 719.66,
+      "ask": 799.94,
+      "quote_time": "2026-06-16T08:00:00.401344591Z",
+      "spread_pct": "10.5659%",
+      "quote_age_minutes": 33.41
+    },
+    "SMH": {
+      "bid": 644.69,
+      "ask": 645.98,
+      "quote_time": "2026-06-16T08:00:00.406002298Z",
+      "spread_pct": "0.1999%",
+      "quote_age_minutes": 33.41
+    },
+    "NOK": {
+      "bid": 14.92,
+      "ask": 15.49,
+      "quote_time": "2026-06-16T08:00:00.411613004Z",
+      "spread_pct": "3.7488%",
+      "quote_age_minutes": 33.41
+    },
+    "AVGO": {
+      "bid": 385.18,
+      "ask": 397.28,
+      "quote_time": "2026-06-16T08:00:00.412224033Z",
+      "spread_pct": "3.0928%",
+      "quote_age_minutes": 33.41
+    }
+  },
+  "after_hours_gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_scheduler_preflight_plus_runtime_overnight_continuity",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_empty_order_plan_warning_only",
+    "fresh_quote": "fail_runtime_overnight_quotes_33_41_minutes_old_for_avgo_ge_msft_nok_pfe_qqq_rgti_slb_smh_spy_tsla",
+    "spread_within_after_hours_policy": "pass_subset_msft_smh_spy_and_fail_avgo_ge_nok_pfe_qqq_rgti_slb_tsla",
+    "whole_share_day_limit_extended_hours_order": "fail_no_eligible_order_survived_fresh_quote_duplicate_sells_buy_backlog_add_block_watch_only_or_notional_or_quote_spread_caps",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit"
+  },
+  "candidate_diagnostics": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "thesis_role": "existing_ai_semiconductor_trim",
+      "quote": "385.18/397.28",
+      "result": "blocked",
+      "blocked_by": [
+        "duplicate_symbol_side_same_day",
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "2026-06-15 11:18 ET regular-session trim fill 이후 duplicate sell discipline이 남아 있고, refreshed overnight quote는 약 33.41분 stale이며 spread도 약 3.0928%로 0.25% cap을 크게 넘었다.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/trade-ledger/reviews/review-due-index.json"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "thesis_role": "existing_speculative_trim",
+      "quote": "21.02/23.11",
+      "result": "blocked",
+      "blocked_by": [
+        "duplicate_symbol_side_same_day",
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "2026-06-15 09:41 ET filled sell 이후 duplicate sell discipline이 유지됐고, overnight quote는 약 33.41분 stale이며 spread도 약 9.4720%로 after-hours cap을 위반했다.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/trade-ledger/reviews/review-due-index.json"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "thesis_role": "existing_weak_review_trim",
+      "quote": "26.04/26.82",
+      "result": "blocked",
+      "blocked_by": [
+        "duplicate_symbol_side_same_day",
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "2026-06-15 15:59 ET regular-session trim fill 이후 duplicate sell discipline이 남아 있고, overnight quote는 약 33.41분 stale이며 spread도 약 2.9512%로 0.25% cap을 넘었다.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/trade-ledger/reviews/review-due-index.json"
+      ]
+    },
+    {
+      "symbol": "MSFT",
+      "side": "buy",
+      "thesis_role": "existing_actionable_holding",
+      "quote": "399.97/400.09",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "same_day_duplicate_buy",
+        "review_backlog_throttle"
+      ],
+      "detail": "1주 ask 400.09 USD와 spread 약 0.0300%는 양호했지만 overnight quote가 약 33.41분 stale로 5분 cap을 넘었고, 2026-06-15 14:39 ET regular-session buy와 pending_1d_count=18이 신규 validation buy를 계속 막았다.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/trade-ledger/reviews/review-due-index.json"
+      ]
+    },
+    {
+      "symbol": "NOK",
+      "side": "buy",
+      "thesis_role": "existing_actionable_holding",
+      "quote": "14.92/15.49",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "review_backlog_throttle",
+        "validation_lifecycle_add_block",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "1주 notional은 cap 이내였지만 overnight quote가 약 33.41분 stale였고 spread 약 3.7488%도 cap을 넘었다. 또한 review-due-index의 blocked_add_symbols=[NOK]와 pending_1d_count=18이 add path를 계속 막는다.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/trade-ledger/reviews/review-due-index.json"
+      ]
+    },
+    {
+      "symbol": "QQQ",
+      "side": "buy",
+      "thesis_role": "benchmark_fallback",
+      "quote": "719.66/799.94",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "after_hours_notional_cap",
+        "review_backlog_throttle",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "overnight quote가 약 33.41분 stale였고 1주 ask 799.94 USD는 after-hours per-order cap 약 513.43 USD를 넘었다. spread 약 10.5659%와 backlog throttle도 함께 남았다.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/trade-ledger/reviews/review-due-index.json"
+      ]
+    },
+    {
+      "symbol": "SPY",
+      "side": "buy",
+      "thesis_role": "benchmark_fallback",
+      "quote": "753.72/754.96",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "after_hours_notional_cap",
+        "review_backlog_throttle"
+      ],
+      "detail": "benchmark fallback 자체는 유지됐지만 overnight quote가 약 33.41분 stale였고 1주 ask 754.96 USD는 after-hours per-order cap 약 513.43 USD를 넘었다. backlog throttle도 신규 buy를 계속 차단한다.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/trade-ledger/reviews/review-due-index.json"
+      ]
+    },
+    {
+      "symbol": "SMH",
+      "side": "buy",
+      "thesis_role": "diversifier_fallback",
+      "quote": "644.69/645.98",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "after_hours_notional_cap",
+        "review_backlog_throttle"
+      ],
+      "detail": "overnight quote가 약 33.41분 stale였고 1주 ask 645.98 USD는 after-hours per-order cap 약 513.43 USD를 넘었다. spread 약 0.1999%는 cap 이내였지만 notional gate와 backlog throttle이 막았다.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/trade-ledger/reviews/review-due-index.json"
+      ]
+    },
+    {
+      "symbol": "TSLA",
+      "side": "buy",
+      "thesis_role": "watch_only_event_optionality",
+      "quote": "405.19/419.07",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "watch_only_thesis",
+        "review_backlog_throttle",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "overnight quote가 약 33.41분 stale였고 spread 약 3.3679%가 cap을 넘었다. watch-only thesis와 backlog throttle도 유지돼 fallback 승격이 불가능했다.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/trade-ledger/reviews/review-due-index.json"
+      ]
+    },
+    {
+      "symbol": "SLB",
+      "side": "buy",
+      "thesis_role": "diversifier_fallback",
+      "quote": "44.99/56.96",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "overnight quote가 약 33.41분 stale였고 spread 약 23.4821%가 cap을 크게 초과했다. 1주 notional은 가능하지만 quote/spread hard gate가 닫혀 buy fallback으로 승격되지 않았다.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/trade-ledger/reviews/review-due-index.json"
+      ]
+    },
+    {
+      "symbol": "GE",
+      "side": "buy",
+      "thesis_role": "industrial_diversifier_fallback",
+      "quote": "316.70/349.71",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "overnight quote가 약 33.41분 stale였고 spread 약 9.9068%가 cap을 크게 넘었다. price/size 자체보다 after-hours execution quality gate가 먼저 막혔다.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1711-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/trade-ledger/reviews/review-due-index.json"
+      ]
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-1731-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-1731-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-1731-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json"
+  ]
+}
