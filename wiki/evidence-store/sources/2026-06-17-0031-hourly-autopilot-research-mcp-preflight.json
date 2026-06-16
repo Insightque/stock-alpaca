@@ -1,0 +1,1036 @@
+{
+  "run_id": "2026-06-17-0031-hourly-autopilot",
+  "created_at": "2026-06-16T15:31:32+00:00",
+  "paper": true,
+  "source": "scheduler local MCP stdio preflight",
+  "symbols": [
+    "NEE",
+    "AAPL",
+    "NVDA",
+    "BAC",
+    "SLB",
+    "JNJ",
+    "NKE",
+    "AMZN",
+    "SPY",
+    "PLTR",
+    "WMT",
+    "QQQ"
+  ],
+  "symbol_source": "alpaca_core_preflight",
+  "cache_dir": "/Users/insightque/stock-alpaca/.cache/research-mcp-preflight",
+  "cache_enabled": true,
+  "circuit_breaker_seconds": 600,
+  "providers": [
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T15:31:32+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_company_info|get_recent_filings",
+      "per_symbol": {
+        "NEE": {
+          "cik": "0000753308",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "AAPL": {
+          "cik": "0000320193",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "NVDA": {
+          "cik": "0001045810",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "BAC": {
+          "cik": "0000070858",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "SLB": {
+          "cik": "0000087347",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "JNJ": {
+          "cik": "0000200406",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "NKE": {
+          "cik": "0000320187",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "AMZN": {
+          "cik": "0001018724",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "SPY": {
+          "cik": "0000884394",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "PLTR": {
+          "cik": "0001321655",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "WMT": {
+          "cik": "0000104169",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "QQQ": {
+          "cik": "0001067839",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-0031-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "outcome": "failed",
+      "checked_at": "2026-06-16T15:31:32+00:00",
+      "gap_category": "provider_error",
+      "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-16T14:51:29+00:00, retry after ~1196s.",
+      "retry_count": 0,
+      "payload": {
+        "throttled": true,
+        "last_attempt_at": "2026-06-16T14:51:29+00:00",
+        "min_interval_seconds": 3600,
+        "requested_symbols": [
+          "NEE",
+          "AAPL",
+          "NVDA",
+          "BAC",
+          "SLB",
+          "JNJ",
+          "NKE",
+          "AMZN",
+          "SPY",
+          "PLTR",
+          "WMT",
+          "QQQ"
+        ],
+        "previous_symbols": [
+          "SPY",
+          "NVDA",
+          "NEE",
+          "BAC",
+          "SLB",
+          "AMZN",
+          "SO",
+          "NKE",
+          "GOOGL",
+          "PLTR",
+          "WMT",
+          "COP"
+        ],
+        "cache_scope": "key-1dbada164161"
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-0031-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T13:31:34+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_macro_snapshot",
+      "payload": {
+        "observation_end": null,
+        "series": [
+          {
+            "series_id": "DGS10",
+            "latest": {
+              "realtime_start": "2026-06-15",
+              "realtime_end": "2026-06-15",
+              "date": "2026-06-12",
+              "value": "4.48"
+            }
+          },
+          {
+            "series_id": "DGS2",
+            "latest": {
+              "realtime_start": "2026-06-15",
+              "realtime_end": "2026-06-15",
+              "date": "2026-06-12",
+              "value": "4.09"
+            }
+          },
+          {
+            "series_id": "FEDFUNDS",
+            "latest": {
+              "realtime_start": "2026-06-01",
+              "realtime_end": "2026-06-01",
+              "date": "2026-05-01",
+              "value": "3.63"
+            }
+          },
+          {
+            "series_id": "CPIAUCSL",
+            "latest": {
+              "realtime_start": "2026-06-10",
+              "realtime_end": "2026-06-10",
+              "date": "2026-05-01",
+              "value": "333.979"
+            }
+          },
+          {
+            "series_id": "UNRATE",
+            "latest": {
+              "realtime_start": "2026-06-05",
+              "realtime_end": "2026-06-05",
+              "date": "2026-05-01",
+              "value": "4.3"
+            }
+          },
+          {
+            "series_id": "NFCI",
+            "latest": {
+              "realtime_start": "2026-06-10",
+              "realtime_end": "2026-06-10",
+              "date": "2026-06-05",
+              "value": "-0.50600"
+            }
+          }
+        ]
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-16T13:31:37+00:00",
+      "cache_reused_at": "2026-06-16T15:31:32+00:00",
+      "cache_ttl_seconds": 21600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-0031-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "outcome": "failed",
+      "checked_at": "2026-06-16T15:31:32+00:00",
+      "gap_category": "unknown",
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "retry_count": 0,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-0031-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T15:31:32+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_recommendations|get_yahoo_finance_news",
+      "per_symbol": {
+        "NEE": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 3,
+                  "buy": 10,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 3,
+                  "buy": 10,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 4,
+                  "buy": 12,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 4,
+                  "buy": 12,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Is MYR Group (MYRG) Outperforming Other Utilities Stocks This Year?\nSummary: Here is how MYR Group (MYRG) and NextEra Energy (NEE) have performed compared to their sector so far this year.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/myr-group-myrg-outperforming-other-134005559.html\n\nTitle: Wall Street Bulls Look Optimistic About NextEra (NEE): Should You Buy?\nSummary: Based on the average brokerage recommendation (ABR), NextEra (NEE) should be added to one's portf"
+            },
+            "retry_count": 0
+          }
+        },
+        "AAPL": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 7,
+                  "buy": 23,
+                  "hold": 15,
+                  "sell": 1,
+                  "strongSell": 2
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 7,
+                  "buy": 23,
+                  "hold": 15,
+                  "sell": 1,
+                  "strongSell": 2
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 7,
+                  "buy": 25,
+                  "hold": 14,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 6,
+                  "buy": 25,
+                  "hold": 15,
+                  "sell": 1,
+                  "strongSell": 1
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Elon Musk's SpaceX is already closing in on Microsoft's market cap and a big Apple milestone\nSummary: SpaceX is close to overtaking Microsoft in its valuation.\nDescription: \nURL: https://finance.yahoo.com/markets/article/elon-musks-spacex-is-already-closing-in-on-microsofts-market-cap-and-a-big-apple-milestone-112701154.html\n\nTitle: Apple's iCloud Advantage Gets Scrutiny\nSummary: Regulator questions access for rival cloud services\nDescription: \nURL: https://finance.yahoo.com/technology/ar"
+            },
+            "retry_count": 0
+          }
+        },
+        "NVDA": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 10,
+                  "buy": 49,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 10,
+                  "buy": 48,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 10,
+                  "buy": 48,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 10,
+                  "buy": 48,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: SpaceX becomes retail's biggest IPO trade: Chart of the Day\nSummary: SpaceX's market debut turned into a record retail buying event.\nDescription: \nURL: https://finance.yahoo.com/markets/article/spacex-becomes-retails-biggest-ipo-trade-chart-of-the-day-100000991.html\n\nTitle: SpaceX just took Palantir's top spot with one of the most excessive valuation multiples in megacap tech\nSummary: Let the eye-opening valuations for SpaceX begin!\nDescription: \nURL: https://finance.yahoo.com/markets/art"
+            },
+            "retry_count": 0
+          }
+        },
+        "BAC": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 6,
+                  "buy": 16,
+                  "hold": 2,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 6,
+                  "buy": 16,
+                  "hold": 2,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 6,
+                  "buy": 16,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 7,
+                  "buy": 17,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Global Investors Are Looking Past Rate-Hike Bets and Still Betting on the AI Boom\nSummary: The world’s biggest investors are still buying stocks, even as the U.S.-Iran war keeps inflation risks high.\nDescription: \nURL: https://www.barrons.com/articles/stock-market-inflation-interest-rates-ai-ded74e6e?siteid=yhoof2&yptr=yahoo\n\nTitle: Citigroup Stock at Multi-Year High: Why Investors Should Stay Invested\nSummary: C shares trading near a 17-year high as restructuring progress, AI-led initiat"
+            },
+            "retry_count": 0
+          }
+        },
+        "SLB": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 7,
+                  "buy": 18,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 7,
+                  "buy": 18,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 7,
+                  "buy": 18,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 7,
+                  "buy": 18,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Why SLB (SLB) Stock Is Down Today\nSummary: Shares of oilfield services provider SLB (NYSE:SLB) fell 3.2% in the morning session after the price of oil fell sharply as the U.S. and Iran announced a peace deal to end their conflict.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/why-slb-slb-stock-down-003607787.html\n\nTitle: SLB (SLB) Stock Dips While Market Gains: Key Facts\nSummary: In the closing of the recent trading day, SLB (SLB) stood at $53.71, denoting a -4.4% m"
+            },
+            "retry_count": 0
+          }
+        },
+        "JNJ": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 5,
+                  "buy": 10,
+                  "hold": 8,
+                  "sell": 0,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 5,
+                  "buy": 10,
+                  "hold": 8,
+                  "sell": 0,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 5,
+                  "buy": 9,
+                  "hold": 10,
+                  "sell": 0,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 5,
+                  "buy": 9,
+                  "hold": 10,
+                  "sell": 0,
+                  "strongSell": 1
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Johnson & Johnson CEO Says Cure for Certain Cancers Is Realistic Goal\nSummary: Joaquin Duato said AI was already helping the company develop medicines faster, but the extent to which it boosts its bottom line has yet to be seen.\nDescription: \nURL: https://www.wsj.com/health/healthcare/johnson-johnson-ceo-says-cure-for-certain-cancers-is-realistic-goal-234d2767?siteid=yhoof2&yptr=yahoo\n\nTitle: AstraZeneca Stock Down 7% in 3 Months: Should You Buy, Sell or Hold?\nSummary: AZN shares fell aft"
+            },
+            "retry_count": 0
+          }
+        },
+        "NKE": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 1,
+                  "buy": 14,
+                  "hold": 21,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 2,
+                  "buy": 14,
+                  "hold": 20,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 2,
+                  "buy": 15,
+                  "hold": 19,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 5,
+                  "buy": 19,
+                  "hold": 13,
+                  "sell": 1,
+                  "strongSell": 1
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: 3 Profitable Stocks with Open Questions\nSummary: While profitability is essential, it doesn’t guarantee long-term success. Some companies that rest on their margins will lose ground as competition intensifies — as Jeff Bezos said, “Your margin is my opportunity”.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/3-profitable-stocks-open-questions-101704437.html\n\nTitle: Why I’m Buying Nike After Warning About Its Relevance Problem\nSummary: Nike’s relevance problem is now"
+            },
+            "retry_count": 0
+          }
+        },
+        "AMZN": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 15,
+                  "buy": 48,
+                  "hold": 4,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 15,
+                  "buy": 47,
+                  "hold": 4,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 14,
+                  "buy": 48,
+                  "hold": 5,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 15,
+                  "buy": 50,
+                  "hold": 4,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Amazon's AI Buildout Gets a Missouri Boost\nSummary: Pre-tax health funds may support wearable demand\nDescription: \nURL: https://finance.yahoo.com/healthcare/articles/amazons-ai-buildout-gets-missouri-151819635.html\n\nTitle: Yum! Brands Is Selling Pizza Hut for $2.7 Billion. Proceeds Will Fund Its AI Strategy.\nSummary: Yum! Brands stock rises modestly after the fast-food giant says Pizza Hut will be sold for nearly $3 billion.\nDescription: \nURL: https://www.barrons.com/articles/yum-brands-s"
+            },
+            "retry_count": 0
+          }
+        },
+        "SPY": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Stock Market Today: Dow Tests 52,000; SpaceX Pops Again, Sandisk Climbs (Live Coverage)\nSummary: Stock Market Today: The Dow Jones index rose Tuesday at the start of the Fed's two-day policy meeting. SpaceX stock surged.\nDescription: \nURL: https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-fed-meeting-spacex-stock-spcx/?src=A00220&yptr=yahoo\n\nTitle: This Vanguard ETF Is Quietly Outpacing the S&P 500 in 2026 and Costs Just 0.04 Percent\nSummary: The Vanguard Gr"
+            },
+            "retry_count": 0
+          }
+        },
+        "PLTR": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 1,
+                  "buy": 18,
+                  "hold": 10,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 1,
+                  "buy": 18,
+                  "hold": 10,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 1,
+                  "buy": 18,
+                  "hold": 10,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 1,
+                  "buy": 16,
+                  "hold": 10,
+                  "sell": 1,
+                  "strongSell": 1
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: SpaceX just took Palantir's top spot with one of the most excessive valuation multiples in megacap tech\nSummary: Let the eye-opening valuations for SpaceX begin!\nDescription: \nURL: https://finance.yahoo.com/markets/article/spacex-just-took-palantirs-top-spot-with-one-of-the-most-excessive-valuation-multiples-in-megacap-tech-155303264.html\n\nTitle: Cathie Wood's ARKK Cuts BMNR Stake On Bitmine's Holdings Pop, Joins Trims Of Roku, Tesla, AMD In No-Buy Monday\nSummary: Sister funds ARKQ and AR"
+            },
+            "retry_count": 0
+          }
+        },
+        "WMT": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 9,
+                  "buy": 29,
+                  "hold": 4,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 9,
+                  "buy": 30,
+                  "hold": 4,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 9,
+                  "buy": 30,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 9,
+                  "buy": 31,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Instacart Leads on Price Cuts as Grocery Delivery Competition Heats Up\nSummary: Wells Fargo survey shows Instacart's basket costs down 6% since September 2025\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/instacart-leads-price-cuts-grocery-141712006.html\n\nTitle: It Wasn’t a Strait of Hormuz Relief Rally, After All\nSummary: Why didn’t anything but tech rally on Monday after the U.S. and Iran announced an agreement that would reopen the Strait of Hormuz?  Peter Boockv"
+            },
+            "retry_count": 0
+          }
+        },
+        "QQQ": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Stock Market Today: Dow Tests 52,000; SpaceX Pops Again, Sandisk Climbs (Live Coverage)\nSummary: Stock Market Today: The Dow Jones index rose Tuesday at the start of the Fed's two-day policy meeting. SpaceX stock surged.\nDescription: \nURL: https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-fed-meeting-spacex-stock-spcx/?src=A00220&yptr=yahoo\n\nTitle: This Vanguard ETF Is Quietly Outpacing the S&P 500 in 2026 and Costs Just 0.04 Percent\nSummary: The Vanguard Gr"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-0031-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    }
+  ],
+  "mcp_coverage_hint": [
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T15:31:32+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-0031-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-16T15:31:32+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-0031-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-16T14:51:29+00:00, retry after ~1196s.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T13:31:34+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-0031-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-16T15:31:32+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-0031-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "gap_category": "unknown",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T15:31:32+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-0031-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ]
+}
