@@ -1,0 +1,343 @@
+{
+  "run_id": "2026-06-16-1211-after-hours-autopilot",
+  "created_at": "2026-06-16T03:13:42Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "paper": true,
+  "review_bucket": "after_hours_validation",
+  "scheduler_preflights": {
+    "alpaca_core": "wiki/evidence-store/sources/2026-06-16-1211-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp": "wiki/evidence-store/sources/2026-06-16-1211-after-hours-autopilot-research-mcp-preflight.json"
+  },
+  "alpaca_core_preflight": {
+    "first_blocking_gate": "market_closed",
+    "market_closed_expected_nonblocking_after_hours": true,
+    "passing_rows_reused": [
+      "clock",
+      "account",
+      "positions",
+      "open_orders",
+      "recent_activities",
+      "quotes",
+      "assets",
+      "snapshots"
+    ],
+    "source_ref": "wiki/evidence-store/sources/2026-06-16-1211-after-hours-autopilot-alpaca-core-preflight.json",
+    "run_id": "2026-06-16-1211-after-hours-autopilot"
+  },
+  "direct_continuity_checks": {
+    "clock": {
+      "timestamp": "2026-06-15T23:12:58.318323739-04:00",
+      "is_open": false,
+      "next_open": "2026-06-16T09:30:00-04:00",
+      "next_close": "2026-06-16T16:00:00-04:00"
+    },
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 102241.49,
+      "cash": 29836.36,
+      "buying_power": 305668.56,
+      "long_market_value": 72405.13,
+      "currency": "USD"
+    },
+    "positions_count": 33,
+    "watchlists_count": 0,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_detected": 0,
+    "quotes": {
+      "QQQ": {
+        "bid": 742.15,
+        "ask": 742.24,
+        "quote_at": "2026-06-16T02:52:57.377251893Z",
+        "quote_age_minutes": 0.51,
+        "spread_pct": 0.0121
+      },
+      "RGTI": {
+        "bid": 22.46,
+        "ask": 22.56,
+        "quote_at": "2026-06-16T02:52:35.998378950Z",
+        "quote_age_minutes": 0.87,
+        "spread_pct": 0.4442
+      },
+      "NOK": {
+        "bid": 14.56,
+        "ask": 14.57,
+        "quote_at": "2026-06-16T02:52:54.313476842Z",
+        "quote_age_minutes": 0.56,
+        "spread_pct": 0.0688
+      },
+      "TSLA": {
+        "bid": 403.92,
+        "ask": 404.17,
+        "quote_at": "2026-06-16T02:52:52.735771399Z",
+        "quote_age_minutes": 0.59,
+        "spread_pct": 0.0099
+      },
+      "SMH": {
+        "bid": 642.67,
+        "ask": 643.18,
+        "quote_at": "2026-06-16T02:52:55.756308567Z",
+        "quote_age_minutes": 0.54,
+        "spread_pct": 0.0793
+      },
+      "SLB": {
+        "bid": 53.6,
+        "ask": 53.91,
+        "quote_at": "2026-06-16T02:52:03.903888367Z",
+        "quote_age_minutes": 1.4,
+        "spread_pct": 0.5767
+      },
+      "AVGO": {
+        "bid": 391.8,
+        "ask": 392.26,
+        "quote_at": "2026-06-16T02:52:51.148967044Z",
+        "quote_age_minutes": 0.61,
+        "spread_pct": 0.0153
+      },
+      "GE": {
+        "bid": 340.67,
+        "ask": 341.77,
+        "quote_at": "2026-06-16T02:17:43.576889243Z",
+        "quote_age_minutes": 19.09,
+        "spread_pct": 0.3224
+      },
+      "SPY": {
+        "bid": 754.09,
+        "ask": 754.14,
+        "quote_at": "2026-06-16T02:52:57.384358468Z",
+        "quote_age_minutes": 0.51,
+        "spread_pct": 0.0066
+      },
+      "MSFT": {
+        "bid": 399.12,
+        "ask": 399.2,
+        "quote_at": "2026-06-16T02:52:55.278793789Z",
+        "quote_age_minutes": 0.55,
+        "spread_pct": 0.02
+      },
+      "PFE": {
+        "bid": 26.03,
+        "ask": 26.08,
+        "quote_at": "2026-06-16T02:52:32.837198986Z",
+        "quote_age_minutes": 0.92,
+        "spread_pct": 0.1922
+      }
+    },
+    "quote_feed": "overnight"
+  },
+  "after_hours_budget": {
+    "after_hours_new_orders_submitted_today": 0,
+    "max_new_orders_per_session": 2,
+    "status": "pass"
+  },
+  "review_backlog": {
+    "pending_1d_count": 18,
+    "pending_5d_count": 19,
+    "pending_20d_count": 1,
+    "blocked_add_symbols": [
+      "NOK"
+    ]
+  },
+  "candidate_diagnostics": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "thesis_role": "post-earnings staged de-risking trim",
+      "quote": {
+        "bid": 391.8,
+        "ask": 392.26,
+        "quote_at": "2026-06-16T02:52:51.148967044Z",
+        "quote_age_minutes": 0.61,
+        "spread_pct": 0.0153
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "duplicate_symbol_side_same_day"
+      ],
+      "detail": "AVGO retained the staged de-risking trim rationale and the refreshed overnight spread normalized to about 0.0153%, but the 2026-06-15 11:18 ET regular-session trim fill still blocks another same-day sell."
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "thesis_role": "residual speculative sleeve trim",
+      "quote": {
+        "bid": 22.46,
+        "ask": 22.56,
+        "quote_at": "2026-06-16T02:52:35.998378950Z",
+        "quote_age_minutes": 0.87,
+        "spread_pct": 0.4442
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "duplicate_symbol_side_same_day",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "Residual speculative trim rationale remained, but the refreshed overnight spread widened back to about 0.2665% and the 2026-06-15 09:41 ET same-day trim fill still blocks another sell."
+    },
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "thesis_role": "repeated weak-review trim precedent",
+      "quote": {
+        "bid": 26.03,
+        "ask": 26.08,
+        "quote_at": "2026-06-16T02:52:32.837198986Z",
+        "quote_age_minutes": 0.92,
+        "spread_pct": 0.1922
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "duplicate_symbol_side_same_day"
+      ],
+      "detail": "PFE still had a trim precedent and the refreshed overnight spread tightened to about 0.1922%, but today already contains one regular-session filled sell so duplicate discipline continues to block another sell."
+    },
+    {
+      "symbol": "MSFT",
+      "side": "buy",
+      "thesis_role": "existing actionable holding fallback",
+      "quote": {
+        "bid": 399.12,
+        "ask": 399.2,
+        "quote_at": "2026-06-16T02:52:55.278793789Z",
+        "quote_age_minutes": 0.55,
+        "spread_pct": 0.02
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "review_backlog_throttle",
+        "duplicate_symbol_side_same_day"
+      ],
+      "detail": "MSFT had a fresh overnight quote, inside-spread execution quality, and 1-share notional below the after-hours cap, but pending_1d_count=18 still blocks new validation buys and MSFT already received a same-day regular-session buy."
+    },
+    {
+      "symbol": "NOK",
+      "side": "buy",
+      "thesis_role": "existing actionable holding fallback",
+      "quote": {
+        "bid": 14.56,
+        "ask": 14.57,
+        "quote_at": "2026-06-16T02:52:54.313476842Z",
+        "quote_age_minutes": 0.56,
+        "spread_pct": 0.0688
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "review_backlog_throttle",
+        "validation_lifecycle_add_block"
+      ],
+      "detail": "NOK kept a fresh overnight quote, about 0.0688% spread, and 1-share notional within the after-hours cap, but review-due-index still keeps NOK inside blocked_add_symbols and pending_1d_count=18 continues to stop new validation buys."
+    },
+    {
+      "symbol": "QQQ",
+      "side": "buy",
+      "thesis_role": "benchmark fallback",
+      "quote": {
+        "bid": 742.15,
+        "ask": 742.24,
+        "quote_at": "2026-06-16T02:52:57.377251893Z",
+        "quote_age_minutes": 0.51,
+        "spread_pct": 0.0121
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "after_hours_notional_cap",
+        "review_backlog_throttle"
+      ],
+      "detail": "QQQ had a fresh overnight benchmark quote, but 1-share ask 742.24 USD exceeded the after-hours per-order cap about 511.08 USD and new buys remained backlog-blocked."
+    },
+    {
+      "symbol": "SPY",
+      "side": "buy",
+      "thesis_role": "benchmark secondary fallback",
+      "quote": {
+        "bid": 754.09,
+        "ask": 754.14,
+        "quote_at": "2026-06-16T02:52:57.384358468Z",
+        "quote_age_minutes": 0.51,
+        "spread_pct": 0.0066
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "after_hours_notional_cap",
+        "review_backlog_throttle"
+      ],
+      "detail": "SPY had a fresh overnight benchmark quote and tight spread, but 1-share ask 754.14 USD remained above the after-hours per-order cap about 511.08 USD while review backlog throttle also stayed active."
+    },
+    {
+      "symbol": "SMH",
+      "side": "buy",
+      "thesis_role": "semiconductor ETF diversifier fallback",
+      "quote": {
+        "bid": 642.67,
+        "ask": 643.18,
+        "quote_at": "2026-06-16T02:52:55.756308567Z",
+        "quote_age_minutes": 0.54,
+        "spread_pct": 0.0793
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "after_hours_notional_cap",
+        "review_backlog_throttle"
+      ],
+      "detail": "SMH had a fresh overnight quote and about 0.0793% spread, but 1-share ask 643.18 USD still exceeded the after-hours per-order cap and the buy backlog throttle remained active."
+    },
+    {
+      "symbol": "TSLA",
+      "side": "buy",
+      "thesis_role": "existing actionable holding fallback",
+      "quote": {
+        "bid": 403.92,
+        "ask": 404.17,
+        "quote_at": "2026-06-16T02:52:52.735771399Z",
+        "quote_age_minutes": 0.59,
+        "spread_pct": 0.0099
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "watch_only_thesis"
+      ],
+      "detail": "TSLA showed a fresh overnight quote, about 0.0099% spread, and 1-share notional below the cap, but the ticker remains watch-only event optionality rather than an executable fallback add."
+    },
+    {
+      "symbol": "SLB",
+      "side": "buy",
+      "thesis_role": "energy-services diversifier fallback",
+      "quote": {
+        "bid": 53.6,
+        "ask": 53.91,
+        "quote_at": "2026-06-16T02:52:03.903888367Z",
+        "quote_age_minutes": 1.4,
+        "spread_pct": 0.5767
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "SLB stayed within the after-hours notional cap, but the refreshed overnight quote 53.60/53.91 still implied about 0.5767% spread, above the 0.25% after-hours cap."
+    },
+    {
+      "symbol": "GE",
+      "side": "buy",
+      "thesis_role": "industrial diversifier fallback",
+      "quote": {
+        "bid": 340.67,
+        "ask": 341.77,
+        "quote_at": "2026-06-16T02:17:43.576889243Z",
+        "quote_age_minutes": 19.09,
+        "spread_pct": 0.3224
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "GE remained blocked because the overnight quote 340.67/341.77 was about 19.09 minutes stale at decision time and the spread stayed around 0.3224%, above the after-hours cap."
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-1211-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-1211-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/reviews/review-due-index.json"
+  ]
+}
