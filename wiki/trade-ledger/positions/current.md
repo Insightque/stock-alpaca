@@ -2,6 +2,19 @@
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-17-0011-hourly-autopilot]]
+- Open/new: 없음. live `get_orders(status=open)` 기준 open orders `0`건이었다.
+- Filled: 이번 cycle 신규 fill 없음. same-day order history는 earlier `AVGO` sell 1건, `PFE` sell 1건, `SO` sell 1건, `RGTI` canceled 1건만 유지됐다.
+- Cancelled: 신규 취소 없음. `RGTI` same-day sell 7주는 earlier cycle stale cleanup 결과 `canceled` 상태를 유지했다.
+- Position count observed by Alpaca MCP: live `get_all_positions` 기준 positions `33`건, live `get_orders(status=open)` 기준 open orders `0`건이었다.
+- Recent reconciliation scope: scheduler-owned `0011` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-16T13:11:00Z)/get_stock_latest_quote(feed=iex)/get_stock_snapshot(feed=iex)`로 submit boundary를 다시 열었다. `SO`는 quote `94.67/94.70` spread `0.0317%`로 trim gate를 통과했지만 same-day `SO` sell fill이 이미 생겨 duplicate symbol/side discipline에 막혔고, `RGTI`/`PFE`도 같은 duplicate gate를 유지했다. `SPY/QQQ`는 validation floor cap 초과, `NOK`는 lifecycle add-block과 review backlog throttle 때문에 no-submit으로 종료했다. `get_account_info` 기준 cash는 `30,344.81 USD`, portfolio value는 `101,506.73 USD`였다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-17-0011-hourly-autopilot-post-trade.json`
+
+_Last updated: 2026-06-17 00:15 KST_
+
+## 최신 hourly-autopilot reconciliation
+
 - Run: [[2026-06-16-2351-hourly-autopilot]]
 - Open/new: 없음. `client_order_id=hourly-20260616-2351-sell-so`는 same client id reconciliation 기준 즉시 `filled`였다.
 - Filled: `SO` sell 1주 at `94.77 USD`
