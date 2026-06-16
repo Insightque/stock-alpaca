@@ -1,0 +1,73 @@
+{
+  "run_id": "2026-06-17-0451-hourly-autopilot",
+  "created_at": "2026-06-16T19:51:33Z",
+  "paper": true,
+  "submit_attempted": false,
+  "reconciliation_reason": "no_submit_scheduler_preflight_reuse",
+  "account_snapshot": {
+    "portfolio_value": 100758.65,
+    "cash": 30344.81,
+    "buying_power": 302779.59,
+    "currency": "USD",
+    "status": "ACTIVE"
+  },
+  "positions_summary": {
+    "position_count": 33,
+    "open_orders": 0,
+    "focus_positions": [
+      {
+        "symbol": "SO",
+        "qty": 5,
+        "qty_available": 5,
+        "avg_entry_price": 92.975,
+        "current_price": 94.28
+      },
+      {
+        "symbol": "RGTI",
+        "qty": 28,
+        "qty_available": 28,
+        "avg_entry_price": 25.569583,
+        "current_price": 20.75
+      },
+      {
+        "symbol": "PFE",
+        "qty": 3,
+        "qty_available": 3,
+        "avg_entry_price": 25.925,
+        "current_price": 26.01
+      }
+    ]
+  },
+  "same_day_fills_seen": [
+    {
+      "symbol": "SO",
+      "side": "sell",
+      "qty": 1,
+      "filled_avg_price": 94.77,
+      "filled_at": "2026-06-16T14:58:02.526808Z"
+    },
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "qty": 1,
+      "filled_avg_price": 25.94,
+      "filled_at": "2026-06-16T14:18:55.368488Z"
+    },
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1,
+      "filled_avg_price": 387.76,
+      "filled_at": "2026-06-16T13:43:57.208757Z"
+    }
+  ],
+  "checked_via": "scheduler-owned 0451 stale cleanup/core/research preflight reuse",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-0451-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-17-0451-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-0451-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-0451-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/current-runs/daily/2026-06-17-0451-hourly-autopilot.md",
+    "wiki/trade-ledger/orders/2026-06-17-0451-hourly-autopilot.json"
+  ]
+}
