@@ -1,5 +1,17 @@
 # portfolio-current
 
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-16-1651-after-hours-autopilot]]
+- Open/new: 없음. 이번 cycle에서는 `place_stock_order`를 호출하지 않았고 신규 `client_order_id`도 만들지 않았다.
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned `1651` core preflight와 direct `get_clock/get_account_info/get_all_positions/get_watchlists/get_orders(status=open)/get_orders(status=all, after=2026-06-15T20:00:00Z)/get_account_activities(activity_types=[FILL], after=2026-06-15T20:00:00Z)/get_stock_latest_quote(feed=overnight)/get_stock_snapshot(feed=overnight)` continuity 기준 account `ACTIVE`, positions `33`건, watchlists `0`건, open orders `0`건, same-session after-hours orders/fills `0`건이었다.
+- Recent reconciliation scope: scheduler-owned `1651` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. direct `overnight` quote check는 `QQQ/RGTI/NOK/TSLA/SMH/SLB/AVGO/GE/SPY/MSFT/PFE`를 2026-06-16 16:53 KST에 재확인했다. `AVGO`는 same-day duplicate sell discipline, `RGTI/PFE`는 duplicate sell plus spread cap, `MSFT`는 same-day duplicate buy와 review backlog throttle, `NOK`는 add-block plus spread cap, `QQQ/SPY/SMH`는 per-order cap 또는 spread cap, `TSLA`는 watch-only thesis, `GE/SLB`는 spread cap 때문에 submit path가 열리지 않았다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-16-1651-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-06-16 16:53 KST_
 
 ## 최신 after-hours-autopilot reconciliation
 
