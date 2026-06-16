@@ -1,0 +1,725 @@
+{
+  "run_id": "2026-06-16-1951-after-hours-autopilot",
+  "created_at": "2026-06-16T10:51:27+00:00",
+  "paper": true,
+  "source": "scheduler local MCP stdio preflight",
+  "symbols": [
+    "QQQ",
+    "RGTI",
+    "NOK",
+    "TSLA",
+    "SMH",
+    "SLB",
+    "AVGO",
+    "GE"
+  ],
+  "symbol_source": "alpaca_core_preflight",
+  "cache_dir": "/Users/insightque/stock-alpaca/.cache/after-hours-research-mcp-preflight",
+  "cache_enabled": true,
+  "circuit_breaker_seconds": 600,
+  "providers": [
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T09:51:29+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_company_info|get_recent_filings",
+      "per_symbol": {
+        "SMH": {
+          "outcome": "gap",
+          "gap_category": "empty_response",
+          "gap_reason": "symbol missing from local SEC ticker-CIK cache; likely ETF/non-company lookup gap"
+        },
+        "QQQ": {
+          "cik": "0001067839",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "RGTI": {
+          "cik": "0001838359",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "NOK": {
+          "cik": "0000924613",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "TSLA": {
+          "cik": "0001318605",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "SLB": {
+          "cik": "0000087347",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "AVGO": {
+          "cik": "0001730168",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "GE": {
+          "cik": "0000040545",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-16T09:51:31+00:00",
+      "cache_reused_at": "2026-06-16T10:51:27+00:00",
+      "cache_ttl_seconds": 3600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1951-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "outcome": "gap",
+      "checked_at": "2026-06-16T09:51:29+00:00",
+      "gap_category": "empty_response",
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "retry_count": 0,
+      "tool": "TOOL_LIST|TOOL_GET|TOOL_CALL(NEWS_SENTIMENT)",
+      "payload": {
+        "item_count": 0,
+        "candidate_payload": {
+          "items": "0",
+          "sentiment_score_definition": "x <= -0.35: Bearish; -0.35 < x <= -0.15: Somewhat-Bearish; -0.15 < x < 0.15: Neutral; 0.15 <= x < 0.35: Somewhat_Bullish; x >= 0.35: Bullish",
+          "relevance_score_definition": "0 < x <= 1, with a higher score indicating higher relevance.",
+          "feed": []
+        }
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-16T09:51:31+00:00",
+      "cache_reused_at": "2026-06-16T10:51:27+00:00",
+      "cache_ttl_seconds": 3600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1951-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T09:51:29+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_macro_snapshot",
+      "payload": {
+        "observation_end": null,
+        "series": [
+          {
+            "series_id": "DGS10",
+            "latest": {
+              "realtime_start": "2026-06-15",
+              "realtime_end": "2026-06-15",
+              "date": "2026-06-12",
+              "value": "4.48"
+            }
+          },
+          {
+            "series_id": "DGS2",
+            "latest": {
+              "realtime_start": "2026-06-15",
+              "realtime_end": "2026-06-15",
+              "date": "2026-06-12",
+              "value": "4.09"
+            }
+          },
+          {
+            "series_id": "FEDFUNDS",
+            "latest": {
+              "realtime_start": "2026-06-01",
+              "realtime_end": "2026-06-01",
+              "date": "2026-05-01",
+              "value": "3.63"
+            }
+          },
+          {
+            "series_id": "CPIAUCSL",
+            "latest": {
+              "realtime_start": "2026-06-10",
+              "realtime_end": "2026-06-10",
+              "date": "2026-05-01",
+              "value": "333.979"
+            }
+          },
+          {
+            "series_id": "UNRATE",
+            "latest": {
+              "realtime_start": "2026-06-05",
+              "realtime_end": "2026-06-05",
+              "date": "2026-05-01",
+              "value": "4.3"
+            }
+          },
+          {
+            "series_id": "NFCI",
+            "latest": {
+              "realtime_start": "2026-06-10",
+              "realtime_end": "2026-06-10",
+              "date": "2026-06-05",
+              "value": "-0.50600"
+            }
+          }
+        ]
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-16T09:51:32+00:00",
+      "cache_reused_at": "2026-06-16T10:51:27+00:00",
+      "cache_ttl_seconds": 21600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1951-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "outcome": "failed",
+      "checked_at": "2026-06-16T10:51:27+00:00",
+      "gap_category": "unknown",
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "retry_count": 0,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1951-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T10:31:29+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_recommendations|get_yahoo_finance_news",
+      "per_symbol": {
+        "QQQ": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: The Zacks Analyst Blog Highlights SPCX, IWF, QQQ, ORBX, NASA, MARS, JEDI, AIS, UFO, RONB and XOVR\nSummary: SpaceX surged in its record Nasdaq debut, sparking debate over valuation as investors weigh growth plans, index inclusion and ETF exposure.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/zacks-analyst-blog-highlights-spcx-082900731.html\n\nTitle: Dow Hits Record High, Nasdaq And S&P 500 Jump On US-Iran Deal And SpaceX Optimism — SPCX, NVDA, ROKU, CRM, AMZN In Focu"
+            },
+            "retry_count": 0
+          }
+        },
+        "RGTI": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 1,
+                  "buy": 8,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 1,
+                  "buy": 8,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 1,
+                  "buy": 8,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 1,
+                  "buy": 8,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: HPE Stock Eyes Fourth Straight Monthly Win: Quantum Tie-Ups With INTC, RGTI Aren't Moving Retail's Needle\nSummary: The company’s partnerships with eight quantum computing firms aim to build hybrid quantum-supercomputing platforms.\nDescription: \nURL: https://stocktwits.com/news-articles/markets/equity/hpe-stock-eyes-fourth-straight-monthly-win-quantum-tie-ups-with-intc-rgti/cZKW1PzR7EK\n\nTitle: Stock Market Today, June 15: D-Wave Quantum Jumps After Mizuho Raises Price Target on Roadmap Pro"
+            },
+            "retry_count": 0
+          }
+        },
+        "NOK": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 4,
+                  "buy": 4,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 4,
+                  "buy": 4,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 4,
+                  "buy": 4,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 4,
+                  "buy": 2,
+                  "hold": 4,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Ubiquiti Buoyed by a Flexible Business Model: Worth a Buy Now?\nSummary: UI's flexible model, community-led structure and R&D push support demand as wireless networking needs grow across markets.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/ubiquiti-buoyed-flexible-business-model-150600499.html\n\nTitle: Can Nokia's Latest AI Framework Boost Its Competitive Edge?\nSummary: NOK's agentic AI framework upgrades NSP to automate multi-vendor IP networks, improve troubleshoo"
+            },
+            "retry_count": 0
+          }
+        },
+        "TSLA": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 5,
+                  "buy": 18,
+                  "hold": 18,
+                  "sell": 4,
+                  "strongSell": 2
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 5,
+                  "buy": 18,
+                  "hold": 17,
+                  "sell": 4,
+                  "strongSell": 3
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 5,
+                  "buy": 18,
+                  "hold": 17,
+                  "sell": 4,
+                  "strongSell": 3
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 5,
+                  "buy": 18,
+                  "hold": 17,
+                  "sell": 6,
+                  "strongSell": 2
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Global Electric Vehicle Outlook Weaker Than Previously Expected, BloombergNEF Says\nSummary: Global electric vehicle sales are expected to be slower than previously expected, especially in the\nDescription: \nURL: https://finance.yahoo.com/energy/articles/global-electric-vehicle-outlook-weaker-094701584.html\n\nTitle: That Didn't Take Long: SpaceX Earned Its First Wall Street Sell Rating Less Than an Hour After Trading Began\nSummary: SpaceX stock may plunge by up to 29% if this prognostication"
+            },
+            "retry_count": 0
+          }
+        },
+        "SMH": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: If You Put $500 a Month into This Tech ETF Since 2016, You Could Retire Tomorrow\nSummary: Drop $500 into the VanEck Semiconductor ETF (NYSEARCA:SMH) starting in June, 2016, add another $500 every month, and the math pegs the account at $495,000 this week. Total contributions across those ten years come to $60,500. Everything else is what a single-sector ETF did to your money while you ignored it. The math holds up ... If You Put $500 a Month into This Tech ETF Since 2016, You Could Retire"
+            },
+            "retry_count": 0
+          }
+        },
+        "SLB": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 7,
+                  "buy": 18,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 7,
+                  "buy": 18,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 7,
+                  "buy": 18,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 7,
+                  "buy": 18,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Why SLB (SLB) Stock Is Down Today\nSummary: Shares of oilfield services provider SLB (NYSE:SLB) fell 3.2% in the morning session after the price of oil fell sharply as the U.S. and Iran announced a peace deal to end their conflict.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/why-slb-slb-stock-down-003607787.html\n\nTitle: SLB (SLB) Stock Dips While Market Gains: Key Facts\nSummary: In the closing of the recent trading day, SLB (SLB) stood at $53.71, denoting a -4.4% m"
+            },
+            "retry_count": 0
+          }
+        },
+        "AVGO": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 8,
+                  "buy": 36,
+                  "hold": 4,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 7,
+                  "buy": 37,
+                  "hold": 4,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 7,
+                  "buy": 37,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 7,
+                  "buy": 40,
+                  "hold": 2,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: That Didn't Take Long: SpaceX Earned Its First Wall Street Sell Rating Less Than an Hour After Trading Began\nSummary: SpaceX stock may plunge by up to 29% if this prognostication proves accurate.\nDescription: \nURL: https://www.fool.com/investing/2026/06/16/didnt-take-long-spacex-first-wall-st-sell-rating/\n\nTitle: Broadcom Ties AI Infrastructure To Spring And Java Security Overhaul\nSummary: Broadcom (NasdaqGS:AVGO) has launched a major Spring and Java security initiative, described as the "
+            },
+            "retry_count": 0
+          }
+        },
+        "GE": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 3,
+                  "buy": 16,
+                  "hold": 2,
+                  "sell": 0,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 3,
+                  "buy": 16,
+                  "hold": 2,
+                  "sell": 0,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 3,
+                  "buy": 15,
+                  "hold": 2,
+                  "sell": 0,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 3,
+                  "buy": 15,
+                  "hold": 2,
+                  "sell": 0,
+                  "strongSell": 1
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: GE Aerospace (GE) Laps the Stock Market: Here's Why\nSummary: In the closing of the recent trading day, GE Aerospace (GE) stood at $342.26, denoting a +2.08% move from the preceding trading day.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/ge-aerospace-ge-laps-stock-214505558.html\n\nTitle: Dow Jones Stocks: Honeywell Aerospace Looms As GE Stock Tries To Break Out\nSummary: Dow Jones stock Honeywell announced the formal board approval of plans to spin out its Honeywell"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-16T10:31:50+00:00",
+      "cache_reused_at": "2026-06-16T10:51:27+00:00",
+      "cache_ttl_seconds": 1800,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1951-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    }
+  ],
+  "mcp_coverage_hint": [
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T09:51:29+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1951-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-16T09:51:29+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1951-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T09:51:29+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1951-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-16T10:51:27+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1951-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "gap_category": "unknown",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T10:31:29+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1951-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ]
+}
