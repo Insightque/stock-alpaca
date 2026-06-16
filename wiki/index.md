@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 08:53 KST after-hours-autopilot no-submit reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 09:14 KST after-hours-autopilot no-submit reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -55,6 +55,7 @@
 
 ## Current Runs
 
+- [[2026-06-16-0911-after-hours-autopilot]] - after-hours scheduled autopilot 실행. scheduler-owned `0911` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. direct Alpaca MCP continuity `overnight` quote는 `QQQ/MSFT/NOK/AVGO/TSLA/SPY` fresh after-hours quote를 회복했지만 `AVGO/RGTI/PFE`는 same-day duplicate sell discipline 또는 spread cap, `MSFT/NOK`는 review backlog/add-block, `SPY/QQQ`는 per-order cap에 막혀 no-submit으로 종료했다.
 - [[2026-06-16-0851-after-hours-autopilot]] - after-hours scheduled autopilot 실행. scheduler-owned `0851` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. direct Alpaca MCP continuity check도 regular market closed, same-session after-hours orders/fills `0`, open orders `0`를 재확인했지만 scheduler-owned IEX quote 기준 freshest `QQQ`도 약 `180.64`분 stale였고 `RGTI/NOK`는 spread cap 초과, `SLB/AVGO/PFE/MSFT/TSLA/GE/SMH`는 stale+wide spread, `SPY`는 bid-only quote라 executable stack을 만들지 못해 no-submit으로 종료했다.
 - [[2026-06-16-0831-after-hours-autopilot]] - after-hours scheduled autopilot 실행. scheduler-owned `0831` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 scheduler-owned IEX quote 기준 freshest `QQQ`도 약 `160.63`분 stale였고 `RGTI/NOK`는 spread cap 초과, `SLB/AVGO/PFE/MSFT/TSLA/GE/SMH`는 stale+wide spread, `SPY`는 bid-only quote라 executable stack을 만들지 못해 no-submit으로 종료했다.
 - [[2026-06-16-0811-after-hours-autopilot]] - after-hours scheduled autopilot 실행. scheduler-owned `0811` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. separate after-hours order budget은 `0/2`로 열려 있었지만 scheduler-owned IEX quote 기준 freshest `QQQ`도 약 `140.63`분 stale였고 `RGTI/NOK`는 spread cap 초과, `SLB/AVGO/PFE/MSFT/TSLA/GE/SMH`는 stale+wide spread, `SPY`는 bid-only quote라 executable stack을 만들지 못해 no-submit으로 종료했다.
