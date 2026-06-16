@@ -1,0 +1,30 @@
+{
+  "run_id": "2026-06-17-0811-after-hours-autopilot",
+  "created_at": "2026-06-16T23:11:31Z",
+  "session": "after_hours",
+  "paper": true,
+  "orders_submitted_this_run": 0,
+  "reconciliation": {
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_today": 0,
+    "positions_count": 33,
+    "watchlists_count": 0,
+    "cash": 30344.81,
+    "portfolio_value": 100724.03,
+    "buying_power": 302682.66
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-0811-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/evidence-store/sources/2026-06-17-0811-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-0811-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "notes": [
+    "No submit attempt occurred because the scheduler-owned 0811 quote rows already failed the fresh-quote hard gate across every evaluated buy and sell candidate.",
+    "The user required the scheduler-owned passing account, positions, orders, asset, quote, and spread rows to remain the submit-boundary evidence, so no additional live Alpaca continuity refresh reopened the decision boundary after those rows were already stale."
+  ],
+  "live_continuity": {
+    "performed": false,
+    "reason": "scheduler-owned 0811 preflight remained the only submit-boundary Alpaca evidence for this cycle"
+  }
+}
