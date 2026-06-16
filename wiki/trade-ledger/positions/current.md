@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-06-17-0751-after-hours-autopilot]]
+- Open/new: 없음. scheduler-owned `0751` preflight `get_orders(status=open)` 기준 open orders `0`건이었고, live `get_orders(status=open)` 기준도 `0`건이었다.
+- Filled: 이번 cycle 신규 after-hours fill 없음. live `get_account_activities(activity_types=[FILL], after=2026-06-16T20:00:00-04:00)` 기준 same-session fill `0`건이었다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler core preflight `get_all_positions` 기준 positions `33`건이었고, live `get_all_positions` 기준 count도 `33`건으로 유지됐다.
+- Recent reconciliation scope: scheduler-owned `0751` core/research preflight를 source-of-record로 사용했고, 사용자가 같은 preflight의 passing account/positions/orders/asset/quote/spread rows를 submit-boundary evidence로 유지하라고 요구했으므로 fresh live quote refresh 없이 해당 row를 그대로 썼다. live continuity는 `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-16T20:00:00-04:00)/get_account_activities(activity_types=[FILL], after=2026-06-16T20:00:00-04:00)/get_watchlists`로만 제한했다. separate after-hours session submitted count는 `0/2`로 열려 있었지만 `QQQ` freshest shortlist quote도 age 약 `119.85분`, `IONQ`는 `140.43분`, `QBTS/JPM/PFE`는 `149.25-170.41분`, `AVGO/SO/RGTI` sell-trim 후보는 `171분대` stale quote와 wide spread로 submit path에 진입하지 못했다. `get_account_info` source-of-record 기준 cash는 `30,344.81 USD`, portfolio value는 `100,762.33 USD`였고 live `get_watchlists` 기준 watchlists `0`건도 재확인했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-17-0751-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-06-17 07:51 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-06-17-0731-after-hours-autopilot]]
 - Open/new: 없음. scheduler-owned `0731` preflight `get_orders(status=open)` 기준 open orders `0`건이었고, live `get_orders(status=open)` 기준도 `0`건이었다.
 - Filled: 이번 cycle 신규 after-hours fill 없음. live `get_account_activities(activity_types=[FILL], after=2026-06-16T20:00:00-04:00)` 기준 same-session fill `0`건이었다.
