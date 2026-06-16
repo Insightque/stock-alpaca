@@ -1,0 +1,169 @@
+{
+  "run_id": "2026-06-17-0351-hourly-autopilot",
+  "created_at": "2026-06-16T18:51:34Z",
+  "paper": true,
+  "session": "regular",
+  "preflight_reuse": true,
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-16T14:51:12.353108955-04:00",
+    "next_open": "2026-06-17T09:30:00-04:00",
+    "next_close": "2026-06-16T16:00:00-04:00"
+  },
+  "stale_order_cleanup": {
+    "status": "pass",
+    "remaining_open_orders": 0,
+    "source_ref": "wiki/evidence-store/sources/2026-06-17-0351-hourly-autopilot-stale-order-cleanup.json"
+  },
+  "alpaca_core_gate": {
+    "status": "pass",
+    "first_blocking_gate": "",
+    "source_ref": "wiki/evidence-store/sources/2026-06-17-0351-hourly-autopilot-alpaca-core-preflight.json"
+  },
+  "research_gate": {
+    "status": "pass",
+    "positive_confirmations": [
+      "sec-edgar",
+      "fred",
+      "yahoo-finance"
+    ],
+    "gaps": [
+      {
+        "server": "alpha-vantage",
+        "gap_category": "provider_error",
+        "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-16T18:31:32+00:00, retry after ~2397s."
+      },
+      {
+        "server": "firecrawl",
+        "gap_category": "unknown",
+        "gap_reason": "Firecrawl API error: Insufficient credits to perform this request."
+      }
+    ],
+    "source_ref": "wiki/evidence-store/sources/2026-06-17-0351-hourly-autopilot-research-mcp-preflight.json"
+  },
+  "risk_inputs": {
+    "new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 18,
+    "review_backlog_pending_5d_count": 19,
+    "review_backlog_pending_20d_count": 1,
+    "cash_deployment_blocker": "review_backlog_throttle"
+  },
+  "same_day_fills_seen": [
+    {
+      "symbol": "SO",
+      "side": "sell",
+      "qty": 1,
+      "filled_avg_price": 94.77,
+      "filled_at": "2026-06-16T14:58:02.526808Z"
+    },
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "qty": 1,
+      "filled_avg_price": 25.94,
+      "filled_at": "2026-06-16T14:18:55.368488Z"
+    },
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "qty": 1,
+      "filled_avg_price": 387.76,
+      "filled_at": "2026-06-16T13:43:57.208757Z"
+    }
+  ],
+  "candidate_quotes": [
+    {
+      "symbol": "SO",
+      "bid": 94.22,
+      "ask": 94.24,
+      "spread_pct": 0.0212,
+      "quote_timestamp": "2026-06-16T18:51:27.14896816Z",
+      "decision": "blocked_same_day_duplicate_sell"
+    },
+    {
+      "symbol": "RGTI",
+      "bid": 20.99,
+      "ask": 21.0,
+      "spread_pct": 0.0476,
+      "quote_timestamp": "2026-06-16T18:51:32.647514763Z",
+      "decision": "blocked_same_day_duplicate_sell"
+    },
+    {
+      "symbol": "PFE",
+      "bid": 25.95,
+      "ask": 25.96,
+      "spread_pct": 0.0385,
+      "quote_timestamp": "2026-06-16T18:51:32.279915265Z",
+      "decision": "blocked_same_day_duplicate_sell"
+    },
+    {
+      "symbol": "NEE",
+      "bid": 86.33,
+      "ask": 86.34,
+      "spread_pct": 0.0116,
+      "quote_timestamp": "2026-06-16T18:51:31.961012178Z",
+      "decision": "blocked_review_backlog_throttle_buy"
+    },
+    {
+      "symbol": "WMT",
+      "bid": 120.95,
+      "ask": 120.96,
+      "spread_pct": 0.0083,
+      "quote_timestamp": "2026-06-16T18:51:32.408926392Z",
+      "decision": "blocked_review_backlog_throttle_buy"
+    },
+    {
+      "symbol": "NKE",
+      "bid": 45.32,
+      "ask": 45.33,
+      "spread_pct": 0.0221,
+      "quote_timestamp": "2026-06-16T18:51:32.010414545Z",
+      "decision": "blocked_review_backlog_throttle_buy"
+    },
+    {
+      "symbol": "SLB",
+      "bid": 53.37,
+      "ask": 53.38,
+      "spread_pct": 0.0187,
+      "quote_timestamp": "2026-06-16T18:51:32.944691489Z",
+      "decision": "blocked_review_backlog_throttle_buy"
+    },
+    {
+      "symbol": "SPY",
+      "bid": 751.88,
+      "ask": 751.91,
+      "spread_pct": 0.004,
+      "quote_timestamp": "2026-06-16T18:51:32.937792736Z",
+      "decision": "blocked_floor_cap_and_review_backlog"
+    },
+    {
+      "symbol": "QQQ",
+      "bid": 733.11,
+      "ask": 733.32,
+      "spread_pct": 0.0286,
+      "quote_timestamp": "2026-06-16T18:51:32.586643139Z",
+      "decision": "blocked_floor_cap_and_review_backlog"
+    },
+    {
+      "symbol": "NOK",
+      "bid": 13.98,
+      "ask": 13.99,
+      "spread_pct": 0.0715,
+      "quote_timestamp": "2026-06-16T18:51:32.546683336Z",
+      "decision": "blocked_validation_lifecycle_add_block"
+    }
+  ],
+  "validation_floor_per_order_cap_usd": 504.99,
+  "first_blocking_gate": "duplicate_symbol_side_same_day",
+  "submit_result": "no_submit",
+  "submit_exception": "SO/PFE/RGTI remained blocked by same-day duplicate symbol/side discipline; NEE/WMT/NKE/SLB remained blocked by review_backlog_pending_1d_count=18 above stop threshold 12; SPY/QQQ remained above the 504.99 USD validation floor cap while the same backlog stop stayed active; NOK remained blocked by validation lifecycle add-block and the same backlog stop.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-0351-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-17-0351-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-0351-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-16-portfolio-review.md",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml"
+  ]
+}
