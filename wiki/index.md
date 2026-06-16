@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-17 00:52 KST hourly-autopilot no-submit reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-17 01:12 KST hourly-autopilot no-submit reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -55,6 +55,7 @@
 
 ## Current Runs
 
+- [[2026-06-17-0111-hourly-autopilot]] - regular-session scheduled hourly autopilot 실행. scheduler-owned `0111` stale cleanup/core/research preflight를 source-of-record로 사용했고, quote rows가 decision time 기준 freshness cap 안쪽이라 추가 live Alpaca read-only call 없이 regular market open, account `ACTIVE`, open orders `0`, same-day fill history `3건(SO/PFE/AVGO sell)`을 재사용했다. `SO/PFE`는 same-day sell fill, `RGTI`는 prior-cycle same-day canceled sell history, `SPY/QQQ`는 validation floor cap+review backlog, `NOK`는 validation lifecycle add-block 때문에 no-submit으로 종료했다. Alpha Vantage는 one-call-per-hour throttle 때문에 `provider_error` gap을 남겼고 Firecrawl은 credits 부족 `unknown` gap이었지만 non-core tiered gate는 유지됐다.
 - [[2026-06-17-0051-hourly-autopilot]] - regular-session scheduled hourly autopilot 실행. scheduler-owned `0051` stale cleanup/core/research preflight를 source-of-record로 사용했고, quote rows가 decision time 기준 freshness cap 안쪽이라 추가 live Alpaca read-only call 없이 regular market open, account `ACTIVE`, open orders `0`, same-day fill history `3건(SO/PFE/AVGO sell)`을 재사용했다. `SO/PFE`는 same-day sell fill, `RGTI`는 prior-cycle same-day canceled sell history, `SPY/QQQ`는 validation floor cap+review backlog, `NOK`는 validation lifecycle add-block 때문에 no-submit으로 종료했다. Alpha Vantage는 shortlisted symbols 기준 candidate news 부재로 `empty_response` gap을 남겼지만 non-core tiered gate는 유지됐다.
 - [[2026-06-17-0031-hourly-autopilot]] - regular-session scheduled hourly autopilot 실행. scheduler-owned `0031` stale cleanup/core/research preflight를 source-of-record로 사용했고, quote rows가 decision time 기준 freshness cap 안쪽이라 추가 live Alpaca read-only call 없이 regular market open, account `ACTIVE`, open orders `0`, same-day fill history `3건(SO/PFE/AVGO sell)`을 재사용했다. `SO/PFE`는 same-day sell fill, `RGTI`는 prior-cycle same-day canceled sell history, `SPY/QQQ`는 validation floor cap+review backlog, `NOK`는 validation lifecycle add-block 때문에 no-submit으로 종료했다.
 - [[2026-06-17-0011-hourly-autopilot]] - regular-session scheduled hourly autopilot 실행. scheduler-owned `0011` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca submit-boundary recheck 기준 regular market open, account `ACTIVE`, open orders `0`, same-day order history `4건(AVGO fill, RGTI cancel, PFE fill, SO fill)`을 재확인했다. `SO/RGTI/PFE`는 same-day duplicate symbol/side discipline, `SPY/QQQ`는 validation floor cap+review backlog, `NOK`는 validation lifecycle add-block 때문에 no-submit으로 종료했다.
