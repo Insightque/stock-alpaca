@@ -1,0 +1,41 @@
+{
+  "run_id": "2026-06-16-1911-after-hours-autopilot",
+  "created_at": "2026-06-16T10:13:16Z",
+  "session": "after_hours",
+  "paper": true,
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "orders_open": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_detected": 0,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102588.64,
+    "cash": 29836.34,
+    "buying_power": 306302.87,
+    "long_market_value": 72752.3,
+    "currency": "USD",
+    "daily_realized_loss": 0.0,
+    "market_clock_checked_at": "2026-06-16T06:12:41.636112037-04:00"
+  },
+  "positions_count": 33,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "review_bucket": "after_hours_validation",
+  "note": "Scheduler-owned 1911 core/research preflight remained source-of-record and Alpaca core first_blocking_gate=market_closed was treated as expected nonblocking for after-hours. Direct live Alpaca MCP continuity checks then confirmed account ACTIVE, positions 33, open orders 0, same-session after-hours orders 0, and latest overnight quote timestamps still about 132.69 minutes stale, so no submit path opened.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-1911-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-1911-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-1911-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/orders/2026-06-16-1911-after-hours-autopilot.json"
+  ],
+  "submit_status": "no_submit",
+  "client_order_ids_checked": [],
+  "new_orders": [],
+  "filled_orders": [],
+  "cancelled_orders": [],
+  "open_orders": [],
+  "open_order_count": 0,
+  "reconciliation_note": "No submit occurred. Reconciliation used scheduler-owned 1911 preflight plus direct live Alpaca MCP continuity checks for clock/account/positions/orders/overnight quotes."
+}
