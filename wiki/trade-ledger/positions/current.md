@@ -1,3 +1,16 @@
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-17-0611-after-hours-autopilot]]
+- Open/new: 없음. live `get_orders(status=open)` 기준 open orders `0`건이었다.
+- Filled: 이번 cycle 신규 after-hours fill 없음. live `get_account_activities(activity_types=[FILL], after=2026-06-16T20:00:00Z)` 기준 same-session fill `0`건이었다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: live `get_all_positions` 기준 positions `33`건, live `get_watchlists` 기준 watchlists `0`건이었다.
+- Recent reconciliation scope: scheduler-owned `0611` core/research preflight를 source-of-record로 사용했고 live Alpaca `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-16T20:00:00Z)/get_account_activities(activity_types=[FILL], after=2026-06-16T20:00:00Z)/get_watchlists/get_stock_latest_quote(feed=iex|overnight)`로 continuity를 다시 열었다. after-hours separate session submitted count는 `0/2`로 열려 있었지만 `QQQ` freshest IEX quote도 age 약 `21.26분`, `IONQ`는 `41.84분`, `QBTS/JPM/PFE`는 `50.66-71.83분`, `AVGO/SO/RGTI` sell-trim 후보는 `72분대` stale quote와 wide spread로 submit path에 진입하지 못했다. `get_account_info` 기준 cash는 `30,344.81 USD`, portfolio value는 `100,701.96 USD`였다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-17-0611-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-06-17 06:18 KST_
+
 # portfolio-current
 
 ## 최신 hourly-autopilot reconciliation

@@ -1,0 +1,31 @@
+{
+  "run_id": "2026-06-17-0611-after-hours-autopilot",
+  "created_at": "2026-06-16T21:12:49Z",
+  "session": "after_hours",
+  "source_of_record": "wiki/evidence-store/sources/2026-06-17-0611-after-hours-autopilot-alpaca-core-preflight.json",
+  "live_continuity": {
+    "clock": {
+      "regular_market_open": false,
+      "timestamp": "2026-06-16T17:12:49.871615149-04:00",
+      "next_open": "2026-06-17T09:30:00-04:00",
+      "next_close": "2026-06-17T16:00:00-04:00"
+    },
+    "account": {
+      "status": "ACTIVE",
+      "cash": 30344.81,
+      "portfolio_value": 100701.96,
+      "buying_power": 302542.06
+    },
+    "positions_count": 33,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_today": 0,
+    "watchlists_count": 0,
+    "session_boundary": "2026-06-16T20:00:00Z"
+  },
+  "notes": [
+    "Scheduler-owned 0611 preflight rows remain source-of-record for account, positions, open orders, asset, quote, and spread evidence.",
+    "Live continuity rechecked clock/account/positions/orders/activities/watchlists and direct IEX plus overnight quote readback for shortlisted buy candidates and sell-trim candidates.",
+    "Regular market stayed closed, but every live submit-boundary quote remained older than after_hours_policy.max_quote_age_minutes_submit 5.0."
+  ]
+}
