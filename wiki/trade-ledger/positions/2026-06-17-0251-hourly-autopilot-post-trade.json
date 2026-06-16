@@ -1,0 +1,83 @@
+{
+  "run_id": "2026-06-17-0251-hourly-autopilot",
+  "created_at": "2026-06-16T17:53:48Z",
+  "paper": true,
+  "submit_attempted": false,
+  "reconciliation_reason": "no_submit_preflight_reuse",
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "portfolio_value": 101151.13,
+    "cash": 30344.81,
+    "buying_power": 304064.25,
+    "long_market_value": 70806.32,
+    "currency": "USD"
+  },
+  "positions_summary": {
+    "position_count": 33,
+    "open_orders": 0,
+    "focus_positions": [
+      {
+        "symbol": "SO",
+        "qty": 5,
+        "qty_available": 5,
+        "avg_entry_price": 92.975,
+        "current_price": 94.47
+      },
+      {
+        "symbol": "RGTI",
+        "qty": 28,
+        "qty_available": 28,
+        "avg_entry_price": 25.569583,
+        "current_price": 21.075
+      },
+      {
+        "symbol": "PFE",
+        "qty": 3,
+        "qty_available": 3,
+        "avg_entry_price": 25.925,
+        "current_price": 26.035
+      }
+    ]
+  },
+  "same_day_fills_seen": [
+    {
+      "symbol": "SO",
+      "side": "sell",
+      "filled_qty": 1,
+      "filled_at": "2026-06-16T14:58:02.526808Z",
+      "filled_avg_price": 94.77
+    },
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "filled_qty": 1,
+      "filled_at": "2026-06-16T14:18:55.368488Z",
+      "filled_avg_price": 25.94
+    },
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "filled_qty": 1,
+      "filled_at": "2026-06-16T13:43:57.208757Z",
+      "filled_avg_price": 387.76
+    }
+  ],
+  "checked_via": [
+    "scheduler Alpaca stale cleanup artifact",
+    "scheduler Alpaca core preflight get_clock",
+    "scheduler Alpaca core preflight get_account_info",
+    "scheduler Alpaca core preflight get_all_positions",
+    "scheduler Alpaca core preflight get_orders_open",
+    "scheduler Alpaca core preflight get_account_activities",
+    "scheduler Alpaca core preflight get_stock_snapshot(feed=iex)",
+    "scheduler Alpaca core preflight get_watchlists"
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-0251-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-17-0251-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-0251-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-0251-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/current-runs/daily/2026-06-17-0251-hourly-autopilot.md",
+    "wiki/trade-ledger/orders/2026-06-17-0251-hourly-autopilot.json"
+  ]
+}
