@@ -1,0 +1,41 @@
+{
+  "run_id": "2026-06-16-2051-after-hours-autopilot",
+  "created_at": "2026-06-16T11:53:08Z",
+  "session": "after_hours",
+  "paper": true,
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "orders_open": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_detected": 0,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102662.56,
+    "cash": 29836.34,
+    "buying_power": 306633.67,
+    "long_market_value": 72826.22,
+    "currency": "USD",
+    "daily_realized_loss": 0.0,
+    "market_clock_checked_at": "2026-06-16T07:53:08.468757496-04:00"
+  },
+  "positions_count": 33,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "review_bucket": "after_hours_validation",
+  "note": "Scheduler-owned 2051 core/research preflight remained source-of-record and Alpaca core first_blocking_gate=market_closed was treated as expected nonblocking for after-hours. Live continuity rechecked clock/account/positions/watchlists/open orders/recent after-hours order history/recent FILL activity and overnight snapshots, but overnight latestQuote rows still remained about 233.13 minutes stale, so no submit path opened.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-2051-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-2051-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-2051-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/orders/2026-06-16-2051-after-hours-autopilot.json"
+  ],
+  "submit_status": "no_submit",
+  "client_order_ids_checked": [],
+  "new_orders": [],
+  "filled_orders": [],
+  "cancelled_orders": [],
+  "open_orders": [],
+  "open_order_count": 0,
+  "reconciliation_note": "No submit occurred. Reconciliation used scheduler-owned 2051 preflight for recent-activity baseline, plus live continuity for clock/account/positions/watchlists/open-order/recent FILL activity and overnight snapshot evidence."
+}
