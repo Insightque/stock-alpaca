@@ -1,0 +1,193 @@
+{
+  "run_id": "2026-06-16-2151-after-hours-autopilot",
+  "created_at": "2026-06-16T12:55:38Z",
+  "market_clock_checked_at": "2026-06-16T08:52:53.694057015-04:00",
+  "session": "after_hours",
+  "paper": true,
+  "policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "summary": "scheduler-owned 2151 core/research preflight reused as source-of-record. Alpaca core first_blocking_gate=market_closed was treated as expected nonblocking for after-hours, and live continuity reopened get_clock/get_account_info/get_all_positions/get_watchlists/get_orders(status=open)/get_orders(status=all, after=2026-06-15T20:00:00Z)/get_account_activities(activity_types=[FILL], after=2026-06-15T20:00:00Z)/get_stock_latest_quote(feed=iex)/get_stock_snapshot(feed=iex). Fresh IEX quotes were available for GOOGL and NOK, but no executable after-hours order survived the same-session duplicate discipline, review backlog throttle, validation-lifecycle add block, spread cap, fresh-quote cap, or per-order notional cap.",
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "portfolio_value": 102314.19,
+    "cash": 29836.34,
+    "buying_power": 305702.92,
+    "positions_count": 33,
+    "watchlists_count": 0,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_detected": 0
+  },
+  "quote_checks": {
+    "SPY": {
+      "bid": 754.23,
+      "ask": 754.4,
+      "quote_time": "2026-06-16T12:39:00.339850899Z",
+      "quote_age_minutes": 16.63,
+      "spread_pct": 0.0225
+    },
+    "QQQ": {
+      "bid": 742.77,
+      "ask": 743.21,
+      "quote_time": "2026-06-16T12:39:01.921637041Z",
+      "quote_age_minutes": 16.6,
+      "spread_pct": 0.0592
+    },
+    "NOK": {
+      "bid": 14.72,
+      "ask": 14.73,
+      "quote_time": "2026-06-16T12:53:06.855622517Z",
+      "quote_age_minutes": 2.52,
+      "spread_pct": 0.0679
+    },
+    "RGTI": {
+      "bid": 22.73,
+      "ask": 22.81,
+      "quote_time": "2026-06-15T20:12:40.989220932Z",
+      "quote_age_minutes": 1002.95,
+      "spread_pct": 0.3513
+    },
+    "GOOGL": {
+      "bid": 367.54,
+      "ask": 370.15,
+      "quote_time": "2026-06-16T12:53:26.728670451Z",
+      "quote_age_minutes": 2.19,
+      "spread_pct": 0.7076
+    },
+    "TSLA": {
+      "bid": 391.4,
+      "ask": 410.95,
+      "quote_time": "2026-06-15T20:00:01.780013824Z",
+      "quote_age_minutes": 1015.6,
+      "spread_pct": 4.8732
+    },
+    "SMH": {
+      "bid": 629.42,
+      "ask": 662.96,
+      "quote_time": "2026-06-15T20:00:00.241170544Z",
+      "quote_age_minutes": 1015.63,
+      "spread_pct": 5.1904
+    },
+    "SLB": {
+      "bid": 53.0,
+      "ask": 56.73,
+      "quote_time": "2026-06-15T20:30:30.544881209Z",
+      "quote_age_minutes": 985.12,
+      "spread_pct": 6.7985
+    }
+  },
+  "after_hours_gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_scheduler_preflight_and_live_continuity",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "pass",
+    "mcp_tiered_strict": "pass",
+    "risk_policy": "pass_empty_order_plan_warning_only",
+    "fresh_quote": "fail_partial_shortlist_stale_qqq_spy_rgti_tsla_smh_slb",
+    "spread_within_after_hours_policy": "fail_googl_smh_slb_tsla_exceed_0_25pct_cap",
+    "whole_share_day_limit_extended_hours_order": "fail_no_eligible_order_survived_duplicate_backlog_add_block_spread_freshness_or_notional_caps",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit"
+  },
+  "gate_failures": [
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "fail",
+      "detail": "No eligible after-hours sell or buy survived the combined duplicate discipline, review backlog throttle, validation-lifecycle add block, spread cap, quote freshness cap, and per-order notional cap."
+    }
+  ],
+  "candidate_diagnostics": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "result": "blocked",
+      "blocked_by": [
+        "duplicate_symbol_side_same_day",
+        "fresh_quote"
+      ],
+      "detail": "IEX latestQuote 22.73/22.81 was 1002.95 minutes old, and the 2026-06-15 09:41 ET regular-session trim fills kept same-session duplicate sell discipline open."
+    },
+    {
+      "symbol": "GOOGL",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "same_day_duplicate_buy",
+        "review_backlog_throttle",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "IEX latestQuote 367.54/370.15 was fresh enough at 2.19 minutes old, but spread stayed at 0.7076% above the 0.25% after-hours cap. A 2026-06-15 14:58 ET regular-session add plus pending_1d_count=18 also kept the add path closed."
+    },
+    {
+      "symbol": "NOK",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "review_backlog_throttle",
+        "validation_lifecycle_add_block"
+      ],
+      "detail": "IEX latestQuote 14.72/14.73 was fresh enough at 2.52 minutes old with 0.0679% spread, but review-due-index still has blocked_add_symbols=['NOK'] and pending_1d_count=18."
+    },
+    {
+      "symbol": "QQQ",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "after_hours_notional_cap"
+      ],
+      "detail": "IEX latestQuote 742.77/743.21 was 16.60 minutes old, and the 1-share ask 743.21 USD remained above the after-hours per-order notional cap 511.57 USD."
+    },
+    {
+      "symbol": "SPY",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "after_hours_notional_cap"
+      ],
+      "detail": "IEX latestQuote 754.23/754.40 was 16.63 minutes old, and the 1-share ask 754.40 USD remained above the after-hours per-order notional cap 511.57 USD."
+    },
+    {
+      "symbol": "SMH",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy",
+        "after_hours_notional_cap"
+      ],
+      "detail": "IEX latestQuote 629.42/662.96 was 1015.63 minutes old with 5.1904% spread, and the 1-share ask 662.96 USD remained above the after-hours per-order notional cap 511.57 USD."
+    },
+    {
+      "symbol": "TSLA",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy",
+        "watch_only_thesis"
+      ],
+      "detail": "IEX latestQuote 391.40/410.95 was 1015.60 minutes old with 4.8732% spread, and the thesis remained watch-only rather than actionable."
+    },
+    {
+      "symbol": "SLB",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "same_day_duplicate_buy",
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "IEX latestQuote 53.00/56.73 was 985.12 minutes old with 6.7985% spread, and the 2026-06-15 12:41 ET regular-session add kept same-session duplicate buy discipline open."
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-2151-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-2151-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-2151-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json"
+  ]
+}

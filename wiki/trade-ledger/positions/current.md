@@ -2,6 +2,19 @@
 
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-06-16-2151-after-hours-autopilot]]
+- Open/new: 없음. 이번 cycle에서는 `place_stock_order`를 호출하지 않았고 신규 `client_order_id`도 만들지 않았다.
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: live `get_all_positions` 기준 positions `33`건, live `get_watchlists` 기준 watchlists `0`건이었다. live `get_orders(status=open)`와 `get_orders(status=all, after=2026-06-15T20:00:00Z)` 기준 open orders `0`건, same-session after-hours orders `0`건이었다. live `get_account_activities(activity_types=[FILL], after=2026-06-15T20:00:00Z)` 기준 same-session after-hours fills도 `0`건이었다.
+- Recent reconciliation scope: scheduler-owned `2151` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. live `iex` quote check는 `SPY/QQQ/NOK/RGTI/GOOGL/TSLA/SMH/SLB`를 2026-06-16 21:55 KST에 재확인했다. `GOOGL/NOK`는 fresh quote까지 확보했지만 `GOOGL`은 spread cap과 same-session duplicate/review backlog, `NOK`는 add-block/review backlog, `QQQ/SPY/RGTI/TSLA/SMH/SLB`는 freshness·spread·notional cap 때문에 submit path가 열리지 않았다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-16-2151-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-06-16 21:55 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-06-16-2131-after-hours-autopilot]]
 - Open/new: 없음. 이번 cycle에서는 `place_stock_order`를 호출하지 않았고 신규 `client_order_id`도 만들지 않았다.
 - Filled: 없음

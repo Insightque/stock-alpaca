@@ -1,0 +1,696 @@
+{
+  "run_id": "2026-06-16-2151-after-hours-autopilot",
+  "created_at": "2026-06-16T12:51:26+00:00",
+  "paper": true,
+  "source": "scheduler local MCP stdio preflight",
+  "symbols": [
+    "SPY",
+    "QQQ",
+    "NOK",
+    "RGTI",
+    "GOOGL",
+    "TSLA",
+    "SMH",
+    "SLB"
+  ],
+  "symbol_source": "alpaca_core_preflight",
+  "cache_dir": "/Users/insightque/stock-alpaca/.cache/after-hours-research-mcp-preflight",
+  "cache_enabled": true,
+  "circuit_breaker_seconds": 600,
+  "providers": [
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T12:51:26+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_company_info|get_recent_filings",
+      "per_symbol": {
+        "SMH": {
+          "outcome": "gap",
+          "gap_category": "empty_response",
+          "gap_reason": "symbol missing from local SEC ticker-CIK cache; likely ETF/non-company lookup gap"
+        },
+        "SPY": {
+          "cik": "0000884394",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "QQQ": {
+          "cik": "0001067839",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "NOK": {
+          "cik": "0000924613",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "RGTI": {
+          "cik": "0001838359",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "GOOGL": {
+          "cik": "0001652044",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "TSLA": {
+          "cik": "0001318605",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "SLB": {
+          "cik": "0000087347",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-2151-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "outcome": "failed",
+      "checked_at": "2026-06-16T12:51:26+00:00",
+      "gap_category": "provider_error",
+      "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-16T12:31:30+00:00, retry after ~2403s.",
+      "retry_count": 0,
+      "payload": {
+        "throttled": true,
+        "last_attempt_at": "2026-06-16T12:31:30+00:00",
+        "min_interval_seconds": 3600,
+        "requested_symbols": [
+          "SPY",
+          "QQQ",
+          "NOK",
+          "RGTI",
+          "GOOGL",
+          "TSLA",
+          "SMH",
+          "SLB"
+        ],
+        "previous_symbols": [
+          "SPY",
+          "QQQ",
+          "NOK",
+          "RGTI",
+          "TSLA",
+          "SMH",
+          "SLB",
+          "AVGO"
+        ],
+        "cache_scope": "key-1dbada164161"
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-2151-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T09:51:29+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_macro_snapshot",
+      "payload": {
+        "observation_end": null,
+        "series": [
+          {
+            "series_id": "DGS10",
+            "latest": {
+              "realtime_start": "2026-06-15",
+              "realtime_end": "2026-06-15",
+              "date": "2026-06-12",
+              "value": "4.48"
+            }
+          },
+          {
+            "series_id": "DGS2",
+            "latest": {
+              "realtime_start": "2026-06-15",
+              "realtime_end": "2026-06-15",
+              "date": "2026-06-12",
+              "value": "4.09"
+            }
+          },
+          {
+            "series_id": "FEDFUNDS",
+            "latest": {
+              "realtime_start": "2026-06-01",
+              "realtime_end": "2026-06-01",
+              "date": "2026-05-01",
+              "value": "3.63"
+            }
+          },
+          {
+            "series_id": "CPIAUCSL",
+            "latest": {
+              "realtime_start": "2026-06-10",
+              "realtime_end": "2026-06-10",
+              "date": "2026-05-01",
+              "value": "333.979"
+            }
+          },
+          {
+            "series_id": "UNRATE",
+            "latest": {
+              "realtime_start": "2026-06-05",
+              "realtime_end": "2026-06-05",
+              "date": "2026-05-01",
+              "value": "4.3"
+            }
+          },
+          {
+            "series_id": "NFCI",
+            "latest": {
+              "realtime_start": "2026-06-10",
+              "realtime_end": "2026-06-10",
+              "date": "2026-06-05",
+              "value": "-0.50600"
+            }
+          }
+        ]
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-16T09:51:32+00:00",
+      "cache_reused_at": "2026-06-16T12:51:26+00:00",
+      "cache_ttl_seconds": 21600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-2151-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "outcome": "failed",
+      "checked_at": "2026-06-16T12:51:26+00:00",
+      "gap_category": "unknown",
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "retry_count": 0,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-2151-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T12:51:26+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_recommendations|get_yahoo_finance_news",
+      "per_symbol": {
+        "SPY": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Stock Market Today: Indexes Mixed As Housing Starts Data Disappoints; SpaceX Continues To Soar (Live Coverage)\nSummary: Stock Market Today: The Dow Jones index rose Tuesday ahead of the Fed's two-day policy meeting. SpaceX stock surged in premarket trading.\nDescription: \nURL: https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-fed-meeting-spacex-stock-spcx/?src=A00220&yptr=yahoo\n\nTitle: Exchange-Traded Funds, Equity Futures Higher Pre-Bell Tuesday Ahead of Fed"
+            },
+            "retry_count": 0
+          }
+        },
+        "QQQ": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Stock Market Today: Indexes Mixed As Housing Starts Data Disappoints; SpaceX Continues To Soar (Live Coverage)\nSummary: Stock Market Today: The Dow Jones index rose Tuesday ahead of the Fed's two-day policy meeting. SpaceX stock surged in premarket trading.\nDescription: \nURL: https://www.investors.com/market-trend/stock-market-today/dow-jones-sp500-nasdaq-fed-meeting-spacex-stock-spcx/?src=A00220&yptr=yahoo\n\nTitle: Exchange-Traded Funds, Equity Futures Higher Pre-Bell Tuesday Ahead of Fed"
+            },
+            "retry_count": 0
+          }
+        },
+        "NOK": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 4,
+                  "buy": 4,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 4,
+                  "buy": 4,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 4,
+                  "buy": 4,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 4,
+                  "buy": 2,
+                  "hold": 4,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Ubiquiti Buoyed by a Flexible Business Model: Worth a Buy Now?\nSummary: UI's flexible model, community-led structure and R&D push support demand as wireless networking needs grow across markets.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/ubiquiti-buoyed-flexible-business-model-150600499.html\n\nTitle: Can Nokia's Latest AI Framework Boost Its Competitive Edge?\nSummary: NOK's agentic AI framework upgrades NSP to automate multi-vendor IP networks, improve troubleshoo"
+            },
+            "retry_count": 0
+          }
+        },
+        "RGTI": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 1,
+                  "buy": 8,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 1,
+                  "buy": 8,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 1,
+                  "buy": 8,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 1,
+                  "buy": 8,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Quantinuum's IPO Is Putting Pressure on IonQ, Rigetti Computing, and D-Wave Quantum. Here's Which Quantum Computing Stock Survives the Reset.\nSummary: Quantinuum's arrival on the stock market is separating quantum computing's contenders from its pretenders.\nDescription: \nURL: https://www.fool.com/investing/2026/06/16/quantinuums-ipo-is-putting-pressure-on-ionq-rigett/\n\nTitle: Rigetti Computing (RGTI) Offers Attractive Potential for the Next 5 Years\nSummary: Rigetti Computing Inc. (NASDAQ:"
+            },
+            "retry_count": 0
+          }
+        },
+        "GOOGL": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 14,
+                  "buy": 42,
+                  "hold": 7,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 14,
+                  "buy": 43,
+                  "hold": 7,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 13,
+                  "buy": 46,
+                  "hold": 6,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 13,
+                  "buy": 50,
+                  "hold": 6,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Nvidia joins Wall Street's AI funding wave\nSummary: Nvidia is the latest company to tap Wall Street for the AI boom it helped create.\nDescription: \nURL: https://finance.yahoo.com/markets/article/nvidia-joins-wall-streets-ai-funding-wave-163231887.html\n\nTitle: Google Broadens Fitbit Air Appeal With HSA, FSA Eligibility\nSummary: Move strengthens Google's push into digital health and wearable technology.\nDescription: \nURL: https://finance.yahoo.com/healthcare/articles/google-broadens-fitbit-"
+            },
+            "retry_count": 0
+          }
+        },
+        "TSLA": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 5,
+                  "buy": 18,
+                  "hold": 18,
+                  "sell": 4,
+                  "strongSell": 2
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 5,
+                  "buy": 18,
+                  "hold": 17,
+                  "sell": 4,
+                  "strongSell": 3
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 5,
+                  "buy": 18,
+                  "hold": 17,
+                  "sell": 4,
+                  "strongSell": 3
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 5,
+                  "buy": 18,
+                  "hold": 17,
+                  "sell": 6,
+                  "strongSell": 2
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Elon Musk's SpaceX is already closing in on Microsoft's market cap and a big Apple milestone\nSummary: SpaceX is close to overtaking Microsoft in its valuation.\nDescription: \nURL: https://finance.yahoo.com/markets/article/elon-musks-spacex-is-already-closing-in-on-microsofts-market-cap-and-a-big-apple-milestone-112701154.html\n\nTitle: Tech stocks today: SpaceX becomes more valuable than Tesla\nSummary: What to watch from SpaceX and other tech stocks during the holiday-shortened week.\nDescrip"
+            },
+            "retry_count": 0
+          }
+        },
+        "SMH": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: If You Put $500 a Month into This Tech ETF Since 2016, You Could Retire Tomorrow\nSummary: Drop $500 into the VanEck Semiconductor ETF (NYSEARCA:SMH) starting in June, 2016, add another $500 every month, and the math pegs the account at $495,000 this week. Total contributions across those ten years come to $60,500. Everything else is what a single-sector ETF did to your money while you ignored it. The math holds up ... If You Put $500 a Month into This Tech ETF Since 2016, You Could Retire"
+            },
+            "retry_count": 0
+          }
+        },
+        "SLB": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 7,
+                  "buy": 18,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 7,
+                  "buy": 18,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 7,
+                  "buy": 18,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 7,
+                  "buy": 18,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Why SLB (SLB) Stock Is Down Today\nSummary: Shares of oilfield services provider SLB (NYSE:SLB) fell 3.2% in the morning session after the price of oil fell sharply as the U.S. and Iran announced a peace deal to end their conflict.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/why-slb-slb-stock-down-003607787.html\n\nTitle: SLB (SLB) Stock Dips While Market Gains: Key Facts\nSummary: In the closing of the recent trading day, SLB (SLB) stood at $53.71, denoting a -4.4% m"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-2151-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    }
+  ],
+  "mcp_coverage_hint": [
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T12:51:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-2151-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-16T12:51:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-2151-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-16T12:31:30+00:00, retry after ~2403s.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T09:51:29+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-2151-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-16T12:51:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-2151-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "gap_category": "unknown",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T12:51:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-2151-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ]
+}
