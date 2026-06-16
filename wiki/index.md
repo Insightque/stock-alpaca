@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 18:31 KST after-hours-autopilot no-submit reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 18:57 KST after-hours-autopilot no-submit reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -55,6 +55,7 @@
 
 ## Current Runs
 
+- [[2026-06-16-1851-after-hours-autopilot]] - after-hours scheduled autopilot 실행. scheduler-owned `1851` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. direct live Alpaca MCP continuity도 열어 account `ACTIVE`, positions `33`, watchlists `0`, open orders `0`, same-session after-hours orders `0`을 재확인했지만 overnight quote timestamp가 모두 `2026-06-16T08:00:00Z` 부근에 머물러 약 `112.88`분 stale였다. `AVGO/RGTI/PFE`는 same-day duplicate sell discipline과 spread fail, `MSFT/NOK`는 review backlog throttle 또는 add-block, `QQQ/SPY/SMH`는 per-order cap, `TSLA`는 watch-only thesis, `SLB/GE`는 spread cap 때문에 no-submit으로 종료했다.
 - [[2026-06-16-1831-after-hours-autopilot]] - after-hours scheduled autopilot 실행. scheduler-owned `1831` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. direct live Alpaca read tool은 이번 turn에 노출되지 않아 same preflight의 passing account/positions/orders/activity/watchlist/quote rows를 그대로 사용했다. latest quote timestamp는 `2026-06-15T20:00:00Z` 부근으로 약 `760.95-811.47`분 stale였고, `AVGO/RGTI/PFE`는 duplicate sell discipline과 spread fail, `MSFT/NOK`는 review backlog throttle 또는 add-block, `QQQ/SPY/SMH`는 per-order cap 또는 quote completeness fail, `TSLA`는 watch-only thesis, `SLB/GE`는 spread cap 때문에 no-submit으로 종료했다.
 - [[2026-06-16-1811-after-hours-autopilot]] - after-hours scheduled autopilot 실행. scheduler-owned `1811` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. direct `overnight` continuity는 `QQQ/RGTI/NOK/TSLA/SMH/SLB/AVGO/GE/SPY/MSFT/PFE`를 2026-06-16 18:13 KST에 재확인했지만 latest quote timestamp가 모두 `2026-06-16T08:00:00Z` 부근에 머물러 fresh-quote hard gate가 약 `73.44`분 stale로 닫혔다. `AVGO/RGTI/PFE`는 duplicate sell discipline과 spread fail, `MSFT/NOK`는 review backlog throttle 또는 add-block, `QQQ/SPY/SMH`는 per-order cap, `TSLA`는 watch-only thesis, `GE/SLB/NOK`는 spread cap 때문에 no-submit으로 종료했다.
 - [[2026-06-16-1751-after-hours-autopilot]] - after-hours scheduled autopilot 실행. scheduler-owned `1751` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. direct `overnight` continuity는 `QQQ/RGTI/NOK/TSLA/SMH/SLB/AVGO/GE/SPY/MSFT/PFE`를 2026-06-16 17:56 KST에 재확인했지만 latest quote timestamp가 모두 `2026-06-16T08:00:00Z` 부근에 머물러 fresh-quote hard gate가 약 `53.80`분 stale로 닫혔다. `AVGO/RGTI/PFE`는 duplicate sell discipline과 spread fail, `MSFT/NOK`는 review backlog throttle 또는 add-block, `QQQ/SPY/SMH`는 per-order cap, `TSLA`는 watch-only thesis, `GE/SLB/NOK`는 spread cap 때문에 no-submit으로 종료했다.
