@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 10:33 KST after-hours-autopilot no-submit reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 10:55 KST after-hours-autopilot no-submit reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -55,6 +55,7 @@
 
 ## Current Runs
 
+- [[2026-06-16-1051-after-hours-autopilot]] - after-hours scheduled autopilot 실행. scheduler-owned `1051` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. direct `overnight` continuity는 `QQQ/RGTI/NOK/TSLA/SMH/SLB/AVGO/GE/SPY/MSFT/PFE`를 5분 이내 quote로 재확인했지만 `AVGO/RGTI/PFE`는 same-day duplicate sell discipline, `MSFT/NOK`는 review backlog/add-block, `QQQ/SPY/SMH`는 per-order cap 또는 spread cap, `TSLA`는 watch-only thesis 때문에 no-submit으로 종료했다.
 - [[2026-06-16-1031-after-hours-autopilot]] - after-hours scheduled autopilot 실행. scheduler-owned `1031` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. direct `overnight` continuity는 `QQQ/RGTI/NOK/TSLA/SMH/SLB/AVGO/GE/SPY/MSFT/PFE`를 5분 이내 quote로 재확인했지만 `AVGO/RGTI/PFE`는 duplicate sell discipline 또는 spread cap, `MSFT/NOK`는 review backlog/add-block, `QQQ/SPY/SMH`는 per-order cap, `TSLA`는 watch-only thesis 때문에 no-submit으로 종료했다.
 - [[2026-06-16-1011-after-hours-autopilot]] - after-hours scheduled autopilot 실행. scheduler-owned `1011` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 expected nonblocking으로 처리했다. direct `overnight` continuity는 `QQQ/RGTI/NOK/TSLA/SMH/AVGO/SPY/MSFT/PFE`를 5분 이내 quote로 재확인했지만 `AVGO/RGTI/PFE`는 same-day duplicate sell discipline, `MSFT/NOK`는 review backlog/add-block, `QQQ/SPY/SMH`는 per-order cap에 막혀 no-submit으로 종료했다.
 
