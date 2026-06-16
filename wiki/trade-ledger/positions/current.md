@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-06-17-0631-after-hours-autopilot]]
+- Open/new: 없음. scheduler-owned `0631` preflight `get_orders(status=open)` 기준 open orders `0`건이었다.
+- Filled: 이번 cycle 신규 after-hours fill 없음. `2026-06-16T20:00:00Z` 이후 same-session after-hours fill은 관측되지 않았다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler core preflight `get_all_positions` 기준 positions `33`건이었다.
+- Recent reconciliation scope: scheduler-owned `0631` core/research preflight를 source-of-record로 사용했고, 사용자가 같은 preflight의 passing account/positions/orders/asset/quote/spread rows를 submit-boundary evidence로 유지하라고 요구했으므로 fresh live quote refresh 없이 해당 row를 그대로 썼다. separate after-hours session submitted count는 `0/2`로 열려 있었지만 `QQQ` freshest shortlist quote도 age 약 `39.85분`, `IONQ`는 `60.43분`, `QBTS/JPM/PFE`는 `69.25-90.41분`, `AVGO/SO/RGTI` sell-trim 후보는 `91분대` stale quote와 wide spread로 submit path에 진입하지 못했다. `get_account_info` 기준 cash는 `30,344.81 USD`, portfolio value는 `100,755.12 USD`였다. live `get_watchlists` 기준 watchlists `0`건도 재확인했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-17-0631-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-06-17 06:31 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-06-17-0611-after-hours-autopilot]]
 - Open/new: 없음. live `get_orders(status=open)` 기준 open orders `0`건이었다.
 - Filled: 이번 cycle 신규 after-hours fill 없음. live `get_account_activities(activity_types=[FILL], after=2026-06-16T20:00:00Z)` 기준 same-session fill `0`건이었다.

@@ -1,0 +1,26 @@
+{
+  "run_id": "2026-06-17-0631-after-hours-autopilot",
+  "created_at": "2026-06-16T21:31:25Z",
+  "session": "after_hours",
+  "paper": true,
+  "orders_submitted_this_run": 0,
+  "reconciliation": {
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_today": 0,
+    "positions_count": 33,
+    "watchlists_count": 0,
+    "cash": 30344.81,
+    "portfolio_value": 100755.12,
+    "buying_power": 302702.17
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-0631-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/evidence-store/sources/2026-06-17-0631-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-0631-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "notes": [
+    "No submit attempt occurred because the scheduler-owned 0631 quote rows already failed the fresh-quote hard gate across every evaluated buy and sell candidate.",
+    "Reconciliation still confirmed open orders 0, same-session after-hours orders 0, same-session fills 0, and positions count 33 from the source-of-record preflight."
+  ]
+}
