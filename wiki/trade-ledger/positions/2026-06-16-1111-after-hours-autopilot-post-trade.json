@@ -1,0 +1,38 @@
+{
+  "run_id": "2026-06-16-1111-after-hours-autopilot",
+  "created_at": "2026-06-16T02:13:50Z",
+  "session": "after_hours",
+  "paper": true,
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "orders_open": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_detected": 0,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102193.86,
+    "cash": 29836.36,
+    "buying_power": 305613.98,
+    "long_market_value": 72357.5,
+    "currency": "USD",
+    "daily_realized_loss": 0.0
+  },
+  "positions_count": 33,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "review_bucket": "after_hours_validation",
+  "note": "No after-hours submit at 1111. Scheduler-owned 1111 core preflight remained the source-of-record for expected market_closed blocker and passing account/open-order/asset rows; direct Alpaca MCP continuity checks refreshed the overnight quote stack again, but no symbol survived duplicate same-day sells, buy-backlog throttle, blocked-add controls, watch-only thesis rules, or the refreshed after-hours spread cap.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-1111-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-1111-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-1111-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ],
+  "submit_status": "no_submit",
+  "client_order_ids_checked": [],
+  "new_orders": [],
+  "filled_orders": [],
+  "cancelled_orders": [],
+  "open_orders": [],
+  "open_order_count": 0,
+  "reconciliation_note": "No new client_order_id reconciliation was required because no submit path opened in the 1111 after-hours cycle."
+}
