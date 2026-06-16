@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 21:55 KST after-hours-autopilot no-submit reconciliation 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-16 23:34 KST hourly-autopilot no-submit reconciliation 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -55,6 +55,7 @@
 
 ## Current Runs
 
+- [[2026-06-16-2331-hourly-autopilot]] - regular-session scheduled hourly autopilot 실행. scheduler-owned `2331` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca recheck 기준 regular market open, account `ACTIVE`, open orders `0`를 재확인했다. stale cleanup artifact에 남아 있던 `RGTI` open sell은 `get_orders(status=all, after=2026-06-16T13:31:00Z)` 기준 `2026-06-16T14:31:08.972628Z` `canceled`로 정리돼 global open-order lifecycle blocker는 해소됐지만, `RGTI`와 `PFE`는 same-day duplicate symbol/side discipline, `SO`는 spread `11.3368%` fail, `SPY/QQQ/NOK`는 review backlog/floor-cap/add-block 때문에 no-submit으로 종료했다.
 - [[2026-06-16-2311-hourly-autopilot]] - regular-session scheduled hourly autopilot 실행. scheduler-owned `2311` stale cleanup/core/research preflight를 source-of-record로 사용했고 direct Alpaca submit-boundary check 기준 regular market open, account `ACTIVE`, existing open order `1(RGTI trim)`, same-day `PFE` sell duplicate `0`를 재확인한 뒤 `PFE` 1주 trim sell을 `client_order_id=hourly-20260616-2311-sell-pfe`로 제출했다. same client id reconciliation 기준 주문은 `2026-06-16T14:18:55.368487606Z`에 `filled_avg_price=25.94 USD`로 즉시 체결됐고 `PFE` 보유 수량은 `4주 -> 3주`, cash는 `30,250.04 USD`로 증가했다. `RGTI`는 fresh same-symbol open sell 1건 때문에 재제출 대상이 아니었고, `SO`는 direct quote `88.70/94.62` spread fail, `NOK`와 benchmark fallback buy는 `review_backlog_pending_1d_count=18`과 add-block 때문에 미집행이었다.
 - [[2026-06-16-2231-hourly-autopilot]] - regular-session scheduled hourly autopilot 실행. scheduler-owned `2231` stale cleanup/core/research preflight를 source-of-record로 사용했고 direct Alpaca submit-boundary check 기준 market open, open orders `0`, current-session fills `0`를 재확인한 뒤 `AVGO` 1주 trim sell을 `client_order_id=hourly-20260616-2231-sell-avgo`로 제출했다. same client id reconciliation 기준 주문은 `2026-06-16T13:43:57.208757279Z`에 `filled_avg_price=387.76 USD`로 즉시 체결됐고 보유 수량은 `2주 -> 1주`, cash는 `30,224.10 USD`로 증가했다. `RGTI`는 direct spread `0.7137%` fail, `PFE`는 executable lower-priority trim, `SO`는 spread+metric gap, `NOK`와 benchmark fallback buy는 `review_backlog_pending_1d_count=18`과 add-block/per-order cap 때문에 미집행이었다.
 - [[2026-06-16-2251-hourly-autopilot]] - regular-session scheduled hourly autopilot 실행. scheduler-owned `2251` stale cleanup/core/research preflight를 source-of-record로 사용했고 direct Alpaca submit-boundary check 기준 market open, open orders `0`, same-session fills `1(earlier AVGO sell)`을 재확인한 뒤 `RGTI` 7주 trim sell을 `client_order_id=hourly-20260616-2251-sell-rgti`로 제출했다. immediate reconciliation 기준 주문은 `status=new` open order로 남아 있고 보유 수량은 `28주` 유지, `qty_available=21`만 예약 상태다. `PFE`와 `SO`는 executable lower-priority trim, `AVGO`는 same-day duplicate/min-remaining gate, `NOK`와 benchmark fallback buy는 `review_backlog_pending_1d_count=18`과 add-block/per-order cap 때문에 미집행이었다.

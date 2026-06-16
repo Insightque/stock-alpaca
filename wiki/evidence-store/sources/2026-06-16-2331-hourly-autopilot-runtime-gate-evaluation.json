@@ -1,0 +1,138 @@
+{
+  "run_id": "2026-06-16-2331-hourly-autopilot",
+  "created_at": "2026-06-16T14:33:40Z",
+  "paper_mode": true,
+  "market_clock": {
+    "timestamp": "2026-06-16T10:33:05.200440095-04:00",
+    "is_open": true,
+    "next_open": "2026-06-17T09:30:00-04:00",
+    "next_close": "2026-06-16T16:00:00-04:00"
+  },
+  "hard_gates": {
+    "paper_mode": "pass",
+    "market_open": "pass",
+    "alpaca_core": "pass",
+    "research_mcp_tiered": "pass",
+    "universe_strict": "pass",
+    "risk_policy": "pass",
+    "open_order_lifecycle": "pass_after_live_reconcile",
+    "review_backlog_throttle": "buy_block_only"
+  },
+  "sell_first": [
+    {
+      "symbol": "RGTI",
+      "decision": "blocked_same_day_duplicate_sell",
+      "bid": 20.88,
+      "ask": 20.89,
+      "spread_pct": 0.0479,
+      "held_qty": 28,
+      "note": "Earlier same-day `hourly-20260616-2251-sell-rgti` exists in order history and was canceled by stale cleanup at 2026-06-16T14:31:08.972628Z. Open-order blocker is cleared, but duplicate symbol/side discipline still blocks a second same-day RGTI sell submit."
+    },
+    {
+      "symbol": "PFE",
+      "decision": "blocked_same_day_duplicate_sell",
+      "bid": 26.0,
+      "ask": 26.02,
+      "spread_pct": 0.0769,
+      "held_qty": 3,
+      "note": "Same-day `PFE` trim 1주가 2026-06-16T14:18:55.368488Z에 이미 filled 처리되어 추가 same-side trim 재제출 대상이 아니다."
+    },
+    {
+      "symbol": "SO",
+      "decision": "blocked_spread_fail",
+      "bid": 88.7,
+      "ask": 99.36,
+      "spread_pct": 11.3368,
+      "held_qty": 6,
+      "note": "Validation review 약세 trim candidate는 유지되지만 scheduler-owned 2331 quote spread가 11.3368%로 policy cap 0.50%를 크게 초과한다."
+    }
+  ],
+  "buy_fallback": [
+    {
+      "symbol": "SPY",
+      "decision": "blocked_floor_cap_and_review_backlog",
+      "ask": 752.54,
+      "spread_pct": 0.004,
+      "validation_floor_cap_usd": 506.89
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "blocked_floor_cap_and_review_backlog",
+      "ask": 738.01,
+      "spread_pct": 0.0596,
+      "validation_floor_cap_usd": 506.89
+    },
+    {
+      "symbol": "NOK",
+      "decision": "blocked_validation_lifecycle_add_block",
+      "ask": 14.07,
+      "spread_pct": 0.0711
+    }
+  ],
+  "alpaca_reconciliation": {
+    "checked_via": [
+      "scheduler-owned stale cleanup",
+      "scheduler-owned Alpaca core preflight",
+      "live Alpaca get_clock",
+      "live Alpaca get_account_info",
+      "live Alpaca get_orders(status=open)",
+      "live Alpaca get_orders(status=all, after=2026-06-16T13:31:00Z)",
+      "live Alpaca get_account_activities(activity_types=[FILL], after=2026-06-16T13:31:00Z)",
+      "live Alpaca get_all_positions"
+    ],
+    "same_day_orders_seen": [
+      {
+        "symbol": "PFE",
+        "side": "sell",
+        "status": "filled",
+        "filled_at": "2026-06-16T14:18:55.368488Z",
+        "filled_avg_price": 25.94
+      },
+      {
+        "symbol": "RGTI",
+        "side": "sell",
+        "status": "canceled",
+        "canceled_at": "2026-06-16T14:31:08.972628Z",
+        "limit_price": 22.07
+      },
+      {
+        "symbol": "AVGO",
+        "side": "sell",
+        "status": "filled",
+        "filled_at": "2026-06-16T13:43:57.208757Z",
+        "filled_avg_price": 387.76
+      }
+    ],
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 101378.2,
+      "cash": 30250.04,
+      "buying_power": 304366.84,
+      "long_market_value": 71128.16
+    },
+    "open_orders": 0,
+    "position_count": 33,
+    "rgti_qty_available": 28
+  },
+  "final_submit_path": {
+    "result": "no_submit",
+    "first_blocking_gate": "duplicate_symbol_side_same_day",
+    "minimum_learning_orders_required": 1,
+    "minimum_learning_orders_planned": 0
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-2331-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-16-2331-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-2331-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-2331-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-16-portfolio-review.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/PFE.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/NOK.md"
+  ]
+}

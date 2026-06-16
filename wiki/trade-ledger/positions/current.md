@@ -2,6 +2,19 @@
 
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-16-2331-hourly-autopilot]]
+- Open/new: 없음. stale cleanup artifact에 남아 있던 `RGTI` sell 7주 (`client_order_id=hourly-20260616-2251-sell-rgti`)는 live Alpaca `get_orders(status=all, after=2026-06-16T13:31:00Z)` 기준 `2026-06-16T14:31:08.972628Z`에 `canceled`로 정리됐고, live `get_orders(status=open)`는 `0`건이었다.
+- Filled: 이번 cycle 신규 fill 없음. same-day regular fill history는 earlier `AVGO` sell 1건, `PFE` sell 1건만 유지됐다.
+- Cancelled: `RGTI` stale sell 7주가 stale cleanup/life-cycle reconcile 결과 `canceled`로 닫혔다.
+- Position count observed by Alpaca MCP: live `get_all_positions` 기준 positions `33`건, live `get_orders(status=open)` 기준 open orders `0`건, live `get_account_activities(activity_types=[FILL], after=2026-06-16T13:31:00Z)` 기준 same-day fill `2`건(`AVGO`, `PFE`)이었다.
+- Recent reconciliation scope: scheduler-owned `2331` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca `get_clock/get_account_info/get_orders(status=open)/get_orders(status=all, after=2026-06-16T13:31:00Z)/get_account_activities(activity_types=[FILL], after=2026-06-16T13:31:00Z)/get_all_positions`로 재조정했다. regular market은 `2026-06-16T10:33:05.200440095-04:00` 기준 open, account `ACTIVE`, cash `30,250.04 USD`, portfolio value `101,378.20 USD`였다. `RGTI`/`PFE`는 same-day duplicate symbol/side discipline, `SO`는 spread fail, `SPY/QQQ/NOK`는 buy-side backlog/cap/add-block 때문에 no-submit으로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 1 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-16-2331-hourly-autopilot-post-trade.json`
+
+_Last updated: 2026-06-16 23:34 KST_
+
+## 최신 hourly-autopilot reconciliation
+
 - Run: [[2026-06-16-2311-hourly-autopilot]]
 - Open/new: `RGTI` sell 7주 at `22.07 USD` (`client_order_id=hourly-20260616-2251-sell-rgti`)가 여전히 `status=new` open order로 남아 있다.
 - Filled: `PFE` sell 1주 at `25.94 USD`
