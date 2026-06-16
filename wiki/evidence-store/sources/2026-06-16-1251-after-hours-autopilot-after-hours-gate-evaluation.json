@@ -1,0 +1,401 @@
+{
+  "run_id": "2026-06-16-1251-after-hours-autopilot",
+  "created_at": "2026-06-16T03:53:15Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "paper": true,
+  "review_bucket": "after_hours_validation",
+  "scheduler_preflights": {
+    "alpaca_core": "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp": "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-research-mcp-preflight.json"
+  },
+  "alpaca_core_preflight": {
+    "first_blocking_gate": "market_closed",
+    "market_closed_expected_nonblocking_after_hours": true,
+    "passing_rows_reused": [
+      "clock",
+      "account",
+      "positions",
+      "open_orders",
+      "recent_activities",
+      "quotes",
+      "assets",
+      "snapshots"
+    ],
+    "source_ref": "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-alpaca-core-preflight.json",
+    "run_id": "2026-06-16-1251-after-hours-autopilot"
+  },
+  "direct_continuity_checks": {
+    "clock": {
+      "is_open": false,
+      "next_close": "2026-06-16T16:00:00-04:00",
+      "next_open": "2026-06-16T09:30:00-04:00",
+      "timestamp": "2026-06-15T23:52:46.437030777-04:00"
+    },
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 102391.82,
+      "cash": 29836.36,
+      "buying_power": 306021.94,
+      "long_market_value": 72555.46,
+      "currency": "USD"
+    },
+    "positions_count": 33,
+    "watchlists_count": 0,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_detected": 0,
+    "quotes": {
+      "QQQ": {
+        "bid": 743.05,
+        "ask": 743.13,
+        "quote_at": "2026-06-16T03:52:48.274602093Z",
+        "quote_age_minutes": 0.0,
+        "spread_pct": 0.0108
+      },
+      "RGTI": {
+        "bid": 22.66,
+        "ask": 22.7,
+        "quote_at": "2026-06-16T03:52:36.085707466Z",
+        "quote_age_minutes": 0.17,
+        "spread_pct": 0.1765
+      },
+      "NOK": {
+        "bid": 14.61,
+        "ask": 14.63,
+        "quote_at": "2026-06-16T03:52:42.326402598Z",
+        "quote_age_minutes": 0.07,
+        "spread_pct": 0.1369
+      },
+      "TSLA": {
+        "bid": 404.9,
+        "ask": 405.32,
+        "quote_at": "2026-06-16T03:52:41.504162872Z",
+        "quote_age_minutes": 0.08,
+        "spread_pct": 0.1037
+      },
+      "SMH": {
+        "bid": 645.11,
+        "ask": 646.79,
+        "quote_at": "2026-06-16T03:52:47.271395645Z",
+        "quote_age_minutes": 0.08,
+        "spread_pct": 0.2604
+      },
+      "SLB": {
+        "bid": 53.77,
+        "ask": 53.96,
+        "quote_at": "2026-06-16T03:49:43.897651468Z",
+        "quote_age_minutes": 3.04,
+        "spread_pct": 0.3534
+      },
+      "AVGO": {
+        "bid": 393.81,
+        "ask": 394.44,
+        "quote_at": "2026-06-16T03:52:44.889051250Z",
+        "quote_age_minutes": 0.03,
+        "spread_pct": 0.16
+      },
+      "GE": {
+        "bid": 340.45,
+        "ask": 342.91,
+        "quote_at": "2026-06-16T03:46:01.022270443Z",
+        "quote_age_minutes": 6.76,
+        "spread_pct": 0.7226
+      },
+      "SPY": {
+        "bid": 753.56,
+        "ask": 754.65,
+        "quote_at": "2026-06-16T03:52:47.476834853Z",
+        "quote_age_minutes": 0.08,
+        "spread_pct": 0.1446
+      },
+      "MSFT": {
+        "bid": 399.42,
+        "ask": 399.45,
+        "quote_at": "2026-06-16T03:52:47.248577860Z",
+        "quote_age_minutes": 0.08,
+        "spread_pct": 0.0075
+      },
+      "PFE": {
+        "bid": 26.01,
+        "ask": 26.08,
+        "quote_at": "2026-06-16T03:51:11.056207648Z",
+        "quote_age_minutes": 1.59,
+        "spread_pct": 0.2691
+      }
+    },
+    "quote_feed": "overnight"
+  },
+  "after_hours_budget": {
+    "after_hours_new_orders_submitted_today": 0,
+    "max_new_orders_per_session": 2,
+    "status": "pass"
+  },
+  "review_backlog": {
+    "pending_1d_count": 18,
+    "pending_5d_count": 19,
+    "pending_20d_count": 1,
+    "blocked_add_symbols": [
+      "NOK"
+    ]
+  },
+  "candidate_diagnostics": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "thesis_role": "post-earnings staged de-risking trim",
+      "quote": {
+        "bid": 393.81,
+        "ask": 394.44,
+        "quote_at": "2026-06-16T03:52:44.889051250Z",
+        "quote_age_minutes": 0.03,
+        "spread_pct": 0.16
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "duplicate_symbol_side_same_day"
+      ],
+      "detail": "AVGO retained the staged de-risking trim rationale and the refreshed overnight spread stayed inside policy at about 0.1600%, but the 2026-06-15 11:18 ET regular-session trim fill still blocks another same-day sell.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "thesis_role": "residual speculative sleeve trim",
+      "quote": {
+        "bid": 22.66,
+        "ask": 22.7,
+        "quote_at": "2026-06-16T03:52:36.085707466Z",
+        "quote_age_minutes": 0.17,
+        "spread_pct": 0.1765
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "duplicate_symbol_side_same_day"
+      ],
+      "detail": "Residual speculative trim rationale remained and the refreshed overnight spread normalized to about 0.1765%, but the 2026-06-15 09:41 ET same-day trim fill still blocks another sell.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "thesis_role": "repeated weak-review trim precedent",
+      "quote": {
+        "bid": 26.01,
+        "ask": 26.08,
+        "quote_at": "2026-06-16T03:51:11.056207648Z",
+        "quote_age_minutes": 1.59,
+        "spread_pct": 0.2691
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "duplicate_symbol_side_same_day",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "PFE still had a trim precedent, but the refreshed overnight spread stayed wide at about 0.2691% and today already contains one regular-session filled sell, so spread and duplicate discipline both block another sell.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "MSFT",
+      "side": "buy",
+      "thesis_role": "existing actionable holding fallback",
+      "quote": {
+        "bid": 399.42,
+        "ask": 399.45,
+        "quote_at": "2026-06-16T03:52:47.248577860Z",
+        "quote_age_minutes": 0.08,
+        "spread_pct": 0.0075
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "review_backlog_throttle",
+        "duplicate_symbol_side_same_day"
+      ],
+      "detail": "MSFT had a fresh overnight quote, inside-spread execution quality, and 1-share notional below the after-hours cap, but pending_1d_count=18 still blocks new validation buys and MSFT already received a same-day regular-session buy.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "NOK",
+      "side": "buy",
+      "thesis_role": "existing actionable holding fallback",
+      "quote": {
+        "bid": 14.61,
+        "ask": 14.63,
+        "quote_at": "2026-06-16T03:52:42.326402598Z",
+        "quote_age_minutes": 0.07,
+        "spread_pct": 0.1369
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "review_backlog_throttle",
+        "validation_lifecycle_add_block"
+      ],
+      "detail": "NOK kept a fresh overnight quote, about 0.1369% spread, and 1-share notional within the after-hours cap, but review-due-index still keeps NOK inside blocked_add_symbols and pending_1d_count=18 continues to stop new validation buys.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "QQQ",
+      "side": "buy",
+      "thesis_role": "benchmark fallback",
+      "quote": {
+        "bid": 743.05,
+        "ask": 743.13,
+        "quote_at": "2026-06-16T03:52:48.274602093Z",
+        "quote_age_minutes": 0.0,
+        "spread_pct": 0.0108
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "after_hours_notional_cap",
+        "review_backlog_throttle"
+      ],
+      "detail": "QQQ had a fresh overnight benchmark quote, but 1-share ask 743.13 USD exceeded the after-hours per-order cap about 511.96 USD and new buys remained backlog-blocked.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "SPY",
+      "side": "buy",
+      "thesis_role": "benchmark secondary fallback",
+      "quote": {
+        "bid": 753.56,
+        "ask": 754.65,
+        "quote_at": "2026-06-16T03:52:47.476834853Z",
+        "quote_age_minutes": 0.08,
+        "spread_pct": 0.1446
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "after_hours_notional_cap",
+        "review_backlog_throttle"
+      ],
+      "detail": "SPY had a fresh overnight benchmark quote, but 1-share ask 754.65 USD exceeded the after-hours per-order cap about 511.96 USD and backlog throttle kept new validation buys closed.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "SMH",
+      "side": "buy",
+      "thesis_role": "semiconductor diversifier fallback",
+      "quote": {
+        "bid": 645.11,
+        "ask": 646.79,
+        "quote_at": "2026-06-16T03:52:47.271395645Z",
+        "quote_age_minutes": 0.08,
+        "spread_pct": 0.2604
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "after_hours_notional_cap",
+        "spread_within_after_hours_policy",
+        "review_backlog_throttle"
+      ],
+      "detail": "SMH kept a fresh overnight diversifier quote, but 1-share ask 646.79 USD still exceeded the after-hours per-order cap, spread widened to about 0.2604%, and backlog throttle continued to block new buys.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "TSLA",
+      "side": "buy",
+      "thesis_role": "event-optional watch fallback",
+      "quote": {
+        "bid": 404.9,
+        "ask": 405.32,
+        "quote_at": "2026-06-16T03:52:41.504162872Z",
+        "quote_age_minutes": 0.08,
+        "spread_pct": 0.1037
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "watch_only_thesis"
+      ],
+      "detail": "TSLA passed the pure execution checks with a fresh overnight quote and about 0.1037% spread, but the ticker note still keeps TSLA as watch-only event optionality rather than an executable after-hours fallback.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "SLB",
+      "side": "buy",
+      "thesis_role": "energy-services diversifier fallback",
+      "quote": {
+        "bid": 53.77,
+        "ask": 53.96,
+        "quote_at": "2026-06-16T03:49:43.897651468Z",
+        "quote_age_minutes": 3.04,
+        "spread_pct": 0.3534
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "spread_within_after_hours_policy",
+        "review_backlog_throttle"
+      ],
+      "detail": "SLB recovered quote freshness to about 3.04 minutes, but spread remained wide at about 0.3534% and review backlog throttle still blocks new validation buys.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "GE",
+      "side": "buy",
+      "thesis_role": "industrial-power diversifier fallback",
+      "quote": {
+        "bid": 340.45,
+        "ask": 342.91,
+        "quote_at": "2026-06-16T03:46:01.022270443Z",
+        "quote_age_minutes": 6.76,
+        "spread_pct": 0.7226
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "GE recovered overnight continuity, but the latest quote was still about 6.76 minutes old and spread remained wide at about 0.7226%, so the after-hours quote/spread gate did not reopen the fallback path.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-16-1251-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    }
+  ],
+  "summary": {
+    "result": "no_submit",
+    "why": "duplicate sell discipline, review backlog throttle, add-block, watch-only thesis, per-order cap, fresh-quote failure, and spread caps left no executable after-hours order.",
+    "separate_after_hours_order_budget": "0/2",
+    "after_hours_per_order_cap_usd": 511.49
+  }
+}
