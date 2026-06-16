@@ -151,3 +151,9 @@ RGTI는 오늘 신규 매수 후보에서 제외했다. 2026-05-22 종가 26.41 
 `2231` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight를 source-of-record로 사용했고, actual submit은 `2026-06-15T13:41:41.654523Z`에 수행됐다. `RGTI`는 fresh Alpaca quote `22.55/22.58`, spread `0.1329%`, held qty `37`, speculative loss-control trim trigger, open orders `0`, validation lifecycle due-block 없음 조건에서 25% trim `9주` 경로를 통과했고 `client_order_id=hourly-20260615-2231-sell-rgti`로 regular-session day limit sell을 제출했다. immediate reconciliation 기준 same order는 `2026-06-15T13:41:43.341983Z`에 `filled_avg_price=23.366667 USD`로 전량 체결됐고 보유수량은 `37주 -> 28주`로 감소했다. 해석은 `residual speculative sleeve staged de-risking 지속`이다.
 
 출처: [[2026-06-15-2231-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-15-2231-hourly-autopilot-post-trade.json`
+
+### 2026-06-16 23:00 KST hourly-autopilot trim submit
+
+`2251` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight를 source-of-record로 사용했고, actual submit은 `2026-06-16T14:00:27.219378296Z`에 수행됐다. `RGTI`는 fresh Alpaca quote `22.07/22.09`, spread 약 `0.0906%`, held qty `28`, speculative loss-control trim trigger, open orders `0`, validation lifecycle due-block 없음 조건에서 25% trim `7주` 경로를 통과했고 `client_order_id=hourly-20260616-2251-sell-rgti`로 regular-session day limit sell을 제출했다. immediate reconciliation 기준 same order는 아직 `status=new` open order이며 fill은 없고, 보유수량은 `28주`로 unchanged, `qty_available=21`만 예약 상태다. 해석은 `residual speculative sleeve staged de-risking 지속, open order lifecycle 추적 필요`다.
+
+출처: [[2026-06-16-2251-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-16-2251-hourly-autopilot-post-trade.json`

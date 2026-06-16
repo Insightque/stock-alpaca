@@ -1,0 +1,72 @@
+{
+  "run_id": "2026-06-16-2251-hourly-autopilot",
+  "created_at": "2026-06-16T14:01:10Z",
+  "session": "regular",
+  "paper": true,
+  "submit_attempted": true,
+  "orders_submitted": 1,
+  "orders_open": 1,
+  "same_session_orders_submitted_today": 2,
+  "same_session_fills_detected": 1,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 102087.01,
+    "cash": 30224.1,
+    "buying_power": 305633.76,
+    "long_market_value": 71862.91,
+    "currency": "USD",
+    "daily_realized_loss": 0.0,
+    "market_clock_checked_at": "2026-06-16T09:54:13.485803056-04:00"
+  },
+  "positions_count": 33,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "review_bucket": "regular_validation",
+  "note": "RGTI 7주 trim sell이 same client_order_id readback 기준 `status=new` open order로 남아 있다. scheduler-owned 2251 stale cleanup/core/research preflight를 source-of-record로 사용했고, direct Alpaca submit-boundary quote와 post-submit reconciliation으로 market open, open orders 1건, same-session fill 1건(earlier AVGO), RGTI qty 28주 유지 및 qty_available 21 예약 상태를 재확인했다.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-16-2251-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-16-2251-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-2251-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-16-2251-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-16-portfolio-review.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/PFE.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/NOK.md",
+    "wiki/trade-ledger/orders/2026-06-16-2251-hourly-autopilot.json",
+    "wiki/current-runs/daily/2026-06-16-2251-hourly-autopilot.md"
+  ],
+  "submit_status": "open",
+  "client_order_ids_checked": [
+    "hourly-20260616-2251-sell-rgti"
+  ],
+  "new_orders": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 7,
+      "limit_price": 22.07,
+      "order_id": "84d82c1a-3b82-40dc-9794-78071359f629",
+      "status": "new"
+    }
+  ],
+  "filled_orders": [],
+  "cancelled_orders": [],
+  "open_orders": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 7,
+      "limit_price": 22.07,
+      "filled_qty": 0,
+      "status": "new",
+      "order_id": "84d82c1a-3b82-40dc-9794-78071359f629"
+    }
+  ],
+  "open_order_count": 1,
+  "reconciliation_note": "Immediate reconciliation used get_order_by_client_id, get_orders(status=open), get_orders(status=all, after=2026-06-16T14:00:00Z), get_account_activities(activity_types=[FILL], after=2026-06-16T14:00:00Z), get_all_positions, and get_account_info. RGTI order remained open and no new fill was detected."
+}
