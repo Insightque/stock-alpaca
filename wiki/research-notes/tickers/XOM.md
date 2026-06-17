@@ -48,3 +48,9 @@ asset_type: stock
 `2026-06-09 ET` buy 1주는 `148.35 USD` 진입 대비 `2026-06-10 ET` close `150.68 USD`로 `+1.57%`였다. `SPY` 대비 `+3.13%p`, `QQQ` 대비 `+3.57%p`로 energy diversifier validation은 `WMT/COP`와 함께 이번 1D cohort에서 양호했다. 다만 `2026-06-10 ET` 추가 fill `151.41 USD`는 새 1D horizon으로 넘긴다.
 
 출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]
+
+## 2026-06-18 00:58 KST hourly autopilot
+
+`XOM` 1주 regular-session day limit buy가 `141.54 USD` limit으로 제출됐고, immediate Alpaca MCP reconciliation 기준 `client_order_id=hourly-20260618-0051-buy-xom`, `order_id=9e6b4b81-1307-41aa-b9ac-5c34f7d51793`는 현재 `status=new` open order다. 근거는 scheduler-owned `0051` stale cleanup/core/research preflight 기준 hard gate pass, live continuity 기준 regular market open과 open orders `0` 재확인, `SO` trim metric gap 및 `RGTI/PFE` same-day duplicate sell gate 이후에도 learning_trade_directive가 최소 1건 validation order를 요구한다는 점, 그리고 `XOM`이 preflight-covered energy diversifier existing holding으로 same-day duplicate/open-order conflict 부재, live quote `141.50/141.54` spread `0.0283%`, `2026-06-17` portfolio review의 `1D 중립 양호` 이력, current invested ratio `0.7101`을 모두 충족해 가장 executable한 floor-size fallback이었기 때문이다. 다음 cycle에서는 fill 여부와 open-order lifecycle을 우선 추적한다.
+
+출처: [[2026-06-18-0051-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-18-0051-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-18-0051-hourly-autopilot-post-trade.json`

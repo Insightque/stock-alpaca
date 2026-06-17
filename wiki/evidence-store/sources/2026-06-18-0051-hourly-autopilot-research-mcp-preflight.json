@@ -1,0 +1,1069 @@
+{
+  "run_id": "2026-06-18-0051-hourly-autopilot",
+  "created_at": "2026-06-17T15:51:30+00:00",
+  "paper": true,
+  "source": "scheduler local MCP stdio preflight",
+  "symbols": [
+    "SPY",
+    "WMT",
+    "NVDA",
+    "AMZN",
+    "AAPL",
+    "BAC",
+    "GOOGL",
+    "XOM",
+    "NKE",
+    "PLTR",
+    "NEE",
+    "TSLA"
+  ],
+  "symbol_source": "alpaca_core_preflight",
+  "cache_dir": "/Users/insightque/stock-alpaca/.cache/research-mcp-preflight",
+  "cache_enabled": true,
+  "circuit_breaker_seconds": 600,
+  "providers": [
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T15:51:30+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_company_info|get_recent_filings",
+      "per_symbol": {
+        "SPY": {
+          "cik": "0000884394",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "WMT": {
+          "cik": "0000104169",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "NVDA": {
+          "cik": "0001045810",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "AMZN": {
+          "cik": "0001018724",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "AAPL": {
+          "cik": "0000320193",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "BAC": {
+          "cik": "0000070858",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "GOOGL": {
+          "cik": "0001652044",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "XOM": {
+          "cik": "0000034088",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "NKE": {
+          "cik": "0000320187",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "PLTR": {
+          "cik": "0001321655",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "NEE": {
+          "cik": "0000753308",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "TSLA": {
+          "cik": "0001318605",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "outcome": "failed",
+      "checked_at": "2026-06-17T15:51:30+00:00",
+      "gap_category": "provider_error",
+      "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-17T14:51:33+00:00, retry after ~2s.",
+      "retry_count": 0,
+      "payload": {
+        "throttled": true,
+        "last_attempt_at": "2026-06-17T14:51:33+00:00",
+        "min_interval_seconds": 3600,
+        "requested_symbols": [
+          "SPY",
+          "WMT",
+          "NVDA",
+          "AMZN",
+          "AAPL",
+          "BAC",
+          "GOOGL",
+          "XOM",
+          "NKE",
+          "PLTR",
+          "NEE",
+          "TSLA"
+        ],
+        "previous_symbols": [
+          "NVDA",
+          "BAC",
+          "AMZN",
+          "SPY",
+          "GOOGL",
+          "NKE",
+          "NEE",
+          "WMT",
+          "SO",
+          "PLTR",
+          "PFE",
+          "SLB"
+        ],
+        "cache_scope": "key-1dbada164161"
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T13:31:32+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_macro_snapshot",
+      "payload": {
+        "observation_end": null,
+        "series": [
+          {
+            "series_id": "DGS10",
+            "latest": {
+              "realtime_start": "2026-06-16",
+              "realtime_end": "2026-06-16",
+              "date": "2026-06-15",
+              "value": "4.47"
+            }
+          },
+          {
+            "series_id": "DGS2",
+            "latest": {
+              "realtime_start": "2026-06-16",
+              "realtime_end": "2026-06-16",
+              "date": "2026-06-15",
+              "value": "4.07"
+            }
+          },
+          {
+            "series_id": "FEDFUNDS",
+            "latest": {
+              "realtime_start": "2026-06-01",
+              "realtime_end": "2026-06-01",
+              "date": "2026-05-01",
+              "value": "3.63"
+            }
+          },
+          {
+            "series_id": "CPIAUCSL",
+            "latest": {
+              "realtime_start": "2026-06-10",
+              "realtime_end": "2026-06-10",
+              "date": "2026-05-01",
+              "value": "333.979"
+            }
+          },
+          {
+            "series_id": "UNRATE",
+            "latest": {
+              "realtime_start": "2026-06-05",
+              "realtime_end": "2026-06-05",
+              "date": "2026-05-01",
+              "value": "4.3"
+            }
+          },
+          {
+            "series_id": "NFCI",
+            "latest": {
+              "realtime_start": "2026-06-17",
+              "realtime_end": "2026-06-17",
+              "date": "2026-06-12",
+              "value": "-0.50500"
+            }
+          }
+        ]
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-17T13:31:34+00:00",
+      "cache_reused_at": "2026-06-17T15:51:30+00:00",
+      "cache_ttl_seconds": 21600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "outcome": "failed",
+      "checked_at": "2026-06-17T15:51:30+00:00",
+      "gap_category": "unknown",
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "retry_count": 0,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T15:51:30+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_recommendations|get_yahoo_finance_news",
+      "per_symbol": {
+        "SPY": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: SpaceX’s Historic Post-IPO Rally Loses Steam as Retail Frenzy Cools\nSummary: The stunning rally in SpaceX shares is losing some steam.  The stock was trading 6% lower this morning, after a staggering rally that propelled shares nearly 50% above its IPO price in less than three full days of trading.  It may be that a frenetic wave of demand from individual investors is finally fizzling out.\nDescription: \nURL: https://www.wsj.com/livecoverage/fed-meeting-warsh-interest-rate-06-17-2026/card/"
+            },
+            "retry_count": 0
+          }
+        },
+        "WMT": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 9,
+                  "buy": 29,
+                  "hold": 4,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 9,
+                  "buy": 30,
+                  "hold": 4,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 9,
+                  "buy": 30,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 9,
+                  "buy": 31,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: LGBTQ consumers cut spending at Target, Walmart, Amazon over DEI\nSummary: Nearly 72% of LGBTQ+ consumers say they buy fewer products from companies they see as reducing diversity commitments, a new HRC survey found\nDescription: \nURL: https://qz.com/lgbtq-consumers-spending-target-walmart-amazon-dei-061726\n\nTitle: US Retail Sales Rise in Broad Gain Despite Higher Gas Prices\nSummary: (Bloomberg) -- US consumers ramped up spending in May across a broad range of retailers, signaling household"
+            },
+            "retry_count": 0
+          }
+        },
+        "NVDA": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 10,
+                  "buy": 49,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 10,
+                  "buy": 48,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 10,
+                  "buy": 48,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 10,
+                  "buy": 48,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Why La-Z-Boy Stock Just Popped\nSummary: La-Z-Boy had a great Q4. Can it keep it up?\nDescription: \nURL: https://www.fool.com/investing/2026/06/17/why-la-z-boy-stock-just-popped/\n\nTitle: Why Broadcom Stock Is Bouncing Higher Today\nSummary: This semiconductor specialist is poised to soar to an all-time high in one firm's opinion.\nDescription: \nURL: https://www.fool.com/investing/2026/06/17/why-broadcom-stock-is-bouncing-higher-today/\n\nTitle: Top High-Yield Dividend Stocks to Buy With $1,000 "
+            },
+            "retry_count": 0
+          }
+        },
+        "AMZN": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 15,
+                  "buy": 48,
+                  "hold": 4,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 15,
+                  "buy": 47,
+                  "hold": 4,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 14,
+                  "buy": 48,
+                  "hold": 5,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 15,
+                  "buy": 50,
+                  "hold": 4,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: SpaceX stock slips for first time, poised to end 3-day surge\nSummary: SpaceX fell on Wednesday for the first time since the company went public, breaking a three-session winning streak that had pushed Elon Musk's rocket and AI venture into the upper tier of the world's most valuable companies.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/article/spacex-stock-slips-for-first-time-poised-to-end-3-day-surge-150808757.html\n\nTitle: SpaceX's near $3 trillion rally comes with one "
+            },
+            "retry_count": 0
+          }
+        },
+        "AAPL": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 7,
+                  "buy": 23,
+                  "hold": 15,
+                  "sell": 1,
+                  "strongSell": 2
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 7,
+                  "buy": 23,
+                  "hold": 15,
+                  "sell": 1,
+                  "strongSell": 2
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 7,
+                  "buy": 25,
+                  "hold": 14,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 6,
+                  "buy": 25,
+                  "hold": 15,
+                  "sell": 1,
+                  "strongSell": 1
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: SpaceX's near $3 trillion rally comes with one big catch: Chart of the Day\nSummary: SpaceX is already trading like one of America's biggest companies — its profits are not.\nDescription: \nURL: https://finance.yahoo.com/markets/article/spacexs-near-3-trillion-rally-comes-with-one-big-catch-chart-of-the-day-122114608.html\n\nTitle: Top Midday Stories: SpaceX Put Options Too Expensive, Burry Says; Intel Begins Production of Advanced 18A-P Chip Node\nSummary: The Dow Jones Industrial Average was "
+            },
+            "retry_count": 0
+          }
+        },
+        "BAC": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 6,
+                  "buy": 16,
+                  "hold": 2,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 6,
+                  "buy": 16,
+                  "hold": 2,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 6,
+                  "buy": 16,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 7,
+                  "buy": 17,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Bank of America takes firm position on inflation, economy\nSummary: Every month, Bank of America surveys some of the world's largest institutional investors to build a picture of how professional money managers see the global economy. The latest edition of that survey landed with a specific number that stood out: Equity allocations had jumped to 50% overweight from ...\nDescription: \nURL: https://www.thestreet.com/economy/bank-of-america-sees-cooling-inflation-resilient-economy\n\nTitle: Bank"
+            },
+            "retry_count": 0
+          }
+        },
+        "GOOGL": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 14,
+                  "buy": 42,
+                  "hold": 7,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 14,
+                  "buy": 43,
+                  "hold": 7,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 13,
+                  "buy": 46,
+                  "hold": 6,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 13,
+                  "buy": 50,
+                  "hold": 6,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: SpaceX closes in on Amazon in sprint toward $3 trillion\nSummary: SpaceX is one of the fastest new entrants ever into the top tier of the US market.\nDescription: \nURL: https://finance.yahoo.com/markets/article/spacex-closes-in-on-amazon-in-sprint-toward-3-trillion-164918333.html\n\nTitle: Top Midday Stories: SpaceX Put Options Too Expensive, Burry Says; Intel Begins Production of Advanced 18A-P Chip Node\nSummary: The Dow Jones Industrial Average was up, while the S&P 500 Index and Nasdaq Com"
+            },
+            "retry_count": 0
+          }
+        },
+        "XOM": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 4,
+                  "buy": 8,
+                  "hold": 12,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 4,
+                  "buy": 7,
+                  "hold": 13,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 4,
+                  "buy": 7,
+                  "hold": 13,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 5,
+                  "buy": 8,
+                  "hold": 10,
+                  "sell": 1,
+                  "strongSell": 2
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Worried About a Market Crash? These 3 Dividend Stocks Could Help Reduce Your Risk\nSummary: The stocks on this list offer above-average yields and aren't volatile investments.\nDescription: \nURL: https://www.fool.com/investing/2026/06/17/worried-about-a-market-crash-these-3-dividend-stoc/\n\nTitle: 2 Reasons to Avoid XOM and 1 Stock to Buy Instead\nSummary: ExxonMobil’s 20.7% return over the past six months has outpaced the S&P 500 by 8.3%, and its stock price has climbed to $141.74 per share."
+            },
+            "retry_count": 0
+          }
+        },
+        "NKE": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 1,
+                  "buy": 14,
+                  "hold": 21,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 2,
+                  "buy": 14,
+                  "hold": 20,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 2,
+                  "buy": 15,
+                  "hold": 19,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 5,
+                  "buy": 19,
+                  "hold": 13,
+                  "sell": 1,
+                  "strongSell": 1
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: NIKE vs. Steven Madden: Which Stock Has an Edge in the Footwear Space?\nSummary: NKE and SHOO show contrasting footwear paths, with NKE facing turnaround pressures as SHOO posts stronger growth and momentum.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/nike-vs-steven-madden-stock-122600475.html\n\nTitle: Could Buying Nike Today Set You Up for Life?\nSummary: The share price is down 66% over the past five years, prompting investor pessimism about the business.\nDescripti"
+            },
+            "retry_count": 0
+          }
+        },
+        "PLTR": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 1,
+                  "buy": 18,
+                  "hold": 11,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 1,
+                  "buy": 18,
+                  "hold": 10,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 1,
+                  "buy": 18,
+                  "hold": 10,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 1,
+                  "buy": 16,
+                  "hold": 10,
+                  "sell": 1,
+                  "strongSell": 1
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Cognyte vs Palantir: Which AI Intelligence Stock Is the Better Buy?\nSummary: PLTR's faster growth and stronger margins contrast with Cognyte's rising recurring revenues and subscription-transition pressures.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/cognyte-vs-palantir-ai-intelligence-142000630.html\n\nTitle: Buy 5 Technology Laggards Despite the Sector's Dream Run in 2026\nSummary: Despite XLK's 33.2% YTD surge, five tech laggards including PLTR, TEAM, TOST, U, an"
+            },
+            "retry_count": 0
+          }
+        },
+        "NEE": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 3,
+                  "buy": 11,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 3,
+                  "buy": 10,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 4,
+                  "buy": 12,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 4,
+                  "buy": 12,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Oklo-Standard Nuclear Build Alliance to Strengthen Fuel Supply Chain\nSummary: OKLO and Standard Nuclear join forces to advance fuel recycling and plutonium utilization, supporting a stronger U.S. nuclear fuel supply chain.\nDescription: \nURL: https://finance.yahoo.com/energy/articles/oklo-standard-nuclear-build-alliance-142000539.html\n\nTitle: Lyft upgraded, Leidos downgraded: Wall Street's top analyst calls\nSummary: Lyft upgraded, Leidos downgraded: Wall Street's top analyst calls\nDescript"
+            },
+            "retry_count": 0
+          }
+        },
+        "TSLA": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 5,
+                  "buy": 18,
+                  "hold": 18,
+                  "sell": 4,
+                  "strongSell": 2
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 5,
+                  "buy": 18,
+                  "hold": 17,
+                  "sell": 4,
+                  "strongSell": 3
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 5,
+                  "buy": 18,
+                  "hold": 17,
+                  "sell": 4,
+                  "strongSell": 3
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 5,
+                  "buy": 18,
+                  "hold": 17,
+                  "sell": 6,
+                  "strongSell": 2
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Tesla Defies Auto Industry Sales Slump, Goldman Raises Q2 Delivery Forecast\nSummary: Goldman Sachs expects rising Tesla sales at a time when the broader auto industry is struggling.  Goldman's forecast of 420,000 cars would be a 9.3% increase compared to Q2 2025, when Tesla delivered 384,122 vehicles.  Sales growth of that level would buck current trends for both Tesla — which has had two years of declining sales — and the overall auto industry — with sales projected to slip 2.6% year ove"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    }
+  ],
+  "mcp_coverage_hint": [
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T15:51:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-17T15:51:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-17T14:51:33+00:00, retry after ~2s.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T13:31:32+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-17T15:51:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "gap_category": "unknown",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T15:51:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ]
+}

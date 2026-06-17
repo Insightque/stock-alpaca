@@ -350,11 +350,11 @@
   </div>
 
   <script type="application/json" id="dashboard-data">{
-  "generated_at": "2026-06-17T15:41:37Z",
+  "generated_at": "2026-06-17T16:04:06Z",
   "run": {
-    "run_id": "2026-06-18-0031-hourly-autopilot",
+    "run_id": "2026-06-18-0051-hourly-autopilot",
     "mode": "submit",
-    "created_at": "2026-06-17T15:34:32Z",
+    "created_at": "2026-06-17T15:56:30Z",
     "paper": true,
     "risk_status": "pass",
     "market": "open",
@@ -640,8 +640,8 @@
     },
     {
       "label": "Manifest",
-      "path": "wiki/evidence-store/run-manifests/2026-06-18-0031-hourly-autopilot.json",
-      "href": "../wiki/evidence-store/run-manifests/2026-06-18-0031-hourly-autopilot.json"
+      "path": "wiki/evidence-store/run-manifests/2026-06-18-0051-hourly-autopilot.json",
+      "href": "../wiki/evidence-store/run-manifests/2026-06-18-0051-hourly-autopilot.json"
     },
     {
       "label": "포지션",
@@ -649,27 +649,32 @@
       "href": "../wiki/trade-ledger/positions/current.md"
     },
     {
-      "label": "2026-06-18-0031-hourly-autopilot-stale-order-cleanup.json",
-      "path": "wiki/evidence-store/sources/2026-06-18-0031-hourly-autopilot-stale-order-cleanup.json",
-      "href": "../wiki/evidence-store/sources/2026-06-18-0031-hourly-autopilot-stale-order-cleanup.json"
+      "label": "2026-06-18-0051-hourly-autopilot-stale-order-cleanup.json",
+      "path": "wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-stale-order-cleanup.json",
+      "href": "../wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-stale-order-cleanup.json"
     },
     {
-      "label": "2026-06-18-0031-hourly-autopilot-alpaca-core-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-06-18-0031-hourly-autopilot-alpaca-core-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-06-18-0031-hourly-autopilot-alpaca-core-preflight.json"
+      "label": "2026-06-18-0051-hourly-autopilot-alpaca-core-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-alpaca-core-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-alpaca-core-preflight.json"
     },
     {
-      "label": "2026-06-18-0031-hourly-autopilot-research-mcp-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-06-18-0031-hourly-autopilot-research-mcp-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-06-18-0031-hourly-autopilot-research-mcp-preflight.json"
+      "label": "2026-06-18-0051-hourly-autopilot-research-mcp-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-research-mcp-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-research-mcp-preflight.json"
     },
     {
-      "label": "2026-06-18-0031-hourly-autopilot-runtime-gate-evaluation.json",
-      "path": "wiki/evidence-store/sources/2026-06-18-0031-hourly-autopilot-runtime-gate-evaluation.json",
-      "href": "../wiki/evidence-store/sources/2026-06-18-0031-hourly-autopilot-runtime-gate-evaluation.json"
+      "label": "2026-06-18-0051-hourly-autopilot-runtime-gate-evaluation.json",
+      "path": "wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-runtime-gate-evaluation.json",
+      "href": "../wiki/evidence-store/sources/2026-06-18-0051-hourly-autopilot-runtime-gate-evaluation.json"
     }
   ],
   "timeline": [
+    {
+      "time": "2026-06-18 00:59 KST",
+      "type": "hourly-autopilot",
+      "title": "2026-06-18-0051-hourly-autopilot scheduled paper autopilot"
+    },
     {
       "time": "2026-06-18 00:38 KST",
       "type": "hourly-autopilot",
@@ -679,11 +684,6 @@
       "time": "2026-06-18 00:22 KST",
       "type": "hourly-autopilot",
       "title": "2026-06-18-0011-hourly-autopilot scheduled paper autopilot"
-    },
-    {
-      "time": "2026-06-18 00:00 KST",
-      "type": "hourly-autopilot",
-      "title": "2026-06-17-2351-hourly-autopilot scheduled paper autopilot"
     }
   ],
   "backtests": [
@@ -734,8 +734,8 @@
   ],
   "warnings": [
     "post-order cash 29385.44 remains above target maximum 10129.32; continue staged deployment on later runs when hard gates pass",
-    "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-17T14:51:33+00:00, retry after ~1207s.",
-    "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
+    "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-17T14:51:33+00:00, retry after ~2s.",
+    "Firecrawl API credit exhaustion in scheduler-owned preflight; nested Codex did not retry."
   ]
 }</script>
   <script>

@@ -1,5 +1,18 @@
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-18-0051-hourly-autopilot]]
+- Open/new: `hourly-20260618-0051-buy-xom` 1주 buy가 immediate reconciliation 기준 `status=new` open order로 남아 있다.
+- Filled: same US-date fill ledger에는 earlier `MSFT` buy 1주 `385.40 USD`, `AMZN` buy 1주 `240.44 USD`, `NEE` buy 1주 `86.38 USD`, `NKE` buy 1주 `45.30 USD`, `FCX` buy 1주 `71.40 USD`, `WMT` buy 1주 `119.83 USD`, `BAC` buy 1주 `57.57 USD`, prior after-hours `PFE` sell 1주 `26.03 USD`, `RGTI` sell 1주 `20.96 USD`가 남아 있었다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: direct `get_all_positions` 기준 positions `33`건이었다.
+- Recent reconciliation scope: scheduler-owned `0051` core/research preflight를 source-of-record로 사용했고, live Alpaca MCP `get_clock/get_orders(status=open)/get_orders(status=all, after=2026-06-16T20:00:00-04:00)/get_order_by_client_id/get_all_positions/get_account_info/get_watchlists`로 submit-boundary와 post-trade state를 재확인했다. live readback 기준 account `ACTIVE`, cash `29,385.46 USD`, portfolio value `101,434.09 USD`, buying power `303,349.92 USD`, open orders `1`, watchlists `0`, `XOM qty=6`, `avg_entry_price=148.37`, `current_price=141.6101`, `MSFT qty=5`였다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-18-0051-hourly-autopilot-post-trade.json`
+
+_Last updated: 2026-06-18 00:59 KST_
+
+## 최신 hourly-autopilot reconciliation
+
 - Run: [[2026-06-18-0031-hourly-autopilot]]
 - Open/new: 없음. `hourly-20260618-0031-buy-msft` 1주 buy는 immediate reconciliation 기준 이미 `filled`다.
 - Filled: same US-date fill ledger에는 신규 `MSFT` buy 1주 `385.40 USD`, `AMZN` buy 1주 `240.44 USD`, `NEE` buy 1주 `86.38 USD`, `NKE` buy 1주 `45.30 USD`, `FCX` buy 1주 `71.40 USD`, `WMT` buy 1주 `119.83 USD`, `BAC` buy 1주 `57.57 USD`, prior after-hours `PFE` sell 1주 `26.03 USD`, `RGTI` sell 1주 `20.96 USD`가 남아 있었다.
