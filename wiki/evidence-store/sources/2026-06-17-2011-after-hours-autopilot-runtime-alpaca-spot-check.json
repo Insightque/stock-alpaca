@@ -1,0 +1,217 @@
+{
+  "run_id": "2026-06-17-2011-after-hours-autopilot",
+  "created_at": "2026-06-17T11:17:01Z",
+  "session": "after_hours",
+  "paper": true,
+  "source_of_record_preflight": "wiki/evidence-store/sources/2026-06-17-2011-after-hours-autopilot-alpaca-core-preflight.json",
+  "live_tools_used": [
+    "get_watchlists",
+    "get_stock_latest_quote(feed=overnight,symbols=RGTI,PFE,QQQ)",
+    "get_stock_snapshot(feed=overnight,symbols=RGTI,PFE,QQQ)"
+  ],
+  "watchlists": {
+    "result": []
+  },
+  "quotes": {
+    "quotes": {
+      "QQQ": {
+        "ap": 737.4,
+        "as": 30,
+        "ax": "B",
+        "bp": 714.29,
+        "bs": 49,
+        "bx": "B",
+        "c": [],
+        "t": "2026-06-17T08:00:00.397695095Z",
+        "z": "N"
+      },
+      "PFE": {
+        "ap": 27.49,
+        "as": 37,
+        "ax": "B",
+        "bp": 25.89,
+        "bs": 10,
+        "bx": "B",
+        "c": [],
+        "t": "2026-06-17T08:00:00.390929824Z",
+        "z": "N"
+      },
+      "RGTI": {
+        "ap": 21.27,
+        "as": 5,
+        "ax": "B",
+        "bp": 20.84,
+        "bs": 1,
+        "bx": "B",
+        "c": [],
+        "t": "2026-06-17T08:00:00.399932213Z",
+        "z": "N"
+      }
+    }
+  },
+  "snapshots": {
+    "RGTI": {
+      "dailyBar": {
+        "c": 21.05,
+        "h": 21.14,
+        "l": 20.85,
+        "n": 2245,
+        "o": 20.85,
+        "t": "2026-06-17T00:00:00Z",
+        "v": 156901,
+        "vw": 20.986555
+      },
+      "latestQuote": {
+        "ap": 21.27,
+        "as": 5,
+        "ax": "B",
+        "bp": 20.84,
+        "bs": 1,
+        "bx": "B",
+        "c": [],
+        "t": "2026-06-17T08:00:00.399932213Z",
+        "z": "N"
+      },
+      "latestTrade": {
+        "c": [
+          "@"
+        ],
+        "i": 1801439850948266313,
+        "p": 21.05,
+        "s": 155,
+        "t": "2026-06-17T07:56:40.20303097Z",
+        "x": "B",
+        "z": "N"
+      },
+      "minuteBar": {
+        "c": 21.05,
+        "h": 21.05,
+        "l": 21.04,
+        "n": 4,
+        "o": 21.04,
+        "t": "2026-06-17T07:56:00Z",
+        "v": 544,
+        "vw": 21.043051
+      },
+      "prevDailyBar": {
+        "c": 22.65,
+        "h": 22.8,
+        "l": 22.2,
+        "n": 3199,
+        "o": 22.75,
+        "t": "2026-06-16T00:00:00Z",
+        "v": 168659,
+        "vw": 22.505543
+      }
+    },
+    "QQQ": {
+      "dailyBar": {
+        "c": 736.16,
+        "h": 736.5,
+        "l": 731.13,
+        "n": 4072,
+        "o": 731.49,
+        "t": "2026-06-17T00:00:00Z",
+        "v": 167201,
+        "vw": 734.114514
+      },
+      "latestQuote": {
+        "ap": 737.4,
+        "as": 30,
+        "ax": "B",
+        "bp": 714.29,
+        "bs": 49,
+        "bx": "B",
+        "c": [],
+        "t": "2026-06-17T08:00:00.397695095Z",
+        "z": "N"
+      },
+      "latestTrade": {
+        "c": [
+          "@"
+        ],
+        "i": 39561,
+        "p": 736.16,
+        "s": 160,
+        "t": "2026-06-17T07:58:07.954442121Z",
+        "x": "B",
+        "z": "N"
+      },
+      "minuteBar": {
+        "c": 736.16,
+        "h": 736.18,
+        "l": 736.16,
+        "n": 11,
+        "o": 736.18,
+        "t": "2026-06-17T07:58:00Z",
+        "v": 414,
+        "vw": 736.170588
+      },
+      "prevDailyBar": {
+        "c": 743.07,
+        "h": 743.4,
+        "l": 741.02,
+        "n": 5747,
+        "o": 742.98,
+        "t": "2026-06-16T00:00:00Z",
+        "v": 244201,
+        "vw": 742.323584
+      }
+    },
+    "PFE": {
+      "dailyBar": {
+        "c": 26.07,
+        "h": 26.07,
+        "l": 26.06,
+        "n": 187,
+        "o": 26.06,
+        "t": "2026-06-17T00:00:00Z",
+        "v": 2347,
+        "vw": 26.06298
+      },
+      "latestQuote": {
+        "ap": 27.49,
+        "as": 37,
+        "ax": "B",
+        "bp": 25.89,
+        "bs": 10,
+        "bx": "B",
+        "c": [],
+        "t": "2026-06-17T08:00:00.390929824Z",
+        "z": "N"
+      },
+      "latestTrade": {
+        "c": [
+          "@"
+        ],
+        "i": 936748722493082447,
+        "p": 26.07,
+        "s": 172,
+        "t": "2026-06-17T07:35:44.748076318Z",
+        "x": "B",
+        "z": "N"
+      },
+      "minuteBar": {
+        "c": 26.07,
+        "h": 26.07,
+        "l": 26.07,
+        "n": 3,
+        "o": 26.07,
+        "t": "2026-06-17T07:35:00Z",
+        "v": 297,
+        "vw": 26.07
+      },
+      "prevDailyBar": {
+        "c": 26.02,
+        "h": 26.07,
+        "l": 26.01,
+        "n": 535,
+        "o": 26.02,
+        "t": "2026-06-16T00:00:00Z",
+        "v": 14449,
+        "vw": 26.030604
+      }
+    }
+  },
+  "note": "Scheduler-owned 2011 Alpaca core preflight already contained passing clock/account/positions/open-order/activity rows. This live continuity check revalidated watchlists plus overnight quote/snapshot parity only; no missing after-hours-required core row required an extra account/order/position MCP read."
+}
