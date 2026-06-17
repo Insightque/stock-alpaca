@@ -1,0 +1,35 @@
+{
+  "run_id": "2026-06-17-2051-after-hours-autopilot",
+  "created_at": "2026-06-17T11:53:19Z",
+  "session": "after_hours",
+  "paper": true,
+  "source_of_record_preflight": "wiki/evidence-store/sources/2026-06-17-2051-after-hours-autopilot-alpaca-core-preflight.json",
+  "live_tools_used": [
+    "get_clock",
+    "get_all_positions",
+    "get_orders(status=open)",
+    "get_orders(status=all,after=2026-06-16T20:00:00-04:00)",
+    "get_watchlists"
+  ],
+  "watchlists": {
+    "result": []
+  },
+  "note": "Scheduler-owned 2051 Alpaca core preflight already contained passing clock/account/positions/open-order/activity/asset/quote/spread rows. This live continuity check revalidated current clock/position/order/watchlist state only; no missing after-hours-required core row required an extra submit path.",
+  "clock": {
+    "is_open": false,
+    "next_close": "2026-06-17T16:00:00-04:00",
+    "next_open": "2026-06-17T09:30:00-04:00",
+    "timestamp": "2026-06-17T07:52:47.428108791-04:00"
+  },
+  "open_orders": {
+    "result": []
+  },
+  "same_session_orders": {
+    "submitted_today": 2,
+    "fills_today": 2,
+    "client_order_ids": [
+      "ah-20260617-1331-sell-rgti-01",
+      "ah-20260617-1351-sell-pfe-01"
+    ]
+  }
+}

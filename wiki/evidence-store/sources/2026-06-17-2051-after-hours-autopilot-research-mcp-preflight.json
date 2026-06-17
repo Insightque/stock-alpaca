@@ -1,0 +1,721 @@
+{
+  "run_id": "2026-06-17-2051-after-hours-autopilot",
+  "created_at": "2026-06-17T11:51:25+00:00",
+  "paper": true,
+  "source": "scheduler local MCP stdio preflight",
+  "symbols": [
+    "QQQ",
+    "IONQ",
+    "PFE",
+    "JPM",
+    "QBTS",
+    "SMH",
+    "MSFT",
+    "LLY"
+  ],
+  "symbol_source": "alpaca_core_preflight",
+  "cache_dir": "/Users/insightque/stock-alpaca/.cache/after-hours-research-mcp-preflight",
+  "cache_enabled": true,
+  "circuit_breaker_seconds": 600,
+  "providers": [
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T10:51:29+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_company_info|get_recent_filings",
+      "per_symbol": {
+        "SMH": {
+          "outcome": "gap",
+          "gap_category": "empty_response",
+          "gap_reason": "symbol missing from local SEC ticker-CIK cache; likely ETF/non-company lookup gap"
+        },
+        "QQQ": {
+          "cik": "0001067839",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "IONQ": {
+          "cik": "0001824920",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "PFE": {
+          "cik": "0000078003",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "JPM": {
+          "cik": "0000019617",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "QBTS": {
+          "cik": "0001907982",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "MSFT": {
+          "cik": "0000789019",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "LLY": {
+          "cik": "0000059478",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-17T10:51:43+00:00",
+      "cache_reused_at": "2026-06-17T11:51:25+00:00",
+      "cache_ttl_seconds": 3600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2051-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "outcome": "gap",
+      "checked_at": "2026-06-17T10:51:29+00:00",
+      "gap_category": "empty_response",
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "retry_count": 0,
+      "tool": "TOOL_LIST|TOOL_GET|TOOL_CALL(NEWS_SENTIMENT)",
+      "payload": {
+        "item_count": 0,
+        "candidate_payload": {
+          "items": "0",
+          "sentiment_score_definition": "x <= -0.35: Bearish; -0.35 < x <= -0.15: Somewhat-Bearish; -0.15 < x < 0.15: Neutral; 0.15 <= x < 0.35: Somewhat_Bullish; x >= 0.35: Bullish",
+          "relevance_score_definition": "0 < x <= 1, with a higher score indicating higher relevance.",
+          "feed": []
+        }
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-17T10:51:33+00:00",
+      "cache_reused_at": "2026-06-17T11:51:25+00:00",
+      "cache_ttl_seconds": 3600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2051-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T09:51:25+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_macro_snapshot",
+      "payload": {
+        "observation_end": null,
+        "series": [
+          {
+            "series_id": "DGS10",
+            "latest": {
+              "realtime_start": "2026-06-16",
+              "realtime_end": "2026-06-16",
+              "date": "2026-06-15",
+              "value": "4.47"
+            }
+          },
+          {
+            "series_id": "DGS2",
+            "latest": {
+              "realtime_start": "2026-06-16",
+              "realtime_end": "2026-06-16",
+              "date": "2026-06-15",
+              "value": "4.07"
+            }
+          },
+          {
+            "series_id": "FEDFUNDS",
+            "latest": {
+              "realtime_start": "2026-06-01",
+              "realtime_end": "2026-06-01",
+              "date": "2026-05-01",
+              "value": "3.63"
+            }
+          },
+          {
+            "series_id": "CPIAUCSL",
+            "latest": {
+              "realtime_start": "2026-06-10",
+              "realtime_end": "2026-06-10",
+              "date": "2026-05-01",
+              "value": "333.979"
+            }
+          },
+          {
+            "series_id": "UNRATE",
+            "latest": {
+              "realtime_start": "2026-06-05",
+              "realtime_end": "2026-06-05",
+              "date": "2026-05-01",
+              "value": "4.3"
+            }
+          },
+          {
+            "series_id": "NFCI",
+            "latest": {
+              "realtime_start": "2026-06-10",
+              "realtime_end": "2026-06-10",
+              "date": "2026-06-05",
+              "value": "-0.50600"
+            }
+          }
+        ]
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-17T09:51:27+00:00",
+      "cache_reused_at": "2026-06-17T11:51:26+00:00",
+      "cache_ttl_seconds": 21600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2051-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "outcome": "failed",
+      "checked_at": "2026-06-17T11:51:26+00:00",
+      "gap_category": "unknown",
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "retry_count": 0,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2051-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T11:51:26+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_recommendations|get_yahoo_finance_news",
+      "per_symbol": {
+        "QQQ": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: S&P 500, Nasdaq, Dow Futures Edge Higher Ahead Of Fed Rate Decision: INTC, SNAP, SOFI, RUM In Focus\nSummary: The Dow surged to a fresh intraday record on Tuesday before finishing at an all-time closing high, marking its second straight record close.\nDescription: \nURL: https://stocktwits.com/news-articles/markets/equity/sp500-nasdaq-dow-futures-edge-higher-ahead-of-fed-rate-decision/cZK0WgFR74u\n\nTitle: Dow Hits Record High On Strong Banks And Industrial Stocks, Nasdaq And S&P 500 Slip On T"
+            },
+            "retry_count": 0
+          }
+        },
+        "IONQ": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 1,
+                  "buy": 10,
+                  "hold": 2,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 1,
+                  "buy": 10,
+                  "hold": 2,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 1,
+                  "buy": 10,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 1,
+                  "buy": 9,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: 3 Quantum Computing Stocks Down Sharply -- but 1 Offers Exceptional Value\nSummary: Quantum stocks have cooled after a massive rally, but one company may offer the best mix of commercial traction, growing bookings, and a more reasonable valuation than its peers.\nDescription: \nURL: https://www.fool.com/investing/2026/06/17/3-quantum-computing-stocks-down-sharply-but-one-o/\n\nTitle: IonQ, Rigetti, D-Wave, and Quantum Computing Inc. All Fall 5% to 7% as the Quantum Rally Reverses\nSummary: Shar"
+            },
+            "retry_count": 0
+          }
+        },
+        "PFE": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 2,
+                  "buy": 9,
+                  "hold": 16,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 2,
+                  "buy": 9,
+                  "hold": 15,
+                  "sell": 1,
+                  "strongSell": 2
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 2,
+                  "buy": 9,
+                  "hold": 15,
+                  "sell": 1,
+                  "strongSell": 2
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 2,
+                  "buy": 8,
+                  "hold": 15,
+                  "sell": 1,
+                  "strongSell": 2
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Pfizer (PFE) Expands China Partnership With SINOPHARM Around Diflucan And Future Launches\nSummary: Pfizer and SINOPHARM have entered into a new partnership to promote antifungal drug Diflucan in China. The collaboration also includes plans to work together on future Pfizer product launches in the Chinese market. The agreement focuses on supply chain optimization, resource integration, and improving commercial execution across China. Pfizer (NYSE:PFE) is using this new agreement with SINOP"
+            },
+            "retry_count": 0
+          }
+        },
+        "JPM": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 4,
+                  "buy": 8,
+                  "hold": 12,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 4,
+                  "buy": 8,
+                  "hold": 12,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 5,
+                  "buy": 8,
+                  "hold": 12,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 5,
+                  "buy": 9,
+                  "hold": 13,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Morningstar Teams Up With Apollo, Franklin Templeton and J.P. Morgan on Public/Private Model Portfolios\nSummary: The six new portfolios, which are expected to launch later this year, will invest from 12% to 20% of assets in private credit and real estate.\nDescription: \nURL: https://www.barrons.com/advisor/articles/morningstar-apollo-jpmorgan-franklin-model-portfolios-24c81ff8?siteid=yhoof2&yptr=yahoo\n\nTitle: Market Chatter: JPMorgan, Google Among Firms Asked to Preserve Records in Epstein"
+            },
+            "retry_count": 0
+          }
+        },
+        "QBTS": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 1,
+                  "buy": 12,
+                  "hold": 2,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 1,
+                  "buy": 12,
+                  "hold": 2,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 1,
+                  "buy": 12,
+                  "hold": 2,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 1,
+                  "buy": 12,
+                  "hold": 1,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: 3 Quantum Computing Stocks Down Sharply -- but 1 Offers Exceptional Value\nSummary: Quantum stocks have cooled after a massive rally, but one company may offer the best mix of commercial traction, growing bookings, and a more reasonable valuation than its peers.\nDescription: \nURL: https://www.fool.com/investing/2026/06/17/3-quantum-computing-stocks-down-sharply-but-one-o/\n\nTitle: Is QBTS the NVIDIA of Quantum Computing or is it Overvalued?\nSummary: QBTS is drawing comparisons to NVIDIA as "
+            },
+            "retry_count": 0
+          }
+        },
+        "SMH": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: If You Put $500 a Month into This Tech ETF Since 2016, You Could Retire Tomorrow\nSummary: Drop $500 into the VanEck Semiconductor ETF (NYSEARCA:SMH) starting in June, 2016, add another $500 every month, and the math pegs the account at $495,000 this week. Total contributions across those ten years come to $60,500. Everything else is what a single-sector ETF did to your money while you ignored it. The math holds up ... If You Put $500 a Month into This Tech ETF Since 2016, You Could Retire"
+            },
+            "retry_count": 0
+          }
+        },
+        "MSFT": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 13,
+                  "buy": 40,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 12,
+                  "buy": 40,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 9,
+                  "buy": 42,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 10,
+                  "buy": 45,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: SpaceX's hot debut sheds more light on Microsoft's dreadful stock price\nSummary: While SpaceX made a sizzling debut in public markets, Microsoft's stock has remained stuck in the mud.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/article/spacexs-hot-debut-sheds-more-light-on-microsofts-dreadful-stock-price-112348867.html\n\nTitle: Microsoft debuts Surface Laptop and Surface Pro amid AI-driven memory shortage\nSummary: Microsoft has debuted its new Surface Laptop and Surface Pro"
+            },
+            "retry_count": 0
+          }
+        },
+        "LLY": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 6,
+                  "buy": 18,
+                  "hold": 5,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 6,
+                  "buy": 18,
+                  "hold": 5,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 6,
+                  "buy": 18,
+                  "hold": 6,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 6,
+                  "buy": 18,
+                  "hold": 6,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Health Care Roundup: Market Talk\nSummary: Gain insight on Eli Lilly, Roche, Zealand Pharma and more in the latest Market Talks covering the health care sector.\nDescription: \nURL: https://www.wsj.com/health/pharma/health-care-roundup-market-talk-eebbc3ff?siteid=yhoof2&yptr=yahoo\n\nTitle: Eli Lilly Takes Another Stab at the Market for Painkillers. This Attempt Might Work.\nSummary: Eli Lilly is acquiring Austin-based 4E Therapeutics, the developer of nonaddictive painkillers, for an undisclos"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2051-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    }
+  ],
+  "mcp_coverage_hint": [
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T10:51:29+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2051-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-17T10:51:29+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2051-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T09:51:25+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2051-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-17T11:51:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2051-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "gap_category": "unknown",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T11:51:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2051-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ]
+}
