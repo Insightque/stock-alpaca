@@ -1,0 +1,79 @@
+{
+  "run_id": "2026-06-17-2111-after-hours-autopilot",
+  "created_at": "2026-06-17T12:13:19Z",
+  "session": "after_hours",
+  "paper": true,
+  "read_only": true,
+  "source": "scheduler_owned_2111_preflight_plus_prior_same_session_reconciliation_fallback",
+  "local_runtime_attempt": {
+    "status": "unavailable",
+    "tool": "alpaca_mcp_live_continuity",
+    "reason": "ModuleNotFoundError: No module named 'mcp'",
+    "effect_on_decision": "none_budget_gate_already_blocked_submit_path"
+  },
+  "source_of_record": {
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-17-2111-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-17-2111-after-hours-autopilot-research-mcp-preflight.json",
+    "latest_same_session_reconciliation": "wiki/trade-ledger/positions/2026-06-17-2051-after-hours-autopilot-post-trade.json",
+    "positions_current": "wiki/trade-ledger/positions/current.md"
+  },
+  "clock": {
+    "is_open": false,
+    "timestamp": "2026-06-17T08:11:07.995124995-04:00",
+    "next_open": "2026-06-17T09:30:00-04:00",
+    "next_close": "2026-06-17T16:00:00-04:00"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "cash": 30391.78,
+    "portfolio_value": 101288.4,
+    "buying_power": 303958.83,
+    "currency": "USD"
+  },
+  "positions_count": 33,
+  "open_orders_count": 0,
+  "watchlists_count": 0,
+  "same_session_after_hours_client_order_ids": [
+    "ah-20260617-1331-sell-rgti-01",
+    "ah-20260617-1351-sell-pfe-01"
+  ],
+  "same_session_after_hours_orders_submitted_today": 2,
+  "same_session_after_hours_fills_today": 2,
+  "reconciled_prior_client_order_ids": [
+    "ah-20260617-1331-sell-rgti-01",
+    "ah-20260617-1351-sell-pfe-01"
+  ],
+  "positions_focus": {
+    "PFE": {
+      "qty": 2.0,
+      "qty_available": 2.0,
+      "market_value": 52.1,
+      "current_price": 26.05
+    },
+    "RGTI": {
+      "qty": 27.0,
+      "qty_available": 27.0,
+      "market_value": 563.085,
+      "current_price": 20.855
+    }
+  },
+  "same_session_fill_rows": [
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "qty": 1.0,
+      "price": 26.03,
+      "transaction_time": "2026-06-17T05:11:09.778969Z",
+      "order_status": "filled"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1.0,
+      "price": 20.96,
+      "transaction_time": "2026-06-17T04:39:27.027152Z",
+      "order_status": "filled"
+    }
+  ],
+  "note": "No new submit was attempted at 2111. Scheduler-owned 2111 Alpaca core preflight remained the source-of-record, and the same-session after-hours fills from RGTI/PFE kept the separate session budget closed at 2/2. Direct local MCP continuity could not be reopened in this shell because the mcp Python module was unavailable."
+}
