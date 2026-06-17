@@ -11,6 +11,12 @@ asset_type: stock
 
 출처: [[2026-06-16-0231-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-16-0231-hourly-autopilot-post-trade.json`
 
+## 2026-06-18 02:00 KST hourly-autopilot
+
+`COP` 1주 regular-session day limit buy가 `110.93 USD` limit으로 제출됐고, same `client_order_id=hourly-20260618-0151-buy-cop` reconciliation 기준 `2026-06-17T16:59:32.674078658Z`에 `110.83 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0151` stale cleanup/core/research preflight 기준 hard gate pass, live continuity 기준 직전 `GOOGL` fill 이후 open orders `0` 재확인, `SO/RGTI/PFE` sell-first 경로가 각각 metric gap과 same-day duplicate sell gate로 막혔다는 점, 그리고 `COP`가 same-day duplicate/open-order conflict가 없는 existing energy/value diversifier로 live quote `110.83/110.93` spread `0.0902%`, active tradable NYSE stock, `2026-06-17` portfolio review의 `중립 약함` history, `SEC/FRED/Yahoo` 3-provider positive confirmation을 유지해 current invested ratio가 acceleration threshold 아래인 상태에서 floor-size learning fallback으로 가장 executable했다는 점이다. immediate reconciliation 기준 보유 수량은 `6주 -> 7주`, `avg_entry_price=116.012857`로 갱신됐다.
+
+출처: [[2026-06-18-0151-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-18-0151-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-18-0151-hourly-autopilot-post-trade.json`
+
 ## 2026-06-11 00:58 KST hourly-autopilot
 
 `COP` 1주 regular-session day limit buy가 `121.20 USD` limit으로 제출됐고, direct Alpaca MCP reconciliation 기준 `client_order_id=hourly-20260611-0051-buy-cop`, `order_id=998a7e94-7e3c-4737-bdd6-2bdc37dccfea`가 `2026-06-10T15:58:00.532764086Z`에 `121.05 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0051` stale cleanup/core/research preflight 재사용, regular market open과 open orders `0`건 재확인, `AVGO/RGTI` same-day sell duplicate 및 `SO` trim metric gap 이후에도 learning_trade_directive가 최소 1건 validation order를 요구한다는 점, 그리고 `COP`가 2026-06-09 analyst review 기준 `2026-06-05 ET` fill 1D `+1.28%`, `SPY` 대비 `+1.04%p`, live IEX quote `121.15/121.20` spread `0.0413%`, same-day duplicate/open-order conflict 부재를 보여 existing energy/value sleeve add로 가장 executable했다는 점이다. 체결 후 보유수량은 `4주 -> 5주`, 평균단가는 `117.728 USD`로 갱신됐다.
