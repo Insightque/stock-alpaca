@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-17 14:14 KST after-hours-autopilot `PFE` 1주 trim sell이 `26.03 USD`로 체결된 same-id reconciliation과 separate after-hours session budget `2/2` 상태 반영 후 갱신.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-17 15:33 KST after-hours-autopilot `1531` cycle에서 same-session `RGTI`/`PFE` fill 유지와 separate after-hours session budget `2/2` 폐쇄 상태를 direct Alpaca continuity로 재확인한 no-submit reconciliation까지 반영 후 갱신.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
@@ -55,6 +55,7 @@
 
 ## Current Runs
 
+- [[2026-06-17-1531-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1531` core/research preflight를 source-of-record로 사용했고 Alpaca core regular-session `market_closed` 상태는 after-hours expected nonblocking으로 처리했다. direct Alpaca continuity 기준 same-session fills `RGTI`, `PFE` 두 건과 open orders `0`, positions `33`, watchlists `0`가 유지되어 separate after-hours session budget은 계속 `2/2`로 닫혀 있었다. strict universe/MCP/risk gate는 모두 PASS였지만 first blocking gate `separate_after_hours_order_budget` 때문에 신규 submit 없이 no-submit으로 종료했다.
 - [[2026-06-17-1451-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1451` core/research preflight를 source-of-record로 사용했고 Alpaca core regular-session `market_closed` 상태는 after-hours expected nonblocking으로 처리했다. direct Alpaca continuity 기준 same-session fills `RGTI`, `PFE` 두 건과 open orders `0`, positions `33`, watchlists `0`가 유지되어 separate after-hours session budget은 계속 `2/2`로 닫혀 있었다. strict universe/MCP/risk gate는 모두 PASS였지만 first blocking gate `separate_after_hours_order_budget` 때문에 신규 submit 없이 no-submit으로 종료했다.
 - [[2026-06-17-1511-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1511` core/research preflight를 source-of-record로 사용했고 Alpaca core regular-session `market_closed` 상태는 after-hours expected nonblocking으로 처리했다. direct Alpaca continuity 기준 same-session fills `RGTI`, `PFE` 두 건과 open orders `0`, positions `33`, watchlists `0`가 유지되어 separate after-hours session budget은 계속 `2/2`로 닫혀 있었다. strict universe/MCP/risk gate는 모두 PASS였지만 first blocking gate `separate_after_hours_order_budget` 때문에 신규 submit 없이 no-submit으로 종료했다.
 - [[2026-06-17-1431-after-hours-autopilot]] - after-hours scheduled autopilot 실행. session=`after_hours`, review_bucket=`after_hours_validation`, scheduler-owned `1431` core/research preflight를 source-of-record로 사용했고 Alpaca core regular-session `market_closed` 상태는 after-hours expected nonblocking으로 처리했다. direct Alpaca continuity 기준 same-session fills `RGTI`, `PFE` 두 건과 open orders `0`, positions `33`, watchlists `0`가 유지되어 separate after-hours session budget은 계속 `2/2`로 닫혀 있었다. strict universe/MCP/risk gate는 모두 PASS였지만 first blocking gate `separate_after_hours_order_budget` 때문에 신규 submit 없이 no-submit으로 종료했다.
