@@ -1,0 +1,175 @@
+{
+  "run_id": "2026-06-17-1331-after-hours-autopilot",
+  "session": "after_hours",
+  "artifact_tag": "after-hours",
+  "mode": "submit",
+  "paper": true,
+  "policy_profile": "after_hours_policy",
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T04:35:40Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ],
+      "gap_reason": "Scheduler-owned 1331 Alpaca core preflight omitted passing rows beyond the expected regular-market-closed clock. This cycle used one direct Alpaca MCP continuity pass to restore account, positions, open-orders, watchlists, asset, and fresh overnight quote evidence before submit evaluation.",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T03:51:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-17T03:51:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T03:31:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-17T04:31:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "gap_category": "unknown",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T04:31:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler research preflight shortlist + SPY/QQQ benchmarks + direct Alpaca overnight continuity",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist_with_direct_overnight_submit_boundary_evidence",
+    "pre_mcp_shortlist": [
+      "RGTI",
+      "PFE",
+      "AVGO",
+      "QQQ",
+      "IONQ",
+      "MSFT",
+      "JPM",
+      "QBTS"
+    ],
+    "final_candidates": [
+      "RGTI",
+      "PFE",
+      "AVGO",
+      "QQQ",
+      "IONQ",
+      "MSFT",
+      "JPM",
+      "QBTS"
+    ],
+    "passed": true,
+    "gap_reason": "",
+    "status": "pass",
+    "source": "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-research-mcp-preflight.json",
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-research-mcp-preflight.json",
+      "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-after-hours-gate-evaluation.json",
+      "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-runtime-alpaca-spot-check.json"
+    ]
+  },
+  "submit_gate": {
+    "selected_symbol": "RGTI",
+    "selected_side": "sell",
+    "selected_limit_price": 20.94,
+    "selected_quote_source": "alpaca overnight latestQuote",
+    "separate_session_budget_remaining": 2,
+    "review_bucket": "after_hours_validation",
+    "hard_gate_status": "all_pass_pre_submit",
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-research-mcp-preflight.json",
+      "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-after-hours-gate-evaluation.json",
+      "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-runtime-alpaca-spot-check.json",
+      "wiki/trade-ledger/reviews/review-due-index.json",
+      "wiki/trade-ledger/positions/current.md",
+      "wiki/research-notes/tickers/RGTI.md",
+      "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+      "wiki/trade-ledger/reviews/2026-06-16-portfolio-review.md",
+      "wiki/current-runs/daily/2026-06-15-2231-hourly-autopilot.md",
+      "wiki/current-runs/daily/2026-06-16-2251-hourly-autopilot.md"
+    ]
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+    "wiki/trade-ledger/reviews/2026-06-16-portfolio-review.md",
+    "wiki/current-runs/daily/2026-06-15-2231-hourly-autopilot.md",
+    "wiki/current-runs/daily/2026-06-16-2251-hourly-autopilot.md"
+  ]
+}

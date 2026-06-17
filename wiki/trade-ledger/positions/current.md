@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-06-17-1331-after-hours-autopilot]]
+- Open/new: 없음. direct `get_orders(status=open)` 기준 open orders `0`건이었다.
+- Filled: `RGTI` after-hours trim 1주가 `client_order_id=ah-20260617-1331-sell-rgti-01`, `filled_avg_price=20.96 USD`로 즉시 체결됐다. `get_orders(status=all, after=2026-06-16T20:00:00-04:00)` 기준 same-session after-hours orders/fills는 모두 `1`건이다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: submit 전 `33`건이었고 체결 후에도 total positions count는 `33`건으로 유지됐다.
+- Recent reconciliation scope: scheduler-owned `1331` core/research preflight를 사용했고, sparse Alpaca core preflight는 direct Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders/get_watchlists/get_asset/get_stock_latest_quote(feed=overnight)`로 보강했다. separate after-hours session submitted count는 `0/2 -> 1/2`로 변했고, `RGTI`는 fresh overnight quote `20.94/20.99`, spread `0.2385%`, active/tradable, same-session duplicate `0` 조건에서 sell-first trim으로 선택됐다. 체결 후 `get_account_info` 기준 cash는 `30,344.81 USD -> 30,365.77 USD`, portfolio value는 `101,176.88 USD -> 101,133.79 USD`, buying power는 `303,781.80 USD -> 303,720.06 USD`였다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-06-17-1331-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-06-17 13:40 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-06-17-1311-after-hours-autopilot]]
 - Open/new: 없음. scheduler-owned `1311` preflight `get_orders(status=open)` source-of-record 기준 open orders `0`건이었고, live `get_orders(status=open)` 기준도 `0`건이었다.
 - Filled: 이번 cycle 신규 after-hours fill 없음. live `get_orders(status=all, after=2026-06-16T20:00:00-04:00)` 기준 same-session after-hours orders `0`건이었고 submit path에도 진입하지 않아 same-session fills는 `0`으로 유지됐다.

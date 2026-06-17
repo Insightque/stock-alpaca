@@ -1,0 +1,43 @@
+{
+  "run_id": "2026-06-17-1331-after-hours-autopilot",
+  "created_at": "2026-06-17T04:39:28Z",
+  "session": "after_hours",
+  "paper": true,
+  "orders_submitted_this_run": 1,
+  "reconciliation": {
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 1,
+    "same_session_after_hours_fills_today": 1,
+    "positions_count_source_of_record": 33,
+    "watchlists_count": 0,
+    "cash_source_of_record": 30344.81,
+    "portfolio_value_source_of_record": 101176.88,
+    "buying_power_source_of_record": 303781.8,
+    "account_status_source_of_record": "ACTIVE",
+    "live_open_orders_count": 0,
+    "live_same_session_after_hours_orders_submitted_today": 1,
+    "live_same_session_after_hours_fills_today": 1,
+    "live_watchlists_count": 0,
+    "post_submit_cash": 30365.77,
+    "post_submit_portfolio_value": 101133.79,
+    "post_submit_buying_power": 303720.06,
+    "rgti_qty_before": 28,
+    "rgti_qty_after": 27,
+    "rgti_qty_available_after": 27,
+    "filled_avg_price": 20.96,
+    "order_id": "11925982-d0a5-4e80-9546-d2a3c67cf9b4"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-17-1331-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/evidence-store/run-manifests/2026-06-17-1331-after-hours-autopilot.json"
+  ],
+  "review_bucket": "after_hours_validation",
+  "note": "RGTI after-hours trim was submitted once and reconciled by the same client_order_id as a filled order. Direct Alpaca continuity confirmed no remaining open orders, same-session after-hours order/fill count 1, and position/account state updated without retry or alternate client id.",
+  "client_order_ids_checked": [
+    "ah-20260617-1331-sell-rgti-01"
+  ],
+  "reconciliation_note": "Immediate get_order_by_client_id resolved the order to filled at 20.96 USD. get_orders(status=open) returned empty, get_orders(status=all, after=2026-06-16T20:00:00-04:00) contained the same filled order only, and get_all_positions reduced RGTI qty from 28 to 27."
+}

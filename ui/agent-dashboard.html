@@ -350,7 +350,7 @@
   </div>
 
   <script type="application/json" id="dashboard-data">{
-  "generated_at": "2026-06-17T04:19:10Z",
+  "generated_at": "2026-06-17T04:43:03Z",
   "run": {
     "run_id": "2026-06-17-1311-after-hours-autopilot",
     "mode": "submit",
@@ -583,17 +583,17 @@
   ],
   "picks": [
     {
-      "symbol": "SO",
+      "symbol": "RGTI",
       "action": "sell",
-      "reason": "SO 1주 regular-session validation trim",
-      "score": "0.57",
+      "reason": "after_hours_policy.allowed_sides에 sell이 포함되어 RGTI trim을 buy fallback보다 먼저 재평가했다",
+      "score": "0.61",
       "rank": "",
-      "score_label": "신뢰 57%",
+      "score_label": "신뢰 61%",
       "confidence": "auto_eligible_paper",
       "return_20d": "",
       "vs_spy_20d": "",
-      "primary_chip": "20D 기대 -2.2%",
-      "secondary_chip": "불리 -7.8%",
+      "primary_chip": "20D 기대 -4.0%",
+      "secondary_chip": "불리 -18.0%",
       "risk": ""
     },
     {
@@ -671,6 +671,11 @@
   ],
   "timeline": [
     {
+      "time": "2026-06-17 13:40 KST",
+      "type": "after-hours-autopilot",
+      "title": "2026-06-17-1331-after-hours-autopilot scheduled paper autopilot"
+    },
+    {
       "time": "2026-06-17 12:13 KST",
       "type": "after-hours-autopilot",
       "title": "2026-06-17-1211-after-hours-autopilot scheduled paper autopilot"
@@ -679,11 +684,6 @@
       "time": "2026-06-17 11:53 KST",
       "type": "after-hours-autopilot",
       "title": "2026-06-17-1151-after-hours-autopilot scheduled paper autopilot"
-    },
-    {
-      "time": "2026-06-17 11:35 Asia/Seoul",
-      "type": "after-hours-autopilot",
-      "title": "2026-06-17-1131-after-hours-autopilot scheduled paper autopilot"
     }
   ],
   "backtests": [
