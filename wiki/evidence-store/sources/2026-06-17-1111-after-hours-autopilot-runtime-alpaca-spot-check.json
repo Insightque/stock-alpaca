@@ -1,0 +1,33 @@
+{
+  "run_id": "2026-06-17-1111-after-hours-autopilot",
+  "created_at": "2026-06-17T02:13:35Z",
+  "session": "after_hours",
+  "source_of_record": "scheduler-owned 1111 Alpaca core preflight",
+  "live_continuity": {
+    "positions_count": 33,
+    "watchlists_count": 0,
+    "same_session_after_hours_fills_today": 0,
+    "quote_parity_checks": {
+      "QQQ": {
+        "timestamp": "2026-06-16T20:51:34.205089845Z",
+        "matched_scheduler_preflight": true
+      },
+      "AVGO": {
+        "timestamp": "2026-06-16T20:00:00.008175627Z",
+        "matched_scheduler_preflight": true
+      }
+    },
+    "quote_boundary_reopened": false
+  },
+  "source_of_record_counts": {
+    "positions_count": 33,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_today": 0,
+    "watchlists_count": 0
+  },
+  "submit_boundary_note": "Per user instruction, the scheduler-owned 1111 preflight remained the submit-boundary evidence for account, positions, orders, asset, quote, and spread rows. Live Alpaca MCP continuity was limited to positions/watchlists and QQQ/AVGO quote parity checks and did not reopen the quote boundary.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-1111-after-hours-autopilot-alpaca-core-preflight.json"
+  ]
+}
