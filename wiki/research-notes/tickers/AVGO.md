@@ -197,3 +197,9 @@ live Alpaca clock이 `2026-06-14 17:21 ET` 일요일 closed 상태라 새 regula
 `2026-06-15 ET` regular-session trim 1주는 `392.14 USD -> 376.53 USD`로 sell 이후 `-3.98%` 더 밀렸다. hindsight 기준 trim timing은 양호했고 `post-earnings staged de-risking` 해석도 유지된다. 다만 current Alpaca snapshot 기준 잔여 `1주` 포지션 자체는 여전히 약하므로, 이번 closeout은 `양호`로 닫되 core thesis 복귀 신호로 과대해석하지 않는다.
 
 출처: [[2026-06-17-portfolio-review]], [[2026-06-17-0623-analyst-review-cycle-sources]]
+
+### 2026-06-18 analyst review cycle
+
+`2026-06-10 ET` trim 2주는 `373.25 USD -> 392.91 USD` 기준 sell 이후 `+5.27%` 되돌림이 나왔다. 결과적으로 exact trim timing은 약했고, staged de-risking 자체는 유지하되 이번 5D closeout 평가는 `약세` 쪽으로 낮춘다.
+
+출처: [[2026-06-18-portfolio-review]], [[2026-06-18-0621-analyst-review-cycle-sources]]

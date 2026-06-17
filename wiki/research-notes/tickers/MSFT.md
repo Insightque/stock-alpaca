@@ -35,3 +35,9 @@ asset_type: stock
 `2026-06-14 ET` after-hours add 1주는 `395.87 USD` 체결 대비 `2026-06-15 ET` close `400.05 USD`로 `+1.06%`였다. 절대성과는 양호했지만 `SPY +1.76%`, `QQQ +3.12%` 대비로는 열위라 판단은 `중립 양호`에 머문다. current snapshot 기준 `MSFT`는 `4주`, 평균단가 `404.935 USD`이며, `2026-06-15 ET` regular-session add `398.71 USD`는 새 `1D` 대기 표본으로만 등록한다.
 
 출처: [[2026-06-16-portfolio-review]], [[2026-06-16-0621-analyst-review-cycle-sources]], [[2026-06-16-0331-hourly-autopilot]]
+
+### 2026-06-18 analyst review cycle
+
+`2026-06-10 ET` add 1주는 `398.38 USD -> 379.05 USD`로 `-4.85%`였다. benchmark-relative 열위도 커 mega-cap quality add cadence는 이번 5D closeout에서 `약세` 사례로 기록한다.
+
+출처: [[2026-06-18-portfolio-review]], [[2026-06-18-0621-analyst-review-cycle-sources]]

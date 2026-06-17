@@ -75,3 +75,9 @@ asset_type: stock
 `AMZN` 1주 regular-session day limit buy가 `240.45 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260618-0011-buy-amzn`, `order_id=fcc7c8b1-d8e5-4598-970d-b865a63bba35`가 생성됐다. immediate reconciliation 기준 상태는 `new`, `filled_qty=0`이며 open order lifecycle 추적이 필요하다. 근거는 scheduler-owned `0011` stale cleanup/core/research preflight와 live Alpaca MCP submit-boundary check 기준 paper mode/market open/universe strict/MCP strict/risk strict 모두 통과했고, sell-first 재평가에서 `SO/RGTI/PFE` executable trim이 없었으며 `BAC/WMT/FCX/NKE/NEE` same-day duplicate buy, `SPY/QQQ` floor cap, `GOOGL` ask-outlier spread fail 이후 `AMZN`이 preflight-covered mega-cap fallback으로 가장 executable했다는 점이다.
 
 출처: [[2026-06-18-0011-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-18-0011-hourly-autopilot-post-trade.json`
+
+### 2026-06-18 analyst review cycle
+
+`2026-06-10 ET` add 1주는 `245.40 USD -> 237.57 USD`로 `-3.19%`였다. broad selloff를 감안해도 `SPY/QQQ` 대비 열위가 남아 mega-cap quality/cloud add cadence는 여전히 `약세` 쪽 증거가 우세하다.
+
+출처: [[2026-06-18-portfolio-review]], [[2026-06-18-0621-analyst-review-cycle-sources]]

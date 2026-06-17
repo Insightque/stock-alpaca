@@ -76,3 +76,9 @@ asset_type: stock
 `WMT` 1주 regular-session day limit buy가 `119.83 USD` limit으로 제출됐다. scheduler-owned `2251` stale cleanup/core/research preflight와 live Alpaca submit-boundary check 기준 paper mode, market open, strict universe/MCP/risk gate, review backlog throttle, same-day duplicate/open-order conflict, quote freshness가 모두 통과했고, `BAC`는 같은 미국 거래일 2231 fill로 duplicate buy gate가 생겼으며 `PFE/RGTI/SO` sell-first 경로도 각각 duplicate/spread/metric gate에 막혀 있었다. immediate reconciliation 기준 `client_order_id=hourly-20260617-2251-buy-wmt`, `order_id=381c1f40-067a-4c71-99e6-c57ab92dd6e6`는 `status=new`, `filled_qty=0` open order이며 `get_all_positions` 기준 보유수량은 아직 `9주`, `qty_available=9`로 unchanged다. 해석은 `defensive retail floor-size validation add submit 완료, next cycle fill/open-order lifecycle 추적 필요`다.
 
 출처: [[2026-06-17-2251-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-17-2251-hourly-autopilot-post-trade.json`
+
+### 2026-06-18 analyst review cycle
+
+`2026-06-10 ET` add 1주는 `118.49 USD -> 118.185 USD`로 `-0.26%`였다. 절대수익은 미세한 음수지만 `SPY -1.27%`, `QQQ -1.01%` 대비 방어는 유지돼 defensive retail validation 해석은 `중립 양호`로 닫는다.
+
+출처: [[2026-06-18-portfolio-review]], [[2026-06-18-0621-analyst-review-cycle-sources]]

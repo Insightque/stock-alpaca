@@ -95,3 +95,9 @@ asset_type: stock
 `PFE` 1주 after-hours day limit trim sell이 `26.01 USD` limit, `extended_hours=true`, `client_order_id=ah-20260617-1351-sell-pfe-01`로 제출됐다. 이번 cycle은 scheduler-owned `1351` core/research preflight를 source-of-record로 유지했고, direct Alpaca overnight continuity 기준 `26.01/26.07` quote, spread `0.2307%`, same-session `PFE` sell duplicate `0`, open orders `0`, repeated weak-review defensive holding trim rationale가 확인돼 sell-first floor-size trim으로 승격됐다. immediate same client id reconciliation 기준 주문은 `order_id=c96904a2-deab-415b-9b27-a20660a043e4`, `status=new`, `filled_qty=0` open order이며 `get_all_positions` 기준 보유수량은 아직 `3주`, `qty_available=2`로 1주만 예약 상태다. 해석은 `repeated weak-review trim submit 완료, next cycle fill/open-order lifecycle 추적 필요`다.
 
 출처: [[2026-06-17-1351-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-17-1351-after-hours-autopilot-post-trade.json`
+
+### 2026-06-18 analyst review cycle
+
+`2026-06-10 ET` trim 1주는 `25.94 USD -> 25.93 USD`로 sell 이후 사실상 보합이었다. trim timing edge는 거의 없지만 repeated weak-review defensive holding을 줄인 해석을 뒤집을 정도도 아니라 이번 5D closeout은 `중립`으로 둔다.
+
+출처: [[2026-06-18-portfolio-review]], [[2026-06-18-0621-analyst-review-cycle-sources]]

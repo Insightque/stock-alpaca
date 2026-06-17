@@ -76,3 +76,9 @@ asset_type: stock
 `2026-06-09 ET` buy 1주는 `55.11 USD` 진입 대비 `2026-06-10 ET` close `55.52 USD`로 `+0.74%`였다. `SPY` 대비 `+2.30%p`, `QQQ` 대비 `+2.74%p`로 energy-services validation은 여전히 benchmark relative가 견조하다. 다만 oil/energy headline 의존성이 큰 점은 유지되며, `2026-06-10 ET` 추가 fill `56.45 USD`는 새 1D 대기 표본이다.
 
 출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]
+
+### 2026-06-18 analyst review cycle
+
+`2026-06-10 ET` add 1주는 `56.45 USD -> 50.33 USD`로 `-10.84%`였다. benchmark 대비도 크게 밀려 energy-services validation add는 이번 5D에서 가장 약한 표본 중 하나로 기록한다.
+
+출처: [[2026-06-18-portfolio-review]], [[2026-06-18-0621-analyst-review-cycle-sources]]

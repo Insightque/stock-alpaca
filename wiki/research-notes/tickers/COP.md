@@ -58,3 +58,9 @@ asset_type: stock
 `2026-06-10 ET` add 1주는 `121.05 USD` 대비 `2026-06-11 ET` close/current `115.7518 USD`로 `-4.38%`였고, `2026-06-05 ET` fill 5D도 `117.42 USD -> 115.7518 USD`로 `-1.42%`였다. 전일 강한 1D follow-through가 바로 되돌려졌기 때문에 energy/value sleeve add cadence는 다시 보수적으로 본다.
 
 출처: [[2026-06-12-portfolio-review]], [[2026-06-12-0632-analyst-review-cycle-sources]]
+
+### 2026-06-18 analyst review cycle
+
+`2026-06-10 ET` add 1주는 `121.05 USD -> 111.19 USD`로 `-8.15%`였다. `SPY/QQQ` 대비 열위도 커서 energy/value sleeve add cadence는 이번 5D closeout에서 명확한 `약세` 사례로 남긴다.
+
+출처: [[2026-06-18-portfolio-review]], [[2026-06-18-0621-analyst-review-cycle-sources]]

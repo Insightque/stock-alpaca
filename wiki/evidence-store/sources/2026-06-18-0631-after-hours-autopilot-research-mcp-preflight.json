@@ -1,0 +1,740 @@
+{
+  "run_id": "2026-06-18-0631-after-hours-autopilot",
+  "created_at": "2026-06-17T21:31:25+00:00",
+  "paper": true,
+  "source": "scheduler local MCP stdio preflight",
+  "symbols": [
+    "QQQ",
+    "MS",
+    "NVDA",
+    "SPY",
+    "TSLA",
+    "GOOGL",
+    "WMT",
+    "JPM"
+  ],
+  "symbol_source": "alpaca_core_preflight",
+  "cache_dir": "/Users/insightque/stock-alpaca/.cache/after-hours-research-mcp-preflight",
+  "cache_enabled": true,
+  "circuit_breaker_seconds": 600,
+  "providers": [
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T21:11:23+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_company_info|get_recent_filings",
+      "per_symbol": {
+        "QQQ": {
+          "cik": "0001067839",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "MS": {
+          "cik": "0000895421",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "NVDA": {
+          "cik": "0001045810",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "SPY": {
+          "cik": "0000884394",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "TSLA": {
+          "cik": "0001318605",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "GOOGL": {
+          "cik": "0001652044",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "WMT": {
+          "cik": "0000104169",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "JPM": {
+          "cik": "0000019617",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-17T21:11:26+00:00",
+      "cache_reused_at": "2026-06-17T21:31:25+00:00",
+      "cache_ttl_seconds": 3600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "outcome": "gap",
+      "checked_at": "2026-06-17T21:11:23+00:00",
+      "gap_category": "empty_response",
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "retry_count": 0,
+      "tool": "TOOL_LIST|TOOL_GET|TOOL_CALL(NEWS_SENTIMENT)",
+      "payload": {
+        "item_count": 0,
+        "candidate_payload": {
+          "items": "0",
+          "sentiment_score_definition": "x <= -0.35: Bearish; -0.35 < x <= -0.15: Somewhat-Bearish; -0.15 < x < 0.15: Neutral; 0.15 <= x < 0.35: Somewhat_Bullish; x >= 0.35: Bullish",
+          "relevance_score_definition": "0 < x <= 1, with a higher score indicating higher relevance.",
+          "feed": []
+        }
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-17T21:11:29+00:00",
+      "cache_reused_at": "2026-06-17T21:31:25+00:00",
+      "cache_ttl_seconds": 3600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T21:11:23+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_macro_snapshot",
+      "payload": {
+        "observation_end": null,
+        "series": [
+          {
+            "series_id": "DGS10",
+            "latest": {
+              "realtime_start": "2026-06-17",
+              "realtime_end": "2026-06-17",
+              "date": "2026-06-16",
+              "value": "4.43"
+            }
+          },
+          {
+            "series_id": "DGS2",
+            "latest": {
+              "realtime_start": "2026-06-17",
+              "realtime_end": "2026-06-17",
+              "date": "2026-06-16",
+              "value": "4.05"
+            }
+          },
+          {
+            "series_id": "FEDFUNDS",
+            "latest": {
+              "realtime_start": "2026-06-01",
+              "realtime_end": "2026-06-01",
+              "date": "2026-05-01",
+              "value": "3.63"
+            }
+          },
+          {
+            "series_id": "CPIAUCSL",
+            "latest": {
+              "realtime_start": "2026-06-10",
+              "realtime_end": "2026-06-10",
+              "date": "2026-05-01",
+              "value": "333.979"
+            }
+          },
+          {
+            "series_id": "UNRATE",
+            "latest": {
+              "realtime_start": "2026-06-05",
+              "realtime_end": "2026-06-05",
+              "date": "2026-05-01",
+              "value": "4.3"
+            }
+          },
+          {
+            "series_id": "NFCI",
+            "latest": {
+              "realtime_start": "2026-06-17",
+              "realtime_end": "2026-06-17",
+              "date": "2026-06-12",
+              "value": "-0.50500"
+            }
+          }
+        ]
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-17T21:11:26+00:00",
+      "cache_reused_at": "2026-06-17T21:31:25+00:00",
+      "cache_ttl_seconds": 21600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "outcome": "failed",
+      "checked_at": "2026-06-17T21:31:25+00:00",
+      "gap_category": "unknown",
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "retry_count": 0,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T21:11:23+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_recommendations|get_yahoo_finance_news",
+      "per_symbol": {
+        "QQQ": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Exchange-Traded Funds, US Equities Mixed After Midday\nSummary: Broad Market Indicators Broad-market exchange-traded funds IWM and IVV were mixed after midday We\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-us-equities-172215684.html\n\nTitle: SpaceX’s Historic Post-IPO Rally Loses Steam as Retail Frenzy Cools\nSummary: The stunning rally in SpaceX shares is losing some steam.  The stock was trading 6% lower this morning, after a staggering rally "
+            },
+            "retry_count": 0
+          }
+        },
+        "MS": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 2,
+                  "buy": 8,
+                  "hold": 14,
+                  "sell": 0,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 2,
+                  "buy": 8,
+                  "hold": 14,
+                  "sell": 0,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 2,
+                  "buy": 8,
+                  "hold": 14,
+                  "sell": 0,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 2,
+                  "buy": 7,
+                  "hold": 16,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Why ResMed (RMD) Shares Are Falling Today\nSummary: Shares of medical device company ResMed (NYSE:RMD) fell 4.5% in the afternoon session after Morgan Stanley downgraded the stock to Equalweight from Overweight and lowered its price target.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/why-resmed-rmd-shares-falling-205104932.html\n\nTitle: Big Bank Stocks Hit Records Ahead of Fed Meeting\nSummary: Shares of large U.S. banks outperformed the market on Wednesday, with som"
+            },
+            "retry_count": 0
+          }
+        },
+        "NVDA": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 10,
+                  "buy": 49,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 10,
+                  "buy": 48,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 10,
+                  "buy": 48,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 10,
+                  "buy": 48,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: 5 stunning stats about the world's most valuable stocks\nSummary: The top 10 US stocks now have a combined market cap of $25.3 trillion.\nDescription: \nURL: https://finance.yahoo.com/markets/article/5-stunning-stats-about-the-worlds-most-valuable-stocks-121515219.html\n\nTitle: 2 Artificial Intelligence Stocks You Can Buy and Hold for the Next Decade\nSummary: Don't overthink the AI boom.\nDescription: \nURL: https://www.fool.com/investing/2026/06/17/2-artificial-intelligence-stocks-you-can-buy-"
+            },
+            "retry_count": 0
+          }
+        },
+        "SPY": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Why ETFs Are the Key to Bringing Wall Street On-Chain\nSummary: <p>Tokenization is inevitable, but there’s still a long way to go until it’s a reality. F/m Investment’s Alex Morris shares the latest developments in tokenized ETFs and what’s on the horizon for investors and shifting Wall Street to an on-chain reality.  </p>\nDescription: \nURL: http://www.etf.com/sections/conferences/why-etfs-are-key-bringing-wall-street-chain?utm_source=yahoo-finance&utm_medium=rss&utm_campaign=yahoo-finance"
+            },
+            "retry_count": 0
+          }
+        },
+        "TSLA": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 5,
+                  "buy": 18,
+                  "hold": 18,
+                  "sell": 4,
+                  "strongSell": 2
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 5,
+                  "buy": 18,
+                  "hold": 17,
+                  "sell": 4,
+                  "strongSell": 3
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 5,
+                  "buy": 18,
+                  "hold": 17,
+                  "sell": 4,
+                  "strongSell": 3
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 5,
+                  "buy": 18,
+                  "hold": 17,
+                  "sell": 6,
+                  "strongSell": 2
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: SpaceX Shares Fall for First Time Since Blockbuster Debut\nSummary: (Bloomberg) -- SpaceX shares declined for the first time since its record initial public offering, snapping a three-day rally that had reached nearly 50%. Most Read from BloombergRead the 14-Point Draft Memorandum Between the US and IranModi Warns of ‘Shortage of Trust’ Ahead of Trump MeetingIran’s Deputy Foreign Minister Confirms Deal Reached With USNetanyahu Pays a Political Price for Trump’s Iran DealApple Plans Camera "
+            },
+            "retry_count": 0
+          }
+        },
+        "GOOGL": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 14,
+                  "buy": 42,
+                  "hold": 7,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 14,
+                  "buy": 43,
+                  "hold": 7,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 13,
+                  "buy": 46,
+                  "hold": 6,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 13,
+                  "buy": 50,
+                  "hold": 6,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: SpaceX's near $3 trillion rally comes with one big catch: Chart of the Day\nSummary: SpaceX is already trading like one of America's biggest companies — its profits are not.\nDescription: \nURL: https://finance.yahoo.com/markets/article/spacexs-near-3-trillion-rally-comes-with-one-big-catch-chart-of-the-day-122114608.html\n\nTitle: Why Sonos (SONO) Shares Are Sliding Today\nSummary: Shares of audio technology Sonos company (NASDAQ:SONO) fell 4.7% in the afternoon session after investor concerns"
+            },
+            "retry_count": 0
+          }
+        },
+        "WMT": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 9,
+                  "buy": 29,
+                  "hold": 4,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 9,
+                  "buy": 30,
+                  "hold": 4,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 9,
+                  "buy": 30,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 9,
+                  "buy": 31,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Walmart (WMT) Stock Gets Fair Value Bump After Mixed Analyst Views\nSummary: Walmart’s updated analyst model now carries a fair value estimate of US$138.37, a small move from US$137.93 that still attracted close attention after the latest quarterly update. The modest shift fits with a research backdrop where some analysts emphasize growth in areas like e commerce, advertising and Walmart+ while others flag a fully valued stock and a more pressured consumer. In the following sections, you w"
+            },
+            "retry_count": 0
+          }
+        },
+        "JPM": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 4,
+                  "buy": 8,
+                  "hold": 12,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 4,
+                  "buy": 8,
+                  "hold": 12,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 5,
+                  "buy": 8,
+                  "hold": 12,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 5,
+                  "buy": 9,
+                  "hold": 13,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Sector Update: Financial Stocks Softer Late Afternoon\nSummary: Financial stocks fell in late Wednesday afternoon trading with the NYSE Financial Index declining 0.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/sector-financial-stocks-softer-afternoon-195354447.html\n\nTitle: Traders Fully Price in a Rate Hike by October on Hawkish Fed\nSummary: (Bloomberg) -- Short-dated US Treasury yields leaped as Federal Reserve officials signaled they expect an interest-rate hike i"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-17T21:11:44+00:00",
+      "cache_reused_at": "2026-06-17T21:31:25+00:00",
+      "cache_ttl_seconds": 1800,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    }
+  ],
+  "mcp_coverage_hint": [
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T21:11:23+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-17T21:11:23+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T21:11:23+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-17T21:31:25+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "gap_category": "unknown",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T21:11:23+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ]
+}

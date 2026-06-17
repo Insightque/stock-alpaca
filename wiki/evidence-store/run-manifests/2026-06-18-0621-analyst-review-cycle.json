@@ -1,0 +1,148 @@
+{
+  "id": "2026-06-18-0621-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-06-17T21:21:45Z",
+  "timezone": "Asia/Seoul",
+  "paper": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "alpaca_reconciliation": {
+    "clock_is_open": false,
+    "account_status": "ACTIVE",
+    "portfolio_value": 100569.73,
+    "cash": 28003.45,
+    "buying_power": 299508.51,
+    "long_market_value": 72566.28,
+    "open_us_equity_orders": 0,
+    "position_count": 34,
+    "recent_fill_scope_after": "2026-06-11T00:00:00Z",
+    "direct_fill_activity": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 2,
+      "gap_reason": "get_account_activities_by_type(activity_type=FILL) initial plus 2 retries all cancelled"
+    },
+    "portfolio_history": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 2,
+      "gap_reason": "get_portfolio_history initial plus 2 retries all cancelled"
+    }
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-06-18-portfolio-review.md",
+    "symbol_reviews": [],
+    "reviewed_horizons": [
+      "2026-06-10 ET fill cohort 5D closeout",
+      "open-position monitor",
+      "skipped recommendations re-check",
+      "2026-06-17 ET fill waiting scan"
+    ],
+    "symbols": [
+      "WMT",
+      "AVGO",
+      "RGTI",
+      "BAC",
+      "PFE",
+      "XOM",
+      "JNJ",
+      "COP",
+      "SLB",
+      "AMZN",
+      "FCX",
+      "NEE",
+      "NKE",
+      "MSFT",
+      "AAPL",
+      "NOK",
+      "SPY",
+      "QQQ",
+      "MRK",
+      "NVDA",
+      "SO",
+      "GOOGL"
+    ],
+    "due_now": true,
+    "next_due": "2026-06-18 ET regular-session close for NOK 20D add-block review and 2026-06-17 ET fill cohort 1D closeout"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0621-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0621-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "analyze_form4_transactions(AVGO) and get_financials(NOK,income) both cancelled",
+      "gap_category": "cancelled",
+      "retry_count": 1
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0621-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0621-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0621-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0621-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "mixed 5D closeout results plus incomplete Alpaca/SEC evidence did not meet the repeated-pattern threshold for recommendation-policy changes"
+  }
+}

@@ -61,3 +61,9 @@ asset_type: stock
 `2026-06-18 00:58 KST` cycle에서 제출한 `XOM` 1주 regular-session day limit buy(`client_order_id=hourly-20260618-0051-buy-xom`)는 다음 `0111` cycle Alpaca MCP reconciliation 기준 `2026-06-17T16:17:56.544666Z`에 `filled_avg_price=141.54 USD`로 체결 전환됐다. 이 fill은 `AAPL` submit 직전 live `get_orders(status=all, after=2026-06-16T20:00:00-04:00)` readback에서 확인됐고, post-fill `get_all_positions` 기준 `XOM qty=6 -> 7`, `avg_entry_price=147.394286 USD`, `current_price=141.445 USD`로 갱신됐다. 이후 same energy cluster 신규 buy는 더 이상 `XOM` open-order gate가 아니라 normal duplicate/fresh-order state로 추적한다.
 
 출처: [[2026-06-18-0111-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-18-0111-hourly-autopilot-post-trade.json`
+
+### 2026-06-18 analyst review cycle
+
+`2026-06-10 ET` add 1주는 `141.54 USD -> 140.79 USD`로 `-0.53%`였다. 절대수익은 소폭 음수지만 `SPY`와 `QQQ` 대비는 방어적이라 energy diversifier follow-through 평가는 `중립 양호`로 닫는다.
+
+출처: [[2026-06-18-portfolio-review]], [[2026-06-18-0621-analyst-review-cycle-sources]]

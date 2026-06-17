@@ -70,3 +70,9 @@ JNJ는 healthcare/pharma 성격의 대형 방어주로, 이번 regular-session v
 `2026-06-09 ET` buy 1주는 `237.54 USD` 진입 대비 `2026-06-10 ET` close `238.52 USD`로 `+0.41%`였다. `SPY` 대비 `+1.97%p`, `QQQ` 대비 `+2.41%p`라 healthcare defensive diversifier floor-size buy는 down tape에서 무난했다. 다만 `2026-06-10 ET` 추가 fill `239.23 USD`가 생겨 새 1D horizon을 따로 추적한다.
 
 출처: [[2026-06-11-portfolio-review]], [[2026-06-11-0622-analyst-review-cycle-sources]]
+
+### 2026-06-18 analyst review cycle
+
+`2026-06-10 ET` add 1주는 `237.54 USD -> 233.92 USD`로 `-1.52%`였다. benchmark 하락을 감안해도 방어력이 부족해 healthcare defensive add cadence 해석은 이번 5D에서 `약세`로 기운다.
+
+출처: [[2026-06-18-portfolio-review]], [[2026-06-18-0621-analyst-review-cycle-sources]]

@@ -84,3 +84,9 @@ asset_type: stock
 `2026-06-15 ET` add 1주는 `85.78 USD -> 86.24 USD`로 `+0.54%`였다. absolute move는 작지만 defensive utility sleeve로서는 무난했고, skipped recommendation 관점에서도 backlog 우선순위를 뒤집을 만큼의 missed-upside는 아니다. 이번 closeout은 `중립 양호`로 두고, rate-sensitive defensive add는 backlog와 macro confirmation을 함께 보는 기존 해석을 유지한다.
 
 출처: [[2026-06-17-portfolio-review]], [[2026-06-17-0623-analyst-review-cycle-sources]]
+
+### 2026-06-18 analyst review cycle
+
+`2026-06-10 ET` add 1주는 `85.22 USD -> 85.74 USD`로 `+0.61%`였다. 큰 upside는 아니지만 rate-sensitive defensive sleeve로는 무난했고 이번 5D closeout 평가는 `중립 양호`다.
+
+출처: [[2026-06-18-portfolio-review]], [[2026-06-18-0621-analyst-review-cycle-sources]]
