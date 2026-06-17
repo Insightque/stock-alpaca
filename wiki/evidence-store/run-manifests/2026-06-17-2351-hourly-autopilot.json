@@ -1,0 +1,830 @@
+{
+  "run_id": "2026-06-17-2351-hourly-autopilot",
+  "mode": "submit",
+  "paper": true,
+  "created_at": "2026-06-17T14:55:46Z",
+  "git_commit": "9b51f1d28b56a13c12e9023962a895a2f53c93dc",
+  "prompt_file_sha": "sha256:manual-user-prompt-session",
+  "risk_policy_version": "medium-risk-v1.2",
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "schema_version": "1.3",
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-17T14:51:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-17T14:51:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request.",
+      "gap_category": "unknown",
+      "retry_count": 0
+    }
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T14:51:31Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T14:51:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-17T14:51:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T13:31:32+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-17T14:51:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request.",
+      "gap_category": "unknown",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-17T14:51:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "data_cutoff_time": "2026-06-17T14:55:46Z",
+  "market_clock_checked_at": "2026-06-17T10:55:46-04:00",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/PFE.md",
+    "wiki/research-notes/tickers/BAC.md",
+    "wiki/research-notes/tickers/WMT.md",
+    "wiki/research-notes/tickers/FCX.md",
+    "wiki/research-notes/tickers/NKE.md",
+    "wiki/research-notes/tickers/NEE.md",
+    "wiki/research-notes/tickers/AMZN.md",
+    "wiki/research-notes/tickers/GOOGL.md"
+  ],
+  "recommendation_actionability": {
+    "actionable": true,
+    "submit_mode": true,
+    "minimum_learning_orders_required": 1,
+    "minimum_learning_orders_planned": 1,
+    "hard_gates_passed": true,
+    "exception": ""
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + scheduler Alpaca preflight universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad metadata universe screen with scheduler-owned 2351 stale cleanup/core/research preflight reuse, live same-day fill continuity, sell-first risk-trim reevaluation, current IEX quote rows for SO/RGTI/PFE/AMZN/SPY/GOOGL/NKE/NEE/SLB/PLTR/BAC/WMT/NVDA, review-backlog throttle check, and portfolio_construction_policy ranking for utilities diversifier fallback buy",
+    "pre_mcp_shortlist": [
+      "SO",
+      "RGTI",
+      "PFE",
+      "BAC",
+      "WMT",
+      "FCX",
+      "NKE",
+      "NEE",
+      "AMZN",
+      "QQQ"
+    ],
+    "final_candidates": [
+      "SO",
+      "RGTI",
+      "PFE",
+      "BAC",
+      "WMT",
+      "FCX",
+      "NKE",
+      "NEE",
+      "AMZN",
+      "QQQ"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "data_manifest": {
+    "stale_order_cleanup": "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-stale-order-cleanup.json",
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-research-mcp-preflight.json",
+    "runtime_gate_evaluation": "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-runtime-gate-evaluation.json",
+    "scheduler_owned_preflight_reused": true
+  },
+  "recommendation_shortlist": [
+    {
+      "symbol": "SO",
+      "decision": "blocked_sell_metric_gap"
+    },
+    {
+      "symbol": "RGTI",
+      "decision": "blocked_same_day_duplicate_sell"
+    },
+    {
+      "symbol": "PFE",
+      "decision": "blocked_same_day_duplicate_sell"
+    },
+    {
+      "symbol": "BAC",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "WMT",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "FCX",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "NKE",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "NEE",
+      "decision": "selected_buy"
+    },
+    {
+      "symbol": "AMZN",
+      "decision": "backup"
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "blocked_validation_floor_cap"
+    }
+  ],
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "SO",
+      "held_qty": 5,
+      "current_weight_pct": 0.4629,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "SO는 repeated weak-review defensive sleeve trim 후보지만 decision-grade expected-excess/replacement margin 수치가 이번 cycle에도 비어 있다. live quote 93.75/93.78 spread 0.0320%는 pass다.",
+      "skipped_gate": "sell_metric_gap",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "SO trim decision-grade expected-excess/replacement margin 공백이 남아 있다.",
+      "replacement_symbol": "NEE",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/BAC.md",
+        "wiki/research-notes/tickers/WMT.md",
+        "wiki/research-notes/tickers/FCX.md",
+        "wiki/research-notes/tickers/NKE.md",
+        "wiki/research-notes/tickers/NEE.md",
+        "wiki/research-notes/tickers/AMZN.md",
+        "wiki/research-notes/tickers/GOOGL.md"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "held_qty": 27,
+      "current_weight_pct": 0.5563,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "RGTI는 speculative loss-control trim trigger와 음수 expected excess가 유지되고 live quote 20.86/20.88 spread 0.0958%도 pass지만, 같은 미국 거래일 after-hours trim fill(client_order_id=ah-20260617-1331-sell-rgti-01)이 이미 있어 duplicate symbol/side discipline이 regular-session 추가 trim을 막는다.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.48,
+      "relative_to_spy_20d_pct": -1.48,
+      "metric_gap_reason": "",
+      "replacement_symbol": "NEE",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/BAC.md",
+        "wiki/research-notes/tickers/WMT.md",
+        "wiki/research-notes/tickers/FCX.md",
+        "wiki/research-notes/tickers/NKE.md",
+        "wiki/research-notes/tickers/NEE.md",
+        "wiki/research-notes/tickers/AMZN.md",
+        "wiki/research-notes/tickers/GOOGL.md"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "held_qty": 2,
+      "current_weight_pct": 0.0517,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "PFE는 repeated weak-review trim rationale와 live quote 26.18/26.19 spread 0.0382%가 유지되지만, 같은 미국 거래일 after-hours trim fill(client_order_id=ah-20260617-1351-sell-pfe-01)이 이미 있어 duplicate symbol/side lifecycle gate가 이번 cycle regular-session trim을 막는다.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.84,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "PFE trim은 latest weak-review absolute loss와 repeated underperformance narrative를 사용했고 exact SPY excess rollup은 current note set에 수치화돼 있지 않다.",
+      "replacement_symbol": "NEE",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-17-2351-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/BAC.md",
+        "wiki/research-notes/tickers/WMT.md",
+        "wiki/research-notes/tickers/FCX.md",
+        "wiki/research-notes/tickers/NKE.md",
+        "wiki/research-notes/tickers/NEE.md",
+        "wiki/research-notes/tickers/AMZN.md",
+        "wiki/research-notes/tickers/GOOGL.md"
+      ]
+    }
+  ],
+  "validation_lifecycle": {
+    "status": "buy_ready_after_sell_first_duplicate_and_duplicate_buy_recheck",
+    "due_reviews": [
+      {
+        "symbol": "NOK",
+        "horizon": "20D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-18 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-02-portfolio-review.md",
+          "wiki/trade-ledger/reviews/2026-06-04-portfolio-review.md"
+        ]
+      },
+      {
+        "symbol": "PFE",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-19 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-12-1011-after-hours-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "AVGO",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-19 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-12-1411-after-hours-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "WMT",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-10-2231-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "AVGO",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-10-2251-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "RGTI",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-10-2311-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "BAC",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-10-2331-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "PFE",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-10-2351-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "XOM",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0011-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "JNJ",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0031-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "COP",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0051-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "SLB",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0111-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "AMZN",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0131-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "FCX",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0151-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "NEE",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0211-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "NKE",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0251-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "MSFT",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-17 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-13-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-11-0431-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "RGTI",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-16-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-12-2231-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "AVGO",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-16-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-12-1411-after-hours-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "MSFT",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-16-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-14-1011-after-hours-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "RGTI",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-15-2231-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "BAC",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-15-2311-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "WMT",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-15-2331-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "AVGO",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-16-0011-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "NEE",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-16-0031-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "JPM",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-16-0051-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "FCX",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-16-0111-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "SLB",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-16-0131-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "XOM",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-16-0151-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "NKE",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-16-0211-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "COP",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-16-0231-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "V",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-16-0251-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "SO",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-16-0311-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "MSFT",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-16-0331-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "GOOGL",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-16-0351-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "AMZN",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-16-0411-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "AAPL",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-16-0431-hourly-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "PFE",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-06-22 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+          "wiki/current-runs/daily/2026-06-16-0451-hourly-autopilot.md"
+        ]
+      }
+    ],
+    "blocked_add_symbols": [
+      "NOK"
+    ],
+    "pending_1d_count": 0,
+    "pending_5d_count": 37,
+    "pending_20d_count": 1,
+    "record_missing_review_as_sell_candidate_diagnostic": true
+  },
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-17-2351-hourly-autopilot.json",
+  "report_path": "wiki/current-runs/daily/2026-06-17-2351-hourly-autopilot.md",
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-06-17-2351-hourly-autopilot-post-trade.json",
+  "submitted_order_ids": [
+    "4d8da69a-fd1d-4911-a410-d9df759a6217"
+  ],
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations_for_submit": 3,
+    "positive_confirmations": [
+      "sec-edgar",
+      "fred",
+      "yahoo-finance"
+    ],
+    "critical_source_rules_applied": []
+  },
+  "risk_check_result": {
+    "status": "pass",
+    "validator": "check-risk-policy.py --json",
+    "passed": true,
+    "warnings": [
+      "post-order cash 30011.16 remains above target maximum 10133.94; continue staged deployment on later runs when hard gates pass"
+    ]
+  }
+}
