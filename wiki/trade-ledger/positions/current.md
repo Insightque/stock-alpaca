@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-06-17-1611-after-hours-autopilot]]
+- Open/new: 없음. scheduler-owned `1611` preflight `get_orders_open` source-of-record 기준 open orders `0`건이었다.
+- Filled: 이번 cycle 신규 fill 없음. same-session `client_order_id=ah-20260617-1331-sell-rgti-01`, `ah-20260617-1351-sell-pfe-01` 두 건은 모두 filled로 유지됐다. scheduler-owned `get_account_activities(activity_types=[FILL])`와 same `client_order_id` readback 기준 same-session after-hours submitted orders/fills는 모두 `2`건이다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler-owned `get_all_positions` 기준 positions `33`건이었다.
+- Recent reconciliation scope: scheduler-owned `1611` core/research preflight를 source-of-record로 사용했고 Alpaca core `market_closed`는 expected nonblocking으로 처리했다. submit-boundary source-of-record는 같은 preflight의 passing account/positions/orders/activity/quote rows였고, live Alpaca MCP continuity는 same `client_order_id` 두 건의 fill 상태 재확인으로만 제한했다. source-of-record 기준 regular market closed, account `ACTIVE`, open orders `0`, watchlists `0`, `PFE qty=2`, `qty_available=2`, `RGTI qty=27`를 재확인했고 separate after-hours session submitted count는 계속 `2/2`로 닫혀 있었다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-17-1611-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-06-17 16:14 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-06-17-1551-after-hours-autopilot]]
 - Open/new: 없음. scheduler-owned `1551` preflight `get_orders_open` source-of-record 기준 open orders `0`건이었다.
 - Filled: 이번 cycle 신규 fill 없음. same-session `client_order_id=ah-20260617-1331-sell-rgti-01`, `ah-20260617-1351-sell-pfe-01` 두 건은 모두 filled로 유지됐다. scheduler-owned `get_account_activities(activity_types=[FILL])`와 live `get_account_activities(activity_types=[FILL], after=2026-06-16T20:00:00-04:00)` 기준 same-session after-hours submitted orders/fills는 모두 `2`건이다.
