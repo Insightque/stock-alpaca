@@ -1,0 +1,98 @@
+{
+  "run_id": "2026-06-17-2311-hourly-autopilot",
+  "created_at": "2026-06-17T14:20:27Z",
+  "source": "hourly autopilot post-trade reconciliation via Alpaca MCP",
+  "order_submission": {
+    "symbol": "FCX",
+    "side": "buy",
+    "qty": "1",
+    "limit_price": "71.4",
+    "client_order_id": "hourly-20260617-2311-buy-fcx",
+    "order_id": "1ffe1486-ed10-4b4c-9ec9-690600d04970",
+    "status": "new",
+    "submitted_at": "2026-06-17T14:19:51.800472241Z",
+    "filled_qty": "0",
+    "filled_avg_price": null
+  },
+  "account": {
+    "status": "ACTIVE",
+    "cash": "30214.38",
+    "portfolio_value": "101285.73",
+    "buying_power": "304241.36"
+  },
+  "open_orders": [
+    {
+      "symbol": "FCX",
+      "side": "buy",
+      "qty": "1",
+      "limit_price": "71.4",
+      "client_order_id": "hourly-20260617-2311-buy-fcx",
+      "order_id": "1ffe1486-ed10-4b4c-9ec9-690600d04970",
+      "status": "new"
+    }
+  ],
+  "fills_after_us_midnight": [
+    {
+      "symbol": "WMT",
+      "side": "buy",
+      "qty": "1",
+      "price": "119.83",
+      "transaction_time": "2026-06-17T14:07:50.521793Z"
+    },
+    {
+      "symbol": "BAC",
+      "side": "buy",
+      "qty": "1",
+      "price": "57.57",
+      "transaction_time": "2026-06-17T13:39:20.834459Z"
+    },
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "qty": "1",
+      "price": "26.03",
+      "transaction_time": "2026-06-17T05:11:09.778969Z"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": "1",
+      "price": "20.96",
+      "transaction_time": "2026-06-17T04:39:27.027152Z"
+    }
+  ],
+  "positions_count": 33,
+  "positions_unchanged_for_symbol": {
+    "symbol": "FCX",
+    "qty": "6",
+    "avg_entry_price": "65.675",
+    "current_price": "71.545"
+  },
+  "same_day_fill_confirmations": [
+    {
+      "symbol": "WMT",
+      "qty": "10",
+      "avg_entry_price": "118.568",
+      "current_price": "119.95",
+      "filled_client_order_id": "hourly-20260617-2251-buy-wmt",
+      "filled_avg_price": "119.83",
+      "filled_at": "2026-06-17T14:07:50.521793Z"
+    },
+    {
+      "symbol": "BAC",
+      "qty": "8",
+      "avg_entry_price": "54.2175",
+      "current_price": "57.795",
+      "filled_client_order_id": "hourly-20260617-2231-buy-bac",
+      "filled_avg_price": "57.57",
+      "filled_at": "2026-06-17T13:39:20.834459Z"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-17-2311-hourly-autopilot.json"
+  ]
+}

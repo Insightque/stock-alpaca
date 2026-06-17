@@ -1,15 +1,15 @@
 ## 최신 hourly-autopilot reconciliation
 
-- Run: [[2026-06-17-2251-hourly-autopilot]]
-- Open/new: `WMT` buy 1주 `119.83 USD` day limit, `client_order_id=hourly-20260617-2251-buy-wmt`, `order_id=381c1f40-067a-4c71-99e6-c57ab92dd6e6`, immediate reconciliation 기준 `status=new`, `filled_qty=0`.
-- Filled: same US-date fill ledger에는 `BAC` buy 1주 `57.57 USD`, prior after-hours `PFE` sell 1주 `26.03 USD`, `RGTI` sell 1주 `20.96 USD`가 남아 있었다.
+- Run: [[2026-06-17-2311-hourly-autopilot]]
+- Open/new: `FCX` buy 1주 `71.40 USD` day limit, `client_order_id=hourly-20260617-2311-buy-fcx`, `order_id=1ffe1486-ed10-4b4c-9ec9-690600d04970`, immediate reconciliation 기준 `status=new`, `filled_qty=0`.
+- Filled: same US-date fill ledger에는 `WMT` buy 1주 `119.83 USD`, `BAC` buy 1주 `57.57 USD`, prior after-hours `PFE` sell 1주 `26.03 USD`, `RGTI` sell 1주 `20.96 USD`가 남아 있었다.
 - Cancelled: 없음
 - Position count observed by Alpaca MCP: direct `get_all_positions` 기준 positions `33`건이었다.
-- Recent reconciliation scope: scheduler-owned `2251` core/research preflight를 source-of-record로 사용했고, live Alpaca MCP `get_clock/get_orders(status=open)/get_orders(status=all, after=2026-06-16T20:00:00-04:00)/get_order_by_client_id/get_all_positions/get_account_info/get_watchlists`로 submit-boundary와 post-trade state를 재확인했다. live readback 기준 account `ACTIVE`, cash `30,334.21 USD`, portfolio value `100,996.63 USD`, buying power `303,454.07 USD`, open orders `1`, watchlists `0`, `WMT qty=9`, `avg_entry_price=118.427778`, `current_price=120.135`였고, 직전 `2231`의 `BAC` buy는 filled가 확정돼 `BAC qty=8`, `avg_entry_price=54.2175`로 갱신됐다.
+- Recent reconciliation scope: scheduler-owned `2311` core/research preflight를 source-of-record로 사용했고, live Alpaca MCP `get_clock/get_orders(status=open)/get_orders(status=all, after=2026-06-16T20:00:00-04:00)/get_order_by_client_id/get_all_positions/get_account_info/get_watchlists`로 submit-boundary와 post-trade state를 재확인했다. live readback 기준 account `ACTIVE`, cash `30,214.38 USD`, portfolio value `101,285.73 USD`, buying power `304,241.36 USD`, open orders `1`, watchlists `0`, `FCX qty=6`, `avg_entry_price=65.675`, `current_price=71.545`였고, earlier same-day fills `WMT qty=10`, `BAC qty=8`도 유지됐다.
 - Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
-- Source note: `wiki/trade-ledger/positions/2026-06-17-2251-hourly-autopilot-post-trade.json`
+- Source note: `wiki/trade-ledger/positions/2026-06-17-2311-hourly-autopilot-post-trade.json`
 
-_Last updated: 2026-06-17 22:59 KST_
+_Last updated: 2026-06-17 23:20 KST_
 
 ## 최신 after-hours-autopilot reconciliation
 

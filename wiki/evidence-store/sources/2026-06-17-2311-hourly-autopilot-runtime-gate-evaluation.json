@@ -1,0 +1,246 @@
+{
+  "run_id": "2026-06-17-2311-hourly-autopilot",
+  "created_at": "2026-06-17T14:15:36Z",
+  "source": "hourly autopilot runtime gate evaluation before submit",
+  "paper": true,
+  "scheduler_owned_preflight_reused": true,
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-17T10:19:14.368668829-04:00",
+    "next_open": "2026-06-18T09:30:00-04:00",
+    "next_close": "2026-06-17T16:00:00-04:00",
+    "session": "regular"
+  },
+  "stale_order_cleanup": {
+    "status": "pass",
+    "source_ref": "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-stale-order-cleanup.json",
+    "remaining_open_orders": 0
+  },
+  "alpaca_core_gate": {
+    "status": "pass",
+    "source_ref": "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-alpaca-core-preflight.json",
+    "first_blocking_gate": "",
+    "live_continuity": {
+      "open_orders": 0,
+      "watchlists": 0,
+      "account_status": "ACTIVE",
+      "portfolio_value": 101221.44,
+      "cash": 30214.38,
+      "buying_power": 304059.59,
+      "filled_2251_wmt_buy": {
+        "client_order_id": "hourly-20260617-2251-buy-wmt",
+        "status": "filled",
+        "filled_at": "2026-06-17T14:07:50.521793215Z",
+        "filled_avg_price": 119.83,
+        "wmt_qty_after_fill": 10
+      }
+    }
+  },
+  "research_gate": {
+    "status": "pass_tiered",
+    "positive_confirmations": [
+      "sec-edgar",
+      "fred",
+      "yahoo-finance"
+    ],
+    "min_required_for_submit": 3,
+    "nonblocking_gaps": [
+      {
+        "server": "alpha-vantage",
+        "gap_category": "provider_error",
+        "gap_reason": "one-call-per-hour throttle active in scheduler preflight"
+      },
+      {
+        "server": "firecrawl",
+        "gap_category": "unknown",
+        "gap_reason": "scheduler preflight reported insufficient credits"
+      }
+    ]
+  },
+  "review_backlog": {
+    "pending_1d_count": 0,
+    "pending_5d_count": 37,
+    "pending_20d_count": 1,
+    "blocked_add_symbols": [
+      "NOK"
+    ]
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "SO",
+      "held_qty": 5,
+      "current_weight_pct": 0.4636,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "SO는 반복 weak-review 관찰과 defensive sleeve 재평가 대상이지만 trim 판단에 필요한 decision-grade expected-excess/replacement margin 공백이 이번 cycle에도 남아 있다. live quote 93.82/93.87 spread 0.0533%는 pass다.",
+      "skipped_gate": "sell_metric_gap",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "SO는 trim decision-grade expected-excess/replacement margin 공백이 남아 있다.",
+      "replacement_symbol": "FCX",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+        "wiki/research-notes/tickers/FCX.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/BAC.md",
+        "wiki/research-notes/tickers/WMT.md",
+        "wiki/research-notes/tickers/COP.md",
+        "wiki/research-notes/tickers/NKE.md",
+        "wiki/research-notes/tickers/AMZN.md"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "held_qty": 27,
+      "current_weight_pct": 0.5505,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "RGTI는 speculative loss-control trim trigger와 음수 expected excess가 유지되고 live quote 20.63/20.64 spread 0.0485%도 pass지만, 같은 미국 거래일 after-hours trim fill(client_order_id=ah-20260617-1331-sell-rgti-01)이 이미 있어 duplicate symbol/side discipline이 regular-session 추가 trim을 막는다.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.48,
+      "relative_to_spy_20d_pct": -1.48,
+      "metric_gap_reason": "",
+      "replacement_symbol": "FCX",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+        "wiki/research-notes/tickers/FCX.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/BAC.md",
+        "wiki/research-notes/tickers/WMT.md",
+        "wiki/research-notes/tickers/COP.md",
+        "wiki/research-notes/tickers/NKE.md",
+        "wiki/research-notes/tickers/AMZN.md"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "held_qty": 2,
+      "current_weight_pct": 0.0517,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "PFE는 repeated weak-review trim rationale가 유지되고 live quote 26.14/26.15 spread 0.0383%도 통과하지만, 같은 미국 거래일 after-hours trim fill(client_order_id=ah-20260617-1351-sell-pfe-01)이 이미 있어 duplicate symbol/side lifecycle gate가 이번 cycle regular-session trim을 막는다.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.84,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "PFE trim은 latest weak-review absolute loss와 repeated underperformance narrative를 사용했고 exact SPY excess rollup은 current note set에 수치화돼 있지 않다.",
+      "replacement_symbol": "FCX",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+        "wiki/research-notes/tickers/FCX.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/BAC.md",
+        "wiki/research-notes/tickers/WMT.md",
+        "wiki/research-notes/tickers/COP.md",
+        "wiki/research-notes/tickers/NKE.md",
+        "wiki/research-notes/tickers/AMZN.md"
+      ]
+    }
+  ],
+  "candidate_evaluation": [
+    {
+      "symbol": "BAC",
+      "decision": "blocked_same_day_duplicate_buy",
+      "detail": "2231 BAC buy filled at 09:39:20 ET; same US-date duplicate buy gate applies."
+    },
+    {
+      "symbol": "WMT",
+      "decision": "blocked_same_day_duplicate_buy",
+      "detail": "2251 WMT buy filled at 10:07:50 ET; same US-date duplicate buy gate now applies."
+    },
+    {
+      "symbol": "FCX",
+      "decision": "selected_buy",
+      "detail": "materials/copper diversifier with latest 1D closeout 양호, research-preflight coverage, live quote 71.36/71.40, spread 0.0561%, duplicate/open-order none."
+    },
+    {
+      "symbol": "COP",
+      "decision": "backup",
+      "detail": "energy/value diversifier with valid preflight coverage, but latest review strength and replacement rank trail FCX."
+    },
+    {
+      "symbol": "NKE",
+      "decision": "backup",
+      "detail": "consumer turnaround candidate remains usable but latest tape is less compelling than FCX materials strength."
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "blocked_validation_floor_cap",
+      "detail": "1-share ask 733.16 exceeds validation floor per-order cap."
+    },
+    {
+      "symbol": "NOK",
+      "decision": "blocked_validation_lifecycle_add_block",
+      "detail": "20D review add-block remains active until 2026-06-18 US close."
+    }
+  ],
+  "selected_order_proposal": {
+    "symbol": "FCX",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 71.4,
+    "bid": 71.36,
+    "ask": 71.4,
+    "spread_pct": 0.0561,
+    "quote_captured_at": "2026-06-17T14:19:10.044395214Z",
+    "client_order_id": "hourly-20260617-2311-buy-fcx",
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-stale-order-cleanup.json",
+      "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-research-mcp-preflight.json",
+      "wiki/evidence-store/sources/2026-06-17-2311-hourly-autopilot-runtime-gate-evaluation.json",
+      "harness/recommendation-policy.yaml",
+      "harness/risk-policy.yaml",
+      "harness/symbol-metadata.yaml",
+      "wiki/trade-ledger/reviews/review-due-index.json",
+      "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+      "wiki/research-notes/tickers/FCX.md",
+      "wiki/research-notes/tickers/SO.md",
+      "wiki/research-notes/tickers/RGTI.md",
+      "wiki/research-notes/tickers/PFE.md",
+      "wiki/research-notes/tickers/BAC.md",
+      "wiki/research-notes/tickers/WMT.md",
+      "wiki/research-notes/tickers/COP.md",
+      "wiki/research-notes/tickers/NKE.md",
+      "wiki/research-notes/tickers/AMZN.md"
+    ]
+  }
+}
