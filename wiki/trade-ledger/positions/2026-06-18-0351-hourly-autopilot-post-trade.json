@@ -1,0 +1,68 @@
+{
+  "run_id": "2026-06-18-0351-hourly-autopilot",
+  "created_at": "2026-06-17T19:02:00Z",
+  "paper": true,
+  "source": "alpaca MCP post-trade reconciliation",
+  "submitted_orders": [
+    {
+      "order_id": "cf1c84cc-cf32-4cf5-b080-01283baaa42a",
+      "client_order_id": "hourly-20260618-0351-buy-nvda",
+      "symbol": "NVDA",
+      "side": "buy",
+      "qty": 1,
+      "limit_price": 206.78,
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 206.23,
+      "submitted_at": "2026-06-17T19:01:04.006704259Z",
+      "filled_at": "2026-06-17T19:01:04.818092222Z"
+    }
+  ],
+  "open_orders_count": 0,
+  "same_day_order_count": 17,
+  "watchlists_count": 0,
+  "account": {
+    "status": "ACTIVE",
+    "cash": 28003.45,
+    "portfolio_value": 101151.93,
+    "buying_power": 300997.97,
+    "positions_count": 33
+  },
+  "positions_focus": {
+    "NVDA": {
+      "qty": 39.0,
+      "avg_entry_price": 214.805897,
+      "current_price": 206.2,
+      "market_value": 8041.8
+    },
+    "MRK": {
+      "qty": 1.0,
+      "avg_entry_price": 115.19,
+      "current_price": 115.145,
+      "market_value": 115.145
+    },
+    "SO": {
+      "qty": 6.0,
+      "avg_entry_price": 92.801667,
+      "current_price": 92.87,
+      "market_value": 557.22
+    },
+    "RGTI": {
+      "qty": 27.0,
+      "avg_entry_price": 25.569583,
+      "current_price": 21.1,
+      "market_value": 569.7
+    },
+    "PFE": {
+      "qty": 2.0,
+      "avg_entry_price": 25.87,
+      "current_price": 26.035,
+      "market_value": 52.07
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-0351-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-0351-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-18-0351-hourly-autopilot.json"
+  ]
+}

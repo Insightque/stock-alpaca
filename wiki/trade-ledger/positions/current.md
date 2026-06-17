@@ -1,5 +1,18 @@
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-18-0351-hourly-autopilot]]
+- Open/new: 없음. `hourly-20260618-0351-buy-nvda` 1주 buy는 immediate reconciliation 기준 이미 `filled`다.
+- Filled: same US-date fill ledger에는 신규 `NVDA` buy 1주 `206.23 USD`, `MRK` buy 1주 `115.19 USD`, `SLB` buy 1주 `51.32 USD`, `SO` buy 1주 `93.24 USD`, `COP` buy 1주 `110.83 USD`, `GOOGL` buy 1주 `365.24 USD`, `AAPL` buy 1주 `298.42 USD`, `XOM` buy 1주 `141.54 USD`, `MSFT` buy 1주 `385.40 USD`, `AMZN` buy 1주 `240.44 USD`, `NEE` buy 1주 `86.38 USD`, `NKE` buy 1주 `45.30 USD`, `FCX` buy 1주 `71.40 USD`, `WMT` buy 1주 `119.83 USD`, `BAC` buy 1주 `57.57 USD`, prior after-hours `PFE` sell 1주 `26.03 USD`, `RGTI` sell 1주 `20.96 USD`가 남아 있었다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: direct `get_all_positions` 기준 positions `33`건이었다.
+- Recent reconciliation scope: scheduler-owned `0351` core/research preflight를 source-of-record로 사용했고, live Alpaca MCP `get_order_by_client_id/get_orders(status=open)/get_orders(status=all, after=2026-06-16T20:00:00-04:00)/get_account_info/get_all_positions/get_watchlists`로 submit-boundary와 post-trade state를 재확인했다. live readback 기준 account `ACTIVE`, cash `28,003.45 USD`, portfolio value `101,151.93 USD`, buying power `300,997.97 USD`, open orders `0`, watchlists `0`, `NVDA qty=39`, `avg_entry_price=214.805897`, `current_price=206.2`였다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-18-0351-hourly-autopilot-post-trade.json`
+
+_Last updated: 2026-06-18 04:01 KST_
+
+## 최신 hourly-autopilot reconciliation
+
 - Run: [[2026-06-18-0331-hourly-autopilot]]
 - Open/new: `hourly-20260618-0331-buy-mrk` 1주 buy가 immediate reconciliation 기준 `status=new` open order로 남아 있다.
 - Filled: same US-date fill ledger에는 `SLB` buy 1주 `51.32 USD`, `SO` buy 1주 `93.24 USD`, `COP` buy 1주 `110.83 USD`, `GOOGL` buy 1주 `365.24 USD`, `AAPL` buy 1주 `298.42 USD`, `XOM` buy 1주 `141.54 USD`, `MSFT` buy 1주 `385.40 USD`, `AMZN` buy 1주 `240.44 USD`, `NEE` buy 1주 `86.38 USD`, `NKE` buy 1주 `45.30 USD`, `FCX` buy 1주 `71.40 USD`, `WMT` buy 1주 `119.83 USD`, `BAC` buy 1주 `57.57 USD`, prior after-hours `PFE` sell 1주 `26.03 USD`, `RGTI` sell 1주 `20.96 USD`가 남아 있었다. `MRK` 신규 fill은 아직 없다.
