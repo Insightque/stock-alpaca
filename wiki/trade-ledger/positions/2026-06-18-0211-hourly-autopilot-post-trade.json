@@ -1,0 +1,148 @@
+{
+  "run_id": "2026-06-18-0211-hourly-autopilot",
+  "created_at": "2026-06-17T17:19:20Z",
+  "source": "hourly autopilot post-trade reconciliation via Alpaca MCP",
+  "order_submission": {
+    "symbol": "SO",
+    "side": "buy",
+    "qty": "1",
+    "limit_price": "93.38",
+    "client_order_id": "hourly-20260618-0211-buy-so",
+    "order_id": "9ba83a07-21e4-4d69-8496-8a34075b9d92",
+    "status": "filled",
+    "submitted_at": "2026-06-17T17:19:01.156861992Z",
+    "filled_qty": "1",
+    "filled_avg_price": "93.24",
+    "filled_at": "2026-06-17T17:19:02.097011303Z"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "cash": "28376.19",
+    "portfolio_value": "101309.29",
+    "buying_power": "301908.39"
+  },
+  "open_orders": [],
+  "fills_after_us_midnight": [
+    {
+      "symbol": "SO",
+      "side": "buy",
+      "qty": "1",
+      "price": "93.24",
+      "transaction_time": "2026-06-17T17:19:02.097011Z"
+    },
+    {
+      "symbol": "COP",
+      "side": "buy",
+      "qty": "1",
+      "price": "110.83",
+      "transaction_time": "2026-06-17T16:59:32.674079Z"
+    },
+    {
+      "symbol": "GOOGL",
+      "side": "buy",
+      "qty": "1",
+      "price": "365.24",
+      "transaction_time": "2026-06-17T16:40:11.203622Z"
+    },
+    {
+      "symbol": "AAPL",
+      "side": "buy",
+      "qty": "1",
+      "price": "298.42",
+      "transaction_time": "2026-06-17T16:23:03.067507Z"
+    },
+    {
+      "symbol": "XOM",
+      "side": "buy",
+      "qty": "1",
+      "price": "141.54",
+      "transaction_time": "2026-06-17T16:17:56.544666Z"
+    },
+    {
+      "symbol": "MSFT",
+      "side": "buy",
+      "qty": "1",
+      "price": "385.4",
+      "transaction_time": "2026-06-17T15:37:49.346911Z"
+    },
+    {
+      "symbol": "AMZN",
+      "side": "buy",
+      "qty": "1",
+      "price": "240.44",
+      "transaction_time": "2026-06-17T15:23:00.57184Z"
+    },
+    {
+      "symbol": "NEE",
+      "side": "buy",
+      "qty": "1",
+      "price": "86.38",
+      "transaction_time": "2026-06-17T14:59:48.764184Z"
+    },
+    {
+      "symbol": "NKE",
+      "side": "buy",
+      "qty": "1",
+      "price": "45.3",
+      "transaction_time": "2026-06-17T14:47:16.442937Z"
+    },
+    {
+      "symbol": "FCX",
+      "side": "buy",
+      "qty": "1",
+      "price": "71.4",
+      "transaction_time": "2026-06-17T14:40:58.679036Z"
+    },
+    {
+      "symbol": "WMT",
+      "side": "buy",
+      "qty": "1",
+      "price": "119.83",
+      "transaction_time": "2026-06-17T14:07:50.521793Z"
+    },
+    {
+      "symbol": "BAC",
+      "side": "buy",
+      "qty": "1",
+      "price": "57.57",
+      "transaction_time": "2026-06-17T13:39:20.834459Z"
+    },
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "qty": "1",
+      "price": "26.03",
+      "transaction_time": "2026-06-17T05:11:09.778969Z"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": "1",
+      "price": "20.96",
+      "transaction_time": "2026-06-17T04:39:27.027152Z"
+    }
+  ],
+  "positions_count": 33,
+  "positions_for_symbol": {
+    "symbol": "SO",
+    "qty": "6",
+    "avg_entry_price": "92.801667",
+    "current_price": "93.23"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-0211-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-18-0211-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-0211-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-0211-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/PFE.md",
+    "wiki/research-notes/tickers/PLTR.md",
+    "wiki/trade-ledger/orders/2026-06-18-0211-hourly-autopilot.json"
+  ]
+}

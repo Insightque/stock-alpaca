@@ -5,6 +5,13 @@ asset_type: stock
 
 # SO
 
+
+## 2026-06-18 02:19 KST hourly autopilot
+
+`SO` 1주 regular-session day limit buy가 `93.38 USD` limit으로 제출됐고, same `client_order_id=hourly-20260618-0211-buy-so` reconciliation 기준 `2026-06-17T17:19:02.097011303Z`에 `filled_avg_price=93.24 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0211` stale cleanup/core/research preflight 기준 hard gate pass, live continuity 기준 직전 `COP` fill 이후 open orders `0` 재확인, `RGTI/PFE` sell-first 경로가 same-day duplicate sell gate로 막혔고 `SO` 자체 trim도 decision-grade metric gap으로 sell 승격이 막혔다는 점, 그리고 `SO`가 same-day duplicate/open-order conflict가 없는 existing utilities/rate-sensitive diversifier로 live quote `93.36/93.38` spread `0.0214%`, high source confidence, `SEC/FRED/Yahoo` 3-provider positive confirmation을 유지해 남은 floor-size learning fallback으로 가장 executable했다는 점이다. immediate reconciliation 기준 보유 수량은 `5주 -> 6주`, `avg_entry_price=92.801667`로 갱신됐다.
+
+출처: [[2026-06-18-0211-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-18-0211-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-18-0211-hourly-autopilot-post-trade.json`
+
 ## 회고 기록
 
 ### 2026-05-29 analyst review cycle
