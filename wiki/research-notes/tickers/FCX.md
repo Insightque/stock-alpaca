@@ -2,9 +2,15 @@
 
 Freeport-McMoRan paper validation 후보. 2026-05-26 hourly autopilot에서 materials/mining 및 commodity-cyclical 분산, SEC/Yahoo/FRED 확인을 근거로 1주 validation buy가 체결됐다.
 
+## 2026-06-17 23:41 KST hourly-autopilot reconciliation
+
+`2311` cycle에서 open 상태로 남아 있던 `FCX` 1주 regular-session day limit buy가 `2331` cycle의 immediate post-submit reconciliation에서 `2026-06-17T14:40:58.679036Z` `filled_avg_price=71.40 USD`로 filled 전환됐다. 같은 readback 기준 보유 수량은 `6주 -> 7주`, 평균단가는 `65.675 -> 66.492857 USD`로 갱신됐고, same US-date fill ledger에 새 validation buy 표본으로 편입됐다.
+
+출처: [[2026-06-17-2331-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-17-2331-hourly-autopilot-post-trade.json`
+
 ## 2026-06-17 23:19 KST hourly-autopilot
 
-`FCX` 1주 regular-session day limit buy가 `71.40 USD` limit으로 제출됐다. scheduler-owned `2311` stale cleanup/core/research preflight와 direct Alpaca submit-boundary check 기준 paper mode, market open, strict universe/MCP/risk gate, same-day duplicate `0`, live quote `71.36/71.40`, spread `0.0561%`, active tradable NYSE stock이 모두 통과해 existing materials/copper diversifier floor-size add로 승격됐다. immediate reconciliation 기준 `client_order_id=hourly-20260617-2311-buy-fcx`, `order_id=1ffe1486-ed10-4b4c-9ec9-690600d04970`는 `status=new`, `filled_qty=0` open order이며, 다음 cycle에서 fill/open-order lifecycle 추적이 필요하다.
+`FCX` 1주 regular-session day limit buy가 `71.40 USD` limit으로 제출됐다. scheduler-owned `2311` stale cleanup/core/research preflight와 direct Alpaca submit-boundary check 기준 paper mode, market open, strict universe/MCP/risk gate, same-day duplicate `0`, live quote `71.36/71.40`, spread `0.0561%`, active tradable NYSE stock이 모두 통과해 existing materials/copper diversifier floor-size add로 승격됐다. `2311` immediate reconciliation 시점에는 `status=new`, `filled_qty=0` open order였고, 다음 `2331` cycle reconciliation에서 fill이 확인됐다.
 
 출처: [[2026-06-17-2311-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-17-2311-hourly-autopilot-post-trade.json`
 

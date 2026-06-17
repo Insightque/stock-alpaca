@@ -1,15 +1,15 @@
 ## 최신 hourly-autopilot reconciliation
 
-- Run: [[2026-06-17-2311-hourly-autopilot]]
-- Open/new: `FCX` buy 1주 `71.40 USD` day limit, `client_order_id=hourly-20260617-2311-buy-fcx`, `order_id=1ffe1486-ed10-4b4c-9ec9-690600d04970`, immediate reconciliation 기준 `status=new`, `filled_qty=0`.
-- Filled: same US-date fill ledger에는 `WMT` buy 1주 `119.83 USD`, `BAC` buy 1주 `57.57 USD`, prior after-hours `PFE` sell 1주 `26.03 USD`, `RGTI` sell 1주 `20.96 USD`가 남아 있었다.
+- Run: [[2026-06-17-2331-hourly-autopilot]]
+- Open/new: `NKE` buy 1주 `45.30 USD` day limit, `client_order_id=hourly-20260617-2331-buy-nke`, `order_id=3f5cd1a0-cd69-48a6-8380-f9042cffd668`, immediate reconciliation 기준 `status=new`, `filled_qty=0`.
+- Filled: same US-date fill ledger에는 `FCX` buy 1주 `71.40 USD`, `WMT` buy 1주 `119.83 USD`, `BAC` buy 1주 `57.57 USD`, prior after-hours `PFE` sell 1주 `26.03 USD`, `RGTI` sell 1주 `20.96 USD`가 남아 있었다.
 - Cancelled: 없음
 - Position count observed by Alpaca MCP: direct `get_all_positions` 기준 positions `33`건이었다.
-- Recent reconciliation scope: scheduler-owned `2311` core/research preflight를 source-of-record로 사용했고, live Alpaca MCP `get_clock/get_orders(status=open)/get_orders(status=all, after=2026-06-16T20:00:00-04:00)/get_order_by_client_id/get_all_positions/get_account_info/get_watchlists`로 submit-boundary와 post-trade state를 재확인했다. live readback 기준 account `ACTIVE`, cash `30,214.38 USD`, portfolio value `101,285.73 USD`, buying power `304,241.36 USD`, open orders `1`, watchlists `0`, `FCX qty=6`, `avg_entry_price=65.675`, `current_price=71.545`였고, earlier same-day fills `WMT qty=10`, `BAC qty=8`도 유지됐다.
+- Recent reconciliation scope: scheduler-owned `2331` core/research preflight를 source-of-record로 사용했고, live Alpaca MCP `get_clock/get_orders(status=open)/get_orders(status=all, after=2026-06-16T20:00:00-04:00)/get_order_by_client_id/get_all_positions/get_account_info/get_watchlists`로 submit-boundary와 post-trade state를 재확인했다. live readback 기준 account `ACTIVE`, cash `30,142.98 USD`, portfolio value `101,124.05 USD`, buying power `303,779.72 USD`, open orders `1`, watchlists `0`, `NKE qty=6`, `avg_entry_price=45.228333`, `current_price=45.365`였고, 직전 `2311` FCX buy는 `2026-06-17T14:40:58.679036Z`에 `71.40 USD`로 filled 전환되어 `FCX qty=7`, `avg_entry_price=66.492857`로 갱신됐다.
 - Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
-- Source note: `wiki/trade-ledger/positions/2026-06-17-2311-hourly-autopilot-post-trade.json`
+- Source note: `wiki/trade-ledger/positions/2026-06-17-2331-hourly-autopilot-post-trade.json`
 
-_Last updated: 2026-06-17 23:20 KST_
+_Last updated: 2026-06-17 23:41 KST_
 
 ## 최신 after-hours-autopilot reconciliation
 

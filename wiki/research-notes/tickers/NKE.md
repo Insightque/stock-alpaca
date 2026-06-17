@@ -5,6 +5,12 @@ asset_type: stock
 
 # NKE
 
+## 2026-06-17 23:41 KST hourly-autopilot
+
+`NKE` 1주 regular-session day limit buy가 `45.30 USD` limit으로 제출됐다. scheduler-owned `2331` stale cleanup/core/research preflight와 live Alpaca submit-boundary check 기준 paper mode, market open, strict universe/MCP/risk gate, review backlog throttle, same-day duplicate/open-order conflict, fresh `FCX` open buy의 different-cluster 예외가 모두 통과했다. immediate reconciliation 기준 `client_order_id=hourly-20260617-2331-buy-nke`, `order_id=3f5cd1a0-cd69-48a6-8380-f9042cffd668`는 `status=new`, `filled_qty=0` open order이며 같은 readback에서 `FCX` prior open buy fill 전환도 함께 확인됐다.
+
+출처: [[2026-06-17-2331-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-17-2331-hourly-autopilot-post-trade.json`
+
 ## 회고 기록
 
 ### 2026-05-29 analyst review cycle
