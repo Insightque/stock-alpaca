@@ -69,3 +69,9 @@ asset_type: stock
 `BAC` 1주 regular-session day limit buy가 `56.28 USD` limit으로 제출됐고, Alpaca MCP 기준 `client_order_id=hourly-20260615-2311-buy-bac`, `order_id=dda6e628-c48f-48b5-891e-2bc6169bba6c`가 생성됐다. immediate reconciliation 시점 상태는 `new` open order이며 fill은 아직 없다. 근거는 scheduler-owned `2311` stale cleanup/core/research preflight와 strict universe/MCP/risk gate 통과, `AVGO` fresh open sell 1주와 `RGTI` same-session filled sell 9주 때문에 sell-first 경로가 explicit gate에 막혔다는 점, 그리고 `BAC`가 same-day duplicate/open-order conflict 없는 financials diversifier floor-size fallback으로 가장 executable했다는 점이다. 다음 cycle은 이 주문의 fill 또는 stale lifecycle을 추적한다.
 
 출처: [[2026-06-15-2311-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-15-2311-hourly-autopilot-post-trade.json`
+
+## 2026-06-17 22:39 KST hourly-autopilot
+
+`BAC` 1주 regular-session day limit buy가 `57.57 USD` limit으로 제출됐고, 다음 `2251` cycle live Alpaca reconciliation 기준 `client_order_id=hourly-20260617-2231-buy-bac`, `order_id=bf01712f-be9d-4b0e-a7fb-0ec8b36e6eee`가 `2026-06-17T13:39:20.834459Z`에 `filled_avg_price=57.57 USD`로 체결된 것이 확인됐다. 근거는 scheduler-owned `2231` stale cleanup/core/research preflight와 strict universe/MCP/risk gate 통과, sell-first에서 executable trim 부재, 그리고 `BAC`가 financials diversifier hold-quality와 3-provider positive confirmation을 유지했다는 점이다. `2251` regular-session reevaluation에서는 이 same US-date fill 때문에 duplicate buy gate가 생겨 추가 `BAC` buy는 막혔고, post-fill `get_all_positions` 기준 보유 수량은 `7주 -> 8주`, `avg_entry_price=54.2175`로 갱신됐다.
+
+출처: [[2026-06-17-2231-hourly-autopilot]], [[2026-06-17-2251-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-17-2251-hourly-autopilot-post-trade.json`

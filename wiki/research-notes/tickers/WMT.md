@@ -70,3 +70,9 @@ asset_type: stock
 `2026-06-15 ET` add 1주는 `120.20 USD -> 121.07 USD`로 `+0.72%`였다. `SPY`와 `QQQ`가 하락한 날에 defensive retail이 방어적으로 작동해 1D closeout은 `양호`다. 다만 skipped recommendation 관점에서는 급한 missed-upside 사례로 보긴 어려워, defensive backlog throttle 해석을 바꿀 정도의 새 정책 신호로는 쓰지 않는다.
 
 출처: [[2026-06-17-portfolio-review]], [[2026-06-17-0623-analyst-review-cycle-sources]]
+
+## 2026-06-17 22:59 KST hourly-autopilot
+
+`WMT` 1주 regular-session day limit buy가 `119.83 USD` limit으로 제출됐다. scheduler-owned `2251` stale cleanup/core/research preflight와 live Alpaca submit-boundary check 기준 paper mode, market open, strict universe/MCP/risk gate, review backlog throttle, same-day duplicate/open-order conflict, quote freshness가 모두 통과했고, `BAC`는 같은 미국 거래일 2231 fill로 duplicate buy gate가 생겼으며 `PFE/RGTI/SO` sell-first 경로도 각각 duplicate/spread/metric gate에 막혀 있었다. immediate reconciliation 기준 `client_order_id=hourly-20260617-2251-buy-wmt`, `order_id=381c1f40-067a-4c71-99e6-c57ab92dd6e6`는 `status=new`, `filled_qty=0` open order이며 `get_all_positions` 기준 보유수량은 아직 `9주`, `qty_available=9`로 unchanged다. 해석은 `defensive retail floor-size validation add submit 완료, next cycle fill/open-order lifecycle 추적 필요`다.
+
+출처: [[2026-06-17-2251-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-17-2251-hourly-autopilot-post-trade.json`
