@@ -1,0 +1,31 @@
+{
+  "run_id": "2026-06-17-0931-after-hours-autopilot",
+  "created_at": "2026-06-17T00:33:52Z",
+  "session": "after_hours",
+  "paper": true,
+  "orders_submitted_this_run": 0,
+  "reconciliation": {
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_today": 0,
+    "positions_count": 33,
+    "watchlists_count": 0,
+    "cash_source_of_record": 30344.81,
+    "portfolio_value_source_of_record": 100893.26,
+    "buying_power_source_of_record": 303055.19,
+    "live_cash": 30344.81,
+    "live_portfolio_value": 100914.39,
+    "live_buying_power": 303091.84
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-0931-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/evidence-store/sources/2026-06-17-0931-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-0931-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-0931-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/run-manifests/2026-06-17-0931-after-hours-autopilot.json"
+  ],
+  "review_bucket": "after_hours_validation",
+  "note": "No after-hours submit at 0931. Scheduler-owned 0931 core preflight remained the source-of-record for expected market_closed handling and submit-boundary account/positions/order/asset/quote/spread rows. Direct Alpaca continuity reconfirmed no open orders, no same-session after-hours orders/fills, and no watchlists without reopening the quote boundary.",
+  "client_order_ids_checked": [],
+  "reconciliation_note": "No client_order_id reconciliation was required because no submit path opened."
+}
