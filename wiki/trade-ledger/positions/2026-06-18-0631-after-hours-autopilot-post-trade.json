@@ -1,0 +1,39 @@
+{
+  "run_id": "2026-06-18-0631-after-hours-autopilot",
+  "created_at": "2026-06-17T21:35:22Z",
+  "session": "after_hours",
+  "paper": true,
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "orders_open": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_detected": 0,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 100524.49,
+    "cash": 28003.45,
+    "buying_power": 299437.89,
+    "long_market_value": 72536.31,
+    "currency": "USD",
+    "daily_realized_loss": 0.0
+  },
+  "positions_count": 34,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "review_bucket": "after_hours_validation",
+  "note": "No after-hours submit at 0631. Scheduler-owned 0631 core preflight remained the source-of-record for the expected market_closed blocker and passing account/open-order/asset/quote rows; same-session after-hours orders remained 0 and no <=5 minute executable quote stack existed for the evaluated shortlist.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-0631-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-0631-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-0631-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-18-0631-after-hours-autopilot-runtime-alpaca-spot-check.json"
+  ],
+  "submit_status": "no_submit",
+  "client_order_ids_checked": [],
+  "new_orders": [],
+  "filled_orders": [],
+  "cancelled_orders": [],
+  "open_orders": [],
+  "open_order_count": 0,
+  "reconciliation_note": "No new client_order_id reconciliation was required because no submit path opened in the 0631 after-hours cycle."
+}
