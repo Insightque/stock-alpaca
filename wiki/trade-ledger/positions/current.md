@@ -1,5 +1,18 @@
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-18-0451-hourly-autopilot]]
+- Open/new: 없음. `hourly-20260618-0451-buy-sbux` 1주 buy는 actual submit timestamp가 regular close 이후여서 same order id 기준 즉시 `canceled`로 정리됐다.
+- Filled: 없음. `SBUX` 신규 fill은 발생하지 않았다.
+- Cancelled: `SBUX` buy 1주 `99.59 USD` limit, `order_id=bf29b7a9-3ddb-4fbc-8aca-6efc70d2cff6`, `canceled_at=2026-06-17T20:02:04.050879938Z`.
+- Position count observed by Alpaca MCP: direct `get_all_positions` 기준 positions `34`건이었다.
+- Recent reconciliation scope: scheduler-owned `0451` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca MCP `get_clock/get_order_by_id/get_orders(status=open)/get_orders(status=all, symbols=SBUX)/get_account_info/get_all_positions`로 submit-boundary와 post-trade state를 재확인했다. live readback 기준 actual submit 시각은 `2026-06-17T20:01:40.378968465Z` (`16:01:40 ET`)였고, follow-up clock `2026-06-17T16:02:00.785015971-04:00`는 `is_open=false`라 즉시 취소가 필요했다. final state 기준 account `ACTIVE`, cash `28,003.45 USD`, portfolio value `100,278.09 USD`, buying power `298,725.70 USD`, open orders `0`, `SBUX position 없음`이었다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 1 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-18-0451-hourly-autopilot-post-trade.json`
+
+_Last updated: 2026-06-18 05:02 KST_
+
+## 최신 hourly-autopilot reconciliation
+
 - Run: [[2026-06-18-0351-hourly-autopilot]]
 - Open/new: 없음. `hourly-20260618-0351-buy-nvda` 1주 buy는 immediate reconciliation 기준 이미 `filled`다.
 - Filled: same US-date fill ledger에는 신규 `NVDA` buy 1주 `206.23 USD`, `MRK` buy 1주 `115.19 USD`, `SLB` buy 1주 `51.32 USD`, `SO` buy 1주 `93.24 USD`, `COP` buy 1주 `110.83 USD`, `GOOGL` buy 1주 `365.24 USD`, `AAPL` buy 1주 `298.42 USD`, `XOM` buy 1주 `141.54 USD`, `MSFT` buy 1주 `385.40 USD`, `AMZN` buy 1주 `240.44 USD`, `NEE` buy 1주 `86.38 USD`, `NKE` buy 1주 `45.30 USD`, `FCX` buy 1주 `71.40 USD`, `WMT` buy 1주 `119.83 USD`, `BAC` buy 1주 `57.57 USD`, prior after-hours `PFE` sell 1주 `26.03 USD`, `RGTI` sell 1주 `20.96 USD`가 남아 있었다.

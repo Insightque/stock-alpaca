@@ -1,0 +1,41 @@
+{
+  "run_id": "2026-06-18-0451-hourly-autopilot",
+  "reconciled_at": "2026-06-17T20:02:04.050879938Z",
+  "market_clock": {
+    "timestamp": "2026-06-17T16:02:00.785015971-04:00",
+    "is_open": false,
+    "next_open": "2026-06-18T09:30:00-04:00",
+    "next_close": "2026-06-18T16:00:00-04:00"
+  },
+  "order": {
+    "order_id": "bf29b7a9-3ddb-4fbc-8aca-6efc70d2cff6",
+    "client_order_id": "hourly-20260618-0451-buy-sbux",
+    "symbol": "SBUX",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 99.59,
+    "submitted_at": "2026-06-17T20:01:40.378968465Z",
+    "status": "canceled",
+    "canceled_at": "2026-06-17T20:02:04.050879938Z",
+    "filled_qty": 0,
+    "filled_avg_price": null
+  },
+  "open_orders": [],
+  "account": {
+    "status": "ACTIVE",
+    "cash": 28003.45,
+    "portfolio_value": 100278.09,
+    "buying_power": 298725.7
+  },
+  "positions_summary": {
+    "position_count": 34,
+    "sbux_position_present": false
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-0451-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-18-0451-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-0451-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-0451-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-18-0451-hourly-autopilot.json"
+  ]
+}
