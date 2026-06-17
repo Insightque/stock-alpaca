@@ -1,0 +1,74 @@
+{
+  "run_id": "2026-06-17-2131-after-hours-autopilot",
+  "created_at": "2026-06-17T12:33:30Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "artifact_tag": "after-hours",
+  "hard_gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_scheduler_preflight_rows_plus_direct_mcp_readback",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "block_two_of_two_same_session_orders_already_submitted",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "risk_policy": "PASS_empty_order_plan_warning_only",
+    "fresh_quote": "not_actionable_budget_exhausted_before_submit_path",
+    "spread_within_after_hours_policy": "not_actionable_budget_exhausted_before_submit_path",
+    "whole_share_day_limit_extended_hours_order": "pass_no_new_orders_built",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_same_client_id_fill_reconciliation_completed"
+  },
+  "separate_session_budget": {
+    "submitted_today": 2,
+    "max_new_orders_per_session": 2,
+    "remaining": 0,
+    "counted_client_order_ids": [
+      "ah-20260617-1331-sell-rgti-01",
+      "ah-20260617-1351-sell-pfe-01"
+    ]
+  },
+  "review_backlog": {
+    "pending_1d_count": 0,
+    "pending_5d_count": 37,
+    "pending_20d_count": 1,
+    "blocked_add_symbols": [
+      "NOK"
+    ]
+  },
+  "candidate_evaluation": {
+    "buy_shortlist_from_research_preflight": [
+      "QQQ",
+      "SPY",
+      "IONQ",
+      "PFE",
+      "JPM",
+      "QBTS",
+      "NOK",
+      "SMH"
+    ],
+    "sell_trim_candidates": [
+      "RGTI",
+      "PFE",
+      "AVGO",
+      "SO"
+    ],
+    "outcome": "budget_remained_closed_after_2131_scheduler_preflight_and_direct_mcp_revalidation",
+    "same_session_fills_confirmed": [
+      {
+        "symbol": "RGTI",
+        "client_order_id": "ah-20260617-1331-sell-rgti-01",
+        "filled_avg_price": 20.96,
+        "filled_at": "2026-06-17T04:39:27.027152Z"
+      },
+      {
+        "symbol": "PFE",
+        "client_order_id": "ah-20260617-1351-sell-pfe-01",
+        "filled_avg_price": 26.03,
+        "filled_at": "2026-06-17T05:11:09.778969Z"
+      }
+    ],
+    "note": "The 2131 scheduler-owned research preflight still supplied a valid broad shortlist and strict MCP evidence. Scheduler-owned account/position/open-order/activity rows plus direct Alpaca MCP readback kept the after-hours state coherent, so the separate session budget remained closed at 2/2 and no new submit path was reopened."
+  }
+}

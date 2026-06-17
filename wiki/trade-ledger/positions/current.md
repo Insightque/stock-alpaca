@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-06-17-2131-after-hours-autopilot]]
+- Open/new: 없음. scheduler-owned `2131` preflight `get_orders_open` source-of-record 기준 open orders `0`건이었다.
+- Filled: 이번 cycle 신규 fill 없음. exact same `client_order_id=ah-20260617-1331-sell-rgti-01`, `ah-20260617-1351-sell-pfe-01` 두 건은 모두 filled로 유지됐다. direct `get_order_by_client_id` readback 기준 same-session after-hours submitted orders/fills는 계속 `2/2`였다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: source-of-record `get_all_positions` 기준 positions `33`건이었고, live `get_all_positions` 기준 count도 `33`건으로 유지됐다.
+- Recent reconciliation scope: scheduler-owned `2131` core/research preflight를 source-of-record로 사용했고 Alpaca core `market_closed`는 expected nonblocking으로 처리했다. submit-boundary source-of-record는 같은 preflight의 passing account/positions/orders/activity/quote rows였고, direct Alpaca MCP `get_clock/get_all_positions/get_watchlists/get_order_by_client_id/get_stock_latest_quote(feed=overnight, symbols=RGTI,PFE,QQQ)/get_stock_snapshot(feed=overnight, symbols=RGTI,PFE,QQQ)` continuity로 regular market closed, positions `33`, watchlists `0`, `PFE qty=2`, `qty_available=2`, `RGTI qty=27`, overnight quote parity를 재확인했다. source-of-record 기준 account `ACTIVE`, cash `30,391.78 USD`, portfolio value `101,355.28 USD`, buying power `304,101.53 USD`였고 separate after-hours session submitted count는 계속 `2/2`로 닫혀 있었다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-17-2131-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-06-17 21:33 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-06-17-2111-after-hours-autopilot]]
 - Open/new: 없음. scheduler-owned `2111` preflight `get_orders_open` source-of-record 기준 open orders `0`건이었다.
 - Filled: 이번 cycle 신규 fill 없음. same-session `client_order_id=ah-20260617-1331-sell-rgti-01`, `ah-20260617-1351-sell-pfe-01` 두 건은 모두 filled로 유지됐다. scheduler-owned `get_account_activities(activity_types=[FILL])` 기준 same-session after-hours submitted orders/fills는 모두 `2`건이다.

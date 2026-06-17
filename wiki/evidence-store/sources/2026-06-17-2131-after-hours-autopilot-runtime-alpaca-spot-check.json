@@ -1,0 +1,108 @@
+{
+  "run_id": "2026-06-17-2131-after-hours-autopilot",
+  "created_at": "2026-06-17T12:33:30Z",
+  "session": "after_hours",
+  "paper": true,
+  "read_only": true,
+  "source": "scheduler_owned_2131_preflight_plus_direct_alpaca_mcp_readback",
+  "live_tools_used": [
+    "get_clock",
+    "get_all_positions",
+    "get_watchlists",
+    "get_order_by_client_id(ah-20260617-1331-sell-rgti-01)",
+    "get_order_by_client_id(ah-20260617-1351-sell-pfe-01)",
+    "get_stock_latest_quote(feed=overnight,symbols=RGTI,PFE,QQQ)",
+    "get_stock_snapshot(feed=overnight,symbols=RGTI,PFE,QQQ)"
+  ],
+  "source_of_record": {
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-17-2131-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-17-2131-after-hours-autopilot-research-mcp-preflight.json",
+    "latest_same_session_reconciliation": "wiki/trade-ledger/positions/2026-06-17-2111-after-hours-autopilot-post-trade.json",
+    "positions_current": "wiki/trade-ledger/positions/current.md"
+  },
+  "clock": {
+    "is_open": false,
+    "next_close": "2026-06-17T16:00:00-04:00",
+    "next_open": "2026-06-17T09:30:00-04:00",
+    "timestamp": "2026-06-17T08:33:06.359562538-04:00"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "cash": 30391.78,
+    "portfolio_value": 101355.28,
+    "buying_power": 304101.53,
+    "currency": "USD"
+  },
+  "positions_count": 33,
+  "open_orders_count": 0,
+  "watchlists_count": 0,
+  "same_session_after_hours_client_order_ids": [
+    "ah-20260617-1331-sell-rgti-01",
+    "ah-20260617-1351-sell-pfe-01"
+  ],
+  "same_session_after_hours_orders_submitted_today": 2,
+  "same_session_after_hours_fills_today": 2,
+  "reconciled_prior_client_order_ids": [
+    "ah-20260617-1331-sell-rgti-01",
+    "ah-20260617-1351-sell-pfe-01"
+  ],
+  "positions_focus": {
+    "PFE": {
+      "qty": 2.0,
+      "qty_available": 2.0,
+      "market_value": 52.1,
+      "current_price": 26.05
+    },
+    "RGTI": {
+      "qty": 27.0,
+      "qty_available": 27.0,
+      "market_value": 562.14,
+      "current_price": 20.82
+    }
+  },
+  "quotes_focus": {
+    "PFE": {
+      "bid_price": 25.89,
+      "ask_price": 27.49,
+      "quote_timestamp": "2026-06-17T08:00:00.390929824Z",
+      "latest_trade_price": 26.07,
+      "latest_trade_timestamp": "2026-06-17T07:35:44.748076318Z",
+      "spread_pct_vs_trade": 6.1373
+    },
+    "RGTI": {
+      "bid_price": 20.84,
+      "ask_price": 21.27,
+      "quote_timestamp": "2026-06-17T08:00:00.399932213Z",
+      "latest_trade_price": 21.05,
+      "latest_trade_timestamp": "2026-06-17T07:56:40.20303097Z",
+      "spread_pct_vs_trade": 2.0428
+    },
+    "QQQ": {
+      "bid_price": 714.29,
+      "ask_price": 737.4,
+      "quote_timestamp": "2026-06-17T08:00:00.397695095Z",
+      "latest_trade_price": 736.16,
+      "latest_trade_timestamp": "2026-06-17T07:58:07.954442121Z",
+      "spread_pct_vs_trade": 3.1393
+    }
+  },
+  "same_session_fill_rows": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1.0,
+      "price": 20.96,
+      "transaction_time": "2026-06-17T04:39:27.027152Z",
+      "order_status": "filled"
+    },
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "qty": 1.0,
+      "price": 26.03,
+      "transaction_time": "2026-06-17T05:11:09.778969Z",
+      "order_status": "filled"
+    }
+  ],
+  "note": "No new submit was attempted at 2131. Scheduler-owned 2131 Alpaca core preflight stayed source-of-record, while direct Alpaca MCP readback revalidated current clock, positions, watchlists, same client_order_id fills, and overnight quote/snapshot parity. The same-session after-hours fills from RGTI/PFE kept the separate session budget closed at 2/2."
+}
