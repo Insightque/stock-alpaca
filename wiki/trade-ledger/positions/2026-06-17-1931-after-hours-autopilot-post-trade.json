@@ -1,0 +1,41 @@
+{
+  "run_id": "2026-06-17-1931-after-hours-autopilot",
+  "created_at": "2026-06-17T10:33:48Z",
+  "session": "after_hours",
+  "paper": true,
+  "orders_submitted_this_run": 0,
+  "submitted_order_client_ids": [],
+  "reconciliation": {
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 2,
+    "same_session_after_hours_fills_today": 2,
+    "positions_count": 33,
+    "watchlists_count": 0,
+    "cash": 30391.78,
+    "portfolio_value": 101316.48,
+    "buying_power": 304032.07,
+    "account_status": "ACTIVE",
+    "reconciled_prior_client_order_ids": [
+      "ah-20260617-1331-sell-rgti-01",
+      "ah-20260617-1351-sell-pfe-01"
+    ],
+    "position_delta": {
+      "PFE_qty_after_1411_reconciliation": 2,
+      "PFE_qty_after_1931_reconciliation": 2,
+      "RGTI_qty_after_1331_fill": 27,
+      "RGTI_qty_after_1931_reconciliation": 27
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-1931-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/evidence-store/sources/2026-06-17-1931-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-1931-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-1931-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/run-manifests/2026-06-17-1931-after-hours-autopilot.json",
+    "wiki/trade-ledger/orders/2026-06-17-1331-after-hours-autopilot.json",
+    "wiki/trade-ledger/orders/2026-06-17-1351-after-hours-autopilot.json"
+  ],
+  "review_bucket": "after_hours_validation",
+  "note": "No new submit was attempted at 1931. The run revalidated that the prior same-session RGTI and PFE after-hours trims remained filled, confirmed open orders stayed at zero, and recorded that the separate after-hours session budget was still fully used at 2/2.",
+  "reconciliation_note": "Same-client-id reconciliation succeeded without any alternate client_order_id retry."
+}

@@ -1,0 +1,121 @@
+{
+  "run_id": "2026-06-17-1931-after-hours-autopilot",
+  "created_at": "2026-06-17T10:33:48Z",
+  "session": "after_hours",
+  "source_of_record": "wiki/evidence-store/sources/2026-06-17-1931-after-hours-autopilot-alpaca-core-preflight.json",
+  "live_continuity_checked_at": "2026-06-17T10:33:48Z",
+  "live_continuity_tools": [
+    "get_clock",
+    "get_account_info",
+    "get_all_positions",
+    "get_orders(status=open)",
+    "get_orders(status=all, after=2026-06-16T20:00:00-04:00)",
+    "get_watchlists",
+    "get_order_by_client_id(ah-20260617-1331-sell-rgti-01)",
+    "get_order_by_client_id(ah-20260617-1351-sell-pfe-01)",
+    "get_stock_latest_quote(feed=overnight, symbols=RGTI,PFE,QQQ)",
+    "get_stock_snapshot(feed=overnight, symbols=RGTI,PFE,QQQ)"
+  ],
+  "clock": {
+    "source_of_record": {
+      "is_open": false,
+      "next_close": "2026-06-17T16:00:00-04:00",
+      "next_open": "2026-06-17T09:30:00-04:00",
+      "timestamp": "2026-06-17T06:31:08.715888942-04:00"
+    },
+    "live": {
+      "is_open": false,
+      "next_close": "2026-06-17T16:00:00-04:00",
+      "next_open": "2026-06-17T09:30:00-04:00",
+      "timestamp": "2026-06-17T06:33:48.638131167-04:00"
+    },
+    "note": "regular market closed is expected and nonblocking for after-hours workflow"
+  },
+  "account": {
+    "source_of_record": {
+      "status": "ACTIVE",
+      "cash": 30391.78,
+      "portfolio_value": 101328.2,
+      "buying_power": 304047.99,
+      "currency": "USD"
+    },
+    "live": {
+      "status": "ACTIVE",
+      "cash": 30391.78,
+      "portfolio_value": 101316.48,
+      "buying_power": 304032.07,
+      "currency": "USD"
+    }
+  },
+  "counts": {
+    "positions": {
+      "source_of_record": 33,
+      "live": 33
+    },
+    "open_orders": {
+      "source_of_record": 0,
+      "live": 0
+    },
+    "watchlists": {
+      "source_of_record": 0,
+      "live": 0
+    },
+    "same_session_after_hours_orders": {
+      "live": 2
+    },
+    "same_session_after_hours_fills": {
+      "live": 2
+    }
+  },
+  "quotes": {
+    "feed": "overnight",
+    "symbols": {
+      "PFE": {
+        "bp": 25.89,
+        "ap": 27.49,
+        "t": "2026-06-17T08:00:00.390929824Z"
+      },
+      "RGTI": {
+        "bp": 20.84,
+        "ap": 21.27,
+        "t": "2026-06-17T08:00:00.399932213Z"
+      },
+      "QQQ": {
+        "bp": 714.29,
+        "ap": 737.4,
+        "t": "2026-06-17T08:00:00.397695095Z"
+      }
+    }
+  },
+  "reconciled_prior_client_order_ids": [
+    {
+      "symbol": "RGTI",
+      "client_order_id": "ah-20260617-1331-sell-rgti-01",
+      "order_id": "11925982-d0a5-4e80-9546-d2a3c67cf9b4",
+      "status": "filled",
+      "filled_avg_price": 20.96,
+      "filled_at": "2026-06-17T04:39:27.027152Z",
+      "limit_price": 20.94,
+      "qty": 1,
+      "extended_hours": true
+    },
+    {
+      "symbol": "PFE",
+      "client_order_id": "ah-20260617-1351-sell-pfe-01",
+      "order_id": "c96904a2-deab-415b-9b27-a20660a043e4",
+      "status": "filled",
+      "filled_avg_price": 26.03,
+      "filled_at": "2026-06-17T05:11:09.778969Z",
+      "limit_price": 26.01,
+      "qty": 1,
+      "extended_hours": true
+    }
+  ],
+  "position_delta": {
+    "PFE_qty_after_1411_reconciliation": 2,
+    "PFE_qty_after_1931_reconciliation": 2,
+    "RGTI_qty_after_1331_fill": 27,
+    "RGTI_qty_after_1931_reconciliation": 27
+  },
+  "note": "Live continuity was limited to exact same client_order_id reconciliation, current account/order/watchlist state, same-session fill/order counts, all-position parity, and overnight quote parity. No new client_order_id was generated and no place_stock_order call was attempted."
+}
