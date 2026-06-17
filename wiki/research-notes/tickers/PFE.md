@@ -82,3 +82,10 @@ asset_type: stock
 `2026-06-11 ET` after-hours trim 1주는 `26.13 USD` 체결 대비 `2026-06-12 ET` close/current `26.21 USD`로 `+0.31%`였다. sell 뒤 소폭 반등이 나와 exact timing edge는 제한적이지만, upside 규모가 작고 기존 반복 약세 review를 감안하면 trim 해석을 뒤집을 정도는 아니다. 다음 lifecycle closeout은 `2026-06-19` 미국 정규장 close의 5D horizon이다.
 
 출처: [[2026-06-13-portfolio-review]], [[2026-06-13-0622-analyst-review-cycle-sources]]
+
+
+## 2026-06-17 14:00 KST after-hours-autopilot
+
+`PFE` 1주 after-hours day limit trim sell이 `26.01 USD` limit, `extended_hours=true`, `client_order_id=ah-20260617-1351-sell-pfe-01`로 제출됐다. 이번 cycle은 scheduler-owned `1351` core/research preflight를 source-of-record로 유지했고, direct Alpaca overnight continuity 기준 `26.01/26.07` quote, spread `0.2307%`, same-session `PFE` sell duplicate `0`, open orders `0`, repeated weak-review defensive holding trim rationale가 확인돼 sell-first floor-size trim으로 승격됐다. immediate same client id reconciliation 기준 주문은 `order_id=c96904a2-deab-415b-9b27-a20660a043e4`, `status=new`, `filled_qty=0` open order이며 `get_all_positions` 기준 보유수량은 아직 `3주`, `qty_available=2`로 1주만 예약 상태다. 해석은 `repeated weak-review trim submit 완료, next cycle fill/open-order lifecycle 추적 필요`다.
+
+출처: [[2026-06-17-1351-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-17-1351-after-hours-autopilot-post-trade.json`

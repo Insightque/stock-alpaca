@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-06-17-1351-after-hours-autopilot]]
+- Open/new: `PFE` after-hours trim 1주가 `client_order_id=ah-20260617-1351-sell-pfe-01`, `order_id=c96904a2-deab-415b-9b27-a20660a043e4`로 제출됐고 immediate same-id reconciliation 기준 `status=new`, `filled_qty=0` open order다.
+- Filled: 이번 cycle 신규 fill 없음. same-session after-hours fills는 earlier `RGTI` trim 1건만 유지된다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: submit 전 source-of-record positions는 `33`건이었고 submit 후에도 total positions count는 `33`건으로 유지됐다.
+- Recent reconciliation scope: scheduler-owned `1351` core/research preflight를 source-of-record로 사용했고, direct Alpaca MCP continuity는 regular market closed, account `ACTIVE`, open orders `1`, same-session after-hours submitted orders `2`, same-session fills `1`, watchlists `0`, `PFE qty=3`, `qty_available=2`, overnight quote freshness 확인으로만 제한했다. separate after-hours session submitted count는 `1/2 -> 2/2`로 증가했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-17-1351-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-06-17 14:00 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-06-17-1331-after-hours-autopilot]]
 - Open/new: 없음. direct `get_orders(status=open)` 기준 open orders `0`건이었다.
 - Filled: `RGTI` after-hours trim 1주가 `client_order_id=ah-20260617-1331-sell-rgti-01`, `filled_avg_price=20.96 USD`로 즉시 체결됐다. `get_orders(status=all, after=2026-06-16T20:00:00-04:00)` 기준 same-session after-hours orders/fills는 모두 `1`건이다.

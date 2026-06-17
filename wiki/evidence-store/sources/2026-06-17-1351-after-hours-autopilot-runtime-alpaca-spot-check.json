@@ -1,0 +1,110 @@
+{
+  "run_id": "2026-06-17-1351-after-hours-autopilot",
+  "created_at": "2026-06-17T04:59:05Z",
+  "session": "after_hours",
+  "paper": true,
+  "orders_submitted_this_run": 0,
+  "reconciliation": {
+    "open_orders_count_source_of_record": 0,
+    "same_session_after_hours_orders_submitted_today_source_of_record": 1,
+    "same_session_after_hours_fills_today_source_of_record": 1,
+    "positions_count_source_of_record": 33,
+    "watchlists_count_source_of_record": 0,
+    "cash_source_of_record": 30365.77,
+    "portfolio_value_source_of_record": 101162.81,
+    "buying_power_source_of_record": 303778.81,
+    "account_status_source_of_record": "ACTIVE",
+    "live_open_orders_count": 0,
+    "live_same_session_after_hours_orders_submitted_today": 1,
+    "live_same_session_after_hours_fills_today": 1,
+    "live_watchlists_count": 0,
+    "live_cash": 30365.77,
+    "live_portfolio_value": 101168.31,
+    "live_buying_power": 303782.95
+  },
+  "live_quote_stack": {
+    "PFE": {
+      "bid": 26.01,
+      "ask": 26.07,
+      "spread_pct": 0.2307,
+      "quote_timestamp": "2026-06-17T04:54:16.368715041Z",
+      "quote_age_minutes": 4.81
+    },
+    "RGTI": {
+      "bid": 20.98,
+      "ask": 21.0,
+      "spread_pct": 0.0953,
+      "quote_timestamp": "2026-06-17T04:58:25.900607958Z",
+      "quote_age_minutes": 0.65
+    },
+    "AVGO": {
+      "bid": 380.41,
+      "ask": 380.9,
+      "spread_pct": 0.1288,
+      "quote_timestamp": "2026-06-17T04:58:32.612888843Z",
+      "quote_age_minutes": 0.54
+    },
+    "MSFT": {
+      "bid": 394.4,
+      "ask": 394.47,
+      "spread_pct": 0.0177,
+      "quote_timestamp": "2026-06-17T04:58:35.884693489Z",
+      "quote_age_minutes": 0.49
+    },
+    "QQQ": {
+      "bid": 734.07,
+      "ask": 734.58,
+      "spread_pct": 0.0695,
+      "quote_timestamp": "2026-06-17T04:58:40.276131663Z",
+      "quote_age_minutes": 0.41
+    },
+    "JPM": {
+      "bid": 329.36,
+      "ask": 331.46,
+      "spread_pct": 0.6376,
+      "quote_timestamp": "2026-06-17T04:56:28.35106136Z",
+      "quote_age_minutes": 2.61
+    },
+    "IONQ": {
+      "bid": 57.45,
+      "ask": 57.46,
+      "spread_pct": 0.0174,
+      "quote_timestamp": "2026-06-17T04:58:34.815857383Z",
+      "quote_age_minutes": 0.5
+    },
+    "QBTS": {
+      "bid": 24.37,
+      "ask": 24.43,
+      "spread_pct": 0.2462,
+      "quote_timestamp": "2026-06-17T04:58:29.204041518Z",
+      "quote_age_minutes": 0.6
+    },
+    "LLY": {
+      "bid": 1121.75,
+      "ask": 1126.69,
+      "spread_pct": 0.4404,
+      "quote_timestamp": "2026-06-17T04:57:54.382232728Z",
+      "quote_age_minutes": 1.18
+    },
+    "SMH": {
+      "bid": 626.75,
+      "ask": 627.0,
+      "spread_pct": 0.0399,
+      "quote_timestamp": "2026-06-17T04:58:39.292844111Z",
+      "quote_age_minutes": 0.43
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-1351-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-1351-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-1351-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-17-1351-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/evidence-store/run-manifests/2026-06-17-1351-after-hours-autopilot.json"
+  ],
+  "review_bucket": "after_hours_validation",
+  "note": "Live Alpaca continuity reconfirmed regular market closed, account ACTIVE, open orders 0, same-session after-hours submitted orders/fills 1 from the earlier RGTI trim only, watchlists 0, and fresh overnight two-sided quotes for the active candidate stack before any submit attempt.",
+  "client_order_ids_checked": [
+    "ah-20260617-1331-sell-rgti-01"
+  ],
+  "reconciliation_note": "No new order has been submitted yet in this cycle. The direct continuity pass is limited to read-only state plus overnight quote freshness for after-hours executable candidate ranking."
+}

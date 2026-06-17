@@ -1,0 +1,43 @@
+{
+  "run_id": "2026-06-17-1351-after-hours-autopilot",
+  "created_at": "2026-06-17T05:00:11Z",
+  "session": "after_hours",
+  "paper": true,
+  "orders_submitted_this_run": 1,
+  "reconciliation": {
+    "open_orders_count": 1,
+    "same_session_after_hours_orders_submitted_today": 2,
+    "same_session_after_hours_fills_today": 1,
+    "positions_count_source_of_record": 33,
+    "watchlists_count": 0,
+    "cash_source_of_record": 30365.77,
+    "portfolio_value_source_of_record": 101162.81,
+    "buying_power_source_of_record": 303778.81,
+    "account_status_source_of_record": "ACTIVE",
+    "live_open_orders_count": 1,
+    "live_same_session_after_hours_orders_submitted_today": 2,
+    "live_same_session_after_hours_fills_today": 1,
+    "live_watchlists_count": 0,
+    "live_cash": 30365.77,
+    "live_portfolio_value": 101180.22,
+    "live_buying_power": 303793.79,
+    "pfe_qty_before": 3,
+    "pfe_qty_after": 3,
+    "pfe_qty_available_after": 2,
+    "order_id": "c96904a2-deab-415b-9b27-a20660a043e4",
+    "order_status": "new"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-1351-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-1351-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-1351-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-17-1351-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/evidence-store/run-manifests/2026-06-17-1351-after-hours-autopilot.json"
+  ],
+  "review_bucket": "after_hours_validation",
+  "note": "PFE after-hours trim was submitted once and reconciled by the same client_order_id without retry or alternate client id. Immediate readback left the order open with status=new, so this cycle records lifecycle state instead of a fill.",
+  "client_order_ids_checked": [
+    "ah-20260617-1351-sell-pfe-01"
+  ],
+  "reconciliation_note": "Immediate get_order_by_client_id returned order_id c96904a2-deab-415b-9b27-a20660a043e4 with status=new and filled_qty=0. get_orders(status=open) contained the same order only, get_orders(status=all, after=2026-06-16T20:00:00-04:00) showed two same-session after-hours submitted orders total, and get_all_positions kept PFE qty=3 while qty_available moved to 2."
+}
