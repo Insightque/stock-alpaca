@@ -1,0 +1,38 @@
+{
+  "run_id": "2026-06-17-1131-after-hours-autopilot",
+  "created_at": "2026-06-17T02:35:09Z",
+  "session": "after_hours",
+  "paper": true,
+  "orders_submitted_this_run": 0,
+  "reconciliation": {
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_today": 0,
+    "positions_count": 33,
+    "watchlists_count": 0,
+    "cash_source_of_record": 30344.81,
+    "portfolio_value_source_of_record": 101048.47,
+    "buying_power_source_of_record": 303444.77,
+    "live_account_status": "ACTIVE",
+    "live_open_orders_count": 0,
+    "live_positions_count": 33,
+    "live_same_session_after_hours_orders_submitted_today": 0,
+    "live_same_session_after_hours_fills_today": 0,
+    "live_watchlists_count": 0,
+    "live_quote_parity": {
+      "QQQ": "2026-06-16T20:51:34.205089845Z",
+      "AVGO": "2026-06-16T20:00:00.008175627Z"
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-1131-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/evidence-store/sources/2026-06-17-1131-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-1131-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-1131-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/run-manifests/2026-06-17-1131-after-hours-autopilot.json"
+  ],
+  "review_bucket": "after_hours_validation",
+  "note": "No after-hours submit at 1131. Scheduler-owned 1131 core preflight remained the source-of-record for expected market_closed handling and submit-boundary account/positions/order/asset/quote/spread rows. Direct Alpaca continuity reconfirmed closed regular market, ACTIVE account, positions/open-orders/watchlists stability, same-session after-hours order/fill absence, and QQQ/AVGO quote parity without reopening the submit boundary.",
+  "client_order_ids_checked": [],
+  "reconciliation_note": "No client_order_id reconciliation was required because no submit path opened."
+}

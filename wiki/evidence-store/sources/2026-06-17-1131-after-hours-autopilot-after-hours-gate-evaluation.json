@@ -1,0 +1,150 @@
+{
+  "run_id": "2026-06-17-1131-after-hours-autopilot",
+  "created_at": "2026-06-17T02:35:09Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "artifact_tag": "after-hours",
+  "hard_gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "risk_policy": "PASS_empty_order_plan_warning_only",
+    "fresh_quote": "fail_scheduler_owned_submit_boundary_quotes_older_than_5_minutes",
+    "spread_within_after_hours_policy": "fail_no_candidate_met_fresh_and_spread_and_notional_together",
+    "whole_share_day_limit_extended_hours_order": "pass_no_orders_built",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit"
+  },
+  "separate_session_budget": {
+    "submitted_today": 0,
+    "max_new_orders_per_session": 2,
+    "remaining": 2
+  },
+  "review_backlog": {
+    "pending_1d_count": 0,
+    "pending_5d_count": 37,
+    "pending_20d_count": 1,
+    "blocked_add_symbols": [
+      "NOK"
+    ]
+  },
+  "candidate_evaluation": {
+    "buy_shortlist_from_research_preflight": [
+      "QQQ",
+      "IONQ",
+      "PFE",
+      "JPM",
+      "QBTS",
+      "SMH",
+      "MSFT",
+      "LLY"
+    ],
+    "sell_trim_candidates": [
+      "AVGO",
+      "SO",
+      "PFE",
+      "RGTI"
+    ],
+    "best_runtime_buy_candidates": [
+      {
+        "symbol": "QQQ",
+        "feed": "iex",
+        "age_minutes": 339.6,
+        "spread_pct": 0.0137,
+        "ask": 729.83,
+        "notional_cap_pass": false,
+        "reason": "freshest source-of-record quote but 1-share ask 729.83 USD exceeded the after-hours per-order cap about 505.24 USD and quote age still exceeded the 5-minute submit limit"
+      },
+      {
+        "symbol": "IONQ",
+        "feed": "iex",
+        "age_minutes": 360.18,
+        "spread_pct": 0.0884,
+        "ask": 56.56,
+        "notional_cap_pass": true,
+        "reason": "spread and size were acceptable, but the scheduler-owned quote age exceeded the 5-minute submit limit by a wide margin"
+      },
+      {
+        "symbol": "QBTS",
+        "feed": "iex",
+        "age_minutes": 369.0,
+        "spread_pct": 0.6202,
+        "ask": 24.26,
+        "notional_cap_pass": true,
+        "reason": "quote was stale and spread exceeded the after-hours cap"
+      },
+      {
+        "symbol": "JPM",
+        "feed": "iex",
+        "age_minutes": 387.35,
+        "spread_pct": 0.4664,
+        "ask": 330.99,
+        "notional_cap_pass": true,
+        "reason": "quote was stale and spread exceeded the after-hours cap"
+      },
+      {
+        "symbol": "PFE",
+        "feed": "iex",
+        "age_minutes": 390.17,
+        "spread_pct": 0.4603,
+        "ask": 26.13,
+        "notional_cap_pass": true,
+        "reason": "quote was stale and spread remained above the after-hours cap"
+      },
+      {
+        "symbol": "MSFT",
+        "feed": "iex",
+        "age_minutes": 339.37,
+        "spread_pct": 7.619,
+        "ask": 424.01,
+        "notional_cap_pass": true,
+        "reason": "freshest large-cap fallback still failed freshness and the after-hours spread remained far above cap"
+      }
+    ],
+    "sell_trim_candidates_runtime": [
+      {
+        "symbol": "AVGO",
+        "feed": "iex",
+        "age_minutes": 391.17,
+        "spread_pct": 10.3333,
+        "bid": 362.6,
+        "ask": 402.11,
+        "reason": "sell side was allowed, but the source-of-record quote was stale and spread far above the after-hours cap"
+      },
+      {
+        "symbol": "SO",
+        "feed": "iex",
+        "age_minutes": 391.17,
+        "spread_pct": 11.3368,
+        "bid": 88.7,
+        "ask": 99.36,
+        "reason": "sell side was allowed, but the source-of-record quote was stale and spread far above the after-hours cap"
+      },
+      {
+        "symbol": "PFE",
+        "feed": "iex",
+        "age_minutes": 390.17,
+        "spread_pct": 0.4603,
+        "bid": 26.01,
+        "ask": 26.13,
+        "reason": "sell side was allowed, but the source-of-record quote was stale and spread remained above the after-hours cap"
+      },
+      {
+        "symbol": "RGTI",
+        "feed": "iex",
+        "age_minutes": 391.15,
+        "spread_pct": 29.0971,
+        "bid": 17.65,
+        "ask": 23.66,
+        "reason": "sell side was allowed, but the source-of-record quote was stale and spread far above the after-hours cap"
+      }
+    ],
+    "decision": "no_submit_quote_or_spread_gate_failed",
+    "first_blocking_gate": "fresh_quote"
+  }
+}
