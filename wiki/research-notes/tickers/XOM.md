@@ -54,3 +54,10 @@ asset_type: stock
 `XOM` 1주 regular-session day limit buy가 `141.54 USD` limit으로 제출됐고, immediate Alpaca MCP reconciliation 기준 `client_order_id=hourly-20260618-0051-buy-xom`, `order_id=9e6b4b81-1307-41aa-b9ac-5c34f7d51793`는 현재 `status=new` open order다. 근거는 scheduler-owned `0051` stale cleanup/core/research preflight 기준 hard gate pass, live continuity 기준 regular market open과 open orders `0` 재확인, `SO` trim metric gap 및 `RGTI/PFE` same-day duplicate sell gate 이후에도 learning_trade_directive가 최소 1건 validation order를 요구한다는 점, 그리고 `XOM`이 preflight-covered energy diversifier existing holding으로 same-day duplicate/open-order conflict 부재, live quote `141.50/141.54` spread `0.0283%`, `2026-06-17` portfolio review의 `1D 중립 양호` 이력, current invested ratio `0.7101`을 모두 충족해 가장 executable한 floor-size fallback이었기 때문이다. 다음 cycle에서는 fill 여부와 open-order lifecycle을 우선 추적한다.
 
 출처: [[2026-06-18-0051-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-18-0051-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-18-0051-hourly-autopilot-post-trade.json`
+
+
+## 2026-06-18 01:19 KST hourly-autopilot reconciliation
+
+`2026-06-18 00:58 KST` cycle에서 제출한 `XOM` 1주 regular-session day limit buy(`client_order_id=hourly-20260618-0051-buy-xom`)는 다음 `0111` cycle Alpaca MCP reconciliation 기준 `2026-06-17T16:17:56.544666Z`에 `filled_avg_price=141.54 USD`로 체결 전환됐다. 이 fill은 `AAPL` submit 직전 live `get_orders(status=all, after=2026-06-16T20:00:00-04:00)` readback에서 확인됐고, post-fill `get_all_positions` 기준 `XOM qty=6 -> 7`, `avg_entry_price=147.394286 USD`, `current_price=141.445 USD`로 갱신됐다. 이후 same energy cluster 신규 buy는 더 이상 `XOM` open-order gate가 아니라 normal duplicate/fresh-order state로 추적한다.
+
+출처: [[2026-06-18-0111-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-18-0111-hourly-autopilot-post-trade.json`

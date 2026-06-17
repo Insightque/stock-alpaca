@@ -90,3 +90,10 @@ current Alpaca snapshot 기준 `AAPL`은 `6주`, 평균단가 `301.965 USD`, `20
 `2026-06-15 ET` regular-session add 1주는 `296.11 USD -> 299.26 USD`로 `+1.06%`였다. `QQQ -1.87%` 하락일 대비 상대강도는 양호했지만, 기존 averaging-down 표본들의 약한 이력을 뒤집을 정도는 아니다. 이번 closeout은 `중립 양호`로 기록하되 mega-cap quality라는 이유만으로 add cadence를 높이지는 않고, 다음 `5D` review(`2026-06-22 ET` close 이후)까지 회복 지속성을 본다.
 
 출처: [[2026-06-17-portfolio-review]], [[2026-06-17-0623-analyst-review-cycle-sources]]
+
+
+## 2026-06-18 01:19 KST hourly-autopilot
+
+`AAPL` 1주 regular-session day limit buy가 `298.43 USD` limit으로 제출됐고, immediate Alpaca MCP reconciliation 기준 `client_order_id=hourly-20260618-0111-buy-aapl`, `order_id=4c866a2d-25c2-4d1d-9304-f2b23a30f9d2`는 현재 `status=new` open order다. 근거는 scheduler-owned `0111` stale cleanup/core/research preflight 기준 hard gate pass, live continuity 기준 regular market open과 fresh `XOM` open order 1건을 재확인한 뒤 energy cluster add를 막는 open-order policy를 적용했다는 점, `SO/RGTI/PFE` sell-first 경로가 각각 metric gap과 same-day duplicate sell gate로 막혔다는 점, 그리고 `AAPL`이 preflight-covered mega-cap quality existing holding으로 scheduler quote `298.39/298.43` spread `0.0134%`, same-day duplicate/open-order conflict 부재, `2026-06-17` analyst review의 `1D 중립 양호` 이력을 유지해 다른 cluster floor-size fallback으로 가장 executable했다는 점이다. 다음 cycle에서는 fill 여부와 open-order lifecycle을 우선 추적한다.
+
+출처: [[2026-06-18-0111-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-18-0111-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-18-0111-hourly-autopilot-post-trade.json`

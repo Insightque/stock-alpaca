@@ -1,0 +1,241 @@
+{
+  "run_id": "2026-06-18-0111-hourly-autopilot",
+  "created_at": "2026-06-17T16:15:49Z",
+  "source": "hourly autopilot runtime gate evaluation before submit",
+  "paper": true,
+  "scheduler_owned_preflight_reused": true,
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-17T12:13:29.436265675-04:00",
+    "next_open": "2026-06-18T09:30:00-04:00",
+    "next_close": "2026-06-17T16:00:00-04:00",
+    "session": "regular"
+  },
+  "stale_order_cleanup": {
+    "status": "pass",
+    "source_ref": "wiki/evidence-store/sources/2026-06-18-0111-hourly-autopilot-stale-order-cleanup.json",
+    "remaining_open_orders": 1
+  },
+  "alpaca_core_gate": {
+    "status": "pass",
+    "source_ref": "wiki/evidence-store/sources/2026-06-18-0111-hourly-autopilot-alpaca-core-preflight.json",
+    "first_blocking_gate": "",
+    "live_continuity": {
+      "open_orders": 1,
+      "watchlists": 0,
+      "account_status": "ACTIVE",
+      "portfolio_value": 101338.93,
+      "cash": 29385.46,
+      "buying_power": 303094.71,
+      "fresh_open_order": "hourly-20260618-0051-buy-xom",
+      "xom_open_order_age_minutes": 14.95
+    }
+  },
+  "research_gate": {
+    "status": "pass_tiered",
+    "positive_confirmations": [
+      "sec-edgar",
+      "fred",
+      "yahoo-finance"
+    ],
+    "min_required_for_submit": 3,
+    "nonblocking_gaps": [
+      {
+        "server": "alpha-vantage",
+        "gap_category": "empty_response",
+        "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols."
+      },
+      {
+        "server": "firecrawl",
+        "gap_category": "unknown",
+        "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
+      }
+    ]
+  },
+  "review_backlog": {
+    "pending_1d_count": 0,
+    "pending_5d_count": 37,
+    "pending_20d_count": 1,
+    "blocked_add_symbols": [
+      "NOK"
+    ]
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "SO",
+      "held_qty": 5,
+      "current_weight_pct": 0.4596,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "SO는 repeated weak-review defensive sleeve trim 후보지만 decision-grade expected-excess/replacement margin 수치가 이번 cycle에도 비어 있다. scheduler quote 93.14/93.17 spread 0.0322%는 pass다.",
+      "skipped_gate": "sell_metric_gap",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "SO trim decision-grade expected-excess/replacement margin 공백이 남아 있다.",
+      "replacement_symbol": "AAPL",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0111-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-18-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-0111-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-0111-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/XOM.md",
+        "wiki/research-notes/tickers/AAPL.md",
+        "wiki/research-notes/tickers/GOOGL.md"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "held_qty": 27,
+      "current_weight_pct": 0.5616,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "RGTI는 speculative loss-control trim trigger와 음수 expected excess가 유지되고 scheduler quote 21.06/21.07 spread 0.0475%도 pass지만, 같은 미국 거래일 after-hours trim fill(client_order_id=ah-20260617-1331-sell-rgti-01)이 이미 있어 duplicate symbol/side discipline이 regular-session 추가 trim을 막는다.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.48,
+      "relative_to_spy_20d_pct": -1.48,
+      "metric_gap_reason": "",
+      "replacement_symbol": "AAPL",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0111-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-18-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-0111-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-0111-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/XOM.md",
+        "wiki/research-notes/tickers/AAPL.md",
+        "wiki/research-notes/tickers/GOOGL.md"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "held_qty": 2,
+      "current_weight_pct": 0.0518,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "PFE는 repeated weak-review trim rationale와 scheduler quote 26.25/26.26 spread 0.0381%가 유지되지만, 같은 미국 거래일 after-hours trim fill(client_order_id=ah-20260617-1351-sell-pfe-01)이 이미 있어 duplicate symbol/side lifecycle gate가 이번 cycle regular-session trim을 막는다.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.84,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "PFE trim은 latest weak-review absolute loss와 repeated underperformance narrative를 사용했고 exact SPY excess rollup은 current note set에 수치화돼 있지 않다.",
+      "replacement_symbol": "AAPL",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0111-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-18-0111-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-0111-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-0111-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/XOM.md",
+        "wiki/research-notes/tickers/AAPL.md",
+        "wiki/research-notes/tickers/GOOGL.md"
+      ]
+    }
+  ],
+  "candidate_evaluation": [
+    {
+      "symbol": "SO",
+      "decision": "blocked_sell_metric_gap",
+      "detail": "quote/spread는 pass지만 trim decision-grade expected-excess/replacement margin 공백이 남아 있다."
+    },
+    {
+      "symbol": "RGTI",
+      "decision": "blocked_same_day_duplicate_sell",
+      "detail": "speculative trim trigger와 spread는 pass지만 same US-date after-hours sell fill이 있어 duplicate sell gate 유지."
+    },
+    {
+      "symbol": "PFE",
+      "decision": "blocked_same_day_duplicate_sell",
+      "detail": "repeated weak-review trim rationale와 quote/spread는 pass지만 same US-date after-hours sell fill이 있어 regular-session 추가 sell 차단."
+    },
+    {
+      "symbol": "XOM",
+      "decision": "blocked_same_symbol_open_order",
+      "detail": "0051 cycle XOM buy 1주가 아직 status=new open order라 same symbol/side duplicate gate가 유지된다."
+    },
+    {
+      "symbol": "SLB",
+      "decision": "blocked_same_cluster_open_order",
+      "detail": "energy-services diversifier로는 유효하지만 fresh XOM energy_commodity open order 때문에 same cluster buy가 차단된다."
+    },
+    {
+      "symbol": "AMZN",
+      "decision": "blocked_same_day_duplicate_buy",
+      "detail": "0011 AMZN buy 1주가 same US-date에 이미 filled라 duplicate buy 재진입 불가."
+    },
+    {
+      "symbol": "MSFT",
+      "decision": "blocked_same_day_duplicate_buy",
+      "detail": "0031 MSFT buy 1주가 same US-date에 이미 filled라 regular-session 재매수 금지."
+    },
+    {
+      "symbol": "AAPL",
+      "decision": "selected_buy",
+      "detail": "different cluster existing holding, scheduler quote 298.39/298.43, spread 0.0134%, latest 1D review 중립 양호, same-day duplicate/open-order conflict 없음."
+    },
+    {
+      "symbol": "NVDA",
+      "decision": "blocked_same_theme_warning",
+      "detail": "ai_semiconductor warning band 때문에 floor-size slot 우선순위에서 밀린다."
+    },
+    {
+      "symbol": "SPY",
+      "decision": "blocked_validation_floor_cap",
+      "detail": "1주 ask 750.52 USD가 validation floor per-order cap 약 506.69 USD를 초과한다."
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "blocked_validation_floor_cap",
+      "detail": "1주 ask 733.27 USD가 validation floor per-order cap 약 506.69 USD를 초과한다."
+    },
+    {
+      "symbol": "MRK",
+      "decision": "blocked_missing_wiki_thesis",
+      "detail": "research preflight quote는 있으나 wiki thesis/trend/risk evidence 페이지가 없어 submit 근거가 부족하다."
+    },
+    {
+      "symbol": "NOK",
+      "decision": "blocked_validation_lifecycle_add_block",
+      "detail": "review-due add-block 유지."
+    }
+  ],
+  "selected_order_proposal": {
+    "symbol": "AAPL",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 298.43,
+    "quote_bid": 298.39,
+    "quote_ask": 298.43,
+    "spread_pct": 0.0134,
+    "reason": "fresh XOM open order로 energy cluster add가 막힌 상태에서 다른 cluster floor-size learning order로 가장 executable"
+  }
+}
