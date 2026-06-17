@@ -1,0 +1,41 @@
+{
+  "run_id": "2026-06-18-0831-after-hours-autopilot",
+  "created_at": "2026-06-17T23:33:43Z",
+  "session": "after_hours",
+  "source_of_record": "wiki/evidence-store/sources/2026-06-18-0831-after-hours-autopilot-alpaca-core-preflight.json",
+  "live_continuity": {
+    "clock": {
+      "regular_market_open": false,
+      "timestamp": "2026-06-17T19:32:37.734467787-04:00",
+      "next_open": "2026-06-18T09:30:00-04:00",
+      "next_close": "2026-06-18T16:00:00-04:00"
+    },
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 100836.98,
+      "cash": 28003.45,
+      "buying_power": 300267.85
+    },
+    "positions_count": 34,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_today": 0,
+    "watchlists_count": 0,
+    "session_boundary": "2026-06-17T20:00:00Z",
+    "quote_refresh_candidates": {
+      "freshest_symbol": "MS",
+      "freshest_quote_at": "2026-06-17T20:20:00.57860736Z",
+      "freshest_quote_age_minutes": 192.62,
+      "stale_quote_age_range_minutes": [
+        192.62,
+        212.62
+      ]
+    }
+  },
+  "notes": [
+    "Scheduler-owned 0831 preflight rows remained source-of-record for account, positions, open orders, account activities, asset, quote, and spread evidence.",
+    "Direct Alpaca MCP continuity in this run re-confirmed regular market closed, ACTIVE account parity, current positions parity, empty open orders, empty same-session fills, and empty watchlists.",
+    "Direct IEX quote continuity returned the same after-hours timestamps already present in the 0831 scheduler preflight, so the submit-boundary quote stack remained stale rather than recovered.",
+    "No submit attempt occurred because the freshest continuity quote, MS at 2026-06-17T20:20:00.57860736Z, was still well beyond after_hours_policy.max_quote_age_minutes_submit 5.0 and the sell-first stack also remained far outside the after-hours spread cap."
+  ]
+}
