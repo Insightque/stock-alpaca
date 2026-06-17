@@ -1,0 +1,356 @@
+{
+  "run_id": "2026-06-18-0331-hourly-autopilot",
+  "created_at": "2026-06-17T18:36:00Z",
+  "paper": true,
+  "scheduler_owned_preflight_reused": true,
+  "source": "scheduler-owned preflight + nested codex gate evaluation",
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-17T14:31:10.542046132-04:00",
+    "next_open": "2026-06-18T09:30:00-04:00",
+    "next_close": "2026-06-17T16:00:00-04:00",
+    "session": "regular"
+  },
+  "stale_order_cleanup": {
+    "status": "pass",
+    "remaining_open_orders": 0,
+    "source_ref": "wiki/evidence-store/sources/2026-06-18-0331-hourly-autopilot-stale-order-cleanup.json"
+  },
+  "alpaca_core_gate": {
+    "status": "pass",
+    "first_blocking_gate": "",
+    "source_ref": "wiki/evidence-store/sources/2026-06-18-0331-hourly-autopilot-alpaca-core-preflight.json",
+    "live_continuity": {
+      "open_orders": 1,
+      "watchlists": 0,
+      "account_status": "ACTIVE",
+      "portfolio_value": 101362.51,
+      "cash": 28324.87,
+      "buying_power": 301666.74,
+      "same_day_orders_seen": 15,
+      "latest_checked_client_order_id": "hourly-20260618-0331-buy-mrk"
+    }
+  },
+  "research_gate": {
+    "status": "pass_tiered",
+    "positive_confirmations": [
+      "sec-edgar",
+      "fred",
+      "yahoo-finance"
+    ],
+    "min_required_for_submit": 3,
+    "nonblocking_gaps": [
+      {
+        "server": "alpha-vantage",
+        "gap_category": "provider_error",
+        "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-17T17:31:33+00:00, retry after ~1s."
+      },
+      {
+        "server": "firecrawl",
+        "gap_category": "unknown",
+        "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value."
+      }
+    ]
+  },
+  "quotes": {
+    "AVGO": {
+      "bid": 395.77,
+      "ask": 396,
+      "spread_pct": 0.0581
+    },
+    "INTC": {
+      "bid": 122.15,
+      "ask": 122.18,
+      "spread_pct": 0.0246
+    },
+    "MRK": {
+      "bid": 115.16,
+      "ask": 115.21,
+      "spread_pct": 0.0434
+    },
+    "QQQ": {
+      "bid": 729.41,
+      "ask": 729.69,
+      "spread_pct": 0.0384
+    },
+    "RGTI": {
+      "bid": 20.97,
+      "ask": 20.98,
+      "spread_pct": 0.0477
+    },
+    "PFE": {
+      "bid": 26.05,
+      "ask": 26.06,
+      "spread_pct": 0.0384
+    },
+    "JNJ": {
+      "bid": 232.6,
+      "ask": 241.5,
+      "spread_pct": 3.7545
+    },
+    "JPM": {
+      "bid": 335.56,
+      "ask": 340,
+      "spread_pct": 1.3145
+    },
+    "PLTR": {
+      "bid": 133.35,
+      "ask": 134.11,
+      "spread_pct": 0.5683
+    },
+    "TSLA": {
+      "bid": 401.44,
+      "ask": 405,
+      "spread_pct": 0.8829
+    },
+    "V": {
+      "bid": 332.1,
+      "ask": 333.33,
+      "spread_pct": 0.3697
+    },
+    "SPY": {
+      "bid": 746.76,
+      "ask": 746.95,
+      "spread_pct": 0.0254
+    },
+    "SO": {
+      "bid": 92.91,
+      "ask": 97.78,
+      "spread_pct": 5.1078
+    }
+  },
+  "recommendation_shortlist": [
+    {
+      "symbol": "SO",
+      "decision": "blocked_same_day_buy_for_trim"
+    },
+    {
+      "symbol": "RGTI",
+      "decision": "blocked_same_day_duplicate_sell"
+    },
+    {
+      "symbol": "PFE",
+      "decision": "blocked_same_day_duplicate_sell"
+    },
+    {
+      "symbol": "AMZN",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "BAC",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "WMT",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "NKE",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "NEE",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "SO",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "COP",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "GOOGL",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "AAPL",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "XOM",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "MSFT",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "FCX",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "SLB",
+      "decision": "blocked_same_day_duplicate_buy"
+    },
+    {
+      "symbol": "SPY",
+      "decision": "blocked_validation_floor_cap"
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "blocked_validation_floor_cap"
+    },
+    {
+      "symbol": "INTC",
+      "decision": "blocked_ai_semiconductor_warning_band"
+    },
+    {
+      "symbol": "AVGO",
+      "decision": "blocked_ai_semiconductor_warning_band"
+    },
+    {
+      "symbol": "PLTR",
+      "decision": "blocked_low_source_confidence"
+    },
+    {
+      "symbol": "TSLA",
+      "decision": "blocked_low_source_confidence"
+    },
+    {
+      "symbol": "MRK",
+      "decision": "selected_buy"
+    },
+    {
+      "symbol": "V",
+      "decision": "blocked_missing_current_cycle_research_confirmation"
+    },
+    {
+      "symbol": "JNJ",
+      "decision": "blocked_live_spread_and_existing_cluster_inferior_rank"
+    },
+    {
+      "symbol": "JPM",
+      "decision": "blocked_live_spread_and_missing_current_cycle_research_confirmation"
+    }
+  ],
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "SO",
+      "held_qty": 6,
+      "current_weight_pct": 0.5517,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "SO는 0211 cycle same-day validation buy가 이미 체결되어 risk_trim_policy.active_trim_triggers.require_no_same_day_buy_for_trim에 계속 막힌다. repeated weak-review defensive sleeve trim narrative와 decision-grade expected-excess/replacement margin 공백도 남아 있다.",
+      "skipped_gate": "same_day_buy_for_trim",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "SO trim decision-grade expected-excess/replacement margin 공백이 남아 있고, 같은 미국 거래일 buy fill 뒤라 trim을 승격하지 않는다.",
+      "replacement_symbol": "MRK",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0331-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-18-0331-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-0331-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-0331-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+        "wiki/research-notes/tickers/SLB.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/PLTR.md",
+        "wiki/research-notes/tickers/JPM.md",
+        "wiki/research-notes/tickers/V.md"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "held_qty": 27,
+      "current_weight_pct": 0.5628,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "RGTI는 speculative loss-control trim trigger와 음수 expected excess가 유지되고 live quote 21.02/21.03 spread 0.0476%도 pass하지만, 같은 미국 거래일 after-hours trim fill(client_order_id=ah-20260617-1331-sell-rgti-01)이 이미 있어 duplicate symbol/side discipline이 regular-session 추가 trim을 막는다.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.48,
+      "relative_to_spy_20d_pct": -1.48,
+      "metric_gap_reason": "",
+      "replacement_symbol": "MRK",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0331-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-18-0331-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-0331-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-0331-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+        "wiki/research-notes/tickers/SLB.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/PLTR.md",
+        "wiki/research-notes/tickers/JPM.md",
+        "wiki/research-notes/tickers/V.md"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "held_qty": 2,
+      "current_weight_pct": 0.0514,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "PFE는 repeated weak-review trim rationale와 live quote 26.00/26.01 spread 0.0384%가 유지되지만, 같은 미국 거래일 after-hours trim fill(client_order_id=ah-20260617-1351-sell-pfe-01)이 이미 있어 duplicate symbol/side lifecycle gate가 이번 cycle regular-session trim을 막는다.",
+      "skipped_gate": "duplicate_symbol_side_same_day",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.84,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "PFE trim은 latest weak-review absolute loss와 repeated underperformance narrative를 사용했고 exact SPY excess rollup은 current note set에 수치화돼 있지 않다.",
+      "replacement_symbol": "MRK",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-0331-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-18-0331-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-0331-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-0331-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
+        "wiki/research-notes/tickers/SLB.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/research-notes/tickers/PLTR.md",
+        "wiki/research-notes/tickers/JPM.md",
+        "wiki/research-notes/tickers/V.md"
+      ]
+    }
+  ],
+  "review_backlog": {
+    "pending_1d_count": 0,
+    "pending_5d_count": 37,
+    "pending_20d_count": 1,
+    "blocked_add_symbols": [
+      "NOK"
+    ]
+  },
+  "validation_lifecycle": {
+    "recorded_due_index": "wiki/trade-ledger/reviews/review-due-index.json",
+    "blocked_add_symbols": [
+      "NOK"
+    ],
+    "due_review_blockers": []
+  },
+  "selected_symbol": "MRK",
+  "final_decision": "submitted_buy_open",
+  "submit_attempt": {
+    "client_order_id": "hourly-20260618-0331-buy-mrk",
+    "order_id": "1bea80db-11a3-4441-9589-24d4a36f5fc7",
+    "status": "new",
+    "filled_qty": 0,
+    "filled_avg_price": null
+  }
+}

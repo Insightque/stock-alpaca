@@ -1,0 +1,158 @@
+{
+  "run_id": "2026-06-18-0331-hourly-autopilot",
+  "created_at": "2026-06-17T18:40:30Z",
+  "paper": true,
+  "session": "regular",
+  "order_submission": {
+    "client_order_id": "hourly-20260618-0331-buy-mrk",
+    "order_id": "1bea80db-11a3-4441-9589-24d4a36f5fc7",
+    "symbol": "MRK",
+    "side": "buy",
+    "qty": 1,
+    "limit_price": 115.21,
+    "status": "new",
+    "submitted_at": "2026-06-17T18:39:58.94248991Z",
+    "filled_qty": 0,
+    "filled_avg_price": null
+  },
+  "open_orders": [
+    {
+      "client_order_id": "hourly-20260618-0331-buy-mrk",
+      "order_id": "1bea80db-11a3-4441-9589-24d4a36f5fc7",
+      "symbol": "MRK",
+      "side": "buy",
+      "qty": "1",
+      "limit_price": "115.21",
+      "status": "new"
+    }
+  ],
+  "same_day_fill_ledger": [
+    {
+      "symbol": "SLB",
+      "side": "buy",
+      "qty": "1",
+      "price": "51.32",
+      "transaction_time": "2026-06-17T17:39:03.38261Z"
+    },
+    {
+      "symbol": "SO",
+      "side": "buy",
+      "qty": "1",
+      "price": "93.24",
+      "transaction_time": "2026-06-17T17:19:02.097011Z"
+    },
+    {
+      "symbol": "COP",
+      "side": "buy",
+      "qty": "1",
+      "price": "110.83",
+      "transaction_time": "2026-06-17T16:59:32.674079Z"
+    },
+    {
+      "symbol": "GOOGL",
+      "side": "buy",
+      "qty": "1",
+      "price": "365.24",
+      "transaction_time": "2026-06-17T16:40:11.203622Z"
+    },
+    {
+      "symbol": "AAPL",
+      "side": "buy",
+      "qty": "1",
+      "price": "298.42",
+      "transaction_time": "2026-06-17T16:23:03.067507Z"
+    },
+    {
+      "symbol": "XOM",
+      "side": "buy",
+      "qty": "1",
+      "price": "141.54",
+      "transaction_time": "2026-06-17T16:17:56.544666Z"
+    },
+    {
+      "symbol": "MSFT",
+      "side": "buy",
+      "qty": "1",
+      "price": "385.4",
+      "transaction_time": "2026-06-17T15:37:49.346911Z"
+    },
+    {
+      "symbol": "AMZN",
+      "side": "buy",
+      "qty": "1",
+      "price": "240.44",
+      "transaction_time": "2026-06-17T15:23:00.57184Z"
+    },
+    {
+      "symbol": "NEE",
+      "side": "buy",
+      "qty": "1",
+      "price": "86.38",
+      "transaction_time": "2026-06-17T14:59:48.764184Z"
+    },
+    {
+      "symbol": "NKE",
+      "side": "buy",
+      "qty": "1",
+      "price": "45.3",
+      "transaction_time": "2026-06-17T14:47:16.442937Z"
+    },
+    {
+      "symbol": "FCX",
+      "side": "buy",
+      "qty": "1",
+      "price": "71.4",
+      "transaction_time": "2026-06-17T14:40:58.679036Z"
+    },
+    {
+      "symbol": "WMT",
+      "side": "buy",
+      "qty": "1",
+      "price": "119.83",
+      "transaction_time": "2026-06-17T14:07:50.521793Z"
+    },
+    {
+      "symbol": "BAC",
+      "side": "buy",
+      "qty": "1",
+      "price": "57.57",
+      "transaction_time": "2026-06-17T13:39:20.834459Z"
+    },
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "qty": "1",
+      "price": "26.03",
+      "transaction_time": "2026-06-17T05:11:09.778969Z"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": "1",
+      "price": "20.96",
+      "transaction_time": "2026-06-17T04:39:27.027152Z"
+    }
+  ],
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "cash": 28324.87,
+    "portfolio_value": 101362.51,
+    "buying_power": 301666.74,
+    "positions_count": 33,
+    "open_orders_count": 1,
+    "watchlists_count": 0
+  },
+  "positions_reconciliation": {
+    "mrk_position_present": false,
+    "mrk_position_lookup": {
+      "outcome": "cancelled",
+      "gap_category": "cancelled",
+      "gap_reason": "registered get_open_position(MRK) returned cancelled immediately after submit; open-order state and all-positions readback indicate no filled MRK position yet"
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-0331-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-0331-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-06-18-0331-hourly-autopilot.json"
+  ]
+}
