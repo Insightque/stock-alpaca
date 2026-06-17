@@ -1,5 +1,18 @@
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-18-0131-hourly-autopilot]]
+- Open/new: 없음. `hourly-20260618-0131-buy-googl` 1주 buy는 immediate reconciliation 기준 이미 `filled`다.
+- Filled: same US-date fill ledger에는 신규 `GOOGL` buy 1주 `365.24 USD`, `AAPL` buy 1주 `298.42 USD`, `XOM` buy 1주 `141.54 USD`, `MSFT` buy 1주 `385.40 USD`, `AMZN` buy 1주 `240.44 USD`, `NEE` buy 1주 `86.38 USD`, `NKE` buy 1주 `45.30 USD`, `FCX` buy 1주 `71.40 USD`, `WMT` buy 1주 `119.83 USD`, `BAC` buy 1주 `57.57 USD`, prior after-hours `PFE` sell 1주 `26.03 USD`, `RGTI` sell 1주 `20.96 USD`가 남아 있었다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: direct `get_all_positions` 기준 positions `33`건이었다.
+- Recent reconciliation scope: scheduler-owned `0131` core/research preflight를 source-of-record로 사용했고, live Alpaca MCP `get_clock/get_orders(status=open)/get_orders(status=all, after=2026-06-16T20:00:00-04:00)/get_order_by_client_id/get_all_positions/get_account_info`로 submit-boundary와 post-trade state를 재확인했다. live readback 기준 account `ACTIVE`, cash `28,580.26 USD`, portfolio value `101,359.05 USD`, buying power `302,371.39 USD`, open orders `0`, `GOOGL qty=5`, `avg_entry_price=376.204`, `current_price=365.05`, `AAPL qty=7`, `XOM qty=7`였다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-18-0131-hourly-autopilot-post-trade.json`
+
+_Last updated: 2026-06-18 01:40 KST_
+
+## 최신 hourly-autopilot reconciliation
+
 - Run: [[2026-06-18-0111-hourly-autopilot]]
 - Open/new: `hourly-20260618-0111-buy-aapl` 1주 buy가 immediate reconciliation 기준 `status=new` open order로 남아 있다.
 - Filled: 같은 readback window에서 earlier `XOM` buy 1주 `141.54 USD`가 뒤늦게 filled 전환됐고, same US-date fill ledger에는 `MSFT` buy 1주 `385.40 USD`, `AMZN` buy 1주 `240.44 USD`, `NEE` buy 1주 `86.38 USD`, `NKE` buy 1주 `45.30 USD`, `FCX` buy 1주 `71.40 USD`, `WMT` buy 1주 `119.83 USD`, `BAC` buy 1주 `57.57 USD`, prior after-hours `PFE` sell 1주 `26.03 USD`, `RGTI` sell 1주 `20.96 USD`가 남아 있었다.

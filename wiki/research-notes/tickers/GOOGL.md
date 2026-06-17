@@ -38,3 +38,9 @@ asset_type: stock
 2026-06-16 03:58 KST hourly autopilot에서 `GOOGL` 1주 regular-session day limit add를 `371.26 USD` limit으로 제출했고, same `client_order_id=hourly-20260616-0351-buy-googl` reconciliation 기준 `2026-06-15T18:58:47.524255326Z`에 `371.22 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0351` stale cleanup/core/research preflight 기준 hard gate pass, same-day duplicate/open-order conflict 부재, preflight quote `371.21/371.26` spread `0.0135%`, SEC/FRED/Yahoo 3-provider positive confirmation, 그리고 `AAPL/AMZN` weak-review history와 `SPY/QQQ` per-order cap 초과 이후 남은 가장 보수적인 executable mega-cap quality floor-size add였다는 점이다. immediate reconciliation 기준 보유 수량은 `3주 -> 4주`, `avg_entry_price=378.945`로 갱신됐다.
 
 출처: [[2026-06-16-0351-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-16-0351-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-16-0351-hourly-autopilot-post-trade.json`
+
+## 2026-06-18 01:40 KST hourly-autopilot
+
+`GOOGL` 1주 regular-session day limit buy가 `365.88 USD` limit으로 제출됐고, same `client_order_id=hourly-20260618-0131-buy-googl` reconciliation 기준 `2026-06-17T16:40:11.20362247Z`에 `365.24 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0131` stale cleanup/core/research preflight 기준 hard gate pass, live continuity 기준 `AAPL` fill 이후 open orders `0` 재확인, `SO/RGTI/PFE` sell-first 경로가 각각 metric gap과 same-day duplicate sell gate로 막혔다는 점, 그리고 `GOOGL`이 same-day duplicate/open-order conflict가 없는 existing mega-cap quality holding으로 live quote `365.30/365.88` spread `0.1585%`, high source confidence, `2026-06-16` add evidence를 유지해 different-cluster fallback으로 가장 executable했다는 점이다. immediate reconciliation 기준 보유 수량은 `4주 -> 5주`, `avg_entry_price=376.204`로 갱신됐다.
+
+출처: [[2026-06-18-0131-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-18-0131-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-18-0131-hourly-autopilot-post-trade.json`
