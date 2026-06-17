@@ -24,6 +24,12 @@ asset_type: stock
 
 출처: [[2026-06-16-0331-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-16-0331-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-16-0331-hourly-autopilot-post-trade.json`, `wiki/evidence-store/sources/2026-06-16-0331-hourly-autopilot-research-mcp-preflight.json`, `wiki/evidence-store/sources/2026-06-16-0331-hourly-autopilot-alpaca-core-preflight.json`
 
+## 2026-06-18 00:37 KST hourly autopilot
+
+2026-06-18 00:37 KST hourly autopilot에서 `MSFT` 1주 regular-session day limit add를 `385.42 USD` limit으로 제출했고, same client id reconciliation 기준 `2026-06-17T15:37:49.346911019Z`에 `385.40 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0031` stale cleanup/core/research preflight 기준 hard gate pass, 직전 `0011` `AMZN` buy fill 반영 후 open orders `0`, direct quote `384.65/385.42` spread `0.2000%`, same-day duplicate/open-order conflict 부재, 그리고 same US-date duplicate buy로 막힌 `AMZN/NEE/NKE/FCX/WMT/BAC` 및 per-order cap을 넘는 `SPY/QQQ`를 제외하면 남는 가장 보수적인 executable mega-cap quality floor-size add였다는 점이다. immediate reconciliation 기준 보유 수량은 `4주 -> 5주`, `avg_entry_price=401.028`로 갱신됐다.
+
+출처: [[2026-06-18-0031-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-18-0031-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-18-0031-hourly-autopilot-post-trade.json`, `wiki/evidence-store/sources/2026-06-18-0031-hourly-autopilot-research-mcp-preflight.json`, `wiki/evidence-store/sources/2026-06-18-0031-hourly-autopilot-alpaca-core-preflight.json`
+
 ### 2026-06-16 analyst review cycle
 
 `2026-06-14 ET` after-hours add 1주는 `395.87 USD` 체결 대비 `2026-06-15 ET` close `400.05 USD`로 `+1.06%`였다. 절대성과는 양호했지만 `SPY +1.76%`, `QQQ +3.12%` 대비로는 열위라 판단은 `중립 양호`에 머문다. current snapshot 기준 `MSFT`는 `4주`, 평균단가 `404.935 USD`이며, `2026-06-15 ET` regular-session add `398.71 USD`는 새 `1D` 대기 표본으로만 등록한다.
