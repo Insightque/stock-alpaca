@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-06-17-1311-after-hours-autopilot]]
+- Open/new: 없음. scheduler-owned `1311` preflight `get_orders(status=open)` source-of-record 기준 open orders `0`건이었고, live `get_orders(status=open)` 기준도 `0`건이었다.
+- Filled: 이번 cycle 신규 after-hours fill 없음. live `get_orders(status=all, after=2026-06-16T20:00:00-04:00)` 기준 same-session after-hours orders `0`건이었고 submit path에도 진입하지 않아 same-session fills는 `0`으로 유지됐다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler core preflight `get_all_positions` 기준 positions `33`건이었다.
+- Recent reconciliation scope: scheduler-owned `1311` core/research preflight를 source-of-record로 사용했고, 사용자가 같은 preflight의 passing account/positions/orders/asset/quote/spread rows를 submit-boundary evidence로 유지하라고 요구했으므로 live Alpaca continuity는 `get_orders(status=open)/get_orders(status=all, after=2026-06-16T20:00:00-04:00)/get_watchlists/get_stock_latest_quote(feed=iex, symbols=QQQ,IONQ,AVGO)/get_stock_snapshot(feed=overnight, symbols=QQQ,IONQ,AVGO)` 확인으로만 제한했다. separate after-hours session submitted count는 `0/2`로 열려 있었지만 `QQQ` freshest shortlist quote도 age 약 `439.93분`, `IONQ`는 `460.51분`, `QBTS/JPM/PFE`는 `469.33-490.50분`, `AVGO/SO/RGTI` sell-trim 후보는 `491분대` stale quote와 wide spread로 submit path에 진입하지 못했다. `get_account_info` source-of-record 기준 cash는 `30,344.81 USD`, portfolio value는 `101,144.59 USD`, buying power는 `303,680.13 USD`였다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-17-1311-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-06-17 13:15 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-06-17-1251-after-hours-autopilot]]
 - Open/new: 없음. scheduler-owned `1251` preflight `get_orders(status=open)` source-of-record 기준 open orders `0`건이었고, live `get_orders(status=open)` 기준도 `0`건이었다.
 - Filled: 이번 cycle 신규 after-hours fill 없음. live `get_orders(status=all, after=2026-06-16T20:00:00-04:00)`와 `get_account_activities(activity_types=[FILL], after=2026-06-16T20:00:00-04:00)` 기준 same-session after-hours orders/fills 모두 `0`건이었다.
