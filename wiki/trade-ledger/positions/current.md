@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-06-17-1051-after-hours-autopilot]]
+- Open/new: 없음. scheduler-owned `1051` preflight `get_orders(status=open)` source-of-record 기준 open orders `0`건이었고, live `get_orders(status=open)` 기준도 `0`건이었다.
+- Filled: 이번 cycle 신규 after-hours fill 없음. live `get_orders(status=all, after=2026-06-16T20:00:00-04:00)` 기준 same-session after-hours orders `0`건이었고, scheduler-owned `1051` preflight `get_account_activities(activity_types=[FILL])`에서는 `20:00 ET` 이후 after-hours fill이 `0`건이었다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: scheduler core preflight `get_all_positions` 기준 positions `33`건이었고, live `get_all_positions` 기준 count도 `33`건으로 유지됐다.
+- Recent reconciliation scope: scheduler-owned `1051` core/research preflight를 source-of-record로 사용했고, 사용자가 같은 preflight의 passing account/positions/orders/asset/quote/spread rows를 submit-boundary evidence로 유지하라고 요구했으므로 live Alpaca continuity는 `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-16T20:00:00-04:00)/get_watchlists`로만 제한했다. separate after-hours session submitted count는 `0/2`로 열려 있었지만 `QQQ` freshest shortlist quote도 age 약 `299.55분`, `IONQ`는 `320.13분`, `QBTS/JPM/PFE`는 `328.95-350.12분`, `AVGO/SO/RGTI` sell-trim 후보는 `351분대` stale quote와 wide spread로 submit path에 진입하지 못했다. `get_account_info` source-of-record 기준 cash는 `30,344.81 USD`, portfolio value는 `100,983.53 USD`, buying power는 `303,319.20 USD`였고 live continuity 기준 portfolio value `100,986.65 USD`, buying power `303,327.96 USD`, watchlists `0`건도 재확인했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-17-1051-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-06-17 10:54 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-06-17-1031-after-hours-autopilot]]
 - Open/new: 없음. scheduler-owned `1031` preflight `get_orders(status=open)` source-of-record 기준 open orders `0`건이었다.
 - Filled: 이번 cycle 신규 after-hours fill 없음. scheduler-owned `1031` preflight `get_account_activities(activity_types=[FILL])` 기준 cutoff `2026-06-16T20:00:00-04:00` 이후 same-session after-hours fill `0`건이었고, live `get_account_activities` continuity 기준도 `0`건이었다.
