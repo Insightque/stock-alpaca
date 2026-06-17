@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-06-17-1411-after-hours-autopilot]]
+- Open/new: 없음. direct `get_orders(status=open)` 기준 open orders `0`건이었다.
+- Filled: same `client_order_id=ah-20260617-1351-sell-pfe-01` reconciliation 기준 `PFE` after-hours trim 1주가 `filled_avg_price=26.03 USD`, `filled_at=2026-06-17T05:11:09.778969Z`로 체결된 것이 확인됐다. earlier same-session `RGTI` trim 1주 fill과 합쳐 `get_orders(status=all, after=2026-06-16T20:00:00-04:00)` 및 `get_account_activities(activity_types=[FILL], after=2026-06-16T20:00:00-04:00)` 기준 same-session after-hours submitted orders/fills는 모두 `2`건이다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: live `get_all_positions` 기준 positions `33`건이었다.
+- Recent reconciliation scope: scheduler-owned `1411` core/research preflight를 우선 읽었지만 core preflight에는 expected `market_closed`만 남아 있어, direct Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_orders(status=all, after=2026-06-16T20:00:00-04:00)/get_order_by_client_id/get_account_activities(activity_types=[FILL])/get_watchlists` continuity로 missing required rows를 보강했다. direct reconciliation 기준 regular market closed, account `ACTIVE`, open orders `0`, watchlists `0`, `PFE qty=2`, `qty_available=2`, `RGTI qty=27`를 재확인했고 separate after-hours session submitted count는 `2/2`로 닫혔다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-06-17-1411-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-06-17 14:14 KST_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-06-17-1351-after-hours-autopilot]]
 - Open/new: `PFE` after-hours trim 1주가 `client_order_id=ah-20260617-1351-sell-pfe-01`, `order_id=c96904a2-deab-415b-9b27-a20660a043e4`로 제출됐고 immediate same-id reconciliation 기준 `status=new`, `filled_qty=0` open order다.
 - Filled: 이번 cycle 신규 fill 없음. same-session after-hours fills는 earlier `RGTI` trim 1건만 유지된다.
