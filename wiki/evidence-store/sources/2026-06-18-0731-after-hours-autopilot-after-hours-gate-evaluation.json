@@ -1,0 +1,279 @@
+{
+  "run_id": "2026-06-18-0731-after-hours-autopilot",
+  "created_at": "2026-06-17T22:31:27Z",
+  "workflow": "harness/workflows/after-hours-autopilot.md",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "shortlist_symbols": [
+    "QQQ",
+    "MS",
+    "NVDA",
+    "SPY",
+    "TSLA",
+    "GOOGL",
+    "WMT",
+    "JPM"
+  ],
+  "runtime_alpaca_mcp": {
+    "used_scheduler_preflight": true,
+    "direct_runtime_calls_made": true,
+    "source_of_record": "wiki/evidence-store/sources/2026-06-18-0731-after-hours-autopilot-alpaca-core-preflight.json",
+    "cross_checks": {
+      "scheduler_preflight.hard_gate_summary": {
+        "status": "failed",
+        "first_blocking_gate": "market_closed"
+      },
+      "direct.get_clock": {
+        "is_open": false,
+        "timestamp": "2026-06-17T18:32:57.983633905-04:00",
+        "next_open": "2026-06-18T09:30:00-04:00",
+        "next_close": "2026-06-18T16:00:00-04:00"
+      },
+      "direct.get_orders(status=open)": {
+        "count": 0
+      },
+      "direct.get_orders(status=all, after=2026-06-17T20:00:00Z)": {
+        "count": 1,
+        "after_hours_client_order_ids": [],
+        "non_after_hours_client_order_ids": [
+          "hourly-20260618-0451-buy-sbux"
+        ]
+      },
+      "direct.get_account_info": {
+        "status": "ACTIVE",
+        "portfolio_value": 100686.82,
+        "cash": 28003.45,
+        "buying_power": 299892.65
+      },
+      "direct.get_all_positions": {
+        "count": 34,
+        "confirmed_symbols": {
+          "PFE": {
+            "qty": 2.0,
+            "qty_available": 2.0,
+            "current_price": 25.92
+          },
+          "RGTI": {
+            "qty": 27.0,
+            "qty_available": 27.0,
+            "current_price": 20.69
+          },
+          "AVGO": {
+            "qty": 1.0,
+            "qty_available": 1.0,
+            "current_price": 397.889
+          },
+          "QQQ": {
+            "qty": 3.0,
+            "qty_available": 3.0,
+            "current_price": 728.08
+          },
+          "MSFT": {
+            "qty": 5.0,
+            "qty_available": 5.0,
+            "current_price": 381.85
+          }
+        }
+      },
+      "direct.get_watchlists": {
+        "count": 0
+      },
+      "scheduler_preflight.get_stock_latest_quote(feed=iex)": {
+        "freshest_symbol": "MS",
+        "freshest_quote_at": "2026-06-17T20:20:00.57860736Z",
+        "freshest_quote_age_minutes": 132.96
+      }
+    },
+    "note": "The 0731 scheduler-owned core preflight remained the source-of-record for the expected market_closed blocker and the passing account, positions, open-order, asset, and quote rows. Direct Alpaca continuity refreshed only the after-hours-required checks for regular-market-closed confirmation, same-session budget, open-order parity, and current account-position continuity."
+  },
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "review_backlog_throttle": {
+    "pending_1d_count": 17,
+    "pending_5d_count": 23,
+    "pending_20d_count": 15,
+    "status": "monitor_only_quote_gate_blocked"
+  },
+  "risk_inputs": {
+    "policy_turnover_ratio": 0.0,
+    "weekly_turnover_ratio": 0.0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 17,
+    "review_backlog_pending_5d_count": 23,
+    "review_backlog_pending_20d_count": 15,
+    "cash_deployment_blocker": "quote_or_spread_gate_failed"
+  },
+  "gate_results": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass",
+      "detail": "ALPACA_PAPER_TRADE=true confirmed for this scheduled after-hours workflow."
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed",
+      "detail": "Direct Alpaca clock at 2026-06-17T18:32:57.983633905-04:00 showed regular market closed; this is required and nonblocking for after-hours submit mode."
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass",
+      "detail": "session=after_hours and after_hours_policy remained active."
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_scheduler_preflight_plus_live_continuity",
+      "detail": "Scheduler-owned 0731 core preflight preserved the expected market_closed blocker plus passing account, positions, open-order, asset, quote, and spread rows. Direct continuity confirmed no missing after-hours-required account, position, order, or watchlist state."
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass",
+      "detail": "after-hours artifact tag, review bucket, order id prefix, allowed_sides, and extended-hours order contract remained intact."
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "pass_zero_of_two_submitted",
+      "detail": "Current post-close after-hours session shows 0 submitted after-hours orders since 2026-06-17 16:00 ET. The separate session budget stayed open at 0/2 and regular-session validation orders were not counted."
+    },
+    {
+      "gate": "universe_strict",
+      "status": "pass",
+      "detail": "Broad metadata universe of 62 symbols plus required SPY/QQQ benchmarks and the 0731 research shortlist remained covered."
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "pass",
+      "detail": "sec-edgar, fred, and yahoo-finance passed from the scheduler-owned research preflight; alpha-vantage stayed empty_response and firecrawl failed on credits, but core plus minimum research confirmations still passed under policy."
+    },
+    {
+      "gate": "risk_policy",
+      "status": "pass_empty_order_plan_warning_only",
+      "detail": "Risk validator is expected to pass on a no-submit after-hours plan with an orders-is-empty warning because no candidate survived fresh quote and spread gates."
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "fail_scheduler_owned_submit_boundary_quotes_stale_132.96_to_152.97_minutes",
+      "detail": "Freshest scheduler-owned IEX quote among evaluated symbols was MS at 2026-06-17T20:20:00.57860736Z, already about 132.96 minutes stale versus the 5 minute after-hours cap. Every evaluated symbol exceeded the freshness cap."
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "fail_no_candidate_met_fresh_and_spread_and_notional_together",
+      "detail": "QQQ alone stayed inside the 0.25% spread cap but still failed freshness and the after-hours per-order notional cap. MS, NVDA, SPY, TSLA, GOOGL, WMT, JPM, PFE, RGTI, and AVGO all remained too wide and/or stale for execution."
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "pass_no_orders_built",
+      "detail": "No order was built because no symbol cleared after-hours quote freshness and spread hard gates."
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "pass_no_submit",
+      "detail": "No place_stock_order call occurred in the 0731 cycle, so no client-order reconciliation path was required."
+    }
+  ],
+  "candidate_evaluations": [
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "thesis_role": "repeated weak-review trim precedent",
+      "quote": {
+        "bid": 24.7,
+        "ask": 27.38,
+        "quote_at": "2026-06-17T20:00:01.859383696Z",
+        "quote_age_minutes": 152.94,
+        "spread_pct": 10.8502
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "PFE retained its repeated weak-review trim rationale, but the source-of-record quote was stale and the after-hours spread remained far above policy."
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "thesis_role": "residual speculative sleeve trim",
+      "quote": {
+        "bid": 17.57,
+        "ask": 23.11,
+        "quote_at": "2026-06-17T20:00:01.328243618Z",
+        "quote_age_minutes": 152.94,
+        "spread_pct": 31.531
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "RGTI remained an eligible speculative sleeve trim candidate by policy, but the scheduler-owned quote was stale and far too wide for execution."
+    },
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "thesis_role": "post-earnings staged de-risking trim",
+      "quote": {
+        "bid": 377.01,
+        "ask": 416.43,
+        "quote_at": "2026-06-17T20:00:00.68708646Z",
+        "quote_age_minutes": 152.95,
+        "spread_pct": 10.456
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "AVGO stayed in the sell-first stack because after-hours sell/trim is allowed, but the source-of-record quote was stale and too wide for an executable floor-size trim or exit."
+    },
+    {
+      "symbol": "QQQ",
+      "side": "buy",
+      "thesis_role": "benchmark fallback",
+      "quote": {
+        "bid": 722.87,
+        "ask": 723,
+        "quote_at": "2026-06-17T20:00:04.242732726Z",
+        "quote_age_minutes": 152.9,
+        "spread_pct": 0.018
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "after_hours_notional_cap"
+      ],
+      "detail": "QQQ remained the cleanest benchmark fallback, but the scheduler-owned submit-boundary quote was stale beyond the 5 minute cap and one share ask 723.00 USD exceeded the after-hours per-order notional cap about 503.43 USD."
+    },
+    {
+      "symbol": "MS",
+      "side": "buy",
+      "thesis_role": "financials diversifier fallback",
+      "quote": {
+        "bid": 220,
+        "ask": 231.46,
+        "quote_at": "2026-06-17T20:20:00.57860736Z",
+        "quote_age_minutes": 132.96,
+        "spread_pct": 5.2091
+      },
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "MS remained the freshest scheduler research-shortlist candidate, but both the quote freshness and spread gate still failed."
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-0731-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-0731-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-0731-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-18-0731-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md"
+  ]
+}
