@@ -1,3 +1,16 @@
+## 최신 hourly-autopilot reconciliation
+
+- Run: [[2026-06-17-2231-hourly-autopilot]]
+- Open/new: `BAC` buy 1주 `57.57 USD` day limit, `client_order_id=hourly-20260617-2231-buy-bac`, `order_id=bf01712f-be9d-4b0e-a7fb-0ec8b36e6eee`, immediate reconciliation 기준 `status=new`, `filled_qty=0`.
+- Filled: 이번 cycle 신규 fill 없음. same US-date fill ledger에는 prior `RGTI` sell 1주 `20.96 USD`, `PFE` sell 1주 `26.03 USD`만 남아 있었다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: direct `get_all_positions` 기준 positions `33`건이었다.
+- Recent reconciliation scope: scheduler-owned `2231` core/research preflight를 source-of-record로 사용했고, live Alpaca MCP `get_clock/get_orders(status=open, symbols=BAC)/get_orders(status=all, symbols=BAC, after=2026-06-17T00:00:00-04:00)/get_stock_latest_quote(symbols=BAC)/get_order_by_client_id/get_account_activities(activity_types=[FILL], after=2026-06-17T00:00:00-04:00)/get_all_positions/get_account_info`로 submit-boundary와 post-trade state를 재확인했다. live readback 기준 account `ACTIVE`, cash `30,391.78 USD`, portfolio value `101,316.75 USD`, buying power `304,425.48 USD`, open orders `1`, watchlists continuity blocker 없음, `BAC qty=7`, `avg_entry_price=53.738571`, `current_price=57.59`였다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-17-2231-hourly-autopilot-post-trade.json`
+
+_Last updated: 2026-06-17 22:39 KST_
+
 ## 최신 after-hours-autopilot reconciliation
 
 - Run: [[2026-06-17-2151-after-hours-autopilot]]
