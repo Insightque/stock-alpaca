@@ -1,0 +1,53 @@
+{
+  "run_id": "2026-06-17-1511-after-hours-autopilot",
+  "created_at": "2026-06-17T06:12:37Z",
+  "session": "after_hours",
+  "paper": true,
+  "orders_submitted_this_run": 0,
+  "reconciliation": {
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 2,
+    "same_session_after_hours_fills_today": 2,
+    "positions_count_live": 33,
+    "watchlists_count": 0,
+    "cash_live": 30391.8,
+    "portfolio_value_live": 101282.97,
+    "buying_power_live": 304135.24,
+    "account_status_live": "ACTIVE",
+    "regular_market_is_open": false,
+    "market_clock_timestamp": "2026-06-17T02:12:37.116724605-04:00",
+    "reconciled_client_order_ids": [
+      {
+        "client_order_id": "ah-20260617-1331-sell-rgti-01",
+        "symbol": "RGTI",
+        "status": "filled",
+        "filled_avg_price": 20.96
+      },
+      {
+        "client_order_id": "ah-20260617-1351-sell-pfe-01",
+        "symbol": "PFE",
+        "status": "filled",
+        "filled_avg_price": 26.03
+      }
+    ],
+    "position_changes_confirmed": {
+      "RGTI_qty": 27,
+      "PFE_qty": 2,
+      "PFE_qty_available": 2
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-1511-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/evidence-store/sources/2026-06-17-1511-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-1511-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-1511-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/run-manifests/2026-06-17-1511-after-hours-autopilot.json"
+  ],
+  "review_bucket": "after_hours_validation",
+  "note": "The 1511 scheduler-owned Alpaca core preflight kept the expected regular-session market_closed blocker while preserving passing account, positions, orders, activity, and quote rows, so live Alpaca MCP continuity was used only to confirm the same-session fill ledger and current account/position state. Budget remained closed at 2/2, so no new submit path opened.",
+  "client_order_ids_checked": [
+    "ah-20260617-1331-sell-rgti-01",
+    "ah-20260617-1351-sell-pfe-01"
+  ],
+  "reconciliation_note": "No new order was submitted. Reconciliation focused on exact client_order_id continuity and current account/position state after the already-filled same-session trims."
+}
