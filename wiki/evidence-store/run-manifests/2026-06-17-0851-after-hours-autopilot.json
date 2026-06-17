@@ -1,0 +1,263 @@
+{
+  "run_id": "2026-06-17-0851-after-hours-autopilot",
+  "created_at": "2026-06-16T23:51:27Z",
+  "data_cutoff_time": "2026-06-16T23:51:27Z",
+  "market_clock_checked_at": "2026-06-16T19:51:09.235426172-04:00",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "policy_id": "recommendation-policy-v1.11",
+  "policy_version": "v1.11",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "git_commit": "a6180309ac28fc233ca335dfd8cafebcebd2b44a",
+  "prompt_file_sha": "sha256:c96f8c3f9a562d2b4ed5a21e10054cc96081afa418f7d9c266a9690d23098af2",
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "risk_policy_version": "medium-risk-v1.2",
+  "schema_version": "1.3",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-17-0851-after-hours-autopilot.json",
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-06-17-0851-after-hours-autopilot-post-trade.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md"
+  ],
+  "data_manifest": {
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-research-mcp-preflight.json",
+    "after_hours_gate_evaluation": "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "runtime_cross_checks": [
+      "scheduler_owned_alpaca_core_preflight.get_clock",
+      "scheduler_owned_alpaca_core_preflight.get_account_info",
+      "scheduler_owned_alpaca_core_preflight.get_all_positions",
+      "scheduler_owned_alpaca_core_preflight.get_orders(status=open)",
+      "scheduler_owned_alpaca_core_preflight.get_account_activities(activity_types=FILL)",
+      "scheduler_owned_alpaca_core_preflight.get_watchlists",
+      "scheduler_owned_alpaca_core_preflight.get_asset",
+      "scheduler_owned_alpaca_core_preflight.get_stock_latest_quote(feed=iex)",
+      "scheduler_owned_alpaca_core_preflight.get_stock_snapshot(feed=iex)",
+      "live_continuity_mcp.get_clock",
+      "live_continuity_mcp.get_account_info",
+      "live_continuity_mcp.get_all_positions",
+      "live_continuity_mcp.get_orders(status=open)",
+      "live_continuity_mcp.get_orders(status=all, after=2026-06-16T20:00:00-04:00)",
+      "live_continuity_mcp.get_account_activities(activity_types=[FILL], after=2026-06-16T20:00:00-04:00)",
+      "live_continuity_mcp.get_watchlists"
+    ]
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_quote_spread_screen_then_scheduler_research_preflight_shortlist_with_scheduler_submit_boundary_evidence",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "IONQ",
+      "PFE",
+      "JPM",
+      "QBTS",
+      "SMH",
+      "MSFT",
+      "LLY"
+    ],
+    "final_candidates": [
+      "QQQ",
+      "IONQ",
+      "PFE",
+      "JPM",
+      "QBTS",
+      "SMH",
+      "MSFT",
+      "LLY"
+    ],
+    "passed": true,
+    "gap_reason": "",
+    "status": "pass",
+    "source": "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-alpaca-core-preflight.json",
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-research-mcp-preflight.json",
+      "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-runtime-alpaca-spot-check.json"
+    ]
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "all_research_must_be_attempted": true,
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_submit": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T23:51:27Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ],
+      "gap_reason": "Scheduler-owned Alpaca core preflight recorded the regular-session market_closed state, which remained expected and nonblocking for after-hours. The same preflight rows remained the submit-boundary evidence while live continuity only reconfirmed no state mutation.",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T23:51:27+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-16T23:51:27+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T21:11:32+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-16T23:51:27+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Firecrawl API error: insufficient credits blocked the company-page capture attempt.",
+      "gap_category": "unknown",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-16T23:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-17-0851-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "reason": "Alpha Vantage daily API rate limit reached; NEWS_SENTIMENT data unavailable."
+    },
+    {
+      "server": "firecrawl",
+      "reason": "Firecrawl credits unavailable for this scheduled capture."
+    }
+  ],
+  "recommendation_actionability": "blocked",
+  "first_blocking_gate": "fresh_quote",
+  "decision_summary": {
+    "action": "no_submit_quotes_stale",
+    "reason": "After-hours session budget stayed open at 0/2 and sell side was evaluated, but the scheduler-owned 0851 submit-boundary quote rows were already older than the 5-minute after-hours freshness cap. No candidate met fresh-quote, spread, notional, and risk gates together.",
+    "eligible_sell_trim_found": false,
+    "eligible_buy_fallback_found": false,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_today": 0,
+    "separate_session_budget_remaining": 2
+  },
+  "risk_check_result": {
+    "status": "PASS",
+    "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-06-17-0851-after-hours-autopilot.json",
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": {
+      "order_count": 0,
+      "post_cash": 30344.81,
+      "post_invested": 70355.1002,
+      "review_backlog_pending_1d_count": 0
+    }
+  },
+  "submitted_order_ids": [],
+  "after_hours_gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_market_closed_nonblocking_after_hours",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "risk_policy": "PASS_empty_order_plan_warning_only",
+    "fresh_quote": "fail_scheduler_owned_submit_boundary_quotes_older_than_5_minutes",
+    "spread_within_after_hours_policy": "fail_no_candidate_met_fresh_and_spread_and_notional_together",
+    "whole_share_day_limit_extended_hours_order": "pass_no_orders_built",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit"
+  },
+  "order_plan": {
+    "run_id": "2026-06-17-0851-after-hours-autopilot",
+    "session": "after_hours",
+    "orders": []
+  }
+}
