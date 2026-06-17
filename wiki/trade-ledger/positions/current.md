@@ -1,15 +1,15 @@
 ## 최신 hourly-autopilot reconciliation
 
-- Run: [[2026-06-17-2351-hourly-autopilot]]
-- Open/new: 없음. `hourly-20260617-2351-buy-nee`는 same client id reconciliation 기준 `filled`다.
-- Filled: same US-date fill ledger에는 `NEE` buy 1주 `86.38 USD`, `NKE` buy 1주 `45.30 USD`, `FCX` buy 1주 `71.40 USD`, `WMT` buy 1주 `119.83 USD`, `BAC` buy 1주 `57.57 USD`, prior after-hours `PFE` sell 1주 `26.03 USD`, `RGTI` sell 1주 `20.96 USD`가 남아 있었다.
+- Run: [[2026-06-18-0011-hourly-autopilot]]
+- Open/new: `hourly-20260618-0011-buy-amzn` 1주 buy가 immediate reconciliation 기준 `status=new`다.
+- Filled: same US-date fill ledger에는 신규 `AMZN` fill은 없고 `NEE` buy 1주 `86.38 USD`, `NKE` buy 1주 `45.30 USD`, `FCX` buy 1주 `71.40 USD`, `WMT` buy 1주 `119.83 USD`, `BAC` buy 1주 `57.57 USD`, prior after-hours `PFE` sell 1주 `26.03 USD`, `RGTI` sell 1주 `20.96 USD`가 남아 있었다.
 - Cancelled: 없음
 - Position count observed by Alpaca MCP: direct `get_all_positions` 기준 positions `33`건이었다.
-- Recent reconciliation scope: scheduler-owned `2351` core/research preflight를 source-of-record로 사용했고, live Alpaca MCP `get_clock/get_orders(status=open)/get_orders(status=all, after=2026-06-16T20:00:00-04:00)/get_order_by_client_id/get_all_positions/get_account_info/get_watchlists`로 submit-boundary와 post-trade state를 재확인했다. live readback 기준 account `ACTIVE`, cash `30,011.30 USD`, portfolio value `101,196.67 USD`, buying power `303,729.65 USD`, open orders `0`, watchlists `0`, `NEE qty=7`, `avg_entry_price=86.337143`, `current_price=86.39`였다.
+- Recent reconciliation scope: scheduler-owned `0011` core/research preflight를 source-of-record로 사용했고, live Alpaca MCP `get_clock/get_orders(status=open)/get_orders(status=all, after=2026-06-16T20:00:00-04:00)/get_order_by_client_id/get_all_positions/get_account_info/get_watchlists`로 submit-boundary와 post-trade state를 재확인했다. live readback 기준 account `ACTIVE`, cash `30,011.30 USD`, portfolio value `101,278.97 USD`, buying power `303,689.81 USD`, open orders `1`, watchlists `0`, `AMZN qty=7`, `avg_entry_price=256.778571`, `current_price=240.475`였다.
 - Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
-- Source note: `wiki/trade-ledger/positions/2026-06-17-2351-hourly-autopilot-post-trade.json`
+- Source note: `wiki/trade-ledger/positions/2026-06-18-0011-hourly-autopilot-post-trade.json`
 
-_Last updated: 2026-06-18 00:00 KST_
+_Last updated: 2026-06-18 00:22 KST_
 
 ## 최신 after-hours-autopilot reconciliation
 

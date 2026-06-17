@@ -1,0 +1,146 @@
+{
+  "run_id": "2026-06-18-0011-hourly-autopilot",
+  "created_at": "2026-06-17T15:22:35Z",
+  "source": "hourly autopilot post-trade reconciliation via Alpaca MCP",
+  "order_submission": {
+    "symbol": "AMZN",
+    "side": "buy",
+    "qty": "1",
+    "limit_price": "240.45",
+    "client_order_id": "hourly-20260618-0011-buy-amzn",
+    "order_id": "fcc7c8b1-d8e5-4598-970d-b865a63bba35",
+    "status": "new",
+    "submitted_at": "2026-06-17T15:22:34.699907585Z",
+    "filled_qty": "0",
+    "filled_avg_price": null
+  },
+  "account": {
+    "status": "ACTIVE",
+    "cash": "30011.3",
+    "portfolio_value": "101278.97",
+    "buying_power": "303689.81"
+  },
+  "open_orders": [
+    {
+      "symbol": "AMZN",
+      "side": "buy",
+      "qty": "1",
+      "limit_price": "240.45",
+      "status": "new",
+      "client_order_id": "hourly-20260618-0011-buy-amzn",
+      "submitted_at": "2026-06-17T15:22:34.699907585Z"
+    }
+  ],
+  "fills_after_us_midnight": [
+    {
+      "symbol": "NEE",
+      "side": "buy",
+      "qty": "1",
+      "price": "86.38",
+      "transaction_time": "2026-06-17T14:59:48.764184Z"
+    },
+    {
+      "symbol": "NKE",
+      "side": "buy",
+      "qty": "1",
+      "price": "45.3",
+      "transaction_time": "2026-06-17T14:47:16.442937Z"
+    },
+    {
+      "symbol": "FCX",
+      "side": "buy",
+      "qty": "1",
+      "price": "71.4",
+      "transaction_time": "2026-06-17T14:40:58.679036Z"
+    },
+    {
+      "symbol": "WMT",
+      "side": "buy",
+      "qty": "1",
+      "price": "119.83",
+      "transaction_time": "2026-06-17T14:07:50.521793Z"
+    },
+    {
+      "symbol": "BAC",
+      "side": "buy",
+      "qty": "1",
+      "price": "57.57",
+      "transaction_time": "2026-06-17T13:39:20.834459Z"
+    },
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "qty": "1",
+      "price": "26.03",
+      "transaction_time": "2026-06-17T05:11:09.778969Z"
+    },
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": "1",
+      "price": "20.96",
+      "transaction_time": "2026-06-17T04:39:27.027152Z"
+    }
+  ],
+  "positions_count": 33,
+  "positions_unchanged_for_symbol": {
+    "symbol": "AMZN",
+    "qty": "7",
+    "avg_entry_price": "256.778571",
+    "current_price": "240.475"
+  },
+  "same_day_fill_confirmations": [
+    {
+      "symbol": "NEE",
+      "qty": "7",
+      "avg_entry_price": "86.337143",
+      "current_price": "85.97",
+      "filled_client_order_id": "hourly-20260617-2351-buy-nee",
+      "filled_avg_price": "86.38",
+      "filled_at": "2026-06-17T14:59:48.764184Z"
+    },
+    {
+      "symbol": "NKE",
+      "qty": "7",
+      "avg_entry_price": "45.238571",
+      "current_price": "45.335",
+      "filled_client_order_id": "hourly-20260617-2331-buy-nke",
+      "filled_avg_price": "45.3",
+      "filled_at": "2026-06-17T14:47:16.442937Z"
+    },
+    {
+      "symbol": "FCX",
+      "qty": "7",
+      "avg_entry_price": "66.492857",
+      "current_price": "71.76",
+      "filled_client_order_id": "hourly-20260617-2311-buy-fcx",
+      "filled_avg_price": "71.4",
+      "filled_at": "2026-06-17T14:40:58.679036Z"
+    },
+    {
+      "symbol": "WMT",
+      "qty": "10",
+      "avg_entry_price": "118.568",
+      "current_price": "119.335",
+      "filled_client_order_id": "hourly-20260617-2251-buy-wmt",
+      "filled_avg_price": "119.83",
+      "filled_at": "2026-06-17T14:07:50.521793Z"
+    },
+    {
+      "symbol": "BAC",
+      "qty": "8",
+      "avg_entry_price": "54.2175",
+      "current_price": "57.665",
+      "filled_client_order_id": "hourly-20260617-2231-buy-bac",
+      "filled_avg_price": "57.57",
+      "filled_at": "2026-06-17T13:39:20.834459Z"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-0011-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-18-0011-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-0011-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-0011-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-18-0011-hourly-autopilot.json"
+  ]
+}
