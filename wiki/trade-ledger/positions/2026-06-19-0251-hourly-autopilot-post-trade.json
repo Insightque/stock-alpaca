@@ -1,0 +1,108 @@
+{
+  "run_id": "2026-06-19-0251-hourly-autopilot",
+  "created_at": "2026-06-18T17:54:34Z",
+  "paper": true,
+  "submit_attempted": false,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 101661.12,
+    "cash": 28507.21,
+    "buying_power": 303804.87,
+    "long_market_value": 73153.91,
+    "currency": "USD"
+  },
+  "positions_count": 33,
+  "open_orders_count": 0,
+  "watchlists_count": 0,
+  "same_day_fills": [
+    {
+      "id": "20260618134001953::520ca10c-0273-4749-b80c-3c443f978d5d",
+      "activity_type": "FILL",
+      "transaction_time": "2026-06-18T17:40:01.953993Z",
+      "type": "fill",
+      "price": "20.68",
+      "qty": "1",
+      "side": "sell",
+      "symbol": "RGTI",
+      "leaves_qty": "0",
+      "order_id": "3c4c2f8d-9070-4041-9121-afd245f1dc1f",
+      "cum_qty": "1",
+      "order_status": "filled"
+    },
+    {
+      "id": "20260618131916190::2a8bf604-0c17-42d4-b6e2-386c8d475882",
+      "activity_type": "FILL",
+      "transaction_time": "2026-06-18T17:19:16.190512Z",
+      "type": "fill",
+      "price": "20.72",
+      "qty": "1",
+      "side": "sell",
+      "symbol": "RGTI",
+      "leaves_qty": "0",
+      "order_id": "94d24a62-13f5-4dab-aa5d-622a13d91f0d",
+      "cum_qty": "1",
+      "order_status": "filled"
+    },
+    {
+      "id": "20260618125727477::85d55ee8-87e9-4e71-a59f-4c1aee4c356b",
+      "activity_type": "FILL",
+      "transaction_time": "2026-06-18T16:57:27.477402Z",
+      "type": "fill",
+      "price": "20.5",
+      "qty": "1",
+      "side": "sell",
+      "symbol": "RGTI",
+      "leaves_qty": "0",
+      "order_id": "13419123-bb11-48f9-ac21-ccca0488f6df",
+      "cum_qty": "2",
+      "order_status": "filled"
+    },
+    {
+      "id": "20260618125727114::16412df9-dbc0-4ee2-82e8-e8cc4f5ba255",
+      "activity_type": "FILL",
+      "transaction_time": "2026-06-18T16:57:27.114424Z",
+      "type": "partial_fill",
+      "price": "20.5",
+      "qty": "1",
+      "side": "sell",
+      "symbol": "RGTI",
+      "leaves_qty": "1",
+      "order_id": "13419123-bb11-48f9-ac21-ccca0488f6df",
+      "cum_qty": "1",
+      "order_status": "partially_filled"
+    },
+    {
+      "id": "20260618122148495::8c0b26e8-f90a-483c-b1e0-53788b5b814c",
+      "activity_type": "FILL",
+      "transaction_time": "2026-06-18T16:21:48.495146Z",
+      "type": "fill",
+      "price": "20.43",
+      "qty": "3",
+      "side": "sell",
+      "symbol": "RGTI",
+      "leaves_qty": "0",
+      "order_id": "e80b8a6f-4c08-4d73-89cc-0614df1c4188",
+      "cum_qty": "3",
+      "order_status": "filled"
+    }
+  ],
+  "open_orders": [],
+  "positions_focus": {
+    "RGTI": {
+      "qty": 5.0,
+      "qty_available": 5.0
+    },
+    "SO": {
+      "qty": 6.0,
+      "qty_available": 6.0
+    },
+    "AAPL": {
+      "qty": 7.0,
+      "qty_available": 7.0
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-19-0251-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-19-0251-hourly-autopilot-runtime-gate-evaluation.json"
+  ]
+}
