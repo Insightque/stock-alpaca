@@ -4,7 +4,7 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-18 20:51 KST after-hours-autopilot `2051` cycle에서 scheduler-owned `2051` core/research preflight를 source-of-record로 유지했다. regular market은 계속 closed였고 scheduler preflight 기준 account는 cash `28,050.15 USD`, portfolio value `101,229.88 USD`, buying power `301,367.96 USD`, positions `34`, open orders `0`, watchlists `0`이다. live Alpaca MCP continuity에서도 account `ACTIVE`, positions `34`, open orders `0`, watchlists `0`가 재확인됐다. same after-hours session ledger에서는 `PFE` trim `ah-20260618-1111-sell-pfe-01`이 `25.97 USD`로, `RGTI` trim `ah-20260618-1131-sell-rgti-01`이 `20.75 USD`로 각각 체결 완료 상태를 유지했다. submitted order budget은 계속 `2/2`로 닫혀 있어 이번 cycle도 separate after-hours session budget gate가 first blocker였고, 신규 `place_stock_order` 호출은 없었다.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-18 21:11 KST after-hours-autopilot `2111` cycle에서 scheduler-owned `2111` core/research preflight를 source-of-record로 유지했다. regular market은 계속 closed였고 scheduler preflight 기준 account는 cash `28,050.15 USD`, portfolio value `101,273.74 USD`, buying power `301,490.78 USD`, positions `34`, open orders `0`, watchlists `0`이다. live Alpaca MCP continuity에서도 account `ACTIVE`, positions `34`, open orders `0`, watchlists `0`가 재확인됐다. same after-hours session ledger에서는 `PFE` trim `ah-20260618-1111-sell-pfe-01`이 `25.97 USD`로, `RGTI` trim `ah-20260618-1131-sell-rgti-01`이 `20.75 USD`로 각각 체결 완료 상태를 유지했다. submitted order budget은 계속 `2/2`로 닫혀 있어 이번 cycle도 separate after-hours session budget gate가 first blocker였고, 신규 `place_stock_order` 호출은 없었다.
 - [[log]] - append-only 형식의 시간순 활동 로그.
 
 ## 종목
