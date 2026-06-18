@@ -1,0 +1,47 @@
+{
+  "run_id": "2026-06-18-1811-after-hours-autopilot",
+  "session": "after_hours",
+  "created_at": "2026-06-18T18:12:39+09:00",
+  "reconciliation_status": "pass",
+  "account": {
+    "status": "ACTIVE",
+    "cash": 28050.15,
+    "portfolio_value": 101149.59,
+    "buying_power": 301222.73,
+    "currency": "USD"
+  },
+  "positions_count": 34,
+  "open_orders_count": 0,
+  "same_session_after_hours_orders_submitted": 2,
+  "same_session_after_hours_fills": 2,
+  "reconciled_client_orders": [
+    {
+      "client_order_id": "ah-20260618-1111-sell-pfe-01",
+      "symbol": "PFE",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 25.97,
+      "filled_at": "2026-06-18T02:58:29.784752Z"
+    },
+    {
+      "client_order_id": "ah-20260618-1131-sell-rgti-01",
+      "symbol": "RGTI",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 20.75,
+      "filled_at": "2026-06-18T03:31:57.099382Z"
+    }
+  ],
+  "changed_positions": [],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-1811-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1811-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1811-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-18-1811-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/positions/2026-06-18-1811-after-hours-autopilot-post-trade.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/current-runs/daily/2026-06-18-1111-after-hours-autopilot.md",
+    "wiki/current-runs/daily/2026-06-18-1131-after-hours-autopilot.md",
+    "wiki/trade-ledger/reviews/2026-06-18-portfolio-review.md"
+  ]
+}
