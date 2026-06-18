@@ -1,0 +1,35 @@
+{
+  "run_id": "2026-06-18-1031-after-hours-autopilot",
+  "created_at": "2026-06-18T01:32:53.977710708+00:00",
+  "session": "after_hours",
+  "paper": true,
+  "submit_attempted": false,
+  "orders_submitted": 0,
+  "orders_open": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_detected": 0,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 101169.22,
+    "cash": 28003.45,
+    "buying_power": 301153.33,
+    "long_market_value": 73165.77,
+    "currency": "USD",
+    "daily_realized_loss": 0.0
+  },
+  "positions_count": 34,
+  "positions_unchanged": true,
+  "watchlists_count": 0,
+  "review_bucket": "after_hours_validation",
+  "note": "No after-hours submit at 1031. The scheduler-owned 1031 Alpaca core preflight already exposed passing account/positions/open-order/account-activity/asset/quote/spread rows while market_closed remained the expected regular-session blocker. Live Alpaca MCP continuity matched the same stale timestamps and preserved positions count, so the separate after-hours session budget stayed 0/2 before any new submit decision.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-1031-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1031-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1031-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/evidence-store/sources/2026-06-18-1031-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ],
+  "submit_status": "no_submit",
+  "client_order_ids_checked": [],
+  "new_orders": [],
+  "filled_orders": []
+}

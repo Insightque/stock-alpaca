@@ -1,0 +1,126 @@
+{
+  "run_id": "2026-06-18-1031-after-hours-autopilot",
+  "created_at": "2026-06-18T01:32:53.977710708+00:00",
+  "session": "after_hours",
+  "paper": true,
+  "submit_boundary_source": "wiki/evidence-store/sources/2026-06-18-1031-after-hours-autopilot-alpaca-core-preflight.json",
+  "live_clock_recheck": {
+    "tool": "mcp__alpaca.get_clock",
+    "result": "regular_market_still_closed",
+    "timestamp": "2026-06-17T21:32:53.977710708-04:00",
+    "next_open": "2026-06-18T09:30:00-04:00",
+    "next_close": "2026-06-18T16:00:00-04:00"
+  },
+  "live_account_recheck": {
+    "tool": "mcp__alpaca.get_account_info",
+    "result": "matched_scheduler_preflight_account_status",
+    "account_status": "ACTIVE",
+    "portfolio_value": 101169.22,
+    "cash": 28003.45,
+    "buying_power": 301153.33
+  },
+  "live_positions_recheck": {
+    "tool": "mcp__alpaca.get_all_positions",
+    "result": "matched_scheduler_preflight_positions_count",
+    "positions_count": 34,
+    "positions_unchanged": true
+  },
+  "live_order_recheck": {
+    "tool": "mcp__alpaca.get_orders",
+    "open_orders_count": 0,
+    "same_session_after_hours_orders": 0,
+    "same_session_after_hours_fills": 0,
+    "regular_session_orders_seen_after_cutoff": 0
+  },
+  "live_watchlist_recheck": {
+    "tool": "mcp__alpaca.get_watchlists",
+    "watchlists_count": 0
+  },
+  "live_quote_recheck": {
+    "tool": "mcp__alpaca.get_stock_latest_quote",
+    "feed": "iex",
+    "symbols": [
+      "QQQ",
+      "MS",
+      "NVDA",
+      "SPY",
+      "TSLA",
+      "GOOGL",
+      "WMT",
+      "JPM",
+      "PFE",
+      "RGTI",
+      "AVGO",
+      "MSFT"
+    ],
+    "result": "matched_scheduler_preflight_quote_timestamps",
+    "fresh_quote_recovered": false,
+    "quotes": {
+      "QQQ": {
+        "ap": 723.0,
+        "bp": 722.87,
+        "t": "2026-06-17T20:00:04.242732726Z"
+      },
+      "MS": {
+        "ap": 231.46,
+        "bp": 220.0,
+        "t": "2026-06-17T20:20:00.578607360Z"
+      },
+      "NVDA": {
+        "ap": 205.15,
+        "bp": 193.86,
+        "t": "2026-06-17T20:00:03.007618527Z"
+      },
+      "SPY": {
+        "ap": 766.37,
+        "bp": 721.21,
+        "t": "2026-06-17T20:00:05.154329497Z"
+      },
+      "TSLA": {
+        "ap": 413.69,
+        "bp": 381.32,
+        "t": "2026-06-17T20:00:01.916829311Z"
+      },
+      "GOOGL": {
+        "ap": 380.46,
+        "bp": 350.5,
+        "t": "2026-06-17T20:00:00.773644253Z"
+      },
+      "WMT": {
+        "ap": 123.44,
+        "bp": 113.57,
+        "t": "2026-06-17T20:00:00.032054524Z"
+      },
+      "JPM": {
+        "ap": 348.08,
+        "bp": 320.24,
+        "t": "2026-06-17T20:00:00.003371859Z"
+      },
+      "PFE": {
+        "ap": 27.38,
+        "bp": 24.7,
+        "t": "2026-06-17T20:00:01.859383696Z"
+      },
+      "RGTI": {
+        "ap": 23.11,
+        "bp": 17.57,
+        "t": "2026-06-17T20:00:01.328243618Z"
+      },
+      "AVGO": {
+        "ap": 416.43,
+        "bp": 377.01,
+        "t": "2026-06-17T20:00:00.687086460Z"
+      },
+      "MSFT": {
+        "ap": 0.0,
+        "bp": 349.0,
+        "t": "2026-06-17T20:00:16.205552018Z"
+      }
+    }
+  },
+  "note": "Live Alpaca MCP continuity at 2026-06-17T21:32:53.977710708-04:00 preserved the scheduler-owned 1031 account/position/open-order state and reproduced the same stale submit-boundary quote timestamps already recorded in the preflight, so no extended-hours order path opened.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-1031-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1031-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
