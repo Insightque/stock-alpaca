@@ -1,0 +1,260 @@
+{
+  "run_id": "2026-06-19-0831-after-hours-autopilot",
+  "created_at": "2026-06-18T23:35:05Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "paper_mode": true,
+  "scheduler_owned_preflight": {
+    "alpaca_core": "wiki/evidence-store/sources/2026-06-19-0831-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp": "wiki/evidence-store/sources/2026-06-19-0831-after-hours-autopilot-research-mcp-preflight.json",
+    "alpaca_first_blocking_gate": "market_closed",
+    "alpaca_market_closed_expected_nonblocking": true
+  },
+  "live_continuity": {
+    "clock": {
+      "is_open": false,
+      "timestamp": "2026-06-18T19:34:24.280908141-04:00",
+      "next_open": "2026-06-22T09:30:00-04:00",
+      "next_close": "2026-06-22T16:00:00-04:00"
+    },
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 101599.57,
+      "cash": 28610.97,
+      "buying_power": 303616.04,
+      "currency": "USD"
+    },
+    "positions_count": 32,
+    "watchlists_count": 0,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_observed": 0,
+    "orders_after_cutoff": "2026-06-18T20:00:00Z"
+  },
+  "policy_limits": {
+    "session_name": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "order_id_prefix": "ah-",
+    "max_new_orders_per_session": 2,
+    "max_quote_age_minutes_submit": 5.0,
+    "max_spread_pct": 0.25,
+    "max_notional_pct_per_order": 0.005,
+    "max_notional_usd_per_order": 508.0,
+    "allowed_sides": [
+      "buy",
+      "sell"
+    ]
+  },
+  "quote_checks": {
+    "AVGO": {
+      "bid": 411.01,
+      "ask": 495.48,
+      "quote_timestamp": "2026-06-18T20:55:50.75548078Z",
+      "quote_age_minutes": 158.5588,
+      "spread_pct": 18.6367,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "SO": {
+      "bid": 89.28,
+      "ask": 98.16,
+      "quote_timestamp": "2026-06-18T20:00:00.008933448Z",
+      "quote_age_minutes": 214.4045,
+      "spread_pct": 9.475,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "QQQ": {
+      "bid": 740.34,
+      "ask": 740.47,
+      "quote_timestamp": "2026-06-18T20:41:38.437574245Z",
+      "quote_age_minutes": 172.7641,
+      "spread_pct": 0.0176,
+      "fresh_quote_pass": false,
+      "spread_pass": true,
+      "quote_complete_pass": true
+    },
+    "NOK": {
+      "bid": 13.51,
+      "ask": 13.57,
+      "quote_timestamp": "2026-06-18T20:24:13.967550834Z",
+      "quote_age_minutes": 190.1719,
+      "spread_pct": 0.4431,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "WMT": {
+      "bid": 112.0,
+      "ask": 118.2,
+      "quote_timestamp": "2026-06-18T20:00:00.215891993Z",
+      "quote_age_minutes": 214.4011,
+      "spread_pct": 5.3866,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "SMH": {
+      "bid": 642.38,
+      "ask": 681.77,
+      "quote_timestamp": "2026-06-18T20:00:00.722899857Z",
+      "quote_age_minutes": 214.3926,
+      "spread_pct": 5.9495,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "MCD": {
+      "bid": 261.04,
+      "ask": 282.29,
+      "quote_timestamp": "2026-06-18T20:01:10.62006147Z",
+      "quote_age_minutes": 213.2277,
+      "spread_pct": 7.8221,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "NEE": {
+      "bid": 83.16,
+      "ask": 90.41,
+      "quote_timestamp": "2026-06-18T20:00:00.007843939Z",
+      "quote_age_minutes": 214.4046,
+      "spread_pct": 8.354,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "GS": {
+      "bid": 1055.45,
+      "ask": 1150.91,
+      "quote_timestamp": "2026-06-18T20:00:00.005715095Z",
+      "quote_age_minutes": 214.4046,
+      "spread_pct": 8.6532,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "CVX": {
+      "bid": 166.25,
+      "ask": 181.7,
+      "quote_timestamp": "2026-06-18T20:00:00.007120307Z",
+      "quote_age_minutes": 214.4046,
+      "spread_pct": 8.8806,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    }
+  },
+  "candidate_diagnostics": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy",
+        "minimum_remaining_qty"
+      ],
+      "detail": "IEX latestQuote 411.01/495.48 was 158.56 minutes old, spread 18.6367% exceeded the 0.25% after-hours cap, and held qty=1 left no trim/exit that could satisfy the keep-minimum-remaining discipline."
+    },
+    {
+      "symbol": "SO",
+      "side": "sell",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy",
+        "sell_metric_gap"
+      ],
+      "detail": "IEX latestQuote 89.28/98.16 was 214.40 minutes old, spread 9.4750% exceeded the 0.25% after-hours cap. The latest regular-session source-of-record also kept SO in sell_metric_gap status, so no decision-grade trim survived."
+    },
+    {
+      "symbol": "QQQ",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "after_hours_notional_cap"
+      ],
+      "detail": "IEX latestQuote 740.34/740.47 was 172.76 minutes old; spread 0.0176%; 1-share ask 740.47 USD exceeded the after-hours per-order cap 508.00 USD."
+    },
+    {
+      "symbol": "NOK",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy",
+        "review_backlog_throttle",
+        "validation_lifecycle_add_block"
+      ],
+      "detail": "IEX latestQuote 13.51/13.57 was 190.17 minutes old; spread 0.4431%; review-due-index still has blocked_add_symbols=['NOK'] and pending_1d_count=17."
+    },
+    {
+      "symbol": "WMT",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "IEX latestQuote 112.00/118.20 was 214.40 minutes old; spread 5.3866%."
+    },
+    {
+      "symbol": "SMH",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy",
+        "after_hours_notional_cap"
+      ],
+      "detail": "IEX latestQuote 642.38/681.77 was 214.39 minutes old; spread 5.9495%; 1-share ask 681.77 USD exceeded the after-hours per-order cap 508.00 USD."
+    },
+    {
+      "symbol": "MCD",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "IEX latestQuote 261.04/282.29 was 213.23 minutes old; spread 7.8221%."
+    },
+    {
+      "symbol": "NEE",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "IEX latestQuote 83.16/90.41 was 214.40 minutes old; spread 8.3540%."
+    },
+    {
+      "symbol": "GS",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy",
+        "after_hours_notional_cap"
+      ],
+      "detail": "IEX latestQuote 1055.45/1150.91 was 214.40 minutes old; spread 8.6532%; 1-share ask 1150.91 USD exceeded the after-hours per-order cap 508.00 USD."
+    },
+    {
+      "symbol": "CVX",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "IEX latestQuote 166.25/181.70 was 214.40 minutes old; spread 8.8806%."
+    }
+  ],
+  "recommendation_actionability": "blocked",
+  "first_blocking_gate": "fresh_quote"
+}
