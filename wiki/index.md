@@ -4,8 +4,9 @@
 
 ## 핵심 페이지
 
-- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-18 21:55 KST after-hours-autopilot `2151` cycle에서 scheduler-owned `2151` core/research preflight를 source-of-record로 유지했다. regular market은 계속 closed였고 scheduler preflight 기준 account는 cash `28,050.15 USD`, portfolio value `101,461.12 USD`, buying power `301,902.86 USD`, positions `34`, open orders `0`, watchlists `0`이다. live Alpaca MCP continuity는 `get_watchlists`와 exact `client_order_id` reconciliation에만 제한했고 watchlists `0`, `PFE` trim `ah-20260618-1111-sell-pfe-01` filled `25.97 USD`, `RGTI` trim `ah-20260618-1131-sell-rgti-01` filled `20.75 USD`를 재확인했다. same after-hours session submitted order budget은 계속 `2/2`로 닫혀 있어 이번 cycle도 separate after-hours session budget gate가 first blocker였고, 신규 `place_stock_order` 호출은 없었다.
+- [[portfolio-current]] - 현재 paper 계좌, 포지션, buying power, 미체결 주문. 2026-06-18 22:31 KST hourly-autopilot `2231` cycle에서는 scheduler-owned `2231` stale/core/research preflight와 live Alpaca continuity를 결합해 account `ACTIVE`, cash `28,050.15 USD`, portfolio value `101,480.74 USD`, buying power `302,233.58 USD`, positions `34`, open orders `0`, watchlists `0`, same US-date fills `0`를 재확인했다. sell-first 경로에서는 `RGTI` 6주 trim이 가장 executable했지만 research preflight의 `Yahoo Finance timeout` 때문에 strict MCP submit gate가 fail로 닫혀 신규 `place_stock_order` 호출은 없었다.
 - [[log]] - append-only 형식의 시간순 활동 로그.
+- [[2026-06-18-2231-hourly-autopilot]] - regular-session scheduled hourly autopilot 실행. scheduler-owned `2231` stale/core/research preflight를 source-of-record로 사용했고 universe strict와 risk validator는 PASS였지만 research usable/pass confirmation이 `SEC EDGAR`, `FRED` 2개뿐이라 `check-mcp-coverage.py --strict`가 FAIL했다. `RGTI` trim은 core-only risk trim 관점에서 executable했지만 strict submit gate를 넘지 못해 no-submit으로 종료했다.
 
 ## 종목
 
