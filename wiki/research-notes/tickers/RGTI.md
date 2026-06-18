@@ -7,6 +7,12 @@ asset_type: stock
 
 # RGTI
 
+## 2026-06-19 02:37 KST hourly-autopilot trim submit
+
+`0231` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight를 source-of-record로 사용했고, live Alpaca submit-boundary recheck 기준 regular market open, account `ACTIVE`, open orders `0`, watchlists `0`, `RGTI` asset active/tradable, fresh quote `20.68/20.70`, spread 약 `0.0967%`를 재확인했다. research strict gate는 `SEC EDGAR`, `FRED`, `Yahoo Finance` 3-provider pass를 유지했고 buy side는 `review_backlog_pending_1d_count=17`로 계속 닫혀 있어 sell-first directive를 유지했다. `RGTI`는 speculative loss-control trim trigger와 residual speculative sleeve staged de-risking rationale 조건에서 floor trim `1주` 경로를 통과했고 `client_order_id=hourly-20260619-0231-sell-rgti`로 regular-session day limit sell을 제출했다. immediate reconciliation 기준 주문은 아직 `status=new`, `filled_qty=0` open order이며 보유수량은 `6주`, `qty_available=5`로 1주만 예약 상태다. 해석은 `strict gate pass, staged de-risking submit 완료, next cycle fill/open-order lifecycle 추적 필요`다.
+
+출처: [[2026-06-19-0231-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-19-0231-hourly-autopilot-post-trade.json`
+
 ## 2026-06-19 01:55 KST hourly-autopilot trim submit
 
 `0151` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight를 source-of-record로 사용했고, live Alpaca submit-boundary recheck 기준 regular market open, account `ACTIVE`, open orders `0`, watchlists `0`, `RGTI` asset active/tradable, fresh quote `20.50/20.51`, spread 약 `0.0488%`를 재확인했다. research strict gate는 `SEC EDGAR`, `FRED`, `Yahoo Finance` 3-provider pass로 다시 열렸고 buy side는 `review_backlog_pending_1d_count=17`로 계속 닫혀 있어 sell-first directive를 유지했다. `RGTI`는 speculative loss-control trim trigger와 residual speculative sleeve staged de-risking rationale 조건에서 25% trim `2주` 경로를 통과했고 `client_order_id=hourly-20260619-0151-sell-rgti`로 regular-session day limit sell을 제출했다. follow-up reconciliation 기준 주문은 `2026-06-18T16:57:27.477402Z`에 `filled_avg_price=20.50 USD`로 전량 체결됐고 보유수량은 `9주 -> 7주`로 감소했다. 해석은 `strict MCP gate recovered, staged de-risking 지속`이다.
