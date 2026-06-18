@@ -1,0 +1,224 @@
+{
+  "run_id": "2026-06-18-2331-hourly-autopilot",
+  "created_at": "2026-06-18T14:37:50Z",
+  "source": "hourly autopilot runtime gate evaluation before submit",
+  "paper": true,
+  "scheduler_owned_preflight_reused": true,
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-18T10:31:11.104848198-04:00",
+    "next_open": "2026-06-22T09:30:00-04:00",
+    "next_close": "2026-06-18T16:00:00-04:00",
+    "session": "regular"
+  },
+  "stale_order_cleanup": {
+    "status": "pass",
+    "source_ref": "wiki/evidence-store/sources/2026-06-18-2331-hourly-autopilot-stale-order-cleanup.json",
+    "remaining_open_orders": 0
+  },
+  "alpaca_core_gate": {
+    "status": "pass",
+    "source_ref": "wiki/evidence-store/sources/2026-06-18-2331-hourly-autopilot-alpaca-core-preflight.json",
+    "first_blocking_gate": "",
+    "live_continuity": {
+      "open_orders": 0,
+      "watchlists": 0,
+      "account_status": "ACTIVE",
+      "portfolio_value": 101318.12,
+      "cash": 28197.42,
+      "buying_power": 302148.67,
+      "same_day_filled_symbols": [
+        "PFE",
+        "RGTI"
+      ]
+    }
+  },
+  "research_gate": {
+    "status": "failed_strict_submit_threshold",
+    "positive_confirmations": [
+      "sec-edgar",
+      "fred"
+    ],
+    "min_required_for_submit": 3,
+    "nonblocking_gaps": [
+      {
+        "server": "alpha-vantage",
+        "gap_category": "provider_error",
+        "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-18T13:31:35+00:00, retry after ~4s."
+      },
+      {
+        "server": "firecrawl",
+        "gap_category": "unknown",
+        "gap_reason": "Firecrawl API error: Insufficient credits to perform this request."
+      },
+      {
+        "server": "yahoo-finance",
+        "gap_category": "timeout",
+        "gap_reason": "Error: getting recommendations for BAC: Failed to perform, curl: (28) Operation timed out after 30003 milliseconds with 0 bytes received."
+      }
+    ],
+    "first_blocking_gate": "mcp_research_confirmations"
+  },
+  "review_backlog": {
+    "pending_1d_count": 17,
+    "pending_5d_count": 23,
+    "pending_20d_count": 15,
+    "blocked_add_symbols": [
+      "NOK"
+    ]
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "RGTI",
+      "held_qty": 20,
+      "current_weight_pct": 0.3956,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "RGTI는 speculative loss-control trim trigger와 음수 expected excess가 유지되고 source-of-record quote 20.07/20.08 spread 0.0498%도 pass하지만, 2331 cycle research preflight usable/pass confirmation이 SEC EDGAR와 FRED 2개뿐이라 strict MCP submit gate가 다시 닫혔다. 같은 US-date regular-session trim fill이 이미 존재해 같은 symbol/side duplicate discipline도 재진입을 지지하지 않는다.",
+      "skipped_gate": "mcp_tiered_strict",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.48,
+      "relative_to_spy_20d_pct": -1.48,
+      "metric_gap_reason": "",
+      "replacement_symbol": "BAC",
+      "replacement_expected_excess_margin_pct": 1.48,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-2331-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-18-2331-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-2331-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-2331-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-18-portfolio-review.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/AAPL.md",
+        "wiki/research-notes/tickers/BAC.md",
+        "wiki/research-notes/tickers/WMT.md",
+        "wiki/research-notes/tickers/NVDA.md"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "held_qty": 6,
+      "current_weight_pct": 0.5526,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "SO는 repeated weak-review defensive sleeve trim 후보지만 decision-grade expected-excess/replacement margin 수치가 이번 cycle에도 비어 있다. source-of-record quote 93.30/93.33 spread 0.0321%는 pass다.",
+      "skipped_gate": "sell_metric_gap",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "SO trim decision-grade expected-excess/replacement margin 공백이 남아 있다.",
+      "replacement_symbol": "AAPL",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-2331-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-18-2331-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-2331-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-2331-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-18-portfolio-review.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/AAPL.md",
+        "wiki/research-notes/tickers/BAC.md",
+        "wiki/research-notes/tickers/WMT.md",
+        "wiki/research-notes/tickers/NVDA.md"
+      ]
+    },
+    {
+      "symbol": "AAPL",
+      "held_qty": 7,
+      "current_weight_pct": 2.0696,
+      "trigger_status": "no_trigger",
+      "primary_reason": "AAPL은 source-of-record quote 299.57/300.00 spread 0.1433%와 existing mega-cap quality holding 상태는 양호하지만 이번 cycle risk_trim_policy active trigger가 없다.",
+      "skipped_gate": "sell_trigger_none",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "AAPL은 이번 cycle trim 판단에 필요한 active deterioration/replacement trim metric이 없고 sell trigger도 없다.",
+      "replacement_symbol": "SPY",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "hold",
+      "blocked_sell_recheck": "",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-2331-hourly-autopilot-stale-order-cleanup.json",
+        "wiki/evidence-store/sources/2026-06-18-2331-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-2331-hourly-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-2331-hourly-autopilot-runtime-gate-evaluation.json",
+        "harness/recommendation-policy.yaml",
+        "harness/risk-policy.yaml",
+        "harness/symbol-metadata.yaml",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/trade-ledger/reviews/2026-06-18-portfolio-review.md",
+        "wiki/research-notes/tickers/RGTI.md",
+        "wiki/research-notes/tickers/SO.md",
+        "wiki/research-notes/tickers/AAPL.md",
+        "wiki/research-notes/tickers/BAC.md",
+        "wiki/research-notes/tickers/WMT.md",
+        "wiki/research-notes/tickers/NVDA.md"
+      ]
+    }
+  ],
+  "candidate_evaluation": [
+    {
+      "symbol": "RGTI",
+      "decision": "blocked_mcp_tiered_strict",
+      "detail": "speculative trim trigger, source-of-record spread 0.0498%, same-session prior RGTI trim fill 존재, strict research confirmation이 2개뿐이라 submit gate를 통과하지 못했다."
+    },
+    {
+      "symbol": "SO",
+      "decision": "blocked_sell_metric_gap",
+      "detail": "quote/spread는 pass지만 trim decision-grade expected-excess/replacement margin 공백이 남아 있다."
+    },
+    {
+      "symbol": "AAPL",
+      "decision": "blocked_review_backlog_throttle",
+      "detail": "mega-cap fallback add 후보지만 pending_1d_count=17이 stop_new_buys_at_pending_1d=12를 넘어 신규 buy slot이 닫혀 있다."
+    },
+    {
+      "symbol": "BAC",
+      "decision": "blocked_review_backlog_throttle",
+      "detail": "financials diversifier fallback으로 quote/spread는 pass하지만 buy-side review backlog throttle이 먼저 막는다."
+    },
+    {
+      "symbol": "WMT",
+      "decision": "blocked_review_backlog_throttle",
+      "detail": "defensive fallback으로 quote/spread는 pass하지만 pending review backlog가 신규 buy를 차단한다."
+    },
+    {
+      "symbol": "NVDA",
+      "decision": "blocked_review_backlog_and_same_theme_warning",
+      "detail": "ai_semiconductor warning band와 pending review backlog가 동시에 남아 있다."
+    },
+    {
+      "symbol": "QQQ",
+      "decision": "blocked_validation_floor_cap",
+      "detail": "1주 ask 735.65 USD가 validation floor per-order cap 약 506.59 USD를 초과한다."
+    },
+    {
+      "symbol": "SPY",
+      "decision": "blocked_validation_floor_cap",
+      "detail": "1주 ask 745.21 USD가 validation floor per-order cap 약 506.59 USD를 초과한다."
+    }
+  ],
+  "selected_order_proposal": {
+    "symbol": "RGTI",
+    "side": "sell",
+    "qty": 5,
+    "entry_style": "trim",
+    "limit_price": 20.07,
+    "status": "blocked_before_submit",
+    "blocking_gate": "mcp_research_confirmations",
+    "note": "Risk-reducing trim path 자체는 quote/spread/asset/open-order 관점에서 유지됐지만 strict MCP 2/3로 submit boundary가 닫혔다. same US-date RGTI sell fill도 이미 존재한다."
+  },
+  "first_blocking_gate": "mcp_research_confirmations"
+}
