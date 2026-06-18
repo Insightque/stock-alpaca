@@ -1,0 +1,408 @@
+{
+  "run_id": "2026-06-19-0611-after-hours-autopilot",
+  "created_at": "2026-06-18T21:15:04.063082Z",
+  "data_cutoff_time": "2026-06-18T21:15:04.063082Z",
+  "market_clock_checked_at": "2026-06-18T17:13:20.129372367-04:00",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "policy_id": "recommendation-policy-v1.11",
+  "policy_version": "v1.11",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "git_commit": "e7152ea643b71b2b865318e980548a3f9445bac4",
+  "prompt_file_sha": "sha256:c96f8c3f9a562d2b4ed5a21e10054cc96081afa418f7d9c266a9690d23098af2",
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "risk_policy_version": "medium-risk-v1.2",
+  "schema_version": "1.3",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-19-0611-after-hours-autopilot.json",
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-06-19-0611-after-hours-autopilot-post-trade.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md",
+    "wiki/current-runs/daily/2026-06-19-0451-hourly-autopilot.md"
+  ],
+  "data_manifest": {
+    "source_feed": "alpaca_scheduler_preflight_plus_live_iex_after_hours_cross_check",
+    "adjusted_prices": true,
+    "timezone": "America/New_York",
+    "trading_calendar": "nyse",
+    "symbols_requested": 62,
+    "symbols_loaded": 62,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 8,
+    "corporate_actions_checked": true,
+    "survivorship_bias_controlled": false,
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-research-mcp-preflight.json",
+    "after_hours_gate_evaluation": "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "runtime_cross_checks": [
+      "scheduler_owned_alpaca_core_preflight_rows",
+      "mcp__alpaca.get_clock",
+      "mcp__alpaca.get_account_info",
+      "mcp__alpaca.get_all_positions",
+      "mcp__alpaca.get_watchlists",
+      "mcp__alpaca.get_orders(status=open)",
+      "mcp__alpaca.get_orders(status=all, after=2026-06-18T20:00:00Z)",
+      "mcp__alpaca.get_stock_latest_quote(feed=overnight)",
+      "mcp__alpaca.get_stock_latest_quote(feed=iex)"
+    ]
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_research_preflight_shortlist_with_live_iex_submit_boundary_cross_check",
+    "pre_mcp_shortlist": [
+      "QQQ",
+      "NOK",
+      "WMT",
+      "SMH",
+      "MCD",
+      "NEE",
+      "GS",
+      "CVX"
+    ],
+    "final_candidates": [
+      "QQQ",
+      "NOK",
+      "WMT",
+      "SMH",
+      "MCD",
+      "NEE",
+      "GS",
+      "CVX"
+    ],
+    "passed": true,
+    "gap_reason": "",
+    "status": "pass",
+    "source": "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-research-mcp-preflight.json",
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-research-mcp-preflight.json",
+      "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-after-hours-gate-evaluation.json",
+      "wiki/trade-ledger/reviews/review-due-index.json",
+      "wiki/trade-ledger/positions/current.md",
+      "wiki/current-runs/daily/2026-06-19-0451-hourly-autopilot.md"
+    ]
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "all_research_must_be_attempted": true,
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_submit": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "outcome": "gap",
+      "gap_category": "empty_response",
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "firecrawl",
+      "reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "outcome": "failed",
+      "gap_category": "unknown",
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    }
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T21:15:04.063082Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ],
+      "gap_reason": "Scheduler-owned 0611 Alpaca core preflight recorded first_blocking_gate=market_closed, which is expected and nonblocking for after-hours. Live continuity reconfirmed regular market closed, account ACTIVE, positions 32, watchlists 0, open orders 0, same-session after-hours orders 0, and IEX quote continuity showed all shortlisted candidates still failed freshness, spread, or quote-completeness gates at the submit boundary.",
+      "gap_category": "not_applicable",
+      "retry_count": 1,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T21:11:25+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-18T21:11:25+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T21:11:25+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-18T21:11:25+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "gap_category": "unknown",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T21:11:25+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0611-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "recommendation_actionability": "blocked",
+  "first_blocking_gate": "fresh_quote",
+  "candidate_diagnostics": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy",
+        "minimum_remaining_qty"
+      ],
+      "detail": "IEX latestQuote 411.01/495.48 was 19.22 minutes old, spread 18.6367% exceeded the 0.25% after-hours cap, and held qty=1 left no trim/exit that could satisfy the keep-minimum-remaining discipline."
+    },
+    {
+      "symbol": "SO",
+      "side": "sell",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy",
+        "sell_metric_gap"
+      ],
+      "detail": "IEX latestQuote 89.28/98.16 was 75.07 minutes old, spread 9.4750% exceeded the 0.25% after-hours cap. The latest regular-session source-of-record also kept SO in sell_metric_gap status, so no decision-grade trim survived."
+    },
+    {
+      "symbol": "QQQ",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "after_hours_notional_cap"
+      ],
+      "detail": "IEX latestQuote 740.34/740.47 was 33.43 minutes old; spread 0.0176%; 1-share ask 740.47 USD exceeded the after-hours per-order cap 508.60 USD."
+    },
+    {
+      "symbol": "NOK",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy",
+        "review_backlog_throttle",
+        "validation_lifecycle_add_block"
+      ],
+      "detail": "IEX latestQuote 13.51/13.57 was 50.83 minutes old; spread 0.4431%; review-due-index still has blocked_add_symbols=['NOK'] and pending_1d_count=17."
+    },
+    {
+      "symbol": "WMT",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "IEX latestQuote 112.00/118.20 was 75.06 minutes old; spread 5.3866%."
+    },
+    {
+      "symbol": "SMH",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy",
+        "after_hours_notional_cap"
+      ],
+      "detail": "IEX latestQuote 642.38/681.77 was 75.06 minutes old; spread 5.9495%; 1-share ask 681.77 USD exceeded the after-hours per-order cap 508.60 USD."
+    },
+    {
+      "symbol": "MCD",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "IEX latestQuote 261.04/282.29 was 73.89 minutes old; spread 7.8221%."
+    },
+    {
+      "symbol": "NEE",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "IEX latestQuote 83.16/90.41 was 75.07 minutes old; spread 8.3540%."
+    },
+    {
+      "symbol": "GS",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy",
+        "after_hours_notional_cap"
+      ],
+      "detail": "IEX latestQuote 1055.45/1150.91 was 75.07 minutes old; spread 8.6532%; 1-share ask 1150.91 USD exceeded the after-hours per-order cap 508.60 USD."
+    },
+    {
+      "symbol": "CVX",
+      "side": "buy",
+      "result": "blocked",
+      "blocked_by": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "detail": "IEX latestQuote 166.25/181.70 was 75.07 minutes old; spread 8.8806%."
+    }
+  ],
+  "decision_summary": {
+    "action": "blocked_no_submit",
+    "reason": "after-hours submit boundary was reopened with live Alpaca MCP continuity, but every shortlisted buy candidate and both sell-side trim candidates failed fresh quote, spread, quote completeness, per-order cap, or lifecycle gates. Because hard gates did not all pass, the workflow recorded a no-submit result instead of forcing a paper order.",
+    "eligible_sell_trim_found": false,
+    "eligible_buy_fallback_found": false,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "separate_session_budget_remaining": 2
+  },
+  "reconciliation": {
+    "submit_attempted": false,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_observed": 0,
+    "open_orders_after_run": 0,
+    "retry_attempted": false,
+    "alternate_client_order_id_used": false,
+    "note": "No place_stock_order call was made because fresh quote and spread gates failed before the submit boundary."
+  },
+  "submitted_order_ids": [
+
+  ],
+  "validator_results": [
+    {
+      "name": "universe_coverage",
+      "status": "PASS",
+      "path": "wiki/evidence-store/run-manifests/2026-06-19-0611-after-hours-autopilot.json",
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-06-19-0611-after-hours-autopilot.json"
+    },
+    {
+      "name": "mcp_coverage",
+      "status": "PASS",
+      "path": "wiki/evidence-store/run-manifests/2026-06-19-0611-after-hours-autopilot.json",
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-06-19-0611-after-hours-autopilot.json"
+    }
+  ],
+  "risk_check_result": {
+    "errors": [
+
+    ],
+    "path": "wiki/trade-ledger/orders/2026-06-19-0611-after-hours-autopilot.json",
+    "status": "PASS",
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 45774.4185,
+      "max_factor_value": 50860.465,
+      "max_invested": 96634.88349999998,
+      "max_speculative_value": 12206.511599999998,
+      "max_theme_value": 35602.32549999999,
+      "max_ticker_value": 15258.139499999997,
+      "min_cash": 5086.0465,
+      "policy_version": "medium-risk-v1.2",
+      "post_cash": 28610.97,
+      "post_invested": 73107.38180000003,
+      "review_backlog_pending_1d_count": 17,
+      "sell_notional": 0.0,
+      "speculative_value": 2918.7000000000003,
+      "target_max_cash": 10172.093,
+      "target_min_invested": 91548.837
+    },
+    "warnings": [
+      "orders is empty"
+    ],
+    "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-06-19-0611-after-hours-autopilot.json"
+  }
+}
