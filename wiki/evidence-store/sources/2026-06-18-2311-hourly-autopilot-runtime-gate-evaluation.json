@@ -1,0 +1,155 @@
+{
+  "run_id": "2026-06-18-2311-hourly-autopilot",
+  "created_at": "2026-06-18T14:11:26Z",
+  "workflow": "harness/workflows/hourly-autopilot.md",
+  "workflow_sha256": "sha256:04074b8efd7de291cac919ec156ad41f311cb968ea8cbe367848dd7bdfa36864",
+  "paper_mode": true,
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-18T10:11:06.799615028-04:00",
+    "next_open": "2026-06-22T09:30:00-04:00",
+    "next_close": "2026-06-18T16:00:00-04:00"
+  },
+  "stale_order_cleanup": {
+    "status": "pass",
+    "remaining_open_orders": [],
+    "source_ref": "wiki/evidence-store/sources/2026-06-18-2311-hourly-autopilot-stale-order-cleanup.json"
+  },
+  "alpaca_core_gate": {
+    "status": "pass",
+    "first_blocking_gate": "",
+    "source_ref": "wiki/evidence-store/sources/2026-06-18-2311-hourly-autopilot-alpaca-core-preflight.json"
+  },
+  "research_gate": {
+    "usable_pass_servers": [
+      "sec-edgar",
+      "fred",
+      "yahoo-finance"
+    ],
+    "usable_pass_count": 3,
+    "minimum_required": 3,
+    "source_ref": "wiki/evidence-store/sources/2026-06-18-2311-hourly-autopilot-research-mcp-preflight.json"
+  },
+  "review_backlog_throttle": {
+    "pending_1d_count": 17,
+    "pending_5d_count": 23,
+    "pending_20d_count": 15,
+    "stop_new_buys_at_pending_1d": 12,
+    "buy_path_blocked": true,
+    "sell_path_independent": true
+  },
+  "candidate_evaluation": {
+    "selected_order": {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 6,
+      "limit_price": 20.19,
+      "quote": {
+        "bid": 20.19,
+        "ask": 20.21,
+        "spread_pct": 0.0991,
+        "timestamp": "2026-06-18T14:11:24.077220241Z"
+      },
+      "why_selected": "strict MCP submit gate가 열린 상태에서 buy path는 backlog throttle로 닫혀 있고, RGTI는 speculative loss-control trim trigger와 정상 spread를 동시에 만족한 sell-first candidate다."
+    },
+    "blocked_candidates": [
+      {
+        "symbol": "SO",
+        "blocking_gate": "sell_metric_gap",
+        "quote": {
+          "bid": 93.06,
+          "ask": 93.11,
+          "spread_pct": 0.0537
+        }
+      },
+      {
+        "symbol": "AAPL",
+        "blocking_gate": "review_backlog_throttle_buy_only",
+        "quote": {
+          "bid": 298.84,
+          "ask": 299.53,
+          "spread_pct": 0.2309
+        }
+      },
+      {
+        "symbol": "BAC",
+        "blocking_gate": "review_backlog_throttle_buy_only",
+        "quote": {
+          "bid": 56.9,
+          "ask": 56.91,
+          "spread_pct": 0.0176
+        }
+      },
+      {
+        "symbol": "WMT",
+        "blocking_gate": "review_backlog_throttle_buy_only",
+        "quote": {
+          "bid": 117.57,
+          "ask": 117.6,
+          "spread_pct": 0.0255
+        }
+      },
+      {
+        "symbol": "NVDA",
+        "blocking_gate": "review_backlog_and_same_theme_warning",
+        "quote": {
+          "bid": 208.41,
+          "ask": 208.44,
+          "spread_pct": 0.0144
+        }
+      },
+      {
+        "symbol": "QQQ",
+        "blocking_gate": "review_backlog_throttle_buy_only",
+        "quote": {
+          "bid": 736.2,
+          "ask": 736.31,
+          "spread_pct": 0.0149
+        }
+      },
+      {
+        "symbol": "SPY",
+        "blocking_gate": "review_backlog_throttle_buy_only",
+        "quote": {
+          "bid": 745.29,
+          "ask": 745.33,
+          "spread_pct": 0.0054
+        }
+      }
+    ]
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-2311-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-18-2311-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-2311-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-2311-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-18-portfolio-review.md",
+    "wiki/research-notes/tickers/RGTI.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/AAPL.md",
+    "wiki/research-notes/tickers/BAC.md",
+    "wiki/research-notes/tickers/WMT.md",
+    "wiki/research-notes/tickers/NVDA.md"
+  ],
+  "submit_result": {
+    "order_id": "5462ee32-51cf-4626-bcc9-b84fc3e6da74",
+    "client_order_id": "hourly-20260618-2311-sell-rgti",
+    "status": "filled",
+    "submitted_at": "2026-06-18T14:20:08.551912601Z",
+    "filled_at": "2026-06-18T14:20:10.945043985Z",
+    "filled_avg_price": 20.331667
+  },
+  "post_trade_summary": {
+    "account_status": "ACTIVE",
+    "cash": 28197.42,
+    "portfolio_value": 101496.2,
+    "buying_power": 302709.45,
+    "open_orders": 0,
+    "positions_count": 33,
+    "rgti_qty_after_fill": 20
+  }
+}

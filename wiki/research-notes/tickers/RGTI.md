@@ -7,6 +7,12 @@ asset_type: stock
 
 # RGTI
 
+## 2026-06-18 23:20 KST hourly-autopilot trim
+
+`2311` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight를 source-of-record로 사용했고, strict universe/MCP/risk gate가 모두 PASS한 상태에서 buy side는 `review_backlog_pending_1d_count=17`로 계속 닫혀 있었다. `RGTI`는 direct Alpaca regular-session quote `20.19/20.21`, spread 약 `0.0991%`, held qty `26`, current US-date duplicate sell `0`, open orders `0`, speculative loss-control trim trigger 조건에서 25% trim `6주` 경로를 통과했고 `client_order_id=hourly-20260618-2311-sell-rgti`로 regular-session day limit sell을 제출했다. same client id reconciliation 기준 주문은 `2026-06-18T14:20:10.945043985Z`에 `filled_avg_price=20.331667 USD`로 즉시 체결됐고 보유수량은 `26주 -> 20주`로 감소했다. 해석은 `residual speculative sleeve staged de-risking 지속`이다.
+
+출처: [[2026-06-18-2311-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-18-2311-hourly-autopilot-post-trade.json`
+
 ## 2026-06-18 12:15 KST after-hours-autopilot reconciliation
 
 `2026-06-18 12:11 KST` after-hours cycle은 scheduler-owned `1211` core/research preflight를 source-of-record로 유지했고 Alpaca core `first_blocking_gate=market_closed`는 장외 워크플로우에서 expected nonblocking으로 처리했다. live Alpaca continuity `get_order_by_client_id(ah-20260618-1131-sell-rgti-01)` 기준 earlier trim 1주는 여전히 `status=new`, `filled_qty=0` open order다. live overnight quote `20.73/20.75`와 spread는 executable 범위였지만 same-session after-hours submitted orders가 이미 `2/2`였고 risk validator는 이 open order age `30.3분 > 30.0분` lifecycle limit으로 FAIL이었다. `get_all_positions` 기준 보유수량은 `27주`, `qty_available=26`이며 해석은 `staged de-risking open order stale lifecycle 추적 필요`다.
