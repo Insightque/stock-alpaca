@@ -1,0 +1,190 @@
+{
+  "run_id": "2026-06-18-0931-after-hours-autopilot",
+  "created_at": "2026-06-18T00:31:26+00:00",
+  "session": "after_hours",
+  "paper": true,
+  "submit_boundary_source": "wiki/evidence-store/sources/2026-06-18-0931-after-hours-autopilot-alpaca-core-preflight.json",
+  "live_quote_recheck": {
+    "tool": "mcp__alpaca.get_stock_latest_quote",
+    "feed": "iex",
+    "symbols": [
+      "QQQ",
+      "MS",
+      "NVDA",
+      "SPY",
+      "TSLA",
+      "GOOGL",
+      "WMT",
+      "JPM",
+      "PFE",
+      "RGTI",
+      "AVGO",
+      "MSFT"
+    ],
+    "result": "matched_scheduler_preflight_quote_timestamps",
+    "fresh_quote_recovered": false,
+    "quotes": {
+      "QQQ": {
+        "ap": 723,
+        "as": 280,
+        "ax": "V",
+        "bp": 722.87,
+        "bs": 280,
+        "bx": "V",
+        "c": [
+          "R"
+        ],
+        "t": "2026-06-17T20:00:04.242732726Z",
+        "z": "C"
+      },
+      "MS": {
+        "ap": 231.46,
+        "as": 600,
+        "ax": "V",
+        "bp": 220,
+        "bs": 100,
+        "bx": "V",
+        "c": [
+          "R"
+        ],
+        "t": "2026-06-17T20:20:00.57860736Z",
+        "z": "A"
+      },
+      "NVDA": {
+        "ap": 205.15,
+        "as": 100,
+        "ax": "V",
+        "bp": 193.86,
+        "bs": 100,
+        "bx": "V",
+        "c": [
+          "R"
+        ],
+        "t": "2026-06-17T20:00:03.007618527Z",
+        "z": "C"
+      },
+      "SPY": {
+        "ap": 766.37,
+        "as": 40,
+        "ax": "V",
+        "bp": 721.21,
+        "bs": 40,
+        "bx": "V",
+        "c": [
+          "R"
+        ],
+        "t": "2026-06-17T20:00:05.154329497Z",
+        "z": "B"
+      },
+      "TSLA": {
+        "ap": 413.69,
+        "as": 40,
+        "ax": "V",
+        "bp": 381.32,
+        "bs": 40,
+        "bx": "V",
+        "c": [
+          "R"
+        ],
+        "t": "2026-06-17T20:00:01.916829311Z",
+        "z": "C"
+      },
+      "GOOGL": {
+        "ap": 380.46,
+        "as": 40,
+        "ax": "V",
+        "bp": 350.5,
+        "bs": 40,
+        "bx": "V",
+        "c": [
+          "R"
+        ],
+        "t": "2026-06-17T20:00:00.773644253Z",
+        "z": "C"
+      },
+      "WMT": {
+        "ap": 123.44,
+        "as": 100,
+        "ax": "V",
+        "bp": 113.57,
+        "bs": 100,
+        "bx": "V",
+        "c": [
+          "R"
+        ],
+        "t": "2026-06-17T20:00:00.032054524Z",
+        "z": "C"
+      },
+      "JPM": {
+        "ap": 348.08,
+        "as": 40,
+        "ax": "V",
+        "bp": 320.24,
+        "bs": 40,
+        "bx": "V",
+        "c": [
+          "R"
+        ],
+        "t": "2026-06-17T20:00:00.003371859Z",
+        "z": "A"
+      },
+      "PFE": {
+        "ap": 27.38,
+        "as": 100,
+        "ax": "V",
+        "bp": 24.7,
+        "bs": 100,
+        "bx": "V",
+        "c": [
+          "R"
+        ],
+        "t": "2026-06-17T20:00:01.859383696Z",
+        "z": "A"
+      },
+      "RGTI": {
+        "ap": 23.11,
+        "as": 100,
+        "ax": "V",
+        "bp": 17.57,
+        "bs": 100,
+        "bx": "V",
+        "c": [
+          "R"
+        ],
+        "t": "2026-06-17T20:00:01.328243618Z",
+        "z": "C"
+      },
+      "AVGO": {
+        "ap": 416.43,
+        "as": 40,
+        "ax": "V",
+        "bp": 377.01,
+        "bs": 40,
+        "bx": "V",
+        "c": [
+          "R"
+        ],
+        "t": "2026-06-17T20:00:00.68708646Z",
+        "z": "C"
+      },
+      "MSFT": {
+        "ap": 0,
+        "as": 0,
+        "ax": " ",
+        "bp": 349,
+        "bs": 280,
+        "bx": "V",
+        "c": [
+          "R"
+        ],
+        "t": "2026-06-17T20:00:16.205552018Z",
+        "z": "C"
+      }
+    }
+  },
+  "note": "Live Alpaca MCP IEX quote continuity immediately before artifact finalization reproduced the same stale timestamps already recorded in the scheduler-owned 0931 preflight, so submit-boundary evidence stayed anchored to the scheduler artifact and no extended-hours order path opened.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-0931-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-0931-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
