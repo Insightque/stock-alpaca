@@ -1,0 +1,111 @@
+{
+  "run_id": "2026-06-18-1951-after-hours-autopilot",
+  "created_at": "2026-06-18T19:55:35+09:00",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "paper_mode_confirmed": true,
+  "market_clock": {
+    "is_open": false,
+    "next_close": "2026-06-18T16:00:00-04:00",
+    "next_open": "2026-06-18T09:30:00-04:00",
+    "timestamp": "2026-06-18T06:51:08.893668393-04:00"
+  },
+  "alpaca_core_preflight_first_blocking_gate": "market_closed",
+  "alpaca_core_interpretation": "after_hours_expected_nonblocking_market_closed_with_passing_scheduler_rows_reused",
+  "existing_open_orders": [],
+  "candidate_quotes": [],
+  "candidate_decision": {
+    "result": "no_submit",
+    "primary_blocker": "after_hours_session_budget_exhausted",
+    "explanation": "Scheduler-owned 1951 preflight preserved the after-hours-required account, positions, open-orders, watchlists, asset, quote, spread, and recent fill rows. Its regular-session first_blocking_gate=market_closed remained expected and nonblocking for after-hours execution, and the same-session filled client_order_ids for PFE and RGTI kept the separate after-hours session budget closed at 2/2 before any new submit path or pre-submit gate summary could open."
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "PFE",
+      "status": "filled_prior_after_hours_trim_kept_as_reconciled_reference",
+      "client_order_id": "ah-20260618-1111-sell-pfe-01",
+      "filled_avg_price": 25.97,
+      "source_refs": [
+        "wiki/current-runs/daily/2026-06-18-1111-after-hours-autopilot.md",
+        "wiki/evidence-store/sources/2026-06-18-1951-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "status": "filled_prior_after_hours_trim_kept_as_reconciled_reference",
+      "client_order_id": "ah-20260618-1131-sell-rgti-01",
+      "filled_avg_price": 20.75,
+      "source_refs": [
+        "wiki/current-runs/daily/2026-06-18-1131-after-hours-autopilot.md",
+        "wiki/evidence-store/sources/2026-06-18-1951-after-hours-autopilot-runtime-alpaca-spot-check.json"
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass"
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed"
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass"
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_scheduler_preflight_rows_reused"
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass"
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "fail_two_of_two_submitted_this_session"
+    },
+    {
+      "gate": "universe_strict",
+      "status": "PASS"
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "PASS"
+    },
+    {
+      "gate": "risk_policy",
+      "status": "PASS_expected_orders_empty_warning"
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "not_rechecked_budget_exhausted_before_new_submit_path"
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "not_rechecked_budget_exhausted_before_new_submit_path"
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "pass_no_new_order_built"
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "PASS_prior_client_order_ids_reconciled_without_retry"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-1951-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1951-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1951-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-18-1951-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/positions/2026-06-18-1951-after-hours-autopilot-post-trade.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/current-runs/daily/2026-06-18-1111-after-hours-autopilot.md",
+    "wiki/current-runs/daily/2026-06-18-1131-after-hours-autopilot.md",
+    "wiki/trade-ledger/reviews/2026-06-18-portfolio-review.md"
+  ]
+}
