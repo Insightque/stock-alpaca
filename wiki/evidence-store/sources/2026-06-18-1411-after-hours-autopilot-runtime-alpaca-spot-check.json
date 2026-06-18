@@ -1,0 +1,181 @@
+{
+  "run_id": "2026-06-18-1411-after-hours-autopilot",
+  "created_at": "2026-06-18T05:13:10Z",
+  "session": "after_hours",
+  "account": {
+    "status": "ACTIVE",
+    "cash": 28050.17,
+    "portfolio_value": 100912.6,
+    "buying_power": 300558.39,
+    "currency": "USD"
+  },
+  "positions_count": 34,
+  "open_orders_count": 0,
+  "watchlists_count": 0,
+  "same_session_after_hours_orders_submitted": 2,
+  "same_session_after_hours_fills": 2,
+  "market_clock_source": {
+    "is_open": false,
+    "timestamp": "2026-06-18T01:11:09.281743994-04:00",
+    "next_open": "2026-06-18T09:30:00-04:00",
+    "next_close": "2026-06-18T16:00:00-04:00",
+    "source": "scheduler_owned_core_preflight"
+  },
+  "live_reconciliation": {
+    "direct_tools_used": [
+      "get_clock",
+      "get_account_info",
+      "get_all_positions",
+      "get_orders(status=open)",
+      "get_orders(status=all, after=2026-06-17T20:00:00-04:00)",
+      "get_account_activities(activity_types=[FILL], after=2026-06-17T20:00:00-04:00)",
+      "get_watchlists",
+      "get_stock_latest_quote(feed=overnight)",
+      "get_order_by_client_id(ah-20260618-1111-sell-pfe-01)",
+      "get_order_by_client_id(ah-20260618-1131-sell-rgti-01)",
+      "get_asset(PFE)",
+      "get_asset(RGTI)",
+      "get_asset(TSLA)",
+      "get_asset(WMT)"
+    ],
+    "positions_count": 34,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted": 2,
+    "same_session_after_hours_fills": 2,
+    "notes": "submit-boundary source-of-record remained the scheduler-owned 1411 Alpaca core preflight; live MCP continuity confirmed the same two filled after-hours trims still consumed the separate session budget, open orders remained zero, and multiple fresh overnight fallback quotes recovered but none could be used because the session budget stayed 2/2."
+  },
+  "quote_gate_source": {
+    "feed": "overnight",
+    "source": "live_alpaca_continuity.get_stock_latest_quote(feed=overnight)",
+    "freshest_symbol": "QQQ",
+    "freshest_quote_age_minutes": 0.06,
+    "all_candidates_stale_or_wide": false,
+    "candidate_quotes": {
+      "QQQ": {
+        "bid": 730.7,
+        "ask": 731.06,
+        "quote_timestamp": "2026-06-18T05:13:06.632780736Z",
+        "feed": "overnight",
+        "age_minutes": 0.06,
+        "spread_pct": 0.0493
+      },
+      "WMT": {
+        "bid": 118.22,
+        "ask": 118.41,
+        "quote_timestamp": "2026-06-18T05:13:00.307850849Z",
+        "feed": "overnight",
+        "age_minutes": 0.16,
+        "spread_pct": 0.1606
+      },
+      "TSLA": {
+        "bid": 398.09,
+        "ask": 398.41,
+        "quote_timestamp": "2026-06-18T05:13:05.927244985Z",
+        "feed": "overnight",
+        "age_minutes": 0.07,
+        "spread_pct": 0.0804
+      },
+      "AVGO": {
+        "bid": 401.49,
+        "ask": 402.09,
+        "quote_timestamp": "2026-06-18T05:13:06.429944761Z",
+        "feed": "overnight",
+        "age_minutes": 0.06,
+        "spread_pct": 0.1493
+      },
+      "GOOGL": {
+        "bid": 364.31,
+        "ask": 364.43,
+        "quote_timestamp": "2026-06-18T05:13:05.975276564Z",
+        "feed": "overnight",
+        "age_minutes": 0.07,
+        "spread_pct": 0.0329
+      },
+      "PFE": {
+        "bid": 25.95,
+        "ask": 25.99,
+        "quote_timestamp": "2026-06-18T05:12:48.905435392Z",
+        "feed": "overnight",
+        "age_minutes": 0.35,
+        "spread_pct": 0.154
+      },
+      "RGTI": {
+        "bid": 20.66,
+        "ask": 20.73,
+        "quote_timestamp": "2026-06-18T05:13:03.055303310Z",
+        "feed": "overnight",
+        "age_minutes": 0.12,
+        "spread_pct": 0.3382
+      },
+      "JPM": {
+        "bid": 332.42,
+        "ask": 334.52,
+        "quote_timestamp": "2026-06-18T05:12:46.281009367Z",
+        "feed": "overnight",
+        "age_minutes": 0.4,
+        "spread_pct": 0.6297
+      },
+      "MS": {
+        "bid": 222.41,
+        "ask": 229.09,
+        "quote_timestamp": "2026-06-18T05:12:04.162921093Z",
+        "feed": "overnight",
+        "age_minutes": 1.1,
+        "spread_pct": 2.959
+      },
+      "NVDA": {
+        "bid": 206.0,
+        "ask": 206.1,
+        "quote_timestamp": "2026-06-18T05:13:06.231137504Z",
+        "feed": "overnight",
+        "age_minutes": 0.06,
+        "spread_pct": 0.0485
+      },
+      "SPY": {
+        "bid": 745.3,
+        "ask": 745.43,
+        "quote_timestamp": "2026-06-18T05:13:06.622941542Z",
+        "feed": "overnight",
+        "age_minutes": 0.06,
+        "spread_pct": 0.0174
+      },
+      "MSFT": {
+        "bid": 381.0,
+        "ask": 381.26,
+        "quote_timestamp": "2026-06-18T05:13:04.370070805Z",
+        "feed": "overnight",
+        "age_minutes": 0.09,
+        "spread_pct": 0.0682
+      }
+    }
+  },
+  "reconciled_client_orders": [
+    {
+      "client_order_id": "ah-20260618-1111-sell-pfe-01",
+      "symbol": "PFE",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 25.97,
+      "filled_at": "2026-06-18T02:58:29.784751618Z"
+    },
+    {
+      "client_order_id": "ah-20260618-1131-sell-rgti-01",
+      "symbol": "RGTI",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 20.75,
+      "filled_at": "2026-06-18T03:31:57.099382354Z"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/positions/2026-06-18-1411-after-hours-autopilot-post-trade.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/current-runs/daily/2026-06-18-1111-after-hours-autopilot.md",
+    "wiki/current-runs/daily/2026-06-18-1131-after-hours-autopilot.md",
+    "wiki/trade-ledger/reviews/2026-06-18-portfolio-review.md"
+  ]
+}

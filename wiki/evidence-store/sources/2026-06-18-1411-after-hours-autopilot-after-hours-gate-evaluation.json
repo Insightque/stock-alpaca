@@ -1,0 +1,272 @@
+{
+  "run_id": "2026-06-18-1411-after-hours-autopilot",
+  "created_at": "2026-06-18T05:13:10Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "paper_mode_confirmed": true,
+  "market_clock": {
+    "is_open": false,
+    "checked_at": "2026-06-18T01:11:09.281743994-04:00",
+    "next_open": "2026-06-18T09:30:00-04:00",
+    "next_close": "2026-06-18T16:00:00-04:00",
+    "session": "after_hours",
+    "timestamp": "2026-06-18T01:11:09.281743994-04:00"
+  },
+  "alpaca_core_preflight_first_blocking_gate": "market_closed",
+  "alpaca_core_interpretation": "market_closed_expected_nonblocking_after_hours",
+  "existing_open_orders": [],
+  "candidate_quotes": {
+    "QQQ": {
+      "bid": 730.7,
+      "ask": 731.06,
+      "quote_timestamp": "2026-06-18T05:13:06.632780736Z",
+      "feed": "overnight",
+      "age_minutes": 0.06,
+      "spread_pct": 0.0493
+    },
+    "WMT": {
+      "bid": 118.22,
+      "ask": 118.41,
+      "quote_timestamp": "2026-06-18T05:13:00.307850849Z",
+      "feed": "overnight",
+      "age_minutes": 0.16,
+      "spread_pct": 0.1606
+    },
+    "TSLA": {
+      "bid": 398.09,
+      "ask": 398.41,
+      "quote_timestamp": "2026-06-18T05:13:05.927244985Z",
+      "feed": "overnight",
+      "age_minutes": 0.07,
+      "spread_pct": 0.0804
+    },
+    "AVGO": {
+      "bid": 401.49,
+      "ask": 402.09,
+      "quote_timestamp": "2026-06-18T05:13:06.429944761Z",
+      "feed": "overnight",
+      "age_minutes": 0.06,
+      "spread_pct": 0.1493
+    },
+    "GOOGL": {
+      "bid": 364.31,
+      "ask": 364.43,
+      "quote_timestamp": "2026-06-18T05:13:05.975276564Z",
+      "feed": "overnight",
+      "age_minutes": 0.07,
+      "spread_pct": 0.0329
+    },
+    "PFE": {
+      "bid": 25.95,
+      "ask": 25.99,
+      "quote_timestamp": "2026-06-18T05:12:48.905435392Z",
+      "feed": "overnight",
+      "age_minutes": 0.35,
+      "spread_pct": 0.154
+    },
+    "RGTI": {
+      "bid": 20.66,
+      "ask": 20.73,
+      "quote_timestamp": "2026-06-18T05:13:03.055303310Z",
+      "feed": "overnight",
+      "age_minutes": 0.12,
+      "spread_pct": 0.3382
+    },
+    "JPM": {
+      "bid": 332.42,
+      "ask": 334.52,
+      "quote_timestamp": "2026-06-18T05:12:46.281009367Z",
+      "feed": "overnight",
+      "age_minutes": 0.4,
+      "spread_pct": 0.6297
+    },
+    "MS": {
+      "bid": 222.41,
+      "ask": 229.09,
+      "quote_timestamp": "2026-06-18T05:12:04.162921093Z",
+      "feed": "overnight",
+      "age_minutes": 1.1,
+      "spread_pct": 2.959
+    },
+    "NVDA": {
+      "bid": 206.0,
+      "ask": 206.1,
+      "quote_timestamp": "2026-06-18T05:13:06.231137504Z",
+      "feed": "overnight",
+      "age_minutes": 0.06,
+      "spread_pct": 0.0485
+    },
+    "SPY": {
+      "bid": 745.3,
+      "ask": 745.43,
+      "quote_timestamp": "2026-06-18T05:13:06.622941542Z",
+      "feed": "overnight",
+      "age_minutes": 0.06,
+      "spread_pct": 0.0174
+    },
+    "MSFT": {
+      "bid": 381.0,
+      "ask": 381.26,
+      "quote_timestamp": "2026-06-18T05:13:04.370070805Z",
+      "feed": "overnight",
+      "age_minutes": 0.09,
+      "spread_pct": 0.0682
+    }
+  },
+  "candidate_decision": {
+    "selected_symbol": null,
+    "selected_side": null,
+    "selected_qty": 0,
+    "selected_limit_price": null,
+    "selection_reason": "live overnight quote continuity recovered multiple executable 1-share fallback paths such as WMT, NVDA, GOOGL, MSFT, TSLA, and AVGO, but the separate after-hours session budget remained fully consumed at 2/2 by prior filled trims so this cycle could not create another executable order plan"
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "RGTI",
+      "held_qty": 26.0,
+      "current_weight_pct": 0.5336,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "residual_speculative_trim_candidate_already_executed_this_session",
+      "skipped_gate": "spread_within_after_hours_policy_and_separate_after_hours_order_budget",
+      "metric_status": "calculated",
+      "metric_gap_reason": "Live overnight quote 20.66/20.73 widened to about 0.3383%, above the after-hours spread cap, and the same-session after-hours submitted-order count stayed 2/2 after ah-20260618-1131-sell-rgti-01 filled.",
+      "recommendation": "watch",
+      "blocked_sell_recheck": "next_regular_session_review_bucket_follow_up",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-runtime-alpaca-spot-check.json",
+        "wiki/trade-ledger/positions/2026-06-18-1411-after-hours-autopilot-post-trade.json",
+        "wiki/research-notes/tickers/RGTI.md"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "held_qty": 1.0,
+      "current_weight_pct": 0.0257,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "repeated_weak_review_trim_candidate_already_executed_this_session",
+      "skipped_gate": "keep_minimum_remaining_qty_and_separate_after_hours_order_budget",
+      "metric_status": "calculated",
+      "metric_gap_reason": "Live overnight quote 25.95/25.99 narrowed to about 0.1540%, inside the after-hours spread cap, but the position remains at 1 share after ah-20260618-1111-sell-pfe-01 so another trim would violate keep_minimum_remaining_qty even before budget checks.",
+      "recommendation": "hold",
+      "blocked_sell_recheck": "next_regular_session_or_later_after_hours_only_if_position_increases",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-runtime-alpaca-spot-check.json",
+        "wiki/trade-ledger/positions/2026-06-18-1411-after-hours-autopilot-post-trade.json",
+        "wiki/research-notes/tickers/PFE.md"
+      ]
+    },
+    {
+      "symbol": "AVGO",
+      "held_qty": 1.0,
+      "current_weight_pct": 0.3987,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "target_band_de_risking_candidate",
+      "skipped_gate": "keep_minimum_remaining_qty_and_separate_after_hours_order_budget",
+      "metric_status": "calculated",
+      "metric_gap_reason": "Live overnight spread 401.49/402.09 was about 0.1493%, inside the after-hours spread cap, but only 1 share remains and keep_minimum_remaining_qty blocks any further floor-size trim before the already-exhausted 2/2 session budget.",
+      "recommendation": "watch",
+      "blocked_sell_recheck": "keep_minimum_remaining_qty",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-runtime-alpaca-spot-check.json",
+        "wiki/trade-ledger/positions/2026-06-18-1411-after-hours-autopilot-post-trade.json",
+        "wiki/research-notes/tickers/AVGO.md"
+      ]
+    },
+    {
+      "symbol": "WMT",
+      "held_qty": 10.0,
+      "current_weight_pct": 1.1703,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "fresh_buy_fallback_not_allowed_with_session_budget_exhausted",
+      "skipped_gate": "separate_after_hours_order_budget",
+      "metric_status": "calculated",
+      "metric_gap_reason": "Live overnight quote 118.22/118.41 and spread about 0.1606% stayed within the after-hours spread cap and the 1-share ask remained below the after-hours per-order cap, but the separate session budget was already exhausted at 2/2.",
+      "recommendation": "watch",
+      "blocked_sell_recheck": "session_budget_reset_required",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-runtime-alpaca-spot-check.json",
+        "wiki/trade-ledger/positions/2026-06-18-1411-after-hours-autopilot-post-trade.json",
+        "wiki/trade-ledger/reviews/2026-06-18-portfolio-review.md"
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass"
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed"
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass"
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_scheduler_preflight_rows_reused_and_live_order_reconciliation_confirmed"
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass"
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "fail_two_of_two_submitted_this_session"
+    },
+    {
+      "gate": "universe_strict",
+      "status": "PASS"
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "PASS"
+    },
+    {
+      "gate": "risk_policy",
+      "status": "PASS_expected_orders_empty_warning"
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "PASS_live_overnight_quotes_recovered_for_benchmark_and_existing_holding_shortlist"
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "PASS_multiple_live_quotes_recovered_but_budget_remained_primary_blocker"
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "pass_no_new_order_built"
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "PASS_client_order_ids_reconciled_without_retry"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-18-1411-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/positions/2026-06-18-1411-after-hours-autopilot-post-trade.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/current-runs/daily/2026-06-18-1111-after-hours-autopilot.md",
+    "wiki/current-runs/daily/2026-06-18-1131-after-hours-autopilot.md",
+    "wiki/trade-ledger/reviews/2026-06-18-portfolio-review.md"
+  ]
+}
