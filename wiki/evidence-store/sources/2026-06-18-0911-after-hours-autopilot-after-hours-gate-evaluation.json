@@ -1,0 +1,322 @@
+{
+  "run_id": "2026-06-18-0911-after-hours-autopilot",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "created_at": "2026-06-18T00:11:25+00:00",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-0911-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-0911-after-hours-autopilot-research-mcp-preflight.json"
+  ],
+  "regular_market_clock": {
+    "is_open": false,
+    "timestamp": "2026-06-17T20:11:07.741827513-04:00",
+    "next_open": "2026-06-18T09:30:00-04:00",
+    "next_close": "2026-06-18T16:00:00-04:00"
+  },
+  "alpaca_core_preflight": {
+    "status": "failed",
+    "first_blocking_gate": "market_closed",
+    "gap_category": "not_applicable",
+    "gap_reason": "market_closed did not pass.",
+    "expected_nonblocking_after_hours": true
+  },
+  "account_snapshot": {
+    "status": "ACTIVE",
+    "portfolio_value": 101192.55,
+    "cash": 28003.45,
+    "buying_power": 301094.84,
+    "positions_count": 34,
+    "open_orders_count": 0,
+    "watchlists_count": 0
+  },
+  "after_hours_budget": {
+    "orders_submitted_this_session": 0,
+    "session_limit": 2,
+    "remaining": 2
+  },
+  "review_backlog": {
+    "pending_1d_count": 17,
+    "pending_5d_count": 23,
+    "pending_20d_count": 15,
+    "blocked_add_symbols": [
+      "NOK"
+    ]
+  },
+  "research_shortlist": [
+    "QQQ",
+    "MS",
+    "NVDA",
+    "SPY",
+    "TSLA",
+    "GOOGL",
+    "WMT",
+    "JPM"
+  ],
+  "candidate_gate_results": [
+    {
+      "symbol": "QQQ",
+      "bid": 722.87,
+      "ask": 723,
+      "timestamp": "2026-06-17T20:00:04.242732726Z",
+      "age_minutes": 251.35,
+      "spread_pct": 0.018,
+      "extended_hours_eligible": true,
+      "blocking_reasons": [
+        "stale_quote",
+        "per_order_cap"
+      ]
+    },
+    {
+      "symbol": "MS",
+      "bid": 220,
+      "ask": 231.46,
+      "timestamp": "2026-06-17T20:20:00.57860736Z",
+      "age_minutes": 231.41,
+      "spread_pct": 5.2091,
+      "extended_hours_eligible": true,
+      "blocking_reasons": [
+        "stale_quote",
+        "wide_or_missing_spread"
+      ]
+    },
+    {
+      "symbol": "NVDA",
+      "bid": 193.86,
+      "ask": 205.15,
+      "timestamp": "2026-06-17T20:00:03.007618527Z",
+      "age_minutes": 251.37,
+      "spread_pct": 5.8238,
+      "extended_hours_eligible": true,
+      "blocking_reasons": [
+        "stale_quote",
+        "wide_or_missing_spread"
+      ]
+    },
+    {
+      "symbol": "SPY",
+      "bid": 721.21,
+      "ask": 766.37,
+      "timestamp": "2026-06-17T20:00:05.154329497Z",
+      "age_minutes": 251.33,
+      "spread_pct": 6.2617,
+      "extended_hours_eligible": true,
+      "blocking_reasons": [
+        "stale_quote",
+        "wide_or_missing_spread"
+      ]
+    },
+    {
+      "symbol": "TSLA",
+      "bid": 381.32,
+      "ask": 413.69,
+      "timestamp": "2026-06-17T20:00:01.916829311Z",
+      "age_minutes": 251.38,
+      "spread_pct": 8.4889,
+      "extended_hours_eligible": true,
+      "blocking_reasons": [
+        "stale_quote",
+        "wide_or_missing_spread"
+      ]
+    },
+    {
+      "symbol": "GOOGL",
+      "bid": 350.5,
+      "ask": 380.46,
+      "timestamp": "2026-06-17T20:00:00.773644253Z",
+      "age_minutes": 251.4,
+      "spread_pct": 8.5478,
+      "extended_hours_eligible": true,
+      "blocking_reasons": [
+        "stale_quote",
+        "wide_or_missing_spread"
+      ]
+    },
+    {
+      "symbol": "WMT",
+      "bid": 113.57,
+      "ask": 123.44,
+      "timestamp": "2026-06-17T20:00:00.032054524Z",
+      "age_minutes": 251.42,
+      "spread_pct": 8.6907,
+      "extended_hours_eligible": true,
+      "blocking_reasons": [
+        "stale_quote",
+        "wide_or_missing_spread"
+      ]
+    },
+    {
+      "symbol": "JPM",
+      "bid": 320.24,
+      "ask": 348.08,
+      "timestamp": "2026-06-17T20:00:00.003371859Z",
+      "age_minutes": 251.42,
+      "spread_pct": 8.6935,
+      "extended_hours_eligible": true,
+      "blocking_reasons": [
+        "stale_quote",
+        "wide_or_missing_spread"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "bid": 24.7,
+      "ask": 27.38,
+      "timestamp": "2026-06-17T20:00:01.859383696Z",
+      "age_minutes": 251.39,
+      "spread_pct": 10.8502,
+      "extended_hours_eligible": true,
+      "blocking_reasons": [
+        "stale_quote",
+        "wide_or_missing_spread"
+      ]
+    },
+    {
+      "symbol": "RGTI",
+      "bid": 17.57,
+      "ask": 23.11,
+      "timestamp": "2026-06-17T20:00:01.328243618Z",
+      "age_minutes": 251.39,
+      "spread_pct": 31.531,
+      "extended_hours_eligible": true,
+      "blocking_reasons": [
+        "stale_quote",
+        "wide_or_missing_spread"
+      ]
+    },
+    {
+      "symbol": "AVGO",
+      "bid": 377.01,
+      "ask": 416.43,
+      "timestamp": "2026-06-17T20:00:00.68708646Z",
+      "age_minutes": 251.41,
+      "spread_pct": 10.456,
+      "extended_hours_eligible": true,
+      "blocking_reasons": [
+        "stale_quote",
+        "wide_or_missing_spread"
+      ]
+    },
+    {
+      "symbol": "MSFT",
+      "bid": 349,
+      "ask": 0,
+      "timestamp": "2026-06-17T20:00:16.205552018Z",
+      "age_minutes": 251.15,
+      "spread_pct": null,
+      "extended_hours_eligible": true,
+      "blocking_reasons": [
+        "stale_quote",
+        "wide_or_missing_spread"
+      ]
+    }
+  ],
+  "gate_results": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_scheduler_preflight_rows_reused",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "risk_policy": "PASS with expected `orders is empty` warning",
+    "fresh_quote": "fail_scheduler_owned_submit_boundary_quotes_stale_231.41_to_251.42_minutes",
+    "spread_within_after_hours_policy": "fail_no_candidate_met_fresh_and_spread_and_notional_together",
+    "whole_share_day_limit_extended_hours_order": "pass_no_orders_built",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit"
+  },
+  "blocking_summary": {
+    "primary_gate": "fresh_quote",
+    "secondary_gate": "spread_within_after_hours_policy",
+    "submit_allowed": false,
+    "reason": "All evaluated after-hours submit-boundary quotes were older than the 5-minute cap (231.41-251.42 minutes); only QQQ met spread but still failed freshness and per-order notional cap."
+  },
+  "validator_results": {
+    "universe": {
+      "status": "PASS",
+      "errors": [],
+      "warnings": [],
+      "summary": {
+        "strict_required": true,
+        "actionable": true,
+        "minimum_required_symbols": 50,
+        "symbols_considered": 62,
+        "symbols_loaded": 62,
+        "benchmarks": [
+          "QQQ",
+          "SPY"
+        ],
+        "pre_mcp_shortlist_count": 8,
+        "final_candidate_count": 8,
+        "scope_limited_by_user": false
+      }
+    },
+    "mcp": {
+      "status": "PASS",
+      "errors": [],
+      "warnings": [],
+      "summary": {
+        "required_servers": [
+          "alpaca",
+          "sec-edgar",
+          "alpha-vantage",
+          "fred",
+          "firecrawl",
+          "yahoo-finance"
+        ],
+        "core_servers": [
+          "alpaca"
+        ],
+        "research_servers": [
+          "sec-edgar",
+          "alpha-vantage",
+          "fred",
+          "firecrawl",
+          "yahoo-finance"
+        ],
+        "covered_servers": [
+          "alpaca",
+          "alpha-vantage",
+          "firecrawl",
+          "fred",
+          "sec-edgar",
+          "yahoo-finance"
+        ],
+        "strict_required": true,
+        "actionable": true,
+        "min_research_confirmations": 3,
+        "positive_research_confirmations": [
+          "fred",
+          "sec-edgar",
+          "yahoo-finance"
+        ]
+      }
+    },
+    "risk": {
+      "errors": [],
+      "path": "wiki/trade-ledger/orders/2026-06-18-0911-after-hours-autopilot.json",
+      "status": "PASS",
+      "summary": {
+        "buy_notional": 0.0,
+        "max_cluster_value": 45536.6475,
+        "max_factor_value": 50596.275,
+        "max_invested": 96132.9225,
+        "max_speculative_value": 12143.106,
+        "max_theme_value": 35417.3925,
+        "max_ticker_value": 15178.8825,
+        "min_cash": 5059.6275000000005,
+        "policy_version": "medium-risk-v1.2",
+        "post_cash": 28003.45,
+        "post_invested": 73189.10449999999,
+        "review_backlog_pending_1d_count": 17,
+        "sell_notional": 0.0,
+        "speculative_value": 3480.87,
+        "target_max_cash": 10119.255000000001,
+        "target_min_invested": 91073.295
+      },
+      "warnings": [
+        "orders is empty"
+      ]
+    }
+  }
+}
