@@ -1,0 +1,101 @@
+{
+  "run_id": "2026-06-19-0031-hourly-autopilot",
+  "created_at": "2026-06-18T15:35:44Z",
+  "source": "hourly autopilot post-trade reconciliation",
+  "order": {
+    "id": "d3ccdbdd-6bbe-487d-b54a-cbaa7a59a8f1",
+    "client_order_id": "hourly-20260619-0031-sell-rgti",
+    "created_at": "2026-06-18T15:35:27.082186173Z",
+    "submitted_at": "2026-06-18T15:35:27.087177631Z",
+    "filled_at": null,
+    "symbol": "RGTI",
+    "side": "sell",
+    "qty": "3",
+    "filled_qty": "0",
+    "filled_avg_price": null,
+    "limit_price": "20.61",
+    "status": "new",
+    "extended_hours": false,
+    "time_in_force": "day",
+    "order_type": "limit"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "cash": 28363.52,
+    "portfolio_value": 101364.57,
+    "buying_power": 302650.16,
+    "long_market_value": 73001.05,
+    "currency": "USD"
+  },
+  "open_orders": [
+    {
+      "id": "d3ccdbdd-6bbe-487d-b54a-cbaa7a59a8f1",
+      "client_order_id": "hourly-20260619-0031-sell-rgti",
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": "3",
+      "filled_qty": "0",
+      "limit_price": "20.61",
+      "status": "new",
+      "submitted_at": "2026-06-18T15:35:27.087177631Z"
+    }
+  ],
+  "watchlists_count": 0,
+  "positions_count": 33,
+  "key_positions": [
+    {
+      "symbol": "RGTI",
+      "qty": "12",
+      "qty_available": "9",
+      "avg_entry_price": "25.569583",
+      "current_price": "20.58",
+      "market_value": "246.96",
+      "change_today": "0.01655"
+    },
+    {
+      "symbol": "SO",
+      "qty": "6",
+      "qty_available": "6",
+      "avg_entry_price": "92.801667",
+      "current_price": "93.78",
+      "market_value": "562.68",
+      "change_today": "0.01351"
+    },
+    {
+      "symbol": "AAPL",
+      "qty": "7",
+      "qty_available": "7",
+      "avg_entry_price": "301.458571",
+      "current_price": "297.28",
+      "market_value": "2080.96",
+      "change_today": "0.00449"
+    },
+    {
+      "symbol": "BAC",
+      "qty": "8",
+      "qty_available": "8",
+      "avg_entry_price": "54.2175",
+      "current_price": "56.655",
+      "market_value": "453.24",
+      "change_today": "0.00221"
+    },
+    {
+      "symbol": "WMT",
+      "qty": "10",
+      "qty_available": "10",
+      "avg_entry_price": "118.568",
+      "current_price": "117.32",
+      "market_value": "1173.2",
+      "change_today": "-0.00686"
+    },
+    {
+      "symbol": "NVDA",
+      "qty": "39",
+      "qty_available": "39",
+      "avg_entry_price": "214.805897",
+      "current_price": "208.69",
+      "market_value": "8138.91",
+      "change_today": "0.01974"
+    }
+  ]
+}
