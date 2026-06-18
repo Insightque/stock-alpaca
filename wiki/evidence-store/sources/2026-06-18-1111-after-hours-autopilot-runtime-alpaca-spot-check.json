@@ -1,0 +1,73 @@
+{
+  "run_id": "2026-06-18-1111-after-hours-autopilot",
+  "created_at": "2026-06-18T02:13:24Z",
+  "submit_boundary_source": "wiki/evidence-store/sources/2026-06-18-1111-after-hours-autopilot-alpaca-core-preflight.json",
+  "clock": {
+    "tool": "mcp__alpaca.get_clock",
+    "result": "regular_market_still_closed",
+    "timestamp": "2026-06-17T22:13:21.122450966-04:00",
+    "next_open": "2026-06-18T09:30:00-04:00",
+    "next_close": "2026-06-18T16:00:00-04:00"
+  },
+  "account": {
+    "tool": "mcp__alpaca.get_account_info",
+    "result": "matched_scheduler_preflight_account_status",
+    "status": "ACTIVE",
+    "portfolio_value": 101055.97,
+    "cash": 28003.45,
+    "buying_power": 300836.23
+  },
+  "positions": {
+    "tool": "mcp__alpaca.get_all_positions",
+    "result": "matched_scheduler_preflight_positions_count",
+    "positions_count": 34,
+    "pfe_qty": 2,
+    "pfe_qty_available_before_submit": 2,
+    "pfe_qty_available_after_submit": 1
+  },
+  "orders": {
+    "tool": "mcp__alpaca.get_orders",
+    "open_orders_count_after_submit": 1,
+    "same_session_after_hours_orders": 1,
+    "same_session_fills": 0,
+    "tracked_client_order_id": "ah-20260618-1111-sell-pfe-01",
+    "tracked_order_status": "new"
+  },
+  "quotes": {
+    "tool": "mcp__alpaca.get_stock_latest_quote",
+    "overnight": {
+      "PFE": {
+        "bid": 25.97,
+        "ask": 25.98,
+        "timestamp": "2026-06-18T02:13:22.834519946Z"
+      },
+      "RGTI": {
+        "bid": 20.72,
+        "ask": 20.76,
+        "timestamp": "2026-06-18T02:13:22.709910444Z"
+      },
+      "AVGO": {
+        "bid": 402.7,
+        "ask": 403.03,
+        "timestamp": "2026-06-18T02:13:23.27804451Z"
+      },
+      "QQQ": {
+        "bid": 733.27,
+        "ask": 733.55,
+        "timestamp": "2026-06-18T02:13:15.437892833Z"
+      }
+    },
+    "iex": {
+      "PFE": {
+        "bid": 24.7,
+        "ask": 27.38,
+        "timestamp": "2026-06-17T20:00:01.859383696Z"
+      }
+    }
+  },
+  "note": "Scheduler-owned 1111 preflight supplied passing Alpaca core rows while direct Alpaca continuity reopened the overnight quote path. That allowed PFE sell trim submit under the separate after-hours budget and immediate reconciliation left the order open with the same client_order_id.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-1111-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1111-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}

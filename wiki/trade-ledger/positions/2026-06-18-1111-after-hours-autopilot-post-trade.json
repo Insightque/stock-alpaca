@@ -1,0 +1,49 @@
+{
+  "run_id": "2026-06-18-1111-after-hours-autopilot",
+  "created_at": "2026-06-18T02:19:05Z",
+  "session": "after_hours",
+  "orders_submitted": 1,
+  "orders_open": 1,
+  "same_session_after_hours_orders_submitted_today": 1,
+  "same_session_after_hours_fills_today": 0,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 101090.32,
+    "cash": 28003.45,
+    "buying_power": 300921.15,
+    "positions_count": 34
+  },
+  "tracked_order": {
+    "order_id": "d3b37f0b-4efa-406a-994f-432ae6b8b8a0",
+    "client_order_id": "ah-20260618-1111-sell-pfe-01",
+    "symbol": "PFE",
+    "side": "sell",
+    "qty": 1,
+    "limit_price": 25.97,
+    "status": "new",
+    "filled_qty": 0,
+    "filled_avg_price": null,
+    "submitted_at": "2026-06-18T02:18:54.597043022Z"
+  },
+  "pfe_position": {
+    "qty": 2,
+    "qty_available": 1,
+    "avg_entry_price": 25.87,
+    "current_price": 25.96
+  },
+  "note": "Immediate reconciliation by client_order_id succeeded. The after-hours PFE trim remains open with no fill yet, and no alternate client_order_id retry was attempted.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-1111-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1111-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1111-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/evidence-store/sources/2026-06-18-1111-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ],
+  "new_orders": [
+    {
+      "client_order_id": "ah-20260618-1111-sell-pfe-01",
+      "symbol": "PFE",
+      "status": "new"
+    }
+  ],
+  "filled_orders": []
+}
