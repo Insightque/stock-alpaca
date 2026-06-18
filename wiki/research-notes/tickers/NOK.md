@@ -144,3 +144,9 @@ current Alpaca snapshot 기준 `NOK`는 `402주`, 평균단가 `15.044527 USD`, 
 current Alpaca snapshot 기준 `NOK`는 `402주`, 평균단가 `15.044527 USD`, `2026-06-17 ET` close `13.81 USD`로 add-block 해제 근거가 아직 없다. Alpha Vantage latest quarter beat와 `2026-06-12` JP Morgan 상향은 우호적이지만 tape가 약해 `2026-06-18 ET` 20D review 전까지 `existing-position-breakout-add-penalty`를 유지한다.
 
 출처: [[2026-06-18-portfolio-review]], [[2026-06-18-0621-analyst-review-cycle-sources]]
+
+### 2026-06-19 analyst review cycle
+
+`NOK` `20D` add-block review를 닫았다. current Alpaca snapshot 기준 `NOK`는 여전히 `402주`, 평균단가 `15.044527 USD`, `2026-06-18 ET` close `13.49 USD`, current `13.55 USD`로 평균단가를 계속 밑돈다. Alpha Vantage latest quarter beat와 `2026-06-12` JP Morgan `Overweight / PT 21`, recent `6-K` 흐름은 우호적이지만 tape는 여전히 약하다. 따라서 이번 cycle에서도 `existing-position-breakout-add-penalty`를 해제하지 않고 신규 add 차단을 유지한다.
+
+출처: [[2026-06-19-portfolio-review]], [[2026-06-19-0630-analyst-review-cycle-sources]]

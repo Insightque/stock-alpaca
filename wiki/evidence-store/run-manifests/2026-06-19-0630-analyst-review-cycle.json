@@ -1,0 +1,159 @@
+{
+  "id": "2026-06-19-0630-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-06-18T21:30:00Z",
+  "timezone": "Asia/Seoul",
+  "paper": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "alpaca_reconciliation": {
+    "clock_is_open": false,
+    "account_status": "ACTIVE",
+    "portfolio_value": 101755.32,
+    "cash": 28610.97,
+    "buying_power": 303996.18,
+    "long_market_value": 73144.35,
+    "open_us_equity_orders": 0,
+    "position_count_direct": 34,
+    "position_count_recent_source_of_record": 32,
+    "watchlists_count": 0,
+    "recent_fill_scope_after": "2026-06-12T00:00:00Z",
+    "direct_fill_activity": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 0,
+      "gap_reason": "get_account_activities_by_type(activity_type=FILL) cancelled; general get_account_activities remained usable"
+    },
+    "portfolio_history": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 0,
+      "gap_reason": "get_portfolio_history(period=1M,timeframe=1D,intraday_reporting=market_hours,pnl_reset=no_reset) cancelled"
+    },
+    "position_count_mismatch": {
+      "outcome": "gap",
+      "gap_category": "provider_error",
+      "retry_count": 0,
+      "gap_reason": "direct get_all_positions returned 34 while recent scheduler-owned source-of-record artifacts reported 32"
+    }
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-06-19-portfolio-review.md",
+    "symbol_reviews": [
+      "wiki/research-notes/tickers/NOK.md",
+      "wiki/research-notes/tickers/NVDA.md",
+      "wiki/research-notes/tickers/MRK.md"
+    ],
+    "reviewed_horizons": [
+      "2026-06-17 ET fill cohort 1D closeout",
+      "NOK 20D add-block review",
+      "open-position monitor",
+      "skipped recommendations re-check"
+    ],
+    "symbols": [
+      "SPY",
+      "QQQ",
+      "NOK",
+      "NVDA",
+      "MRK",
+      "SO",
+      "AAPL",
+      "GOOGL",
+      "AMZN",
+      "MSFT",
+      "XOM",
+      "COP",
+      "SLB",
+      "FCX",
+      "WMT",
+      "BAC",
+      "PFE",
+      "RGTI",
+      "NEE",
+      "NKE",
+      "AVGO"
+    ],
+    "due_now": true,
+    "next_due": "2026-06-19 ET regular-session close for PFE/AVGO 5D and 2026-06-18 ET trim-exit fill cohort 1D"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0630-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "get_account_activities_by_type(FILL) and portfolio_history were cancelled, but account/order/positions/general activity/snapshot reconciliation was usable",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0630-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "recent filings and company info succeeded; some deeper calls timed out or were cancelled in parallel attempts",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0630-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0630-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0630-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0630-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "some per-symbol requests timed out, but final recommendation and news context for review symbols was usable",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "NOK add-block 유지, NVDA 1D 양호, defensive and energy/materials adds mixed, and Alpaca reconciliation gaps remained; the evidence threshold for recommendation-policy changes was not met"
+  }
+}

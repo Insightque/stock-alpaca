@@ -95,3 +95,9 @@ Alpaca/Benzinga에서는 CPU 시장 기대와 post-earnings pullback/support nar
 `2026-06-05 ET` fill 1D는 `208.73 USD -> 208.66 USD`로 `-0.03%`였다. 절대수익은 flat이지만 `SPY` 대비 `-0.28%p`, `QQQ` 대비 `-1.55%p`로 과도한 추격 손실 없이 버틴 편이다. AI core holding validation으로는 `중립 양호`이며, 강한 verdict는 5D에서 다시 판단한다.
 
 출처: [[2026-06-09-portfolio-review]], [[2026-06-09-0623-analyst-review-cycle-sources]]
+
+### 2026-06-19 analyst review cycle
+
+`2026-06-17 ET` fill 1D는 `206.23 USD -> 210.38 USD`로 `+2.01%`였다. `SPY +0.77%`는 앞섰고 `QQQ +2.40%`에는 약간 못 미쳤지만, absolute gain과 AI core holding 역할을 함께 보면 판단은 `양호`다. Yahoo Finance의 최근 bullish recommendation 흐름과 AI/chip demand news, SEC EDGAR의 `2026-06-18` `8-K/Form 4`는 context를 계속 constructive하게 유지한다. 다만 이번 결과만으로 AI add rule을 더 공격적으로 바꾸지는 않는다.
+
+출처: [[2026-06-19-portfolio-review]], [[2026-06-19-0630-analyst-review-cycle-sources]]
