@@ -1,0 +1,181 @@
+{
+  "run_id": "2026-06-18-1351-after-hours-autopilot",
+  "created_at": "2026-06-18T04:53:05Z",
+  "session": "after_hours",
+  "account": {
+    "status": "ACTIVE",
+    "cash": 28050.17,
+    "portfolio_value": 100831.08,
+    "buying_power": 300318.88,
+    "currency": "USD"
+  },
+  "positions_count": 34,
+  "open_orders_count": 0,
+  "watchlists_count": 0,
+  "same_session_after_hours_orders_submitted": 2,
+  "same_session_after_hours_fills": 2,
+  "market_clock_source": {
+    "is_open": false,
+    "timestamp": "2026-06-18T00:51:09.578976351-04:00",
+    "next_open": "2026-06-18T09:30:00-04:00",
+    "next_close": "2026-06-18T16:00:00-04:00",
+    "source": "scheduler_owned_core_preflight"
+  },
+  "live_reconciliation": {
+    "direct_tools_used": [
+      "get_clock",
+      "get_account_info",
+      "get_all_positions",
+      "get_orders(status=open)",
+      "get_orders(status=all, after=2026-06-17T20:00:00-04:00)",
+      "get_account_activities(activity_types=[FILL], after=2026-06-17T20:00:00-04:00)",
+      "get_watchlists",
+      "get_stock_latest_quote(feed=overnight)",
+      "get_order_by_client_id(ah-20260618-1111-sell-pfe-01)",
+      "get_order_by_client_id(ah-20260618-1131-sell-rgti-01)",
+      "get_asset(PFE)",
+      "get_asset(RGTI)",
+      "get_asset(TSLA)",
+      "get_asset(WMT)"
+    ],
+    "positions_count": 34,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted": 2,
+    "same_session_after_hours_fills": 2,
+    "notes": "submit-boundary source-of-record remained the scheduler-owned 1351 Alpaca core preflight; live MCP continuity confirmed the same two filled after-hours trims still consumed the separate session budget, open orders remained zero, and only WMT stayed inside the fresh after-hours quote plus spread caps for a fallback buy path."
+  },
+  "quote_gate_source": {
+    "feed": "overnight",
+    "source": "live_alpaca_continuity.get_stock_latest_quote(feed=overnight)",
+    "freshest_symbol": "SPY",
+    "freshest_quote_age_minutes": 0.08,
+    "all_candidates_stale_or_wide": false,
+    "candidate_quotes": {
+      "TSLA": {
+        "bid": 398.35,
+        "ask": 398.6,
+        "quote_timestamp": "2026-06-18T04:52:42.967028692Z",
+        "feed": "overnight",
+        "age_minutes": 0.2,
+        "spread_pct": 0.0627
+      },
+      "QQQ": {
+        "bid": 731.28,
+        "ask": 731.48,
+        "quote_timestamp": "2026-06-18T04:52:48.45375383Z",
+        "feed": "overnight",
+        "age_minutes": 0.11,
+        "spread_pct": 0.0273
+      },
+      "AVGO": {
+        "bid": 399.82,
+        "ask": 400.98,
+        "quote_timestamp": "2026-06-18T04:52:48.860142137Z",
+        "feed": "overnight",
+        "age_minutes": 0.1,
+        "spread_pct": 0.2897
+      },
+      "WMT": {
+        "bid": 118.2,
+        "ask": 118.37,
+        "quote_timestamp": "2026-06-18T04:48:11.693486256Z",
+        "feed": "overnight",
+        "age_minutes": 4.72,
+        "spread_pct": 0.1437
+      },
+      "MSFT": {
+        "bid": 381.03,
+        "ask": 381.31,
+        "quote_timestamp": "2026-06-18T04:52:47.74523098Z",
+        "feed": "overnight",
+        "age_minutes": 0.12,
+        "spread_pct": 0.0735
+      },
+      "MS": {
+        "bid": 222.47,
+        "ask": 229.13,
+        "quote_timestamp": "2026-06-18T04:51:12.67365055Z",
+        "feed": "overnight",
+        "age_minutes": 1.71,
+        "spread_pct": 2.9495
+      },
+      "NVDA": {
+        "bid": 205.26,
+        "ask": 205.41,
+        "quote_timestamp": "2026-06-18T04:52:49.311167597Z",
+        "feed": "overnight",
+        "age_minutes": 0.09,
+        "spread_pct": 0.0731
+      },
+      "GOOGL": {
+        "bid": 364.19,
+        "ask": 364.53,
+        "quote_timestamp": "2026-06-18T04:52:48.034094011Z",
+        "feed": "overnight",
+        "age_minutes": 0.12,
+        "spread_pct": 0.0933
+      },
+      "JPM": {
+        "bid": 334.08,
+        "ask": 334.61,
+        "quote_timestamp": "2026-06-18T04:52:10.809988498Z",
+        "feed": "overnight",
+        "age_minutes": 0.74,
+        "spread_pct": 0.1585
+      },
+      "SPY": {
+        "bid": 744.72,
+        "ask": 744.9,
+        "quote_timestamp": "2026-06-18T04:52:49.913486334Z",
+        "feed": "overnight",
+        "age_minutes": 0.08,
+        "spread_pct": 0.0242
+      },
+      "RGTI": {
+        "bid": 20.66,
+        "ask": 20.72,
+        "quote_timestamp": "2026-06-18T04:52:43.792266648Z",
+        "feed": "overnight",
+        "age_minutes": 0.19,
+        "spread_pct": 0.29
+      },
+      "PFE": {
+        "bid": 25.93,
+        "ask": 26.01,
+        "quote_timestamp": "2026-06-18T04:52:14.574805267Z",
+        "feed": "overnight",
+        "age_minutes": 0.67,
+        "spread_pct": 0.308
+      }
+    }
+  },
+  "reconciled_client_orders": [
+    {
+      "client_order_id": "ah-20260618-1111-sell-pfe-01",
+      "symbol": "PFE",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 25.97,
+      "filled_at": "2026-06-18T02:58:29.784751618Z"
+    },
+    {
+      "client_order_id": "ah-20260618-1131-sell-rgti-01",
+      "symbol": "RGTI",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 20.75,
+      "filled_at": "2026-06-18T03:31:57.099382354Z"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-1351-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1351-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1351-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-18-1351-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/positions/2026-06-18-1351-after-hours-autopilot-post-trade.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/current-runs/daily/2026-06-18-1111-after-hours-autopilot.md",
+    "wiki/current-runs/daily/2026-06-18-1131-after-hours-autopilot.md",
+    "wiki/trade-ledger/reviews/2026-06-18-portfolio-review.md"
+  ]
+}

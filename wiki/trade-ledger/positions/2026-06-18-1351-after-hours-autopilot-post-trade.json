@@ -1,0 +1,60 @@
+{
+  "run_id": "2026-06-18-1351-after-hours-autopilot",
+  "created_at": "2026-06-18T04:53:05Z",
+  "session": "after_hours",
+  "reconciliation_status": "no_submit_after_hours_session_budget_exhausted_prior_fills_reconciled",
+  "account": {
+    "status": "ACTIVE",
+    "cash": 28050.17,
+    "portfolio_value": 100831.08,
+    "buying_power": 300318.88,
+    "currency": "USD"
+  },
+  "positions_count": 34,
+  "open_orders_count": 0,
+  "same_session_after_hours_orders_submitted": 2,
+  "same_session_after_hours_fills": 2,
+  "changed_positions": [
+    {
+      "symbol": "PFE",
+      "qty": 1,
+      "qty_available": 1,
+      "current_price": 25.94
+    },
+    {
+      "symbol": "RGTI",
+      "qty": 26,
+      "qty_available": 26,
+      "current_price": 20.68
+    }
+  ],
+  "reconciled_client_orders": [
+    {
+      "client_order_id": "ah-20260618-1111-sell-pfe-01",
+      "symbol": "PFE",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 25.97,
+      "filled_at": "2026-06-18T02:58:29.784751618Z"
+    },
+    {
+      "client_order_id": "ah-20260618-1131-sell-rgti-01",
+      "symbol": "RGTI",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 20.75,
+      "filled_at": "2026-06-18T03:31:57.099382354Z"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-1351-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1351-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1351-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-18-1351-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/positions/2026-06-18-1351-after-hours-autopilot-post-trade.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/current-runs/daily/2026-06-18-1111-after-hours-autopilot.md",
+    "wiki/current-runs/daily/2026-06-18-1131-after-hours-autopilot.md",
+    "wiki/trade-ledger/reviews/2026-06-18-portfolio-review.md"
+  ]
+}
