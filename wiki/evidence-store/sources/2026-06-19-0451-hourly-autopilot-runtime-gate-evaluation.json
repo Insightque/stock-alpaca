@@ -1,0 +1,169 @@
+{
+  "run_id": "2026-06-19-0451-hourly-autopilot",
+  "created_at": "2026-06-18T19:51:29Z",
+  "workflow": "harness/workflows/hourly-autopilot.md",
+  "workflow_sha256": "sha256:04074b8efd7de291cac919ec156ad41f311cb968ea8cbe367848dd7bdfa36864",
+  "paper_mode": true,
+  "market_clock": {
+    "is_open": true,
+    "timestamp": "2026-06-18T15:51:11.04838424-04:00",
+    "next_open": "2026-06-22T09:30:00-04:00",
+    "next_close": "2026-06-18T16:00:00-04:00"
+  },
+  "stale_order_cleanup": {
+    "status": "pass",
+    "remaining_open_orders": [],
+    "source_ref": "wiki/evidence-store/sources/2026-06-19-0451-hourly-autopilot-stale-order-cleanup.json"
+  },
+  "alpaca_core_gate": {
+    "status": "pass",
+    "first_blocking_gate": "",
+    "source_ref": "wiki/evidence-store/sources/2026-06-19-0451-hourly-autopilot-alpaca-core-preflight.json"
+  },
+  "research_gate": {
+    "usable_pass_servers": [
+      "sec-edgar",
+      "fred",
+      "yahoo-finance"
+    ],
+    "usable_pass_count": 3,
+    "minimum_required": 3,
+    "source_ref": "wiki/evidence-store/sources/2026-06-19-0451-hourly-autopilot-research-mcp-preflight.json"
+  },
+  "review_backlog_throttle": {
+    "pending_1d_count": 17,
+    "pending_5d_count": 23,
+    "pending_20d_count": 15,
+    "stop_new_buys_at_pending_1d": 12,
+    "buy_path_blocked": true,
+    "sell_path_independent": true
+  },
+  "candidate_evaluation": {
+    "selected_order_proposal": {
+      "symbol": "SO",
+      "side": "sell",
+      "qty": 1,
+      "entry_style": "trim",
+      "limit_price": 93.08,
+      "status": "blocked_before_submit",
+      "blocking_gate": "sell_metric_gap",
+      "note": "Repeated weak-review defensive sleeve trim narrative는 유지되지만 decision-grade expected-excess/replacement margin 공백 때문에 trim 승격이 막힌다."
+    },
+    "blocked_candidates": [
+      {
+        "symbol": "SO",
+        "blocking_gate": "sell_metric_gap",
+        "quote": {
+          "bid": 93.08,
+          "ask": 93.1,
+          "spread_pct": 0.0215,
+          "timestamp": "2026-06-18T19:51:28.193761351Z"
+        }
+      },
+      {
+        "symbol": "AVGO",
+        "blocking_gate": "minimum_remaining_qty",
+        "quote": {
+          "bid": 411.72,
+          "ask": 412.77,
+          "spread_pct": 0.2547,
+          "timestamp": "2026-06-18T19:51:26.67614607Z"
+        }
+      },
+      {
+        "symbol": "AAPL",
+        "blocking_gate": "review_backlog_throttle_buy_only",
+        "quote": {
+          "bid": 298.4,
+          "ask": 298.45,
+          "spread_pct": 0.0168,
+          "timestamp": "2026-06-18T19:51:27.747690898Z"
+        }
+      },
+      {
+        "symbol": "BAC",
+        "blocking_gate": "review_backlog_throttle_buy_only",
+        "quote": {
+          "bid": 56.23,
+          "ask": 56.24,
+          "spread_pct": 0.0178,
+          "timestamp": "2026-06-18T19:51:27.756453542Z"
+        }
+      },
+      {
+        "symbol": "WMT",
+        "blocking_gate": "review_backlog_throttle_buy_only",
+        "quote": {
+          "bid": 116.87,
+          "ask": 117.09,
+          "spread_pct": 0.1881,
+          "timestamp": "2026-06-18T19:51:27.735578646Z"
+        }
+      },
+      {
+        "symbol": "NVDA",
+        "blocking_gate": "review_backlog_and_same_theme_warning",
+        "quote": {
+          "bid": 211.23,
+          "ask": 211.28,
+          "spread_pct": 0.0237,
+          "timestamp": "2026-06-18T19:51:28.027181841Z"
+        }
+      },
+      {
+        "symbol": "QQQ",
+        "blocking_gate": "validation_floor_cap_and_review_backlog",
+        "quote": {
+          "bid": 740.83,
+          "ask": 740.99,
+          "spread_pct": 0.0216,
+          "timestamp": "2026-06-18T19:51:28.033041616Z"
+        }
+      },
+      {
+        "symbol": "SPY",
+        "blocking_gate": "validation_floor_cap_and_review_backlog",
+        "quote": {
+          "bid": 747.77,
+          "ask": 747.79,
+          "spread_pct": 0.0027,
+          "timestamp": "2026-06-18T19:51:28.180793487Z"
+        }
+      }
+    ]
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-19-0451-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-19-0451-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-19-0451-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-19-0451-hourly-autopilot-runtime-gate-evaluation.json",
+    "harness/recommendation-policy.yaml",
+    "harness/risk-policy.yaml",
+    "harness/symbol-metadata.yaml",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/reviews/2026-06-18-portfolio-review.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/research-notes/tickers/AAPL.md",
+    "wiki/research-notes/tickers/BAC.md",
+    "wiki/research-notes/tickers/WMT.md",
+    "wiki/research-notes/tickers/NVDA.md",
+    "wiki/evidence-store/sources/2026-06-19-0451-hourly-autopilot-runtime-gate-evaluation.json"
+  ],
+  "submit_result": {
+    "submitted": false,
+    "reason": "sell-first candidate SO는 metric gate, AVGO는 minimum remaining qty gate에 막혔고 buy fallback은 review backlog throttle에 막혔다."
+  },
+  "post_trade_summary": {
+    "account_status": "ACTIVE",
+    "cash": 28610.97,
+    "portfolio_value": 101751.72,
+    "buying_power": 303935.44,
+    "open_orders": 0,
+    "positions_count": 32,
+    "rgti_position_after_reconcile": "absent",
+    "so_qty_after_reconcile": 6,
+    "avgo_qty_after_reconcile": 1
+  },
+  "first_blocking_gate": "sell_metric_gap"
+}
