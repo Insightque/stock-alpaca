@@ -7,6 +7,12 @@ asset_type: stock
 
 # RGTI
 
+## 2026-06-19 03:38 KST hourly-autopilot trim
+
+`0331` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight를 source-of-record로 사용했고 `Alpha Vantage` throttle, `Firecrawl` credits gap에도 `SEC EDGAR/FRED/Yahoo Finance` 3-provider pass로 strict MCP submit gate를 유지했다. buy side는 `review_backlog_pending_1d_count=17`로 계속 닫혀 있어 sell-first directive를 유지했고, `RGTI`는 source-of-record quote `20.68/20.69`, spread 약 `0.0484%`, open orders `0`, held qty `4`, active/tradable US stock 조건에서 residual speculative sleeve staged de-risking floor trim `1주`를 통과했다. `client_order_id=hourly-20260619-0331-sell-rgti` regular-session day limit sell은 same client id readback 기준 `2026-06-18T18:37:39.173808824Z`에 `filled_avg_price=20.7 USD`로 즉시 체결됐고 보유수량은 `4주 -> 3주`로 감소했다. 해석은 `strict gate pass + residual speculative sleeve staged de-risking 지속`이다.
+
+출처: [[2026-06-19-0331-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-19-0331-hourly-autopilot-post-trade.json`
+
 ## 2026-06-19 03:17 KST hourly-autopilot trim submit
 
 `0311` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight를 source-of-record로 사용했고 별도 live continuity 없이도 regular market open, account `ACTIVE`, open orders `0`, watchlists `0`, `RGTI` asset active/tradable, fresh quote `20.61/20.62`, spread 약 `0.0485%`를 재확인했다. research strict gate는 `SEC EDGAR`, `FRED`, `Yahoo Finance` 3-provider pass를 유지했고 buy side는 `review_backlog_pending_1d_count=17`로 계속 닫혀 있어 sell-first directive를 유지했다. `RGTI`는 speculative loss-control trim trigger와 residual speculative sleeve staged de-risking rationale 조건에서 floor trim `1주` 경로를 통과했고 `client_order_id=hourly-20260619-0311-sell-rgti`로 regular-session day limit sell을 제출했다. immediate reconciliation 기준 주문은 아직 `status=new`, `filled_qty=0` open order이며 보유수량은 `5주`, `qty_available=4`로 1주만 예약 상태다. 해석은 `strict gate pass, staged de-risking submit 지속, next cycle fill/open-order lifecycle 추적 필요`다.

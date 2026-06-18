@@ -1,0 +1,1036 @@
+{
+  "run_id": "2026-06-19-0331-hourly-autopilot",
+  "created_at": "2026-06-18T18:31:30+00:00",
+  "paper": true,
+  "source": "scheduler local MCP stdio preflight",
+  "symbols": [
+    "SPY",
+    "QQQ",
+    "CVX",
+    "AMZN",
+    "BAC",
+    "SLB",
+    "SO",
+    "NKE",
+    "NEE",
+    "WMT",
+    "V",
+    "JNJ"
+  ],
+  "symbol_source": "alpaca_core_preflight",
+  "cache_dir": "/Users/insightque/stock-alpaca/.cache/research-mcp-preflight",
+  "cache_enabled": true,
+  "circuit_breaker_seconds": 600,
+  "providers": [
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T18:31:30+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_company_info|get_recent_filings",
+      "per_symbol": {
+        "SPY": {
+          "cik": "0000884394",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "QQQ": {
+          "cik": "0001067839",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "CVX": {
+          "cik": "0000093410",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "AMZN": {
+          "cik": "0001018724",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "BAC": {
+          "cik": "0000070858",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "SLB": {
+          "cik": "0000087347",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "SO": {
+          "cik": "0000092122",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "NKE": {
+          "cik": "0000320187",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "NEE": {
+          "cik": "0000753308",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "WMT": {
+          "cik": "0000104169",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "V": {
+          "cik": "0001403161",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "JNJ": {
+          "cik": "0000200406",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0331-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "outcome": "failed",
+      "checked_at": "2026-06-18T18:31:30+00:00",
+      "gap_category": "provider_error",
+      "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-18T17:31:33+00:00, retry after ~2s.",
+      "retry_count": 0,
+      "payload": {
+        "throttled": true,
+        "last_attempt_at": "2026-06-18T17:31:33+00:00",
+        "min_interval_seconds": 3600,
+        "requested_symbols": [
+          "SPY",
+          "QQQ",
+          "CVX",
+          "AMZN",
+          "BAC",
+          "SLB",
+          "SO",
+          "NKE",
+          "NEE",
+          "WMT",
+          "V",
+          "JNJ"
+        ],
+        "previous_symbols": [
+          "SPY",
+          "QQQ",
+          "WMT",
+          "NEE",
+          "AAPL",
+          "GOOGL",
+          "AMZN",
+          "BAC",
+          "NKE",
+          "FCX",
+          "V",
+          "IONQ"
+        ],
+        "cache_scope": "key-1dbada164161"
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0331-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T13:31:31+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_macro_snapshot",
+      "payload": {
+        "observation_end": null,
+        "series": [
+          {
+            "series_id": "DGS10",
+            "latest": {
+              "realtime_start": "2026-06-17",
+              "realtime_end": "2026-06-17",
+              "date": "2026-06-16",
+              "value": "4.43"
+            }
+          },
+          {
+            "series_id": "DGS2",
+            "latest": {
+              "realtime_start": "2026-06-17",
+              "realtime_end": "2026-06-17",
+              "date": "2026-06-16",
+              "value": "4.05"
+            }
+          },
+          {
+            "series_id": "FEDFUNDS",
+            "latest": {
+              "realtime_start": "2026-06-12",
+              "realtime_end": "2026-06-12",
+              "date": "2026-05-01",
+              "value": "3.63"
+            }
+          },
+          {
+            "series_id": "CPIAUCSL",
+            "latest": {
+              "realtime_start": "2026-06-10",
+              "realtime_end": "2026-06-10",
+              "date": "2026-05-01",
+              "value": "333.979"
+            }
+          },
+          {
+            "series_id": "UNRATE",
+            "latest": {
+              "realtime_start": "2026-06-12",
+              "realtime_end": "2026-06-12",
+              "date": "2026-05-01",
+              "value": "4.3"
+            }
+          },
+          {
+            "series_id": "NFCI",
+            "latest": {
+              "realtime_start": "2026-06-17",
+              "realtime_end": "2026-06-17",
+              "date": "2026-06-12",
+              "value": "-0.50500"
+            }
+          }
+        ]
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-18T13:31:34+00:00",
+      "cache_reused_at": "2026-06-18T18:31:30+00:00",
+      "cache_ttl_seconds": 21600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0331-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "outcome": "failed",
+      "checked_at": "2026-06-18T18:31:30+00:00",
+      "gap_category": "unknown",
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "retry_count": 0,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0331-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T18:31:30+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_recommendations|get_yahoo_finance_news",
+      "per_symbol": {
+        "SPY": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: 2 ETFs to Watch for Outsized Volume on US Treasury & Dividend\nSummary: Unusual trading activity puts two ETFs in focus as volume surges well above normal levels despite a broad market selloff.\nDescription: \nURL: https://finance.yahoo.com/markets/options/articles/2-etfs-watch-outsized-volume-164600833.html\n\nTitle: Pre-Markets Bounce Back, Philly Fed & Jobless Claims Up\nSummary: Hopefully, the MOU between the U.S. and Iran will be the first step toward less mercurial day-to-day trading acti"
+            },
+            "retry_count": 0
+          }
+        },
+        "QQQ": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Exchange-Traded Funds, US Equities Higher After Midday\nSummary: Broad Market Indicators Broad-market exchange-traded funds IWM and IVV were higher after midday T\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/exchange-traded-funds-us-equities-171359511.html\n\nTitle: 2 ETFs to Watch for Outsized Volume on US Treasury & Dividend\nSummary: Unusual trading activity puts two ETFs in focus as volume surges well above normal levels despite a broad market selloff.\nDescription:"
+            },
+            "retry_count": 0
+          }
+        },
+        "CVX": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 5,
+                  "buy": 13,
+                  "hold": 6,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 5,
+                  "buy": 13,
+                  "hold": 6,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 5,
+                  "buy": 13,
+                  "hold": 6,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 5,
+                  "buy": 12,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 1
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: The SLB Paradox: Short-Term Friction, Long-Cycle Fuel\nSummary: Despite SLB’s heavily disrupted Q1, why is the market betting on a multi-year boom.\nDescription: \nURL: https://www.trefis.com/articles/603545/the-slb-paradox-short-term-friction-long-cycle-fuel/2026-06-18\n\nTitle: 2 Reasons to Like CVX and 1 to Stay Skeptical\nSummary: Chevron has had an impressive run over the past six months as its shares have beaten the S&P 500 by 9.5%. The stock now trades at $177.80, marking a 20.4% gain. T"
+            },
+            "retry_count": 0
+          }
+        },
+        "AMZN": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 15,
+                  "buy": 48,
+                  "hold": 4,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 15,
+                  "buy": 47,
+                  "hold": 4,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 14,
+                  "buy": 48,
+                  "hold": 5,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 15,
+                  "buy": 50,
+                  "hold": 4,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Amazon CEO Jassy says company could sell AI chips, raising stakes for Nvidia, AMD\nSummary: Amazon CEO Andy Jassy laid out plans to potentially sell AI chips and robots in his annual shareholder newsletter.\nDescription: \nURL: https://finance.yahoo.com/news/amazon-ceo-jassy-says-company-could-sell-ai-chips-raising-stakes-for-nvidia-amd-142835117.html\n\nTitle: Amazon in talks to sell Trainium AI chips to outside data centers\nSummary: Amazon's AI chief says demand is so strong that selling chi"
+            },
+            "retry_count": 0
+          }
+        },
+        "BAC": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 6,
+                  "buy": 16,
+                  "hold": 2,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 6,
+                  "buy": 16,
+                  "hold": 2,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 6,
+                  "buy": 16,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 7,
+                  "buy": 17,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Bank Of America (BAC) Faces Fresh Scrutiny As Regulators Ready Debanking Findings\nSummary: U.S. regulators are preparing to release findings on alleged improper client distinctions and discrimination at Bank of America (NYSE:BAC). The Department of Justice and the Office of the Comptroller of the Currency are increasing scrutiny of the bank's debanking practices. These reviews could influence Bank of America's future compliance requirements, operating environment, and reputational standin"
+            },
+            "retry_count": 0
+          }
+        },
+        "SLB": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 7,
+                  "buy": 18,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 7,
+                  "buy": 18,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 7,
+                  "buy": 18,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 7,
+                  "buy": 18,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: The SLB Paradox: Short-Term Friction, Long-Cycle Fuel\nSummary: Despite SLB’s heavily disrupted Q1, why is the market betting on a multi-year boom.\nDescription: \nURL: https://www.trefis.com/articles/603545/the-slb-paradox-short-term-friction-long-cycle-fuel/2026-06-18\n\nTitle: SLB Expands Digital Reach With New AI Marketplace Platform\nSummary: SLB launches a Digital Marketplace offering AI tools and applications, expanding its digital ecosystem and strengthening its software growth strategy"
+            },
+            "retry_count": 0
+          }
+        },
+        "SO": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 1,
+                  "buy": 6,
+                  "hold": 15,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 1,
+                  "buy": 6,
+                  "hold": 15,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 1,
+                  "buy": 6,
+                  "hold": 15,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 1,
+                  "buy": 7,
+                  "hold": 13,
+                  "sell": 1,
+                  "strongSell": 1
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Will NextEra Gain by Generating Power From Multiple Clean Sources?\nSummary: NEE's clean energy push, renewables backlog, stable cash flows and stronger ROE position it to benefit from rising low-carbon power demand.\nDescription: \nURL: https://finance.yahoo.com/energy/articles/nextera-gain-generating-power-multiple-163100081.html\n\nTitle: Southern Co. (SO) Dips More Than Broader Market: What You Should Know\nSummary: In the latest trading session, Southern Co. (SO) closed at $92.53, marking "
+            },
+            "retry_count": 0
+          }
+        },
+        "NKE": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 1,
+                  "buy": 14,
+                  "hold": 21,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 2,
+                  "buy": 14,
+                  "hold": 20,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 2,
+                  "buy": 15,
+                  "hold": 19,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 5,
+                  "buy": 19,
+                  "hold": 13,
+                  "sell": 1,
+                  "strongSell": 1
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Castore buys 160-year-old Northamptonshire shoe maker\nSummary: Historic Northamptonshire shoemaker Grenson is to be taken over by sportswear brand Castore.\nDescription: \nURL: https://uk.finance.yahoo.com/news/castore-buys-160-old-northamptonshire-172853828.html\n\nTitle: 1 Cash-Rich Dividend Legend Retirees Can Lean On Even If Rate Hikes Return\nSummary: Wall Street is treating Nike (NYSE:NKE) like a broken brand, but the dividend tells a different story. After a 29.55% YTD slide to $44.19, "
+            },
+            "retry_count": 0
+          }
+        },
+        "NEE": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 3,
+                  "buy": 11,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 3,
+                  "buy": 10,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 4,
+                  "buy": 12,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 4,
+                  "buy": 12,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: In 10 Years, Will You Wish You'd Bought NextEra Energy Right Now?\nSummary: NextEra Energy is about to become a much more powerful company.\nDescription: \nURL: https://www.fool.com/investing/2026/06/18/in-10-years-will-you-wish-youd-bought-stock-right/\n\nTitle: 3 Utility Stocks For Years of Passive Income\nSummary: Passive income arrives whether you work, sleep, or travel. Dividend income depends on a company writing a check four times a year. For investors covering utility bills, property ta"
+            },
+            "retry_count": 0
+          }
+        },
+        "WMT": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 9,
+                  "buy": 29,
+                  "hold": 4,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 9,
+                  "buy": 30,
+                  "hold": 4,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 9,
+                  "buy": 30,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 9,
+                  "buy": 31,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Kroger Sales Beat As Same-Store Growth Hits 1%\nSummary: Kroger topped first-quarter sales expectations while maintaining guidance as price cuts and higher transport costs pressured profit.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/kroger-sales-beat-same-store-180006280.html\n\nTitle: Kroger’s New CEO Wants Better Stores and More of Them\nSummary: Four months into his job, Kroger CEO Greg Foran says he’s been to more than 100 stores, and only two of five were in ver"
+            },
+            "retry_count": 0
+          }
+        },
+        "V": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 7,
+                  "buy": 29,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 7,
+                  "buy": 28,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 7,
+                  "buy": 28,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 7,
+                  "buy": 29,
+                  "hold": 3,
+                  "sell": 0,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: 3 Mega-Cap Stocks with Exciting Potential\nSummary: Megacap stocks dominate their sectors and their actions influence economies worldwide. The flip side though is that their sheer size means they have less room for explosive growth as scale works against them.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/3-mega-cap-stocks-exciting-161328948.html\n\nTitle: Visa (V) Upgraded to Buy: Here's Why\nSummary: Visa (V) might move higher on growing optimism about its earnings pr"
+            },
+            "retry_count": 0
+          }
+        },
+        "JNJ": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 5,
+                  "buy": 10,
+                  "hold": 8,
+                  "sell": 0,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 5,
+                  "buy": 10,
+                  "hold": 8,
+                  "sell": 0,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 5,
+                  "buy": 9,
+                  "hold": 10,
+                  "sell": 0,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 5,
+                  "buy": 9,
+                  "hold": 10,
+                  "sell": 0,
+                  "strongSell": 1
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: This $2 Million Portfolio Pays a Six-Figure Income Without Owning a Single Rental Property\nSummary: A $2 million investment portfolio can generate a six-figure income stream without tenants, maintenance calls, property tax surprises, or vacancy risk. The arithmetic is straightforward. The challenge is deciding how much yield to pursue and understanding the trade-offs that come with it. To make a fair comparison, start with rental real estate. Many landlords aim ... This $2 Million Portfol"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0331-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    }
+  ],
+  "mcp_coverage_hint": [
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T18:31:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0331-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-18T18:31:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0331-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-18T17:31:33+00:00, retry after ~2s.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T13:31:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0331-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-18T18:31:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0331-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "gap_category": "unknown",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T18:31:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0331-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ]
+}
