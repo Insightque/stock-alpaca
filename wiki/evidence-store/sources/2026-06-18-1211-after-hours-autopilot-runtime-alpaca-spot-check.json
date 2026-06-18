@@ -1,0 +1,82 @@
+{
+  "run_id": "2026-06-18-1211-after-hours-autopilot",
+  "created_at": "2026-06-18T03:15:36Z",
+  "session": "after_hours",
+  "account": {
+    "status": "ACTIVE",
+    "cash": 28029.42,
+    "portfolio_value": 101131.38,
+    "buying_power": 301056.03,
+    "currency": "USD"
+  },
+  "positions_count": 34,
+  "open_orders_count": 1,
+  "watchlists_count": 0,
+  "same_session_after_hours_orders_submitted": 2,
+  "same_session_after_hours_fills": 1,
+  "market_clock_source": {
+    "is_open": false,
+    "timestamp": "2026-06-17T23:11:08.860080483-04:00",
+    "next_open": "2026-06-18T09:30:00-04:00",
+    "next_close": "2026-06-18T16:00:00-04:00",
+    "source": "scheduler_owned_core_preflight"
+  },
+  "live_quotes": {
+    "PFE": {
+      "bid": 25.97,
+      "ask": 25.98,
+      "spread_pct": 0.0385,
+      "quote_timestamp": "2026-06-18T03:15:37.727108549Z",
+      "feed": "overnight"
+    },
+    "RGTI": {
+      "bid": 20.73,
+      "ask": 20.75,
+      "spread_pct": 0.0964,
+      "quote_timestamp": "2026-06-18T03:15:11.814357159Z",
+      "feed": "overnight"
+    },
+    "AVGO": {
+      "bid": 402.2,
+      "ask": 403.25,
+      "spread_pct": 0.261,
+      "quote_timestamp": "2026-06-18T03:15:43.203241021Z",
+      "feed": "overnight"
+    },
+    "QQQ": {
+      "bid": 732.73,
+      "ask": 732.88,
+      "spread_pct": 0.0205,
+      "quote_timestamp": "2026-06-18T03:15:44.407117958Z",
+      "feed": "overnight"
+    }
+  },
+  "reconciled_client_orders": [
+    {
+      "client_order_id": "ah-20260618-1111-sell-pfe-01",
+      "symbol": "PFE",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 25.97,
+      "filled_at": "2026-06-18T02:58:29.784751618Z"
+    },
+    {
+      "client_order_id": "ah-20260618-1131-sell-rgti-01",
+      "symbol": "RGTI",
+      "status": "new",
+      "filled_qty": 0,
+      "filled_avg_price": null,
+      "submitted_at": "2026-06-18T02:40:51.640611719Z"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-1211-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1211-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1211-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-18-1211-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/current-runs/daily/2026-06-18-1111-after-hours-autopilot.md",
+    "wiki/current-runs/daily/2026-06-18-1131-after-hours-autopilot.md",
+    "wiki/trade-ledger/reviews/2026-06-18-portfolio-review.md"
+  ]
+}

@@ -5,6 +5,12 @@ asset_type: stock
 
 # PFE
 
+## 2026-06-18 12:15 KST after-hours-autopilot reconciliation
+
+`2026-06-18 12:11 KST` after-hours cycle은 scheduler-owned `1211` core/research preflight를 source-of-record로 유지했고 Alpaca core `first_blocking_gate=market_closed`는 장외 워크플로우에서 expected nonblocking으로 처리했다. live Alpaca continuity `get_order_by_client_id(ah-20260618-1111-sell-pfe-01)` 기준 earlier trim 1주는 `2026-06-18T02:58:29.784751618Z`에 `filled_avg_price=25.97 USD`로 체결 완료됐다. same-session after-hours submitted orders는 이미 `2/2`였고 `RGTI` stale open-order lifecycle이 risk FAIL로 남아 이번 cycle 신규 submit은 없었다. `get_all_positions` 기준 `PFE` 보유수량은 `2주 -> 1주`, `qty_available=1`로 감소했고 해석은 `repeated weak-review trim fill confirmed, residual 1-share hold`다.
+
+출처: [[2026-06-18-1211-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-18-1211-after-hours-autopilot-post-trade.json`
+
 ## 2026-06-18 11:19 KST after-hours-autopilot
 
 `2026-06-18 11:11 KST` after-hours cycle은 scheduler-owned `1111` core/research preflight를 source-of-record로 유지했고 Alpaca core `first_blocking_gate=market_closed`는 장외 워크플로우에서 expected nonblocking으로 처리했다. 이번 cycle에서는 direct Alpaca overnight continuity가 `PFE` quote를 `25.97/25.98`, spread `0.0385%`로 회복했고 strict universe/MCP/risk gate가 모두 통과해 repeated weak-review defensive holding trim 경로를 다시 열었다. 이에 `client_order_id=ah-20260618-1111-sell-pfe-01`, `limit=25.97 USD`, `extended_hours=true` 조건으로 1주 trim sell을 제출했다. immediate same client id reconciliation 기준 주문은 `order_id=d3b37f0b-4efa-406a-994f-432ae6b8b8a0`, `status=new`, `filled_qty=0` open order이며 direct `get_all_positions` 기준 보유수량은 아직 `2주`, `qty_available=1`이다. 해석은 `repeated weak-review trim submit 완료, next cycle fill/open-order lifecycle 추적 필요`다.

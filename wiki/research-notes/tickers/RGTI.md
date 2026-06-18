@@ -7,6 +7,12 @@ asset_type: stock
 
 # RGTI
 
+## 2026-06-18 12:15 KST after-hours-autopilot reconciliation
+
+`2026-06-18 12:11 KST` after-hours cycle은 scheduler-owned `1211` core/research preflight를 source-of-record로 유지했고 Alpaca core `first_blocking_gate=market_closed`는 장외 워크플로우에서 expected nonblocking으로 처리했다. live Alpaca continuity `get_order_by_client_id(ah-20260618-1131-sell-rgti-01)` 기준 earlier trim 1주는 여전히 `status=new`, `filled_qty=0` open order다. live overnight quote `20.73/20.75`와 spread는 executable 범위였지만 same-session after-hours submitted orders가 이미 `2/2`였고 risk validator는 이 open order age `30.3분 > 30.0분` lifecycle limit으로 FAIL이었다. `get_all_positions` 기준 보유수량은 `27주`, `qty_available=26`이며 해석은 `staged de-risking open order stale lifecycle 추적 필요`다.
+
+출처: [[2026-06-18-1211-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-18-1211-after-hours-autopilot-post-trade.json`
+
 ## 현재 Thesis
 
 RGTI는 핵심 포트폴리오 보유 종목이라기보다 고모멘텀 이벤트 중심 양자컴퓨팅 종목이다. Alpaca 스냅샷 기준 최신 체결가는 24.80 근처였고, 전일 종가는 22.04였다. 현재 뉴스는 연방 양자컴퓨팅 지원과 CHIPS Act 관련 내용에 연결되어 있다. 셋업은 흥미롭지만, 새 paper 계좌에서 자동 매수하기에는 변동성이 너무 높다.
