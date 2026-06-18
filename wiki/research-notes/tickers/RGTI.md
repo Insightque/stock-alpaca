@@ -237,3 +237,7 @@ RGTI는 오늘 신규 매수 후보에서 제외했다. 2026-05-22 종가 26.41 
 `2026-06-10 ET` trim 17주는 `20.38 USD -> 20.25 USD`로 sell 이후 `-0.64%` 더 밀렸다. magnitude는 작지만 trim 이후 약세가 이어져 speculative sleeve de-risking 해석은 `중립 양호`로 유지한다.
 
 출처: [[2026-06-18-portfolio-review]], [[2026-06-18-0621-analyst-review-cycle-sources]]
+
+## 2026-06-19 04:39 KST 업데이트
+
+- `0431` regular-session hourly-autopilot에서 residual speculative sleeve 마지막 1주를 `entry_style=exit`로 정리했다. same `client_order_id=hourly-20260619-0431-sell-rgti` readback 기준 `filled_avg_price=20.87 USD`, `filled_at=2026-06-18T19:39:15.409145509Z`로 즉시 체결됐고 current portfolio에서는 `RGTI position 없음` 상태다. 이번 cycle에서도 buy-side는 `review_backlog_pending_1d_count=17`로 계속 막혀 있었고, strict gate가 모두 열린 sell-first 경로만 실행했다.
