@@ -7,6 +7,12 @@ asset_type: stock
 
 # RGTI
 
+## 2026-06-19 01:20 KST hourly-autopilot trim submit
+
+`0111` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight를 source-of-record로 사용했고, live Alpaca `get_order_by_client_id(hourly-20260619-0031-sell-rgti)` readback 기준 직전 stale open sell 3주는 `2026-06-18T16:11:08Z`에 `status=canceled`로 정리됐다. strict universe/MCP/risk gate는 모두 PASS했고 buy side는 `review_backlog_pending_1d_count=17`로 계속 닫혀 있어 sell-first directive를 유지했다. `RGTI`는 fresh regular-session quote `20.43/20.45`, spread 약 `0.0978%`, held qty `12`, open orders `0` before submit, speculative loss-control trim trigger 조건에서 25% trim `3주` 경로를 다시 통과했고 `client_order_id=hourly-20260619-0111-sell-rgti`로 regular-session day limit sell을 제출했다. immediate reconciliation 기준 주문은 아직 `status=new`, `filled_qty=0` open order이며 보유수량은 `12주`, `qty_available=9`로 3주만 예약 상태다. 해석은 `residual speculative sleeve staged de-risking 지속, next cycle fill/open-order lifecycle 추적 필요`다.
+
+출처: [[2026-06-19-0111-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-19-0111-hourly-autopilot-post-trade.json`
+
 ## 2026-06-19 00:19 KST hourly-autopilot trim submit
 
 `0011` scheduled hourly-autopilot은 scheduler-owned stale cleanup/core/research preflight를 source-of-record로 사용했고, strict universe/MCP/risk gate가 모두 PASS한 상태에서 buy side는 `review_backlog_pending_1d_count=17`로 계속 닫혀 있었다. `RGTI`는 live regular-session quote `20.68/20.69`, spread 약 `0.0483%`, held qty `15`, open orders `0`, speculative loss-control trim trigger 조건에서 25% trim `3주` 경로를 통과했고 `client_order_id=hourly-20260619-0011-sell-rgti`로 regular-session day limit sell을 제출했다. immediate reconciliation 기준 주문은 아직 `status=new`, `filled_qty=0` open order이며 보유수량은 `15주`, `qty_available=12`로 3주만 예약 상태다. 해석은 `residual speculative sleeve staged de-risking 지속, next cycle fill/open-order lifecycle 추적 필요`다.

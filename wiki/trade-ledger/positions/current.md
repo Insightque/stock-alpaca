@@ -1,5 +1,18 @@
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-19-0111-hourly-autopilot]]
+- Open/new: `hourly-20260619-0111-sell-rgti` 3주 sell이 immediate reconciliation 기준 `status=new` open order로 남아 있다.
+- Filled: 없음. 이번 cycle 신규 fill은 아직 없다.
+- Cancelled: 직전 `hourly-20260619-0031-sell-rgti`는 live reconciliation 기준 `2026-06-18T16:11:08.810076002Z`에 `status=canceled`로 정리됐다.
+- Position count observed by Alpaca MCP: direct `get_all_positions` 기준 positions `33`건이며 `RGTI qty=12`, `qty_available=9`다.
+- Recent reconciliation scope: scheduler-owned `0111` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca MCP `get_order_by_client_id/get_orders(status=open|all)/get_account_info/get_all_positions/get_watchlists/get_account_activities(FILL)`로 submit-boundary와 post-trade state를 재확인했다. live readback 기준 account `ACTIVE`, cash `28,363.52 USD`, portfolio value `101,523.92 USD`, buying power `303,056.93 USD`, open orders `1`, watchlists `0`였다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-19-0111-hourly-autopilot-post-trade.json`
+
+_Last updated: 2026-06-19 01:20 KST_
+
+## 최신 hourly-autopilot reconciliation
+
 - Run: [[2026-06-19-0051-hourly-autopilot]]
 - Open/new: 기존 `hourly-20260619-0031-sell-rgti` 3주 sell이 live reconciliation 기준 여전히 `status=new` open order다.
 - Filled: 없음. 이번 cycle 신규 fill은 아직 없다.
