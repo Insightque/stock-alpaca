@@ -1,0 +1,72 @@
+{
+  "run_id": "2026-06-19-0211-hourly-autopilot",
+  "created_at": "2026-06-18T17:20:00Z",
+  "paper": true,
+  "submit_attempted": true,
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 101704.09,
+    "cash": 28486.53,
+    "buying_power": 303894.75,
+    "long_market_value": 73217.56,
+    "currency": "USD"
+  },
+  "positions_count": 33,
+  "open_orders_count": 0,
+  "watchlists_count": 0,
+  "same_day_fills": [
+    {
+      "client_order_id": "hourly-20260619-0211-sell-rgti",
+      "filled_at": "2026-06-18T17:19:16.190511737Z",
+      "filled_avg_price": "20.72",
+      "qty": "1",
+      "side": "sell",
+      "symbol": "RGTI",
+      "status": "filled"
+    },
+    {
+      "client_order_id": "hourly-20260619-0151-sell-rgti",
+      "filled_at": "2026-06-18T16:57:27.477402Z",
+      "filled_avg_price": "20.5",
+      "qty": "2",
+      "side": "sell",
+      "symbol": "RGTI",
+      "status": "filled"
+    },
+    {
+      "client_order_id": "hourly-20260619-0111-sell-rgti",
+      "filled_at": "2026-06-18T16:21:48.495146Z",
+      "filled_avg_price": "20.43",
+      "qty": "3",
+      "side": "sell",
+      "symbol": "RGTI",
+      "status": "filled"
+    },
+    {
+      "client_order_id": "hourly-20260619-0011-sell-rgti",
+      "filled_at": "2026-06-18T15:27:37.042785Z",
+      "filled_avg_price": "20.68",
+      "qty": "3",
+      "side": "sell",
+      "symbol": "RGTI",
+      "status": "filled"
+    }
+  ],
+  "open_orders": [],
+  "positions_focus": [
+    {
+      "symbol": "RGTI",
+      "qty": "6",
+      "qty_available": "6",
+      "avg_entry_price": "25.569583",
+      "current_price": "20.73",
+      "market_value": "124.38"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-19-0211-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-19-0211-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-19-0211-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-19-0211-hourly-autopilot-runtime-gate-evaluation.json"
+  ]
+}
