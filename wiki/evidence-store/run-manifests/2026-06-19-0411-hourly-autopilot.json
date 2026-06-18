@@ -1,0 +1,360 @@
+{
+  "schema_version": "1.3",
+  "run_id": "2026-06-19-0411-hourly-autopilot",
+  "created_at": "2026-06-18T19:16:45Z",
+  "data_cutoff_time": "2026-06-18T19:16:45Z",
+  "market_clock_checked_at": "2026-06-18T15:13:13.895357559-04:00",
+  "paper": true,
+  "mode": "submit",
+  "first_blocking_gate": "",
+  "recommendation_actionability": {
+    "actionable": true,
+    "submit_mode": true,
+    "minimum_learning_orders_required": 1,
+    "minimum_learning_orders_planned": 1,
+    "hard_gates_passed": true,
+    "exception": "0411 cycle은 scheduler-owned stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca continuity 기준 market open, account ACTIVE, open orders 0, watchlists 0, active tradable RGTI, fresh quote 20.73/20.74 spread 0.0482%, strict universe PASS, strict MCP PASS(SEC EDGAR/FRED/Yahoo 3-provider positive), risk PASS를 재확인했다. buy side는 review_backlog_pending_1d_count=17로 YAML stop threshold를 넘어 계속 막혀 있으므로 sell-first directive에 따라 RGTI 1주 trim을 최소 learning order로 제출했고, same client_order_id 기준 2026-06-18T19:16:44.852563131Z filled_avg_price 20.8 USD로 즉시 체결됐다."
+  },
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "risk_policy_version": "medium-risk-v1.2",
+  "git_commit": "6844bb922a9f9c121e86d5741c071866811e14e4",
+  "prompt_file_sha": "sha256:04074b8efd7de291cac919ec156ad41f311cb968ea8cbe367848dd7bdfa36864",
+  "report_path": "wiki/current-runs/daily/2026-06-19-0411-hourly-autopilot.md",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-06-19-0411-hourly-autopilot.json",
+  "risk_inputs": {
+    "policy_turnover_ratio": 0,
+    "weekly_turnover_ratio": 0,
+    "stop_triggered_orders_today": 0,
+    "new_orders_submitted_today": 0,
+    "risk_recomputed_after_partial_fill": true,
+    "after_hours_new_orders_submitted_today": 0,
+    "review_backlog_pending_1d_count": 17,
+    "review_backlog_pending_5d_count": 23,
+    "review_backlog_pending_20d_count": 15,
+    "cash_deployment_blocker": "review_backlog_throttle"
+  },
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + current Alpaca positions + scheduler Alpaca preflight universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad metadata universe screen with scheduler-owned 0411 stale/core/research preflight reuse, sell-first risk-trim reevaluation, validation-lifecycle/review-backlog throttle check, and buy fallback suppression only where YAML applies to buys.",
+    "pre_mcp_shortlist": [
+      "RGTI",
+      "SO",
+      "AAPL",
+      "BAC",
+      "WMT",
+      "NVDA",
+      "QQQ",
+      "SPY",
+      "COP",
+      "SLB"
+    ],
+    "final_candidates": [
+      "RGTI",
+      "SO",
+      "AAPL",
+      "BAC",
+      "WMT",
+      "NVDA"
+    ],
+    "passed": true,
+    "gap_reason": ""
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-18T19:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-18T18:51:29+00:00, retry after ~2398s.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-18T19:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "gap_category": "unknown",
+      "retry_count": 0
+    }
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T19:11:29Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-alpaca-core-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": ""
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T19:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-18T19:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Skipped Alpha Vantage API call to enforce one-call-per-hour throttle; previous attempt at 2026-06-18T18:51:29+00:00, retry after ~2398s.",
+      "gap_category": "provider_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T19:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-18T19:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "gap_category": "unknown",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T19:11:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_actionable": 3,
+    "min_research_confirmations_for_submit": 3,
+    "all_research_must_be_attempted": true,
+    "provider_gap_blocks_order": false,
+    "critical_source_rules": {
+      "earnings_signal": {
+        "require_any": [
+          "sec-edgar",
+          "alpha-vantage",
+          "firecrawl_company_ir"
+        ],
+        "missing_behavior": "downgrade_to_watch"
+      },
+      "macro_rate_sensitive_signal": {
+        "require_any": [
+          "fred",
+          "explicit_macro_source"
+        ],
+        "missing_behavior": "downgrade_to_watch"
+      },
+      "filing_risk_signal": {
+        "require_any": [
+          "sec-edgar_acceptance_time"
+        ],
+        "missing_behavior": "block_new_buy"
+      },
+      "analyst_only_signal": {
+        "allowed_use": "thesis_confirmation_only",
+        "missing_behavior": "no_positive_score_delta"
+      }
+    }
+  },
+  "open_order_lifecycle": {
+    "stale_cleanup_source_ref": "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-stale-order-cleanup.json",
+    "cleanup_status": "pass",
+    "open_orders_seen": 0,
+    "remaining_blocking_open_orders": [],
+    "passed": true,
+    "note": "Scheduler-owned 0411 stale cleanup artifact는 stale candidates와 remaining open orders를 모두 0건으로 남겼고, live Alpaca get_orders(status=open)도 0건이었다."
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "RGTI",
+      "held_qty": 2,
+      "current_weight_pct": 0.0408,
+      "trigger_status": "active",
+      "primary_reason": "RGTI는 speculative loss-control trim trigger와 residual speculative sleeve staged de-risking rationale가 유지된다. live quote 20.73/20.74 spread 0.0482%, open orders 0, held qty 2라 이번 cycle floor trim 1주가 executable 상태다.",
+      "skipped_gate": "",
+      "metric_status": "fallback",
+      "expected_excess_return_20d_pct": -1.48,
+      "relative_to_spy_20d_pct": -1.48,
+      "metric_gap_reason": "",
+      "replacement_symbol": "BAC",
+      "replacement_expected_excess_margin_pct": 1.48,
+      "recommendation": "trim",
+      "blocked_sell_recheck": "",
+      "source_refs": [
+        "wiki/current-runs/daily/2026-06-19-0411-hourly-autopilot.md",
+        "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "held_qty": 6,
+      "current_weight_pct": 0.5486,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "SO는 defensive utility sleeve로 live quote/spread는 pass지만 decision-grade expected-excess/replacement margin이 비어 있어 trim 진단만 유지한다.",
+      "skipped_gate": "sell_metric_gap",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "decision-grade expected excess metric unavailable for trim confidence",
+      "replacement_symbol": "AAPL",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/current-runs/daily/2026-06-19-0411-hourly-autopilot.md",
+        "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "symbol": "AAPL",
+      "held_qty": 7,
+      "current_weight_pct": 2.0487,
+      "trigger_status": "no_trigger",
+      "primary_reason": "AAPL은 active trim trigger가 없고 buy-side만 review backlog throttle 영향을 받는다.",
+      "skipped_gate": "sell_trigger_none",
+      "metric_status": "gap",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "AAPL은 이번 cycle trim 판단에 필요한 active deterioration/replacement trim metric이 없고 sell trigger도 없다.",
+      "replacement_symbol": "SPY",
+      "replacement_expected_excess_margin_pct": null,
+      "recommendation": "hold",
+      "blocked_sell_recheck": "",
+      "source_refs": [
+        "wiki/current-runs/daily/2026-06-19-0411-hourly-autopilot.md",
+        "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-alpaca-core-preflight.json"
+      ]
+    }
+  ],
+  "selected_recommendations": [
+    {
+      "symbol": "RGTI",
+      "action": "sell_trim",
+      "decision_grade": "validation_floor",
+      "expected_excess_return_20d_pct": -1.48,
+      "confidence_score": 0.6,
+      "source_confidence": "medium",
+      "reason": "review backlog throttle가 신규 buy만 차단하는 동안 speculative loss-control trim trigger가 유지돼 sell-first floor trim 1주를 제출했다.",
+      "source_refs": [
+        "wiki/trade-ledger/orders/2026-06-19-0351-hourly-autopilot.json",
+        "wiki/current-runs/daily/2026-06-19-0351-hourly-autopilot.md"
+      ]
+    }
+  ],
+  "submitted_orders": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1,
+      "limit_price": 20.73,
+      "client_order_id": "hourly-20260619-0411-sell-rgti",
+      "submitted_at": "2026-06-18T19:16:44.118839723Z",
+      "status": "filled",
+      "filled_at": "2026-06-18T19:16:44.852563131Z",
+      "filled_avg_price": 20.8,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-runtime-gate-evaluation.json",
+        "wiki/trade-ledger/positions/2026-06-19-0411-hourly-autopilot-post-trade.json"
+      ]
+    }
+  ],
+  "post_trade_reconciliation": {
+    "required": true,
+    "completed": true,
+    "positions_snapshot": "wiki/trade-ledger/positions/2026-06-19-0351-hourly-autopilot-post-trade.json",
+    "open_orders_after_submit": 0,
+    "watchlists_after_submit": 0,
+    "same_client_order_status": "filled"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-19-0351-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-19-0351-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-19-0351-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-19-0351-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/trade-ledger/positions/2026-06-19-0351-hourly-autopilot-post-trade.json"
+  ],
+  "skipped_orders": null,
+  "review_due_markers": null
+}

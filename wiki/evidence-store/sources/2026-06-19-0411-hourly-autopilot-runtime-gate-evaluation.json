@@ -1,0 +1,110 @@
+{
+  "run_id": "2026-06-19-0411-hourly-autopilot",
+  "created_at": "2026-06-18T19:16:45Z",
+  "paper": true,
+  "source": "scheduler-owned preflight reuse with Alpaca MCP submit-boundary execution and reconciliation",
+  "preflight_source_refs": [
+    "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-research-mcp-preflight.json"
+  ],
+  "pre_submit_checks": {
+    "paper_mode": true,
+    "market_open": true,
+    "market_clock_timestamp": "2026-06-18T15:13:13.895357559-04:00",
+    "account_status": "ACTIVE",
+    "open_orders_before_submit": 0,
+    "watchlists": 0,
+    "alpaca_core_preflight_status": "pass",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "risk_validator": "PASS",
+    "review_backlog_pending_1d_count": 17,
+    "review_backlog_pending_5d_count": 23,
+    "review_backlog_pending_20d_count": 15,
+    "buy_backlog_blocks_new_buys_only": true,
+    "candidate_quotes": {
+      "RGTI": {
+        "bid": 20.73,
+        "ask": 20.74,
+        "spread_pct": 0.0482,
+        "measured_at": "2026-06-18T19:13:15.637160711Z"
+      },
+      "SO": {
+        "bid": 92.81,
+        "ask": 92.84,
+        "spread_pct": 0.0323,
+        "measured_at": "2026-06-18T19:13:14.739620295Z"
+      },
+      "AAPL": {
+        "bid": 297.12,
+        "ask": 297.16,
+        "spread_pct": 0.0135,
+        "measured_at": "2026-06-18T19:13:15.639572344Z"
+      },
+      "BAC": {
+        "bid": 56.17,
+        "ask": 56.18,
+        "spread_pct": 0.0178,
+        "measured_at": "2026-06-18T19:13:14.868300819Z"
+      },
+      "WMT": {
+        "bid": 117.11,
+        "ask": 117.12,
+        "spread_pct": 0.0085,
+        "measured_at": "2026-06-18T19:13:14.710808543Z"
+      },
+      "NVDA": {
+        "bid": 210.11,
+        "ask": 210.55,
+        "spread_pct": 0.2092,
+        "measured_at": "2026-06-18T19:13:15.642117628Z"
+      },
+      "QQQ": {
+        "bid": 738.56,
+        "ask": 738.6,
+        "spread_pct": 0.0054,
+        "measured_at": "2026-06-18T19:13:15.647007697Z"
+      },
+      "SPY": {
+        "bid": 745.39,
+        "ask": 745.42,
+        "spread_pct": 0.004,
+        "measured_at": "2026-06-18T19:13:15.640626199Z"
+      }
+    },
+    "selected_order": {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1,
+      "limit_price": 20.73,
+      "client_order_id": "hourly-20260619-0411-sell-rgti",
+      "entry_style": "trim"
+    }
+  },
+  "post_submit_reconciliation": {
+    "submit_attempted": true,
+    "order_status": "filled",
+    "filled_qty": 1,
+    "filled_avg_price": 20.8,
+    "filled_at": "2026-06-18T19:16:44.852563131Z",
+    "open_orders_count": 0,
+    "positions_count": 33,
+    "watchlists_count": 0,
+    "rgti_qty": 1,
+    "rgti_qty_available": 1,
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 101563.37,
+      "cash": 28590.1,
+      "buying_power": 303557.49,
+      "long_market_value": 72973.27,
+      "currency": "USD"
+    }
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-19-0411-hourly-autopilot-research-mcp-preflight.json"
+  ]
+}
