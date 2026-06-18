@@ -1,0 +1,121 @@
+{
+  "run_id": "2026-06-18-1131-after-hours-autopilot",
+  "created_at": "2026-06-18T02:40:52Z",
+  "session": "after_hours",
+  "clock_source": "scheduler_preflight",
+  "clock": {
+    "is_open": false,
+    "timestamp": "2026-06-17T22:40:05-04:00",
+    "next_open": "2026-06-18T09:30:00-04:00",
+    "next_close": "2026-06-18T16:00:00-04:00"
+  },
+  "direct_account_info": {
+    "status": "ACTIVE",
+    "cash": 28003.45,
+    "portfolio_value": 101135.95,
+    "buying_power": 301037.66,
+    "currency": "USD"
+  },
+  "direct_orders_open": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1,
+      "client_order_id": "ah-20260618-1131-sell-rgti-01",
+      "submitted_at": "2026-06-18T02:40:51.640611719Z",
+      "status": "new"
+    },
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "qty": 1,
+      "client_order_id": "ah-20260618-1111-sell-pfe-01",
+      "submitted_at": "2026-06-18T02:18:54.597043022Z",
+      "status": "new"
+    }
+  ],
+  "direct_same_session_orders_before_submit": [
+    "ah-20260618-1111-sell-pfe-01"
+  ],
+  "direct_watchlists_count": 0,
+  "direct_quotes": {
+    "overnight": {
+      "PFE": {
+        "bid": 25.97,
+        "ask": 26.02,
+        "spread_pct": 0.1924,
+        "quote_timestamp": "2026-06-18T02:39:26.516977902Z",
+        "feed": "overnight"
+      },
+      "RGTI": {
+        "bid": 20.74,
+        "ask": 20.76,
+        "spread_pct": 0.0964,
+        "quote_timestamp": "2026-06-18T02:39:56.253680073Z",
+        "feed": "overnight"
+      },
+      "AVGO": {
+        "bid": 402.82,
+        "ask": 403.06,
+        "spread_pct": 0.0596,
+        "quote_timestamp": "2026-06-18T02:39:57.226941355Z",
+        "feed": "overnight"
+      },
+      "QQQ": {
+        "bid": 732.73,
+        "ask": 733.2,
+        "spread_pct": 0.0641,
+        "quote_timestamp": "2026-06-18T02:39:57.135123059Z",
+        "feed": "overnight"
+      }
+    },
+    "iex": {
+      "PFE": {
+        "bid": 24.7,
+        "ask": 27.38,
+        "quote_timestamp": "2026-06-17T20:00:01.859383696Z"
+      },
+      "RGTI": {
+        "bid": 17.57,
+        "ask": 23.11,
+        "quote_timestamp": "2026-06-17T20:00:01.328243618Z"
+      },
+      "AVGO": {
+        "bid": 377.01,
+        "ask": 416.43,
+        "quote_timestamp": "2026-06-17T20:00:00.68708646Z"
+      },
+      "QQQ": {
+        "bid": 722.87,
+        "ask": 723.0,
+        "quote_timestamp": "2026-06-17T20:00:04.242732726Z"
+      }
+    }
+  },
+  "continuity_notes": [
+    "IEX path remained stale for actionable after-hours use; overnight quotes provided fresh submit-boundary continuity.",
+    "Existing PFE open sell order remained visible by client_order_id and open-order list before new submit."
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-runtime-alpaca-spot-check.json"
+  ],
+  "direct_same_session_orders_after_submit": [
+    "ah-20260618-1111-sell-pfe-01",
+    "ah-20260618-1131-sell-rgti-01"
+  ],
+  "submit_reconcile": {
+    "order_id": "896febc8-8857-4dcb-9f8f-ea082e740a15",
+    "client_order_id": "ah-20260618-1131-sell-rgti-01",
+    "symbol": "RGTI",
+    "side": "sell",
+    "qty": 1,
+    "limit_price": 20.74,
+    "status": "new",
+    "filled_qty": 0,
+    "filled_avg_price": null,
+    "submitted_at": "2026-06-18T02:40:51.640611719Z"
+  }
+}

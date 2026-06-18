@@ -1,0 +1,200 @@
+{
+  "run_id": "2026-06-18-1131-after-hours-autopilot",
+  "created_at": "2026-06-18T02:40:52Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "paper_mode_confirmed": true,
+  "market_clock": {
+    "is_open": false,
+    "timestamp": "2026-06-17T22:40:05-04:00",
+    "next_open": "2026-06-18T09:30:00-04:00",
+    "next_close": "2026-06-18T16:00:00-04:00"
+  },
+  "alpaca_core_preflight_first_blocking_gate": "market_closed",
+  "alpaca_core_interpretation": "market_closed_expected_nonblocking_after_hours",
+  "existing_open_orders": [
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "qty": 1,
+      "client_order_id": "ah-20260618-1111-sell-pfe-01",
+      "submitted_at": "2026-06-18T02:18:54.597043022Z",
+      "status": "new"
+    }
+  ],
+  "candidate_quotes": {
+    "PFE": {
+      "bid": 25.97,
+      "ask": 26.02,
+      "spread_pct": 0.1924,
+      "quote_timestamp": "2026-06-18T02:39:26.516977902Z",
+      "feed": "overnight"
+    },
+    "RGTI": {
+      "bid": 20.74,
+      "ask": 20.76,
+      "spread_pct": 0.0964,
+      "quote_timestamp": "2026-06-18T02:39:56.253680073Z",
+      "feed": "overnight"
+    },
+    "AVGO": {
+      "bid": 402.82,
+      "ask": 403.06,
+      "spread_pct": 0.0596,
+      "quote_timestamp": "2026-06-18T02:39:57.226941355Z",
+      "feed": "overnight"
+    },
+    "QQQ": {
+      "bid": 732.73,
+      "ask": 733.2,
+      "spread_pct": 0.0641,
+      "quote_timestamp": "2026-06-18T02:39:57.135123059Z",
+      "feed": "overnight"
+    }
+  },
+  "candidate_decision": {
+    "selected_symbol": "RGTI",
+    "selected_side": "sell",
+    "selected_qty": 1,
+    "selected_limit_price": 20.74,
+    "selection_reason": "sell-first residual speculative sleeve staged de-risking after PFE open-order duplicate blocked same-symbol trim"
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "RGTI",
+      "held_qty": 27.0,
+      "current_weight_pct": 0.5529,
+      "trigger_status": "active",
+      "primary_reason": "residual_speculative_trim_candidate",
+      "skipped_gate": "",
+      "metric_status": "calculated",
+      "metric_gap_reason": "",
+      "recommendation": "trim",
+      "blocked_sell_recheck": "",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-runtime-alpaca-spot-check.json",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/research-notes/tickers/RGTI.md"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "held_qty": 2.0,
+      "current_weight_pct": 0.0513,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "repeated_weak_review_trim_candidate",
+      "skipped_gate": "open_sell_order_already_exists",
+      "metric_status": "calculated",
+      "metric_gap_reason": "",
+      "recommendation": "watch",
+      "blocked_sell_recheck": "reconcile_client_order_id_ah-20260618-1111-sell-pfe-01_before_next_trim",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-runtime-alpaca-spot-check.json",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/research-notes/tickers/PFE.md",
+        "wiki/current-runs/daily/2026-06-18-1111-after-hours-autopilot.md"
+      ]
+    },
+    {
+      "symbol": "AVGO",
+      "held_qty": 1.0,
+      "current_weight_pct": 0.3983,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "target_band_de_risking_candidate",
+      "skipped_gate": "keep_minimum_remaining_qty",
+      "metric_status": "calculated",
+      "metric_gap_reason": "",
+      "recommendation": "watch",
+      "blocked_sell_recheck": "keep_minimum_remaining_qty",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-runtime-alpaca-spot-check.json",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/research-notes/tickers/AVGO.md"
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass"
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed"
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass"
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_scheduler_preflight_rows_reused_plus_live_overnight_continuity"
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass"
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "pass_one_of_two_submitted_before_submit"
+    },
+    {
+      "gate": "universe_strict",
+      "status": "PASS"
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "PASS"
+    },
+    {
+      "gate": "risk_policy",
+      "status": "PASS"
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "PASS"
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "PASS"
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "PASS"
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "PASS_open_order_lifecycle_recorded_by_client_order_id"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-18-1131-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/reviews/review-due-index.json"
+  ],
+  "submit_result": {
+    "order_id": "896febc8-8857-4dcb-9f8f-ea082e740a15",
+    "client_order_id": "ah-20260618-1131-sell-rgti-01",
+    "symbol": "RGTI",
+    "side": "sell",
+    "qty": 1,
+    "limit_price": 20.74,
+    "status": "new",
+    "filled_qty": 0,
+    "filled_avg_price": null,
+    "submitted_at": "2026-06-18T02:40:51.640611719Z"
+  }
+}

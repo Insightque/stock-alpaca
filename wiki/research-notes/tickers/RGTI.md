@@ -58,6 +58,7 @@ RGTI는 핵심 포트폴리오 보유 종목이라기보다 고모멘텀 이벤�
 - 2026-06-11 10:20 KST: scheduled after-hours-autopilot `1011` cycle의 추가 trim 1주가 `19.78 USD`에 체결됐고 `1031` reconciliation에서 fill이 확인됐다.
 - 2026-06-15 22:41 KST: scheduled `2231` hourly-autopilot을 scheduler-owned regular-session preflight로 실행했고, `RGTI` 9주 trim sell이 `client_order_id=hourly-20260615-2231-sell-rgti`, `filled_avg_price=23.366667 USD`로 즉시 체결돼 보유수량이 `37주 -> 28주`로 감소했다.
 - 2026-06-17 13:39 KST: scheduled after-hours-autopilot에서 residual speculative sleeve staged de-risking 근거로 추가 1주 trim sell이 `client_order_id=ah-20260617-1331-sell-rgti-01`, `filled_avg_price=20.96 USD`로 즉시 체결돼 보유수량이 `28주 -> 27주`로 감소했다.
+- 2026-06-18 11:40 KST: scheduled after-hours-autopilot에서 fresh overnight quote `20.74/20.76`, spread 약 `0.0964%`, same-session `RGTI` duplicate `0`을 근거로 추가 1주 trim sell `client_order_id=ah-20260618-1131-sell-rgti-01`을 제출했다. immediate reconciliation 기준 주문은 `status=new`, `filled_qty=0` open order이며 `qty_available=26`으로 1주만 예약 상태다.
 - 주문/체결 출처: [[2026-05-22-paper-order-submission]]
 
 ## 2026-05-25 현재 추천 메모
@@ -110,6 +111,12 @@ RGTI는 오늘 신규 매수 후보에서 제외했다. 2026-05-22 종가 26.41 
 `scheduler-owned 1031` 장외 preflight와 runtime Alpaca MCP reconciliation check를 함께 사용했다. `get_order_by_client_id(ah-20260611-1011-sell-rgti)` 기준 앞서 open 상태였던 trim 1주는 `2026-06-11T01:20:06.981355496Z`에 `19.78 USD`로 체결 완료됐고, same-session prior fill `ah-20260611-0951-sell-rgti`와 합쳐 after-hours session budget이 `2/2`로 닫혔다. `get_all_positions` 기준 보유수량은 `50주 -> 49주`로 감소했고 해석은 `staged de-risking 지속, residual speculative sleeve monitor 유지`다.
 
 출처: [[2026-06-11-1031-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-11-1031-after-hours-autopilot-post-trade.json`
+
+### 2026-06-18 11:40 KST after-hours-autopilot trim submit
+
+`1131` scheduled after-hours-autopilot은 scheduler-owned core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. `PFE`는 같은 세션의 기존 open trim `ah-20260618-1111-sell-pfe-01` 때문에 same-symbol 추가 trim이 막혔고, `RGTI`는 direct overnight quote `20.74/20.76`, spread 약 `0.0964%`, held qty `27`, same-session duplicate `0`, open `RGTI` sell `0` 조건에서 residual speculative sleeve staged de-risking 경로를 다시 통과했다. `client_order_id=ah-20260618-1131-sell-rgti-01` 1주 after-hours day limit trim sell을 제출했고, same client id immediate reconciliation 기준 주문은 `status=new`, `filled_qty=0`, `filled_avg_price=null` open order다. `get_all_positions` 기준 보유수량은 아직 `27주`, `qty_available=26`이며, separate after-hours session budget은 `2/2` 사용 상태로 닫혔다. 해석은 `staged de-risking submit 완료, next cycle fill/open-order lifecycle 추적 필요`다.
+
+출처: [[2026-06-18-1131-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-18-1131-after-hours-autopilot-post-trade.json`
 
 ### 2026-06-11 analyst review cycle
 
