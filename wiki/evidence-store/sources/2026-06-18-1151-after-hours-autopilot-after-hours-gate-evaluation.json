@@ -1,0 +1,214 @@
+{
+  "run_id": "2026-06-18-1151-after-hours-autopilot",
+  "created_at": "2026-06-18T02:53:30Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "paper_mode_confirmed": true,
+  "market_clock": {
+    "is_open": false,
+    "timestamp": "2026-06-17T22:52:57.638058802-04:00",
+    "next_open": "2026-06-18T09:30:00-04:00",
+    "next_close": "2026-06-18T16:00:00-04:00"
+  },
+  "alpaca_core_preflight_first_blocking_gate": "market_closed",
+  "alpaca_core_interpretation": "market_closed_expected_nonblocking_after_hours",
+  "existing_open_orders": [
+    {
+      "symbol": "RGTI",
+      "side": "sell",
+      "qty": 1,
+      "client_order_id": "ah-20260618-1131-sell-rgti-01",
+      "submitted_at": "2026-06-18T02:40:51.640611719Z",
+      "status": "new"
+    },
+    {
+      "symbol": "PFE",
+      "side": "sell",
+      "qty": 1,
+      "client_order_id": "ah-20260618-1111-sell-pfe-01",
+      "submitted_at": "2026-06-18T02:18:54.597043Z",
+      "status": "new"
+    }
+  ],
+  "candidate_quotes": {
+    "MS": {
+      "bid": 225.18,
+      "ask": 228.86,
+      "quote_timestamp": "2026-06-18T02:52:11.413464431Z",
+      "feed": "overnight",
+      "spread_pct": 1.608
+    },
+    "PFE": {
+      "bid": 25.94,
+      "ask": 26.02,
+      "quote_timestamp": "2026-06-18T02:53:11.731404604Z",
+      "feed": "overnight",
+      "spread_pct": 0.3075
+    },
+    "QQQ": {
+      "bid": 732.0,
+      "ask": 732.73,
+      "quote_timestamp": "2026-06-18T02:53:23.937701759Z",
+      "feed": "overnight",
+      "spread_pct": 0.0996
+    },
+    "NVDA": {
+      "bid": 206.47,
+      "ask": 206.84,
+      "quote_timestamp": "2026-06-18T02:53:21.303157096Z",
+      "feed": "overnight",
+      "spread_pct": 0.1789
+    },
+    "WMT": {
+      "bid": 118.22,
+      "ask": 118.77,
+      "quote_timestamp": "2026-06-18T02:52:32.941989756Z",
+      "feed": "overnight",
+      "spread_pct": 0.4631
+    },
+    "JPM": {
+      "bid": 334.48,
+      "ask": 335.19,
+      "quote_timestamp": "2026-06-18T02:52:33.33034968Z",
+      "feed": "overnight",
+      "spread_pct": 0.2118
+    },
+    "AVGO": {
+      "bid": 402.75,
+      "ask": 403.18,
+      "quote_timestamp": "2026-06-18T02:53:22.549417225Z",
+      "feed": "overnight",
+      "spread_pct": 0.1067
+    },
+    "GOOGL": {
+      "bid": 365.79,
+      "ask": 366.36,
+      "quote_timestamp": "2026-06-18T02:53:19.118302742Z",
+      "feed": "overnight",
+      "spread_pct": 0.1556
+    },
+    "TSLA": {
+      "bid": 399.21,
+      "ask": 399.79,
+      "quote_timestamp": "2026-06-18T02:52:54.742590194Z",
+      "feed": "overnight",
+      "spread_pct": 0.1451
+    },
+    "SPY": {
+      "bid": 745.83,
+      "ask": 745.95,
+      "quote_timestamp": "2026-06-18T02:53:24.584067379Z",
+      "feed": "overnight",
+      "spread_pct": 0.0161
+    },
+    "RGTI": {
+      "bid": 20.72,
+      "ask": 20.78,
+      "quote_timestamp": "2026-06-18T02:53:11.675924934Z",
+      "feed": "overnight",
+      "spread_pct": 0.2887
+    }
+  },
+  "hard_gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_scheduler_preflight_rows_reused_plus_live_clock_account_position_order_quote_continuity",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "block_two_of_two_same_session_orders_already_submitted",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "risk_policy": "FAIL_stale_open_order_age_exceeds_lifecycle_limit",
+    "fresh_quote": "pass_rechecked_but_budget_blocked_before_new_submit",
+    "spread_within_after_hours_policy": "pass_rechecked_but_budget_blocked_before_new_submit",
+    "whole_share_day_limit_extended_hours_order": "pass_no_new_orders_built",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_existing_open_orders_reconciled_by_client_order_id"
+  },
+  "separate_session_budget": {
+    "submitted_today": 2,
+    "max_new_orders_per_session": 2,
+    "remaining": 0,
+    "counted_client_order_ids": [
+      "ah-20260618-1131-sell-rgti-01",
+      "ah-20260618-1111-sell-pfe-01"
+    ]
+  },
+  "review_backlog": {
+    "pending_1d_count": 17,
+    "pending_5d_count": 23,
+    "pending_20d_count": 15,
+    "blocked_add_symbols": [
+      "NOK"
+    ]
+  },
+  "candidate_evaluation": {
+    "buy_shortlist_from_research_preflight": [
+      "QQQ",
+      "MS",
+      "NVDA",
+      "SPY",
+      "TSLA",
+      "GOOGL",
+      "WMT",
+      "JPM"
+    ],
+    "sell_trim_candidates": [
+      "PFE",
+      "RGTI",
+      "AVGO"
+    ],
+    "outcome": "session_budget_exhausted_with_two_open_after_hours_sell_orders_still_pending",
+    "same_session_open_orders_confirmed": [
+      {
+        "symbol": "RGTI",
+        "client_order_id": "ah-20260618-1131-sell-rgti-01",
+        "status": "new",
+        "limit_price": 20.74
+      },
+      {
+        "symbol": "PFE",
+        "client_order_id": "ah-20260618-1111-sell-pfe-01",
+        "status": "new",
+        "limit_price": 25.97
+      }
+    ],
+    "note": "Fresh overnight quote continuity was available for benchmark, sell-trim, and shortlist symbols, but the separate after-hours session budget was already exhausted at 2/2. This cycle therefore kept a no-submit order plan and recorded the open-order lifecycle without retrying with alternate client_order_ids."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-1151-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1151-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1151-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-18-1151-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/reviews/review-due-index.json"
+  ],
+  "risk_validator": {
+    "errors": [
+      "PFE: open order age 34.6 minutes exceeds lifecycle limit 30.0"
+    ],
+    "path": "wiki/trade-ledger/orders/2026-06-18-1151-after-hours-autopilot.json",
+    "status": "FAIL",
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 45520.263,
+      "max_factor_value": 50578.07,
+      "max_invested": 96098.333,
+      "max_speculative_value": 12138.736799999999,
+      "max_theme_value": 35404.649,
+      "max_ticker_value": 15173.420999999998,
+      "min_cash": 5057.807000000001,
+      "policy_version": "medium-risk-v1.2",
+      "post_cash": 28003.45,
+      "post_invested": 73151.51239999999,
+      "review_backlog_pending_1d_count": 17,
+      "sell_notional": 0.0,
+      "speculative_value": 3476.4900000000002,
+      "target_max_cash": 10115.614000000001,
+      "target_min_invested": 91040.526
+    },
+    "warnings": [
+      "orders is empty"
+    ]
+  }
+}
