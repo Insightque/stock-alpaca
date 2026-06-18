@@ -1,0 +1,44 @@
+{
+  "run_id": "2026-06-18-2251-hourly-autopilot",
+  "captured_at": "2026-06-18T14:01:07Z",
+  "workflow": "hourly-autopilot",
+  "source": "live Alpaca immediate reconciliation after place_stock_order",
+  "submitted_order": {
+    "order_id": "b97aeb87-a048-46c6-9e62-58f83cdd1e35",
+    "client_order_id": "hourly-20260618-2251-sell-pfe",
+    "symbol": "PFE",
+    "side": "sell",
+    "qty": 1,
+    "limit_price": 25.24,
+    "status": "filled",
+    "submitted_at": "2026-06-18T14:01:05.870628126Z",
+    "filled_at": "2026-06-18T14:01:07.126808291Z",
+    "filled_avg_price": 25.28
+  },
+  "account": {
+    "status": "ACTIVE",
+    "cash": 28075.43,
+    "portfolio_value": 101342.08,
+    "buying_power": 302231.46,
+    "currency": "USD"
+  },
+  "open_orders": [],
+  "positions_summary": {
+    "count": 33,
+    "pfe_position_present": false
+  },
+  "watchlists_count": 0,
+  "notes": [
+    "PFE residual 1-share regular-session exit filled immediately.",
+    "Immediate get_orders(status=open) returned zero open orders.",
+    "Immediate get_all_positions no longer included PFE."
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-2251-hourly-autopilot-stale-order-cleanup.json",
+    "wiki/evidence-store/sources/2026-06-18-2251-hourly-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-2251-hourly-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-2251-hourly-autopilot-runtime-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-06-18-2251-hourly-autopilot.json",
+    "wiki/current-runs/daily/2026-06-18-2251-hourly-autopilot.md"
+  ]
+}

@@ -11,6 +11,12 @@ asset_type: stock
 
 출처: [[2026-06-18-1211-after-hours-autopilot]], `wiki/trade-ledger/positions/2026-06-18-1211-after-hours-autopilot-post-trade.json`
 
+## 2026-06-18 23:01 KST hourly-autopilot
+
+`2026-06-18 22:51 KST` regular-session cycle은 scheduler-owned `2251` stale/core/research preflight를 source-of-record로 사용했고 `Yahoo Finance` pass 복구로 strict MCP submit gate가 다시 열렸다. buy side는 `review_backlog_pending_1d_count=17`로 계속 차단됐고, sell-first 재평가에서는 `PFE` 잔여 1주가 repeated weak-review precedent, fresh quote `25.24/25.25`, spread `0.0396%`, same US-date duplicate sell `0`, open orders `0` 조건을 모두 충족해 `entry_style=exit` regular-session validation close-out으로 승격됐다. `client_order_id=hourly-20260618-2251-sell-pfe`, `limit=25.24 USD`로 제출된 주문은 same client id reconciliation 기준 `2026-06-18T14:01:07.126808291Z`에 `filled_avg_price=25.28 USD`로 즉시 체결됐고, live `get_all_positions`에서는 `PFE`가 사라져 보유수량이 `1주 -> 0주`로 닫혔다. 해석은 `repeated weak-review residual hold fully closed after strict submit gate recovery`다.
+
+출처: [[2026-06-18-2251-hourly-autopilot]], `wiki/trade-ledger/positions/2026-06-18-2251-hourly-autopilot-post-trade.json`
+
 ## 2026-06-18 11:19 KST after-hours-autopilot
 
 `2026-06-18 11:11 KST` after-hours cycle은 scheduler-owned `1111` core/research preflight를 source-of-record로 유지했고 Alpaca core `first_blocking_gate=market_closed`는 장외 워크플로우에서 expected nonblocking으로 처리했다. 이번 cycle에서는 direct Alpaca overnight continuity가 `PFE` quote를 `25.97/25.98`, spread `0.0385%`로 회복했고 strict universe/MCP/risk gate가 모두 통과해 repeated weak-review defensive holding trim 경로를 다시 열었다. 이에 `client_order_id=ah-20260618-1111-sell-pfe-01`, `limit=25.97 USD`, `extended_hours=true` 조건으로 1주 trim sell을 제출했다. immediate same client id reconciliation 기준 주문은 `order_id=d3b37f0b-4efa-406a-994f-432ae6b8b8a0`, `status=new`, `filled_qty=0` open order이며 direct `get_all_positions` 기준 보유수량은 아직 `2주`, `qty_available=1`이다. 해석은 `repeated weak-review trim submit 완료, next cycle fill/open-order lifecycle 추적 필요`다.

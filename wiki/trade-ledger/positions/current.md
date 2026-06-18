@@ -1,5 +1,18 @@
 ## 최신 hourly-autopilot reconciliation
 
+- Run: [[2026-06-18-2251-hourly-autopilot]]
+- Open/new: 없음. `hourly-20260618-2251-sell-pfe` 1주 sell은 same client id reconciliation 기준 즉시 `filled`다.
+- Filled: `PFE` sell 1주 `25.28 USD`, `filled_at=2026-06-18T14:01:07.126808291Z`.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: direct `get_all_positions` 기준 positions `33`건이며 `PFE position 없음`이다.
+- Recent reconciliation scope: scheduler-owned `2251` stale cleanup/core/research preflight를 source-of-record로 사용했고 live Alpaca MCP `get_order_by_client_id/get_orders(status=open)/get_all_positions/get_account_info/get_watchlists`로 post-trade state를 재확인했다. live readback 기준 account `ACTIVE`, cash `28,075.43 USD`, portfolio value `101,342.08 USD`, buying power `302,231.46 USD`, open orders `0`, watchlists `0`였다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-06-18-2251-hourly-autopilot-post-trade.json`
+
+_Last updated: 2026-06-18 23:01 KST_
+
+## 최신 hourly-autopilot reconciliation
+
 - Run: [[2026-06-18-0451-hourly-autopilot]]
 - Open/new: 없음. `hourly-20260618-0451-buy-sbux` 1주 buy는 actual submit timestamp가 regular close 이후여서 same order id 기준 즉시 `canceled`로 정리됐다.
 - Filled: 없음. `SBUX` 신규 fill은 발생하지 않았다.
