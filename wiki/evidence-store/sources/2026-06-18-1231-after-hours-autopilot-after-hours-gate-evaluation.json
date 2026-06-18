@@ -1,0 +1,208 @@
+{
+  "run_id": "2026-06-18-1231-after-hours-autopilot",
+  "created_at": "2026-06-18T03:34:00Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "paper_mode_confirmed": true,
+  "market_clock": {
+    "is_open": false,
+    "checked_at": "2026-06-17T23:31:08.710061752-04:00",
+    "next_open": "2026-06-18T09:30:00-04:00",
+    "next_close": "2026-06-18T16:00:00-04:00",
+    "session": "after_hours",
+    "timestamp": "2026-06-17T23:31:08.710061752-04:00"
+  },
+  "alpaca_core_preflight_first_blocking_gate": "market_closed",
+  "alpaca_core_interpretation": "market_closed_expected_nonblocking_after_hours",
+  "existing_open_orders": [],
+  "candidate_quotes": {
+    "PFE": {
+      "bid": 25.97,
+      "ask": 26.01,
+      "spread_pct": 0.1539,
+      "quote_timestamp": "2026-06-18T03:32:44.070076441Z",
+      "feed": "overnight"
+    },
+    "RGTI": {
+      "bid": 20.74,
+      "ask": 20.81,
+      "spread_pct": 0.3369,
+      "quote_timestamp": "2026-06-18T03:32:41.831655042Z",
+      "feed": "overnight"
+    },
+    "AVGO": {
+      "bid": 403.41,
+      "ask": 403.92,
+      "spread_pct": 0.1263,
+      "quote_timestamp": "2026-06-18T03:32:56.686397114Z",
+      "feed": "overnight"
+    },
+    "QQQ": {
+      "bid": 732.77,
+      "ask": 733.14,
+      "spread_pct": 0.0505,
+      "quote_timestamp": "2026-06-18T03:32:58.568414436Z",
+      "feed": "overnight"
+    }
+  },
+  "candidate_decision": {
+    "selected_symbol": null,
+    "selected_side": null,
+    "selected_qty": 0,
+    "selected_limit_price": null,
+    "selection_reason": "separate after-hours submitted-order budget already reached 2/2 before this cycle completed reconciliation; no additional place_stock_order allowed"
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "RGTI",
+      "held_qty": 26.0,
+      "current_weight_pct": 0.5336,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "residual_speculative_trim_candidate",
+      "skipped_gate": "session_order_budget_exhausted_after_reconciled_fill",
+      "metric_status": "calculated",
+      "metric_gap_reason": "client_order_id ah-20260618-1131-sell-rgti-01 reconciled filled at 20.75 USD in this cycle, so no same-session after-hours trim capacity remained and the separate session budget stayed 2/2.",
+      "recommendation": "lifecycle_record_complete",
+      "blocked_sell_recheck": "next_regular_session_review_bucket_follow_up",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-1231-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1231-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1231-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-18-1231-after-hours-autopilot-runtime-alpaca-spot-check.json",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/current-runs/daily/2026-06-18-1111-after-hours-autopilot.md",
+        "wiki/current-runs/daily/2026-06-18-1131-after-hours-autopilot.md",
+        "wiki/research-notes/tickers/RGTI.md"
+      ]
+    },
+    {
+      "symbol": "PFE",
+      "held_qty": 1.0,
+      "current_weight_pct": 0.0257,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "repeated_weak_review_trim_candidate",
+      "skipped_gate": "keep_minimum_remaining_qty_and_session_order_budget_exhausted",
+      "metric_status": "calculated",
+      "metric_gap_reason": "ah-20260618-1111-sell-pfe-01 already filled at 25.97 USD and the residual position is 1 share, so another after-hours trim would violate keep_minimum_remaining_qty while the same-session budget is already closed at 2/2.",
+      "recommendation": "hold_remaining_1_share",
+      "blocked_sell_recheck": "next_regular_session_or_later_after_hours_only_if_position_increases",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-1231-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1231-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1231-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-18-1231-after-hours-autopilot-runtime-alpaca-spot-check.json",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/current-runs/daily/2026-06-18-1111-after-hours-autopilot.md",
+        "wiki/current-runs/daily/2026-06-18-1131-after-hours-autopilot.md",
+        "wiki/research-notes/tickers/PFE.md"
+      ]
+    },
+    {
+      "symbol": "AVGO",
+      "held_qty": 1.0,
+      "current_weight_pct": 0.3989,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "target_band_de_risking_candidate",
+      "skipped_gate": "keep_minimum_remaining_qty",
+      "metric_status": "calculated",
+      "metric_gap_reason": "Live overnight spread is within after-hours policy, but only 1 share remains and keep_minimum_remaining_qty leaves nothing executable. The same-session budget is also already exhausted.",
+      "recommendation": "watch",
+      "blocked_sell_recheck": "keep_minimum_remaining_qty",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-18-1231-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1231-after-hours-autopilot-research-mcp-preflight.json",
+        "wiki/evidence-store/sources/2026-06-18-1231-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/evidence-store/sources/2026-06-18-1231-after-hours-autopilot-runtime-alpaca-spot-check.json",
+        "wiki/trade-ledger/reviews/review-due-index.json",
+        "wiki/current-runs/daily/2026-06-18-1111-after-hours-autopilot.md",
+        "wiki/current-runs/daily/2026-06-18-1131-after-hours-autopilot.md",
+        "wiki/research-notes/tickers/AVGO.md"
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "gate": "alpaca_paper_mode",
+      "status": "pass"
+    },
+    {
+      "gate": "regular_market_open",
+      "status": "pass_regular_market_closed"
+    },
+    {
+      "gate": "extended_hours_session",
+      "status": "pass"
+    },
+    {
+      "gate": "alpaca_core_account_clock_position_order_quote_spread",
+      "status": "pass_scheduler_preflight_rows_reused_plus_live_client_order_reconciliation_plus_live_overnight_quote_continuity"
+    },
+    {
+      "gate": "after_hours_policy_profile",
+      "status": "pass"
+    },
+    {
+      "gate": "separate_after_hours_order_budget",
+      "status": "fail_two_of_two_submitted_this_session"
+    },
+    {
+      "gate": "universe_strict",
+      "status": "PASS"
+    },
+    {
+      "gate": "mcp_tiered_strict",
+      "status": "PASS"
+    },
+    {
+      "gate": "risk_policy",
+      "status": "PASS_expected_orders_empty_warning"
+    },
+    {
+      "gate": "fresh_quote",
+      "status": "PASS_live_overnight_quotes_recovered"
+    },
+    {
+      "gate": "spread_within_after_hours_policy",
+      "status": "PASS_for_remaining_candidates_budget_already_closed"
+    },
+    {
+      "gate": "whole_share_day_limit_extended_hours_order",
+      "status": "pass_no_new_order_built"
+    },
+    {
+      "gate": "immediate_reconcile_and_cancel_or_lifecycle_record",
+      "status": "PASS_client_order_ids_reconciled_without_retry"
+    }
+  ],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-18-1231-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1231-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-18-1231-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/evidence-store/sources/2026-06-18-1231-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/trade-ledger/positions/2026-06-18-1231-after-hours-autopilot-post-trade.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/current-runs/daily/2026-06-18-1111-after-hours-autopilot.md",
+    "wiki/current-runs/daily/2026-06-18-1131-after-hours-autopilot.md",
+    "wiki/trade-ledger/reviews/2026-06-18-portfolio-review.md"
+  ],
+  "reconciled_client_orders": [
+    {
+      "client_order_id": "ah-20260618-1111-sell-pfe-01",
+      "symbol": "PFE",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 25.97,
+      "filled_at": "2026-06-18T02:58:29.784751618Z"
+    },
+    {
+      "client_order_id": "ah-20260618-1131-sell-rgti-01",
+      "symbol": "RGTI",
+      "status": "filled",
+      "filled_qty": 1,
+      "filled_avg_price": 20.75,
+      "filled_at": "2026-06-18T03:31:57.099382354Z"
+    }
+  ]
+}
