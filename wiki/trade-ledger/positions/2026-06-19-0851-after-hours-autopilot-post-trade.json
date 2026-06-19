@@ -1,0 +1,43 @@
+{
+  "run_id": "2026-06-19-0851-after-hours-autopilot",
+  "created_at": "2026-06-18T23:51:28Z",
+  "session": "after_hours",
+  "submit_attempted": false,
+  "reconciled": true,
+  "submit_status": "no_submit",
+  "account": {
+    "status": "ACTIVE",
+    "portfolio_value": 101642.92,
+    "cash": 28610.97,
+    "buying_power": 303703.96,
+    "currency": "USD"
+  },
+  "market_clock": {
+    "is_open": false,
+    "timestamp": "2026-06-18T19:51:10.277663305-04:00",
+    "next_open": "2026-06-22T09:30:00-04:00",
+    "next_close": "2026-06-22T16:00:00-04:00"
+  },
+  "positions_count": 32,
+  "open_orders_count": 0,
+  "watchlists_count": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_observed": 0,
+  "orders_after_cutoff": "2026-06-18T20:00:00Z",
+  "top_position_notes": {
+    "RGTI_position": "none",
+    "SO_qty": 6,
+    "AVGO_qty": 1,
+    "QQQ_qty": 3,
+    "SPY_qty": 2
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-06-19-0851-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-06-19-0851-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-06-19-0851-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md",
+    "wiki/current-runs/daily/2026-06-19-0831-after-hours-autopilot.md"
+  ],
+  "reconciliation_note": "No new client_order_id reconciliation was required because the 0851 after-hours cycle never opened a submit path."
+}
