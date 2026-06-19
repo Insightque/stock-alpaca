@@ -1,0 +1,725 @@
+{
+  "run_id": "2026-06-19-0931-after-hours-autopilot",
+  "created_at": "2026-06-19T00:31:22+00:00",
+  "paper": true,
+  "source": "scheduler local MCP stdio preflight",
+  "symbols": [
+    "QQQ",
+    "NOK",
+    "WMT",
+    "SMH",
+    "MCD",
+    "NEE",
+    "GS",
+    "CVX"
+  ],
+  "symbol_source": "alpaca_core_preflight",
+  "cache_dir": "/Users/insightque/stock-alpaca/.cache/after-hours-research-mcp-preflight",
+  "cache_enabled": true,
+  "circuit_breaker_seconds": 600,
+  "providers": [
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T23:51:28+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_company_info|get_recent_filings",
+      "per_symbol": {
+        "SMH": {
+          "outcome": "gap",
+          "gap_category": "empty_response",
+          "gap_reason": "symbol missing from local SEC ticker-CIK cache; likely ETF/non-company lookup gap"
+        },
+        "QQQ": {
+          "cik": "0001067839",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "NOK": {
+          "cik": "0000924613",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "WMT": {
+          "cik": "0000104169",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "MCD": {
+          "cik": "0000063908",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "NEE": {
+          "cik": "0000753308",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "GS": {
+          "cik": "0000886982",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        },
+        "CVX": {
+          "cik": "0000093410",
+          "outcome": "pass",
+          "company_info": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get company info: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          },
+          "recent_filings": {
+            "outcome": "pass",
+            "payload": {
+              "success": false,
+              "error": "Failed to get recent filings: Unknown scheme for proxy URL URL('')"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-18T23:51:29+00:00",
+      "cache_reused_at": "2026-06-19T00:31:22+00:00",
+      "cache_ttl_seconds": 3600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0931-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "outcome": "gap",
+      "checked_at": "2026-06-18T23:51:28+00:00",
+      "gap_category": "empty_response",
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "retry_count": 0,
+      "tool": "TOOL_LIST|TOOL_GET|TOOL_CALL(NEWS_SENTIMENT)",
+      "payload": {
+        "item_count": 0,
+        "candidate_payload": {
+          "items": "0",
+          "sentiment_score_definition": "x <= -0.35: Bearish; -0.35 < x <= -0.15: Somewhat-Bearish; -0.15 < x < 0.15: Neutral; 0.15 <= x < 0.35: Somewhat_Bullish; x >= 0.35: Bullish",
+          "relevance_score_definition": "0 < x <= 1, with a higher score indicating higher relevance.",
+          "feed": []
+        }
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-18T23:51:29+00:00",
+      "cache_reused_at": "2026-06-19T00:31:22+00:00",
+      "cache_ttl_seconds": 3600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0931-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T21:11:25+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_macro_snapshot",
+      "payload": {
+        "observation_end": null,
+        "series": [
+          {
+            "series_id": "DGS10",
+            "latest": {
+              "realtime_start": "2026-06-18",
+              "realtime_end": "2026-06-18",
+              "date": "2026-06-17",
+              "value": "4.49"
+            }
+          },
+          {
+            "series_id": "DGS2",
+            "latest": {
+              "realtime_start": "2026-06-18",
+              "realtime_end": "2026-06-18",
+              "date": "2026-06-17",
+              "value": "4.2"
+            }
+          },
+          {
+            "series_id": "FEDFUNDS",
+            "latest": {
+              "realtime_start": "2026-06-12",
+              "realtime_end": "2026-06-12",
+              "date": "2026-05-01",
+              "value": "3.63"
+            }
+          },
+          {
+            "series_id": "CPIAUCSL",
+            "latest": {
+              "realtime_start": "2026-06-10",
+              "realtime_end": "2026-06-10",
+              "date": "2026-05-01",
+              "value": "333.979"
+            }
+          },
+          {
+            "series_id": "UNRATE",
+            "latest": {
+              "realtime_start": "2026-06-12",
+              "realtime_end": "2026-06-12",
+              "date": "2026-05-01",
+              "value": "4.3"
+            }
+          },
+          {
+            "series_id": "NFCI",
+            "latest": {
+              "realtime_start": "2026-06-17",
+              "realtime_end": "2026-06-17",
+              "date": "2026-06-12",
+              "value": "-0.50500"
+            }
+          }
+        ]
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-18T21:11:28+00:00",
+      "cache_reused_at": "2026-06-19T00:31:22+00:00",
+      "cache_ttl_seconds": 21600,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0931-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "outcome": "failed",
+      "checked_at": "2026-06-19T00:31:22+00:00",
+      "gap_category": "unknown",
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "retry_count": 0,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0931-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-19T00:11:24+00:00",
+      "gap_category": "not_applicable",
+      "gap_reason": "",
+      "retry_count": 0,
+      "tool": "get_recommendations|get_yahoo_finance_news",
+      "per_symbol": {
+        "QQQ": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Holding This ETF Could Have Beaten Most VC Funds—Anthony Pompliano Says 'Insane Returns'\nSummary: Entrepreneur and investor Anthony Pompliano, on Tuesday, spotlighted a claim that investors would have outperformed most venture capital and private equity funds over the past decade by simply holding the Invesco QQQ Trust. Quoting the market commentator BoringBiz account on...\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/holding-etf-could-beaten-most-223101002.html\n\nT"
+            },
+            "retry_count": 0
+          }
+        },
+        "NOK": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 4,
+                  "buy": 4,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 4,
+                  "buy": 4,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 4,
+                  "buy": 4,
+                  "hold": 2,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 4,
+                  "buy": 2,
+                  "hold": 4,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: European Equities Traded in the US as American Depositary Receipts Little Changed in Thursday Trading\nSummary: European equities traded in the US as American depositary receipts were down marginally late Thursda\nDescription: \nURL: https://finance.yahoo.com/markets/world-indices/articles/european-equities-traded-us-american-150604647.html\n\nTitle: European Equities Traded in the US as American Depositary Receipts Rise in Wednesday Trading\nSummary: European equities traded in the US as Ameri"
+            },
+            "retry_count": 0
+          }
+        },
+        "WMT": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 9,
+                  "buy": 29,
+                  "hold": 4,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 9,
+                  "buy": 30,
+                  "hold": 4,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 9,
+                  "buy": 30,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 9,
+                  "buy": 31,
+                  "hold": 3,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: Kroger Sales Beat As Same-Store Growth Hits 1%\nSummary: Kroger topped first-quarter sales expectations while maintaining guidance as price cuts and higher transport costs pressured profit.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/kroger-sales-beat-same-store-180006280.html\n\nTitle: Kroger’s New CEO Wants Better Stores and More of Them\nSummary: Four months into his job, Kroger CEO Greg Foran says he’s been to more than 100 stores, and only two of five were in ver"
+            },
+            "retry_count": 0
+          }
+        },
+        "SMH": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": []
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: JPMorgan Analysts Say Broadcom Stock Is a 'Buy.' What to Know.\nSummary: JPMorgan issued a largely bullish note on Broadcom stock. Here’s why analyst Harlan Sur recommends buying AVGO shares at current levels.\nDescription: \nURL: https://www.barchart.com/story/news/2534110/jpmorgan-analysts-say-broadcom-stock-is-a-buy-what-to-know\n\nTitle: US chip stocks gain after Apple-Intel partnership\nSummary: Investing.com -- Shares of U.S. semiconductor companies climbed in premarket trading Thursday a"
+            },
+            "retry_count": 0
+          }
+        },
+        "MCD": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 5,
+                  "buy": 14,
+                  "hold": 14,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 5,
+                  "buy": 14,
+                  "hold": 14,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 4,
+                  "buy": 15,
+                  "hold": 16,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 4,
+                  "buy": 16,
+                  "hold": 15,
+                  "sell": 2,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: EU Cloud Probe Puts Microsoft, Amazon on Watch\nSummary: Azure and AWS could face DMA obligations on interoperability, customer lock-in, and self-preferencing if EU regulators proceed.\nDescription: \nURL: https://finance.yahoo.com/technology/articles/eu-cloud-probe-puts-microsoft-175953201.html\n\nTitle: McDonald's Blends Value With Brand Activations: Is It Paying Off?\nSummary: MCD's value deals, menu innovation and pop culture tie-ins help lift first-quarter comps, with Australia showing key"
+            },
+            "retry_count": 0
+          }
+        },
+        "NEE": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 3,
+                  "buy": 11,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 3,
+                  "buy": 10,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 4,
+                  "buy": 12,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 4,
+                  "buy": 12,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: NextEra Energy (NEE) Laps the Stock Market: Here's Why\nSummary: NextEra Energy (NEE) closed the most recent trading day at $86.75, moving +1.19% from the previous trading session.\nDescription: \nURL: https://finance.yahoo.com/markets/stocks/articles/nextera-energy-nee-laps-stock-214502192.html\n\nTitle: In 10 Years, Will You Wish You'd Bought NextEra Energy Right Now?\nSummary: NextEra Energy is about to become a much more powerful company.\nDescription: \nURL: https://www.fool.com/investing/20"
+            },
+            "retry_count": 0
+          }
+        },
+        "GS": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 1,
+                  "buy": 6,
+                  "hold": 16,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 1,
+                  "buy": 6,
+                  "hold": 16,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 1,
+                  "buy": 7,
+                  "hold": 16,
+                  "sell": 1,
+                  "strongSell": 1
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 1,
+                  "buy": 7,
+                  "hold": 17,
+                  "sell": 1,
+                  "strongSell": 0
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: College students are swapping coding for healthcare: Goldman Sachs\nSummary: College students are eschewing AI-exposed majors in favor of fields with stronger job growth, according to an analysis from Goldman Sachs.\nDescription: \nURL: https://finance.yahoo.com/economy/article/college-students-are-swapping-coding-for-healthcare-goldman-sachs-145207354.html\n\nTitle: Best CD rates today, Thursday, June 18, 2026: Lock in up to 4% APY\nSummary: If you're on the hunt for today's best CD rates, we'"
+            },
+            "retry_count": 0
+          }
+        },
+        "CVX": {
+          "outcome": "pass",
+          "recommendations": {
+            "outcome": "pass",
+            "payload": {
+              "items": [
+                {
+                  "period": "0m",
+                  "strongBuy": 5,
+                  "buy": 13,
+                  "hold": 6,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-1m",
+                  "strongBuy": 5,
+                  "buy": 13,
+                  "hold": 6,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-2m",
+                  "strongBuy": 5,
+                  "buy": 13,
+                  "hold": 6,
+                  "sell": 1,
+                  "strongSell": 0
+                },
+                {
+                  "period": "-3m",
+                  "strongBuy": 5,
+                  "buy": 12,
+                  "hold": 7,
+                  "sell": 1,
+                  "strongSell": 1
+                }
+              ]
+            },
+            "retry_count": 0
+          },
+          "news": {
+            "outcome": "pass",
+            "payload": {
+              "text": "Title: The SLB Paradox: Short-Term Friction, Long-Cycle Fuel\nSummary: Despite SLB’s heavily disrupted Q1, why is the market betting on a multi-year boom.\nDescription: \nURL: https://www.trefis.com/articles/603545/the-slb-paradox-short-term-friction-long-cycle-fuel/2026-06-18\n\nTitle: Stocks Supported as Geopolitical Risks Recede\nSummary: The S&P 500 Index ($SPX ) (SPY ) today is up +0.99%, the Dow Jones Industrial Average ($DOWI ) (DIA ) is up +0.61%, and the Nasdaq 100 Index ($IUXX ) (QQQ ) is up"
+            },
+            "retry_count": 0
+          }
+        }
+      },
+      "cache_hit": true,
+      "cache_stored_at": "2026-06-19T00:11:44+00:00",
+      "cache_reused_at": "2026-06-19T00:31:22+00:00",
+      "cache_ttl_seconds": 1800,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0931-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    }
+  ],
+  "mcp_coverage_hint": [
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T23:51:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0931-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-06-18T23:51:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0931-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-18T21:11:25+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0931-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "failed",
+      "checked_at": "2026-06-19T00:31:22+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0931-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "Firecrawl API error: Insufficient credits to perform this request. For more credits, you can upgrade your plan at https://firecrawl.dev/pricing or try changing the request limit to a lower value.",
+      "gap_category": "unknown",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-06-19T00:11:24+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-06-19-0931-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ]
+}
