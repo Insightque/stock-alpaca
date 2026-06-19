@@ -1,3 +1,16 @@
+## 최신 after-hours-autopilot reconciliation
+
+- Run: [[2026-06-19-0951-after-hours-autopilot]]
+- Open/new: 없음. source-of-record와 live `get_orders(status=open)` 기준 open orders `0`이다.
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: live `get_all_positions` 기준 positions `32`건이며 `RGTI position 없음`, `SO qty=6`, `AVGO qty=1`, `QQQ qty=3`, `SPY qty=2`다.
+- Recent reconciliation scope: scheduler-owned `0951` Alpaca core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. live Alpaca MCP `get_clock/get_account_info/get_all_positions/get_watchlists/get_orders(status=open|all)/get_account_activities(activity_types=[FILL])/get_stock_latest_quote(feed=iex|overnight)`로 continuity를 닫았지만 freshest `AVGO`도 약 `238.09`분 stale였고 `QQQ/NOK/WMT/SMH/MCD/NEE/GS/CVX` 및 `SO`가 freshness, spread, after-hours per-order cap, validation lifecycle gate에 막혀 submit path가 열리지 않았다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-06-19-0951-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-06-19 09:54 KST_
+
 ## 최신 hourly-autopilot reconciliation
 
 - Run: [[2026-06-19-0451-hourly-autopilot]]
