@@ -1,0 +1,162 @@
+{
+  "run_id": "2026-07-22-0851-after-hours-autopilot",
+  "created_at": "2026-07-21T23:53:55Z",
+  "session": "after_hours",
+  "market_date": "2026-07-21 EDT",
+  "scheduler_artifact_date": "2026-07-22 KST",
+  "clock_timestamp": "2026-07-21T19:53:55.752991512-04:00",
+  "after_hours_policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "artifact_tag": "after-hours",
+  "order_budget": {
+    "submitted": 0,
+    "max_new_orders_per_session": 2,
+    "remaining": 2
+  },
+  "alpaca_core_preflight": {
+    "path": "wiki/evidence-store/sources/2026-07-22-0851-after-hours-autopilot-alpaca-core-preflight.json",
+    "first_blocking_gate": "market_closed",
+    "treated_as": "expected_nonblocking_after_hours"
+  },
+  "research_preflight": {
+    "path": "wiki/evidence-store/sources/2026-07-22-0851-after-hours-autopilot-research-mcp-preflight.json",
+    "providers_pass": [
+      "sec-edgar",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "providers_gap": [
+      {
+        "server": "alpha-vantage",
+        "gap_category": "empty_response",
+        "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols."
+      }
+    ]
+  },
+  "live_continuity": {
+    "regular_market_open": false,
+    "account_status": "ACTIVE",
+    "positions_count": 32,
+    "watchlists_count": 0,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_today": 0,
+    "account": {
+      "portfolio_value": 98605.89,
+      "cash": 28610.95,
+      "buying_power": 297957.99,
+      "currency": "USD",
+      "daily_realized_loss": 0.0
+    }
+  },
+  "candidate_quotes": {
+    "AVGO": {
+      "ap": 402.1,
+      "bp": 362.15,
+      "t": "2026-07-21T20:00:02.263869102Z",
+      "age_minutes": 233.89,
+      "spread_pct": 9.9353
+    },
+    "SO": {
+      "ap": 99.75,
+      "bp": 89.08,
+      "t": "2026-07-21T20:00:00.004218474Z",
+      "age_minutes": 233.93,
+      "spread_pct": 10.6967
+    },
+    "QQQ": {
+      "ap": 708.24,
+      "bp": 708.17,
+      "t": "2026-07-21T20:51:39.018672866Z",
+      "age_minutes": 182.28,
+      "spread_pct": 0.0099
+    },
+    "SPY": {
+      "ap": 748.32,
+      "bp": 748.21,
+      "t": "2026-07-21T20:00:20.60439531Z",
+      "age_minutes": 233.59,
+      "spread_pct": 0.0147
+    },
+    "NOK": {
+      "ap": 10.92,
+      "bp": 10.78,
+      "t": "2026-07-21T20:59:59.264735788Z",
+      "age_minutes": 173.94,
+      "spread_pct": 1.2821
+    },
+    "WMT": {
+      "ap": 0,
+      "bp": 105.89,
+      "t": "2026-07-21T20:00:02.070975877Z",
+      "age_minutes": 233.89,
+      "spread_pct": null
+    },
+    "SMH": {
+      "ap": 598.39,
+      "bp": 563.37,
+      "t": "2026-07-21T20:00:00.002925791Z",
+      "age_minutes": 233.93,
+      "spread_pct": 5.8524
+    },
+    "MCD": {
+      "ap": 280.25,
+      "bp": 253.03,
+      "t": "2026-07-21T20:00:00.002209756Z",
+      "age_minutes": 233.93,
+      "spread_pct": 9.7128
+    },
+    "NEE": {
+      "ap": 93.02,
+      "bp": 83.12,
+      "t": "2026-07-21T20:00:03.375437583Z",
+      "age_minutes": 233.87,
+      "spread_pct": 10.6429
+    },
+    "GS": {
+      "ap": 1128.75,
+      "bp": 1033.81,
+      "t": "2026-07-21T20:00:00.002157683Z",
+      "age_minutes": 233.93,
+      "spread_pct": 8.4111
+    },
+    "CVX": {
+      "ap": 200.03,
+      "bp": 180.24,
+      "t": "2026-07-21T20:00:00.031512009Z",
+      "age_minutes": 233.93,
+      "spread_pct": 9.8935
+    }
+  },
+  "gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_source_of_record_plus_live_continuity",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "risk_policy": "PASS_with_expected_orders_empty_warning",
+    "fresh_quote": "FAIL_all_executable_candidates_stale_173m_plus",
+    "spread_within_after_hours_policy": "FAIL_all_executable_candidates_or_quote_incomplete_except_QQQ_SPY_spread_only",
+    "whole_share_day_limit_extended_hours_order": "fail_no_eligible_order_survived_hard_gates",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit"
+  },
+  "decision": {
+    "action": "no_submit_quotes_stale",
+    "reason": "Separate after-hours budget remained open at 0/2 and both sell and buy paths were evaluated, but the freshest live IEX quote in the executable set was NOK at 2026-07-21T20:59:59Z, about 173.94 minutes stale versus the 5-minute after-hours cap. QQQ and SPY passed spread but still failed freshness and per-order notional caps; the remaining symbols also failed spread or quote completeness.",
+    "eligible_sell_trim_found": false,
+    "eligible_buy_fallback_found": false,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_today": 0,
+    "separate_session_budget_remaining": 2
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-22-0851-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-22-0851-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md"
+  ]
+}
