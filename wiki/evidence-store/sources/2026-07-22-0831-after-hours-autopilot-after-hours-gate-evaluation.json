@@ -1,0 +1,562 @@
+{
+  "run_id": "2026-07-22-0831-after-hours-autopilot",
+  "created_at": "2026-07-21T23:37:59Z",
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "market_date_et": "2026-07-21",
+  "scheduler_artifact_date_kst": "2026-07-22",
+  "paper_mode": true,
+  "scheduler_owned_preflight": {
+    "alpaca_core": "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp": "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-research-mcp-preflight.json",
+    "alpaca_first_blocking_gate": "market_closed",
+    "alpaca_market_closed_expected_nonblocking": true
+  },
+  "live_continuity": {
+    "clock": {
+      "is_open": false,
+      "next_close": "2026-07-22T16:00:00-04:00",
+      "next_open": "2026-07-22T09:30:00-04:00",
+      "timestamp": "2026-07-21T19:35:16.394453116-04:00"
+    },
+    "account": {
+      "status": "ACTIVE",
+      "portfolio_value": 98602.01,
+      "cash": 28610.95,
+      "buying_power": 297980.88,
+      "currency": "USD"
+    },
+    "positions_count": 32,
+    "watchlists_count": 0,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_observed": 0,
+    "orders_after_cutoff": "2026-07-21T20:00:00Z"
+  },
+  "policy_limits": {
+    "session_name": "after_hours",
+    "review_bucket": "after_hours_validation",
+    "order_id_prefix": "ah-",
+    "max_new_orders_per_session": 2,
+    "max_quote_age_minutes_submit": 5.0,
+    "max_spread_pct": 0.25,
+    "max_notional_pct_per_order": 0.005,
+    "max_notional_usd_per_order": 493.01,
+    "allowed_sides": [
+      "buy",
+      "sell"
+    ]
+  },
+  "quote_checks": {
+    "AVGO": {
+      "bid": 362.15,
+      "ask": 402.1,
+      "quote_timestamp": "2026-07-21T20:00:02.263869102Z",
+      "quote_age_minutes": 215.2355,
+      "spread_pct": 10.4547,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "SO": {
+      "bid": 89.08,
+      "ask": 99.75,
+      "quote_timestamp": "2026-07-21T20:00:00.004218474Z",
+      "quote_age_minutes": 215.2732,
+      "spread_pct": 11.3012,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "QQQ": {
+      "bid": 708.17,
+      "ask": 708.24,
+      "quote_timestamp": "2026-07-21T20:51:39.018672866Z",
+      "quote_age_minutes": 163.6229,
+      "spread_pct": 0.0099,
+      "fresh_quote_pass": false,
+      "spread_pass": true,
+      "quote_complete_pass": true
+    },
+    "SPY": {
+      "bid": 748.21,
+      "ask": 748.32,
+      "quote_timestamp": "2026-07-21T20:00:20.60439531Z",
+      "quote_age_minutes": 214.9298,
+      "spread_pct": 0.0147,
+      "fresh_quote_pass": false,
+      "spread_pass": true,
+      "quote_complete_pass": true
+    },
+    "NOK": {
+      "bid": 10.78,
+      "ask": 10.92,
+      "quote_timestamp": "2026-07-21T20:59:59.264735788Z",
+      "quote_age_minutes": 155.2855,
+      "spread_pct": 1.2903,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "WMT": {
+      "bid": 105.89,
+      "ask": 0.0,
+      "quote_timestamp": "2026-07-21T20:00:02.070975877Z",
+      "quote_age_minutes": 215.2387,
+      "spread_pct": null,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": false
+    },
+    "SMH": {
+      "bid": 563.37,
+      "ask": 598.39,
+      "quote_timestamp": "2026-07-21T20:00:00.002925791Z",
+      "quote_age_minutes": 215.2732,
+      "spread_pct": 6.0288,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "MCD": {
+      "bid": 253.03,
+      "ask": 280.25,
+      "quote_timestamp": "2026-07-21T20:00:00.002209756Z",
+      "quote_age_minutes": 215.2732,
+      "spread_pct": 10.2085,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "NEE": {
+      "bid": 83.12,
+      "ask": 93.02,
+      "quote_timestamp": "2026-07-21T20:00:03.375437583Z",
+      "quote_age_minutes": 215.217,
+      "spread_pct": 11.2411,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "GS": {
+      "bid": 1033.81,
+      "ask": 1128.75,
+      "quote_timestamp": "2026-07-21T20:00:00.002157683Z",
+      "quote_age_minutes": 215.2732,
+      "spread_pct": 8.7803,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "CVX": {
+      "bid": 180.24,
+      "ask": 200.03,
+      "quote_timestamp": "2026-07-21T20:00:00.031512009Z",
+      "quote_age_minutes": 215.2727,
+      "spread_pct": 10.4084,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    }
+  },
+  "overnight_quote_checks": {
+    "AVGO": {
+      "bid": 361.66,
+      "ask": 397.88,
+      "quote_timestamp": "2026-07-21T08:00:00.585826827Z",
+      "quote_age_minutes": 935.2635,
+      "spread_pct": 9.5374,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "SO": {
+      "bid": 94.08,
+      "ask": 96.73,
+      "quote_timestamp": "2026-07-21T08:00:00.523531634Z",
+      "quote_age_minutes": 935.2645,
+      "spread_pct": 2.7776,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "QQQ": {
+      "bid": 681.37,
+      "ask": 719.52,
+      "quote_timestamp": "2026-07-21T08:00:00.579844045Z",
+      "quote_age_minutes": 935.2636,
+      "spread_pct": 5.4465,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "SPY": {
+      "bid": 743.69,
+      "ask": 745.3,
+      "quote_timestamp": "2026-07-21T08:00:00.579766348Z",
+      "quote_age_minutes": 935.2636,
+      "spread_pct": 0.2163,
+      "fresh_quote_pass": false,
+      "spread_pass": true,
+      "quote_complete_pass": true
+    },
+    "NOK": {
+      "bid": 10.32,
+      "ask": 10.55,
+      "quote_timestamp": "2026-07-21T08:00:00.585810314Z",
+      "quote_age_minutes": 935.2635,
+      "spread_pct": 2.2041,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "WMT": {
+      "bid": 111.16,
+      "ask": 118.52,
+      "quote_timestamp": "2026-07-21T08:00:00.573549624Z",
+      "quote_age_minutes": 935.2637,
+      "spread_pct": 6.4089,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "SMH": {
+      "bid": 574.13,
+      "ask": 574.73,
+      "quote_timestamp": "2026-07-21T08:00:00.581207609Z",
+      "quote_age_minutes": 935.2636,
+      "spread_pct": 0.1045,
+      "fresh_quote_pass": false,
+      "spread_pass": true,
+      "quote_complete_pass": true
+    },
+    "MCD": {
+      "bid": 264.81,
+      "ask": 269.66,
+      "quote_timestamp": "2026-07-21T08:00:00.569342216Z",
+      "quote_age_minutes": 935.2638,
+      "spread_pct": 1.8149,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "NEE": {
+      "bid": 87.52,
+      "ask": 90.45,
+      "quote_timestamp": "2026-07-21T08:00:00.560082582Z",
+      "quote_age_minutes": 935.2639,
+      "spread_pct": 3.2927,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "GS": {
+      "bid": 1061.61,
+      "ask": 1069.21,
+      "quote_timestamp": "2026-07-21T08:00:00.571299687Z",
+      "quote_age_minutes": 935.2637,
+      "spread_pct": 0.7133,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    },
+    "CVX": {
+      "bid": 179.09,
+      "ask": 189.54,
+      "quote_timestamp": "2026-07-21T08:00:00.572375489Z",
+      "quote_age_minutes": 935.2637,
+      "spread_pct": 5.6696,
+      "fresh_quote_pass": false,
+      "spread_pass": false,
+      "quote_complete_pass": true
+    }
+  },
+  "sell_candidates": [
+    {
+      "symbol": "AVGO",
+      "side": "sell",
+      "status": "blocked",
+      "reasons": [
+        "fresh_quote_fail",
+        "spread_fail",
+        "minimum_remaining_qty"
+      ],
+      "held_qty": 1,
+      "quote_check": {
+        "bid": 362.15,
+        "ask": 402.1,
+        "quote_timestamp": "2026-07-21T20:00:02.263869102Z",
+        "quote_age_minutes": 215.2355,
+        "spread_pct": 10.4547,
+        "fresh_quote_pass": false,
+        "spread_pass": false,
+        "quote_complete_pass": true
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "side": "sell",
+      "status": "blocked",
+      "reasons": [
+        "fresh_quote_fail",
+        "spread_fail",
+        "sell_metric_gap"
+      ],
+      "held_qty": 6,
+      "quote_check": {
+        "bid": 89.08,
+        "ask": 99.75,
+        "quote_timestamp": "2026-07-21T20:00:00.004218474Z",
+        "quote_age_minutes": 215.2732,
+        "spread_pct": 11.3012,
+        "fresh_quote_pass": false,
+        "spread_pass": false,
+        "quote_complete_pass": true
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/trade-ledger/reviews/review-due-index.json"
+      ]
+    }
+  ],
+  "buy_candidates": [
+    {
+      "symbol": "QQQ",
+      "status": "blocked",
+      "reasons": [
+        "fresh_quote_fail",
+        "after_hours_notional_cap"
+      ],
+      "quote_check": {
+        "bid": 708.17,
+        "ask": 708.24,
+        "quote_timestamp": "2026-07-21T20:51:39.018672866Z",
+        "quote_age_minutes": 163.6229,
+        "spread_pct": 0.0099,
+        "fresh_quote_pass": false,
+        "spread_pass": true,
+        "quote_complete_pass": true
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "SPY",
+      "status": "blocked",
+      "reasons": [
+        "fresh_quote_fail",
+        "after_hours_notional_cap"
+      ],
+      "quote_check": {
+        "bid": 748.21,
+        "ask": 748.32,
+        "quote_timestamp": "2026-07-21T20:00:20.60439531Z",
+        "quote_age_minutes": 214.9298,
+        "spread_pct": 0.0147,
+        "fresh_quote_pass": false,
+        "spread_pass": true,
+        "quote_complete_pass": true
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "NOK",
+      "status": "blocked",
+      "reasons": [
+        "fresh_quote_fail",
+        "spread_fail",
+        "validation_lifecycle_add_block"
+      ],
+      "quote_check": {
+        "bid": 10.78,
+        "ask": 10.92,
+        "quote_timestamp": "2026-07-21T20:59:59.264735788Z",
+        "quote_age_minutes": 155.2855,
+        "spread_pct": 1.2903,
+        "fresh_quote_pass": false,
+        "spread_pass": false,
+        "quote_complete_pass": true
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-after-hours-gate-evaluation.json",
+        "wiki/trade-ledger/reviews/review-due-index.json"
+      ]
+    },
+    {
+      "symbol": "WMT",
+      "status": "blocked",
+      "reasons": [
+        "fresh_quote_fail",
+        "quote_incomplete"
+      ],
+      "quote_check": {
+        "bid": 105.89,
+        "ask": 0.0,
+        "quote_timestamp": "2026-07-21T20:00:02.070975877Z",
+        "quote_age_minutes": 215.2387,
+        "spread_pct": null,
+        "fresh_quote_pass": false,
+        "spread_pass": false,
+        "quote_complete_pass": false
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "SMH",
+      "status": "blocked",
+      "reasons": [
+        "fresh_quote_fail",
+        "spread_fail",
+        "after_hours_notional_cap"
+      ],
+      "quote_check": {
+        "bid": 563.37,
+        "ask": 598.39,
+        "quote_timestamp": "2026-07-21T20:00:00.002925791Z",
+        "quote_age_minutes": 215.2732,
+        "spread_pct": 6.0288,
+        "fresh_quote_pass": false,
+        "spread_pass": false,
+        "quote_complete_pass": true
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "MCD",
+      "status": "blocked",
+      "reasons": [
+        "fresh_quote_fail",
+        "spread_fail"
+      ],
+      "quote_check": {
+        "bid": 253.03,
+        "ask": 280.25,
+        "quote_timestamp": "2026-07-21T20:00:00.002209756Z",
+        "quote_age_minutes": 215.2732,
+        "spread_pct": 10.2085,
+        "fresh_quote_pass": false,
+        "spread_pass": false,
+        "quote_complete_pass": true
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "NEE",
+      "status": "blocked",
+      "reasons": [
+        "fresh_quote_fail",
+        "spread_fail"
+      ],
+      "quote_check": {
+        "bid": 83.12,
+        "ask": 93.02,
+        "quote_timestamp": "2026-07-21T20:00:03.375437583Z",
+        "quote_age_minutes": 215.217,
+        "spread_pct": 11.2411,
+        "fresh_quote_pass": false,
+        "spread_pass": false,
+        "quote_complete_pass": true
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "CVX",
+      "status": "blocked",
+      "reasons": [
+        "fresh_quote_fail",
+        "spread_fail"
+      ],
+      "quote_check": {
+        "bid": 180.24,
+        "ask": 200.03,
+        "quote_timestamp": "2026-07-21T20:00:00.031512009Z",
+        "quote_age_minutes": 215.2727,
+        "spread_pct": 10.4084,
+        "fresh_quote_pass": false,
+        "spread_pass": false,
+        "quote_complete_pass": true
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "GS",
+      "status": "blocked",
+      "reasons": [
+        "fresh_quote_fail",
+        "spread_fail",
+        "after_hours_notional_cap"
+      ],
+      "quote_check": {
+        "bid": 1033.81,
+        "ask": 1128.75,
+        "quote_timestamp": "2026-07-21T20:00:00.002157683Z",
+        "quote_age_minutes": 215.2732,
+        "spread_pct": 8.7803,
+        "fresh_quote_pass": false,
+        "spread_pass": false,
+        "quote_complete_pass": true
+      },
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    }
+  ],
+  "decision_summary": {
+    "action": "no_submit_quotes_stale",
+    "reason": "Separate after-hours budget remained open at 0/2 and both sell and buy paths were evaluated, but the freshest live IEX quote in the executable set was NOK at 2026-07-21T20:59:59Z, about 155.29 minutes stale versus the 5-minute after-hours cap. QQQ and SPY passed spread but still failed freshness and per-order notional caps; the remaining symbols also failed spread or quote completeness.",
+    "eligible_sell_trim_found": false,
+    "eligible_buy_fallback_found": false,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_today": 0,
+    "separate_session_budget_remaining": 2
+  },
+  "after_hours_gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_source_of_record_plus_live_continuity",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_zero_of_two_submitted",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "risk_policy": "PASS_with_expected_orders_empty_warning",
+    "fresh_quote": "FAIL_all_executable_candidates_stale_155m_plus",
+    "spread_within_after_hours_policy": "FAIL_all_executable_candidates_or_quote_incomplete_except_QQQ_SPY_spread_only",
+    "whole_share_day_limit_extended_hours_order": "fail_no_eligible_order_survived_hard_gates",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "pass_no_submit"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-07-22-0831-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md"
+  ]
+}
