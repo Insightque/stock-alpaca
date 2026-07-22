@@ -1,0 +1,124 @@
+{
+  "run_id": "2026-07-22-2111-after-hours-autopilot",
+  "created_at": "2026-07-22T12:18:37Z",
+  "session": "after_hours",
+  "market_date": "2026-07-22 EDT",
+  "scheduler_artifact_date": "2026-07-22 KST",
+  "clock_timestamp": "2026-07-22T08:13:02.873762892-04:00",
+  "after_hours_policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "artifact_tag": "after-hours",
+  "order_budget": {
+    "submitted_before_run": 1,
+    "submitted_after_run": 2,
+    "max_new_orders_per_session": 2,
+    "remaining_after_run": 0
+  },
+  "alpaca_core_preflight": {
+    "path": "wiki/evidence-store/sources/2026-07-22-2111-after-hours-autopilot-alpaca-core-preflight.json",
+    "first_blocking_gate": "market_closed",
+    "treated_as": "expected_nonblocking_after_hours"
+  },
+  "research_preflight": {
+    "path": "wiki/evidence-store/sources/2026-07-22-2111-after-hours-autopilot-research-mcp-preflight.json",
+    "providers_pass": [
+      "sec-edgar",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "providers_gap": [
+      {
+        "server": "alpha-vantage",
+        "gap_category": "empty_response",
+        "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols."
+      }
+    ]
+  },
+  "live_continuity": {
+    "regular_market_open": false,
+    "account_status": "ACTIVE",
+    "positions_count": 31,
+    "open_orders_count_before_submit": 0,
+    "open_orders_count_after_submit": 1,
+    "same_session_after_hours_orders_submitted_today": 2,
+    "same_session_after_hours_fills_today": 1,
+    "account": {
+      "portfolio_value": 97492.39,
+      "cash": 28995.09,
+      "buying_power": 296169.22,
+      "currency": "USD",
+      "daily_realized_loss": 0.0
+    }
+  },
+  "candidate_quotes": {
+    "NOK": {
+      "ap": 10.34,
+      "bp": 10.33,
+      "t": "2026-07-22T12:11:19.234907516Z",
+      "age_minutes": 1.7,
+      "spread_pct": 0.0968
+    },
+    "SPY": {
+      "ap": 745.69,
+      "bp": 745.57,
+      "t": "2026-07-22T12:11:30.490603055Z",
+      "age_minutes": 1.53,
+      "spread_pct": 0.0161
+    },
+    "SMH": {
+      "ap": 575.94,
+      "bp": 566.89,
+      "t": "2026-07-22T12:08:29.970689849Z",
+      "age_minutes": 4.53,
+      "spread_pct": 1.5838
+    },
+    "SO": {
+      "ap": 99.75,
+      "bp": 89.08,
+      "t": "2026-07-21T20:00:00.004218474Z",
+      "age_minutes": 978.61,
+      "spread_pct": 11.3012
+    },
+    "WMT": {
+      "ap": 0.0,
+      "bp": 105.89,
+      "t": "2026-07-21T20:00:02.070975877Z",
+      "age_minutes": 978.58,
+      "spread_pct": null
+    }
+  },
+  "gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_scheduler_preflight_plus_live_reconciliation",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_second_of_two_slots_submitted",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "risk_policy": "PASS",
+    "fresh_quote": "PASS_nok_1.7_minutes",
+    "spread_within_after_hours_policy": "PASS_nok_0.0968pct",
+    "whole_share_day_limit_extended_hours_order": "PASS_nok_sell_shape",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "PASS_client_order_id_reconciled_open_new_lifecycle_recorded"
+  },
+  "decision": {
+    "action": "submit_nok_after_hours_trim",
+    "reason": "NOK became the highest-ranked executable sell-first candidate once the 2111 scheduler preflight produced a fresh 10.33/10.34 two-sided quote inside the after-hours spread cap. SPY remained above the per-order notional cap, SMH remained above the spread cap, and review_backlog_pending_1d_count=17 still blocked new buy exposure, so the workflow used the final remaining after-hours session slot on a 1-share NOK trim.",
+    "eligible_sell_trim_found": true,
+    "eligible_buy_fallback_found": false,
+    "submitted_client_order_id": "ah-20260722-2111-sell-nok-01",
+    "alpaca_order_id": "78270797-caec-4673-a861-69f4db403bc0",
+    "submit_status": "new",
+    "same_session_after_hours_fills_today": 1,
+    "separate_session_budget_remaining": 0
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-22-2111-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-22-2111-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/research-notes/tickers/NOK.md",
+    "wiki/trade-ledger/reviews/2026-06-19-portfolio-review.md",
+    "wiki/trade-ledger/reviews/review-due-index.json"
+  ]
+}
