@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-07-22-1511-after-hours-autopilot]]
+- Open/new: 없음. source-of-record `1511` preflight와 same client id readback 기준 open orders `0`, same-session after-hours submitted orders `1`이다.
+- Filled: `AVGO` after-hours sell `1건`이 `client_order_id=ah-20260722-0911-sell-avgo-01`, `filled_avg_price=384.14 USD`, `filled_at=2026-07-22T01:48:58.933755903Z`로 계속 체결 완료 상태다. same-session fills `1`이다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: source-of-record `get_all_positions` 기준 positions `31`건이며 `AVGO position 없음`, `SO qty=6`, `QQQ qty=3`, `SPY qty=2`, `WMT qty=10`, `NOK qty=402`다.
+- Recent reconciliation scope: scheduler-owned `2026-07-22-1511-*` Alpaca core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. submit boundary는 같은 `1511` preflight asset/quote/spread rows로 고정했고, 그 source-of-record quote들이 stale 또는 one-sided여서 `SO/WMT/MCD/QQQ/SPY/SMH/NOK/NEE/CVX/GS` 모두 after-hours quote 또는 spread 또는 cap gate를 통과하지 못했다. runtime overnight quote/snapshot spot-check는 continuity 참고로만 기록했고 submit path는 다시 열지 않았다. 따라서 신규 `place_stock_order` 없이 reconcile-only로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-07-22-1511-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-07-22 06:11 UTC_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-07-22-1451-after-hours-autopilot]]
 - Open/new: 없음. live `get_orders(status=open)` 기준 open orders `0`, same-session after-hours submitted orders `1`이다.
 - Filled: `AVGO` after-hours sell `1건`이 `client_order_id=ah-20260722-0911-sell-avgo-01`, `filled_avg_price=384.14 USD`, `filled_at=2026-07-22T01:48:58.933755903Z`로 계속 체결 완료 상태다. live `get_account_activities(activity_types=[FILL], after=2026-07-21T20:00:00-04:00)` 기준 same-session fills `1`이다.
