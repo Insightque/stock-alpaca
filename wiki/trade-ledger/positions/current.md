@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-07-22-1231-after-hours-autopilot]]
+- Open/new: 없음. live `get_orders(status=open)` 기준 open orders `0`, same-session after-hours submitted orders `1`이다.
+- Filled: `AVGO` after-hours sell `1건`이 `client_order_id=ah-20260722-0911-sell-avgo-01`, `filled_avg_price=384.14 USD`, `filled_at=2026-07-22T01:48:58.933756Z`로 계속 체결 완료 상태다. live `get_account_activities(activity_types=[FILL], after=2026-07-21T20:00:00Z)` 기준 same-session fills `1`이다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: live `get_all_positions` 기준 positions `31`건이며 `AVGO position 없음`, `SO qty=6`, `QQQ qty=3`, `SPY qty=2`, `WMT qty=10`, `NOK qty=402`다.
+- Recent reconciliation scope: scheduler-owned `2026-07-22-1231-*` Alpaca core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. 이어서 live Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open|all)/get_account_activities(activity_types=[FILL])/get_order_by_client_id/get_stock_latest_quote(feed=overnight)`로 continuity를 닫았다. `AVGO` sell은 same client id 기준 `status=filled`를 유지했고 `open_orders=0`가 유지됐다. 이후 `SO`는 stale+spread fail, `WMT`는 spread+backlog fail, `MCD`는 backlog throttle, `QQQ/SPY/SMH`는 per-order cap, `NOK`는 review add-block, `NEE/GS`는 spread fail, `CVX`는 freshness fail에 막혀 신규 `place_stock_order` 없이 reconcile-only로 종료했다. `1231` risk validator는 `PyYAML` dependency 누락으로 FAIL했고 strict universe/MCP gate는 PASS였다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-07-22-1231-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-07-22 03:34 UTC_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-07-22-1211-after-hours-autopilot]]
 - Open/new: 없음. live `get_orders(status=open)` 기준 open orders `0`, same-session after-hours submitted orders `1`이다.
 - Filled: `AVGO` after-hours sell `1건`이 `client_order_id=ah-20260722-0911-sell-avgo-01`, `filled_avg_price=384.14 USD`, `filled_at=2026-07-22T01:48:58.933756Z`로 계속 체결 완료 상태다. live `get_account_activities(activity_types=[FILL], after=2026-07-21T20:00:00Z)` 기준 same-session fills `1`이다.
