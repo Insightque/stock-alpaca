@@ -64,3 +64,9 @@ Alpaca/Benzinga에서 quantum sector funding 기대와 short-interest/valuation 
 2026-05-22 stock-only cohort는 63.48 USD 진입 대비 2026-06-01 close 69.285 USD로 +9.14%였다. speculative quantum sleeve로는 5D 결과가 강했고 SPY/QQQ를 모두 이겼다. 다만 volatility bucket이 high이므로 소액 검증 원칙은 유지한다.
 
 출처: [[2026-06-02-portfolio-review]], [[2026-06-02-0624-analyst-review-cycle-sources]]
+
+### 2026-07-22 analyst review cycle
+
+current Alpaca snapshot 기준 `IONQ`는 `45주`, 평균단가 `63.48 USD`, `2026-07-22 ET` close `34.685 USD`, current `34.78 USD`로 미실현 손실이 약 `-45.21%`다. Yahoo recommendation summary `3개월` window에서 새 analyst row도 확인되지 않았다. speculative sleeve 원칙상 보유는 별도 관리하더라도, 신규 add를 정당화할 증거는 없으므로 no-add discipline을 유지한다.
+
+출처: [[2026-07-22-portfolio-review]], [[2026-07-22-analyst-review-cycle-sources]]

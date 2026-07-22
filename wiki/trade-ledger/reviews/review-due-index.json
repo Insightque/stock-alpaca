@@ -1,23 +1,36 @@
 {
-  "updated_at": "2026-06-18T21:30:00Z",
-  "source_review": "wiki/trade-ledger/reviews/2026-06-19-portfolio-review.md",
-  "pending_1d_count": 17,
-  "pending_5d_count": 40,
-  "pending_20d_count": 14,
+  "updated_at": "2026-07-22T21:30:00Z",
+  "source_review": "wiki/trade-ledger/reviews/2026-07-22-portfolio-review.md",
+  "pending_1d_count": 2,
+  "pending_5d_count": 2,
+  "pending_20d_count": 0,
   "blocked_add_symbols": [
     "NOK"
   ],
-  "due_reviews_blocking_adds": [],
+  "due_reviews_blocking_adds": [
+    "NOK"
+  ],
   "due_reviews": [
     {
-      "symbol": "PFE",
-      "horizon": "5D",
+      "symbol": "AVGO",
+      "horizon": "1D",
       "decision_due": false,
-      "current_decision": "pending",
-      "due_after": "2026-06-19 US regular-session close",
+      "current_decision": "waiting",
+      "due_after": "2026-07-23 US regular-session close",
       "source_refs": [
-        "wiki/trade-ledger/reviews/2026-06-19-portfolio-review.md",
-        "wiki/current-runs/daily/2026-06-12-1411-after-hours-autopilot.md"
+        "wiki/trade-ledger/reviews/2026-07-22-portfolio-review.md",
+        "wiki/current-runs/daily/2026-07-22-0911-after-hours-autopilot.md"
+      ]
+    },
+    {
+      "symbol": "NOK",
+      "horizon": "1D",
+      "decision_due": false,
+      "current_decision": "waiting",
+      "due_after": "2026-07-23 US regular-session close",
+      "source_refs": [
+        "wiki/trade-ledger/reviews/2026-07-22-portfolio-review.md",
+        "wiki/current-runs/daily/2026-07-22-2111-after-hours-autopilot.md"
       ]
     },
     {
@@ -25,43 +38,21 @@
       "horizon": "5D",
       "decision_due": false,
       "current_decision": "pending",
-      "due_after": "2026-06-19 US regular-session close",
+      "due_after": "2026-07-29 US regular-session close",
       "source_refs": [
-        "wiki/trade-ledger/reviews/2026-06-19-portfolio-review.md",
-        "wiki/current-runs/daily/2026-06-12-1411-after-hours-autopilot.md"
+        "wiki/trade-ledger/reviews/2026-07-22-portfolio-review.md",
+        "wiki/current-runs/daily/2026-07-22-0911-after-hours-autopilot.md"
       ]
     },
     {
-      "symbol": "2026-06-18 ET trim/exit cohort (17 fills)",
-      "horizon": "1D",
-      "decision_due": false,
-      "current_decision": "pending",
-      "due_after": "2026-06-19 US regular-session close",
-      "source_refs": [
-        "wiki/trade-ledger/reviews/2026-06-19-portfolio-review.md",
-        "wiki/evidence-store/run-manifests/2026-06-19-0630-analyst-review-cycle.json"
-      ]
-    },
-    {
-      "symbol": "2026-06-15 ET fill cohort (18 symbols)",
+      "symbol": "NOK",
       "horizon": "5D",
       "decision_due": false,
       "current_decision": "pending",
-      "due_after": "2026-06-22 US regular-session close",
+      "due_after": "2026-07-29 US regular-session close",
       "source_refs": [
-        "wiki/trade-ledger/reviews/2026-06-17-portfolio-review.md",
-        "wiki/trade-ledger/reviews/2026-06-19-portfolio-review.md"
-      ]
-    },
-    {
-      "symbol": "2026-06-17 ET fill cohort (17 symbols)",
-      "horizon": "5D",
-      "decision_due": false,
-      "current_decision": "1D closeout complete",
-      "due_after": "2026-06-24 US regular-session close",
-      "source_refs": [
-        "wiki/trade-ledger/reviews/2026-06-19-portfolio-review.md",
-        "wiki/evidence-store/run-manifests/2026-06-19-0630-analyst-review-cycle.json"
+        "wiki/trade-ledger/reviews/2026-07-22-portfolio-review.md",
+        "wiki/current-runs/daily/2026-07-22-2111-after-hours-autopilot.md"
       ]
     }
   ]

@@ -1,0 +1,149 @@
+{
+  "id": "2026-07-22-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-07-22T21:30:00Z",
+  "timezone": "UTC",
+  "paper": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "alpaca_reconciliation": {
+    "clock_is_open": false,
+    "clock_timestamp": "2026-07-22T17:21:54.761339741-04:00",
+    "account_status": "ACTIVE",
+    "portfolio_value": 98526.58,
+    "cash": 29005.42,
+    "buying_power": 298711.89,
+    "long_market_value": 69521.16,
+    "open_us_equity_orders": 0,
+    "position_count_direct": 31,
+    "recent_fill_scope_after": "2026-06-17T00:00:00Z",
+    "portfolio_history": {
+      "outcome": "gap",
+      "gap_category": "wrapper_error",
+      "retry_count": 0,
+      "gap_reason": "current registered Alpaca tool surface did not expose portfolio_history during this run"
+    }
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-07-22-portfolio-review.md",
+    "symbol_reviews": [
+      "wiki/research-notes/tickers/NOK.md",
+      "wiki/research-notes/tickers/AVGO.md",
+      "wiki/research-notes/tickers/GOOGL.md",
+      "wiki/research-notes/tickers/IONQ.md"
+    ],
+    "reviewed_horizons": [
+      "2026-06-17 ET buy cohort aged closeout",
+      "RGTI/PFE aged trim closeout",
+      "2026-07-22 ET AVGO/NOK same-day fill review state",
+      "open-position monitor",
+      "skipped recommendations re-check"
+    ],
+    "symbols": [
+      "SPY",
+      "QQQ",
+      "AAPL",
+      "AMZN",
+      "AVGO",
+      "BAC",
+      "COP",
+      "FCX",
+      "GOOGL",
+      "IONQ",
+      "MRK",
+      "MSFT",
+      "NEE",
+      "NKE",
+      "NOK",
+      "NVDA",
+      "PFE",
+      "RGTI",
+      "SLB",
+      "SO",
+      "WMT",
+      "XOM"
+    ],
+    "due_now": true,
+    "next_due": "2026-07-23 ET regular-session close for AVGO/NOK 1D review"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "portfolio_history surface was not exposed, but account/order/fill/position/bars/snapshot/news reconciliation remained usable",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-22-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "review evidence was mixed and the workflow did not reach the threshold for recommendation-policy changes"
+  }
+}

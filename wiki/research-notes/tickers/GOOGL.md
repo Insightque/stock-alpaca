@@ -44,3 +44,9 @@ asset_type: stock
 `GOOGL` 1주 regular-session day limit buy가 `365.88 USD` limit으로 제출됐고, same `client_order_id=hourly-20260618-0131-buy-googl` reconciliation 기준 `2026-06-17T16:40:11.20362247Z`에 `365.24 USD`로 즉시 체결됐다. 근거는 scheduler-owned `0131` stale cleanup/core/research preflight 기준 hard gate pass, live continuity 기준 `AAPL` fill 이후 open orders `0` 재확인, `SO/RGTI/PFE` sell-first 경로가 각각 metric gap과 same-day duplicate sell gate로 막혔다는 점, 그리고 `GOOGL`이 same-day duplicate/open-order conflict가 없는 existing mega-cap quality holding으로 live quote `365.30/365.88` spread `0.1585%`, high source confidence, `2026-06-16` add evidence를 유지해 different-cluster fallback으로 가장 executable했다는 점이다. immediate reconciliation 기준 보유 수량은 `4주 -> 5주`, `avg_entry_price=376.204`로 갱신됐다.
 
 출처: [[2026-06-18-0131-hourly-autopilot]], `wiki/trade-ledger/orders/2026-06-18-0131-hourly-autopilot.json`, `wiki/trade-ledger/positions/2026-06-18-0131-hourly-autopilot-post-trade.json`
+
+### 2026-07-22 analyst review cycle
+
+`2026-06-17 ET` add 1주는 `365.24 USD -> 342.06 USD`로 `-6.35%`다. 최근 Yahoo recommendation summary에는 `2026-07-21` Wells Fargo `Overweight / PT 438`, `2026-07-22` Citizens `Market Outperform / PT 515 유지`가 보이지만, 실제 tape는 아직 add 표본을 정당화하지 못한다. 현재 해석은 `mega-cap quality 유지`이되 `즉시 추가 매수 근거 부족`이다.
+
+출처: [[2026-07-22-portfolio-review]], [[2026-07-22-analyst-review-cycle-sources]]
