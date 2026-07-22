@@ -1,0 +1,148 @@
+{
+  "run_id": "2026-07-22-1031-after-hours-autopilot",
+  "created_at": "2026-07-22T01:33:41Z",
+  "session": "after_hours",
+  "market_date": "2026-07-21 EDT",
+  "paper": true,
+  "source_of_record": {
+    "alpaca_core_preflight": "wiki/evidence-store/sources/2026-07-22-1031-after-hours-autopilot-alpaca-core-preflight.json",
+    "research_mcp_preflight": "wiki/evidence-store/sources/2026-07-22-1031-after-hours-autopilot-research-mcp-preflight.json",
+    "alpaca_first_blocking_gate": "market_closed",
+    "alpaca_first_blocking_gate_treatment": "expected_nonblocking_after_hours"
+  },
+  "live_continuity": {
+    "clock_timestamp": "2026-07-21T21:33:16.247196588-04:00",
+    "regular_market_open": false,
+    "account_status": "ACTIVE",
+    "portfolio_value": 98382.82,
+    "cash": 28610.95,
+    "buying_power": 297479.73,
+    "positions_count": 32,
+    "open_orders_count": 1,
+    "same_session_after_hours_orders_submitted_today": 1,
+    "same_session_after_hours_fills_today": 0
+  },
+  "existing_open_order": {
+    "symbol": "AVGO",
+    "side": "sell",
+    "qty": 1,
+    "limit_price": 384.13,
+    "status": "new",
+    "filled_qty": 0,
+    "extended_hours": true,
+    "client_order_id": "ah-20260722-0911-sell-avgo-01",
+    "submitted_at": "2026-07-22T00:21:00.997527838Z",
+    "age_minutes": 72.67
+  },
+  "candidate_quotes": {
+    "AVGO": {
+      "bid": 383.17,
+      "ask": 383.88,
+      "quote_ts": "2026-07-22T01:33:39.276835456Z",
+      "spread_pct": 0.1851,
+      "quote_age_minutes": 0.03,
+      "status": "existing_open_order_blocks_retry"
+    },
+    "SO": {
+      "bid": 87.31,
+      "ask": 95.78,
+      "quote_ts": "2026-07-22T00:44:28.322414193Z",
+      "spread_pct": 9.2523,
+      "quote_age_minutes": 49.21,
+      "status": "stale_and_spread_fail"
+    },
+    "WMT": {
+      "bid": 109.96,
+      "ask": 110.54,
+      "quote_ts": "2026-07-22T01:32:20.384556389Z",
+      "spread_pct": 0.5261,
+      "quote_age_minutes": 1.34,
+      "status": "buy_blocked_review_backlog"
+    },
+    "MCD": {
+      "bid": 263.81,
+      "ask": 264.42,
+      "quote_ts": "2026-07-22T01:31:34.437073057Z",
+      "spread_pct": 0.231,
+      "quote_age_minutes": 2.11,
+      "status": "buy_blocked_review_backlog"
+    },
+    "QQQ": {
+      "bid": 706.66,
+      "ask": 706.92,
+      "quote_ts": "2026-07-22T01:33:40.236866249Z",
+      "spread_pct": 0.0368,
+      "quote_age_minutes": 0.01,
+      "status": "buy_blocked_per_order_cap"
+    },
+    "SPY": {
+      "bid": 747.34,
+      "ask": 747.44,
+      "quote_ts": "2026-07-22T01:33:40.40207096Z",
+      "spread_pct": 0.0134,
+      "quote_age_minutes": 0.01,
+      "status": "buy_blocked_per_order_cap"
+    },
+    "NOK": {
+      "bid": 10.95,
+      "ask": 10.96,
+      "quote_ts": "2026-07-22T01:33:19.585924818Z",
+      "spread_pct": 0.0913,
+      "quote_age_minutes": 0.36,
+      "status": "buy_blocked_validation_add_block"
+    },
+    "SMH": {
+      "bid": 581.33,
+      "ask": 582.09,
+      "quote_ts": "2026-07-22T01:33:40.225013611Z",
+      "spread_pct": 0.1306,
+      "quote_age_minutes": 0.01,
+      "status": "buy_blocked_per_order_cap"
+    },
+    "NEE": {
+      "bid": 87.1,
+      "ask": 88.75,
+      "quote_ts": "2026-07-22T01:32:57.837626162Z",
+      "spread_pct": 1.8766,
+      "quote_age_minutes": 0.72,
+      "status": "spread_fail"
+    },
+    "CVX": {
+      "bid": 190.67,
+      "ask": 191.46,
+      "quote_ts": "2026-07-22T01:32:52.762390336Z",
+      "spread_pct": 0.4135,
+      "quote_age_minutes": 0.8,
+      "status": "spread_fail"
+    },
+    "GS": {
+      "bid": 1078.23,
+      "ask": 1106.5,
+      "quote_ts": "2026-07-22T01:24:16.669855617Z",
+      "spread_pct": 2.588,
+      "quote_age_minutes": 9.41,
+      "status": "spread_fail_and_per_order_cap"
+    }
+  },
+  "buy_policy_context": {
+    "review_backlog_pending_1d_count": 17,
+    "review_backlog_pending_5d_count": 40,
+    "review_backlog_pending_20d_count": 14,
+    "blocked_add_symbols": [
+      "NOK"
+    ],
+    "after_hours_budget_used": 1,
+    "after_hours_budget_max": 2,
+    "per_order_notional_cap_usd": 491.91
+  },
+  "decision": {
+    "submit_new_order": false,
+    "first_blocking_gate": "open_order_lifecycle",
+    "reason": "Existing AVGO after-hours sell order remained open under the same client_order_id and aged past the lifecycle limit; no alternate sell candidate passed spread/freshness and no buy fallback cleared backlog/per-order-cap gates."
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-22-1031-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-22-1031-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-07-22-1031-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ]
+}

@@ -1,5 +1,16 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-07-22-1031-after-hours-autopilot]]
+- Open/new: `AVGO` after-hours sell `1`건이 계속 open 상태다. live `get_orders(status=open)` 기준 open orders `1`, same-session after-hours submitted orders `1`이다.
+- Filled: 없음. live `get_account_activities(activity_types=[FILL], after=2026-07-21T20:00:00Z)` 기준 same-session fills `0`이다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: live `get_all_positions` 기준 positions `32`건이며 `RGTI position 없음`, `SO qty=6`, `AVGO qty=1`, `AVGO qty_available=0`, `QQQ qty=3`, `SPY qty=2`다.
+- Recent reconciliation scope: scheduler-owned `2026-07-22-1031-*` Alpaca core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. 이어서 live Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_order_by_client_id/get_account_activities(activity_types=[FILL])/get_stock_latest_quote(feed=overnight)`로 continuity를 닫았다. `AVGO` overnight quote `383.17/383.88`, spread 약 `0.1851%`, quote age 약 `0.03`분으로 여전히 fresh했지만 같은 `client_order_id=ah-20260722-0911-sell-avgo-01` 주문이 `status=new`로 유지돼 no-retry lifecycle record만 남겼다. `1031` risk validator는 이 open order age `72.7분`이 lifecycle limit `30.0분`을 초과해 FAIL했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-07-22-1031-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-07-22 01:33 UTC_
+
 - Run: [[2026-07-22-1011-after-hours-autopilot]]
 - Open/new: `AVGO` after-hours sell `1`건이 계속 open 상태다. live `get_orders(status=open)` 기준 open orders `1`, same-session after-hours submitted orders `1`이다.
 - Filled: 없음. live `get_account_activities(activity_types=[FILL], after=2026-07-21T20:00:00Z)` 기준 same-session fills `0`이다.
