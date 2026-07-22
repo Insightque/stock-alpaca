@@ -1,0 +1,124 @@
+{
+  "run_id": "2026-07-22-0911-after-hours-autopilot",
+  "created_at": "2026-07-22T00:21:01Z",
+  "session": "after_hours",
+  "market_date": "2026-07-21 EDT",
+  "scheduler_artifact_date": "2026-07-22 KST",
+  "clock_timestamp": "2026-07-21T20:19:26.690133916-04:00",
+  "after_hours_policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "artifact_tag": "after-hours",
+  "order_budget": {
+    "submitted_before_run": 0,
+    "submitted_after_run": 1,
+    "max_new_orders_per_session": 2,
+    "remaining_after_run": 1
+  },
+  "alpaca_core_preflight": {
+    "path": "wiki/evidence-store/sources/2026-07-22-0911-after-hours-autopilot-alpaca-core-preflight.json",
+    "first_blocking_gate": "market_closed",
+    "treated_as": "expected_nonblocking_after_hours"
+  },
+  "research_preflight": {
+    "path": "wiki/evidence-store/sources/2026-07-22-0911-after-hours-autopilot-research-mcp-preflight.json",
+    "providers_pass": [
+      "sec-edgar",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "providers_gap": [
+      {
+        "server": "alpha-vantage",
+        "gap_category": "empty_response",
+        "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols."
+      }
+    ]
+  },
+  "live_continuity": {
+    "regular_market_open": false,
+    "account_status": "ACTIVE",
+    "positions_count": 32,
+    "open_orders_count_before_submit": 0,
+    "open_orders_count_after_submit": 1,
+    "same_session_after_hours_orders_submitted_today": 1,
+    "same_session_after_hours_fills_today": 0,
+    "account": {
+      "portfolio_value": 98632.89,
+      "cash": 28610.95,
+      "buying_power": 297988.57,
+      "currency": "USD",
+      "daily_realized_loss": 0.0
+    }
+  },
+  "candidate_quotes": {
+    "AVGO": {
+      "ap": 384.52,
+      "bp": 384.13,
+      "t": "2026-07-22T00:19:26.298446234Z",
+      "age_minutes": 0.0065,
+      "spread_pct": 0.1014
+    },
+    "SO": {
+      "ap": 98.25,
+      "bp": 84.54,
+      "t": "2026-07-22T00:08:36.926130756Z",
+      "age_minutes": 10.8294,
+      "spread_pct": 13.9542
+    },
+    "WMT": {
+      "ap": 110.04,
+      "bp": 109.82,
+      "t": "2026-07-22T00:19:03.565248803Z",
+      "age_minutes": 0.3854,
+      "spread_pct": 0.1999
+    },
+    "QQQ": {
+      "ap": 708.87,
+      "bp": 708.76,
+      "t": "2026-07-22T00:19:28.459207784Z",
+      "age_minutes": 0.0,
+      "spread_pct": 0.0155
+    },
+    "SPY": {
+      "ap": 748.34,
+      "bp": 747.5,
+      "t": "2026-07-22T00:19:27.833867297Z",
+      "age_minutes": 0.0,
+      "spread_pct": 0.1123
+    }
+  },
+  "gates": {
+    "alpaca_paper_mode": "pass",
+    "regular_market_open": "pass_regular_market_closed",
+    "extended_hours_session": "pass",
+    "alpaca_core_account_clock_position_order_quote_spread": "pass_source_of_record_plus_live_continuity",
+    "after_hours_policy_profile": "pass",
+    "separate_after_hours_order_budget": "pass_one_of_two_submitted_after_submit",
+    "universe_strict": "PASS",
+    "mcp_tiered_strict": "PASS",
+    "risk_policy": "PASS",
+    "fresh_quote": "PASS_avgo_0.0065_minutes",
+    "spread_within_after_hours_policy": "PASS_avgo_0.1014pct",
+    "whole_share_day_limit_extended_hours_order": "PASS_avgo_sell_exit_shape",
+    "immediate_reconcile_and_cancel_or_lifecycle_record": "PASS_client_order_id_reconciled_open_new_lifecycle_recorded"
+  },
+  "decision": {
+    "action": "submit_avgo_after_hours_sell",
+    "reason": "Buy paths remained blocked by the review backlog throttle, while AVGO reopened as an executable sell-side exit once the overnight quote refreshed inside policy. SO remained blocked by spread, and QQQ/SPY remained benchmark-only buy fallbacks that were unnecessary once a passing sell existed.",
+    "eligible_sell_trim_found": true,
+    "eligible_buy_fallback_found": false,
+    "submitted_client_order_id": "ah-20260722-0911-sell-avgo-01",
+    "alpaca_order_id": "aea04b7c-a44e-470d-b6a0-bfa05827fd4a",
+    "submit_status": "new",
+    "same_session_after_hours_fills_today": 0,
+    "separate_session_budget_remaining": 1
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-22-0911-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-22-0911-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/trade-ledger/reviews/2026-06-19-portfolio-review.md",
+    "wiki/trade-ledger/reviews/review-due-index.json"
+  ]
+}
