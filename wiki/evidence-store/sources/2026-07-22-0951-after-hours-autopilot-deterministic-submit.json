@@ -1,0 +1,43 @@
+{
+  "alpaca_mcp_only": true,
+  "clock": {},
+  "created_at": "2026-07-22T01:04:23Z",
+  "execute": true,
+  "gap_category": "risk_validator_failed",
+  "gap_reason": "[\"AVGO: open order age 32.6 minutes exceeds lifecycle limit 30.0\"]",
+  "order_plan_path": "/Users/insightque/stock-alpaca/wiki/trade-ledger/orders/2026-07-22-0951-after-hours-autopilot.json",
+  "orders": [],
+  "paper": true,
+  "post_reconcile": {},
+  "risk_validator": {
+    "errors": [
+      "AVGO: open order age 32.6 minutes exceeds lifecycle limit 30.0"
+    ],
+    "path": "/Users/insightque/stock-alpaca/wiki/trade-ledger/orders/2026-07-22-0951-after-hours-autopilot.json",
+    "returncode": 1,
+    "status": "FAIL",
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 44321.2155,
+      "max_factor_value": 49245.795,
+      "max_invested": 93567.01049999999,
+      "max_speculative_value": 11818.9908,
+      "max_theme_value": 34472.0565,
+      "max_ticker_value": 14773.7385,
+      "min_cash": 4924.5795,
+      "policy_version": "medium-risk-v1.2",
+      "post_cash": 28610.95,
+      "post_invested": 69994.94259999998,
+      "review_backlog_pending_1d_count": 17,
+      "sell_notional": 0.0,
+      "speculative_value": 2043.0015,
+      "target_max_cash": 9849.159,
+      "target_min_invested": 88642.431
+    },
+    "warnings": [
+      "orders is empty"
+    ]
+  },
+  "run_id": "2026-07-22-0951-after-hours-autopilot",
+  "status": "failed"
+}
