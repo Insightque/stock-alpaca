@@ -1,0 +1,59 @@
+{
+  "run_id": "2026-07-22-0931-after-hours-autopilot",
+  "captured_at": "2026-07-22T00:33:18Z",
+  "session": "after_hours",
+  "submit_attempted": false,
+  "submit_status": "no_submit_existing_open_order",
+  "submitted_order": null,
+  "existing_open_order": {
+    "symbol": "AVGO",
+    "side": "sell",
+    "qty": 1,
+    "limit_price": 384.13,
+    "time_in_force": "day",
+    "extended_hours": true,
+    "client_order_id": "ah-20260722-0911-sell-avgo-01",
+    "order_id": "aea04b7c-a44e-470d-b6a0-bfa05827fd4a",
+    "status": "new",
+    "filled_qty": 0,
+    "filled_avg_price": null,
+    "submitted_at": "2026-07-22T00:21:00.997527838Z"
+  },
+  "account": {
+    "status": "ACTIVE",
+    "cash": 28610.95,
+    "portfolio_value": 98559.39,
+    "buying_power": 297827.8,
+    "currency": "USD"
+  },
+  "positions_summary": {
+    "positions_count": 32,
+    "avgo_qty": 1,
+    "avgo_qty_available": 0,
+    "qqq_qty": 3,
+    "spy_qty": 2,
+    "so_qty": 6
+  },
+  "orders_summary": {
+    "open_orders_count": 1,
+    "same_session_after_hours_orders_submitted_today": 1,
+    "same_session_after_hours_fills_today": 0
+  },
+  "reconciliation": {
+    "readback_tools": [
+      "get_order_by_client_id",
+      "get_orders(status=open)",
+      "get_orders(status=all, after=2026-07-21T20:00:00Z)",
+      "get_account_activities(activity_types=[FILL], after=2026-07-21T20:00:00Z)",
+      "get_all_positions",
+      "get_account_info",
+      "get_stock_latest_quote(feed=overnight)"
+    ],
+    "result": "same client_order_id remained open new order; no retry and no alternate client_order_id used; 0931 cycle submitted nothing new"
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-22-0931-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-22-0931-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-07-22-0931-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ]
+}

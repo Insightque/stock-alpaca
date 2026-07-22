@@ -1,15 +1,15 @@
 ## 최신 after-hours-autopilot reconciliation
 
-- Run: [[2026-07-22-0911-after-hours-autopilot]]
-- Open/new: `AVGO` after-hours sell `1`건이 open 상태다. live `get_orders(status=open)`와 `get_orders(status=all, after=2026-07-21T20:00:00Z)` 기준 open orders `1`, same-session after-hours submitted orders `1`이다.
+- Run: [[2026-07-22-0931-after-hours-autopilot]]
+- Open/new: `AVGO` after-hours sell `1`건이 계속 open 상태다. live `get_orders(status=open)`와 `get_orders(status=all, after=2026-07-21T20:00:00Z)` 기준 open orders `1`, same-session after-hours submitted orders `1`이다.
 - Filled: 없음. live `get_account_activities(activity_types=[FILL], after=2026-07-21T20:00:00Z)` 기준 same-session fills `0`이다.
 - Cancelled: 없음
 - Position count observed by Alpaca MCP: live `get_all_positions` 기준 positions `32`건이며 `RGTI position 없음`, `SO qty=6`, `AVGO qty=1`, `AVGO qty_available=0`, `QQQ qty=3`, `SPY qty=2`다.
-- Recent reconciliation scope: scheduler-owned `2026-07-22-0911-*` Alpaca core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. 이어서 live Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open|all)/get_account_activities(activity_types=[FILL])/get_stock_latest_quote(feed=overnight)`로 continuity를 닫았다. `AVGO` overnight quote `384.13/384.52`, spread `0.1014%`, quote age 약 `0.01`분이 sell-first path를 열었고 `place_stock_order` 1회 제출 후 same `client_order_id` readback은 `status=new`, `filled_qty=0` open order를 확인했다.
-- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
-- Source note: `wiki/trade-ledger/positions/2026-07-22-0911-after-hours-autopilot-post-trade.json`
+- Recent reconciliation scope: scheduler-owned `2026-07-22-0931-*` Alpaca core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. 이어서 live Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open|all)/get_account_activities(activity_types=[FILL])/get_order_by_client_id/get_stock_latest_quote(feed=overnight)`로 continuity를 닫았다. `AVGO` overnight quote `383.21/383.93`, spread 약 `0.1879%`, quote age 약 `0.38`분으로 여전히 fresh했지만 같은 `client_order_id=ah-20260722-0911-sell-avgo-01` 주문이 `status=new`로 유지돼 no-retry lifecycle record만 남겼다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-07-22-0931-after-hours-autopilot-post-trade.json`
 
-_Last updated: 2026-07-22 00:21 UTC_
+_Last updated: 2026-07-22 00:33 UTC_
 
 ## 최신 hourly-autopilot reconciliation
 
