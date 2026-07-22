@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-07-22-2151-after-hours-autopilot]]
+- Open/new: 없음. live `get_orders(status=open)` 기준 open orders `0`, same-session after-hours submitted orders `2`다.
+- Filled: `AVGO` after-hours sell `1건`이 `client_order_id=ah-20260722-0911-sell-avgo-01`, `filled_avg_price=384.14 USD`, `filled_at=2026-07-22T01:48:58.933756Z`로 유지됐고 `NOK` after-hours sell `1건`이 `client_order_id=ah-20260722-2111-sell-nok-01`, `filled_avg_price=10.33 USD`, `filled_at=2026-07-22T12:30:02.329191394Z`로 유지됐다. live `get_orders(status=all, after=2026-07-21T20:00:00-04:00)`와 direct `get_order_by_client_id` 기준 same-session fills/orders는 `AVGO`, `NOK` 두 건이다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: live `get_all_positions` 기준 positions `31`건이며 `AVGO position 없음`, `SO qty=6`, `QQQ qty=3`, `SPY qty=2`, `WMT qty=10`, `NOK qty=401`다.
+- Recent reconciliation scope: scheduler-owned `2026-07-22-2151-*` Alpaca core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. 이어서 live Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open|all)/get_watchlists/get_order_by_client_id`로 continuity를 닫았다. submit boundary는 같은 `2151` preflight asset/quote/spread rows에 고정했고 `NOK 10.29/10.31` fresh row가 남아 있었지만 same-session after-hours budget이 이미 `2/2`로 소진돼 first blocking gate는 `separate_after_hours_order_budget`이었다. 따라서 신규 `place_stock_order` 없이 reconcile-only로 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 2.
+- Source note: `wiki/trade-ledger/positions/2026-07-22-2151-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-07-22 12:55 UTC_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-07-22-2131-after-hours-autopilot]]
 - Open/new: 없음. live `get_orders(status=open)` 기준 open orders `0`, same-session after-hours submitted orders `2`다.
 - Filled: `AVGO` after-hours sell `1건`이 `client_order_id=ah-20260722-0911-sell-avgo-01`, `filled_avg_price=384.14 USD`, `filled_at=2026-07-22T01:48:58.933756Z`로 유지됐고 `NOK` after-hours sell `1건`이 `client_order_id=ah-20260722-2111-sell-nok-01`, `filled_avg_price=10.33 USD`, `filled_at=2026-07-22T12:30:02.329191Z`로 새로 체결 완료됐다. live `get_orders(status=all, after=2026-07-21T20:00:00-04:00)`와 direct `get_order_by_client_id` 기준 same-session fills/orders는 `AVGO`, `NOK` 두 건이다.
