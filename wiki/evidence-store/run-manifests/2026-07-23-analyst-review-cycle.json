@@ -1,0 +1,133 @@
+{
+  "id": "2026-07-23-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-07-23T21:23:54Z",
+  "timezone": "UTC",
+  "paper": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "alpaca_reconciliation": {
+    "clock_is_open": false,
+    "clock_timestamp": "2026-07-23T17:22:10.193931346-04:00",
+    "account_status": "ACTIVE",
+    "portfolio_value": 97620.71,
+    "cash": 29027.15,
+    "buying_power": 29027.15,
+    "long_market_value": 68593.56,
+    "open_us_equity_orders": 0,
+    "position_count_direct": 31,
+    "recent_fill_scope_after": "2026-07-22T20:00:00Z",
+    "portfolio_history": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 2,
+      "gap_reason": "get_portfolio_history was cancelled on the initial call and two retries during the Thursday, July 23, 2026 analyst review cycle"
+    }
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-07-23-portfolio-review.md",
+    "symbol_reviews": [
+      "wiki/research-notes/tickers/AVGO.md",
+      "wiki/research-notes/tickers/NOK.md"
+    ],
+    "reviewed_horizons": [
+      "2026-07-22 ET AVGO after-hours trim 1D closeout",
+      "2026-07-22 ET NOK after-hours trim 1D closeout",
+      "open-position monitor",
+      "skipped recommendations re-check"
+    ],
+    "symbols": [
+      "AVGO",
+      "NOK",
+      "SPY",
+      "QQQ",
+      "SMH",
+      "IONQ",
+      "GOOGL",
+      "AMD"
+    ],
+    "due_now": true,
+    "next_due": "2026-07-29 ET regular-session close for AVGO/NOK 5D review"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-23-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "portfolio_history and direct AVGO order-by-client-id readback were cancelled, but account/order/fill/position/snapshot reconciliation remained usable",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-23-analyst-review-cycle-sources.md",
+        "wiki/evidence-store/sources/2026-07-22-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "get_insider_summary(NOK, 60d) was cancelled twice, so this run relied on prior artifact continuity only",
+      "gap_category": "cancelled",
+      "retry_count": 1
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-23-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-23-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-23-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-23-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "AVGO/NOK 1D closeout and open-position monitoring did not reach the evidence threshold for recommendation-policy changes"
+  }
+}

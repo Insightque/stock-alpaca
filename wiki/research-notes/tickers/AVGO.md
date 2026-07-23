@@ -209,3 +209,9 @@ live Alpaca clock이 `2026-06-14 17:21 ET` 일요일 closed 상태라 새 regula
 `2026-07-22 ET` after-hours residual trim 1주는 `384.14 USD`에 체결됐고 same-day close는 `396.88 USD`였다. fill 직후 `+3.32%` rebound가 먼저 나와 exact timing은 약했지만, 잔여 포지션을 완전히 닫는 tail-risk 축소라는 staged de-risking 해석은 유지한다. 이 fill의 정식 `1D` 평가는 `2026-07-23 ET` close 이후로 넘긴다.
 
 출처: [[2026-07-22-portfolio-review]], [[2026-07-22-analyst-review-cycle-sources]]
+
+### 2026-07-23 analyst review cycle
+
+`AVGO` residual after-hours trim `1주`의 `1D` closeout을 `Thursday, July 23, 2026 ET` 종가 기준으로 닫았다. fill `384.14 USD` 대비 종가 `392.61 USD`라 trim 뒤 `+2.20%` 더 높게 마감했고, absolute timing만 보면 여전히 약하다. 다만 같은 날 `SPY -1.26%`, `QQQ -1.87%`, `SMH -1.12%`였기 때문에 상대강도는 오히려 강했다. 결론은 `exact timing 약함, staged de-risking 해석 유지`다. 이번 한 건만으로 trim 정책을 바꾸지는 않는다.
+
+출처: [[2026-07-23-portfolio-review]], [[2026-07-23-analyst-review-cycle-sources]]

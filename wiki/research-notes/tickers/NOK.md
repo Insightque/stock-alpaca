@@ -156,3 +156,9 @@ current Alpaca snapshot 기준 `NOK`는 `402주`, 평균단가 `15.044527 USD`, 
 `NOK`는 `2026-07-22 ET` close `10.30 USD`, current `10.66 USD`, 평균단가 `15.044527 USD`, 잔여 수량 `401주`로 drawdown이 더 깊어졌다. Alpha Vantage latest quarter beat, `2026-06-12` JP Morgan `Overweight / PT 21`, recent `2026-07-09/07-10` `6-K` 흐름은 확인됐지만 tape 회복은 없다. `2026-07-22 ET` after-hours 1주 trim `10.33 USD`는 same-day close 대비 거의 flat이라 `1D` horizon이 아직 열려 있고, add-block은 계속 유지한다.
 
 출처: [[2026-07-22-portfolio-review]], [[2026-07-22-analyst-review-cycle-sources]]
+
+### 2026-07-23 analyst review cycle
+
+`Thursday, July 23, 2026 ET`에는 Alpha Vantage `EARNINGS` 기준 `reportedEPS=0.0799`, `estimatedEPS=0.07`, `surprisePercentage=14.1429`, `reportTime=pre-market`로 quarterly beat가 확인됐다. Yahoo Finance 뉴스도 AI/data-center demand 기반 실적 beat를 다수 기록했지만 Alpaca `2026-07-23 ET` close는 `9.72 USD`, latest trade는 `9.78 USD`로 더 약했다. same US-date after-hours trim 두 건은 `10.95 USD`, `10.78 USD`에 체결됐고 다음 정규장 close 기준 각각 `-11.23%`, `-9.83%` 후행 move가 나와 trim timing은 양호했다. 반면 잔여 `399주` 포지션은 평균단가 `15.044539 USD` 대비 여전히 깊은 손실 구간이라 `existing-position-breakout-add-penalty` add-block을 계속 유지한다.
+
+출처: [[2026-07-23-portfolio-review]], [[2026-07-23-analyst-review-cycle-sources]]
