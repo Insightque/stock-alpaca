@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-07-23-2011-after-hours-autopilot]]
+- Open/new: 없음. live `get_orders(status=open)` 기준 open orders `0`, same-session after-hours submitted orders `2`다.
+- Filled: `NOK` after-hours sell `2건`이 `client_order_id=ah-20260722-0931-sell-nok-01`, `filled_avg_price=10.95 USD`, `filled_at=2026-07-23T01:16:18.20135Z` 및 `client_order_id=ah-20260722-1211-sell-nok-01`, `filled_avg_price=10.78 USD`, `filled_at=2026-07-23T03:18:44.891868Z`로 계속 체결 완료 상태다. live `get_account_activities(activity_types=[FILL], after=2026-07-22T20:00:00Z)`와 direct `get_order_by_client_id` 기준 same-session fills/orders는 이 `NOK` `2건`뿐이다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: live `get_all_positions` 기준 positions `31`건이며 `AVGO position 없음`, `SO qty=6`, `QQQ qty=3`, `SPY qty=2`, `WMT qty=10`, `NOK qty=399`다.
+- Recent reconciliation scope: scheduler-owned `2026-07-23-2011-*` Alpaca core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. 이어서 live Alpaca MCP `get_clock/get_account_info/get_all_positions/get_orders(status=open)/get_account_activities(activity_types=[FILL])/get_watchlists/get_stock_latest_quote(feed=overnight)/get_stock_snapshot(feed=overnight)/get_order_by_client_id`로 continuity를 닫았다. submit boundary는 같은 `2011` preflight asset/quote/spread rows로 고정했고, `SO/WMT/MCD/QQQ/SPY/SMH/NOK/NEE/CVX/GS`는 stale 또는 spread/cap gate fail 상태였지만 first blocking gate는 `separate_after_hours_order_budget`로 유지돼 신규 `place_stock_order` 없이 reconcile-only로 종료했다. `2011` strict universe/MCP/risk gate는 모두 PASS였고 risk validator warning은 `orders is empty`뿐이었다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-07-23-2011-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-07-23 11:14 UTC_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-07-23-1951-after-hours-autopilot]]
 - Open/new: 없음. scheduler-owned `1951` preflight와 live `get_orders(status=open)` 기준 open orders `0`이다.
 - Filled: `NOK` after-hours sell `2건`이 same US-date bucket에 유지된다. `ah-20260722-0931-sell-nok-01`은 `filled_avg_price=10.95 USD`, `ah-20260722-1211-sell-nok-01`은 `filled_avg_price=10.78 USD`, `filled_at=2026-07-23T03:18:44.891868Z`다. same-session after-hours submitted/fills는 `2/2`다.
