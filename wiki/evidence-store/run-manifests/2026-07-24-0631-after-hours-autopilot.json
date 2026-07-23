@@ -1,0 +1,339 @@
+{
+  "run_id": "2026-07-24-0631-after-hours-autopilot",
+  "created_at": "2026-07-23T21:33:06Z",
+  "data_cutoff_time": "2026-07-23T21:33:06Z",
+  "market_clock_checked_at": "2026-07-23T17:33:06.808049822-04:00",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "policy_id": "recommendation-policy-v1.11",
+  "policy_version": "v1.11",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "git_commit": "04f88ad5f9c2bcbe6d475ce51b6ea7622559e459",
+  "risk_policy_version": "medium-risk-v1.2",
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "risk_policy_sha": "sha256:cf51a39ddb086d0307fc78bd1842dd0eda527def59e93d87e5576d5213a315ae",
+  "schema_version": "1.3",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-07-24-0631-after-hours-autopilot.json",
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-07-24-0631-after-hours-autopilot-post-trade.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-runtime-alpaca-spot-check.json",
+    "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-07-24-0631-after-hours-autopilot.json",
+    "wiki/trade-ledger/positions/2026-07-24-0631-after-hours-autopilot-post-trade.json",
+    "wiki/current-runs/daily/2026-07-24-0631-after-hours-autopilot.md"
+  ],
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_research_preflight_shortlist_with_live_alpaca_missing-row-supplement",
+    "pre_mcp_shortlist": [
+      "SO",
+      "WMT",
+      "MCD",
+      "QQQ",
+      "SPY",
+      "SMH",
+      "NOK",
+      "NEE",
+      "CVX",
+      "GS"
+    ],
+    "final_candidates": [
+      "SO",
+      "WMT",
+      "MCD",
+      "QQQ",
+      "SPY",
+      "SMH",
+      "NOK",
+      "NEE",
+      "CVX",
+      "GS"
+    ],
+    "passed": true,
+    "gap_reason": "",
+    "status": "pass"
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "all_research_must_be_attempted": true,
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_submit": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-07-23T21:33:06Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-runtime-alpaca-spot-check.json",
+        "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ],
+      "gap_reason": "Scheduler-owned future-labeled KST artifact path 2026-07-24-0631 Alpaca core preflight recorded first_blocking_gate=market_closed and did not include the required passing account/order/position/watchlist/asset/quote/spread rows. Because market_closed is expected and nonblocking for after-hours, the run supplemented the missing rows once through direct Alpaca MCP continuity and direct asset checks at 2026-07-23T17:33:06.808049822-04:00. Account remained ACTIVE, positions 31, open orders 0, watchlists 0, same-session after-hours orders/fills 0/0, and all shortlisted assets were active tradable US equities/ETFs. The supplemented overnight quote path still showed every candidate stuck at 2026-07-23T08:00:00Z and stale beyond the 5-minute submit limit, so submit remained blocked by fresh_quote.",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-07-23T21:11:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-07-23T21:11:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-07-23T21:11:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-07-23T21:11:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-07-23T21:11:26+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "outcome": "gap",
+      "gap_category": "empty_response",
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-research-mcp-preflight.json"
+      ]
+    }
+  ],
+  "recommendation_actionability": "blocked",
+  "first_blocking_gate": "fresh_quote",
+  "decision_summary": {
+    "action": "no_submit_reconcile_only",
+    "reason": "The Thursday, July 23, 2026 EDT regular market was closed as expected for this after-hours cycle, and the separate after-hours session budget remained fully available at 2/2. However, the scheduler-owned future-labeled KST artifact path 2026-07-24-0631 Alpaca core preflight did not include the required detail rows, so the run supplemented those missing rows once through live Alpaca MCP continuity and direct asset checks. Every supplemented overnight shortlist quote still carried the same 2026-07-23T08:00:00Z timestamp, leaving fresh_quote blocked before spread and per-order-cap checks. This cycle therefore stayed no-submit and never called place_stock_order.",
+    "eligible_sell_trim_found": false,
+    "eligible_buy_fallback_found": false,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_today": 0,
+    "separate_session_budget_remaining": 2
+  },
+  "risk_check_result": {
+    "status": "PASS",
+    "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-07-24-0631-after-hours-autopilot.json",
+    "errors": [],
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 43938.1845,
+      "max_factor_value": 48820.205,
+      "max_invested": 92758.3895,
+      "max_speculative_value": 11716.8492,
+      "max_theme_value": 34174.1435,
+      "max_ticker_value": 14646.0615,
+      "min_cash": 4882.0205000000005,
+      "policy_version": "medium-risk-v1.2",
+      "post_cash": 29027.15,
+      "post_invested": 68615.5322,
+      "review_backlog_pending_1d_count": 0,
+      "sell_notional": 0.0,
+      "speculative_value": 1924.5165000000002,
+      "target_max_cash": 9764.041000000001,
+      "target_min_invested": 87876.369
+    }
+  },
+  "order_plan": {
+    "orders": []
+  },
+  "sell_candidate_diagnostics": [
+    {
+      "symbol": "NOK",
+      "held_qty": 399.0,
+      "current_weight_pct": 3.9679,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "source-of-record overnight quote stayed stale and above the after-hours spread cap",
+      "skipped_gate": "fresh_quote",
+      "metric_status": "calculated",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "NOK live overnight quote 10.53/10.64 at 2026-07-23T08:00:00.583737401Z was stale by 813.09 minutes and spread 1.0338% exceeded the after-hours 0.25% cap.",
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-runtime-alpaca-spot-check.json",
+        "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    },
+    {
+      "symbol": "SO",
+      "held_qty": 6.0,
+      "current_weight_pct": 0.5936,
+      "trigger_status": "blocked_by_gate",
+      "primary_reason": "after-hours quote spread remained too wide and stale for trim execution",
+      "skipped_gate": "fresh_quote",
+      "metric_status": "calculated",
+      "expected_excess_return_20d_pct": null,
+      "relative_to_spy_20d_pct": null,
+      "metric_gap_reason": "SO live overnight quote 93.29/96.54 at 2026-07-23T08:00:00.537110662Z was stale by 813.09 minutes and spread 3.3665% exceeded the after-hours 0.25% cap.",
+      "recommendation": "watch",
+      "blocked_sell_recheck": "blocked_sell_candidate",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-runtime-alpaca-spot-check.json",
+        "wiki/evidence-store/sources/2026-07-24-0631-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ]
+    }
+  ],
+  "validator_results": {
+    "universe_coverage": {
+      "status": "PASS",
+      "errors": [],
+      "warnings": [],
+      "summary": {
+        "strict_required": true,
+        "actionable": true,
+        "minimum_required_symbols": 50,
+        "symbols_considered": 62,
+        "symbols_loaded": 62,
+        "benchmarks": [
+          "QQQ",
+          "SPY"
+        ],
+        "pre_mcp_shortlist_count": 10,
+        "final_candidate_count": 10,
+        "scope_limited_by_user": false
+      },
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-universe-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-07-24-0631-after-hours-autopilot.json"
+    },
+    "mcp_coverage": {
+      "status": "PASS",
+      "errors": [],
+      "warnings": [],
+      "summary": {
+        "required_servers": [
+          "alpaca",
+          "sec-edgar",
+          "alpha-vantage",
+          "fred",
+          "firecrawl",
+          "yahoo-finance"
+        ],
+        "core_servers": [
+          "alpaca"
+        ],
+        "research_servers": [
+          "sec-edgar",
+          "alpha-vantage",
+          "fred",
+          "firecrawl",
+          "yahoo-finance"
+        ],
+        "covered_servers": [
+          "alpaca",
+          "alpha-vantage",
+          "firecrawl",
+          "fred",
+          "sec-edgar",
+          "yahoo-finance"
+        ],
+        "strict_required": true,
+        "actionable": true,
+        "min_research_confirmations": 3,
+        "positive_research_confirmations": [
+          "firecrawl",
+          "fred",
+          "sec-edgar",
+          "yahoo-finance"
+        ]
+      },
+      "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-mcp-coverage.py --strict --json wiki/evidence-store/run-manifests/2026-07-24-0631-after-hours-autopilot.json"
+    }
+  }
+}
