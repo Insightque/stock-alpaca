@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-07-23-1211-after-hours-autopilot]]
+- Open/new: 없음. immediate reconciliation 기준 open orders `0`이다.
+- Filled: `NOK` after-hours sell `2건`이 same US-date bucket에 기록됐다. earlier `ah-20260722-0931-sell-nok-01`은 `filled_avg_price=10.95 USD`로 유지됐고, 이번 cycle `ah-20260722-1211-sell-nok-01` (`order_id=d249fed3-33a1-4b84-b84d-4902851737c9`)은 `filled_avg_price=10.78 USD`, `filled_at=2026-07-23T03:18:44.891868059Z`로 즉시 체결됐다. same-session after-hours submitted/fills는 `2/2`다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: live continuity 기준 positions `31`건이며 `AVGO position 없음`, `SO qty=6`, `QQQ qty=3`, `SPY qty=2`, `WMT qty=10`, `NOK qty=399`, `NOK qty_available=399`이다.
+- Recent reconciliation scope: scheduler-owned `2026-07-23-1211-*` Alpaca core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. direct live continuity는 정상 동작했고 `NOK 10.78/10.80`와 `WMT 109.40/109.67`를 확인했다. sell-first 정책에 따라 `NOK` 1주 trim만 제출했고 alternate `client_order_id` retry는 없었다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 1.
+- Source note: `wiki/trade-ledger/positions/2026-07-23-1211-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-07-23 03:19 UTC_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-07-23-1151-after-hours-autopilot]]
 - Open/new: 없음. scheduler-owned `1151` preflight 기준 open orders `0`이다.
 - Filled: `NOK` after-hours sell `1건`이 `client_order_id=ah-20260722-0931-sell-nok-01`, `order_id=87eea18c-86c7-47b6-8565-4e5b56fef08b`, `filled_avg_price=10.95 USD`, `filled_at=2026-07-23T01:16:18.20135Z`로 유지됐다. same-session after-hours submitted/fills는 `1/1`이다.
