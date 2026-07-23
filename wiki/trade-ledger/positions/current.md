@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-07-23-1011-after-hours-autopilot]]
+- Open/new: `NOK` after-hours sell `1건`이 `client_order_id=ah-20260722-0931-sell-nok-01`, `order_id=87eea18c-86c7-47b6-8565-4e5b56fef08b`, `limit_price=10.95 USD`, `status=new`로 계속 열려 있다.
+- Filled: 없음. same `client_order_id` reconciliation 기준 `filled_qty=0`, `filled_avg_price=null`이다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: `1011` source-of-record preflight와 live continuity 기준 positions `31`건이며 `AVGO position 없음`, `SO qty=6`, `QQQ qty=3`, `SPY qty=2`, `WMT qty=10`, `NOK qty=401`, `NOK qty_available=400`이다.
+- Recent reconciliation scope: scheduler-owned `2026-07-23-1011-*` Alpaca core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. live continuity에서 existing `NOK` open order continuity를 재확인했고, `check-risk-policy.py`는 same order age 약 `33분`이 lifecycle limit `30분`을 넘겨 FAIL했다. submit boundary를 같은 `1011` preflight asset/quote/spread rows에 고정한 결과 shortlist quote도 stale, one-sided, 또는 spread/per-order-cap fail이라 신규 `place_stock_order`는 호출하지 않았다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-07-23-1011-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-07-23 01:13 UTC_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-07-23-0951-after-hours-autopilot]]
 - Open/new: `NOK` after-hours sell `1건`이 `client_order_id=ah-20260722-0931-sell-nok-01`, `order_id=87eea18c-86c7-47b6-8565-4e5b56fef08b`, `limit_price=10.95 USD`, `status=new`로 계속 열려 있다.
 - Filled: 없음. same `client_order_id` reconciliation 기준 `filled_qty=0`, `filled_avg_price=null`이다.
