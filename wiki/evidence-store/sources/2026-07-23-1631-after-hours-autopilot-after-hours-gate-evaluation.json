@@ -1,0 +1,281 @@
+{
+  "run_id": "2026-07-23-1631-after-hours-autopilot",
+  "created_at": "2026-07-23T07:31:30Z",
+  "session": "after_hours",
+  "market_date": "2026-07-22 EDT",
+  "scheduler_artifact_label": "2026-07-23 KST file label",
+  "policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "hard_gate_summary": {
+    "paper_mode": true,
+    "regular_market_open": false,
+    "expected_market_closed_nonblocking": true,
+    "open_orders": 0,
+    "same_session_after_hours_orders_submitted_today": 2,
+    "same_session_after_hours_fills_today": 2,
+    "positions_count": 31
+  },
+  "continuity": {
+    "source_of_record_clock_timestamp": "2026-07-23T03:33:15.213226042-04:00",
+    "account_status": "ACTIVE",
+    "portfolio_value": 98446.13,
+    "cash": 29027.15,
+    "buying_power": 29027.15,
+    "filled_order_client_order_ids": [
+      "ah-20260722-0931-sell-nok-01",
+      "ah-20260722-1211-sell-nok-01"
+    ],
+    "filled_order_ids": [
+      "87eea18c-86c7-47b6-8565-4e5b56fef08b",
+      "d249fed3-33a1-4b84-b84d-4902851737c9"
+    ],
+    "open_orders": 0,
+    "positions_count": 31,
+    "avgo_position_open": false,
+    "watchlists_count": 0,
+    "runtime_spot_check_note": "Scheduler-owned 1631 Alpaca core preflight recorded first_blocking_gate=market_closed, which is expected and nonblocking for after-hours. The same preflight passed account, positions, open-orders, recent-fill, asset, and quote rows. Using those source-of-record rows only, regular market remained closed, account ACTIVE, positions 31, watchlists 0, open orders 0, and same-session after-hours submitted/fills already sat at 2/2 for the Wednesday, July 22, 2026 EDT session. A direct Alpaca continuity spot check at 2026-07-23T03:33:15.213226042-04:00 also reconfirmed regular market closed, open orders 0, and the same two filled `ah-` client order ids, but submit eligibility did not reopen because the separate after-hours session budget was already exhausted before submit branch entry."
+  },
+  "after_hours_budget": {
+    "max_new_orders_per_session": 2,
+    "after_hours_new_orders_submitted_today": 2,
+    "remaining": 0
+  },
+  "review_backlog": {
+    "updated_at": "2026-07-22T21:30:00Z",
+    "source_review": "wiki/trade-ledger/reviews/2026-07-22-portfolio-review.md",
+    "pending_1d_count": 2,
+    "pending_5d_count": 2,
+    "pending_20d_count": 0,
+    "blocked_add_symbols": [
+      "NOK"
+    ],
+    "due_reviews_blocking_adds": [
+      "NOK"
+    ],
+    "due_reviews": [
+      {
+        "symbol": "AVGO",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "waiting",
+        "due_after": "2026-07-23 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-07-22-portfolio-review.md",
+          "wiki/current-runs/daily/2026-07-22-0911-after-hours-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "NOK",
+        "horizon": "1D",
+        "decision_due": false,
+        "current_decision": "waiting",
+        "due_after": "2026-07-23 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-07-22-portfolio-review.md",
+          "wiki/current-runs/daily/2026-07-22-2111-after-hours-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "AVGO",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-07-29 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-07-22-portfolio-review.md",
+          "wiki/current-runs/daily/2026-07-22-0911-after-hours-autopilot.md"
+        ]
+      },
+      {
+        "symbol": "NOK",
+        "horizon": "5D",
+        "decision_due": false,
+        "current_decision": "pending",
+        "due_after": "2026-07-29 US regular-session close",
+        "source_refs": [
+          "wiki/trade-ledger/reviews/2026-07-22-portfolio-review.md",
+          "wiki/current-runs/daily/2026-07-22-2111-after-hours-autopilot.md"
+        ]
+      }
+    ]
+  },
+  "candidate_evaluation": {
+    "sell_candidates": [
+      {
+        "symbol": "NOK",
+        "side": "sell",
+        "qty_available": 399,
+        "bid": 10.6,
+        "ask": 10.85,
+        "spread_pct": 2.331,
+        "quote_timestamp": "2026-07-22T20:59:59.195711784Z",
+        "quote_age_minutes": 631.51,
+        "status": "blocked",
+        "blocking_reasons": [
+          "after_hours_session_budget_exhausted",
+          "quote_stale_over_5_minutes",
+          "spread_above_after_hours_cap"
+        ],
+        "metric_gap_reason": "NOK preflight quote 10.6/10.85 at 2026-07-22T20:59:59.195711784Z was 631.51 minutes old and spread 2.331% against the after-hours 0.25% cap; separate after-hours session budget was already 2/2 before submit branch entry."
+      },
+      {
+        "symbol": "SO",
+        "side": "sell",
+        "qty_available": 6,
+        "bid": 88.45,
+        "ask": 99.75,
+        "spread_pct": 12.0085,
+        "quote_timestamp": "2026-07-22T20:00:02.626314495Z",
+        "quote_age_minutes": 691.46,
+        "status": "blocked",
+        "blocking_reasons": [
+          "after_hours_session_budget_exhausted",
+          "quote_stale_over_5_minutes",
+          "spread_above_after_hours_cap"
+        ],
+        "metric_gap_reason": "SO preflight quote 88.45/99.75 at 2026-07-22T20:00:02.626314495Z was 691.46 minutes old and spread 12.0085% against the after-hours 0.25% cap; separate after-hours session budget was already 2/2 before submit branch entry."
+      }
+    ],
+    "buy_candidates": [
+      {
+        "symbol": "WMT",
+        "side": "buy",
+        "bid": 104.2,
+        "ask": 115.28,
+        "quote_timestamp": "2026-07-22T20:00:00.244702237Z",
+        "quote_age_minutes": 691.5,
+        "status": "blocked",
+        "blocking_reasons": [
+          "after_hours_session_budget_exhausted",
+          "quote_stale_over_5_minutes",
+          "spread_above_after_hours_cap"
+        ],
+        "spread_pct": 10.0966,
+        "notional_pct_of_portfolio": 0.1171
+      },
+      {
+        "symbol": "MCD",
+        "side": "buy",
+        "bid": 251.75,
+        "ask": 0.0,
+        "quote_timestamp": "2026-07-22T20:00:03.504080989Z",
+        "quote_age_minutes": 691.44,
+        "status": "blocked",
+        "blocking_reasons": [
+          "after_hours_session_budget_exhausted",
+          "one_sided_quote",
+          "quote_stale_over_5_minutes",
+          "spread_above_after_hours_cap"
+        ],
+        "spread_pct": null,
+        "notional_pct_of_portfolio": null
+      },
+      {
+        "symbol": "QQQ",
+        "side": "buy",
+        "bid": 706.51,
+        "ask": 706.68,
+        "quote_timestamp": "2026-07-22T20:01:00.572457323Z",
+        "quote_age_minutes": 690.49,
+        "status": "blocked",
+        "blocking_reasons": [
+          "after_hours_session_budget_exhausted",
+          "after_hours_per_order_notional_cap_exceeded",
+          "quote_stale_over_5_minutes"
+        ],
+        "spread_pct": 0.0241,
+        "notional_pct_of_portfolio": 0.7178
+      },
+      {
+        "symbol": "SPY",
+        "side": "buy",
+        "bid": 748.37,
+        "ask": 748.99,
+        "quote_timestamp": "2026-07-22T20:31:07.643443439Z",
+        "quote_age_minutes": 660.37,
+        "status": "blocked",
+        "blocking_reasons": [
+          "after_hours_session_budget_exhausted",
+          "after_hours_per_order_notional_cap_exceeded",
+          "quote_stale_over_5_minutes"
+        ],
+        "spread_pct": 0.0828,
+        "notional_pct_of_portfolio": 0.7608
+      },
+      {
+        "symbol": "SMH",
+        "side": "buy",
+        "bid": 571.72,
+        "ask": 607.38,
+        "quote_timestamp": "2026-07-22T20:00:00.009140942Z",
+        "quote_age_minutes": 691.5,
+        "status": "blocked",
+        "blocking_reasons": [
+          "after_hours_session_budget_exhausted",
+          "after_hours_per_order_notional_cap_exceeded",
+          "quote_stale_over_5_minutes",
+          "spread_above_after_hours_cap"
+        ],
+        "spread_pct": 6.0487,
+        "notional_pct_of_portfolio": 0.617
+      },
+      {
+        "symbol": "NEE",
+        "side": "buy",
+        "bid": 83.6,
+        "ask": 93.21,
+        "quote_timestamp": "2026-07-22T20:00:00.003706061Z",
+        "quote_age_minutes": 691.5,
+        "status": "blocked",
+        "blocking_reasons": [
+          "after_hours_session_budget_exhausted",
+          "quote_stale_over_5_minutes",
+          "spread_above_after_hours_cap"
+        ],
+        "spread_pct": 10.8704,
+        "notional_pct_of_portfolio": 0.0947
+      },
+      {
+        "symbol": "CVX",
+        "side": "buy",
+        "bid": 182.83,
+        "ask": 203.07,
+        "quote_timestamp": "2026-07-22T20:00:00.003001194Z",
+        "quote_age_minutes": 691.5,
+        "status": "blocked",
+        "blocking_reasons": [
+          "after_hours_session_budget_exhausted",
+          "quote_stale_over_5_minutes",
+          "spread_above_after_hours_cap"
+        ],
+        "spread_pct": 10.4898,
+        "notional_pct_of_portfolio": 0.2063
+      },
+      {
+        "symbol": "GS",
+        "side": "buy",
+        "bid": 1046.42,
+        "ask": 1143.45,
+        "quote_timestamp": "2026-07-22T20:00:00.010470714Z",
+        "quote_age_minutes": 691.5,
+        "status": "blocked",
+        "blocking_reasons": [
+          "after_hours_session_budget_exhausted",
+          "after_hours_per_order_notional_cap_exceeded",
+          "quote_stale_over_5_minutes",
+          "spread_above_after_hours_cap"
+        ],
+        "spread_pct": 8.8617,
+        "notional_pct_of_portfolio": 1.1615
+      }
+    ]
+  },
+  "submit_decision": {
+    "decision": "no_submit",
+    "first_blocking_gate": "separate_after_hours_order_budget",
+    "pre_submit_gate_summary_written": false,
+    "submit_attempted": false,
+    "deterministic_submit_artifact_expected": false,
+    "reason": "The active after-hours policy budget was already exhausted at two same-session orders before submit branch entry. The scheduler-owned 1631 preflight remained the source-of-record, and its quote rows did not clear the stale/spread gates for a fresh submit window. A live continuity spot check also kept regular market closed and open orders at zero, so no place_stock_order call was attempted and no alternate client_order_id was generated."
+  }
+}
