@@ -1,0 +1,11 @@
+scheduled after-hours paper autopilot
+workflow: harness/workflows/after-hours-autopilot.md
+session: after_hours
+policy_profile: after_hours_policy
+hard requirements:
+- paper trading only; abort if ALPACA_PAPER_TRADE=true is not present
+- use scheduler-owned 1711 Alpaca core and research preflights when present
+- Alpaca core market_closed is expected nonblocking for after-hours when other required rows pass
+- submit only if after-hours hard gates, universe gate, MCP gate, quote/spread gate, and risk gate all pass
+- every order must be whole-share day limit stock/ETF with extended_hours=true, session=after_hours, review_bucket=after_hours_validation
+- immediately reconcile by client_order_id after any submit attempt
