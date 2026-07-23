@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-07-23-1511-after-hours-autopilot]]
+- Open/new: 없음. live `get_orders(status=open)` 기준 open orders `0`이다.
+- Filled: `NOK` after-hours sell `2건`이 same US-date bucket에 유지된다. `ah-20260722-0931-sell-nok-01`은 `filled_avg_price=10.95 USD`, `ah-20260722-1211-sell-nok-01`은 `filled_avg_price=10.78 USD`, `filled_at=2026-07-23T03:18:44.891868Z`다. same-session after-hours submitted/fills는 `2/2`다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: live continuity 기준 positions `31`건이며 `AVGO position 없음`, `SO qty=6`, `QQQ qty=3`, `SPY qty=2`, `WMT qty=10`, `NOK qty=399`, `NOK qty_available=399`이다.
+- Recent reconciliation scope: scheduler-owned `2026-07-23-1511-*` Alpaca core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. direct live continuity는 정상 동작했고 `NOK 10.89/10.91`, `SO 94.67/95.91`, `WMT 109.39/109.45`, `MCD 262.86/263.73`, `QQQ 703.88/703.98`, `SPY 745.95/746.90`, `SMH 586.60/587.58`, `NEE 88.12/89.67`, `CVX 193.18/194.93`, `GS 1090.10/1104.06`를 재확인했다. `NOK`는 live sell trim 기준 executable이었고 `WMT`는 live buy fallback 기준 executable이었지만 separate after-hours session budget이 이미 `2/2`로 소진돼 first blocking gate가 `separate_after_hours_order_budget`로 유지됐고 신규 `place_stock_order`는 호출하지 않았다. `MCD`는 spread cap fail, `SO`/`NEE`는 stale+spread fail, `CVX`/`GS`는 spread fail, `QQQ`/`SPY`/`SMH`/`GS`는 per-order cap fail로 남았다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-07-23-1511-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-07-23 06:14 UTC_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-07-23-1451-after-hours-autopilot]]
 - Open/new: 없음. live `get_orders(status=open)` 기준 open orders `0`이다.
 - Filled: `NOK` after-hours sell `2건`이 same US-date bucket에 유지된다. `ah-20260722-0931-sell-nok-01`은 `filled_avg_price=10.95 USD`, `ah-20260722-1211-sell-nok-01`은 `filled_avg_price=10.78 USD`, `filled_at=2026-07-23T03:18:44.891868Z`다. same-session after-hours submitted/fills는 `2/2`다.
