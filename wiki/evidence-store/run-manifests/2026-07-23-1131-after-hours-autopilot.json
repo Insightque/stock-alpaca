@@ -1,0 +1,235 @@
+{
+  "run_id": "2026-07-23-1131-after-hours-autopilot",
+  "created_at": "2026-07-23T02:35:35Z",
+  "data_cutoff_time": "2026-07-23T02:35:35Z",
+  "market_clock_checked_at": "2026-07-22T22:33:01.686285742-04:00",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "policy_id": "recommendation-policy-v1.11",
+  "policy_version": "v1.11",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "git_commit": "37bf1d5a7bbdca4eed3f0a99555e6eb6406bbeb7",
+  "risk_policy_version": "medium-risk-v1.2",
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "risk_policy_sha": "sha256:cf51a39ddb086d0307fc78bd1842dd0eda527def59e93d87e5576d5213a315ae",
+  "schema_version": "1.3",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-07-23-1131-after-hours-autopilot.json",
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-07-23-1131-after-hours-autopilot-post-trade.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-23-1131-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-23-1131-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-07-23-1131-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md",
+    "wiki/research-notes/tickers/NOK.md",
+    "wiki/research-notes/tickers/SPY.md",
+    "wiki/research-notes/tickers/SMH.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/trade-ledger/reviews/2026-07-22-portfolio-review.md"
+  ],
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_research_preflight_shortlist_with_scheduler_quote_rows_and_live_after_hours_continuity",
+    "pre_mcp_shortlist": [
+      "SO",
+      "WMT",
+      "MCD",
+      "QQQ",
+      "SPY",
+      "SMH",
+      "NOK",
+      "NEE",
+      "CVX",
+      "GS"
+    ],
+    "final_candidates": [
+      "SO",
+      "WMT",
+      "MCD",
+      "QQQ",
+      "SPY",
+      "SMH",
+      "NOK",
+      "NEE",
+      "CVX",
+      "GS"
+    ],
+    "passed": true,
+    "gap_reason": "",
+    "status": "pass"
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "all_research_must_be_attempted": true,
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_submit": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-07-23T02:35:35Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-23-1131-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-07-23-1131-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ],
+      "gap_reason": "Scheduler-owned 1131 Alpaca core preflight recorded first_blocking_gate=market_closed, which is expected and nonblocking for after-hours. The same preflight supplied passing account, positions, open-orders, asset, and quote rows, while live continuity confirmed the earlier NOK trim ah-20260722-0931-sell-nok-01 remained filled and open orders stayed at zero. However, every source-of-record shortlist quote row was already older than the 5-minute after-hours freshness cap before submit branch entry, and several also remained one-sided, above the 0.25% spread cap, or above the 0.5% per-order notional cap. Live overnight continuity refreshed WMT to 109.39/109.56 with spread inside policy, but this remained diagnostic-only because the workflow kept the submit boundary on the scheduler-owned 1131 quote/spread rows and no source-of-record candidate survived the freshness gate.",
+      "gap_category": "not_applicable",
+      "retry_count": 0,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-07-23T02:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-23-1131-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-07-23T02:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-23-1131-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-07-22T21:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-23-1131-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-07-23T02:11:31+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-23-1131-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-07-23T02:31:28+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-23-1131-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols."
+    }
+  ],
+  "recommendation_actionability": "blocked",
+  "first_blocking_gate": "fresh_quote",
+  "decision_summary": {
+    "action": "reconcile_only_no_new_submit",
+    "reason": "The scheduler-owned 1131 preflight again showed regular market closed, which is expected and nonblocking for after-hours, and live continuity confirmed the earlier NOK after-hours sell ah-20260722-0931-sell-nok-01 remained filled at 10.95 USD with open orders still at zero. Even so, the same source-of-record shortlist quote rows were all older than the 5-minute after-hours freshness cap before submit branch entry, with several names also one-sided, wider than the 0.25% spread cap, or above the per-order notional cap. Live overnight continuity refreshed WMT to 109.39/109.56 with spread inside policy, but the workflow kept the submit boundary on the scheduler-owned 1131 quote/spread rows as instructed, so no fresh source-of-record candidate survived. The cycle therefore stayed reconcile-only with no alternate client_order_id and no new place_stock_order call.",
+    "eligible_sell_trim_found": false,
+    "eligible_buy_fallback_found": false,
+    "same_session_after_hours_orders_submitted_today": 1,
+    "same_session_after_hours_fills_today": 1,
+    "separate_session_budget_remaining": 1
+  },
+  "risk_check_result": {
+    "status": "PASS",
+    "command": "PATH=/usr/local/bin:$PATH python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-07-23-1131-after-hours-autopilot.json",
+    "errors": [],
+    "warnings": [
+      "orders is empty"
+    ],
+    "summary": {
+      "order_count": 0,
+      "post_cash": 29016.37,
+      "post_invested": 69492.27,
+      "review_backlog_pending_1d_count": 2
+    }
+  },
+  "order_plan": {
+    "orders": []
+  },
+  "prompt_file_sha": "sha256:c96f8c3f9a562d2b4ed5a21e10054cc96081afa418f7d9c266a9690d23098af2",
+  "data_manifest": {
+    "source_feed": "alpaca_scheduler_preflight_iex_quotes_plus_live_overnight_continuity",
+    "adjusted_prices": false,
+    "timezone": "America/New_York",
+    "trading_calendar": "alpaca_us_equities",
+    "symbols_requested": 62,
+    "symbols_loaded": 62,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 10,
+    "corporate_actions_checked": false,
+    "survivorship_bias_controlled": true,
+    "raw_input_file": "wiki/evidence-store/sources/2026-07-23-1131-after-hours-autopilot-alpaca-core-preflight.json"
+  },
+  "submitted_order_ids": []
+}
