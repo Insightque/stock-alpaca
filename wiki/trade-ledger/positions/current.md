@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-07-23-0931-after-hours-autopilot]]
+- Open/new: `NOK` after-hours sell `1건`이 `client_order_id=ah-20260722-0931-sell-nok-01`, `order_id=87eea18c-86c7-47b6-8565-4e5b56fef08b`, `limit_price=10.95 USD`, `status=new`로 열려 있다.
+- Filled: 없음. immediate `get_order_by_client_id` reconciliation 기준 `filled_qty=0`, `filled_avg_price=null`이었다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: source-of-record `0931` preflight와 post-submit continuity 기준 positions `31`건이며 `AVGO position 없음`, `SO qty=6`, `QQQ qty=3`, `SPY qty=2`, `WMT qty=10`, `NOK qty=401`, `NOK qty_available=400`이다.
+- Recent reconciliation scope: scheduler-owned `2026-07-23-0931-*` Alpaca core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. 같은 preflight의 passing account/positions/open-orders/asset rows를 유지한 채 `NOK`만 live overnight quote `10.95/10.96` (`2026-07-23T00:38:02.690193367Z`)로 freshness를 보강해 submit path를 열었다. strict universe/MCP/risk gate PASS 후 `place_stock_order`를 1회만 호출했고 alternate `client_order_id` retry는 없었다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 1 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-07-23-0931-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-07-23 00:40 UTC_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-07-23-0911-after-hours-autopilot]]
 - Open/new: 없음. live `get_orders(status=open)` 기준 open orders `0`, same-session after-hours submitted orders `0`이다.
 - Filled: 없음. live `get_orders(status=all, after=2026-07-22T20:00:00Z)` 기준 same-session after-hours fills/orders는 `0건`이었다.
