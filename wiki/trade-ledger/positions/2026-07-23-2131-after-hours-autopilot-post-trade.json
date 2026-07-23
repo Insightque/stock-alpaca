@@ -1,0 +1,58 @@
+{
+  "run_id": "2026-07-23-2131-after-hours-autopilot",
+  "created_at": "2026-07-23T12:33:30Z",
+  "session": "after_hours",
+  "market_date": "2026-07-22 EDT",
+  "scheduler_artifact_label": "2026-07-23 KST file label",
+  "account": {
+    "status": "ACTIVE",
+    "cash": 29027.15,
+    "portfolio_value": 97805.69,
+    "buying_power": 29027.15,
+    "currency": "USD"
+  },
+  "positions_count": 31,
+  "open_orders_count": 0,
+  "same_session_after_hours_orders_submitted_today": 2,
+  "same_session_after_hours_fills_today": 2,
+  "same_session_fill_details": [
+    {
+      "client_order_id": "ah-20260722-1211-sell-nok-01",
+      "order_id": "d249fed3-33a1-4b84-b84d-4902851737c9",
+      "symbol": "NOK",
+      "side": "sell",
+      "qty": 1,
+      "filled_avg_price": 10.78,
+      "filled_at": "2026-07-23T03:18:44.891868Z"
+    },
+    {
+      "client_order_id": "ah-20260722-0931-sell-nok-01",
+      "order_id": "87eea18c-86c7-47b6-8565-4e5b56fef08b",
+      "symbol": "NOK",
+      "side": "sell",
+      "qty": 1,
+      "filled_avg_price": 10.95,
+      "filled_at": "2026-07-23T01:16:18.20135Z"
+    }
+  ],
+  "positions_focus": {
+    "AVGO_position_open": false,
+    "SO_qty": 6,
+    "QQQ_qty": 3,
+    "SPY_qty": 2,
+    "WMT_qty": 10,
+    "NOK_qty": 399,
+    "NOK_qty_available": 399
+  },
+  "submitted_order": null,
+  "orders_submitted_this_cycle": 0,
+  "orders_replaced_this_cycle": 0,
+  "orders_cancelled_this_cycle": 0,
+  "orders_closed_this_cycle": 0,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-23-2131-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-23-2131-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-07-23-2131-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-07-23-2131-after-hours-autopilot.json"
+  ]
+}
