@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-07-24-0931-after-hours-autopilot]]
+- Open/new: 없음. scheduler-owned future-labeled KST artifact path `2026-07-24-0931` preflight 기준 open orders `0`이며 live `get_orders(status=open)`는 HTTP 500이라 source-of-record를 유지했다.
+- Filled: 없음. `0931` source-of-record preflight `orders_submitted=0` 기준 same-session after-hours submitted/fills는 `0/0`으로 유지됐다. direct runtime `get_orders(status=all, after=2026-07-23T20:00:00Z)`는 HTTP 500이 났지만 신규 submit path는 열리지 않았다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: live continuity 기준 positions `31`건이며 `AVGO position 없음`, `SO qty=6`, `QQQ qty=3`, `SPY qty=2`, `WMT qty=10`, `NOK qty=399`, `NOK qty_available=399`이다.
+- Recent reconciliation scope: scheduler-owned future-labeled KST artifact path `2026-07-24-0931` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. live Alpaca continuity는 `2026-07-23T20:34:53.717510774-04:00` regular market closed, watchlists `0`, positions `31`을 재확인했고 overnight snapshot은 `QQQ/SPY/SMH/NOK/WMT/MCD`에서 더 fresh한 quote를 보여줬다. 다만 이번 scheduled run은 user requirement에 따라 `0931` preflight quote/spread row를 submit boundary로 유지해 first blocking gate가 `fresh_quote`로 남았고 신규 `place_stock_order`는 호출하지 않았다. strict universe/MCP/risk validators는 모두 PASS였고 risk validator warning은 `orders is empty`뿐이었다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-07-24-0931-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-07-24 00:34 UTC_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-07-24-0911-after-hours-autopilot]]
 - Open/new: 없음. scheduler-owned future-labeled KST artifact path `2026-07-24-0911` preflight 기준 open orders `0`이며 live `get_orders(status=open)`는 HTTP 500이라 source-of-record를 유지했다.
 - Filled: 없음. `0911` source-of-record preflight `orders_submitted=0` 기준 same-session after-hours submitted/fills는 `0/0`으로 유지됐다. direct runtime `get_orders(status=all, after=2026-07-23T20:00:00Z)`는 HTTP 500이 났지만 신규 submit path는 열리지 않았다.
