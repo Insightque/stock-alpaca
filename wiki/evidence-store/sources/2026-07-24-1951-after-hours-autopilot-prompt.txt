@@ -1,0 +1,16 @@
+Scheduled after-hours paper autopilot run.
+Workflow: harness/workflows/after-hours-autopilot.md
+Run id: 2026-07-24-1951-after-hours-autopilot
+Hard requirements:
+- Paper trading only; abort if ALPACA_PAPER_TRADE=true is not present.
+- Use after_hours_policy from harness/recommendation-policy.yaml.
+- Keep session=after_hours, artifact tag, order budget, and review bucket separate from regular-session hourly-autopilot.
+- Use scheduler-owned preflights at wiki/evidence-store/sources/2026-07-24-1951-after-hours-autopilot-alpaca-core-preflight.json and wiki/evidence-store/sources/2026-07-24-1951-after-hours-autopilot-research-mcp-preflight.json.
+- Treat Alpaca core preflight first_blocking_gate=market_closed as expected nonblocking for after-hours.
+- Submit only if all after-hours hard gates, universe gate, MCP gate, quote/spread gate, and risk gate pass.
+- Every order must be whole-share stock/ETF day limit with extended_hours=true, session=after_hours, and review_bucket=after_hours_validation.
+- Reconcile by client_order_id immediately after any submit; do not retry with a different client_order_id.
+Current outcome:
+- Source-of-record 1951 quote/spread rows remain stale, one-sided, spread-failing, or per-order-cap failing across executable candidates.
+- Live Alpaca continuity reconfirms regular market closed, account ACTIVE, positions 31, watchlists 0, open orders 0, and same-session after-hours orders/fills 0/0.
+- No place_stock_order call is allowed for this cycle.
