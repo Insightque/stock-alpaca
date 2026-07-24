@@ -70,3 +70,9 @@ Alpaca/Benzinga에서 quantum sector funding 기대와 short-interest/valuation 
 current Alpaca snapshot 기준 `IONQ`는 `45주`, 평균단가 `63.48 USD`, `2026-07-22 ET` close `34.685 USD`, current `34.78 USD`로 미실현 손실이 약 `-45.21%`다. Yahoo recommendation summary `3개월` window에서 새 analyst row도 확인되지 않았다. speculative sleeve 원칙상 보유는 별도 관리하더라도, 신규 add를 정당화할 증거는 없으므로 no-add discipline을 유지한다.
 
 출처: [[2026-07-22-portfolio-review]], [[2026-07-22-analyst-review-cycle-sources]]
+
+### 2026-07-24 analyst review cycle
+
+`Friday, July 24, 2026 ET` close/current 기준 `IONQ`는 `33.16 USD`로 평균단가 `63.48 USD` 대비 미실현 손실이 약 `-47.76%`까지 더 깊어졌다. 이번 run에서는 Yahoo recommendation summary `3개월` query가 timeout이라 새 외부 보강을 확인하지 못했지만, 그 점이 no-add discipline을 완화할 근거는 아니다. speculative sleeve의 deep drawdown이 계속되는 만큼 신규 add는 계속 보류한다.
+
+출처: [[2026-07-24-portfolio-review]], [[2026-07-24-analyst-review-cycle-sources]]

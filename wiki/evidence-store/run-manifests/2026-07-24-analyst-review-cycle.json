@@ -1,0 +1,131 @@
+{
+  "id": "2026-07-24-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-07-24T21:25:08Z",
+  "timezone": "UTC",
+  "paper": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "alpaca_reconciliation": {
+    "clock_is_open": false,
+    "clock_timestamp": "2026-07-24T17:21:45.830491374-04:00",
+    "account_status": "ACTIVE",
+    "portfolio_value": 96255.96,
+    "cash": 29036.78,
+    "buying_power": 294264.37,
+    "long_market_value": 67219.18,
+    "open_us_equity_orders": 0,
+    "position_count_direct": 31,
+    "recent_fill_scope_after": "2026-07-23T20:00:00Z",
+    "portfolio_history": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 2,
+      "gap_reason": "get_portfolio_history was cancelled on the initial call and two retries during the Friday, July 24, 2026 analyst review cycle"
+    }
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-07-24-portfolio-review.md",
+    "symbol_reviews": [
+      "wiki/research-notes/tickers/NOK.md",
+      "wiki/research-notes/tickers/IONQ.md",
+      "wiki/research-notes/tickers/GOOGL.md"
+    ],
+    "reviewed_horizons": [
+      "2026-07-24 ET NOK trim waiting marker",
+      "open-position monitor",
+      "skipped recommendations re-check"
+    ],
+    "symbols": [
+      "NOK",
+      "IONQ",
+      "GOOGL",
+      "AMD",
+      "SPY",
+      "QQQ"
+    ],
+    "due_now": true,
+    "next_due": "2026-07-27 ET regular-session close for NOK 1D review"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "portfolio_history was cancelled, but account/order/fill/position/snapshot reconciliation remained usable",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-analyst-review-cycle-sources.md",
+        "wiki/research-notes/tickers/NOK.md"
+      ],
+      "gap_reason": "registered sec-edgar surface was callable but both attempts were cancelled, so this run relied on prior ticker-note continuity only",
+      "gap_category": "cancelled",
+      "retry_count": 1
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "NOK, IONQ, and GOOGL Yahoo Finance queries timed out in this run",
+      "gap_category": "timeout",
+      "retry_count": 0
+    }
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "The new NOK trim only has same-day evidence, and incomplete Alpaca/SEC/Yahoo coverage kept this run below the recommendation-policy evidence threshold"
+  }
+}
