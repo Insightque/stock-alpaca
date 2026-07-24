@@ -1,5 +1,16 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-07-24-1831-after-hours-autopilot]]
+- Open/new: 없음
+- Filled: 없음
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: 31 positions. `AVGO` 보유 없음, `SO` 6주, `QQQ` 3주, `SPY` 2주, `WMT` 10주, `NOK` 399주, 신규 open order 없음.
+- Recent reconciliation scope: scheduler-owned `1831` Alpaca core/research preflight와 runtime `get_clock/get_account_info/get_all_positions/get_watchlists/get_orders(status=open)/get_orders(status=all, after=2026-07-23T20:00:00Z)/get_account_activities(activity_types=[FILL], after=2026-07-23T20:00:00Z)` 확인 기준 장외 separate session budget `2/2 remaining`이었지만 source-of-record `SO/WMT/MCD/QQQ/SPY/SMH/NOK/NEE/CVX/GS` quote rows가 stale, one-sided, spread, 또는 per-order cap fail이라 submit 없이 종료했다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-07-24-1831-after-hours-autopilot-post-trade.json`
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-07-24-1811-after-hours-autopilot]]
 - Open/new: 없음. scheduler-owned future-labeled KST artifact path `2026-07-24-1811-` preflight와 live `get_orders(status=open)=[]`, `get_orders(status=all, after=2026-07-23T20:00:00Z)=[]` 기준 same-session after-hours open/new order는 `0`이다.
 - Filled: 없음. `2026-07-24-1811-` source-of-record preflight `orders_submitted=0`과 live `get_account_activities(activity_types=[FILL], after=2026-07-23T20:00:00Z)=[]` 기준 same-session after-hours submitted/fills는 `0/0`으로 유지됐다.
