@@ -1,0 +1,52 @@
+{
+  "run_id": "2026-07-24-1011-after-hours-autopilot",
+  "created_at": "2026-07-24T01:16:13Z",
+  "session": "after_hours",
+  "market_date": "2026-07-23 EDT",
+  "account": {
+    "status": "ACTIVE",
+    "cash": 29027.13,
+    "portfolio_value": 97594.71,
+    "buying_power": 29027.13,
+    "currency": "USD"
+  },
+  "positions_count": 31,
+  "open_orders_count": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_today": 0,
+  "same_session_fill_details": [],
+  "positions_focus": {
+    "AVGO_position_open": false,
+    "SO_qty": 6,
+    "QQQ_qty": 3,
+    "SPY_qty": 2,
+    "WMT_qty": 10,
+    "NOK_qty": 399
+  },
+  "orders_submitted_this_cycle": 0,
+  "orders_replaced_this_cycle": 0,
+  "orders_cancelled_this_cycle": 0,
+  "orders_closed_this_cycle": 0,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-24-1011-after-hours-autopilot-prompt.txt",
+    "wiki/evidence-store/sources/2026-07-24-1011-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-24-1011-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-07-24-1011-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/reviews/review-due-index.json",
+    "wiki/trade-ledger/positions/current.md",
+    "wiki/research-notes/tickers/WMT.md",
+    "wiki/research-notes/tickers/MCD.md",
+    "wiki/research-notes/tickers/QQQ.md",
+    "wiki/research-notes/tickers/SPY.md",
+    "wiki/research-notes/tickers/SMH.md",
+    "wiki/research-notes/tickers/NOK.md",
+    "wiki/research-notes/tickers/NEE.md",
+    "wiki/research-notes/tickers/CVX.md",
+    "wiki/research-notes/tickers/GS.md",
+    "wiki/research-notes/tickers/SO.md",
+    "wiki/research-notes/tickers/AVGO.md",
+    "wiki/trade-ledger/reviews/2026-07-23-portfolio-review.md"
+  ],
+  "note": "No after-hours submit at future-labeled KST artifact path 2026-07-24-1011. The scheduler-owned 1011 Alpaca core preflight remained the source-of-record for the expected market_closed blocker, passing account/open-order/asset/quote rows, and same-session order count 0. Live Alpaca MCP continuity then reconfirmed regular market closed, positions=31, watchlists=0, same-session fills=0, and showed fresher overnight snapshots in SO/WMT/MCD/QQQ/SPY/SMH/NOK/NEE/CVX/GS, but the workflow kept the 1011 preflight quote/spread rows as the submit boundary. Direct runtime get_account_info and get_orders(status=open|all) returned HTTP 500 and were recorded as nonblocking continuity gaps only.",
+  "reconciliation_note": "No new client_order_id reconciliation was required because no submit path opened in the Thursday, July 23, 2026 EDT after-hours cycle."
+}
