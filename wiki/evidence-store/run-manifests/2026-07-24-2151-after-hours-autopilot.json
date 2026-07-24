@@ -1,0 +1,402 @@
+{
+  "run_id": "2026-07-24-2151-after-hours-autopilot",
+  "created_at": "2026-07-24T12:56:12Z",
+  "data_cutoff_time": "2026-07-24T12:56:12Z",
+  "market_clock_checked_at": "2026-07-24T08:51:08.889525722-04:00",
+  "mode": "submit",
+  "paper": true,
+  "session": "after_hours",
+  "policy_profile": "after_hours_policy",
+  "policy_id": "recommendation-policy-v1.11",
+  "policy_version": "v1.11",
+  "artifact_tag": "after-hours",
+  "review_bucket": "after_hours_validation",
+  "order_id_prefix": "ah-",
+  "git_commit": "abe2938f9df4a76ae171f9457fdd4f60d7dcc0c6",
+  "risk_policy_version": "medium-risk-v1.2",
+  "recommendation_policy_sha": "sha256:8434b225f0ea4894c6d3000e06718d84638a09bba16118ca90bf53b162e68170",
+  "risk_policy_sha": "sha256:cf51a39ddb086d0307fc78bd1842dd0eda527def59e93d87e5576d5213a315ae",
+  "schema_version": "1.3",
+  "order_plan_path": "wiki/trade-ledger/orders/2026-07-24-2151-after-hours-autopilot.json",
+  "post_trade_check_path": "wiki/trade-ledger/positions/2026-07-24-2151-after-hours-autopilot-post-trade.json",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-24-2151-after-hours-autopilot-prompt.txt",
+    "wiki/evidence-store/sources/2026-07-24-2151-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-24-2151-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-07-24-2151-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-07-24-2151-after-hours-autopilot.json",
+    "wiki/trade-ledger/positions/2026-07-24-2151-after-hours-autopilot-post-trade.json",
+    "wiki/current-runs/daily/2026-07-24-2151-after-hours-autopilot.md"
+  ],
+  "universe_coverage": {
+    "universe_source": "harness/symbol-metadata.yaml + scheduler Alpaca core preflight broad universe + SPY/QQQ benchmarks",
+    "scope_limited_by_user": false,
+    "symbols_considered": 62,
+    "symbols_loaded": 62,
+    "minimum_required_symbols": 50,
+    "benchmarks": [
+      "SPY",
+      "QQQ"
+    ],
+    "screening_method": "broad_metadata_universe_after_hours_research_preflight_shortlist_with_scheduler_quote_rows_as_source_of_record_submit_boundary",
+    "pre_mcp_shortlist": [
+      "SO",
+      "WMT",
+      "MCD",
+      "QQQ",
+      "SPY",
+      "SMH",
+      "NOK",
+      "NEE",
+      "CVX",
+      "GS"
+    ],
+    "final_candidates": [
+      "SO",
+      "WMT",
+      "MCD",
+      "QQQ",
+      "SPY",
+      "SMH",
+      "NOK",
+      "NEE",
+      "CVX",
+      "GS"
+    ],
+    "passed": true,
+    "gap_reason": "",
+    "status": "pass"
+  },
+  "mcp_gate_policy": {
+    "core_servers": [
+      "alpaca"
+    ],
+    "research_servers": [
+      "sec-edgar",
+      "alpha-vantage",
+      "fred",
+      "firecrawl",
+      "yahoo-finance"
+    ],
+    "all_research_must_be_attempted": true,
+    "min_research_confirmations": 3,
+    "min_research_confirmations_for_submit": 3,
+    "core_gate_blocks_order": true,
+    "provider_gap_blocks_order": "false_when_core_and_min_research_pass"
+  },
+  "mcp_servers_used": [
+    "alpaca",
+    "sec-edgar",
+    "alpha-vantage",
+    "fred",
+    "firecrawl",
+    "yahoo-finance"
+  ],
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-07-24T12:56:12Z",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-2151-after-hours-autopilot-alpaca-core-preflight.json",
+        "wiki/evidence-store/sources/2026-07-24-2151-after-hours-autopilot-after-hours-gate-evaluation.json"
+      ],
+      "gap_reason": "Scheduler-owned future-labeled KST artifact path 2026-07-24-2151- Alpaca core preflight recorded first_blocking_gate=market_closed, which is expected and nonblocking for the Thursday, July 23, 2026 EDT after-hours workflow. The same preflight also supplied passing account, positions, open-orders, asset, quote, and spread rows with orders_submitted=0, and the source-of-record NOK quote row was fresh enough to open the submit path without a separate live Alpaca read.",
+      "gap_category": "not_applicable",
+      "retry_count": 2,
+      "first_blocking_gate": "market_closed_expected_nonblocking_after_hours"
+    },
+    {
+      "server": "sec-edgar",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-07-24T12:51:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-2151-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "required": true,
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "checked_at": "2026-07-24T12:51:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-2151-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "gap_category": "empty_response",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-07-24T09:31:27+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-2151-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-07-24T12:51:30+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-2151-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "required": true,
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "pass",
+      "checked_at": "2026-07-24T12:31:27+00:00",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-2151-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "gap_reason": "",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    }
+  ],
+  "mcp_failures": [
+    {
+      "server": "alpha-vantage",
+      "gap_category": "empty_response",
+      "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+      "retry_count": 0,
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-24-2151-after-hours-autopilot-research-mcp-preflight.json"
+      ],
+      "reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols."
+    }
+  ],
+  "recommendation_actionability": "actionable",
+  "first_blocking_gate": "none",
+  "decision_summary": {
+    "action": "submit_floor_size_after_hours_sell",
+    "reason": "Regular market was closed as expected for the Thursday, July 23, 2026 EDT after-hours session, and the separate after-hours session budget opened at 2/2. The scheduler-owned future-labeled KST artifact path 2026-07-24-2151- remained the source-of-record submit boundary. Within that same source-of-record set, NOK alone passed fresh quote, spread, asset, duplicate-order, and risk-trim gates while benchmark buy fallbacks still failed one-sided quote, staleness, spread, or per-order cap checks. Alpaca accepted the order with client_order_id ah-20260723-2151-sell-nok-01 and immediate reconciliation returned status=new.",
+    "eligible_sell_trim_found": true,
+    "eligible_buy_fallback_found": false,
+    "same_session_after_hours_orders_submitted_today": 1,
+    "same_session_after_hours_fills_today": 0,
+    "separate_session_budget_remaining": 1
+  },
+  "order_plan": {
+    "orders": [
+      {
+        "symbol": "NOK",
+        "asset_type": "stock",
+        "asset_status": "active",
+        "asset_tradable": true,
+        "side": "sell",
+        "order_type": "limit",
+        "time_in_force": "day",
+        "extended_hours": true,
+        "session": "after_hours",
+        "review_bucket": "after_hours_validation",
+        "qty": 1,
+        "limit_price": 9.67,
+        "reference_price": 9.67,
+        "quote_age_minutes": 1.22,
+        "quote_captured_at": "2026-07-24T12:50:16.605683908Z",
+        "asset_checked_at": "2026-07-24T12:51:27Z",
+        "theme": "networking",
+        "factor": "international_adr",
+        "volatility_bucket": "high",
+        "speculative_flag": false,
+        "liquidity_bucket": "medium",
+        "source_confidence": "medium",
+        "correlated_cluster": "communications_infrastructure",
+        "strategy_id": "long_term_quality_momentum_v1",
+        "strategy_version": "recommendation-policy-v1.11",
+        "policy_status": "auto_eligible_paper",
+        "expected_excess_return_20d_pct": -4.8,
+        "expected_adverse_move_20d_pct": -11.0,
+        "confidence_score": 0.56,
+        "sizing_basis": "after_hours_sell_floor_trim_underperformance_control",
+        "entry_style": "trim",
+        "max_additional_entry_count": 0,
+        "liquidity": {
+          "bid": 9.67,
+          "ask": 9.68,
+          "spread_pct": 0.1034,
+          "avg_daily_dollar_volume": 85016343.60855,
+          "quote_source": "alpaca",
+          "measured_at": "2026-07-24T12:50:16.605683908Z"
+        },
+        "client_order_id": "ah-20260723-2151-sell-nok-01",
+        "decision_id": "2026-07-24-2151-after-hours-autopilot-nok-trim",
+        "review_horizons": [
+          "1D",
+          "5D",
+          "20D"
+        ],
+        "source_refs": [
+          "wiki/evidence-store/sources/2026-07-24-2151-after-hours-autopilot-alpaca-core-preflight.json",
+          "wiki/evidence-store/sources/2026-07-24-2151-after-hours-autopilot-research-mcp-preflight.json",
+          "wiki/evidence-store/sources/2026-07-24-2151-after-hours-autopilot-after-hours-gate-evaluation.json",
+          "wiki/trade-ledger/reviews/review-due-index.json",
+          "wiki/trade-ledger/positions/current.md",
+          "wiki/research-notes/tickers/NOK.md",
+          "wiki/research-notes/tickers/SPY.md",
+          "wiki/research-notes/tickers/SMH.md",
+          "wiki/research-notes/tickers/SO.md",
+          "wiki/trade-ledger/reviews/2026-07-23-portfolio-review.md"
+        ],
+        "rationale": "2151 KST after-hours cycle used the scheduler-owned future-labeled 2026-07-24-2151- preflight as source-of-record for account, positions, open orders, assets, and research coverage while treating first_blocking_gate=market_closed as the expected nonblocking after-hours condition for Thursday, July 23, 2026 EDT. The same source-of-record Alpaca quote row kept NOK executable at 9.67/9.68 with 0.1034% spread and quote age 1.22 minutes, zero same-session after-hours orders submitted since 2026-07-23 20:00 EDT, and no open-order conflict. The position remains 399 shares at average entry 15.044561 USD, the 2026-07-23 portfolio review recorded that prior same-US-date after-hours NOK trims had favorable follow-through while the residual position stayed deeply underwater, and the sell-first directive therefore uses one more floor-size trim as the smallest policy-learning observation."
+      }
+    ]
+  },
+  "prompt_file_sha": "sha256:cf628c22c76bae00c13a4e75b83b2f5f5ab740c4877083c8d28f20c306f710b2",
+  "data_manifest": {
+    "source_feed": "alpaca_iex_preflight_submit_boundary",
+    "bar_interval": "snapshot",
+    "adjusted_prices": true,
+    "timezone": "America/New_York",
+    "trading_calendar": "nyse",
+    "symbols_requested": 62,
+    "symbols_loaded": 62,
+    "missing_symbol_dates": 0,
+    "stale_quotes": 7,
+    "corporate_actions_checked": false,
+    "survivorship_bias_controlled": false,
+    "dataset_hash": "sha256:b600e2c12f6893839ed3c7e27b252d333bc2f2069f6c5aee6f3c873708a76461",
+    "raw_input_file": "wiki/evidence-store/sources/2026-07-24-2151-after-hours-autopilot-alpaca-core-preflight.json",
+    "checked_at": "2026-07-24T12:56:12Z"
+  },
+  "risk_check_result": {
+    "errors": [],
+    "path": "wiki/trade-ledger/orders/2026-07-24-2151-after-hours-autopilot.json",
+    "status": "PASS",
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 43873.1685,
+      "max_factor_value": 48747.965,
+      "max_invested": 92621.1335,
+      "max_speculative_value": 11699.511599999998,
+      "max_theme_value": 34123.5755,
+      "max_ticker_value": 14624.3895,
+      "min_cash": 4874.7964999999995,
+      "policy_version": "medium-risk-v1.2",
+      "post_cash": 29036.78,
+      "post_invested": 68459.1453,
+      "review_backlog_pending_1d_count": 0,
+      "sell_notional": 9.67,
+      "speculative_value": 1544.85,
+      "target_max_cash": 9749.592999999999,
+      "target_min_invested": 87746.337
+    },
+    "warnings": [],
+    "command": "PYTHONPATH=/private/tmp/yamlshim python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-07-24-2151-after-hours-autopilot.json"
+  },
+  "validator_results": {
+    "universe_coverage": {
+      "status": "PASS",
+      "errors": [],
+      "warnings": [],
+      "summary": {
+        "strict_required": true,
+        "actionable": true,
+        "minimum_required_symbols": 50,
+        "symbols_considered": 62,
+        "symbols_loaded": 62,
+        "benchmarks": [
+          "QQQ",
+          "SPY"
+        ],
+        "pre_mcp_shortlist_count": 10,
+        "final_candidate_count": 10,
+        "scope_limited_by_user": false
+      }
+    },
+    "mcp_coverage": {
+      "status": "PASS",
+      "errors": [],
+      "warnings": [],
+      "summary": {
+        "required_servers": [
+          "alpaca",
+          "sec-edgar",
+          "alpha-vantage",
+          "fred",
+          "firecrawl",
+          "yahoo-finance"
+        ],
+        "core_servers": [
+          "alpaca"
+        ],
+        "research_servers": [
+          "sec-edgar",
+          "alpha-vantage",
+          "fred",
+          "firecrawl",
+          "yahoo-finance"
+        ],
+        "covered_servers": [
+          "alpaca",
+          "alpha-vantage",
+          "firecrawl",
+          "fred",
+          "sec-edgar",
+          "yahoo-finance"
+        ],
+        "strict_required": true,
+        "actionable": true,
+        "min_research_confirmations": 3,
+        "positive_research_confirmations": [
+          "firecrawl",
+          "fred",
+          "sec-edgar",
+          "yahoo-finance"
+        ]
+      }
+    },
+    "risk_policy": {
+      "errors": [],
+      "path": "wiki/trade-ledger/orders/2026-07-24-2151-after-hours-autopilot.json",
+      "status": "PASS",
+      "summary": {
+        "buy_notional": 0.0,
+        "max_cluster_value": 43873.1685,
+        "max_factor_value": 48747.965,
+        "max_invested": 92621.1335,
+        "max_speculative_value": 11699.511599999998,
+        "max_theme_value": 34123.5755,
+        "max_ticker_value": 14624.3895,
+        "min_cash": 4874.7964999999995,
+        "policy_version": "medium-risk-v1.2",
+        "post_cash": 29036.78,
+        "post_invested": 68459.1453,
+        "review_backlog_pending_1d_count": 0,
+        "sell_notional": 9.67,
+        "speculative_value": 1544.85,
+        "target_max_cash": 9749.592999999999,
+        "target_min_invested": 87746.337
+      },
+      "warnings": [],
+      "command": "PYTHONPATH=/private/tmp/yamlshim python3 scripts/check-risk-policy.py --json wiki/trade-ledger/orders/2026-07-24-2151-after-hours-autopilot.json"
+    }
+  }
+}
