@@ -1,0 +1,20 @@
+after-hours scheduled paper autopilot 실행.
+
+- Workflow: harness/workflows/after-hours-autopilot.md
+- Session: after_hours
+- Policy profile: after_hours_policy
+- Scheduler-owned preflight 사용:
+  - wiki/evidence-store/sources/2026-07-24-2111-after-hours-autopilot-alpaca-core-preflight.json
+  - wiki/evidence-store/sources/2026-07-24-2111-after-hours-autopilot-research-mcp-preflight.json
+- Source-of-record rule: Alpaca core preflight first_blocking_gate=market_closed 는 after-hours expected nonblocking으로 처리하되, passing account/positions/orders/asset/quote/spread row는 submit boundary로 유지.
+- Live Alpaca MCP continuity:
+  - get_clock
+  - get_account_info
+  - get_all_positions
+  - get_watchlists
+  - get_orders(status=open)
+  - get_orders(status=all, after=2026-07-23T20:00:00Z)
+  - get_account_activities(activity_types=[FILL], after=2026-07-23T20:00:00Z)
+- Requirement: after-hours session budget, review bucket, extended_hours contract 분리 유지.
+- Submit rule: 모든 hard gate, universe, MCP, quote/spread, risk gate가 모두 통과할 때만 Alpaca MCP place_stock_order 허용.
+- 2111 cycle result target: source-of-record quote/spread boundary에서 fresh_quote fail 여부를 우선 판정하고, fail 시 no-submit reconcile-only로 기록.
