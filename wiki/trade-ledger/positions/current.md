@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-07-24-1331-after-hours-autopilot]]
+- Open/new: 없음. scheduler-owned future-labeled KST artifact path `2026-07-24-1331` preflight 기준 open orders `0`이다.
+- Filled: 없음. `1331` source-of-record preflight `orders_submitted=0` 기준 same-session after-hours submitted/fills는 `0/0`으로 유지됐다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: source-of-record와 live continuity 모두 positions `31`건이며 `AVGO position 없음`, `SO qty=6`, `QQQ qty=3`, `SPY qty=2`, `WMT qty=10`, `NOK qty=399`, `NOK qty_available=399`이다.
+- Recent reconciliation scope: scheduler-owned future-labeled KST artifact path `2026-07-24-1331` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. 현재 세션의 live Alpaca continuity는 호출 가능한 도구 범위상 `get_all_positions`, `get_watchlists`로 제한됐고 positions `31`, watchlists `0`, focus position 상태를 재확인했다. 다만 이번 scheduled run은 user requirement에 따라 `1331` preflight quote/spread row를 submit boundary로 유지해 first blocking gate가 `fresh_quote`로 남았고 신규 `place_stock_order`는 호출하지 않았다. strict universe/MCP/risk validators는 모두 PASS였고 risk validator warning은 `orders is empty`뿐이었다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-07-24-1331-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-07-24 04:32 UTC_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-07-24-1311-after-hours-autopilot]]
 - Open/new: 없음. scheduler-owned future-labeled KST artifact path `2026-07-24-1311` preflight와 live `get_orders(status=open)=[]`, `get_orders(status=all, after=2026-07-23T20:00:00Z)=[]` 기준 same-session after-hours open/new order는 `0`이다.
 - Filled: 없음. `1311` source-of-record preflight `orders_submitted=0`과 live `get_account_activities(activity_types=[FILL], after=2026-07-23T20:00:00Z)=[]` 기준 same-session after-hours submitted/fills는 `0/0`으로 유지됐다.
