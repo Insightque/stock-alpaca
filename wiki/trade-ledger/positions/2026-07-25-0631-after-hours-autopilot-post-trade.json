@@ -1,0 +1,40 @@
+{
+  "run_id": "2026-07-25-0631-after-hours-autopilot",
+  "created_at": "2026-07-24T21:34:48Z",
+  "session": "after_hours",
+  "market_date": "2026-07-24 EDT",
+  "account": {
+    "status": "ACTIVE",
+    "cash": 29036.78,
+    "portfolio_value": 96304.33,
+    "buying_power": 294388.76,
+    "currency": "USD"
+  },
+  "positions_count": 31,
+  "open_orders_count": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_today": 0,
+  "same_session_fill_details": [],
+  "positions_focus": {
+    "AVGO_position_present": false,
+    "SO_qty": 6,
+    "QQQ_qty": 3,
+    "SPY_qty": 2,
+    "WMT_qty": 10,
+    "NOK_qty": 398,
+    "NOK_qty_available": 398
+  },
+  "orders_submitted_this_cycle": 0,
+  "orders_replaced_this_cycle": 0,
+  "orders_cancelled_this_cycle": 0,
+  "orders_closed_this_cycle": 0,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-25-0631-after-hours-autopilot-prompt.txt",
+    "wiki/evidence-store/sources/2026-07-25-0631-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-25-0631-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-07-25-0631-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-07-25-0631-after-hours-autopilot.json"
+  ],
+  "note": "No after-hours submit at scheduler future label 2026-07-25-0631-. The source-of-record 2026-07-25-0631- Alpaca core preflight still supplied passing account/open-order/asset/quote rows, and live Alpaca MCP continuity confirmed the prior Thursday, July 23, 2026 EDT NOK order was already filled while the current Friday, July 24, 2026 EDT after-hours session still had no new submissions or fills.",
+  "reconciliation_note": "Reconciled without a new client_order_id because no submit path opened in the Friday, July 24, 2026 EDT after-hours cycle. The earlier ah-20260723-2151-sell-nok-01 order was checked directly and remained outside this session budget."
+}
