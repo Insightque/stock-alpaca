@@ -1,0 +1,9 @@
+Scheduled after-hours paper autopilot run.
+Workflow: harness/workflows/after-hours-autopilot.md
+Run id: 2026-07-24-2051-after-hours-autopilot
+Session: after_hours
+Policy profile: after_hours_policy
+Source-of-record Alpaca core preflight: wiki/evidence-store/sources/2026-07-24-2051-after-hours-autopilot-alpaca-core-preflight.json
+Source-of-record research preflight: wiki/evidence-store/sources/2026-07-24-2051-after-hours-autopilot-research-mcp-preflight.json
+User contract: treat Alpaca core first_blocking_gate=market_closed as expected nonblocking in after-hours, keep the same preflight's passing account/positions/orders/asset/quote/spread rows as submit boundary, use Alpaca MCP for live continuity only, submit only if all hard gates pass, and reconcile by client_order_id after any submit.
+Outcome: no submit. Source-of-record quote/spread rows for SO/WMT/MCD/QQQ/SPY/SMH/NOK/NEE/CVX/GS remained stale, one-sided, spread-failing, or per-order-cap-failing, so first blocking gate stayed fresh_quote.

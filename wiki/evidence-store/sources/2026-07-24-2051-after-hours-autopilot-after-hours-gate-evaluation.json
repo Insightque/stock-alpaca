@@ -1,0 +1,180 @@
+{
+  "run_id": "2026-07-24-2051-after-hours-autopilot",
+  "created_at": "2026-07-24T11:53:49Z",
+  "session": "after_hours",
+  "market_date": "2026-07-23 EDT",
+  "scheduler_artifact_label": "future-labeled KST file path 2026-07-24-2051-",
+  "policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "hard_gate_summary": {
+    "status": "failed",
+    "checks": {
+      "paper_mode": true,
+      "extended_hours_session": true,
+      "alpaca_core_after_hours_required_rows": true,
+      "after_hours_policy_profile": true,
+      "separate_after_hours_order_budget": true,
+      "universe_strict": true,
+      "mcp_tiered_strict": true,
+      "risk_policy": true,
+      "fresh_quote": false,
+      "spread_within_after_hours_policy": false,
+      "whole_share_day_limit_extended_hours_order": false,
+      "immediate_reconcile_and_cancel_or_lifecycle_record": true
+    },
+    "first_blocking_gate": "fresh_quote"
+  },
+  "continuity": {
+    "runtime_clock_timestamp": "2026-07-24T11:53:49Z",
+    "regular_market_open": false,
+    "account_status": "ACTIVE",
+    "positions_count": 31,
+    "watchlists_count": 0,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders_submitted_today": 0,
+    "same_session_after_hours_fills_today": 0,
+    "focus_positions": {
+      "AVGO_position_present": false,
+      "SO_qty": 6,
+      "QQQ_qty": 3,
+      "SPY_qty": 2,
+      "WMT_qty": 10,
+      "NOK_qty": 399,
+      "NOK_qty_available": 399
+    },
+    "source_of_record_submit_boundary": "wiki/evidence-store/sources/2026-07-24-2051-after-hours-autopilot-alpaca-core-preflight.json",
+    "note": "Scheduler-owned 2026-07-24-2051- Alpaca core preflight remained the source-of-record for the expected market_closed blocker and for passing account, positions, open-orders, asset, quote, and spread rows. Live Alpaca MCP continuity reconfirmed account ACTIVE, positions 31, watchlists 0, open orders 0, and same-session after-hours orders/fills 0/0 at 2026-07-24T11:53:49Z, but did not override the user-required source-of-record submit boundary."
+  },
+  "after_hours_budget": {
+    "max_new_orders_per_session": 2,
+    "after_hours_new_orders_submitted_today": 0,
+    "remaining": 2,
+    "status": "pass"
+  },
+  "review_backlog": {
+    "pending_1d_count": 0,
+    "pending_5d_count": 2,
+    "pending_20d_count": 0,
+    "status": "pass_for_sells_and_budget_idle_for_buys"
+  },
+  "candidate_evaluation": {
+    "sell_candidates": [
+      {
+        "symbol": "NOK",
+        "side": "sell",
+        "qty_available": 399,
+        "status": "blocked",
+        "blocking_reasons": [
+          "source_of_record_quote_stale_over_5_minutes",
+          "source_of_record_spread_above_after_hours_cap"
+        ]
+      },
+      {
+        "symbol": "SO",
+        "side": "sell",
+        "qty_available": 6,
+        "status": "blocked",
+        "blocking_reasons": [
+          "source_of_record_quote_stale_over_5_minutes",
+          "source_of_record_spread_above_after_hours_cap"
+        ]
+      }
+    ],
+    "buy_candidates": [
+      {
+        "symbol": "WMT",
+        "side": "buy",
+        "status": "blocked",
+        "blocking_reasons": [
+          "source_of_record_quote_one_sided",
+          "source_of_record_quote_stale_over_5_minutes"
+        ]
+      },
+      {
+        "symbol": "MCD",
+        "side": "buy",
+        "status": "blocked",
+        "blocking_reasons": [
+          "source_of_record_quote_one_sided",
+          "source_of_record_quote_stale_over_5_minutes"
+        ]
+      },
+      {
+        "symbol": "QQQ",
+        "side": "buy",
+        "status": "blocked",
+        "blocking_reasons": [
+          "source_of_record_quote_stale_over_5_minutes",
+          "after_hours_per_order_notional_cap_exceeded"
+        ]
+      },
+      {
+        "symbol": "SPY",
+        "side": "buy",
+        "status": "blocked",
+        "blocking_reasons": [
+          "source_of_record_quote_stale_over_5_minutes",
+          "source_of_record_spread_above_after_hours_cap",
+          "after_hours_per_order_notional_cap_exceeded"
+        ]
+      },
+      {
+        "symbol": "SMH",
+        "side": "buy",
+        "status": "blocked",
+        "blocking_reasons": [
+          "source_of_record_quote_stale_over_5_minutes",
+          "source_of_record_spread_above_after_hours_cap",
+          "after_hours_per_order_notional_cap_exceeded"
+        ]
+      },
+      {
+        "symbol": "NOK",
+        "side": "buy",
+        "status": "blocked",
+        "blocking_reasons": [
+          "source_of_record_quote_stale_over_5_minutes",
+          "source_of_record_spread_above_after_hours_cap",
+          "blocked_add_symbol_review_queue"
+        ]
+      },
+      {
+        "symbol": "NEE",
+        "side": "buy",
+        "status": "blocked",
+        "blocking_reasons": [
+          "source_of_record_quote_stale_over_5_minutes",
+          "source_of_record_spread_above_after_hours_cap"
+        ]
+      },
+      {
+        "symbol": "CVX",
+        "side": "buy",
+        "status": "blocked",
+        "blocking_reasons": [
+          "source_of_record_quote_stale_over_5_minutes",
+          "source_of_record_spread_above_after_hours_cap"
+        ]
+      },
+      {
+        "symbol": "GS",
+        "side": "buy",
+        "status": "blocked",
+        "blocking_reasons": [
+          "source_of_record_quote_stale_over_5_minutes",
+          "source_of_record_spread_above_after_hours_cap",
+          "after_hours_per_order_notional_cap_exceeded"
+        ]
+      }
+    ]
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-24-2051-after-hours-autopilot-prompt.txt",
+    "wiki/evidence-store/sources/2026-07-24-2051-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-24-2051-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-07-24-2051-after-hours-autopilot-after-hours-gate-evaluation.json",
+    "wiki/trade-ledger/orders/2026-07-24-2051-after-hours-autopilot.json",
+    "wiki/trade-ledger/positions/2026-07-24-2051-after-hours-autopilot-post-trade.json",
+    "wiki/current-runs/daily/2026-07-24-2051-after-hours-autopilot.md"
+  ]
+}
