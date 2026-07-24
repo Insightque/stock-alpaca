@@ -1,0 +1,41 @@
+{
+  "alpaca_mcp_only": true,
+  "clock": {},
+  "created_at": "2026-07-24T08:02:01Z",
+  "execute": true,
+  "gap_category": "not_applicable",
+  "gap_reason": "validated order plan contains no orders",
+  "order_plan_path": "/Users/insightque/stock-alpaca/wiki/trade-ledger/orders/2026-07-24-1651-after-hours-autopilot.json",
+  "orders": [],
+  "paper": true,
+  "post_reconcile": {},
+  "risk_validator": {
+    "errors": [],
+    "path": "/Users/insightque/stock-alpaca/wiki/trade-ledger/orders/2026-07-24-1651-after-hours-autopilot.json",
+    "returncode": 0,
+    "status": "PASS",
+    "summary": {
+      "buy_notional": 0.0,
+      "max_cluster_value": 43785.6345,
+      "max_factor_value": 48650.705,
+      "max_invested": 92436.3395,
+      "max_speculative_value": 11676.1692,
+      "max_theme_value": 34055.4935,
+      "max_ticker_value": 14595.2115,
+      "min_cash": 4865.070500000001,
+      "policy_version": "medium-risk-v1.2",
+      "post_cash": 29027.11,
+      "post_invested": 68274.30000000002,
+      "review_backlog_pending_1d_count": 0,
+      "sell_notional": 0.0,
+      "speculative_value": 1919.8799999999999,
+      "target_max_cash": 9730.141000000001,
+      "target_min_invested": 87571.269
+    },
+    "warnings": [
+      "orders is empty"
+    ]
+  },
+  "run_id": "2026-07-24-1651-after-hours-autopilot",
+  "status": "no_orders"
+}
