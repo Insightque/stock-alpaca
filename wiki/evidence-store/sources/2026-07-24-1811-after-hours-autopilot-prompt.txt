@@ -1,0 +1,9 @@
+# 2026-07-24-1811-after-hours-autopilot
+
+- Workflow: `harness/workflows/after-hours-autopilot.md`
+- Session: `after_hours`
+- Policy profile: `after_hours_policy`
+- Scheduler-owned preflights: `wiki/evidence-store/sources/2026-07-24-1811-after-hours-autopilot-alpaca-core-preflight.json`, `wiki/evidence-store/sources/2026-07-24-1811-after-hours-autopilot-research-mcp-preflight.json`
+- Submit boundary: keep `2026-07-24-1811-` source-of-record asset/quote/spread rows; treat Alpaca core `first_blocking_gate=market_closed` as expected nonblocking for after-hours.
+- Live continuity: `get_clock`, `get_account_info`, `get_all_positions`, `get_watchlists`, `get_orders(status=open)`, `get_orders(status=all, after=2026-07-23T20:00:00Z)`, `get_account_activities(activity_types=[FILL], after=2026-07-23T20:00:00Z)` at `2026-07-24T05:13:35.874782664-04:00`.
+- Hard requirement result: if fresh quote / spread / per-order cap stays blocked for all executable candidates, keep the run reconcile-only and write manifest, order plan, report, post-trade snapshot, index, and log updates with `session=after_hours`.
