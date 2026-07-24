@@ -1,5 +1,18 @@
 ## 최신 after-hours-autopilot reconciliation
 
+- Run: [[2026-07-24-0911-after-hours-autopilot]]
+- Open/new: 없음. scheduler-owned future-labeled KST artifact path `2026-07-24-0911` preflight 기준 open orders `0`이며 live `get_orders(status=open)`는 HTTP 500이라 source-of-record를 유지했다.
+- Filled: 없음. `0911` source-of-record preflight `orders_submitted=0` 기준 same-session after-hours submitted/fills는 `0/0`으로 유지됐다. direct runtime `get_orders(status=all, after=2026-07-23T20:00:00Z)`는 HTTP 500이 났지만 신규 submit path는 열리지 않았다.
+- Cancelled: 없음
+- Position count observed by Alpaca MCP: live continuity 기준 positions `31`건이며 `AVGO position 없음`, `SO qty=6`, `QQQ qty=3`, `SPY qty=2`, `WMT qty=10`, `NOK qty=399`, `NOK qty_available=399`이다.
+- Recent reconciliation scope: scheduler-owned future-labeled KST artifact path `2026-07-24-0911` core/research preflight를 source-of-record로 사용했고 Alpaca core `first_blocking_gate=market_closed`는 after-hours expected nonblocking으로 처리했다. live Alpaca continuity는 `2026-07-23T20:14:03.814221805-04:00` regular market closed, watchlists `0`, positions `31`을 재확인했다. direct runtime `get_account_info/get_orders(status=open)/get_orders(status=all)`는 HTTP 500이 났지만 `0911` preflight가 이미 passing account/open-order/session-count evidence와 `orders_submitted=0`을 제공하고 있어 비차단 continuity gap으로만 기록했다. separate after-hours session budget은 아직 `2/2` available이지만 first blocking gate가 `fresh_quote`로 남아 신규 `place_stock_order`는 호출하지 않았다. strict universe/MCP/risk validators는 모두 PASS였고 risk validator warning은 `orders is empty`뿐이었다.
+- Orders submitted/replaced/cancelled/closed by this workflow: 0 / 0 / 0 / 0.
+- Source note: `wiki/trade-ledger/positions/2026-07-24-0911-after-hours-autopilot-post-trade.json`
+
+_Last updated: 2026-07-24 00:14 UTC_
+
+## 최신 after-hours-autopilot reconciliation
+
 - Run: [[2026-07-24-0851-after-hours-autopilot]]
 - Open/new: 없음. scheduler-owned future-labeled KST artifact path `2026-07-24-0851` preflight와 live `get_orders(status=open)` 기준 open orders `0`이다.
 - Filled: 없음. `0851` source-of-record preflight `orders_submitted=0` 기준 same-session after-hours submitted/fills는 `0/0`으로 유지됐다. direct runtime `get_orders(status=all, after=2026-07-23T20:00:00Z)`와 `get_account_activities(activity_types=[FILL], after=2026-07-23T20:00:00Z)`는 timeout이 났지만 신규 submit path는 열리지 않았다.
