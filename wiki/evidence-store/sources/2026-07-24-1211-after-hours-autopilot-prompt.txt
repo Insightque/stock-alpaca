@@ -1,0 +1,8 @@
+After-hours scheduled paper autopilot run.
+Workflow: harness/workflows/after-hours-autopilot.md
+Run id: 2026-07-24-1211-after-hours-autopilot
+Mode: submit
+Session: after_hours
+Policy profile: after_hours_policy
+Hard requirements enforced: paper trading only, Alpaca MCP only, no direct REST, use scheduler-owned 1211 preflight artifacts when present, treat first_blocking_gate=market_closed as expected nonblocking for after-hours, keep separate session budget/review bucket, validate with check-risk-policy.py --json, submit only if all after-hours hard gates pass, reconcile by client_order_id, do not touch unrelated dirty files.
+Outcome for this cycle: source-of-record 1211 quote/spread rows remained stale, one-sided, spread-failing, or over the per-order cap, so no submit path opened.
