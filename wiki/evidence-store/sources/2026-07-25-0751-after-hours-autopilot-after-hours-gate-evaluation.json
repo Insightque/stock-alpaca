@@ -1,0 +1,172 @@
+{
+  "run_id": "2026-07-25-0751-after-hours-autopilot",
+  "created_at": "2026-07-24T22:51:30Z",
+  "session": "after_hours",
+  "market_date_evaluated": "Friday, July 24, 2026 EDT",
+  "scheduler_file_label": "2026-07-25-0751-",
+  "first_blocking_gate": "fresh_quote",
+  "submit_path_opened": false,
+  "paper_mode": true,
+  "market_open_expected_nonblocking_gate": "market_closed",
+  "separate_after_hours_order_budget": {
+    "max_new_orders_per_session": 2,
+    "after_hours_new_orders_submitted_today": 0,
+    "remaining": 2,
+    "status": "pass"
+  },
+  "continuity_checks": {
+    "open_orders": 0,
+    "same_session_orders": 0,
+    "same_session_fills": 0,
+    "source": "source-of-record open-orders row plus live Alpaca MCP get_orders(after=2026-07-24T20:00:00Z)=[] and get_account_activities(FILL, after=2026-07-24T20:00:00Z)=[], with prior-session client-order lookup after no-submit decision"
+  },
+  "candidate_evaluations": [
+    {
+      "symbol": "SO",
+      "bid": 89.3,
+      "ask": 0.0,
+      "quote_timestamp": "2026-07-24T20:00:02.082301591Z",
+      "quote_age_minutes": 171.47,
+      "spread_pct": null,
+      "one_sided": true,
+      "failed_gates": [
+        "fresh_quote",
+        "one_sided_quote"
+      ],
+      "status": "blocked"
+    },
+    {
+      "symbol": "WMT",
+      "bid": 102.6,
+      "ask": 0.0,
+      "quote_timestamp": "2026-07-24T20:00:01.668911295Z",
+      "quote_age_minutes": 171.47,
+      "spread_pct": null,
+      "one_sided": true,
+      "failed_gates": [
+        "fresh_quote",
+        "one_sided_quote"
+      ],
+      "status": "blocked"
+    },
+    {
+      "symbol": "MCD",
+      "bid": 264.01,
+      "ask": 270.01,
+      "quote_timestamp": "2026-07-24T20:42:02.513854941Z",
+      "quote_age_minutes": 129.46,
+      "spread_pct": 2.2726,
+      "one_sided": false,
+      "failed_gates": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "status": "blocked"
+    },
+    {
+      "symbol": "QQQ",
+      "bid": 684.28,
+      "ask": 684.37,
+      "quote_timestamp": "2026-07-24T20:12:03.13292316Z",
+      "quote_age_minutes": 159.45,
+      "spread_pct": 0.0132,
+      "one_sided": false,
+      "failed_gates": [
+        "fresh_quote",
+        "per_order_notional_cap"
+      ],
+      "status": "blocked"
+    },
+    {
+      "symbol": "SPY",
+      "bid": 716.44,
+      "ask": 760.82,
+      "quote_timestamp": "2026-07-24T20:00:00.005795511Z",
+      "quote_age_minutes": 171.5,
+      "spread_pct": 6.1945,
+      "one_sided": false,
+      "failed_gates": [
+        "fresh_quote",
+        "spread_within_after_hours_policy",
+        "per_order_notional_cap"
+      ],
+      "status": "blocked"
+    },
+    {
+      "symbol": "SMH",
+      "bid": 539.95,
+      "ask": 0.0,
+      "quote_timestamp": "2026-07-24T20:00:04.090938646Z",
+      "quote_age_minutes": 171.43,
+      "spread_pct": null,
+      "one_sided": true,
+      "failed_gates": [
+        "fresh_quote",
+        "one_sided_quote"
+      ],
+      "status": "blocked"
+    },
+    {
+      "symbol": "NOK",
+      "bid": 9.05,
+      "ask": 9.1,
+      "quote_timestamp": "2026-07-24T20:54:29.582902337Z",
+      "quote_age_minutes": 117.01,
+      "spread_pct": 0.5525,
+      "one_sided": false,
+      "failed_gates": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "status": "blocked"
+    },
+    {
+      "symbol": "NEE",
+      "bid": 84.55,
+      "ask": 93.0,
+      "quote_timestamp": "2026-07-24T20:00:00.003597521Z",
+      "quote_age_minutes": 171.5,
+      "spread_pct": 9.9941,
+      "one_sided": false,
+      "failed_gates": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "status": "blocked"
+    },
+    {
+      "symbol": "CVX",
+      "bid": 183.39,
+      "ask": 203.69,
+      "quote_timestamp": "2026-07-24T20:00:00.008469964Z",
+      "quote_age_minutes": 171.5,
+      "spread_pct": 11.0693,
+      "one_sided": false,
+      "failed_gates": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "status": "blocked"
+    },
+    {
+      "symbol": "GS",
+      "bid": 1016.5,
+      "ask": 1117.43,
+      "quote_timestamp": "2026-07-24T20:00:00.913410224Z",
+      "quote_age_minutes": 171.48,
+      "spread_pct": 9.9292,
+      "one_sided": false,
+      "failed_gates": [
+        "fresh_quote",
+        "spread_within_after_hours_policy",
+        "per_order_notional_cap"
+      ],
+      "status": "blocked"
+    }
+  ],
+  "summary": "All source-of-record after-hours candidates failed at least one required submit gate. NOK remained the closest sell-first candidate, but its 2026-07-24T20:54:29.582902337Z quote was 117.01 minutes old and its spread was 0.5525%, so the Friday, July 24, 2026 EDT cycle remained no-submit.",
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-25-0751-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-25-0751-after-hours-autopilot-research-mcp-preflight.json"
+  ]
+}
