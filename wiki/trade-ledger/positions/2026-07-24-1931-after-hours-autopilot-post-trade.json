@@ -1,0 +1,38 @@
+{
+  "run_id": "2026-07-24-1931-after-hours-autopilot",
+  "created_at": "2026-07-24T10:33:40Z",
+  "session": "after_hours",
+  "market_date": "2026-07-23 EDT",
+  "account": {
+    "status": "ACTIVE",
+    "cash": 29027.11,
+    "portfolio_value": 97538.27,
+    "buying_power": 297102.3
+  },
+  "positions_count": 31,
+  "open_orders_count": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_today": 0,
+  "same_session_fill_details": [],
+  "positions_focus": {
+    "AVGO_position_present": false,
+    "SO_qty": 6,
+    "QQQ_qty": 3,
+    "SPY_qty": 2,
+    "WMT_qty": 10,
+    "NOK_qty": 399,
+    "NOK_qty_available": 399
+  },
+  "orders_submitted_this_cycle": 0,
+  "orders_replaced_this_cycle": 0,
+  "orders_cancelled_this_cycle": 0,
+  "orders_closed_this_cycle": 0,
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-24-1931-after-hours-autopilot-prompt.txt",
+    "wiki/evidence-store/sources/2026-07-24-1931-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-24-1931-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/evidence-store/sources/2026-07-24-1931-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ],
+  "note": "No after-hours submit at future-labeled KST artifact path 2026-07-24-1931-. The scheduler-owned 2026-07-24-1931- Alpaca core preflight remained the source-of-record for the expected market_closed blocker, passing account/open-order/asset/quote rows, and same-session order count 0. Live Alpaca MCP continuity at 2026-07-24T10:33:40Z reconfirmed account ACTIVE, positions=31, watchlists=0, open orders=0, same-session after-hours orders/fills 0/0, AVGO absent, SO qty=6, QQQ qty=3, SPY qty=2, WMT qty=10, NOK qty=399, and NOK qty_available=399.",
+  "reconciliation_note": "No new client_order_id reconciliation was required because no submit path opened in the Thursday, July 23, 2026 EDT after-hours cycle."
+}
