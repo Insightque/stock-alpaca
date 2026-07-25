@@ -168,3 +168,9 @@ current Alpaca snapshot 기준 `NOK`는 `402주`, 평균단가 `15.044527 USD`, 
 `Friday, July 24, 2026 ET`에는 `client_order_id=ah-20260723-2151-sell-nok-01`이 `9.67 USD`에 `1주` 체결됐고, same-day close는 `9.07 USD`였다. same-day 후행 move만 보면 trim은 방어적으로 맞았지만, 이 표본의 정식 `1D` 평가는 `Monday, July 27, 2026 ET` 정규장 종가 이후로 넘긴다. 동시에 Alpha Vantage latest quarterly row는 `reportedEPS=0.05`, `estimatedEPS=0.07`, `surprisePercentage=-28.5714`로 miss를 가리켰고 잔여 포지션 `398주`의 current/close도 `9.06/9.07 USD`로 더 낮아져 `existing-position-breakout-add-penalty` add-block을 계속 유지한다.
 
 출처: [[2026-07-24-portfolio-review]], [[2026-07-24-analyst-review-cycle-sources]]
+
+### 2026-07-25 analyst review cycle
+
+`Saturday, July 25, 2026` 런타임에는 `Friday, July 24, 2026 ET` close 이후 after-hours no-submit 연속 사이클까지 다시 점검했다. Alpaca current continuity에서도 `NOK`는 `398주`, 평균단가 `15.044573 USD`, latest quote `9.05 / 9.10`, latest trade `9.09 USD`로 남아 있고 `client_order_id=ah-20260723-2151-sell-nok-01`는 계속 `filled` 상태다. Alpha Vantage latest quarterly row는 `reportedEPS=0.08`, `estimatedEPS=0.07`, `surprisePercentage=14.2857`로 beat지만 Yahoo 기사와 실제 tape는 계속 약해 add-block을 풀 근거가 없다. 따라서 `1D` 판단은 계속 `Monday, July 27, 2026 ET` close 이후로 미루고 `existing-position-breakout-add-penalty`를 유지한다.
+
+출처: [[2026-07-25-portfolio-review]], [[2026-07-25-analyst-review-cycle-sources]]

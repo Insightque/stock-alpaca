@@ -76,3 +76,9 @@ current Alpaca snapshot 기준 `IONQ`는 `45주`, 평균단가 `63.48 USD`, `202
 `Friday, July 24, 2026 ET` close/current 기준 `IONQ`는 `33.16 USD`로 평균단가 `63.48 USD` 대비 미실현 손실이 약 `-47.76%`까지 더 깊어졌다. 이번 run에서는 Yahoo recommendation summary `3개월` query가 timeout이라 새 외부 보강을 확인하지 못했지만, 그 점이 no-add discipline을 완화할 근거는 아니다. speculative sleeve의 deep drawdown이 계속되는 만큼 신규 add는 계속 보류한다.
 
 출처: [[2026-07-24-portfolio-review]], [[2026-07-24-analyst-review-cycle-sources]]
+
+### 2026-07-25 analyst review cycle
+
+`Saturday, July 25, 2026` review에서는 Yahoo recommendation summary `0m`가 `strongBuy=1`, `buy=9`, `hold=2`로 여전히 우호적임을 확인했지만, Alpaca current는 `32.84 USD`로 더 낮아져 평균단가 `63.48 USD` 대비 미실현 손실이 약 `-48.27%`다. Yahoo 뉴스도 양자/AI narrative를 계속 제공하지만 현 단계에서 speculative sleeve deep drawdown을 역행 매수로 완화할 근거는 부족하다. 따라서 no-add discipline을 유지한다.
+
+출처: [[2026-07-25-portfolio-review]], [[2026-07-25-analyst-review-cycle-sources]]
