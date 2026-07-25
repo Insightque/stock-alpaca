@@ -1,0 +1,8 @@
+After-hours scheduled paper autopilot run.
+Workflow: harness/workflows/after-hours-autopilot.md
+Session: after_hours
+Source-of-record preflights:
+- wiki/evidence-store/sources/2026-07-25-1911-after-hours-autopilot-alpaca-core-preflight.json
+- wiki/evidence-store/sources/2026-07-25-1911-after-hours-autopilot-research-mcp-preflight.json
+Hard requirements: paper-only, separate after_hours policy profile/budget/review bucket, no regular-session mixing, no direct REST trading, submit only if all after-hours hard gates/universe/MCP/quote/spread/risk gates pass, and reconcile by client_order_id if any submit occurs.
+This cycle stayed on the no-submit path because source-of-record after-hours quotes remained stale, one-sided, too wide, or above the per-order cap before the submit branch opened.
