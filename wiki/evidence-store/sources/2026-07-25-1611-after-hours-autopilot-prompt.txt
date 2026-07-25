@@ -1,0 +1,7 @@
+scheduled after-hours paper autopilot
+workflow: harness/workflows/after-hours-autopilot.md
+run_id: 2026-07-25-1611-after-hours-autopilot
+session: after_hours
+policy_profile: after_hours_policy
+hard requirements: paper only, separate after-hours budget/review bucket, use scheduler-owned 2026-07-25-1611 core/research preflight, no regular-session mixing, no Alpaca REST direct trading, validate universe/mcp/risk gates, submit only if fresh quote/spread/asset/order gates pass.
+continuity scope: Alpaca MCP get_clock, get_orders(status=open), get_orders(status=all, after=2026-07-24T20:00:00Z), get_account_activities(activity_types=[FILL], after=2026-07-24T20:00:00Z), get_watchlists(), get_order_by_client_id(ah-20260723-2151-sell-nok-01).
