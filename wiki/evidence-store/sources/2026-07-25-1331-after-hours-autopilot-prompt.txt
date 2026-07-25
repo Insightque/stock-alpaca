@@ -1,0 +1,16 @@
+After-hours scheduled paper autopilot run.
+
+Workflow: harness/workflows/after-hours-autopilot.md
+Run ID: 2026-07-25-1331-after-hours-autopilot
+Session: after_hours
+Policy profile: after_hours_policy
+Source-of-record preflights:
+- wiki/evidence-store/sources/2026-07-25-1331-after-hours-autopilot-alpaca-core-preflight.json
+- wiki/evidence-store/sources/2026-07-25-1331-after-hours-autopilot-research-mcp-preflight.json
+
+Requirements:
+- Treat Alpaca core first_blocking_gate=market_closed as expected nonblocking for after-hours only.
+- Use passing scheduler-owned account, positions, open-orders, asset, quote, and spread rows as submit boundary.
+- Use live Alpaca MCP only for continuity and same-session drift checks.
+- Submit only if all after-hours hard gates, universe gate, MCP gate, quote/spread gate, and risk gate pass.
+- If no candidate passes, still write report, manifest, order plan, post-trade check, and log entry with session=after_hours.
