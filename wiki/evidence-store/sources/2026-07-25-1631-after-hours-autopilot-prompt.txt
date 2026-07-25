@@ -1,0 +1,13 @@
+Scheduled after-hours paper autopilot run.
+Workflow: harness/workflows/after-hours-autopilot.md
+Run id: 2026-07-25-1631-after-hours-autopilot
+Use scheduler-owned preflights:
+- wiki/evidence-store/sources/2026-07-25-1631-after-hours-autopilot-alpaca-core-preflight.json
+- wiki/evidence-store/sources/2026-07-25-1631-after-hours-autopilot-research-mcp-preflight.json
+Requirements:
+- Paper only; after_hours_policy only.
+- Keep session=after_hours, artifact tag, order budget, and review bucket separate from regular hourly-autopilot.
+- Treat Alpaca core first_blocking_gate=market_closed as expected nonblocking for after-hours.
+- Use the same preflight's passing account, positions, orders, asset, quote, and spread rows as source-of-record; continuity checks are for drift only.
+- Submit only if after-hours hard gates, universe strict, MCP strict, quote/spread, and risk gates all pass.
+- If any gate fails, still write report, manifest, order plan, post-trade check, and log entry.
