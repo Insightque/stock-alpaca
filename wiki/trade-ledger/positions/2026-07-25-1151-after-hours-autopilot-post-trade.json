@@ -1,0 +1,37 @@
+{
+  "run_id": "2026-07-25-1151-after-hours-autopilot",
+  "created_at": "2026-07-25T02:51:24Z",
+  "session": "after_hours",
+  "market_date": "2026-07-24 EDT",
+  "account": {
+    "status": "ACTIVE",
+    "cash": 29036.78,
+    "portfolio_value": 96284.31,
+    "buying_power": 294299.16,
+    "currency": "USD"
+  },
+  "positions_count": 31,
+  "open_orders_count": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_today": 0,
+  "same_session_fill_details": [],
+  "positions_focus": [
+    "AVGO position 없음",
+    "SO qty=6",
+    "QQQ qty=3",
+    "SPY qty=2",
+    "WMT qty=10",
+    "NOK qty=398",
+    "NOK qty_available=398"
+  ],
+  "orders_submitted_this_cycle": [],
+  "orders_replaced_this_cycle": [],
+  "orders_cancelled_this_cycle": [],
+  "orders_closed_this_cycle": [],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-25-1151-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-25-1151-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ],
+  "note": "No new after-hours order was submitted because the scheduler-owned 2026-07-25-1151- source-of-record quote rows failed fresh quote, quote completeness, spread, or per-order cap gates before submit.",
+  "reconciliation_note": "Scheduler-owned 2026-07-25-1151- preflight plus live Alpaca MCP continuity kept same-session after-hours orders/fills at 0/0. No submit path opened, so the post-trade record stayed on the scheduler-owned account, positions, open-order, asset, quote, and spread rows."
+}
