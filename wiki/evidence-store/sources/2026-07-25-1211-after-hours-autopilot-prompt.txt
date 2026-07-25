@@ -1,0 +1,7 @@
+Scheduled stock-alpaca after-hours paper autopilot run.
+Workflow: harness/workflows/after-hours-autopilot.md
+Session: after_hours
+Policy profile: after_hours_policy
+Source-of-record scheduler artifacts: 2026-07-25-1211-after-hours-autopilot alpaca core + research MCP preflight
+Submit boundary: scheduler-owned account/positions/open-orders/asset/quote/spread rows only; live Alpaca reads are continuity-only.
+Hard requirements: paper only, do not submit if Alpaca regular market is open, use extended_hours=true for any after-hours order, validate universe/MCP/risk strictly, reconcile by client_order_id, keep session/order budget/review bucket separate from regular hourly-autopilot.

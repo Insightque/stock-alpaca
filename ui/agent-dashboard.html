@@ -350,18 +350,18 @@
   </div>
 
   <script type="application/json" id="dashboard-data">{
-  "generated_at": "2026-07-25T02:58:32Z",
+  "generated_at": "2026-07-25T03:17:35Z",
   "run": {
-    "run_id": "2026-07-25-1151-after-hours-autopilot",
+    "run_id": "2026-07-25-1211-after-hours-autopilot",
     "mode": "submit",
-    "created_at": "2026-07-25T02:51:24Z",
+    "created_at": "2026-07-25T03:14:46Z",
     "paper": true,
-    "risk_status": "PASS",
+    "risk_status": "pass",
     "market": "closed",
     "next_open": "2026-07-27T09:30:00-04:00",
     "orders_planned": 0,
     "orders_submitted": 0,
-    "symbols_loaded": 62,
+    "symbols_loaded": 0,
     "cash_ratio": 30.15733300680038,
     "invested_ratio": 69.84266699319963,
     "action_label": "관망",
@@ -375,9 +375,9 @@
     "invested_ratio": 69.84266699319963
   },
   "portfolio": {
-    "source_path": "wiki/trade-ledger/orders/2026-07-25-1151-after-hours-autopilot.json",
-    "href": "../wiki/trade-ledger/orders/2026-07-25-1151-after-hours-autopilot.json",
-    "updated_at": "2026-07-25T02:51:24Z",
+    "source_path": "wiki/trade-ledger/orders/2026-07-25-1211-after-hours-autopilot.json",
+    "href": "../wiki/trade-ledger/orders/2026-07-25-1211-after-hours-autopilot.json",
+    "updated_at": "2026-07-25T03:14:46Z",
     "account_status": "PAPER",
     "market_clock": "order plan snapshot",
     "next_open": "2026-07-27T09:30:00-04:00",
@@ -514,15 +514,15 @@
       "label": "후보군",
       "status": "done",
       "progress": 100,
-      "result": "62 symbols"
+      "result": "ready"
     },
     {
       "id": "market_data",
       "name": "Market Data",
       "label": "가격",
-      "status": "done",
-      "progress": 100,
-      "result": "alpaca_iex_preflight_submit_boundary snapshot"
+      "status": "waiting",
+      "progress": 20,
+      "result": "data"
     },
     {
       "id": "web_research",
@@ -554,7 +554,7 @@
       "label": "리스크",
       "status": "done",
       "progress": 100,
-      "result": "PASS"
+      "result": "pass"
     },
     {
       "id": "executor",
@@ -630,18 +630,18 @@
   "links": [
     {
       "label": "리포트",
-      "path": "wiki/current-runs/daily/2026-07-25-1151-after-hours-autopilot.md",
-      "href": "../wiki/current-runs/daily/2026-07-25-1151-after-hours-autopilot.md"
+      "path": "wiki/current-runs/daily/2026-07-25-1211-after-hours-autopilot.md",
+      "href": "../wiki/current-runs/daily/2026-07-25-1211-after-hours-autopilot.md"
     },
     {
       "label": "주문계획",
-      "path": "wiki/trade-ledger/orders/2026-07-25-1151-after-hours-autopilot.json",
-      "href": "../wiki/trade-ledger/orders/2026-07-25-1151-after-hours-autopilot.json"
+      "path": "wiki/trade-ledger/orders/2026-07-25-1211-after-hours-autopilot.json",
+      "href": "../wiki/trade-ledger/orders/2026-07-25-1211-after-hours-autopilot.json"
     },
     {
       "label": "Manifest",
-      "path": "wiki/evidence-store/run-manifests/2026-07-25-1151-after-hours-autopilot.json",
-      "href": "../wiki/evidence-store/run-manifests/2026-07-25-1151-after-hours-autopilot.json"
+      "path": "wiki/evidence-store/run-manifests/2026-07-25-1211-after-hours-autopilot.json",
+      "href": "../wiki/evidence-store/run-manifests/2026-07-25-1211-after-hours-autopilot.json"
     },
     {
       "label": "포지션",
@@ -649,27 +649,32 @@
       "href": "../wiki/trade-ledger/positions/current.md"
     },
     {
-      "label": "2026-07-25-1151-after-hours-autopilot-prompt.txt",
-      "path": "wiki/evidence-store/sources/2026-07-25-1151-after-hours-autopilot-prompt.txt",
-      "href": "../wiki/evidence-store/sources/2026-07-25-1151-after-hours-autopilot-prompt.txt"
+      "label": "2026-07-25-1211-after-hours-autopilot-prompt.txt",
+      "path": "wiki/evidence-store/sources/2026-07-25-1211-after-hours-autopilot-prompt.txt",
+      "href": "../wiki/evidence-store/sources/2026-07-25-1211-after-hours-autopilot-prompt.txt"
     },
     {
-      "label": "2026-07-25-1151-after-hours-autopilot-alpaca-core-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-07-25-1151-after-hours-autopilot-alpaca-core-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-07-25-1151-after-hours-autopilot-alpaca-core-preflight.json"
+      "label": "2026-07-25-1211-after-hours-autopilot-alpaca-core-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-07-25-1211-after-hours-autopilot-alpaca-core-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-07-25-1211-after-hours-autopilot-alpaca-core-preflight.json"
     },
     {
-      "label": "2026-07-25-1151-after-hours-autopilot-research-mcp-preflight.json",
-      "path": "wiki/evidence-store/sources/2026-07-25-1151-after-hours-autopilot-research-mcp-preflight.json",
-      "href": "../wiki/evidence-store/sources/2026-07-25-1151-after-hours-autopilot-research-mcp-preflight.json"
+      "label": "2026-07-25-1211-after-hours-autopilot-research-mcp-preflight.json",
+      "path": "wiki/evidence-store/sources/2026-07-25-1211-after-hours-autopilot-research-mcp-preflight.json",
+      "href": "../wiki/evidence-store/sources/2026-07-25-1211-after-hours-autopilot-research-mcp-preflight.json"
     },
     {
-      "label": "2026-07-25-1151-after-hours-autopilot-after-hours-gate-evaluation.json",
-      "path": "wiki/evidence-store/sources/2026-07-25-1151-after-hours-autopilot-after-hours-gate-evaluation.json",
-      "href": "../wiki/evidence-store/sources/2026-07-25-1151-after-hours-autopilot-after-hours-gate-evaluation.json"
+      "label": "2026-07-25-1211-after-hours-autopilot-after-hours-gate-evaluation.json",
+      "path": "wiki/evidence-store/sources/2026-07-25-1211-after-hours-autopilot-after-hours-gate-evaluation.json",
+      "href": "../wiki/evidence-store/sources/2026-07-25-1211-after-hours-autopilot-after-hours-gate-evaluation.json"
     }
   ],
   "timeline": [
+    {
+      "time": "2026-07-25 12:14 KST",
+      "type": "after-hours-autopilot",
+      "title": "2026-07-25-1211-after-hours-autopilot scheduled paper autopilot"
+    },
     {
       "time": "2026-07-25 11:55 KST",
       "type": "after-hours-autopilot",
@@ -679,11 +684,6 @@
       "time": "2026-07-25 11:35 KST",
       "type": "after-hours-autopilot",
       "title": "2026-07-25-1131-after-hours-autopilot scheduled paper autopilot"
-    },
-    {
-      "time": "2026-07-25 11:14 KST",
-      "type": "after-hours-autopilot",
-      "title": "2026-07-25-1111-after-hours-autopilot scheduled paper autopilot"
     }
   ],
   "backtests": [
