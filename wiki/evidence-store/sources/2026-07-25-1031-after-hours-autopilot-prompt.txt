@@ -1,0 +1,16 @@
+Scheduled after-hours paper autopilot run.
+Run id: 2026-07-25-1031-after-hours-autopilot
+Workflow: harness/workflows/after-hours-autopilot.md
+Session: after_hours
+Market date evaluated: Friday, July 24, 2026 EDT
+Required behavior:
+- Confirm ALPACA_PAPER_TRADE=true.
+- Use after_hours_policy from harness/recommendation-policy.yaml.
+- Use scheduler-owned Alpaca core preflight wiki/evidence-store/sources/2026-07-25-1031-after-hours-autopilot-alpaca-core-preflight.json.
+- Use scheduler-owned research preflight wiki/evidence-store/sources/2026-07-25-1031-after-hours-autopilot-research-mcp-preflight.json.
+- Treat Alpaca core first_blocking_gate=market_closed as expected nonblocking for after-hours.
+- Use the same preflight's passing account, positions, orders, asset, quote, and spread rows as the source-of-record submit boundary.
+- Submit after-hours paper orders only if every hard gate, universe gate, MCP gate, quote/spread gate, and risk gate passes.
+- Do not submit if Alpaca regular market is open.
+- Every order must be whole-share day limit stock/ETF with extended_hours=true, session=after_hours, and review_bucket=after_hours_validation.
+- Reconcile by client_order_id immediately after any submit attempt; do not retry with a different client order id.
