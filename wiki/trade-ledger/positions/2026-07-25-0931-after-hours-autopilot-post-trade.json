@@ -1,0 +1,37 @@
+{
+  "run_id": "2026-07-25-0931-after-hours-autopilot",
+  "created_at": "2026-07-25T00:33:17Z",
+  "session": "after_hours",
+  "market_date": "2026-07-24 EDT",
+  "account": {
+    "status": "ACTIVE",
+    "cash": 29036.78,
+    "portfolio_value": 96158.85,
+    "buying_power": 294070.46,
+    "currency": "USD"
+  },
+  "positions_count": 31,
+  "open_orders_count": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_today": 0,
+  "same_session_fill_details": [],
+  "positions_focus": [
+    "AVGO position 없음",
+    "SO qty=6",
+    "QQQ qty=3",
+    "SPY qty=2",
+    "WMT qty=10",
+    "NOK qty=398",
+    "NOK qty_available=398"
+  ],
+  "orders_submitted_this_cycle": [],
+  "orders_replaced_this_cycle": [],
+  "orders_cancelled_this_cycle": [],
+  "orders_closed_this_cycle": [],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-25-0931-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-25-0931-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ],
+  "note": "No new after-hours order was submitted because the scheduler-owned 2026-07-25-0931- source-of-record quote rows failed fresh quote, quote completeness, spread, or per-order cap gates before submit.",
+  "reconciliation_note": "Live Alpaca MCP continuity at 2026-07-24T20:33:26.813507609-04:00 confirmed get_orders(status=open)=[], get_orders(status=all, after=2026-07-24T20:00:00Z)=[], get_account_activities(activity_types=[FILL], after=2026-07-24T20:00:00Z)=[], and prior-session ah-20260723-2151-sell-nok-01 remained filled at 9.67 USD."
+}
