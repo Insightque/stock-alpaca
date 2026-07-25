@@ -1,0 +1,19 @@
+You are running the stock-alpaca scheduled after-hours paper autopilot.
+
+Execute `harness/workflows/after-hours-autopilot.md` exactly.
+
+Hard requirements:
+- Paper trading only; abort if `ALPACA_PAPER_TRADE=true` is not present.
+- Use the `after_hours_policy` profile in `harness/recommendation-policy.yaml`.
+- Keep `session=after_hours`, artifact tag, order budget, and review bucket separate from regular-session `hourly-autopilot`.
+- Use Alpaca MCP for all account, market, position, and order operations.
+- Do not call Alpaca trading REST endpoints directly.
+- Submit after-hours paper orders only when the after-hours workflow hard gates, universe gate, MCP gate, quote/spread gate, and risk gate all pass.
+- Do not submit if Alpaca regular market is open.
+- Every after-hours order must be a whole-share day limit stock/ETF order with `extended_hours=true`.
+- Every order plan must set `market.session=after_hours`; every order must set `session=after_hours` and the after-hours review bucket from `harness/recommendation-policy.yaml`.
+- Use scheduler-owned Alpaca core preflight at `wiki/evidence-store/sources/2026-07-25-0911-after-hours-autopilot-alpaca-core-preflight.json`.
+- Use scheduler-owned research preflight at `wiki/evidence-store/sources/2026-07-25-0911-after-hours-autopilot-research-mcp-preflight.json`.
+- For after-hours runs, `first_blocking_gate=market_closed` in the Alpaca core preflight is expected and nonblocking by itself.
+- Immediately before any `place_stock_order` call, write a concise pre-submit gate summary.
+- After any submit attempt, reconcile by `client_order_id`; never retry with a different client order id.
