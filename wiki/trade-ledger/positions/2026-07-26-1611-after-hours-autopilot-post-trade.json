@@ -1,0 +1,38 @@
+{
+  "run_id": "2026-07-26-1611-after-hours-autopilot",
+  "created_at": "2026-07-26T07:11:25Z",
+  "session": "after_hours",
+  "market_date": "Friday, July 24, 2026 EDT",
+  "account": {
+    "status": "ACTIVE",
+    "cash": 29036.76,
+    "portfolio_value": 96284.29,
+    "buying_power": 294299.08
+  },
+  "positions_count": 31,
+  "open_orders_count": 0,
+  "same_session_after_hours_orders_submitted_today": 0,
+  "same_session_after_hours_fills_today": 0,
+  "same_session_fill_details": [],
+  "positions_focus": {
+    "AVGO_position_present": false,
+    "SO_qty": 6,
+    "QQQ_qty": 3,
+    "SPY_qty": 2,
+    "WMT_qty": 10,
+    "NOK_qty": 398,
+    "NOK_qty_available": 398
+  },
+  "orders_submitted_this_cycle": 0,
+  "orders_replaced_this_cycle": [],
+  "orders_cancelled_this_cycle": [],
+  "orders_closed_this_cycle": [],
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-26-1611-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-26-1611-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-07-26-1611-after-hours-autopilot.json",
+    "wiki/evidence-store/sources/2026-07-26-1611-after-hours-autopilot-after-hours-gate-evaluation.json"
+  ],
+  "note": "No new after-hours order was submitted because the source-of-record submit-boundary quote/spread gate failed before the order path opened.",
+  "reconciliation_note": "source-of-record preflight orders_submitted=0 and recent FILL continuity remained authoritative. The scheduler-owned Alpaca MCP core preflight reconfirmed regular market closed, account ACTIVE, positions 31, watchlists 0, open orders 0, same-session after-hours fills 0, and the identical stale/one-sided shortlist quote set, so the run stayed reconcile-only without a new client_order_id."
+}
