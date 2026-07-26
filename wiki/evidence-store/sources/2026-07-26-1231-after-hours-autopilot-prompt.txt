@@ -1,0 +1,14 @@
+You are running the stock-alpaca scheduled after-hours paper autopilot.
+
+Execute `harness/workflows/after-hours-autopilot.md` exactly.
+
+Hard requirements applied for this cycle:
+- Paper trading only; abort if `ALPACA_PAPER_TRADE=true` is not present.
+- Use the `after_hours_policy` profile in `harness/recommendation-policy.yaml`.
+- Keep `session=after_hours`, artifact tag, order budget, and review bucket separate from regular-session `hourly-autopilot`.
+- Use scheduler-owned Alpaca core preflight `wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-alpaca-core-preflight.json`.
+- Use scheduler-owned research preflight `wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-research-mcp-preflight.json`.
+- Treat Alpaca core preflight `first_blocking_gate=market_closed` as expected nonblocking for after-hours.
+- Submit after-hours paper orders only if after-hours hard gates, universe gate, MCP gate, quote/spread gate, and risk gate all pass.
+- Immediately before any `place_stock_order`, write a concise pre-submit gate summary.
+- Reconcile by `client_order_id`; do not retry with a different client order id.

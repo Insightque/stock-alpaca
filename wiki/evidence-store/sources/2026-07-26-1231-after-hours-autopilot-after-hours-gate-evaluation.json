@@ -1,0 +1,280 @@
+{
+  "run_id": "2026-07-26-1231-after-hours-autopilot",
+  "created_at": "2026-07-26T03:34:56Z",
+  "session": "after_hours",
+  "market_date": "Friday, July 24, 2026 EDT",
+  "scheduler_artifact_label": "2026-07-26-1231-",
+  "policy_profile": "after_hours_policy",
+  "review_bucket": "after_hours_validation",
+  "hard_gate_summary": {
+    "paper_mode": "pass",
+    "alpaca_core": "pass_with_market_closed_expected_nonblocking",
+    "universe_strict": "pass",
+    "mcp_strict": "pass",
+    "risk_validator": "pass",
+    "quote_spread_submit_boundary": "fail",
+    "first_blocking_gate": "fresh_quote"
+  },
+  "continuity": {
+    "checked_at": "2026-07-26T03:31:09Z",
+    "clock": {
+      "is_open": false,
+      "timestamp": "2026-07-25T23:31:09.682446279-04:00",
+      "next_open": "2026-07-27T09:30:00-04:00",
+      "next_close": "2026-07-27T16:00:00-04:00"
+    },
+    "account_status": "ACTIVE",
+    "positions_count": 31,
+    "watchlists_count": 0,
+    "open_orders_count": 0,
+    "same_session_after_hours_orders": 0,
+    "same_session_after_hours_fills": 0,
+    "prior_after_hours_client_order_id": "ah-20260723-2151-sell-nok-01",
+    "prior_after_hours_client_order_status": "filled",
+    "prior_after_hours_filled_avg_price": "9.67",
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-alpaca-core-preflight.json"
+    ]
+  },
+  "after_hours_budget": {
+    "allowed_new_orders": 2,
+    "submitted_today": 0,
+    "remaining": 2,
+    "source_field": "risk_inputs.after_hours_new_orders_submitted_today"
+  },
+  "review_backlog": {
+    "pending_1d": 1,
+    "pending_5d": 3,
+    "pending_20d": 1,
+    "blocker": "quote_or_spread_gate_failed"
+  },
+  "candidate_evaluations": [
+    {
+      "symbol": "SO",
+      "intent": "sell_trim",
+      "bid_price": 89.3,
+      "ask_price": 0,
+      "quote_timestamp": "2026-07-24T20:00:02.082301591Z",
+      "quote_age_minutes": 1891.43,
+      "spread_pct": null,
+      "quote_complete": false,
+      "gates_passed": false,
+      "gates_failed": [
+        "quote_completeness",
+        "fresh_quote"
+      ],
+      "blocking_gate": "quote_completeness",
+      "note": "same-session source-of-record ask missing so executable after-hours quote is incomplete",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-alpaca-core-preflight.json"
+      ]
+    },
+    {
+      "symbol": "WMT",
+      "intent": "buy_fallback",
+      "bid_price": 102.6,
+      "ask_price": 0,
+      "quote_timestamp": "2026-07-24T20:00:01.668911295Z",
+      "quote_age_minutes": 1891.44,
+      "spread_pct": null,
+      "quote_complete": false,
+      "gates_passed": false,
+      "gates_failed": [
+        "quote_completeness",
+        "fresh_quote"
+      ],
+      "blocking_gate": "quote_completeness",
+      "note": "same-session source-of-record ask missing so executable after-hours quote is incomplete",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-alpaca-core-preflight.json"
+      ]
+    },
+    {
+      "symbol": "MCD",
+      "intent": "buy_fallback",
+      "bid_price": 264.01,
+      "ask_price": 270.01,
+      "quote_timestamp": "2026-07-24T20:42:02.513854941Z",
+      "quote_age_minutes": 1849.42,
+      "spread_pct": 2.2726,
+      "quote_complete": true,
+      "gates_passed": false,
+      "gates_failed": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "blocking_gate": "fresh_quote",
+      "note": "",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-alpaca-core-preflight.json"
+      ]
+    },
+    {
+      "symbol": "QQQ",
+      "intent": "buy_fallback",
+      "bid_price": 684.28,
+      "ask_price": 684.37,
+      "quote_timestamp": "2026-07-24T20:12:03.13292316Z",
+      "quote_age_minutes": 1879.41,
+      "spread_pct": 0.0132,
+      "quote_complete": true,
+      "gates_passed": false,
+      "gates_failed": [
+        "fresh_quote",
+        "after_hours_per_order_notional_cap"
+      ],
+      "blocking_gate": "fresh_quote",
+      "note": "",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-alpaca-core-preflight.json"
+      ]
+    },
+    {
+      "symbol": "SPY",
+      "intent": "buy_fallback",
+      "bid_price": 716.44,
+      "ask_price": 760.82,
+      "quote_timestamp": "2026-07-24T20:00:00.005795511Z",
+      "quote_age_minutes": 1891.47,
+      "spread_pct": 6.1945,
+      "quote_complete": true,
+      "gates_passed": false,
+      "gates_failed": [
+        "fresh_quote",
+        "spread_within_after_hours_policy",
+        "after_hours_per_order_notional_cap"
+      ],
+      "blocking_gate": "fresh_quote",
+      "note": "",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-alpaca-core-preflight.json"
+      ]
+    },
+    {
+      "symbol": "SMH",
+      "intent": "buy_fallback",
+      "bid_price": 539.95,
+      "ask_price": 0,
+      "quote_timestamp": "2026-07-24T20:00:04.090938646Z",
+      "quote_age_minutes": 1891.40,
+      "spread_pct": null,
+      "quote_complete": false,
+      "gates_passed": false,
+      "gates_failed": [
+        "quote_completeness",
+        "fresh_quote"
+      ],
+      "blocking_gate": "quote_completeness",
+      "note": "same-session source-of-record ask missing so executable after-hours quote is incomplete",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-alpaca-core-preflight.json"
+      ]
+    },
+    {
+      "symbol": "NOK",
+      "intent": "sell_trim",
+      "bid_price": 9.05,
+      "ask_price": 9.1,
+      "quote_timestamp": "2026-07-24T20:54:29.582902337Z",
+      "quote_age_minutes": 1836.97,
+      "spread_pct": 0.5525,
+      "quote_complete": true,
+      "gates_passed": false,
+      "gates_failed": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "blocking_gate": "fresh_quote",
+      "note": "",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-alpaca-core-preflight.json"
+      ]
+    },
+    {
+      "symbol": "NEE",
+      "intent": "buy_fallback",
+      "bid_price": 84.55,
+      "ask_price": 93,
+      "quote_timestamp": "2026-07-24T20:00:00.003597521Z",
+      "quote_age_minutes": 1891.47,
+      "spread_pct": 9.9941,
+      "quote_complete": true,
+      "gates_passed": false,
+      "gates_failed": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "blocking_gate": "fresh_quote",
+      "note": "",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-alpaca-core-preflight.json"
+      ]
+    },
+    {
+      "symbol": "CVX",
+      "intent": "buy_fallback",
+      "bid_price": 183.39,
+      "ask_price": 203.69,
+      "quote_timestamp": "2026-07-24T20:00:00.008469964Z",
+      "quote_age_minutes": 1891.47,
+      "spread_pct": 11.0693,
+      "quote_complete": true,
+      "gates_passed": false,
+      "gates_failed": [
+        "fresh_quote",
+        "spread_within_after_hours_policy"
+      ],
+      "blocking_gate": "fresh_quote",
+      "note": "",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-alpaca-core-preflight.json"
+      ]
+    },
+    {
+      "symbol": "GS",
+      "intent": "buy_fallback",
+      "bid_price": 1016.5,
+      "ask_price": 1117.43,
+      "quote_timestamp": "2026-07-24T20:00:00.913410224Z",
+      "quote_age_minutes": 1891.45,
+      "spread_pct": 9.9292,
+      "quote_complete": true,
+      "gates_passed": false,
+      "gates_failed": [
+        "fresh_quote",
+        "spread_within_after_hours_policy",
+        "after_hours_per_order_notional_cap"
+      ],
+      "blocking_gate": "fresh_quote",
+      "note": "",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-alpaca-core-preflight.json"
+      ]
+    }
+  ],
+  "decision": {
+    "action": "no_submit",
+    "reason": "scheduler-owned submit-boundary quotes remained stale, one-sided, too wide, or above after-hours per-order cap before submit",
+    "first_blocking_gate": "fresh_quote",
+    "orders_submitted": 0,
+    "orders_reconciled": 0,
+    "top_symbol_considered": "NOK",
+    "top_symbol_intent": "sell_trim",
+    "source_refs": [
+      "wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-alpaca-core-preflight.json",
+      "wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-after-hours-gate-evaluation.json",
+      "wiki/trade-ledger/orders/2026-07-26-1231-after-hours-autopilot.json"
+    ]
+  },
+  "source_refs": [
+    "wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-alpaca-core-preflight.json",
+    "wiki/evidence-store/sources/2026-07-26-1231-after-hours-autopilot-research-mcp-preflight.json",
+    "wiki/trade-ledger/orders/2026-07-26-1231-after-hours-autopilot.json"
+  ],
+  "mcp_failure_note": {
+    "server": "alpha-vantage",
+    "gap_category": "empty_response",
+    "gap_reason": "NEWS_SENTIMENT returned no candidate news items for the shortlisted symbols.",
+    "blocking": false
+  }
+}
