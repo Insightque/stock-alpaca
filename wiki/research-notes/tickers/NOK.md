@@ -174,3 +174,9 @@ current Alpaca snapshot 기준 `NOK`는 `402주`, 평균단가 `15.044527 USD`, 
 `Saturday, July 25, 2026` 런타임에는 `Friday, July 24, 2026 ET` close 이후 after-hours no-submit 연속 사이클까지 다시 점검했다. Alpaca current continuity에서도 `NOK`는 `398주`, 평균단가 `15.044573 USD`, latest quote `9.05 / 9.10`, latest trade `9.09 USD`로 남아 있고 `client_order_id=ah-20260723-2151-sell-nok-01`는 계속 `filled` 상태다. Alpha Vantage latest quarterly row는 `reportedEPS=0.08`, `estimatedEPS=0.07`, `surprisePercentage=14.2857`로 beat지만 Yahoo 기사와 실제 tape는 계속 약해 add-block을 풀 근거가 없다. 따라서 `1D` 판단은 계속 `Monday, July 27, 2026 ET` close 이후로 미루고 `existing-position-breakout-add-penalty`를 유지한다.
 
 출처: [[2026-07-25-portfolio-review]], [[2026-07-25-analyst-review-cycle-sources]]
+
+### 2026-08-10 analyst review cycle
+
+이번 cycle에서는 `2026-07-22 ET` trim cohort `5D`와 `2026-07-24 ET` trim `1D/5D`를 함께 닫았다. `2026-07-22 ET` trim 두 건은 `10.95 USD`, `10.78 USD` fill 대비 `2026-07-29 ET` close `8.40 USD`로 평균 `-22.69%`였고, `2026-07-24 ET` trim `1주 @ 9.67 USD`는 `2026-07-27 ET` close `9.27 USD`로 `-4.14%`, `2026-07-31 ET` close `9.10 USD`로 `-5.89%`였다. 세 closeout 모두 trim 뒤 가격이 더 낮아져 price-first discipline이 맞았음을 보여준다. 다만 같은 잔여 대형 포지션에서 나온 반복 표본이라 새 일반 규칙으로 승격하지는 않는다. current Alpaca close/current `9.12/9.12 USD`, 잔여 `398주`, 평균단가 `15.044573 USD` 기준 add-block은 계속 유지하며 다음 due는 `Friday, August 21, 2026 ET` `20D`다.
+
+출처: [[2026-08-10-portfolio-review]], [[2026-08-10-analyst-review-cycle-sources]]

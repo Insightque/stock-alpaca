@@ -1,0 +1,137 @@
+{
+  "id": "2026-08-10-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-08-10T23:24:00Z",
+  "timezone": "UTC",
+  "paper": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "alpaca_reconciliation": {
+    "clock_is_open": false,
+    "clock_timestamp": "2026-08-10T19:21:56.338499944-04:00",
+    "account_status": "ACTIVE",
+    "portfolio_value": 98640.81,
+    "cash": 29036.76,
+    "buying_power": 300863.91,
+    "long_market_value": 69604.05,
+    "open_us_equity_orders": 0,
+    "position_count_direct": 31,
+    "recent_fill_scope_after": "2026-07-22T00:00:00Z",
+    "portfolio_history": {
+      "outcome": "gap",
+      "gap_category": "cancelled",
+      "retry_count": 2,
+      "gap_reason": "get_portfolio_history was cancelled on the initial call and two retries during the Monday, August 10, 2026 analyst review cycle"
+    }
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-08-10-portfolio-review.md",
+    "symbol_reviews": [
+      "wiki/research-notes/tickers/AVGO.md",
+      "wiki/research-notes/tickers/NOK.md",
+      "wiki/research-notes/tickers/IONQ.md",
+      "wiki/research-notes/tickers/GOOGL.md"
+    ],
+    "reviewed_horizons": [
+      "2026-07-22 ET AVGO trim 5D closeout",
+      "2026-07-22 ET NOK trim 5D closeout",
+      "2026-07-24 ET NOK trim 1D closeout",
+      "2026-07-24 ET NOK trim 5D closeout",
+      "open-position monitor",
+      "skipped recommendations re-check"
+    ],
+    "symbols": [
+      "AVGO",
+      "NOK",
+      "IONQ",
+      "GOOGL",
+      "WMT",
+      "MCD",
+      "SPY",
+      "QQQ",
+      "SMH"
+    ],
+    "due_now": true,
+    "next_due": "2026-08-21 ET regular-session close for NOK 20D review"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_score": true,
+      "outcome": "usable",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-08-10-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "portfolio_history was cancelled, but account/order/fill/position/bars/snapshot/news reconciliation remained usable",
+      "gap_category": "not_applicable",
+      "retry_count": 0
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-08-10-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-08-10-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered TOOL_LIST/TOOL_GET/TOOL_CALL surface not exposed, so mandatory PING health check could not run",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-08-10-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-08-10-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-08-10-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    }
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "NOK trim closeouts and AVGO residual trim 5D added useful evidence, but the cycle still lacks independent multi-provider confirmation and remains below the recommendation-policy update threshold"
+  }
+}
