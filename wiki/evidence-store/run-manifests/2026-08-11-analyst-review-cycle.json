@@ -1,0 +1,107 @@
+{
+  "id": "2026-08-11-analyst-review-cycle",
+  "workflow": "harness/workflows/analyst-review-cycle.md",
+  "created_at": "2026-08-11T22:35:06Z",
+  "timezone": "UTC",
+  "paper": true,
+  "orders_submitted": 0,
+  "orders_replaced": 0,
+  "orders_cancelled": 0,
+  "positions_closed": 0,
+  "alpaca_reconciliation": {
+    "outcome": "gap",
+    "gap_category": "wrapper_error",
+    "retry_count": 0,
+    "gap_reason": "No callable Alpaca MCP surface was exposed in the Tuesday, August 11, 2026 scheduled analyst review cycle session, so post-close account/order/fill/position/market-data reconciliation could not run truthfully"
+  },
+  "review_scope": {
+    "new_review": "wiki/trade-ledger/reviews/2026-08-11-portfolio-review.md",
+    "symbol_reviews": [],
+    "reviewed_horizons": [],
+    "symbols": [
+      "NOK"
+    ],
+    "due_now": false,
+    "next_due": "2026-08-21 ET regular-session close for NOK 20D review",
+    "carry_forward_from": "wiki/trade-ledger/reviews/2026-08-10-portfolio-review.md"
+  },
+  "mcp_coverage": [
+    {
+      "server": "alpaca",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-08-11-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered callable surface not exposed in current Codex session",
+      "gap_category": "wrapper_error",
+      "retry_count": 0,
+      "first_blocking_gate": "alpaca_surface_unavailable"
+    },
+    {
+      "server": "sec-edgar",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-08-11-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "alpha-vantage",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-08-11-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered TOOL_LIST/TOOL_GET/TOOL_CALL surface not exposed, so mandatory PING health check could not run",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "fred",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-08-11-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "firecrawl",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-08-11-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    },
+    {
+      "server": "yahoo-finance",
+      "queried": true,
+      "used_in_score": false,
+      "outcome": "gap",
+      "source_refs": [
+        "wiki/evidence-store/sources/2026-08-11-analyst-review-cycle-sources.md"
+      ],
+      "gap_reason": "registered_tool_namespace_not_exposed",
+      "gap_category": "wrapper_error",
+      "retry_count": 0
+    }
+  ],
+  "policy_update": {
+    "changed": false,
+    "reason": "The August 11, 2026 ET cycle lacked truthful Alpaca post-close reconciliation and therefore did not meet the evidence threshold for policy mutation"
+  }
+}
