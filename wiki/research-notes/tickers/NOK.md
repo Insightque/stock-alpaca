@@ -180,3 +180,9 @@ current Alpaca snapshot 기준 `NOK`는 `402주`, 평균단가 `15.044527 USD`, 
 이번 cycle에서는 `2026-07-22 ET` trim cohort `5D`와 `2026-07-24 ET` trim `1D/5D`를 함께 닫았다. `2026-07-22 ET` trim 두 건은 `10.95 USD`, `10.78 USD` fill 대비 `2026-07-29 ET` close `8.40 USD`로 평균 `-22.69%`였고, `2026-07-24 ET` trim `1주 @ 9.67 USD`는 `2026-07-27 ET` close `9.27 USD`로 `-4.14%`, `2026-07-31 ET` close `9.10 USD`로 `-5.89%`였다. 세 closeout 모두 trim 뒤 가격이 더 낮아져 price-first discipline이 맞았음을 보여준다. 다만 같은 잔여 대형 포지션에서 나온 반복 표본이라 새 일반 규칙으로 승격하지는 않는다. current Alpaca close/current `9.12/9.12 USD`, 잔여 `398주`, 평균단가 `15.044573 USD` 기준 add-block은 계속 유지하며 다음 due는 `Friday, August 21, 2026 ET` `20D`다.
 
 출처: [[2026-08-10-portfolio-review]], [[2026-08-10-analyst-review-cycle-sources]]
+
+### 2026-08-16 analyst review cycle
+
+`Sunday, August 16, 2026 ET` review는 비거래일 carry-forward cycle이다. 마지막 확정 종가인 `Friday, August 14, 2026 ET` 기준 `NOK`는 `10.77 USD`, latest trade는 `10.78 USD`, 잔여 `398주`, 평균단가 `15.044573 USD`로 `Monday, August 10, 2026 ET` close `9.12 USD` 대비는 반등했지만 basis recovery와는 아직 거리가 멀다. Alpaca news의 `2026-08-13` stronger-than-expected Q2 / AI-cloud order volume headline은 반등 근거로는 쓸 수 있어도 기존 trim closeout과 add-block 해제를 뒤집을 정도는 아니다. 따라서 `existing-position-breakout-add-penalty`와 `Friday, August 21, 2026 ET` `20D` due를 그대로 유지한다.
+
+출처: [[2026-08-16-portfolio-review]], [[2026-08-16-analyst-review-cycle-sources]]

@@ -88,3 +88,9 @@ current Alpaca snapshot 기준 `IONQ`는 `45주`, 평균단가 `63.48 USD`, `202
 `Monday, August 10, 2026 ET` close/current 기준 `IONQ`는 `42.51/42.54 USD`로 7월 말 저점 대비는 크게 회복했지만 평균단가 `63.48 USD` 대비 미실현 손실은 아직 약 `-33.03%`다. Alpaca news에서는 `2026-08-05` 실적 double beat와 2026 outlook 상향, `2026-08-07` DARPA 관련 강세 해설이 확인됐다. 즉 thesis 압박은 일부 완화됐지만, 지금 단계는 `실적 반등 확인`이지 `basis recovery`가 아니다. 따라서 speculative sleeve no-add discipline을 유지한다.
 
 출처: [[2026-08-10-portfolio-review]], [[2026-08-10-analyst-review-cycle-sources]]
+
+### 2026-08-16 analyst review cycle
+
+`Sunday, August 16, 2026 ET` carry-forward review에서는 마지막 확정 종가 `Friday, August 14, 2026 ET` 기준 `IONQ`가 `46.30 USD`로 `Monday, August 10, 2026 ET` close `42.51 USD` 대비 반등한 점을 확인했다. 하지만 잔여 `45주`, 평균단가 `63.48 USD` 대비 미실현 손실은 아직 약 `-27.11%`이며, 이번 주 Alpaca news만으로 speculative sleeve averaging-down 규율을 완화할 근거는 부족하다. 따라서 현재 해석은 여전히 `실적 이후 회복은 확인`, 그러나 `speculative no-add 유지`다.
+
+출처: [[2026-08-16-portfolio-review]], [[2026-08-16-analyst-review-cycle-sources]]
